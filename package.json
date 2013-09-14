@@ -1,0 +1,86 @@
+{
+    "name": "joola.io",
+    "preferGlobal": false,
+    "version": "3.0.0",
+    "author": "Joola <info@joo.la>",
+    "description": "Joola Analytics Engine",
+    "engine": "node >= 0.10.x",
+    "private": false,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/joola/joola.io.git"
+    },
+    "contributors": [
+        {
+            "name": "Itay Weinberger",
+            "email": "itay@joo.la",
+            "url": "http://joo.la"
+        },
+        {
+            "name": "Or Weinberger",
+            "email": "or@joo.la",
+            "url": "http://joo.la"
+        }
+    ],
+    "scripts": {
+        "test": "mocha --reporter spec",
+        "citest": "mocha > test-reports.xml",
+        "start": "node joola.js",
+        "debug": "npm-inspector && npm start && open \"http://http://127.0.0.1:8080/debug?port=5858\"",
+        "monitor": "mocha --reporter min --watch",
+        "debugtest": "mocha --debug-brk --reporter spec",
+        "coverage": "mochacoverage"
+    },
+    "keywords": [
+        "data",
+        "analytics",
+        "big-data",
+        "visualization",
+        "noSQL"
+    ],
+    "dependencies": {
+        "joola-analytics": "*",
+        "connect": "1.8.5",
+        "express": "2.5.2",
+        "jade": "0.20.0",
+        "socket.io": "0.8.7",
+        "commander": "1.2.x",
+        "winston": "0.7.x",
+        "cloneextend": "0.0.x",
+        "node-uuid": "1.4.x",
+        "watchr": "2.4.x",
+        "underscore": "1.4.x",
+        "pg": "2.0.x",
+        "mysql": "2.0.x",
+        "mongodb": "1.3.x",
+        "date-utils": "1.2.x",
+        "redis": "0.8.x",
+        "should": "1.2.x",
+        "JSONSelect": "0.4.x",
+        "request": "2.21.x",
+        "async": "0.2.x",
+        "heapdump": "0.2.x",
+        "open": "0.0.x",
+        "process": "0.5.x",
+        "memwatch": "0.2.x",
+        "actionHero": "6.2.x",
+        "faye": "0.8.x",
+        "forever": "0.10.x",
+        "forever-monitor": "1.1.x",
+        "fs-extra": "0.x",
+        "dos2unix": "1.1.x",
+        "twix": "0.3.x",
+        "moment": "2.1.x",
+        "tedious": "0.1.x",
+        "graceful-fs": "2.0.x",
+        "mocha": "1.11.x",
+        "nodecoverage": "0.6.x",
+        "sinon": "1.7.x",
+        "chai": "1.7.x",
+        "sinon-chai": "2.4.x",
+        "mochawrapper": "*"
+    },
+    "devDependencies": {
+
+    }
+}
