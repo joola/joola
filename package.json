@@ -72,7 +72,6 @@
 
 		"should": "1.x",
 		"mocha": "1.x",
-		"nodecoverage": "0.x",
 		"sinon": "1.x",
 		"chai": "1.x",
 		"sinon-chai": "2.x",
