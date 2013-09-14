@@ -13,7 +13,7 @@ test-cov:
 
 test-coveralls:
 	$(MAKE) test REPORTER=spec
-	$(MAKE) test REPORTER=mocha-lcov-reporter | .node_modules/.bin/coveralls.js --verbose
+	$(MAKE) test REPORTER=mocha-lcov-reporter | ./node_modules/.bin/coveralls --verbose
 	rm -rf lib-cov
 
 .PHONY: test

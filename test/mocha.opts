@@ -1,0 +1,4 @@
+--require ./test/common.js
+
+--reporter mocha-lcov-reporter
+--recursive
