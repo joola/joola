@@ -76,7 +76,6 @@
 		"sinon": "1.x",
 		"chai": "1.x",
 		"sinon-chai": "2.x",
-		"mochawrapper": "0.x",
 		"blanket": "1.x",
 		"jshint": "2.x"
 	},
