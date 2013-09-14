@@ -1,84 +1,93 @@
 {
-    "name": "joola.io",
-    "preferGlobal": false,
-    "version": "3.0.0",
-    "author": "Joola <info@joo.la>",
-    "description": "Joola Analytics Engine",
-    "engine": "node >= 0.10.x",
-    "private": false,
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/joola/joola.io.git"
+  "name": "joola.io",
+  "preferGlobal": false,
+  "version": "3.0.0",
+  "author": "Joola <info@joo.la>",
+  "description": "Joola Analytics Engine",
+  "engine": "node >= 0.10.x",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joola/joola.io.git"
+  },
+  "contributors": [
+    {
+      "name": "Itay Weinberger",
+      "email": "itay@joo.la",
+      "url": "http://joo.la"
     },
-    "contributors": [
-        {
-            "name": "Itay Weinberger",
-            "email": "itay@joo.la",
-            "url": "http://joo.la"
-        },
-        {
-            "name": "Or Weinberger",
-            "email": "or@joo.la",
-            "url": "http://joo.la"
-        }
-    ],
-    "scripts": {
-        "test": "mocha --reporter spec",
-        "citest": "mocha > test-reports.xml",
-        "start": "node joola.js",
-        "debug": "npm-inspector && npm start && open \"http://http://127.0.0.1:8080/debug?port=5858\"",
-        "monitor": "mocha --reporter min --watch",
-        "debugtest": "mocha --debug-brk --reporter spec",
-        "coverage": "mochacoverage"
-    },
-    "keywords": [
-        "data",
-        "analytics",
-        "big-data",
-        "visualization",
-        "noSQL"
-    ],
-    "dependencies": {
-        "connect": "2.x",
-        "express": "3.x",
-        "jade": "0.x",
-        "socket.io": "0.x",
-        "commander": "x",
-        "winston": "0.x",
-        "cloneextend": "0.x",
-        "node-uuid": "1.x",
-        "watchr": "2.x",
-        "underscore": "1.x",
-        "pg": "2.x",
-        "mysql": "2.x",
-        "mongodb": "1.x",
-        "date-utils": "1.x",
-        "redis": "0.x",
-        "JSONSelect": "0.x",
-        "request": "2.x",
-        "async": "0.x",
-        "heapdump": "0.x",
-        "open": "0.x",
-        "process": "0.x",
-        "memwatch": "0.x",
-        "actionHero": "6.x",
-        "faye": "0.x",
-        "forever": "0.x",
-        "forever-monitor": "1.x",
-        "fs-extra": "0.x",
-        "dos2unix": "1.x",
-        "twix": "0.x",
-        "moment": "2.x",
-        "tedious": "0.x",
-        "graceful-fs": "2.x"
-    },
-    "devDependencies": {
-			"should": "1.x",
-			"mocha": "1.x",
-			"nodecoverage": "0.x",
-			"sinon": "1.x",
-			"chai": "1.x",
-			"sinon-chai": "2.x",
-			"mochawrapper": "0.x"
+    {
+      "name": "Or Weinberger",
+      "email": "or@joo.la",
+      "url": "http://joo.la"
     }
+  ],
+  "scripts": {
+    "test": "mocha --reporter spec",
+    "citest": "mocha > test-reports.xml",
+    "start": "node joola.js",
+    "debug": "npm-inspector && npm start && open \"http://http://127.0.0.1:8080/debug?port=5858\"",
+    "monitor": "mocha --reporter min --watch",
+    "debugtest": "mocha --debug-brk --reporter spec",
+    "coverage": "mochacoverage",
+		"blanket": {
+			"pattern": "test",
+			"data-cover-never": "node_modules"
+		}
+  },
+  "keywords": [
+    "data",
+    "analytics",
+    "big-data",
+    "visualization",
+    "noSQL"
+  ],
+  "dependencies": {
+    "connect": "2.x",
+    "express": "3.x",
+    "jade": "0.x",
+    "socket.io": "0.x",
+    "commander": "x",
+    "winston": "0.x",
+    "cloneextend": "0.x",
+    "node-uuid": "1.x",
+    "watchr": "2.x",
+    "underscore": "1.x",
+    "pg": "2.x",
+    "mysql": "2.x",
+    "mongodb": "1.x",
+    "date-utils": "1.x",
+    "redis": "0.x",
+    "JSONSelect": "0.x",
+    "request": "2.x",
+    "async": "0.x",
+    "heapdump": "0.x",
+    "open": "0.x",
+    "process": "0.x",
+    "memwatch": "0.x",
+    "actionHero": "6.x",
+    "faye": "0.x",
+    "forever": "0.x",
+    "forever-monitor": "1.x",
+    "fs-extra": "0.x",
+    "dos2unix": "1.x",
+    "twix": "0.x",
+    "moment": "2.x",
+    "tedious": "0.x",
+    "graceful-fs": "2.x",
+    "coveralls": "~2.3.0",
+    "mocha-lcov-reporter": "0.0.1"
+  },
+  "devDependencies": {
+    "coveralls": "x",
+    "mocha-lcov-reporter": "x",
+    "should": "1.x",
+    "mocha": "1.x",
+    "nodecoverage": "0.x",
+    "sinon": "1.x",
+    "chai": "1.x",
+    "sinon-chai": "2.x",
+    "mochawrapper": "0.x",
+		"blanket":"x"
+  }
 }
