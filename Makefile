@@ -5,7 +5,7 @@ test:
 	@NODE_ENV=test ./node_modules/.bin/mocha -b --require blanket --reporter $(REPORTER)
 
 lint:
-	./node_modules/.bin/jshint ./test ./test ./joola.io.js
+	./node_modules/.bin/jshint ./joola.io.js
 
 test-cov:
 	$(MAKE) test REPORTER=spec
