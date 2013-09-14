@@ -81,6 +81,6 @@
 		"jshint": "2.x"
 	},
 	"devDependencies": {
-		"mocha-lcov-reporter": "0.x",
+		"mocha-lcov-reporter": "0.x"
 	}
 }
