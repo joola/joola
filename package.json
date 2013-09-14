@@ -39,7 +39,6 @@
         "noSQL"
     ],
     "dependencies": {
-        "joola-analytics": "*",
         "connect": "1.8.5",
         "express": "2.5.2",
         "jade": "0.20.0",
@@ -55,7 +54,6 @@
         "mongodb": "1.3.x",
         "date-utils": "1.2.x",
         "redis": "0.8.x",
-        "should": "1.2.x",
         "JSONSelect": "0.4.x",
         "request": "2.21.x",
         "async": "0.2.x",
@@ -72,15 +70,15 @@
         "twix": "0.3.x",
         "moment": "2.1.x",
         "tedious": "0.1.x",
-        "graceful-fs": "2.0.x",
-        "mocha": "1.11.x",
-        "nodecoverage": "0.6.x",
-        "sinon": "1.7.x",
-        "chai": "1.7.x",
-        "sinon-chai": "2.4.x",
-        "mochawrapper": "*"
+        "graceful-fs": "2.0.x"
     },
     "devDependencies": {
-
+			"should": "1.2.x",
+			"mocha": "1.11.x",
+			"nodecoverage": "0.6.x",
+			"sinon": "1.7.x",
+			"chai": "1.7.x",
+			"sinon-chai": "2.4.x",
+			"mochawrapper": "*"
     }
 }
