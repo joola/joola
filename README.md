@@ -19,7 +19,7 @@ Testing
 -------
 
 ```
-npm test
+npm test   
 ```
 
 [1]: https://coveralls.io/repos/joola/joola.io/badge.png
