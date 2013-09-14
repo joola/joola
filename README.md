@@ -1,8 +1,6 @@
 joola.io
 ========
 
-[![Build Status](https://travis-ci.org/joola/joola.io.png?branch=master)](https://travis-ci.org/joola/joola.io) [![Dependency Status](https://www.versioneye.com/user/projects/5234b35d632bac5c50000ee4/badge.png)](https://www.versioneye.com/user/projects/5234b35d632bac5c50000ee4)
-
 [![Build Status][3]][4] [![dependency status][5]][6] [![dev dependency status][7]][8] [![Coverage Status][1]][2]
 
 
