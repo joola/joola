@@ -47,7 +47,7 @@
     "express": "3.x",
     "jade": "0.x",
     "socket.io": "0.x",
-    "commander": "x",
+    "commander": "2.x",
     "winston": "0.x",
     "cloneextend": "0.x",
     "node-uuid": "1.x",
@@ -79,8 +79,8 @@
     "mocha-lcov-reporter": "0.0.1"
   },
   "devDependencies": {
-    "coveralls": "x",
-    "mocha-lcov-reporter": "x",
+    "coveralls": "2.x",
+    "mocha-lcov-reporter": "0.x",
     "should": "1.x",
     "mocha": "1.x",
     "nodecoverage": "0.x",
@@ -88,6 +88,6 @@
     "chai": "1.x",
     "sinon-chai": "2.x",
     "mochawrapper": "0.x",
-		"blanket":"x"
+		"blanket":"1.x"
   }
 }
