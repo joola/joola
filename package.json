@@ -69,7 +69,7 @@
 		"moment": "2.x",
 		"graceful-fs": "2.x",
 		"coveralls": "2.x",
-		"mocha-lcov-reporter": "0.x",
+
 		"should": "1.x",
 		"mocha": "1.x",
 		"nodecoverage": "0.x",
@@ -81,6 +81,6 @@
 		"jshint": "2.x"
 	},
 	"devDependencies": {
-
+		"mocha-lcov-reporter": "0.x",
 	}
 }

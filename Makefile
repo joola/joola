@@ -1,4 +1,4 @@
-REPORTER = spec
+REPORTER=spec
 test:
 		$(MAKE) lint
 		echo TRAVIS_JOB_ID $(TRAVIS_JOB_ID)
