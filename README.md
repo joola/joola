@@ -1,9 +1,9 @@
 joola.io
 ========
 
-[![Build Status](https://travis-ci.org/joola/joola.io.png?branch=master)](https://travis-ci.org/joola/joola.io) [![Dependency Status](https://www.versioneye.com/user/projects/5234b35d632bac5c50000ee4/badge.png)](https://www.versioneye.com/user/projects/5234b35d632bac5c50000ee4) [![Coverage Status](https://coveralls.io/repos/joola/joola.io/badge.png)](https://coveralls.io/r/joola/joola.io)
+[![Build Status](https://travis-ci.org/joola/joola.io.png?branch=master)](https://travis-ci.org/joola/joola.io) [![Dependency Status](https://www.versioneye.com/user/projects/5234b35d632bac5c50000ee4/badge.png)](https://www.versioneye.com/user/projects/5234b35d632bac5c50000ee4)
 
-[![Build Status][3]][4] [![dependency status][5]][6] [![dev dependency status][7]][8]
+[![Build Status][3]][4] [![dependency status][5]][6] [![dev dependency status][7]][8] [![Coverage Status][1]][2]
 
 
 
@@ -27,6 +27,8 @@ Testing
 npm test
 ```
 
+[1]: https://coveralls.io/repos/joola/joola.io/badge.png
+[2]: https://coveralls.io/r/joola/joola.io
 [3]: https://travis-ci.org/joola/joola.io.png
 [4]: https://travis-ci.org/joola/joola.io
 [5]: https://david-dm.org/joola/joola.io.png
