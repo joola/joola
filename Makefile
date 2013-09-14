@@ -12,7 +12,7 @@ test-cov:
 		$(MAKE) test REPORTER=html-cov 1> coverage.html
 
 test-coveralls:
-		cp ./node_modules/mocha-lcov-reporter/lib/lcov.js ./node_modules/mocha/lib/reportes/mocha-lcov-reporter.js
+		cp ./node_modules/mocha-lcov-reporter/lib/lcov.js ./node_modules/mocha/lib/reporters/mocha-lcov-reporter.js
 		$(MAKE) test REPORTER=spec
 		$(MAKE) test REPORTER=mocha-lcov-reporter | ./node_modules/.bin/coveralls --verbose
 		rm -rf lib-cov
