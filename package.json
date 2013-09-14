@@ -1,9 +1,9 @@
 {
 	"name": "joola.io",
 	"preferGlobal": false,
-	"version": "3.0.0",
+	"version": "3.0.1",
 	"author": "Joola <info@joo.la>",
-	"description": "Joola Analytics Engine",
+	"description": "The open-source data visualization framework",
 	"engine": "node >= 0.10.x",
 	"private": false,
 	"repository": {
