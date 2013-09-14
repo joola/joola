@@ -43,7 +43,7 @@
         "express": "3.x",
         "jade": "0.x",
         "socket.io": "0.x",
-        "commander": "4.x",
+        "commander": "x",
         "winston": "0.x",
         "cloneextend": "0.x",
         "node-uuid": "1.x",
