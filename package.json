@@ -67,9 +67,7 @@
 		"fs-extra": "0.x",
 		"twix": "0.x",
 		"moment": "2.x",
-		"graceful-fs": "2.x"
-	},
-	"devDependencies": {
+		"graceful-fs": "2.x",
 		"coveralls": "2.x",
 		"mocha-lcov-reporter": "0.x",
 		"should": "1.x",
@@ -81,5 +79,8 @@
 		"mochawrapper": "0.x",
 		"blanket": "1.x",
 		"jshint": "2.x"
+	},
+	"devDependencies": {
+
 	}
 }
