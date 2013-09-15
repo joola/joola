@@ -1,7 +1,10 @@
 /**
- * Created with JetBrains WebStorm.
- * User: itay
- * Date: 9/14/13
- * Time: 9:25 PM
- * To change this template use File | Settings | File Templates.
+ *  joola.io
+ *
+ *  Copyright Joola Smart Solutions, Ltd. <info@joo.la>
+ *
+ *  Licensed under GNU General Public License 3.0 or later.
+ *  Some rights reserved. See COPYING, AUTHORS.
+ *
+ *  @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
  */

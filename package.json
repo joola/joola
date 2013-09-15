@@ -1,7 +1,7 @@
 {
 	"name": "joola.io",
 	"preferGlobal": false,
-	"version": "3.0.1",
+	"version": "3.0.2",
 	"author": "Joola <info@joo.la>",
 	"description": "The open-source data visualization framework",
 	"engine": "node >= 0.10.x",
@@ -24,12 +24,10 @@
 	],
 	"scripts": {
 		"test": "make test",
-		"citest": "mocha > test-reports.xml",
-		"start": "node joola.js",
+		"start": "node joola.io.js",
 		"debug": "npm-inspector && npm start && open \"http://http://127.0.0.1:8080/debug?port=5858\"",
 		"monitor": "mocha --reporter min --watch",
 		"debugtest": "mocha --debug-brk --reporter spec",
-		"coverage": "mochacoverage",
 		"blanket": {
 			"pattern": "test",
 			"data-cover-never": "node_modules"
@@ -44,30 +42,9 @@
 		"noSQL"
 	],
 	"dependencies": {
-		"connect": "2.x",
-		"express": "3.x",
-		"jade": "0.x",
-		"socket.io": "0.x",
 		"commander": "2.x",
-		"winston": "0.x",
-		"cloneextend": "0.x",
-		"node-uuid": "1.x",
-		"watchr": "2.x",
-		"underscore": "1.x",
-		"pg": "2.x",
-		"mysql": "2.x",
-		"tedious": "0.x",
-		"redis": "0.x",
-		"mongodb": "1.x",
-		"request": "2.x",
-		"async": "0.x",
-		"process": "0.x",
 		"forever": "0.x",
-		"forever-monitor": "1.x",
-		"fs-extra": "0.x",
-		"twix": "0.x",
-		"moment": "2.x",
-		"graceful-fs": "2.x"
+		"forever-monitor": "1.x"
 	},
 	"devDependencies": {
 		"mocha-lcov-reporter": "0.x",
