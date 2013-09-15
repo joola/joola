@@ -34,6 +34,9 @@
 		},
 		"coveralls": "mocha --require blanket --reporter mocha-lcov-reporter | node ./node_modules/coveralls/bin/coveralls.js"
 	},
+	"bin": {
+		"joola.io": "./bin/joola.io"
+	},
 	"keywords": [
 		"data",
 		"analytics",
@@ -56,5 +59,6 @@
 		"sinon-chai": "2.x",
 		"blanket": "1.x",
 		"jshint": "2.x"
-	}
+	},
+	"license": "GPL v3"
 }
