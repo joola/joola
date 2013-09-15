@@ -47,9 +47,11 @@
 	"dependencies": {
 		"commander": "2.x",
 		"forever": "0.x",
-		"forever-monitor": "1.x"
+		"forever-monitor": "1.x",
+		"winston": "0.x"
 	},
 	"devDependencies": {
+		"underscore":"1.x",
 		"mocha-lcov-reporter": "0.x",
 		"coveralls": "2.x",
 		"should": "1.x",
