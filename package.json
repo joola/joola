@@ -45,7 +45,7 @@
 		"noSQL"
 	],
 	"dependencies": {
-		"joola.io.server": "3.x",
+		"joola.io.engine": "3.x",
 
 		"async":"0.x",
 		"path": "0.x",
