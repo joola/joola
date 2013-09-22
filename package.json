@@ -1,7 +1,7 @@
 {
 	"name": "joola.io",
 	"preferGlobal": false,
-	"version": "3.0.3",
+	"version": "3.0.4",
 	"author": "Joola <info@joo.la>",
 	"description": "The open-source data visualization framework",
 	"engine": "node >= 0.10.x",
