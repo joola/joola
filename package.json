@@ -49,6 +49,7 @@
 		"joola.io.analytics": "3.x",
 		"joola.io.sdk": "3.x",
 
+		"winston":"0.x",
 		"async":"0.x",
 		"path": "0.x",
 		"flatiron": "0.x",
