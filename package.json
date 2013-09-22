@@ -29,7 +29,7 @@
 		"monitor": "mocha --reporter min --watch",
 		"debugtest": "mocha --debug-brk --reporter spec",
 		"blanket": {
-			"pattern": "test",
+			"pattern": "lib",
 			"data-cover-never": "node_modules"
 		},
 		"coveralls": "mocha --require blanket --reporter mocha-lcov-reporter | node ./node_modules/coveralls/bin/coveralls.js"
@@ -45,7 +45,7 @@
 		"noSQL"
 	],
 	"dependencies": {
-		"joola.io.server": "3.x",
+		"joola.io.engine": "3.x",
 
 		"async":"0.x",
 		"path": "0.x",
@@ -71,7 +71,8 @@
 		"chai": "1.x",
 		"sinon-chai": "2.x",
 		"blanket": "1.x",
-		"jshint": "2.x"
+		"jshint": "2.x",
+		"supertest":"0.x"
 	},
 	"license": "GPL-3.0"
 }
