@@ -46,6 +46,8 @@
 	],
 	"dependencies": {
 		"joola.io.engine": "3.x",
+		"joola.io.analytics": "3.x",
+		"joola.io.sdk": "3.x",
 
 		"async":"0.x",
 		"path": "0.x",
