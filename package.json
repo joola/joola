@@ -1,7 +1,7 @@
 {
 	"name": "joola.io",
 	"preferGlobal": false,
-	"version": "3.0.4",
+	"version": "3.0.5",
 	"author": "Joola <info@joo.la>",
 	"description": "The open-source data visualization framework",
 	"engine": "node >= 0.10.x",
@@ -32,7 +32,8 @@
 			"pattern": "lib",
 			"data-cover-never": "node_modules"
 		},
-		"coveralls": "mocha --require blanket --reporter mocha-lcov-reporter | node ./node_modules/coveralls/bin/coveralls.js"
+		"coveralls": "mocha --require blanket --reporter mocha-lcov-reporter | node ./node_modules/coveralls/bin/coveralls.js",
+		"citest": "mocha --reporter xunit > test-reports.xml"
 	},
 	"bin": {
 		"joola.io": "./bin/joola.io"
