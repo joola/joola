@@ -1,7 +1,7 @@
 {
 	"name": "joola.io",
 	"preferGlobal": false,
-	"version": "3.0.3",
+	"version": "3.0.5",
 	"author": "Joola <info@joo.la>",
 	"description": "The open-source data visualization framework",
 	"engine": "node >= 0.10.x",
@@ -29,10 +29,11 @@
 		"monitor": "mocha --reporter min --watch",
 		"debugtest": "mocha --debug-brk --reporter spec",
 		"blanket": {
-			"pattern": "test",
+			"pattern": "lib",
 			"data-cover-never": "node_modules"
 		},
-		"coveralls": "mocha --require blanket --reporter mocha-lcov-reporter | node ./node_modules/coveralls/bin/coveralls.js"
+		"coveralls": "mocha --require blanket --reporter mocha-lcov-reporter | node ./node_modules/coveralls/bin/coveralls.js",
+		"citest": "mocha --reporter xunit > test-reports.xml"
 	},
 	"bin": {
 		"joola.io": "./bin/joola.io"
@@ -45,8 +46,12 @@
 		"noSQL"
 	],
 	"dependencies": {
-		"joola.io.server": "3.x",
+		"joola.io.config": "3.x",
+		"joola.io.engine": "3.x",
+		"joola.io.analytics": "3.x",
+		"joola.io.sdk": "3.x",
 
+		"winston":"0.x",
 		"async":"0.x",
 		"path": "0.x",
 		"flatiron": "0.x",
@@ -71,7 +76,8 @@
 		"chai": "1.x",
 		"sinon-chai": "2.x",
 		"blanket": "1.x",
-		"jshint": "2.x"
+		"jshint": "2.x",
+		"supertest":"0.x"
 	},
 	"license": "GPL-3.0"
 }
