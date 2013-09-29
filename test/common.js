@@ -3,6 +3,8 @@
 var
 	path = require('path');
 
+global.test = true;
+
 global.sinon = require('sinon');
 global.should = require('should');
 global.assert = require('assert');
