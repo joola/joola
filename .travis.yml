@@ -3,8 +3,6 @@ language: node_js
 node_js:
   - "0.10"
 
-script: make test-coveralls
-
 notifications:
   email:
-    - itay@joo.la
+    - updates@joo.la
