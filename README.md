@@ -118,3 +118,6 @@ Copyright (c) 2012-2013 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24]
 [27]: https://joolatech.atlassian.net/wiki/display/JAD/Installing+joola.io
 [28]: https://joolatech.atlassian.net/wiki/display/JAD/Developers
 [29]: https://joolatech.atlassian.net/wiki/display/JAD/Developers/Coding+Guidelines
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/joola/joola.io/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
