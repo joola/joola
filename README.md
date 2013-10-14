@@ -12,7 +12,7 @@ metrics, it exposes a RESTful API for querying the data. The Client SDK communic
 visualize and provide insight into the data. Developers can extend the framework in many ways, add data connectors,
 authentication plugins, visualizations and more.
 
-To learn more about the framework architecture, see our [documentation site][1].
+To learn more about the framework architecture, see our [documentation site][25].
 
 ### Main Features
 - **Big-data**, supports distributed caching and processing to cope with big-data needs.
