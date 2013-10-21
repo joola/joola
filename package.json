@@ -47,6 +47,7 @@
 		"noSQL"
 	],
 	"dependencies": {
+		"joola.io.logger": "3.x",
 		"joola.io.config": "3.x",
 		"joola.io.engine": "3.x",
 		"joola.io.analytics": "3.x",
