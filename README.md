@@ -12,7 +12,7 @@ metrics, it exposes a RESTful API for querying the data. The Client SDK communic
 visualize and provide insight into the data. Developers can extend the framework in many ways, add data connectors,
 authentication plugins, visualizations and more.
 
-To learn more about the framework architecture, see our [documentation site][1].
+To learn more about the framework architecture, see our [documentation site][25].
 
 ### Main Features
 - **Big-data**, supports distributed caching and processing to cope with big-data needs.
@@ -118,3 +118,6 @@ Copyright (c) 2012-2013 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24]
 [27]: https://joolatech.atlassian.net/wiki/display/JAD/Installing+joola.io
 [28]: https://joolatech.atlassian.net/wiki/display/JAD/Developers
 [29]: https://joolatech.atlassian.net/wiki/display/JAD/Developers/Coding+Guidelines
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/joola/joola.io/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
