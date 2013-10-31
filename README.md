@@ -15,6 +15,7 @@ authentication plugins, visualizations and more.
 To learn more about the framework architecture, see our [documentation site][25].
 
 ### Main Features
+
 - **Big-data**, supports distributed caching and processing to cope with big-data needs.
 - **Fast**, advanced caching algorithm. Avg. query time of less than a few seconds.
 - **Integrate** quickly, seamlessly embed in your site.
@@ -26,6 +27,7 @@ To learn more about the framework architecture, see our [documentation site][25]
 ### Framework Components
 joola.io is a distributed framework, it can be hosted on a single node or expanded to a grid. The following our the
 different components composing the framework.
+
 - [joola.io][14] - This repo. CLI and the main entry point of the framework.
 - [joola.io.engine][9] - A RESTful API server holding and executing all logic relating to the framework.
 - [joola.io.analytics][10] - A fully working analytics website.
@@ -35,6 +37,7 @@ different components composing the framework.
 
 ## Getting Started
 Please see the following guides for using joola.io:
+
 - Start with the [complete documentation][25].
 - Learn about the framework [architecture][26].
 - [Code documentation][28] covers developing and extending.
@@ -73,6 +76,7 @@ If you're feeling lost or unsure, [just let us know](#Contact).
 
 ## Contact
 Contacting us is easy, ping us on one of these:
+
 - [@joolaio][19]
 - [info@joo.la][20]
 - #joola.io on irc.freenode.net
