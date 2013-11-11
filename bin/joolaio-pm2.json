@@ -2,25 +2,10 @@
 	{
 		"name": "joola.io.config",
 		"script": "../node_modules/joola.io.config/joola.io.config.js",
-		"args": "['--conf=./config/joola.io.config.json']",
+		"args": "[]",
 		"exec_mode": "cluster_mode",
-				"instances": "max",
+		"instances": "max",
 		"max_restarts": "4",
 		"store.path": "/opt/joola"
-	},
-	{
-		"name": "joola.io.logger",
-		"script": "../node_modules/joola.io.logger/joola.io.logger.js",
-		"args": "",
-		"exec_mode": "cluster_mode",
-		"instances": "max",
-		"max_restarts": "4"
-	},
-	{
-		"name": "joola.io.analytics",
-		"args": "",
-		"exec_mode": "cluster_mode",
-		"instances": "max",
-		"max_restarts": "4"
 	}
 ]
