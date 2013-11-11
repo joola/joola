@@ -2,7 +2,7 @@
 	{
 		"name": "joola.io.config",
 		"script": "../node_modules/joola.io.config/joola.io.config.js",
-		"args": "['--conf=./config/joola.io.config.json]",
+		"args": "['--conf=./config/joola.io.config.json']",
 		"exec_mode": "cluster_mode",
 				"instances": "max",
 		"max_restarts": "4",
