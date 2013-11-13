@@ -50,7 +50,8 @@ We've pre-loaded the package with a fully working sample site, so it's easy to g
 **Before** we get started, you'll need to install [nodejs][15].
 ```bash
 $ npm install joola.io
-$ node ./node_modules/joola.io/bin/_joola.io services start
+$ npm install -g pm2
+$ npm start
 ```
 Following the installation, point your browser to `http://localhost:40002` and you'll be able to use the analytics site.
 
