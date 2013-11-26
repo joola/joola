@@ -11,12 +11,16 @@
 
 var
   path = require('path'),
-  nconf = require('nconf');
+  uuid = require('node-uuid'),
+  nconf = require('nconf'),
+
+  Dispatch = require('./lib/dispatch');
 
 //our base global object
 var joola = {};
 global.joola = module.exports = joola;
 joola.VERSION = require('./package.json').version;
+joola.UID = uuid.v4();
 
 //setup the process domain, to handle unhandled exceptions
 require('./lib/common/domain');
@@ -27,7 +31,8 @@ joola.state = require('./lib/common/state');
 joola.config = require('./lib/common/config')({});
 joola.logger = require('./lib/common/logger');
 joola.events = require('./lib/common/events');
-joola.dispatch = require('./lib/dispatch')({});
+joola.dispatch = new Dispatch({});
+
 joola.sdk = require('./lib/sdk');
 
 joola.redis = joola.config.stores.redis.redis;
