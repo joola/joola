@@ -1,11 +1,16 @@
 REPORTER=spec
+
 test:
+		$(MAKE) compile
 		$(MAKE) lint
-		echo TRAVIS_JOB_ID $(TRAVIS_JOB_ID)
 		@NODE_ENV=test ./node_modules/.bin/mocha -b --require blanket --reporter $(REPORTER)
 
+compile:
+		@NODE_ENV=test
+		node build/compilesdk.js
+
 lint:
-		./node_modules/.bin/jshint ./lib/joola.io.js
+		./node_modules/.bin/jshint ./lib
 
 test-cov:
 		$(MAKE) test REPORTER=spec

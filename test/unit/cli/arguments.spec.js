@@ -12,6 +12,7 @@
 var
   path = require('path');
 "use strict";
+
 describe("cli-arguments", function () {
   var packageFile = path.join(__dirname, '../../../', 'package.json');
   var version = require(packageFile).version;
@@ -19,7 +20,7 @@ describe("cli-arguments", function () {
   it("should printout version number [" + version + "]", function (done) {
     var spawn = require('child_process').spawn;
     var binPath = path.join(__dirname, '../../../', 'joola.io.js');
-    var app = spawn('node', [binPath, "--version"]);
+    var app = spawn('node', [binPath, '--version', '--nolog']);
 
     var buffer = '';
     app.stdout.on('data', function (data) {
@@ -42,7 +43,7 @@ describe("cli-arguments", function () {
   it("should print out usage correctly", function (done) {
     var spawn = require('child_process').spawn;
     var binPath = path.join(__dirname, '../../../', 'joola.io.js');
-    var app = spawn('node', [binPath, "--help"]);
+    var app = spawn('node', [binPath, '--help', '--nolog']);
 
     var buffer = '';
     app.stdout.on('data', function (data) {
@@ -57,7 +58,7 @@ describe("cli-arguments", function () {
       if (code != 0)
         throw new Error('Failed to spawn node, code: ' + code);
 
-      var message = require('../../../lib/common/usage')._message()
+      var message = require('../../../lib/common/cli')._message()
       expect(buffer).to.equal(message + '\n');
       done();
     });
@@ -68,7 +69,7 @@ describe("cli-arguments", function () {
     try {
       var spawn = require('child_process').spawn;
       var binPath = path.join(__dirname, '../../../', 'joola.io.js');
-      var app = spawn('node', [binPath, '--repl']);
+      var app = spawn('node', [binPath, '--repl', '--nolog']);
 
       var buffer = '';
       app.stdout.on('data', function (data) {

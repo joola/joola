@@ -9,7 +9,6 @@
  *  @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
  */
 
-
 var
   path = require('path'),
   nconf = require('nconf');
@@ -24,8 +23,9 @@ require('./lib/common/domain');
 
 //setup the stack
 joola.common = require('./lib/common/index');
-joola.logger = require('./lib/common/logger');
+joola.state = require('./lib/common/state');
 joola.config = require('./lib/common/config')({});
+joola.logger = require('./lib/common/logger');
 joola.events = require('./lib/common/events');
 joola.dispatch = require('./lib/dispatch')({});
 joola.sdk = require('./lib/sdk');
@@ -43,11 +43,10 @@ if (joola.config.get('repl'))
   require('./lib/common/repl');
 
 //load command line and env variables needed for startup.
-if (nconf.get('version')) {
-  return console.log('v' + joola.VERSION);
-}
-if (nconf.get('help')) {
-  return require('./lib/common/usage').printout();
+var cli = require('./lib/common/cli');
+if (cli.process()) {
+  //the user's args included some terminating ones, such as: version, help
+  process.exit(0);
 }
 
 //we're live
