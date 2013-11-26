@@ -16,6 +16,8 @@ var
 
   Dispatch = require('./lib/dispatch');
 
+require('./lib/common/globals');
+
 //our base global object
 var joola = {};
 global.joola = module.exports = joola;
