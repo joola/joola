@@ -1,7 +1,6 @@
 REPORTER=spec
 
 test:
-		$(MAKE) compile
 		$(MAKE) lint
 		@NODE_ENV=test ./node_modules/.bin/mocha -b --require blanket --reporter $(REPORTER)
 
