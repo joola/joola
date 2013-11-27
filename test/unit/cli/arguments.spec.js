@@ -115,22 +115,30 @@ describe("cli-arguments", function () {
     done();
   });
 
-  it("code: process() true for shouldExist (version)", function (done) {
+  it("code: process() true for shouldExist (version, help)", function (done) {
     var cli = require('../../../lib/common/cli');
     var actual = '';
     var unhook = hook_stdout(function (string) {
       actual += string;
     });
 
-    process.argv.version = true;
     global.joola = {config: {get: function (key) {
       return process.argv[key]
     }}};
+
+    process.argv.version = true;
     var shouldExit = cli.process();
-    unhook();
+    delete process.argv.version;
     var expected = true;
     expect(shouldExit).to.equal(expected);
-    delete process.argv.version;
+
+    process.argv.help = true;
+    var shouldExit = cli.process();
+    delete process.argv.help;
+    var expected = true;
+    expect(shouldExit).to.equal(expected);
+
+    unhook();
     done();
   });
 
@@ -141,15 +149,17 @@ describe("cli-arguments", function () {
       actual += string;
     });
 
-    process.argv.nolog = true;
     global.joola = {config: {get: function (key) {
       return process.argv[key]
     }}};
+
+    process.argv.nolog = true;
     var shouldExit = cli.process();
-    unhook();
     var expected = false;
     expect(shouldExit).to.equal(expected);
     delete process.argv.nolog;
+
+    unhook();
     done();
   });
 });
