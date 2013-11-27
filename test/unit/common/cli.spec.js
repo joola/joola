@@ -15,12 +15,12 @@ var
   path = require('path');
 
 describe("cli-arguments", function () {
-  var packageFile = path.join(__dirname, '../../../../', 'package.json');
+  var packageFile = path.join(__dirname, '../../../', 'package.json');
   var version = require(packageFile).version;
 
   it("should printout version number [" + version + "]", function (done) {
     var spawn = require('child_process').spawn;
-    var binPath = path.join(__dirname, '../../../../', 'joola.io.js');
+    var binPath = path.join(__dirname, '../../../', 'joola.io.js');
     var app = spawn('node', [binPath, '--version', '--nolog']);
 
     var buffer = '';
@@ -43,7 +43,7 @@ describe("cli-arguments", function () {
 
   it("should print out usage correctly", function (done) {
     var spawn = require('child_process').spawn;
-    var binPath = path.join(__dirname, '../../../../', 'joola.io.js');
+    var binPath = path.join(__dirname, '../../../', 'joola.io.js');
     var app = spawn('node', [binPath, '--help', '--nolog']);
 
     var buffer = '';
@@ -59,7 +59,7 @@ describe("cli-arguments", function () {
       if (code != 0)
         throw new Error('Failed to spawn node, code: ' + code);
 
-      var message = require('../../../../lib/common/cli')._message()
+      var message = require('../../../lib/common/cli')._message()
       expect(buffer).to.equal(message + '\n');
       done();
     });
@@ -69,7 +69,7 @@ describe("cli-arguments", function () {
     this.timeout(15000);
     try {
       var spawn = require('child_process').spawn;
-      var binPath = path.join(__dirname, '../../../../', 'joola.io.js');
+      var binPath = path.join(__dirname, '../../../', 'joola.io.js');
       var app = spawn('node', [binPath, '--repl', '--nolog']);
 
       var buffer = '';
@@ -102,7 +102,7 @@ describe("cli-arguments", function () {
   });
 
   it("code: usage()", function (done) {
-    var cli = require('../../../../lib/common/cli');
+    var cli = require('../../../lib/common/cli');
     var actual = '';
     var unhook = hook_stdout(function (string) {
       actual += string;
@@ -116,7 +116,7 @@ describe("cli-arguments", function () {
   });
 
   it("code: process() true for shouldExist (version, help)", function (done) {
-    var cli = require('../../../../lib/common/cli');
+    var cli = require('../../../lib/common/cli');
     var actual = '';
     var unhook = hook_stdout(function (string) {
       actual += string;
@@ -143,7 +143,7 @@ describe("cli-arguments", function () {
   });
 
   it("code: process() true for shouldExist (nolog)", function (done) {
-    var cli = require('../../../../lib/common/cli');
+    var cli = require('../../../lib/common/cli');
     var actual = '';
     var unhook = hook_stdout(function (string) {
       actual += string;
