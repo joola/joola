@@ -44,8 +44,10 @@ joola.dispatch.hook();
 joola.redis = joola.config.stores.redis.redis;
 
 joola.webserver.start({}, function (err) {
-  if (err)
-    joola.logger.warn(err);
+  if (err) {
+    joola.logger.error('Webserver startup reported an issue, exiting: ' + err);
+    shutdown(1);
+  }
   if (joola.config.get('webserver') && err) {
     joola.logger.error('Webserver startup reported an issue, exiting: ' + err);
     shutdown(1);
