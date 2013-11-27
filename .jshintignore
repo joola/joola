@@ -1,0 +1,4 @@
+lib/sdk/bin/*
+lib/sdk/common/index.js
+
+lib-cov

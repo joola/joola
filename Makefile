@@ -1,20 +1,30 @@
 REPORTER=spec
+
+COVERALLS_GIT_COMMIT=HEAD
+COVERALLS_REPO_TOKEN=Che5WhsI4mbjDKH9dnrrxoFJ06ivbNzxs
+
+export COVERALLS_GIT_COMMIT
+export COVERALLS_REPO_TOKEN
+
 test:
 		$(MAKE) lint
-		echo TRAVIS_JOB_ID $(TRAVIS_JOB_ID)
-		@NODE_ENV=test ./node_modules/.bin/mocha -b --require blanket --reporter $(REPORTER)
+		@NODE_ENV=test ./node_modules/.bin/mocha --reporter $(REPORTER)
+
+authors:
+		node build/authors.js
+
+compile:
+		@NODE_ENV=test
+		node build/compilesdk.js
 
 lint:
-		./node_modules/.bin/jshint ./lib/joola.io.js
+		@./node_modules/.bin/jshint ./lib
 
 test-cov:
 		$(MAKE) test REPORTER=spec
-		$(MAKE) test REPORTER=html-cov 1> coverage.html
+		@NODE_COV=true NODE_ENV=test ./node_modules/.bin/mocha --reporter=html-cov > coverage.html
 
 test-coveralls:
-		cp ./node_modules/mocha-lcov-reporter/lib/lcov.js ./node_modules/mocha/lib/reporters/mocha-lcov-reporter.js
-		$(MAKE) test REPORTER=spec
-		$(MAKE) test REPORTER=mocha-lcov-reporter | ./node_modules/.bin/coveralls --verbose
-		rm -rf lib-cov
+		@NODE_ENV=test ./node_modules/.bin/mocha --require blanket --reporter mocha-lcov-reporter | node ./node_modules/coveralls/bin/coveralls.js
 
 .PHONY: test

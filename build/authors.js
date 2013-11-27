@@ -1,4 +1,5 @@
 var
+  path = require('path'),
   fs = require('fs'),
   spawn = require('child_process').spawn,
   git = spawn('git', ["log", "--format='%aN##<%aE>'"]);
@@ -48,12 +49,13 @@ git.on('close', function (code) {
     outputString += '- ' + author.name + ' ' + author.email + '\n';
   });
 
-  fs.writeFile("../AUTHORS.md", outputString, function (err) {
+  var outputFile = path.join(__dirname, '../AUTHORS.md');
+  fs.writeFile(outputFile, outputString, function (err) {
     if (err) {
       console.log(err);
     } else {
       console.log(outputString);
-      console.log("The file was saved!");
+      console.log('The file was saved [' + outputFile + '].');
     }
   });
 });
