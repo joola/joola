@@ -7,6 +7,9 @@ node_js:
 
 services: redis-server
 
+after_script:
+  - npm run coveralls
+  
 notifications:
   email:
     - updates@joo.la
