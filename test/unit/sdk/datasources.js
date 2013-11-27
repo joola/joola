@@ -10,25 +10,25 @@
  */
 
 describe("datasources", function () {
-  it("should return a valid list of data sources", function (done) {
+  xit("should return a valid list of data sources", function (done) {
     _sdk.objects.datasources.list(function (err, datasources) {
       return done(err);
     });
   });
 
-  it("should add a data source", function () {
+  xit("should add a data source", function () {
     _sdk.objects.datasources.add({name: 'testSuite', type: 'test', _connectionString: 'test'}, function (err, datasource) {
       return expect(datasource).to.be.ok;
     });
   });
 
-  it("should update a data source", function () {
+  xit("should update a data source", function () {
     _sdk.objects.datasources.update({name: 'testSuite', type: 'test2', _connectionString: 'test'}, function (err, datasource) {
       return expect(datasource.type).to.equal('test2');
     });
   });
 
-  it("should delete a data source", function (done) {
+  xit("should delete a data source", function (done) {
     _sdk.objects.datasources.delete({name: 'testSuite'}, function (err) {
       _sdk.objects.datasources.list(function (err, datasources) {
         var exist = _.filter(datasources, function (item) {
