@@ -1,5 +1,8 @@
 REPORTER=spec
 
+authors:
+		node build/authors.js
+
 test:
 		$(MAKE) compile
 		$(MAKE) lint
