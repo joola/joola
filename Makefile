@@ -18,7 +18,11 @@ compile:
 		node build/compilesdk.js
 
 lint:
-		./node_modules/.bin/jshint ./lib
+		@./node_modules/.bin/jshint ./lib
+
+test-cov:
+		$(MAKE) test REPORTER=spec
+		@NODE_COV=true NODE_ENV=test ./node_modules/.bin/mocha --reporter=html-cov > coverage.html
 
 test-coveralls:
 		@NODE_ENV=test ./node_modules/.bin/mocha --require blanket --reporter mocha-lcov-reporter | node ./node_modules/coveralls/bin/coveralls.js

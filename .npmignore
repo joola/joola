@@ -1,2 +1,4 @@
 atlassian-ide-plugin.xml
 node_modules
+coverage.html
+lib-cov
