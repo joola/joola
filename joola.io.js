@@ -46,11 +46,19 @@ joola.redis = joola.config.stores.redis.redis;
 joola.webserver.start({}, function (err) {
   if (err) {
     joola.logger.error('Webserver startup reported an issue, exiting: ' + err);
-    shutdown(1);
+    return shutdown(1);
   }
-  if (joola.config.get('webserver') && err) {
-    joola.logger.error('Webserver startup reported an issue, exiting: ' + err);
-    shutdown(1);
+  if (joola.config.get('webserver')) {
+    setTimeout(function () {
+      joola.logger.debug('Verifying webserver(s)');
+      if (joola.state.controls['webserver-http'].state != 'working' ||
+        (joola.state.controls['webserver-https'] && joola.state.controls['webserver-https'].state != 'working')) {
+        joola.logger.error('Failed to validate webserver(s) are online.');
+        return shutdown(1);
+      }
+      else
+        joola.logger.debug('Webserver(s) verified.');
+    }, 3000);
   }
 });
 
