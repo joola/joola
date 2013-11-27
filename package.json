@@ -52,11 +52,13 @@
     "nconf-redis": "*",
     "eventemitter2": "*",
     "winston": "*",
-    "redis":"*",
-    "node-uuid":"*",
-    "async":"*"
+    "redis": "*",
+    "node-uuid": "*",
+    "async": "*",
+    "express": "*"
   },
   "devDependencies": {
+    "socket.io-browserify":"*",
     "underscore": "1.x",
     "mocha-lcov-reporter": "0.x",
     "coveralls": "2.x",

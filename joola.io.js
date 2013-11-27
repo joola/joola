@@ -10,11 +10,9 @@
  */
 
 var
-  path = require('path'),
-  uuid = require('node-uuid'),
-  nconf = require('nconf'),
+  uuid = require('node-uuid');
 
-  Dispatch = require('./lib/dispatch');
+//Dispatch = require('./lib/dispatch');
 
 require('./lib/common/globals');
 
@@ -33,12 +31,26 @@ joola.state = require('./lib/common/state');
 joola.config = require('./lib/common/config')({});
 joola.logger = require('./lib/common/logger');
 joola.events = require('./lib/common/events');
-joola.dispatch = new Dispatch({});
-
+joola.dispatch = require('./lib/dispatch')({});
 joola.sdk = require('./lib/sdk');
-
-joola.redis = joola.config.stores.redis.redis;
+joola.webserver = require('./lib/webserver');
 joola.stats = null; //require('./lib/common/stats');
+
+//we're live
+joola.logger.info('joola.io version ' + joola.VERSION + ' started.');
+
+//take the stack online
+joola.dispatch.hook();
+joola.redis = joola.config.stores.redis.redis;
+
+joola.webserver.start({}, function (err) {
+  if (err)
+    joola.logger.warn(err);
+  if (joola.config.get('webserver') && err) {
+    joola.logger.error('Webserver startup reported an issue, exiting: ' + err);
+    shutdown(1);
+  }
+});
 
 //setup the main watchers for system health
 require('./lib/common/watchers');
@@ -55,6 +67,3 @@ if (cli.process()) {
   //the user's args included some terminating ones, such as: version, help
   process.exit(0);
 }
-
-//we're live
-joola.logger.info('joola.io version ' + joola.VERSION + ' started.');

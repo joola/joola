@@ -1,12 +1,12 @@
 REPORTER=spec
 
-authors:
-		node build/authors.js
-
 test:
 		$(MAKE) compile
 		$(MAKE) lint
 		@NODE_ENV=test ./node_modules/.bin/mocha -b --require blanket --reporter $(REPORTER)
+
+authors:
+		node build/authors.js
 
 compile:
 		@NODE_ENV=test
