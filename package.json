@@ -35,7 +35,6 @@
     },
     "coveralls": "mocha --require blanket --reporter mocha-lcov-reporter | node ./node_modules/coveralls/bin/coveralls.js",
     "citest": "mocha --reporter xunit > test-reports.xml",
-    "postinstall": "node bin/postinstall.js"
   },
   "bin": {
     "joola.io": "./bin/joola.io"
