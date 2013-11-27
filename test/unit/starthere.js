@@ -18,7 +18,6 @@ before(function (done) {
   joola.state.on('state:change', function (state) {
     if (state == 'working') {
       _sdk = require('../../lib/sdk/index');
-      console.log(_sdk.VERSION);
       var options = {
         isBrowser: false,
         debug: {
