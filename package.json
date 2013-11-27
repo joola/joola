@@ -34,7 +34,7 @@
       "data-cover-never": "node_modules"
     },
     "coveralls": "mocha --require blanket --reporter mocha-lcov-reporter | node ./node_modules/coveralls/bin/coveralls.js",
-    "citest": "mocha --reporter xunit > test-reports.xml",
+    "citest": "mocha --reporter xunit > test-reports.xml"
   },
   "bin": {
     "joola.io": "./bin/joola.io"
