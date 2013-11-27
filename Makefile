@@ -8,7 +8,7 @@ export COVERALLS_REPO_TOKEN
 
 test:
 		$(MAKE) lint
-		@NODE_ENV=test ./node_modules/.bin/mocha -b --require blanket --reporter $(REPORTER)
+		@NODE_ENV=test ./node_modules/.bin/mocha --reporter $(REPORTER)
 
 authors:
 		node build/authors.js

@@ -26,9 +26,6 @@
   "scripts": {
     "test": "make test",
     "start": "pm2 start service.json",
-    "debug": "npm-inspector && npm start && open \"http://http://127.0.0.1:8080/debug?port=5858\"",
-    "monitor": "mocha --reporter min --watch",
-    "debugtest": "mocha --debug-brk --reporter spec",
     "blanket": {
       "pattern": "lib",
       "data-cover-never": "node_modules"
@@ -56,7 +53,7 @@
     "express": "*"
   },
   "devDependencies": {
-    "socket.io-browserify":"*",
+    "socket.io-browserify": "*",
     "underscore": "1.x",
     "mocha-lcov-reporter": "0.x",
     "coveralls": "2.x",

@@ -14,6 +14,9 @@ global.expect = chai.expect;
 
 global.common = exports;
 
+global._joolaio;
+global._sdk;
+
 global.hook_stdout = function (callback) {
   var old_write = process.stdout.write;
 

@@ -67,3 +67,4 @@ if (cli.process()) {
   //the user's args included some terminating ones, such as: version, help
   process.exit(0);
 }
+joola.events.emit('init:done', 1);
