@@ -9,9 +9,10 @@
  *  @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
  */
 
+"use strict";
+
 var
   path = require('path');
-"use strict";
 
 describe("cli-arguments", function () {
   var packageFile = path.join(__dirname, '../../../', 'package.json');
@@ -98,5 +99,57 @@ describe("cli-arguments", function () {
     catch (ex) {
       console.log(ex);
     }
+  });
+
+  it("code: usage()", function (done) {
+    var cli = require('../../../lib/common/cli');
+    var actual = '';
+    var unhook = hook_stdout(function (string) {
+      actual += string;
+    });
+    cli.usage();
+    unhook();
+    var expected = cli._message();
+    expected += '\n';
+    expect(actual).to.equal(expected);
+    done();
+  });
+
+  it("code: process() true for shouldExist (version)", function (done) {
+    var cli = require('../../../lib/common/cli');
+    var actual = '';
+    var unhook = hook_stdout(function (string) {
+      actual += string;
+    });
+
+    process.argv.version = true;
+    global.joola = {config: {get: function (key) {
+      return process.argv[key]
+    }}};
+    var shouldExit = cli.process();
+    unhook();
+    var expected = true;
+    expect(shouldExit).to.equal(expected);
+    delete process.argv.version;
+    done();
+  });
+
+  it("code: process() true for shouldExist (nolog)", function (done) {
+    var cli = require('../../../lib/common/cli');
+    var actual = '';
+    var unhook = hook_stdout(function (string) {
+      actual += string;
+    });
+
+    process.argv.nolog = true;
+    global.joola = {config: {get: function (key) {
+      return process.argv[key]
+    }}};
+    var shouldExit = cli.process();
+    unhook();
+    var expected = false;
+    expect(shouldExit).to.equal(expected);
+    delete process.argv.nolog;
+    done();
   });
 });
