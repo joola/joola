@@ -53,6 +53,7 @@
     "express": "*",
     "socket.io": "*,",
     "socket.io-browserify": "*"
+    "jade": "*"
   },
   "devDependencies": {
     "jsdox": "https://github.com/itayw/jsdox/tarball/master",
