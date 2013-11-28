@@ -9,6 +9,11 @@ services:
   - redis-server
   - mongodb
 
+matrix:
+  fast_finish: true
+  allow_failures:
+    - node_js: "0.11"
+
 after_script:
   - npm run coveralls
 

@@ -53,6 +53,7 @@
     "express": "*"
   },
   "devDependencies": {
+    "jsdox": "https://github.com/itayw/jsdox.git/tarball/master",
     "socket.io-browserify": "*",
     "underscore": "1.x",
     "mocha-lcov-reporter": "0.x",
@@ -64,7 +65,8 @@
     "sinon-chai": "2.x",
     "blanket": "1.x",
     "jshint": "2.x",
-    "supertest": "0.x"
+    "supertest": "0.x",
+    "xtend": "*"
   },
   "license": "GPL-3.0"
 }
