@@ -53,6 +53,7 @@
     "express": "*"
   },
   "devDependencies": {
+    "jsdox": "*",
     "socket.io-browserify": "*",
     "underscore": "1.x",
     "mocha-lcov-reporter": "0.x",
