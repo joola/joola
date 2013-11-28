@@ -84,14 +84,20 @@ call = function (callback) {
   var files = wrench.readdirSyncRecursive(docPath);
   var counter = 0;
   files.forEach(function (file) {
-    if (file.substring(file.length - 3) == '.md' && exclusions.indexOf(file) == -1) {
+    if ((file.substring(file.length - 3) == '.md' || file.substring(file.length - 4) == '.png') && exclusions.indexOf(file) == -1) {
       var targetDir = path.join(wikiPath, path.dirname(file));
+      var filename;
+      if (path.dirname(file) != '.')
+        filename = file.replace(path.dirname(file), '');
+      else
+        filename = file;
+
       if (!fs.existsSync(targetDir)) {
         fs.mkdirSync(targetDir);
       }
 
-      console.info('Processing static doc [' + path.join(targetDir, file) + ']');
-      copyFile(path.join(docPath, file), path.join(targetDir, file), function (err) {
+      console.info('Processing static doc [' + path.join(targetDir, filename) + ']');
+      copyFile(path.join(docPath, file), path.join(targetDir, filename), function (err) {
         if (err)
           console.error(err);
 

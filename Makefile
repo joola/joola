@@ -28,7 +28,7 @@ test-coveralls:
 		@NODE_ENV=test ./node_modules/.bin/mocha --require blanket --reporter mocha-lcov-reporter | node ./node_modules/coveralls/bin/coveralls.js
 
 doc:
-		find /wiki ! -iregex '(.git|.npm)' | xargs rm -f
+		find ./wiki/* ! -iregex '(.git|.npm)' | xargs rm -fr
 		node build/docs.js
 
 .PHONY: test
