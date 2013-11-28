@@ -43,7 +43,7 @@ body
                         i.fa.fa-arrow-right
                 .step-content
                   #step1.step-pane.active
-                    form#form-new-datasource.form-horizontal(ng-controller="dsCtrl", ng-submit="add()")
+                    form#form-new-datasource.form-horizontal(ng-controller="dsCtrl", ng-submit="dsAdd()")
                       fieldset.col-sm-12
                         .form-group
                           label.control-label(for='selectError20') Data type
@@ -63,11 +63,11 @@ body
                           .form-group
                             label.control-label(for='input1') Data source name
                             .controls
-                              input#input1.form-control(type='text', name="name")
+                              input#input1.form-control(type='text', ng-model="name")
                           .form-group
                             label.control-label(for='input1') Connection String
                             .controls
-                              input#input1.form-control(type='text', name="_connectionString")
+                              input#input1.form-control(type='text', ng-model="connectionString")
                           //
                             .form-group
                               label.control-label(for='input2') Port
@@ -249,7 +249,7 @@ body
                       td {{ds.numTables || 0 }}
                       td {{ds.numRecords || 0 }}
                       td {{ds.status || 'UNKNOWN' }}
-                      td: button.delete-data-source(ng-click="remove(ds)") Delete
+                      td: button.delete-data-source(ng-click="dsDelete(ds.name)") Delete
       #widgets-area.col-sm-2
         ul#myTab.nav.tab-menu.nav-tabs
           li.active
