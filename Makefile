@@ -27,7 +27,7 @@ test-cov:
 test-coveralls:
 		@NODE_ENV=test ./node_modules/.bin/mocha --require blanket --reporter mocha-lcov-reporter | node ./node_modules/coveralls/bin/coveralls.js
 
-docs:
+doc:
 		rm -rf ./wiki/*
 		node build/docs.js
 

@@ -16,7 +16,7 @@ var
   jsdox = require('jsdox');
 
 var basePath = path.join(__dirname, '../lib');
-var wikiPath = path.join(__dirname, '../wiki');
+var wikiPath = path.join(__dirname, '../wiki/code');
 var exclusions = [
   'sdk/bin/joola.io.js'
 ];
