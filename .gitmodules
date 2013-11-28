@@ -1,3 +1,3 @@
 [submodule "wiki"]
 	path = wiki
-	url = ../joola.io.wiki.git
+	url = https://github.com/joola/joola.io.wiki.git
