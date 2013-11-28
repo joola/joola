@@ -1,0 +1,330 @@
+include head.jade
+body
+  
+  include navbar.jade
+  .container
+    .row
+      include sidebar.jade
+      #content.col-sm-11
+        .row
+          .stats-date.col-md-3
+            div Monthly Statistics
+            .range 02/10/2012 - 02/11/2012
+          .stats.col-md-9
+            .stat
+              .left
+                .number.green 1.324.996
+                .title
+                  span.color.green
+                  | Visits
+              .right
+                .arrow
+                  img(src='/img/uparrow.png')
+                .percent +13%
+            .stat
+              .left
+                .number.yellow 12.894.765
+                .title
+                  span.color.yellow
+                  | Pageviews
+              .right
+                .arrow
+                  img(src='/img/uparrow.png')
+                .percent +17%
+            .stat
+              .left
+                .number.blue 432.980
+                .title
+                  span.color.blue
+                  | Visitors
+              .right
+                .arrow
+                  img(src='/img/downarrow.png')
+                .percent -33%
+            .stat
+              .left
+                .number.red.stats-eps 0
+                .title
+                  span.color.red
+                  | Events per second
+              .right
+                .arrow
+                  img(src='/img/uparrow.png')
+                .percent +3%
+
+        .row
+          .col-xs-12(style="overflow:hidden")
+            #stats-chart2(style='height: 300px;')
+
+        hr
+        .row
+          .widget.col-md-5.col-sm-12
+            h2
+              i.glyphicons.globe
+              | Demographics
+            hr
+            .content
+              .verticalChart
+                .singleBar
+                  .bar
+                    .value
+                      span 37%
+                  .title US
+                .singleBar
+                  .bar
+                    .value
+                      span 16%
+                  .title PL
+                .singleBar
+                  .bar
+                    .value
+                      span 12%
+                  .title GB
+                .singleBar
+                  .bar
+                    .value
+                      span 9%
+                  .title DE
+                .singleBar
+                  .bar
+                    .value
+                      span 7%
+                  .title NL
+                .singleBar
+                  .bar
+                    .value
+                      span 6%
+                  .title CA
+                .singleBar
+                  .bar
+                    .value
+                      span 5%
+                  .title FI
+                .singleBar
+                  .bar
+                    .value
+                      span 4%
+                  .title RU
+                .singleBar
+                  .bar
+                    .value
+                      span 3%
+                  .title AU
+                .singleBar
+                  .bar
+                    .value
+                      span 1%
+                  .title N/A
+
+          .widget.col-md-3.col-sm-6
+            h2
+              span.glyphicons.pie_chart
+                i
+              | ACTIONS
+            hr
+            .content
+              div#actionDonut
+
+          .widget.col-md-4.col-sm-6
+            h2
+              span.glyphicons.charts
+                i
+              | CACHE
+            hr
+            .content
+              .leftSide
+                div#nextCacheTime
+                div#cacheHitPct
+              .rightSide(style="margin-top:10px;")
+                .sparkLineStats
+                  ul.unstyled
+                    li
+                      span.sparkLineStats3
+                      | Size: 
+                      span.number 2GB
+                    li
+                      span.sparkLineStats4
+                      | Records: 
+                      span.number 21,081
+                    li
+                      span.sparkLineStats4
+                      | Run time: 
+                      span.number 30ms
+
+        hr
+        .row
+          .widget.col-sm-6(style="overflow:hidden")
+            h2
+              span.social.facebook
+                i
+              | Facebook Fans
+            hr
+            .content
+              #facebookChart(style='height: 300px;')
+
+          .widget.col-sm-6(style="overflow:hidden")
+            h2
+              span.social.twitter
+                i
+              | Twitter Followers
+            hr
+            .content
+              #twitterChart(style='height: 300px;')
+
+      #widgets-area.col-sm-2
+        ul#myTab.nav.tab-menu.nav-tabs
+          li.active
+            a(href='index.html#charts')
+              i.fa.fa-bar-chart-o
+          li
+            a(href='index.html#users')
+              i.fa.fa-group
+          li
+            a(href='index.html#messages')
+              i.fa.fa-envelope
+          li
+            a#close-widgets-area(href='index.html#')
+              i.fa.fa-sign-in
+        #myTabContent.tab-content
+          #charts.tab-pane.active
+            .bar-stat
+              span.title Account balance
+              span.value $19 999,99
+              span.chart.green 7,3,2,6,6,3,9,0,1,4
+            hr
+            .bar-stat
+              span.title Clients
+              span.value 1278
+              span.chart.yellow 8,2,5,4,7,4,7,2,5,9
+            hr
+            .bar-stat
+              span.title Orders
+              span.value 5876
+              span.chart.blue 2,4,6,8,3,5,9,3,2,2
+            hr
+            .bar-stat
+              span.title Messages
+              span.value 673
+              span.chart.red 0,3,3,8,3,3,2,7,8,4
+            hr
+            #cpu-usage
+            ul.progress-bars
+              li
+                span.title Free Memory
+                span.percent
+                .taskProgress.progressSlim.progressGreen 80
+              li
+                span.title Free HDD Drive
+                span.percent
+                .taskProgress.progressSlim.progressYellow 20
+              li
+                span.title Free SSD Drive
+                span.percent
+                .taskProgress.progressSlim.progressBlue 57
+              li
+                span.title Transfer
+                span.percent
+                .taskProgress.progressSlim.progressRed 45
+          #users.tab-pane
+            ul.users-list
+              li
+                a(href='index.html#')
+                  span.status.active
+                  span.avatar
+                    img.img-circle(src='/img/avatar.jpg', alt='Avatar')
+                  span.name Łukasz Holeczek
+              li
+                a(href='index.html#')
+                  span.status.busy
+                  span.avatar
+                    img.img-circle(src='/img/avatar2.jpg', alt='Avatar')
+                  span.name Megan Abott
+              li
+                a(href='index.html#')
+                  span.status.disable
+                  span.avatar
+                    img.img-circle(src='/img/avatar3.jpg', alt='Avatar')
+                  span.name Kate Ross
+              li
+                a(href='index.html#')
+                  span.status.active
+                  span.avatar
+                    img.img-circle(src='/img/avatar4.jpg', alt='Avatar')
+                  span.name Julie Blank
+              li
+                a(href='index.html#')
+                  span.status
+                  span.avatar
+                    img.img-circle(src='/img/avatar5.jpg', alt='Avatar')
+                  span.name Jane Sanders
+              li
+                a(href='index.html#') View all users
+          #messages.tab-pane
+            ul.messages-list
+              li
+                a(href='index.html#')
+                  .avatar
+                    img.img-circle(src='/img/avatar.jpg', alt='Avatar')
+                  span.name Łukasz Holeczek
+                  span.date 25/6/2013
+                  span.title Custom Bootstrap design for new client
+              li
+                a(href='index.html#')
+                  .avatar
+                    img.img-circle(src='/img/avatar2.jpg', alt='Avatar')
+                  span.name Megan Abott
+                  span.date 25/6/2013
+                  span.title Custom Bootstrap design for new client
+              li
+                a(href='index.html#')
+                  .avatar
+                    img.img-circle(src='/img/avatar3.jpg', alt='Avatar')
+                  span.name Kate Ross
+                  span.date 25/6/2013
+                  span.title Custom Bootstrap design for new client
+              li
+                a(href='index.html#')
+                  .avatar
+                    img.img-circle(src='/img/avatar4.jpg', alt='Avatar')
+        
+                  span.name Julie Blank
+                  span.date 25/6/2013
+                  span.title Custom Bootstrap design for new client
+              li
+                a(href='index.html#')
+                  .avatar
+                    img.img-circle(src='/img/avatar5.jpg', alt='Avatar')
+                  span.name Jane Sanders
+                  span.date 25/6/2013
+                  span.title Custom Bootstrap design for new client
+              li
+                a(href='index.html#') View all messages
+
+      a#widgets-area-button.hidden-sm.hidden-xs.open
+        i.fa.fa-bars
+
+    #myModal.modal.fade
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+            h4.modal-title Modal title
+          .modal-body
+            p Here settings can be configured...
+          .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') Close
+            button.btn.btn-primary(type='button') Save changes
+
+  .clearfix
+  footer
+    p
+      span(style='text-align: left; float: left;')
+        | © 2013 creativeLabs.
+        a(href='http://bootstrapmaster.com') Admin Templates
+        | by BootstrapMaster
+      span.hidden-phone(style='text-align: right; float: right;')
+        | Powered by:
+        a(href='http://bootstrapmaster.com/demo/acme/', alt='Bootstrap Admin Templates') ACME Dashboard
+  div(ng-controller="dsCtrl")
+    div {{datasourceList}}
+  include footer.jade
