@@ -51,8 +51,9 @@
     "node-uuid": "*",
     "async": "*",
     "express": "*",
-    "socket.io": "*,",
-    "socket.io-browserify": "*"
+    "socket.io": "*",
+    "socket.io-wildcard": "*",
+    "socket.io-browserify": "*",
     "jade": "*"
   },
   "devDependencies": {
