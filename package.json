@@ -50,11 +50,12 @@
     "redis": "*",
     "node-uuid": "*",
     "async": "*",
-    "express": "*"
+    "express": "*",
+    "socket.io": "*,",
+    "socket.io-browserify": "*"
   },
   "devDependencies": {
     "jsdox": "https://github.com/itayw/jsdox/tarball/master",
-    "socket.io-browserify": "*",
     "underscore": "1.x",
     "mocha-lcov-reporter": "0.x",
     "coveralls": "2.x",
