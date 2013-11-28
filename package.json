@@ -50,7 +50,8 @@
     "redis": "*",
     "node-uuid": "*",
     "async": "*",
-    "express": "*"
+    "express": "*",
+    "jade": "*"
   },
   "devDependencies": {
     "jsdox": "https://github.com/itayw/jsdox/tarball/master",

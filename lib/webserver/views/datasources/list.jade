@@ -1,0 +1,403 @@
+include ../head
+body
+  include ../navbar
+  .container
+    .row
+      include ../sidebar
+      #content.col-sm-11
+        .row
+          .col-lg-7
+            .box
+              .box-header
+                h2
+                  i.fa.fa-edit
+                  span.break
+                  | Add data source
+                .box-icon
+                  a.btn-setting(href='form-wizard.html#')
+                    i.fa.fa-wrench
+                  a.btn-minimize(href='form-wizard.html#')
+                    i.fa.fa-chevron-up
+                  a.btn-close(href='form-wizard.html#')
+                    i.fa.fa-times
+              .box-content
+                //
+                  #MyWizard.wizard
+                    ul.steps
+                      li.active(data-target='#step1')
+                        span.badge.badge-info 1
+                      li(data-target='#step2')
+                        span.badge 2
+                      li(data-target='#step3')
+                        span.badge 3
+                      li(data-target='#step4')
+                        span.badge 4
+                      li(data-target='#step5')
+                        span.badge 5
+                    .actions
+                      button.btn.btn-prev(type='button')
+                        i.fa.fa-arrow-left
+                        | Prev
+                      button.btn.btn-success.btn-next(type='button', data-last='Finish')
+                        | Next
+                        i.fa.fa-arrow-right
+                .step-content
+                  #step1.step-pane.active
+                    form#form-new-datasource.form-horizontal(ng-controller="dsCtrl", ng-submit="dsAdd()")
+                      fieldset.col-sm-12
+                        .form-group
+                          label.control-label(for='selectError20') Data type
+                          .controls
+                            select#selectError20.form-control(data-placeholder='Select the type of your data source', data-rel='chosen', ng-model="dbtype", name="type")
+                              option(value='')
+                              optgroup(label='Databases')
+                                option(value="mysql") MySQL
+                                option(value="postgresql") PostgreSQL
+                                option(value="mssql") Microsoft SQL Server
+                              optgroup(label='Online services')
+                                option(value="ga") Google Analytics
+                                option(value="gwt") Google Webmaster Tools
+                                option(value="sf") Salesforce
+                        fieldset.col-sm-12
+                        div(ng-show="dbtype=='mysql' || dbtype=='mssql' || dbtype=='postgresql'", ng-cloak)
+                          .form-group
+                            label.control-label(for='input1') Data source name
+                            .controls
+                              input#input1.form-control(type='text', ng-model="name")
+                          .form-group
+                            label.control-label(for='input1') Connection String
+                            .controls
+                              input#input1.form-control(type='text', ng-model="connectionString")
+                          //
+                            .form-group
+                              label.control-label(for='input2') Port
+                              .controls
+                                input#input2.form-control(type='text', name="dbport")
+                            .form-group
+                              label.control-label(for='input3') DB Name
+                              .controls
+                                input#input3.form-control(type='text', name="dbname")
+                            .form-group
+                              label.control-label(for='input3') DB Username
+                              .controls
+                                input#input3.form-control(type='text', name="dbuser")
+                            .form-group
+                              label.control-label(for='input3') DB Password
+                              .controls
+                                input#input3.form-control(type='text', name="dbpass")
+                        div(ng-show="dbtype=='ga' || dbtype=='gwt'", ng-cloak)
+                          .form-group
+                            label.control-label(for='input1') Google Username
+                            .controls
+                              input#input1.form-control(type='text')
+                          .form-group
+                            label.control-label(for='input2') Google Password
+                            .controls
+                              input#input2.form-control(type='text')
+                          .form-group
+                            label.control-label(for='input3') UA
+                            .controls
+                              input#input3.form-control(type='text')
+                        div(ng-show="dbtype=='sf'", ng-cloak)
+                          .form-group
+                            label.control-label(for='input1') Salesforce Username
+                            .controls
+                              input#input1.form-control(type='text')
+                          .form-group
+                            label.control-label(for='input2') Salesforce Password
+                            .controls
+                              input#input2.form-control(type='text')
+                          .form-group
+                            label.control-label(for='input3') Account ID
+                            .controls
+                              input#input3.form-control(type='text')
+                        input#validate-new-datasource(type="submit", value="Validate")
+                  //      
+                    #step2.step-pane
+                      .box
+                        .box-header
+                          h2
+                            i.fa.fa-plus
+                            span.break
+                            | Badges
+                          .box-icon
+                            a.btn-close(href='ui-elements.html#')
+                              i.fa.fa-times
+                        .box-content
+                          table.table.table-striped
+                            thead
+                              tr(role="row", style="background-color:#bdea74; color:#000000;")
+                                th(colspan="7"): strong Dimensions
+                              tr(role="row")
+                                th: strong Alias
+                                th: strong SQL Name
+                                th: strong Type
+                                th: strong Grouping
+                                th: strong Foriegn Key
+                                th: strong display
+                            tbody
+                              tr
+                                td id
+                                td id
+                                td int
+                                td Dimension
+                                td user.id
+                                td: input(type="checkbox")
+                              tr
+                                td id
+                                td id
+                                td int
+                                td Dimension
+                                td user.id
+                                td: input(type="checkbox")
+                              tr
+                                td id
+                                td id
+                                td int
+                                td Dimension
+                                td user.id
+                                td: input(type="checkbox")
+                            thead
+                              tr(role="row", style="background-color:#bdea74; color:#000000;")
+                                th(colspan="7"): strong Metrics
+                              tbody
+                                tr
+                                  td id
+                                  td id
+                                  td int
+                                  td Dimension
+                                  td user.id
+                                  td: input(type="checkbox")
+                      .box
+                        .box-header
+                          h2
+                            i.fa.fa-plus
+                            span.break
+                            | Users
+                          .box-icon
+                            a.btn-close(href='ui-elements.html#')
+                              i.fa.fa-times
+                        .box-content
+                          table.table.table-striped
+                            thead
+                              tr(role="row", style="background-color:#bdea74; color:#000000;")
+                                th(colspan="7"): strong Dimensions
+                              tr(role="row")
+                                th: strong Alias
+                                th: strong SQL Name
+                                th: strong Type
+                                th: strong Grouping
+                                th: strong Foriegn Key
+                                th: strong display
+                            tbody
+                              tr
+                                td id
+                                td id
+                                td int
+                                td Dimension
+                                td user.id
+                                td: input(type="checkbox")
+                              tr
+                                td id
+                                td id
+                                td int
+                                td Dimension
+                                td user.id
+                                td: input(type="checkbox")
+                              tr
+                                td id
+                                td id
+                                td int
+                                td Dimension
+                                td user.id
+                                td: input(type="checkbox")
+                            thead
+                              tr(role="row", style="background-color:#bdea74; color:#000000;")
+                                th(colspan="7"): strong Metrics
+                              tbody
+                                tr
+                                  td id
+                                  td id
+                                  td int
+                                  td Dimension
+                                  td user.id
+                                  td: input(type="checkbox")
+          .col-md-5
+            .box
+              .box-header
+                h2
+                  i.fa.fa-plus
+                  span.break
+                  | Data Sources
+                .box-icon
+                  a.btn-close(href='ui-elements.html#')
+                    i.fa.fa-times
+              .box-content(ng-controller="dsCtrl")
+                table.table.table-bordered.table-striped
+                  thead
+                    tr(role="row")
+                      th: strong Name
+                      th: strong Type
+                      th: strong Tables
+                      th: strong Records
+                      th: strong Status
+                      th: strong Action
+                  tbody
+                    tr(ng-repeat="ds in list", ng-cloak)
+                      td {{ds.name}}
+                      td {{ds.type}}
+                      td {{ds.numTables || 0 }}
+                      td {{ds.numRecords || 0 }}
+                      td {{ds.status || 'UNKNOWN' }}
+                      td: button.delete-data-source(ng-click="dsDelete(ds.name)") Delete
+      #widgets-area.col-sm-2
+        ul#myTab.nav.tab-menu.nav-tabs
+          li.active
+            a(href='form-wizard.html#charts')
+              i.fa.fa-bar-chart-o
+          li
+            a(href='form-wizard.html#users')
+              i.fa.fa-group
+          li
+            a(href='form-wizard.html#messages')
+              i.fa.fa-envelope
+          li
+            a#close-widgets-area(href='form-wizard.html#')
+              i.fa.fa-sign-in
+        #myTabContent.tab-content
+          #charts.tab-pane.active
+            .bar-stat
+              span.title Account balance
+              span.value $19 999,99
+              span.chart.green 7,3,2,6,6,3,9,0,1,4
+            hr
+            .bar-stat
+              span.title Clients
+              span.value 1278
+              span.chart.yellow 8,2,5,4,7,4,7,2,5,9
+            hr
+            .bar-stat
+              span.title Orders
+              span.value 5876
+              span.chart.blue 2,4,6,8,3,5,9,3,2,2
+            hr
+            .bar-stat
+              span.title Messages
+              span.value 673
+              span.chart.red 0,3,3,8,3,3,2,7,8,4
+            hr
+            #cpu-usage
+            ul.progress-bars
+              li
+                span.title Free Memory
+                span.percent
+                .taskProgress.progressSlim.progressGreen 80
+              li
+                span.title Free HDD Drive
+                span.percent
+                .taskProgress.progressSlim.progressYellow 20
+              li
+                span.title Free SSD Drive
+                span.percent
+                .taskProgress.progressSlim.progressBlue 57
+              li
+                span.title Transfer
+                span.percent
+                .taskProgress.progressSlim.progressRed 45
+          #users.tab-pane
+            ul.users-list
+              li
+                a(href='form-wizard.html#')
+                  span.status.active
+                  span.avatar
+                    img.img-circle(src='/img/avatar.jpg', alt='Avatar')
+                  span.name Łukasz Holeczek
+              li
+                a(href='form-wizard.html#')
+                  span.status.busy
+                  span.avatar
+                    img.img-circle(src='/img/avatar2.jpg', alt='Avatar')
+                  span.name Megan Abott
+              li
+                a(href='form-wizard.html#')
+                  span.status.disable
+                  span.avatar
+                    img.img-circle(src='/img/avatar3.jpg', alt='Avatar')
+                  span.name Kate Ross
+              li
+                a(href='form-wizard.html#')
+                  span.status.active
+                  span.avatar
+                    img.img-circle(src='/img/avatar4.jpg', alt='Avatar')
+                  span.name Julie Blank
+              li
+                a(href='form-wizard.html#')
+                  span.status
+                  span.avatar
+                    img.img-circle(src='/img/avatar5.jpg', alt='Avatar')
+                  span.name Jane Sanders
+              li
+                a(href='form-wizard.html#') View all users
+          #messages.tab-pane
+            ul.messages-list
+              li
+                a(href='form-wizard.html#')
+                  .avatar
+                    img.img-circle(src='/img/avatar.jpg', alt='Avatar')
+                  span.name Łukasz Holeczek
+                  span.date 25/6/2013
+                  span.title Custom Bootstrap design for new client
+              li
+                a(href='form-wizard.html#')
+                  .avatar
+                    img.img-circle(src='/img/avatar2.jpg', alt='Avatar')
+                  span.name Megan Abott
+                  span.date 25/6/2013
+                  span.title Custom Bootstrap design for new client
+              li
+                a(href='form-wizard.html#')
+                  .avatar
+                    img.img-circle(src='/img/avatar3.jpg', alt='Avatar')
+                  span.name Kate Ross
+                  span.date 25/6/2013
+                  span.title Custom Bootstrap design for new client
+              li
+                a(href='form-wizard.html#')
+                  .avatar
+                    img.img-circle(src='/img/avatar4.jpg', alt='Avatar')
+                  span.name Julie Blank
+                  span.date 25/6/2013
+                  span.title Custom Bootstrap design for new client
+              li
+                a(href='form-wizard.html#')
+                  .avatar
+                    img.img-circle(src='/img/avatar5.jpg', alt='Avatar')
+                  span.name Jane Sanders
+                  span.date 25/6/2013
+                  span.title Custom Bootstrap design for new client
+              li
+                a(href='form-wizard.html#') View all messages
+      a#widgets-area-button.hidden-sm.hidden-xs.open
+        i.fa.fa-bars
+    #myModal.modal.fade
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+            h4.modal-title Modal title
+          .modal-body
+            p Here settings can be configured...
+          .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') Close
+            button.btn.btn-primary(type='button') Save changes
+  .clearfix
+  footer
+    p
+      span(style='text-align: left; float: left;')
+        | © 2013 creativeLabs.
+        a(href='http://bootstrapmaster.com') Admin Templates
+        | by BootstrapMaster
+      span.hidden-phone(style='text-align: right; float: right;')
+        | Powered by:
+        a(href='http://bootstrapmaster.com/demo/acme/', alt='Bootstrap Admin Templates') ACME Dashboard
+  include ../footer
