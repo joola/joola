@@ -44,7 +44,7 @@
   ],
   "dependencies": {
     "nconf": "*",
-    "nconf-redis": "*",
+    "nconf-redis": "https://github.com/itayw/nconf-redis/tarball/develop",
     "eventemitter2": "*",
     "winston": "*",
     "redis": "*",
