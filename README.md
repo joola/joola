@@ -96,8 +96,8 @@ Copyright (c) 2012-2013 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24]
 
 [1]: https://coveralls.io/repos/joola/joola.io/badge.png
 [2]: https://coveralls.io/r/joola/joola.io
-[3]: https://travis-ci.org/joola/joola.io.png
-[4]: https://travis-ci.org/joola/joola.io
+[3]: https://travis-ci.org/joola/joola.io.png?branch=master
+[4]: https://travis-ci.org/joola/joola.io?branch=master
 [5]: https://david-dm.org/joola/joola.io.png
 [6]: https://david-dm.org/joola/joola.io
 [7]: https://david-dm.org/joola/joola.io/dev-status.png
