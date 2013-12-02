@@ -27,26 +27,26 @@
       "port": "50008"
     }
   },
-  "stores": {
+  "store": {
     "config": {
       "redis": {
         "host": "localhost",
         "port": 6379,
-        "DB": 0
+        "db": 10
       }
     },
     "dispatch": {
       "redis": {
         "host": "localhost",
         "port": 6379,
-        "DB": 1
+        "db": 1
       }
     },
     "stats": {
       "redis": {
         "host": "localhost",
         "port": 6379,
-        "DB": 2
+        "db": 2
       }
     },
     "logger": {
