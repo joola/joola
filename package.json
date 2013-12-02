@@ -51,10 +51,13 @@
     "node-uuid": "*",
     "async": "*",
     "express": "*",
+    "socket.io": "*",
+    "socket.io-wildcard": "*",
+    "socket.io-browserify": "*",
     "jade": "*"
   },
   "devDependencies": {
-    "socket.io-browserify": "*",
+    "jsdox": "https://github.com/itayw/jsdox/tarball/master",
     "underscore": "1.x",
     "mocha-lcov-reporter": "0.x",
     "coveralls": "2.x",
@@ -65,7 +68,8 @@
     "sinon-chai": "2.x",
     "blanket": "1.x",
     "jshint": "2.x",
-    "supertest": "0.x"
+    "supertest": "0.x",
+    "xtend": "*"
   },
   "license": "GPL-3.0"
 }

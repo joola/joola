@@ -1,22 +1,32 @@
 /* app css stylesheet */
 body {
-  background-color:#f5f5f5;
+  background-color: #f5f5f5;
 }
 
 .sidebar {
   border: 1px solid #333333;
-  border-top:0;
-  border-bottom:0;
-  border-left:0;
+  border-top: 0;
+  border-bottom: 0;
+  border-left: 0;
 }
+
 .menuElement {
-  font-size:12px;
+  font-size: 12px;
 }
 
 .menuElement:before {
-  content:"\f080"
+  content: "\f080"
 }
 
-.pull-top { margin-top:0; padding-top:0 }
+.pull-top {
+  margin-top: 0;
+  padding-top: 0
+}
 
-.margin0 { margin:0; }
+.margin0 {
+  margin: 0;
+}
+
+.clear-both {
+  clear: both;
+}
