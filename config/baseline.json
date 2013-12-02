@@ -3,7 +3,7 @@
   "description": "This is a baseline configuration file for joola.io",
   "moreinfo": "https://github.com/joola/joola.io/wiki",
 
-  "version": "0.0.1",
+  "_version": "0.0.1",
 
   "interfaces": {
     "webserver": {
