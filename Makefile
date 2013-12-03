@@ -20,15 +20,17 @@ compile:
 lint:
 		@./node_modules/.bin/jshint ./lib
 
-test-cov:
-		$(MAKE) test REPORTER=spec
-		@NODE_COV=true NODE_ENV=test ./node_modules/.bin/mocha --reporter=html-cov > coverage.html
-
-test-coveralls:
-		@NODE_ENV=test ./node_modules/.bin/mocha --require blanket --reporter mocha-lcov-reporter | node ./node_modules/coveralls/bin/coveralls.js
-
 doc:
 		find ./wiki/* ! -iregex '(.git|.npm)' | xargs rm -fr
 		node build/docs.js
+
+test-cov:	
+		$(MAKE) istanbul
+
+istanbul:
+		istanbul cover _mocha -- -R spec test
+
+coveralls:
+		cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 
 .PHONY: test

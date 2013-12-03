@@ -4,4 +4,4 @@ lib/sdk/common/index.js
 lib/webserver/public/*
 
 lib-cov
-
+coverage
