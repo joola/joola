@@ -21,7 +21,7 @@ describe("webserver-general", function () {
       if (err)
         return done(err);
 
-      expect(response.statusCode === 200);
+      expect(response.statusCode).to.equal(200);
       done();
     });
   });
@@ -31,7 +31,7 @@ describe("webserver-general", function () {
       if (err)
         return done(err);
 
-      expect(response.statusCode === 200);
+      expect(response.statusCode).to.equal(200);
       done();
     });
   });
