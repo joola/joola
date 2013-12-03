@@ -115,7 +115,7 @@ describe("cli-arguments", function () {
     done();
   });
 
-  it("code: process() true for shouldExist (version, help)", function (done) {
+  it("code: process() true for shouldExit (version, help)", function (done) {
     var cli = require('../../../lib/common/cli');
     var actual = '';
     var unhook = hook_stdout(function (string) {
@@ -126,15 +126,15 @@ describe("cli-arguments", function () {
       return process.argv[key]
     }}};
 
-    process.argv.version = true;
+    process.argv.push('--version') ;
     var shouldExit = cli.process();
-    delete process.argv.version;
+    process.argv.splice(process.argv.length-1);
     var expected = true;
     expect(shouldExit).to.equal(expected);
 
-    process.argv.help = true;
+    process.argv.push('--help');
     var shouldExit = cli.process();
-    delete process.argv.help;
+    process.argv.splice(process.argv.length-1);
     var expected = true;
     expect(shouldExit).to.equal(expected);
 
@@ -142,7 +142,7 @@ describe("cli-arguments", function () {
     done();
   });
 
-  it("code: process() true for shouldExist (nolog)", function (done) {
+  it("code: process() true for shouldExit (nolog)", function (done) {
     var cli = require('../../../lib/common/cli');
     var actual = '';
     var unhook = hook_stdout(function (string) {
@@ -153,11 +153,11 @@ describe("cli-arguments", function () {
       return process.argv[key]
     }}};
 
-    process.argv.nolog = true;
+    process.argv.push('--nolog');
     var shouldExit = cli.process();
     var expected = false;
     expect(shouldExit).to.equal(expected);
-    delete process.argv.nolog;
+    process.argv.splice(process.argv.length-1);
 
     unhook();
     done();
