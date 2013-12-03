@@ -65,6 +65,7 @@
     "mocha": "1.x",
     "sinon": "1.x",
     "chai": "1.x",
+    "istanbul": "*",
     "sinon-chai": "2.x",
     "blanket": "1.x",
     "jshint": "2.x",
