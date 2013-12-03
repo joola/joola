@@ -69,7 +69,8 @@
     "blanket": "1.x",
     "jshint": "2.x",
     "supertest": "0.x",
-    "xtend": "*"
+    "xtend": "*",
+    "request": "*"
   },
   "license": "GPL-3.0"
 }
