@@ -21,26 +21,6 @@ body
                   a.btn-close(href='form-wizard.html#')
                     i.fa.fa-times
               .box-content
-                //
-                  #MyWizard.wizard
-                    ul.steps
-                      li.active(data-target='#step1')
-                        span.badge.badge-info 1
-                      li(data-target='#step2')
-                        span.badge 2
-                      li(data-target='#step3')
-                        span.badge 3
-                      li(data-target='#step4')
-                        span.badge 4
-                      li(data-target='#step5')
-                        span.badge 5
-                    .actions
-                      button.btn.btn-prev(type='button')
-                        i.fa.fa-arrow-left
-                        | Prev
-                      button.btn.btn-success.btn-next(type='button', data-last='Finish')
-                        | Next
-                        i.fa.fa-arrow-right
                 .step-content
                   #step1.step-pane.active
                     form#form-new-datasource.form-horizontal(ng-controller="dsCtrl", ng-submit="dsAdd()")
@@ -68,23 +48,6 @@ body
                             label.control-label(for='input1') Connection String
                             .controls
                               input#input1.form-control(type='text', ng-model="connectionString")
-                          //
-                            .form-group
-                              label.control-label(for='input2') Port
-                              .controls
-                                input#input2.form-control(type='text', name="dbport")
-                            .form-group
-                              label.control-label(for='input3') DB Name
-                              .controls
-                                input#input3.form-control(type='text', name="dbname")
-                            .form-group
-                              label.control-label(for='input3') DB Username
-                              .controls
-                                input#input3.form-control(type='text', name="dbuser")
-                            .form-group
-                              label.control-label(for='input3') DB Password
-                              .controls
-                                input#input3.form-control(type='text', name="dbpass")
                         div(ng-show="dbtype=='ga' || dbtype=='gwt'", ng-cloak)
                           .form-group
                             label.control-label(for='input1') Google Username
@@ -112,116 +75,7 @@ body
                             .controls
                               input#input3.form-control(type='text')
                         input#validate-new-datasource(type="submit", value="Validate")
-                  //      
-                    #step2.step-pane
-                      .box
-                        .box-header
-                          h2
-                            i.fa.fa-plus
-                            span.break
-                            | Badges
-                          .box-icon
-                            a.btn-close(href='ui-elements.html#')
-                              i.fa.fa-times
-                        .box-content
-                          table.table.table-striped
-                            thead
-                              tr(role="row", style="background-color:#bdea74; color:#000000;")
-                                th(colspan="7"): strong Dimensions
-                              tr(role="row")
-                                th: strong Alias
-                                th: strong SQL Name
-                                th: strong Type
-                                th: strong Grouping
-                                th: strong Foriegn Key
-                                th: strong display
-                            tbody
-                              tr
-                                td id
-                                td id
-                                td int
-                                td Dimension
-                                td user.id
-                                td: input(type="checkbox")
-                              tr
-                                td id
-                                td id
-                                td int
-                                td Dimension
-                                td user.id
-                                td: input(type="checkbox")
-                              tr
-                                td id
-                                td id
-                                td int
-                                td Dimension
-                                td user.id
-                                td: input(type="checkbox")
-                            thead
-                              tr(role="row", style="background-color:#bdea74; color:#000000;")
-                                th(colspan="7"): strong Metrics
-                              tbody
-                                tr
-                                  td id
-                                  td id
-                                  td int
-                                  td Dimension
-                                  td user.id
-                                  td: input(type="checkbox")
-                      .box
-                        .box-header
-                          h2
-                            i.fa.fa-plus
-                            span.break
-                            | Users
-                          .box-icon
-                            a.btn-close(href='ui-elements.html#')
-                              i.fa.fa-times
-                        .box-content
-                          table.table.table-striped
-                            thead
-                              tr(role="row", style="background-color:#bdea74; color:#000000;")
-                                th(colspan="7"): strong Dimensions
-                              tr(role="row")
-                                th: strong Alias
-                                th: strong SQL Name
-                                th: strong Type
-                                th: strong Grouping
-                                th: strong Foriegn Key
-                                th: strong display
-                            tbody
-                              tr
-                                td id
-                                td id
-                                td int
-                                td Dimension
-                                td user.id
-                                td: input(type="checkbox")
-                              tr
-                                td id
-                                td id
-                                td int
-                                td Dimension
-                                td user.id
-                                td: input(type="checkbox")
-                              tr
-                                td id
-                                td id
-                                td int
-                                td Dimension
-                                td user.id
-                                td: input(type="checkbox")
-                            thead
-                              tr(role="row", style="background-color:#bdea74; color:#000000;")
-                                th(colspan="7"): strong Metrics
-                              tbody
-                                tr
-                                  td id
-                                  td id
-                                  td int
-                                  td Dimension
-                                  td user.id
-                                  td: input(type="checkbox")
+
           .col-md-5
             .box
               .box-header
