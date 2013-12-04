@@ -10,19 +10,19 @@
 
 
 describe("api-datasources", function () {
-  it("should return a valid list of data sources", function (done) {
+  xit("should return a valid list of data sources", function (done) {
     joolaio.objects.datasources.list(function (err, datasources) {
       return done(err);
     });
   });
 
-  it("should add a data source", function () {
+  xit("should add a data source", function () {
     joolaio.objects.datasources.add({name: 'testSuite-api', type: 'test', _connectionString: 'test'}, function (err, datasource) {
       return expect(datasource).to.be.ok;
     });
   });
 
-  it("should update a data source", function () {
+  xit("should update a data source", function () {
     joolaio.objects.datasources.update({name: 'testSuite-api', type: 'test2', _connectionString: 'test2'}, function (err, datasource) {
       console.log(datasource);
       return expect(datasource.type).to.equal('test2');
