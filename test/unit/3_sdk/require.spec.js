@@ -17,7 +17,7 @@ describe("sdk-require", function () {
   });
 
   it("should have a valid config", function () {
-    expect(_sdk.config).to.be.ok;
+    expect(_sdk.config._id).to.equal('config');
   });
 
   it("should have a valid api", function () {

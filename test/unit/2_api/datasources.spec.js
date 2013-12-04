@@ -11,32 +11,33 @@
 
 describe("api-datasources", function () {
   it("should return a valid list of data sources", function (done) {
-    joolaio.objects.datasources.list(function (err, datasources) {
+    joola.objects.datasources.list(function (err) {
       return done(err);
     });
   });
 
-  xit("should add a data source", function () {
-    joolaio.objects.datasources.add({name: 'testSuite-api', type: 'test', _connectionString: 'test'}, function (err, datasource) {
-      return expect(datasource).to.be.ok;
+  it("should add a data source", function (done) {
+    joola.objects.datasources.add({name: 'testSuite-api', type: 'test', _connectionString: 'test'}, function (err, datasource) {
+      expect(datasource).to.be.ok;
+      done(err);
     });
   });
 
-  xit("should update a data source", function () {
-    joolaio.objects.datasources.update({name: 'testSuite-api', type: 'test2', _connectionString: 'test2'}, function (err, datasource) {
-      console.log(datasource);
-      return expect(datasource.type).to.equal('test2');
+  it("should update a data source", function (done) {
+    joola.objects.datasources.update({name: 'testSuite-api', type: 'test2', _connectionString: 'test2'}, function (err, datasource) {
+      expect(datasource.type).to.equal('test2');
+      done(err);
     });
   });
 
-  xit("should delete a data source", function (done) {
-    joolaio.objects.datasources.delete({name: 'testSuite'}, function (err) {
+  it("should delete a data source", function (done) {
+    joola.objects.datasources.delete({name: 'testSuite-api'}, function (err) {
       joolaio.objects.datasources.list(function (err, datasources) {
         var exist = _.filter(datasources, function (item) {
           return item.name == 'testSuite';
         });
         try {
-          expect(exist).to.be.null;
+          expect(exist.length).to.equal(0);
           done();
         }
         catch (ex) {

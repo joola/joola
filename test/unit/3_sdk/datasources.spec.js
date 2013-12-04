@@ -16,26 +16,26 @@ describe("sdk-datasources", function () {
     });
   });
 
-  xit("should add a data source", function () {
-    _sdk.objects.datasources.add({name: 'testSuite', type: 'test', _connectionString: 'test'}, function (err, datasource) {
+  it("should add a data source", function () {
+    _sdk.objects.datasources.add({name: 'testSuite-sdk', type: 'test', _connectionString: 'test'}, function (err, datasource) {
       return expect(datasource).to.be.ok;
     });
   });
 
-  xit("should update a data source", function () {
-    _sdk.objects.datasources.update({name: 'testSuite', type: 'test2', _connectionString: 'test'}, function (err, datasource) {
+  it("should update a data source", function () {
+    _sdk.objects.datasources.update({name: 'testSuite-sdk', type: 'test2', _connectionString: 'test'}, function (err, datasource) {
       return expect(datasource.type).to.equal('test2');
     });
   });
 
-  xit("should delete a data source", function (done) {
+  it("should delete a data source", function (done) {
     _sdk.objects.datasources.delete({name: 'testSuite'}, function (err) {
       _sdk.objects.datasources.list(function (err, datasources) {
         var exist = _.filter(datasources, function (item) {
           return item.name == 'testSuite';
         });
         try {
-          expect(exist).to.be.null;
+          expect(exist.length).to.equal(0);
           done();
         }
         catch (ex) {
