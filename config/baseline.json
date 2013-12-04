@@ -1,0 +1,94 @@
+{
+  "id": "joola.io-config-baseline",
+  "description": "This is a baseline configuration file for joola.io",
+  "moreinfo": "https://github.com/joola/joola.io/wiki",
+
+  "_version": "0.0.1",
+
+  "interfaces": {
+    "webserver": {
+      "enabled": true,
+      "port": 40008,
+      "securePort": 40009,
+      "secure": false,
+      "keyFile": null,
+      "certFIle": null,
+      "websocket": {
+        "enabled": true
+      },
+      "sessionDurtaion": 1200000
+    },
+    "repl": {
+      "enabled": true,
+      "port": "1337"
+    },
+    "beacon": {
+      "enabled": true,
+      "port": "50008"
+    }
+  },
+  "store": {
+    "config": {
+      "redis": {
+        "host": "localhost",
+        "port": 6379,
+        "db": 10
+      }
+    },
+    "dispatch": {
+      "redis": {
+        "host": "localhost",
+        "port": 6379,
+        "db": 1
+      }
+    },
+    "stats": {
+      "redis": {
+        "host": "localhost",
+        "port": 6379,
+        "db": 2
+      }
+    },
+    "logger": {
+      "mongo": {
+        "uri": "mongodb://localhost/logger"
+      },
+      "fs": {
+        "path": "/var/log/joola.io"
+      }
+    },
+    "beacon": {
+      "mongo": {
+        "uri": "mongodb://localhost/beacon"
+      }
+    },
+    "cache": {
+      "mongo": {
+        "uri": "mongodb://localhost/cache"
+      }
+    }
+  },
+  "engine": {
+    "cache": {
+      "lockTimeout": 5000,
+      "waitOnCache": 5000,
+      "waitInterval": 500
+    },
+    "query": {
+      "results": {
+        "cache": {
+          "enabled": false,
+          "expire": 0
+        }
+      }
+    }
+  },
+  "logging": {
+    "level": "silly",
+    "stores": ["mongo", "fs"]
+  },
+  "dispatch": {
+    "ttl": 5000,
+    "expires": 6
+  }
+}

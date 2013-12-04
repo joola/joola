@@ -13,10 +13,11 @@ var orig_env = process.env.NODE_ENV;
 
 before(function (done) {
   process.env.NODE_ENV = 'test';
-  //process.env.repl = true;
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; //allow node-request to deal with Error: DEPTH_ZERO_SELF_SIGNED_CERT
+
   _joolaio = require('../../joola.io.js');
   joola.state.on('state:change', function (state) {
-    if (state == 'working') {
+    if (state == 'working' || state == 'online') {
       _sdk = require('../../lib/sdk/index');
       var options = {
         isBrowser: false,

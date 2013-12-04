@@ -44,7 +44,7 @@
   ],
   "dependencies": {
     "nconf": "*",
-    "nconf-redis": "*",
+    "nconf-redis": "https://github.com/itayw/nconf-redis/tarball/develop",
     "eventemitter2": "*",
     "winston": "*",
     "redis": "*",
@@ -69,7 +69,8 @@
     "blanket": "1.x",
     "jshint": "2.x",
     "supertest": "0.x",
-    "xtend": "*"
+    "xtend": "*",
+    "request": "*"
   },
   "license": "GPL-3.0"
 }
