@@ -10,7 +10,7 @@
 
 
 describe("sdk-datasources", function () {
-  xit("should return a valid list of data sources", function (done) {
+  it("should return a valid list of data sources", function (done) {
     _sdk.objects.datasources.list(function (err, datasources) {
       return done(err);
     });
