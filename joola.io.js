@@ -9,6 +9,4 @@
  **/
 
 
-module.exports = process.env.NODE_COV
-  ? require('./lib-cov/joola.io')
-  : require('./lib/joola.io');
+module.exports = require('./lib/joola.io');

@@ -32,21 +32,21 @@
       "redis": {
         "host": "localhost",
         "port": 6379,
-        "db": 10
+        "db": 0
       }
     },
     "dispatch": {
       "redis": {
         "host": "localhost",
         "port": 6379,
-        "db": 1
+        "db": 0
       }
     },
     "stats": {
       "redis": {
         "host": "localhost",
         "port": 6379,
-        "db": 2
+        "db": 0
       }
     },
     "logger": {
