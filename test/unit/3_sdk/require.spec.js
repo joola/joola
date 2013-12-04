@@ -9,7 +9,7 @@
  **/
 
 
-describe("require", function () {
+describe("sdk-require", function () {
   var version = require('../../../package.json').version;
 
   it("should have a version [" + version + "]", function () {
