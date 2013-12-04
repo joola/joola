@@ -115,16 +115,12 @@ describe("cli-arguments", function () {
     done();
   });
 
-  xit("code: process() true for shouldExit (version, help)", function (done) {
+  it("code: process() true for shouldExit (version, help)", function (done) {
     var cli = require('../../../lib/common/cli');
     var actual = '';
     var unhook = hook_stdout(function (string) {
       actual += string;
     });
-/*
-    global.joola = {config: {get: function (key) {
-      return process.argv[key]
-    }}};
 
     process.argv.push('--version') ;
     var shouldExit = cli.process();
@@ -137,29 +133,24 @@ describe("cli-arguments", function () {
     process.argv.splice(process.argv.length-1);
     var expected = true;
     expect(shouldExit).to.equal(expected);
-*/
+
     unhook();
     done();
   });
 
-  xit("code: process() true for shouldExit (nolog)", function (done) {
+  it("code: process() true for shouldExit (nolog)", function (done) {
     var cli = require('../../../lib/common/cli');
     var actual = '';
     var unhook = hook_stdout(function (string) {
       actual += string;
     });
 
-    /*
-    global.joola = {config: {get: function (key) {
-      return process.argv[key]
-    }}};
-
     process.argv.push('--nolog');
     var shouldExit = cli.process();
     var expected = false;
     expect(shouldExit).to.equal(expected);
     process.argv.splice(process.argv.length-1);
-*/
+
     unhook();
     done();
   });
