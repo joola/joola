@@ -48,7 +48,6 @@
     "eventemitter2": "*",
     "winston": "*",
     "redis": "*",
-    "node-uuid": "*",
     "async": "*",
     "express": "*",
     "socket.io": "*",
