@@ -20,7 +20,7 @@ describe("common-utils", function () {
     var expected = joola.common.uuid();
     var actual = joola.common.uuid();
     if (expected == actual)
-      return done(new Error('Failed to generate a unique id'));
+      return done(new Error('Failed to generate a unique id [' + actual + ']:[' + expected + ']'));
     else
       return done();
   });

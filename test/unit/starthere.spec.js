@@ -15,9 +15,12 @@ before(function (done) {
   process.env.NODE_ENV = 'test';
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; //allow node-request to deal with Error: DEPTH_ZERO_SELF_SIGNED_CERT
 
+  var started = false;
+
   _joolaio = require('../../joola.io.js');
   joola.state.on('state:change', function (state) {
-    if (state == 'working' || state == 'online') {
+    if ((state == 'working' || state == 'online') && !started) {
+      started = true;
       _sdk = require('../../lib/sdk/index');
       var options = {
         isBrowser: false,
@@ -38,7 +41,7 @@ before(function (done) {
         return done();
       });
     }
-    else
+    else if (!started)
       throw new Error('Failed to startup joola.io');
   });
 });

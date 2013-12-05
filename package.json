@@ -70,7 +70,8 @@
     "jshint": "2.x",
     "supertest": "0.x",
     "xtend": "*",
-    "request": "*"
+    "request": "*",
+    "zombie": "*"
   },
   "license": "GPL-3.0"
 }
