@@ -16,10 +16,13 @@ describe("common-utils", function () {
     expect(actual).to.equal(expected);
   });
 
-  it("should generate uuid - unique", function () {
+  it("should generate uuid - unique", function (done) {
     var expected = joola.common.uuid();
     var actual = joola.common.uuid();
-    expect(actual.toString()).to.not.equal(expected.toString());
+    if (expected == actual)
+      return done(new Error('Failed to generate a unique id'));
+    else
+      return done();
   });
 
   it("should mixin", function () {
