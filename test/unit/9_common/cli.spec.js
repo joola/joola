@@ -14,7 +14,7 @@
 var
   path = require('path');
 
-describe("cli-arguments", function () {
+describe("common-cli-arguments", function () {
   var packageFile = path.join(__dirname, '../../../', 'package.json');
   var version = require(packageFile).version;
 
