@@ -1,7 +1,4 @@
-# joola.io
-The open-source data visualization framework.
-
-## Tests
+### Automated Testing
 
 Automated testing is an important and integral part of joola.io and are divided into three main parts:
 ##### Functional
