@@ -14,7 +14,8 @@ var
   path = require('path'),
   fs = require('fs'),
   async = require('async'),
-  jsdox = require('jsdox');
+  jsdox = require('jsdox'),
+  mkdirp = require('mkdirp');
 
 var docPath = path.join(__dirname, '../docs');
 var libPath = path.join(__dirname, '../lib');
@@ -60,10 +61,10 @@ var call = function (callback) {
   var files = wrench.readdirSyncRecursive(libPath);
   var counter = 0;
   files.forEach(function (file) {
-    if (file.substring(file.length - 3) == '.js' && exclusions.indexOf(file) == -1) {
+    if (file.substring(file.length - 3) == '.js' && exclusions.indexOf(file) == -1 && file.indexOf('webserver/public/') == -1) {
       var targetDir = path.join(wikiCodePath, path.dirname(file));
       if (!fs.existsSync(targetDir)) {
-        fs.mkdirSync(targetDir);
+        mkdirp.sync(targetDir);
       }
 
       console.info('Processing doc [' + path.join(targetDir, file.replace('.js', '.md')) + ']');
@@ -93,7 +94,7 @@ call = function (callback) {
         filename = file;
 
       if (!fs.existsSync(targetDir)) {
-        fs.mkdirSync(targetDir);
+        mkdirp.sync(targetDir);
       }
 
       console.info('Processing static doc [' + path.join(targetDir, filename) + ']');
