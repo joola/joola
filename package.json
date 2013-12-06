@@ -56,7 +56,7 @@
     "jade": "*"
   },
   "devDependencies": {
-    "jsdox": "https://github.com/itayw/jsdox/tarball/master",
+    "jsdox": "https://github.com/itayw/jsdox/tarball/develop",
     "underscore": "1.x",
     "mocha-lcov-reporter": "0.x",
     "coveralls": "2.x",
