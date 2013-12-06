@@ -67,8 +67,15 @@ var call = function (callback) {
         mkdirp.sync(targetDir);
       }
 
-      console.info('Processing doc [' + path.join(targetDir, file.replace('.js', '.md')) + ']');
-      jsdox.generateForDir(path.join(libPath, file), targetDir, function (err) {
+      var filename = file.replace(path.dirname(file), '');
+      if (filename.substring(0, 1) == '/')
+        filename = filename.substring(1);
+      filename = 'JSDoc - joola.io:lib:' + path.dirname(file).replace(/\//ig, ':') + ':' + filename.replace('.js', '.md');
+
+      console.info('Processing doc [' + path.join(targetDir, filename) + ']');
+
+      process.argv.fullpath = true;
+      jsdox.generateForDir(path.join(libPath, file), targetDir + '/' + filename, function (err) {
         if (err)
           console.error(err);
 
