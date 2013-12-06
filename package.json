@@ -71,7 +71,8 @@
     "supertest": "0.x",
     "xtend": "*",
     "request": "*",
-    "zombie": "*"
+    "zombie": "*",
+    "mkdirp": "*"
   },
   "license": "GPL-3.0"
 }
