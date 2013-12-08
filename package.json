@@ -53,9 +53,9 @@
     "socket.io-wildcard": "*",
     "socket.io-browserify": "*",
     "jade": "*",
-    "bunyan": "*",
+    "bunyan": "https://github.com/itayw/node-bunyan/tarball/master",
     "bunyan-format": "*",
-    "mongo-col": "*",
+    "mongo-col": "https://github.com/Raynos/mongo-col/tarball/master",
     "mongo-stream": "*"
   },
   "devDependencies": {
