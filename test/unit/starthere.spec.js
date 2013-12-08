@@ -12,6 +12,7 @@
 var orig_env = process.env.NODE_ENV;
 
 before(function (done) {
+  global.nolog = true;
   process.env.NODE_ENV = 'test';
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; //allow node-request to deal with Error: DEPTH_ZERO_SELF_SIGNED_CERT
 

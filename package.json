@@ -46,14 +46,17 @@
     "nconf": "*",
     "nconf-redis": "https://github.com/itayw/nconf-redis/tarball/develop",
     "eventemitter2": "*",
-    "winston": "*",
     "redis": "*",
     "async": "*",
     "express": "*",
     "socket.io": "*",
     "socket.io-wildcard": "*",
     "socket.io-browserify": "*",
-    "jade": "*"
+    "jade": "*",
+    "bunyan": "*",
+    "bunyan-format": "*",
+    "mongo-col": "*",
+    "mongo-stream": "*"
   },
   "devDependencies": {
     "jsdox": "https://github.com/itayw/jsdox/tarball/develop",
