@@ -63,12 +63,20 @@
     },
     "beacon": {
       "mongo": {
-        "uri": "mongodb://localhost/beacon"
+        "host": "localhost",
+        "port": 27017,
+        "user": null,
+        "password": null,
+        "db": "beacon"
       }
     },
     "cache": {
       "mongo": {
-        "uri": "mongodb://localhost/cache"
+        "host": "localhost",
+        "port": 27017,
+        "user": null,
+        "password": null,
+        "db": "cache"
       }
     }
   },
