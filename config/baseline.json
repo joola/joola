@@ -51,10 +51,14 @@
     },
     "logger": {
       "mongo": {
-        "uri": "mongodb://localhost/logger"
+        "host": "localhost",
+        "port": 27017,
+        "user": null,
+        "password": null,
+        "db": "logger"
       },
-      "fs": {
-        "path": "/var/log/joola.io"
+      "file": {
+        "path": "/var/log/joola.io/"
       }
     },
     "beacon": {
