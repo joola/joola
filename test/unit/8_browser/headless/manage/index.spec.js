@@ -36,6 +36,4 @@ describe('browser-manage-index', function () {
       done();
     });
   });
-
-
 });
