@@ -56,7 +56,8 @@
     "bunyan": "https://github.com/itayw/node-bunyan/tarball/master",
     "bunyan-format": "*",
     "mongo-col": "https://github.com/Raynos/mongo-col/tarball/master",
-    "mongo-stream": "*"
+    "mongo-stream": "*",
+    "mongodb": "*"
   },
   "devDependencies": {
     "jsdox": "https://github.com/itayw/jsdox/tarball/develop",
