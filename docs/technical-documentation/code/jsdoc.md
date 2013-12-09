@@ -6,19 +6,48 @@ processed during the `build` process and exported as an Markdown format to form 
 The strucuture aligns with the `lib` folder of the project's code, each file as its functions, properties, methods and events
 detailed with all relevant documentation and know-how.
 
-- sdk
-	- [index.js](JSDoc - joola.io:lib:webserver:routes:index)
+- *common*
+	- [benchmark.js](joola.lib.common.benchmark)
+	- [cli.js](joola.lib.common.cli)
+	- [config.js](joola.lib.common.config)
+	- [domain.js](joola.lib.common.domain)
+	- [events.js](joola.lib.common.events)
+	- [globals.js](joola.lib.common.globals)
+	- [index.js](joola.lib.common.index)
+	- [logger.js](joola.lib.common.logger)
+	- [mongo.js](joola.lib.common.mongo)
+	- [redis.js](joola.lib.common.redis)
+	- [repl.js](joola.lib.common.repl)
+	- [state.js](joola.lib.common.state)
+	- [stats.js](joola.lib.common.stats)
+	- [watchers.js](joola.lib.common.watchers)
+- *dispatch*
+	- [datasources.js](joola.lib.dispatch.datasources)
+	- [index.js](joola.lib.dispatch.index)
+	- [logger.js](joola.lib.dispatch.logger)
+- *sdk*
 	- [browser.js](JSDoc - joola.io:lib:webserver:routes:index)
-	- routes
-		- [index.js](JSDoc - joola.io:lib:webserver:routes:index)
-		- api
-			- [datasources.js](JSDoc - joola.io:lib:webserver:routes:api:datasources)
-- webserver
 	- [index.js](JSDoc - joola.io:lib:webserver:routes:index)
-	- routes
+	- *common*
+		- [api.js](joola.lib.sdk.common.api)
+		- [config.js](joola.lib.sdk.common.config)
+		- [dispatch.js](joola.lib.sdk.common.dispatch)
+		- [logger.js](joola.lib.sdk.common.logger)
+		- [state.js](joola.lib.sdk.common.state)
+- *webserver*
+	- [index.js](JSDoc - joola.io:lib:webserver:routes:index)
+	- *middleware*
+		- [api.js](joola.lib.webserver.middleware.api)
+		- [auth.js](joola.lib.webserver.middleware.auth)
+		- [error.js](joola.lib.webserver.middleware.error)
+		- [status.js](joola.lib.webserver.middleware.status)
+  - *public*
+		- [public.js](joola.lib.webserver.public)
+  - *routes*
 		- [index.js](JSDoc - joola.io:lib:webserver:routes:index)
-		- api
-			- [datasources.js](JSDoc - joola.io:lib:webserver:routes:api:datasources)
+  - *views*
+		- [public.js](joola.lib.webserver.views)
+
 
 
 #### Building the code documentation
