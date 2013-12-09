@@ -90,19 +90,16 @@ calls.push(call);
 var call = function (callback) {
   var files = wrench.readdirSyncRecursive(libPath);
   var counter = 0;
-  console.log('aaaa');
   files.forEach(function (file) {
-    console.log('bbbb');
     if (file.substring(file.length - 3) == '.js' && exclusions.indexOf(file) == -1 && file.indexOf('webserver/public/') == -1) {
       var targetDir = path.join(wikiCodePath, path.dirname(file));
       if (!fs.existsSync(targetDir)) {
         mkdirp.sync(targetDir);
       }
-      console.log('cccc');
       var filename = file.replace(path.dirname(file), '');
       if (filename.substring(0, 1) == '/')
         filename = filename.substring(1);
-      filename = 'JSDoc - joola.io:lib:' + path.dirname(file).replace(/\//ig, ':') + ':' + filename.replace('.js', '.md');
+      filename = 'joola.lib.' + path.dirname(file).replace(/\//ig, '.') + '.' + filename.replace('.js', '.md');
 
       console.info('Processing doc [' + path.join(targetDir, filename) + ']');
 
