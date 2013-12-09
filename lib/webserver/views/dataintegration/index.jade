@@ -29,36 +29,28 @@ body
                 button.btn.btn-primary.btn-lg(data-toggle="modal" data-target="#datasourceAdd") Add data source
                 
                 .step-content
-                  
-          //
-            .col-md-5
+
               .box
                 .box-header
                   h2
-                    i.fa.fa-plus
+                    i.fa.fa-edit
                     span.break
-                    | Data Sources
+                    | Data Tables
                   .box-icon
-                    a.btn-close(href='ui-elements.html#')
+                    a.btn-setting(href='form-wizard.html#')
+                      i.fa.fa-wrench
+                    a.btn-minimize(href='form-wizard.html#')
+                      i.fa.fa-chevron-up
+                    a.btn-close(href='form-wizard.html#')
                       i.fa.fa-times
-                .box-content(ng-controller="dsCtrl")
-                  table.table.table-bordered.table-striped
-                    thead
-                      tr(role="row")
-                        th: strong Name
-                        th: strong Type
-                        th: strong Tables
-                        th: strong Records
-                        th: strong Status
-                        th: strong Action
-                    tbody
-                      tr(ng-repeat="ds in list", ng-cloak)
-                        td {{ds.name}}
-                        td {{ds.type}}
-                        td {{ds.numTables || 0 }}
-                        td {{ds.numRecords || 0 }}
-                        td {{ds.status || 'UNKNOWN' }}
-                        td: button.delete-data-source(ng-click="dsDelete(ds.name)") Delete
+                .box-content
+                  div(ng-controller="dtCtrl")
+                    
+                  br
+                  button.btn.btn-primary.btn-lg(data-toggle="modal" data-target="#datasourceAdd") Add data source
+        
+                  .step-content
+
       #widgets-area.col-sm-2
         ul#myTab.nav.tab-menu.nav-tabs
           li.active
