@@ -1,4 +1,4 @@
-#datasourceAdd.modal.fade
+#datasourceAdd.modal.fade(ng-controller="dsCtrl")
   .modal-dialog
     .modal-content
       .modal-header
@@ -6,7 +6,7 @@
         h4.modal-title Add a new data source
       .modal-body
         #step1.step-pane.active
-          form#form-new-datasource.form-horizontal(ng-controller="dsCtrl", ng-submit="dsAdd()")
+          form#form-new-datasource.form-horizontal(ng-submit="dsAdd()")
             fieldset.col-sm-12
               .form-group
                 label.control-label(for='selectError20') Data type
@@ -74,7 +74,6 @@
                   label.control-label(for='input3') Account ID
                   .controls
                     input#input3.form-control(type='text')
-              input#validate-new-datasource(type="submit", value="Validate")
-                .modal-footer
-                  button.btn.btn-default(type='button', data-dismiss='modal') Close
-                  button.btn.btn-primary(type='button') Save changes
+      .modal-footer
+        button.btn.btn-default(type='button', data-dismiss='modal') Cancel
+        button.btn.btn-primary(type='button', ng-click='dsAdd()') Add

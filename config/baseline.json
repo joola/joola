@@ -58,7 +58,7 @@
         "db": "logger"
       },
       "file": {
-        "path": "/var/log/joola.io/"
+        "path": "/tmp/joola.io/"
       }
     },
     "beacon": {
