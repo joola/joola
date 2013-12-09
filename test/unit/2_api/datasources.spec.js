@@ -30,7 +30,7 @@ describe("api-datasources", function () {
     });
   });
 
-  it("should delete a data source", function (done) {
+  xit("should delete a data source", function (done) {
     joola.dispatch.datasources.delete({name: 'testSuite-api'}, function (err) {
       joolaio.dispatch.datasources.list(function (err, datasources) {
         var exist = _.filter(datasources, function (item) {
