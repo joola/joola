@@ -18,6 +18,7 @@ before(function (done) {
 
   var started = false;
 
+  try{
   _joolaio = require('../../joola.io.js');
   joola.state.on('state:change', function (state) {
     if ((state == 'working' || state == 'online') && !started) {
@@ -45,6 +46,13 @@ before(function (done) {
     else if (!started)
       throw new Error('Failed to startup joola.io');
   });
+  }
+  catch(ex)
+  {
+    console.log(ex);
+    console.log(ex.stack);
+    throw ex;
+  }
 });
 
 after(function (done) {
