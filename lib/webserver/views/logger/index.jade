@@ -16,17 +16,18 @@ body
                 li: a(href="#", ng-click="eventDateFilter('1min')") Last minute
               table.table.table-striped
                 thead
-                  th(style="width:220px;") Timestamp
+                  th(style="width:160px;") Timestamp
                   th Hostname
                   th Level
                   th PID
                   th Message
-                tbody#logtbody(ng-repeat="l in log")
-                  td {{l.time | date:'yyyy-MM-dd hh:mm:ss'}}
-                  td {{l.hostname}}
-                  td {{l.leve}}
-                  td {{l.pid}}
-                  td {{l.msg}}
+                tbody#logtbody
+                  tr(ng-repeat="l in log")
+                    td {{l.time | date:'yyyy-MM-dd hh:mm:ss'}}
+                    td {{l.hostname}}
+                    td {{l.level}}
+                    td {{l.pid}}
+                    td {{l.msg}}
                   
           
       #widgets-area.col-sm-2
