@@ -29,7 +29,7 @@ describe("sdk-require", function () {
   });
 
   it("should be able to emit/catch events", function (done) {
-    _sdk.events.on('test:test:test', function () {
+    _sdk.events.once('test:test:test', function () {
       return done(null);
     });
     _sdk.events.emit('test:test:test');
