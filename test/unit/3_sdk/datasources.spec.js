@@ -11,35 +11,37 @@
 
 describe("sdk-datasources", function () {
   it("should return a valid list of data sources", function (done) {
-    _sdk.objects.datasources.list(function (err, datasources) {
+    _sdk.dispatch.datasources.list(function (err) {
       return done(err);
     });
   });
 
-  it("should add a data source", function () {
-    _sdk.objects.datasources.add({name: 'testSuite-sdk', type: 'test', _connectionString: 'test'}, function (err, datasource) {
-      return expect(datasource).to.be.ok;
+  it("should add a data source", function (done) {
+    _sdk.dispatch.datasources.add({name: 'testSuite-sdk', type: 'test', _connectionString: 'test'}, function (err, datasource) {
+      expect(datasource).to.be.ok;
+      return done(err);
     });
   });
 
-  it("should update a data source", function () {
-    _sdk.objects.datasources.update({name: 'testSuite-sdk', type: 'test2', _connectionString: 'test'}, function (err, datasource) {
-      return expect(datasource.type).to.equal('test2');
+  it("should update a data source", function (done) {
+    _sdk.dispatch.datasources.update({name: 'testSuite-sdk', type: 'test2', _connectionString: 'test'}, function (err, datasource) {
+      expect(datasource.type).to.equal('test2');
+      return done(err);
     });
   });
 
-  it("should delete a data source", function (done) {
-    _sdk.objects.datasources.delete({name: 'testSuite'}, function (err) {
-      _sdk.objects.datasources.list(function (err, datasources) {
+  xit("should delete a data source", function (done) {
+    _sdk.dispatch.datasources.delete({name: 'testSuite'}, function (err) {
+      _sdk.dispatch.datasources.list(function (err, datasources) {
         var exist = _.filter(datasources, function (item) {
           return item.name == 'testSuite';
         });
         try {
           expect(exist.length).to.equal(0);
-          done();
+          return done(err);
         }
         catch (ex) {
-          done(ex);
+          return done(ex);
         }
       })
     });

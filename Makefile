@@ -15,7 +15,7 @@ authors:
 
 compile:
 		@NODE_ENV=test
-		node build/compilesdk.js
+		browserify ./lib/sdk/browser.js -i ./lib/sdk/bin/joola.io.js -o ./lib/sdk/bin/joola.io.js --debug
 
 lint:
 		@./node_modules/.bin/jshint ./lib
