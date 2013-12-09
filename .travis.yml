@@ -20,4 +20,6 @@ after_success: 'make coveralls'
 
 notifications:
   email:
-    - updates@joo.la
+    - 'updates@joo.la'
+  irc:
+    - 'chat.freenode.net#joola.io'
