@@ -22,4 +22,6 @@ notifications:
   email:
     - 'updates@joo.la'
   irc:
-    - 'chat.freenode.net#joola.io'
+    channels:
+      - 'chat.freenode.net#joola.io'
+    skip_join: true
