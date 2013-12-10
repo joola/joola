@@ -24,8 +24,8 @@ body
               .box-content
                 div
                   ul.list-inline
-                    li(ng-repeat="ds in list")
-                      button(data-dsid="{{ds.name}}", type="button", data-toggle="button").btn.btn-warning {{ds.name}} - {{ds.type}}
+                    li(ng-repeat="ds in datasources")
+                      button(data-dsid="{{ds.name}}", type="button", ng-click="gettables(ds.name)", data-toggle="button").btn.btn-warning {{ds.name}} - {{ds.type}}
                 br
                 button.btn.btn-primary.btn-lg(data-toggle="modal", data-target="#datasourceAdd") Add data source
                 
