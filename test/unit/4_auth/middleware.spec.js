@@ -13,7 +13,7 @@ var
 	Browser = require('zombie'),
 	browser = new Browser({silent: true});
 
-describe("auth-middleware-static", function () {
+describe("auth-middleware", function () {
 	it("should return static content with no login issues", function (done) {
 		browser.visit('http://localhost:40008/images/test.png', function () {
 			expect(browser.text("title")).to.equal('Page not found');
@@ -54,6 +54,83 @@ describe("auth-middleware-static", function () {
 		browser.visit('http://localhost:40008/test/action', function () {
 			expect(browser.statusCode).to.equal(401);
 			done();
+		});
+	});
+
+	it("should allow anonymous access", function (done) {
+		var token = '123';
+		var _store = joola.config.authentication.store;
+		joola.config.authentication.store = 'anonymous';
+		joola.auth.validateToken(token, function (err, validated) {
+			joola.config.authentication.store = _store;
+			expect(validated).to.equal(true);
+			done(err);
+		});
+	});
+
+	it("should generate a valid security token", function (done) {
+		var user = {
+			username: 'test'
+		};
+		joola.auth.generateToken(user, function (err, token) {
+			expect(token._).to.be.ok;
+			expect(token.user).to.be.ok;
+			expect(token.timestamp).to.be.ok;
+			expect(token.expires).to.be.ok;
+			done(err);
+		});
+	});
+
+	it("token should expire after 2 seconds", function (done) {
+		var user = {
+			username: 'test'
+		};
+		var _expireAfter = joola.config.authentication.tokens.expireAfter;
+		joola.config.authentication.tokens.expireAfter = 2000;
+
+		joola.auth.generateToken(user, function (err, token) {
+			joola.config.authentication.tokens.expireAfter = _expireAfter;
+
+			joola.auth.validateToken(token._, function (err, valid) {
+				if (err)
+					return done(err);
+				expect(valid).to.be.ok;
+				setTimeout(function () {
+					joola.auth.validateToken(token._, function (err, valid) {
+						expect(err).to.be.ok;
+						done();
+					});
+				}, 2000);
+			});
+		});
+	});
+
+	it("should expire a token", function (done) {
+		var user = {
+			username: 'test'
+		};
+		joola.auth.generateToken(user, function (err, token) {
+			joola.auth.expireToken(token, function (err) {
+				joola.auth.validateToken(token, function (err, valid) {
+					expect(err).to.be.ok;
+					done();
+				});
+			});
+		});
+	});
+
+	it("should prevent a expiration tempering", function (done) {
+		var user = {
+			username: 'test'
+		};
+		joola.auth.generateToken(user, function (err, token) {
+			token.expires = new Date().getTime();
+			joola.redis.hmset('auth:tokens:' + token._, token, function (err) {
+				joola.auth.validateToken(token, function (err, valid) {
+					expect(err).to.be.ok;
+					done();
+				});
+			});
 		});
 	});
 });
