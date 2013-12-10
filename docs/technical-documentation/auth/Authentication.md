@@ -21,7 +21,7 @@ authenticated and that the action/endpoint requested is allowed. During this pro
 which is used throughout the framework to ensure only [relevant data](#segregate) for this user is communicated.
 
 #### Token generation
-joola.io exposes a dedicated endpoint `/api/auth/generateToken` for the purpose of token generation. 
+joola.io exposes a dedicated endpoint `/api/auth/generateToken` for the purpose of token generation.
 
 #### Token validation
 joola.io uses it's `auth` middleware to check every request and evaluate its validity, here's the logical flow:
