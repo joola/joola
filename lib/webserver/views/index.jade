@@ -7,7 +7,7 @@ body
       include sidebar.jade
       #content.col-sm-11
         p joola.io is not configured, please start by adding a <a href="/manage/dataintegration/index">data source</a>
-        
+        p#eventcount
         
       #widgets-area.col-sm-2
         ul#myTab.nav.tab-menu.nav-tabs
@@ -158,3 +158,4 @@ body
   div(ng-controller="dsCtrl")
     div {{datasourceList}}
   include footer.jade
+  include ../public/js/lib/stats.js
