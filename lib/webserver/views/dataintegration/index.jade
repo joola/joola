@@ -4,7 +4,8 @@ body
   .container
     .row
       include ../sidebar
-      #content.col-sm-11
+      #content.col-sm-11(ng-controller="dsCtrl")
+        include dialogs.jade
         .row
           .col-lg-12
             .box
@@ -21,12 +22,12 @@ body
                   a.btn-close(href='form-wizard.html#')
                     i.fa.fa-times
               .box-content
-                div(ng-controller="dsCtrl")
+                div
                   ul.list-inline
-                    li(ng-repeat="ds in list", ng-clock)
+                    li(ng-repeat="ds in list")
                       button(data-dsid="{{ds.name}}", type="button", data-toggle="button").btn.btn-warning {{ds.name}} - {{ds.type}}
                 br
-                button.btn.btn-primary.btn-lg(data-toggle="modal" data-target="#datasourceAdd") Add data source
+                button.btn.btn-primary.btn-lg(data-toggle="modal", data-target="#datasourceAdd") Add data source
                 
                 .step-content
 
@@ -43,14 +44,6 @@ body
                       i.fa.fa-chevron-up
                     a.btn-close(href='form-wizard.html#')
                       i.fa.fa-times
-                .box-content
-                  div(ng-controller="dtCtrl")
-                    
-                  br
-                  button.btn.btn-primary.btn-lg(data-toggle="modal" data-target="#datasourceAdd") Add data source
-        
-                  .step-content
-
       #widgets-area.col-sm-2
         ul#myTab.nav.tab-menu.nav-tabs
           li.active
@@ -180,7 +173,7 @@ body
                 a(href='form-wizard.html#') View all messages
       a#widgets-area-button.hidden-sm.hidden-xs.open
         i.fa.fa-bars
-    include dialogs.jade
+    
   .clearfix
   
   include ../footer
