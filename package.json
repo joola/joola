@@ -44,7 +44,7 @@
 	],
 	"dependencies": {
 		"nconf": "*",
-		"nconf-redis": "https://github.com/itayw/nconf-redis/tarball/develop",
+		"nconf-redis": "https://github.com/itayw/nconf-redis/tarball/master",
 		"eventemitter2": "*",
 		"redis": "*",
 		"async": "*",
@@ -60,7 +60,7 @@
 		"mongodb": "*"
 	},
 	"devDependencies": {
-		"jsdox": "https://github.com/itayw/jsdox/tarball/develop",
+		"jsdox": "https://github.com/itayw/jsdox/tarball/master",
 		"underscore": "1.x",
 		"mocha-lcov-reporter": "0.x",
 		"coveralls": "2.x",

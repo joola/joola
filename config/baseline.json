@@ -105,10 +105,22 @@
 	},
 	"authentication": {
 		"store": "internal",
-		"bypassToken": null,
+		"bypassToken": "123",
 		"tokens": {
 			"expireAfter": 5000
 		},
+		"roles": [
+			{
+				"id": "admin",
+				"permissions": ["access_system", "manage_system"],
+				"filter": null
+			},
+			{
+				"id": "user",
+				"permissions": ["access_system"],
+				"filter": null
+			}
+		],
 		"users": {
 
 		}
