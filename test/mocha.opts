@@ -1,5 +1,5 @@
---require ./test/common.js
-
 --reporter spec
 --recursive
 --timeout 15000
+
+--require ./test/common.js
