@@ -1,7 +1,7 @@
 # joola.io
 The open-source data visualization framework.
 
-[![Build Status][3]][4] [![dependency status][5]][6] [![dev dependency status][7]][8] [![Coverage Status][1]][2]
+[![Build Status][3]][4] [![dependency status][5]][6] [![dev dependency status][7]][8] [![Coverage Status][1]][2] [![Code Climate](https://codeclimate.com/repos/52a63b7d89af7e4c85000cd1/badges/f3c077bbe87d01b5d68a/gpa.png)](https://codeclimate.com/repos/52a63b7d89af7e4c85000cd1/feed)
 
 [![NPM](https://nodei.co/npm/joola.io.png?downloads=true&stars=true)](https://nodei.co/npm/joola.io/)
 
