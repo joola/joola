@@ -41,7 +41,7 @@ describe('browser-analytics-index', function () {
     }, 3000);
   });
 
-  it('check that we have a valid username', function (done) {
+  xit('check that we have a valid username', function (done) {
     browser.visit("http://localhost:" + joola.config.interfaces.webserver.port + '/analytics/index', function () {
       var expected = 'USERNAME';
       var actual = browser.text('.btn.dropdown-toggle');
@@ -49,6 +49,4 @@ describe('browser-analytics-index', function () {
       done();
     });
   });
-
-
 });
