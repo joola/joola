@@ -133,4 +133,26 @@ describe("auth-middleware", function () {
 			});
 		});
 	});
+
+	it("should validate a route", function (done) {
+		var modulename = 'datasources';
+		var action = 'list';
+
+		joola.auth.validateRoute(modulename, action, function (err, action) {
+			expect(action).to.be.ok;
+			done(err);
+		});
+	});
+
+	it("should error on invalid a route", function (done) {
+		var modulename = 'datasources2';
+		var action = 'list';
+
+		joola.auth.validateRoute(modulename, action, function (err, action) {
+			if (!err) {
+				return done(new Error('Failed'));
+			}
+			return done();
+		});
+	});
 });

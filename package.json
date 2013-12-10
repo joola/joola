@@ -1,82 +1,80 @@
 {
-  "name": "joola.io",
-  "preferGlobal": false,
-  "version": "3.4.0",
-  "author": "Joola <info@joo.la>",
-  "description": "The open-source data visualization framework",
-  "engine": "node >= 0.10.x",
-  "private": false,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/joola/joola.io.git"
-  },
-  "bugs": "https://joolatech.atlassian.net/browse/JARVIS",
-  "contributors": [
-    {
-      "name": "Itay Weinberger",
-      "email": "itay@joo.la",
-      "url": "http://joo.la"
-    },
-    {
-      "name": "Or Weinberger",
-      "email": "or@joo.la",
-      "url": "http://joo.la"
-    }
-  ],
-  "scripts": {
-    "test": "make test",
-    "start": "pm2 start service.json",
-    "blanket": {
-      "pattern": "lib",
-      "data-cover-never": "node_modules"
-    },
-    "coveralls": "make test-coveralls"
-  },
-  "bin": {
-    "joola.io": "./bin/joola.io"
-  },
-  "keywords": [
-    "data",
-    "analytics",
-    "big-data",
-    "visualization",
-    "noSQL"
-  ],
-  "dependencies": {
-    "nconf": "*",
-    "nconf-redis": "https://github.com/itayw/nconf-redis/tarball/develop",
-    "eventemitter2": "*",
-    "redis": "*",
-    "async": "*",
-    "express": "*",
-    "socket.io": "*",
-    "socket.io-wildcard": "*",
-    "socket.io-browserify": "*",
-    "jade": "*",
-    "bunyan": "https://github.com/itayw/node-bunyan/tarball/master",
-    "bunyan-format": "*",
-    "mongo-col": "https://github.com/Raynos/mongo-col/tarball/master",
-    "mongo-stream": "*",
-    "mongodb": "*"
-  },
-  "devDependencies": {
-    "jsdox": "https://github.com/itayw/jsdox/tarball/develop",
-    "underscore": "1.x",
-    "mocha-lcov-reporter": "0.x",
-    "coveralls": "2.x",
-    "should": "1.x",
-    "mocha": "1.x",
-    "sinon": "1.x",
-    "chai": "1.x",
-    "istanbul": "*",
-    "sinon-chai": "2.x",
-    "blanket": "1.x",
-    "jshint": "2.x",
-    "supertest": "0.x",
-    "xtend": "*",
-    "request": "*",
-    "zombie": "*",
-    "mkdirp": "*"
-  },
-  "license": "GPL-3.0"
+	"name": "joola.io",
+	"preferGlobal": false,
+	"version": "3.4.0",
+	"author": "Joola <info@joo.la>",
+	"description": "The open-source data visualization framework",
+	"engine": "node >= 0.10.x",
+	"private": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/joola/joola.io.git"
+	},
+	"bugs": "https://joolatech.atlassian.net/browse/JARVIS",
+	"contributors": [
+		{
+			"name": "Itay Weinberger",
+			"email": "itay@joo.la",
+			"url": "http://joo.la"
+		},
+		{
+			"name": "Or Weinberger",
+			"email": "or@joo.la",
+			"url": "http://joo.la"
+		}
+	],
+	"scripts": {
+		"test": "make test",
+		"start": "pm2 start service.json",
+		"blanket": {
+			"pattern": "lib",
+			"data-cover-never": "node_modules"
+		},
+		"coveralls": "make test-coveralls"
+	},
+	"bin": {
+		"joola.io": "./bin/joola.io"
+	},
+	"keywords": [
+		"data",
+		"analytics",
+		"big-data",
+		"visualization",
+		"noSQL"
+	],
+	"dependencies": {
+		"nconf": "*",
+		"nconf-redis": "https://github.com/itayw/nconf-redis/tarball/develop",
+		"eventemitter2": "*",
+		"redis": "*",
+		"async": "*",
+		"express": "*",
+		"socket.io": "*",
+		"socket.io-wildcard": "*",
+		"socket.io-browserify": "*",
+		"jade": "*",
+		"bunyan": "https://github.com/itayw/node-bunyan/tarball/master",
+		"bunyan-format": "*",
+		"mongo-col": "https://github.com/Raynos/mongo-col/tarball/master",
+		"mongo-stream": "*",
+		"mongodb": "*"
+	},
+	"devDependencies": {
+		"jsdox": "https://github.com/itayw/jsdox/tarball/develop",
+		"underscore": "1.x",
+		"mocha-lcov-reporter": "0.x",
+		"coveralls": "2.x",
+		"should": "1.x",
+		"mocha": "1.x",
+		"istanbul": "*",
+		"expect": "*",
+		"blanket": "1.x",
+		"jshint": "2.x",
+		"supertest": "0.x",
+		"xtend": "*",
+		"request": "*",
+		"zombie": "*",
+		"mkdirp": "*"
+	},
+	"license": "GPL-3.0"
 }
