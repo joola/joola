@@ -74,7 +74,8 @@
 		"xtend": "*",
 		"request": "*",
 		"zombie": "*",
-		"mkdirp": "*"
+		"mkdirp": "*",
+		"sinon": "*"
 	},
 	"license": "GPL-3.0"
 }
