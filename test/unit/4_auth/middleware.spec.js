@@ -29,7 +29,7 @@ describe("auth-middleware", function () {
 	});
 
 	it("should validate a token presented in querystring", function (done) {
-		browser.visit('http://localhost:40008/test/action?token=1234', function () {
+		browser.visit('http://localhost:40008/api/test/action?token=1234', function () {
 			var result = browser.text();
 			result = JSON.parse(result);
 
@@ -41,7 +41,7 @@ describe("auth-middleware", function () {
 	it("should validate a token presented in headers", function (done) {
 		var options = {};
 		options.headers = {'joolaio-token': '12345'};
-		browser.visit('http://localhost:40008/test/action', options, function () {
+		browser.visit('http://localhost:40008/api/test/action', options, function () {
 			var result = browser.text();
 			result = JSON.parse(result);
 
@@ -51,7 +51,7 @@ describe("auth-middleware", function () {
 	});
 
 	it("should return 401 error if no token", function (done) {
-		browser.visit('http://localhost:40008/test/action', function () {
+		browser.visit('http://localhost:40008/api/test/action', function () {
 			expect(browser.statusCode).to.equal(401);
 			done();
 		});
@@ -61,9 +61,21 @@ describe("auth-middleware", function () {
 		var token = '123';
 		var _store = joola.config.authentication.store;
 		joola.config.authentication.store = 'anonymous';
-		joola.auth.validateToken(token, function (err, validated) {
+		joola.auth.validateToken(token, function (err, token) {
 			joola.config.authentication.store = _store;
-			expect(validated).to.equal(true);
+			expect(token.user.username).to.equal('anonymous');
+			done(err);
+		});
+	});
+
+	it("should allow bypass access", function (done) {
+		var token = '123';
+		var _store = joola.config.authentication.store;
+		joola.config.authentication.store = 'internal';
+		joola.config.authentication.bypassToken = '123';
+		joola.auth.validateToken(token, function (err, token) {
+			joola.config.authentication.store = _store;
+			expect(token.user.username).to.equal('bypass');
 			done(err);
 		});
 	});
@@ -160,15 +172,88 @@ describe("auth-middleware", function () {
 		var modulename = 'datasources';
 		var action = 'list';
 
-		var req = {};
+		var user = {
+			username: 'tester',
+			_roles: ['admin']
+		};
+		var req = {
+			params: {
+			},
+			user: user
+		};
 		var res = {};
 
 		joola.auth.validateRoute(modulename, action, function (err, action) {
-			console.log('action', action);
-			joola.auth.validateAction(action, req, res, function (err, valid) {
-				done(err);
-			});
+			if (err)
+				return done(err);
+			try {
+				joola.auth.validateAction(action, req, res, function (err, valid) {
+					return done(err);
+				});
+			}
+			catch (ex) {
+				return done(ex);
+				//this is to ensure we don't have exceptions perculating back up and down.
+			}
 		});
 	});
 
+	it("should fail validating an action when no user", function (done) {
+		var modulename = 'datasources';
+		var action = 'list';
+
+		var req = {
+			params: {
+			}
+		};
+		var res = {};
+
+		joola.auth.validateRoute(modulename, action, function (err, action) {
+			if (err)
+				return done(err);
+			try {
+				joola.auth.validateAction(action, req, res, function (err, valid) {
+					if (err)
+						return done();
+					return done(new Error('This should have failed'));
+				});
+			}
+			catch (ex) {
+				//this is to ensure we don't have exceptions perculating back up and down.
+				return done(ex);
+			}
+		});
+	});
+
+	it("should fail validating an action when no permission", function (done) {
+		var modulename = 'datasources';
+		var action = 'list';
+
+		var user = {
+			username: 'tester',
+			_roles: ['user']
+		};
+		var req = {
+			params: {
+			},
+			user: user
+		};
+		var res = {};
+
+		joola.auth.validateRoute(modulename, action, function (err, action) {
+			if (err)
+				return done(err);
+			try {
+				joola.auth.validateAction(action, req, res, function (err, valid) {
+					if (err)
+						return done();
+					return done(new Error('This should have failed'));
+				});
+			}
+			catch (ex) {
+				//this is to ensure we don't have exceptions perculating back up and down.
+				return done(ex);
+			}
+		});
+	});
 });
