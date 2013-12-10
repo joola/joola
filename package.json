@@ -76,7 +76,8 @@
 		"zombie": "*",
 		"mkdirp": "*",
 		"sinon": "*",
-		"chai": "*"
+		"chai": "*",
+		"sinon-chai": "*"
 	},
 	"license": "GPL-3.0"
 }
