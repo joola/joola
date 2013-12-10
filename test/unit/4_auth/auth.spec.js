@@ -13,7 +13,7 @@ var
 	Browser = require('zombie'),
 	browser = new Browser({silent: true});
 
-describe("auth-middleware", function () {
+describe("auth", function () {
 	it("should return static content with no login issues", function (done) {
 		browser.visit('http://localhost:40008/images/test.png', function () {
 			expect(browser.text("title")).to.equal('Page not found');
@@ -226,8 +226,8 @@ describe("auth-middleware", function () {
 	});
 
 	it("should fail validating an action when no permission", function (done) {
-		var modulename = 'datasources';
-		var action = 'list';
+		var modulename = 'test';
+		var action = 'nopermission';
 
 		var user = {
 			username: 'tester',
@@ -256,4 +256,37 @@ describe("auth-middleware", function () {
 			}
 		});
 	});
+
+	it("should validate an action when permission ok", function (done) {
+		var modulename = 'test';
+		var action = 'withpermission';
+
+		var user = {
+			username: 'tester',
+			_roles: ['user']
+		};
+		var req = {
+			params: {
+			},
+			user: user
+		};
+		var res = {};
+
+		joola.auth.validateRoute(modulename, action, function (err, action) {
+			if (err)
+				return done(err);
+			try {
+				joola.auth.validateAction(action, req, res, function (err, valid) {
+					if (err)
+						return done(err);
+					return done();
+				});
+			}
+			catch (ex) {
+				//this is to ensure we don't have exceptions perculating back up and down.
+				return done(ex);
+			}
+		});
+	});
+
 });
