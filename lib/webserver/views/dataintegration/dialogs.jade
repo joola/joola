@@ -28,9 +28,25 @@
                   .controls
                     input#input1.form-control(type='text', ng-model="name")
                 .form-group
-                  label.control-label(for='input1') Connection String
+                  label.control-label(for='input1') Database host
                   .controls
-                    input#input1.form-control(type='text', ng-model="connectionString")
+                    input#input1.form-control(type='text', ng-model="dbhost")
+                .form-group
+                  label.control-label(for='input1') Database port
+                  .controls
+                    input#input1.form-control(type='text', ng-model="dbport")
+                .form-group
+                  label.control-label(for='input1') Database name
+                  .controls
+                    input#input1.form-control(type='text', ng-model="dbname")
+                .form-group
+                  label.control-label(for='input1') Username
+                  .controls
+                    input#input1.form-control(type='text', ng-model="dbuser")
+                .form-group
+                  label.control-label(for='input1') Password
+                  .controls
+                    input#input1.form-control(type='text', ng-model="dbpass")
                 //
                   .form-group
                     label.control-label(for='input2') Port
