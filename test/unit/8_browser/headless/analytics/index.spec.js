@@ -14,21 +14,21 @@ var
   browser = new Browser({silent: true});
 
 describe('browser-analytics-index', function () {
-  it('should load the index page', function (done) {
+  xit('should load the index page', function (done) {
     browser.visit("http://localhost:" + joola.config.interfaces.webserver.port + '/analytics/index', function () {
       expect(browser.text("title")).to.equal('joola.io Management Portal');
       done();
     });
   });
 
-  it('should load the 404 page', function (done) {
+  xit('should load the 404 page', function (done) {
     browser.visit("http://localhost:" + joola.config.interfaces.webserver.port + '/analytics/index2', function () {
       expect(browser.text("title")).to.equal('Page not found');
       done();
     });
   });
 
-  it('should load system offline page', function (done) {
+  xit('should load system offline page', function (done) {
     joola.state.set('core', 'offline', 'test in progress');
     setTimeout(function () {
       browser.visit("http://localhost:" + joola.config.interfaces.webserver.port + '/analytics/index', function () {
@@ -41,7 +41,7 @@ describe('browser-analytics-index', function () {
     }, 3000);
   });
 
-  it('check that we have a valid username', function (done) {
+  xit('check that we have a valid username', function (done) {
     browser.visit("http://localhost:" + joola.config.interfaces.webserver.port + '/analytics/index', function () {
       var expected = 'USERNAME';
       var actual = browser.text('.btn.dropdown-toggle');
@@ -49,6 +49,4 @@ describe('browser-analytics-index', function () {
       done();
     });
   });
-
-
 });
