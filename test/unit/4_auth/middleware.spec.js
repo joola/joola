@@ -155,4 +155,20 @@ describe("auth-middleware", function () {
 			return done();
 		});
 	});
+
+	it("should validate an action", function (done) {
+		var modulename = 'datasources';
+		var action = 'list';
+
+		var req = {};
+		var res = {};
+
+		joola.auth.validateRoute(modulename, action, function (err, action) {
+			console.log('action', action);
+			joola.auth.validateAction(action, req, res, function (err, valid) {
+				done(err);
+			});
+		});
+	});
+
 });
