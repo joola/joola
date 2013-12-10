@@ -17,7 +17,7 @@ var
 
 describe("webserver-middleware", function () {
   it("should have a working status middleware", function (done) {
-    request.get('http://localhost:40008/status', function (err, response, body) {
+    request.get('http://localhost:' + joola.config.interfaces.webserver.port + '/status', function (err, response, body) {
       if (err)
         return done(err);
 
@@ -27,15 +27,15 @@ describe("webserver-middleware", function () {
   });
 
   it("should show a custom 404", function (done) {
-    request.get('http://localhost:40008/doesnotexist.html', function (err, response, body) {
+    request.get('http://localhost:' + joola.config.interfaces.webserver.port + '/doesnotexist.html', function (err, response, body) {
       assert(response.statusCode == 404 && body.indexOf('<!--FOR TEST - 404-->') > -1);
       done();
     });
   });
 
   it("should show a custom 500", function (done) {
-    request.get('http://localhost:40008/createantesterror', function (err, response, body) {
-      assert(response.statusCode == 500 && body.indexOf('<!--FOR TEST - 500-->') > -1);
+    request.get('http://localhost:' + joola.config.interfaces.webserver.port + '/api/test/createtesterror', function (err, response, body) {
+      assert(response.statusCode == 500 );
       done();
     });
   });
