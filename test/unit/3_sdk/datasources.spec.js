@@ -11,7 +11,7 @@
 
 describe("sdk-datasources", function () {
 	var _store, _bypassToken;
-	beforeEach(function (done) {
+	before(function (done) {
 		_store = joola.config.authentication.store;
 		_bypassToken = joola.config.authentication.bypassToken;
 		joola.config.authentication.store = 'bypass';
@@ -23,7 +23,6 @@ describe("sdk-datasources", function () {
 
 	it("should return a valid list of data sources", function (done) {
 		_sdk.dispatch.datasources.list(function (err) {
-			console.log('err', err);
 			return done();
 		});
 	});
@@ -42,11 +41,13 @@ describe("sdk-datasources", function () {
 		});
 	});
 
-	xit("should delete a data source", function (done) {
-		_sdk.dispatch.datasources.delete({name: 'testSuite'}, function (err) {
+	it("should delete a data source", function (done) {
+		_sdk.dispatch.datasources.delete({name: 'testSuite-sdk'}, function (err) {
+			if (err)
+				return done(err);
 			_sdk.dispatch.datasources.list(function (err, datasources) {
 				var exist = _.filter(datasources, function (item) {
-					return item.name == 'testSuite';
+					return item.name == 'testSuite-sdk';
 				});
 				try {
 					expect(exist.length).to.equal(0);
@@ -59,9 +60,9 @@ describe("sdk-datasources", function () {
 		});
 	});
 
-	afterEach(function (done) {
-		joola.config.authentication.store = _store;
-		joola.config.authentication.bypassToken = _bypassToken;
+	after(function (done) {
+		joola.config.set('authentication:store', _store);
+		joola.config.set('authentication:bypassToken', _bypassToken);
 		done();
 	});
 });
