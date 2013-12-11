@@ -70,11 +70,13 @@ describe("auth", function () {
 
 	it("should allow bypass access", function (done) {
 		var token = '123';
+		var _bypassToken = joola.config.authentication.bypassToken;
 		var _store = joola.config.authentication.store;
 		joola.config.authentication.store = 'internal';
 		joola.config.authentication.bypassToken = '123';
 		joola.auth.validateToken(token, function (err, token) {
 			joola.config.authentication.store = _store;
+			joola.config.authentication.bypassToken = _bypassToken;
 			expect(token.user.username).to.equal('bypass');
 			done(err);
 		});
