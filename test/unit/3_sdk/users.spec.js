@@ -9,8 +9,18 @@
  **/
 var async = require('async');
 
-describe("api-users", function () {
+describe("sdk-users", function () {
+	var _bypassToken, _store;
 	before(function (done) {
+
+		_bypassToken = joola.config.authentication.bypassToken;
+		_store = joola.config.authentication.store;
+
+		_sdk.TOKEN = '123';
+
+		joola.config.authentication.store = 'internal';
+		joola.config.authentication.bypassToken = '123';
+
 		var calls = [];
 
 		var call = function (callback) {
@@ -25,12 +35,12 @@ describe("api-users", function () {
 	});
 
 	it("should have a valid users dispatch", function (done) {
-		expect(joola.dispatch.users).to.be.ok;
+		expect(_sdk.dispatch.users).to.be.ok;
 		return done();
 	});
 
 	it("should list all available users", function (done) {
-		joola.dispatch.users.list(function (err, users) {
+		_sdk.dispatch.users.list(function (err, users) {
 			return done(err);
 		});
 	});
@@ -113,5 +123,11 @@ describe("api-users", function () {
 					return done(err);
 			});
 		});
+	});
+
+	after(function (done) {
+		joola.config.authentication.store = _store;
+		joola.config.authentication.bypassToken = _bypassToken;
+		done();
 	});
 });

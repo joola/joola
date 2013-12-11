@@ -69,8 +69,8 @@ describe("sdk-datasources", function () {
 	});
 
 	after(function (done) {
-		joola.config.set('authentication:store', _store);
-		joola.config.set('authentication:bypassToken', _bypassToken);
+		joola.config.authentication.store = _store;
+		joola.config.authentication.bypassToken = _bypassToken;
 		done();
 	});
 });
