@@ -38,6 +38,15 @@ describe("api-users", function () {
 		});
 	});
 
+	it("should get a user by username", function (done) {
+		var username = 'tester';
+		joola.dispatch.users.get(username, function (err, user) {
+			expect(user).to.be.ok;
+			expect(user.username).to.equal('tester');
+			return done(err);
+		});
+	});
+
 	it("should fail adding a user with an already existing username", function (done) {
 		var user = {
 			username: 'tester'
