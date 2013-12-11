@@ -7,15 +7,21 @@
  *  Licensed under GNU General Public License 3.0 or later.
  *  Some rights reserved. See LICENSE, AUTHORS.
  **/
-
+var async = require('async');
 
 describe("api-users", function () {
 	before(function (done) {
-		joola.config.clear('authentication:users:tester', function (err) {
-			if (err)
-				return done(err);
-			return done();
-		});
+		var calls = [];
+
+		var call = function (callback) {
+			joola.config.clear('authentication:users:tester', callback);
+		};
+		calls.push(call);
+		call = function (callback) {
+			joola.config.clear('authentication:users:tester1', callback);
+		};
+		calls.push(call);
+		async.parallel(calls, done);
 	});
 
 	it("should have a valid users dispatch", function (done) {
@@ -55,6 +61,44 @@ describe("api-users", function () {
 			if (err)
 				return done();
 			return done(new Error('This should fail.'));
+		});
+	});
+
+	it("should update a user", function (done) {
+		var user = {
+			username: 'tester1',
+			displayName: 'testing user'
+		};
+		joola.dispatch.users.add(user, function (err, user) {
+			if (err)
+				return done(err);
+			console.log(user);
+			user.displayName = 'testing user with change';
+			joola.dispatch.users.update(user, function (err, user) {
+				console.log('u', user)
+				if (err)
+					return done(err);
+
+				joola.dispatch.users.get(user.username, function (err, _user) {
+					console.log(_user);
+					expect(_user).to.be.ok;
+					expect(_user.displayName).to.equal('testing user');
+					return done(err);
+				});
+			});
+		});
+	});
+
+	it("should fail updating a non existing user", function (done) {
+		var user = {
+			username: 'tester2',
+			displayName: 'testing user'
+		};
+		joola.dispatch.users.update(user, function (err, user) {
+			if (err)
+				return done();
+
+			return done(new Error('This should fail'));
 		});
 	});
 
