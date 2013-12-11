@@ -34,6 +34,14 @@ describe("sdk-datasources", function () {
 		});
 	});
 
+	it("should get a data source", function (done) {
+		_sdk.dispatch.datasources.get('testSuite-sdk', function (err, datasource) {
+			expect(datasource).to.be.ok;
+			expect(datasource.name).to.equal('testSuite-sdk');
+			return done(err);
+		});
+	});
+
 	it("should update a data source", function (done) {
 		_sdk.dispatch.datasources.update({name: 'testSuite-sdk', type: 'test2', _connectionString: 'test'}, function (err, datasource) {
 			expect(datasource.type).to.equal('test2');
