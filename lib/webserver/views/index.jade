@@ -7,7 +7,36 @@ body
       include sidebar.jade
       #content.col-sm-11
         p joola.io is not configured, please start by adding a <a href="/manage/dataintegration/index">data source</a>
-        p#eventcount
+
+        div.widget.col-md-2.col-sm-2(style="text-align:center;")
+          h2
+            | Requests
+          hr
+          div.content
+            h1#dummySum
+            div#sparkline
+        div.widget.col-md-2.col-sm-2(style="text-align:center;")
+          h2
+            | Auth attemps
+          hr
+          div.content
+            h1#dummySum2
+            div#sparkline2
+        div.widget.col-md-2.col-sm-2(style="text-align:center;")
+          h2
+            | Auth successes
+          hr
+          div.content
+            h1#dummySum3
+            div#sparkline3
+        div.widget.col-md-2.col-sm-2(style="text-align:center;")
+          h2
+            | Auto fails
+          hr
+          div.content
+            h1#dummySum4
+            div#sparkline4
+        
         
       #widgets-area.col-sm-2
         ul#myTab.nav.tab-menu.nav-tabs
@@ -159,3 +188,4 @@ body
     div {{datasourceList}}
   include footer.jade
   include ../public/js/lib/stats.js
+  include ../public/js/lib/jquery/jquery.sparkline.min.js
