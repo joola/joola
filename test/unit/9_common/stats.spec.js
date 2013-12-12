@@ -19,8 +19,20 @@ describe("stats", function () {
       if (err)
         return done(err);
 
-      joola.stats.incr('test-suite', function (err, value) {
+      joola.stats.incr('test-suite', {}, function (err, value) {
         expect(value).to.equal(1);
+        done();
+      });
+    });
+  });
+
+  it("should increment a test event with a custom value", function (done) {
+    joola.redis.del('stats:events:test-suite', function (err) {
+      if (err)
+        return done(err);
+
+      joola.stats.incr('test-suite', {incrby:36}, function (err, value) {
+        expect(value).to.equal(36);
         done();
       });
     });
