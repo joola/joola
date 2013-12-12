@@ -19,18 +19,20 @@ describe("sdk-datasources", function () {
 
 		joolaio.TOKEN = '123';
 
+		joola.config.clear('datasources:testSuite-sdk', function (err) {
+			if (err)
+				throw err;
 			done();
-
+		});
 	});
 
 	it("should return a valid list of data sources", function (done) {
-		console.log(_sdk.dispatch);
 		_sdk.dispatch.datasources.list(function (err) {
 			return done(err);
 		});
 	});
 
-	xit("should add a data source", function (done) {
+	it("should add a data source", function (done) {
 		var ds = {
 			name: 'testSuite-sdk',
 			type: 'mysql',
@@ -48,7 +50,25 @@ describe("sdk-datasources", function () {
 		});
 	});
 
-	xit("should get a data source", function (done) {
+	it("should fail adding an existing data source", function (done) {
+		var ds = {
+			name: 'testSuite-sdk',
+			type: 'mysql',
+			dbhost: 'db.joola.io',
+			dbport: 3306,
+			dbname: 'master',
+			dbuser: 'test',
+			dbpass: 'test'
+		};
+		_sdk.dispatch.datasources.add(ds, function (err, datasource) {
+			if (err)
+				return done();
+
+			return done(new Error('This should fail'));
+		});
+	});
+
+	it("should get a data source", function (done) {
 		_sdk.dispatch.datasources.get('testSuite-sdk', function (err, datasource) {
 			if (err)
 				return done(err);
@@ -58,7 +78,7 @@ describe("sdk-datasources", function () {
 		});
 	});
 
-	xit("should update a data source", function (done) {
+	it("should update a data source", function (done) {
 		var ds = {
 			name: 'testSuite-sdk',
 			type: 'mysql',
@@ -76,8 +96,11 @@ describe("sdk-datasources", function () {
 		});
 	});
 
-	xit("should delete a data source", function (done) {
-		_sdk.dispatch.datasources.delete({name: 'testSuite-sdk'}, function (err) {
+	it("should delete a data source", function (done) {
+		var ds = {
+			name: 'testSuite-sdk'
+		};
+		_sdk.dispatch.datasources.delete(ds, function (err) {
 			if (err)
 				return done(err);
 			_sdk.dispatch.datasources.list(function (err, datasources) {
@@ -97,6 +120,18 @@ describe("sdk-datasources", function () {
 			})
 		});
 	});
+
+	it("should fail deleting a non existing datasource", function (done) {
+		var ds = {
+			name: 'testSuite-sdk-notexist'
+		};
+		joola.dispatch.datasources.delete(ds, function (err) {
+			if (err)
+				return done();
+
+			return done(new Error('This should fail'));
+		});
+	})
 
 	after(function (done) {
 		joola.config.set('authentication:store', _store);

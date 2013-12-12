@@ -10,6 +10,14 @@
 
 
 describe("api-datasources", function () {
+	before(function (done) {
+		joola.config.clear('datasources:testSuite-api', function (err) {
+			if (err)
+				throw err;
+			done();
+		});
+	});
+
 	it("should return a valid list of data sources", function (done) {
 		joola.dispatch.datasources.list(function (err) {
 			return done(err);
@@ -31,6 +39,24 @@ describe("api-datasources", function () {
 				return done(err);
 			expect(datasource).to.be.ok;
 			done();
+		});
+	});
+
+	it("should fail adding an existing data source", function (done) {
+		var ds = {
+			name: 'testSuite-api',
+			type: 'mysql',
+			dbhost: 'db.joola.io',
+			dbport: 3306,
+			dbname: 'master',
+			dbuser: 'test',
+			dbpass: 'test'
+		};
+		joola.dispatch.datasources.add(ds, function (err, datasource) {
+			if (err)
+				return done();
+
+			return done(new Error('This should fail'));
 		});
 	});
 
@@ -72,10 +98,11 @@ describe("api-datasources", function () {
 		joola.dispatch.datasources.delete(ds, function (err) {
 			if (err)
 				return done(err);
-			joolaio.dispatch.datasources.list(function (err, datasources) {
+
+			joola.dispatch.datasources.list(function (err, datasources) {
 				if (err)
 					return done(err);
-				console.log(datasources);
+
 				var exist = _.filter(datasources, function (item) {
 					return item.name == 'testSuite-api';
 				});
@@ -86,7 +113,19 @@ describe("api-datasources", function () {
 				catch (ex) {
 					done(ex);
 				}
-			})
+			});
+		});
+	});
+
+	it("should fail deleting a non existing datasource", function (done) {
+		var ds = {
+			name: 'testSuite-api-notexist'
+		};
+		joola.dispatch.datasources.delete(ds, function (err) {
+			if (err)
+				return done();
+
+			return done(new Error('This should fail'));
 		});
 	});
 });
