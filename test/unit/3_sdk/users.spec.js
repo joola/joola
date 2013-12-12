@@ -18,8 +18,8 @@ describe("sdk-users", function () {
 
 		_sdk.TOKEN = '123';
 
-		joola.config.authentication.store = 'internal';
-		joola.config.authentication.bypassToken = '123';
+		joola.config.set('authentication:store', 'bypass');
+		joola.config.set('authentication:bypassToken', '123');
 
 		var calls = [];
 
@@ -29,6 +29,10 @@ describe("sdk-users", function () {
 		calls.push(call);
 		call = function (callback) {
 			joola.config.clear('authentication:users:tester1', callback);
+		};
+		calls.push(call);
+		call = function (callback) {
+			joola.config.clear('authentication:users:tester-password', callback);
 		};
 		calls.push(call);
 		async.parallel(calls, done);
@@ -45,29 +49,71 @@ describe("sdk-users", function () {
 		});
 	});
 
+	it("should fail adding a user with incomplete details", function (done) {
+		var user = {
+			username: 'tester2'
+		};
+		_sdk.dispatch.users.add(user, function (err, user) {
+			if (err)
+				return done();
+
+			return done(new Error('This should fail'));
+		});
+	});
+
 	it("should add a user", function (done) {
 		var user = {
-			username: 'tester'
+			username: 'tester',
+			displayName: 'tester user',
+			_password: '1234',
+			_roles: ['user'],
+			_filter: ''
 		};
-		joola.dispatch.users.add(user, function (err, user) {
-			return done(err);
+		_sdk.dispatch.users.add(user, function (err, user) {
+			if (err)
+				return done(err);
+			expect(user.username).to.equal('tester');
+			return done();
+		});
+	});
+
+	it("should encrypt a user password", function (done) {
+		var user = {
+			username: 'tester-password',
+			displayName: 'tester user',
+			_password: '1234',
+			_roles: ['user'],
+			_filter: ''
+		};
+		_sdk.dispatch.users.add(user, function (err, user) {
+			if (err)
+				return done(err);
+
+			expect(user._password).to.not.equal('1234');
+			return done();
 		});
 	});
 
 	it("should get a user by username", function (done) {
 		var username = 'tester';
-		joola.dispatch.users.get(username, function (err, user) {
+		_sdk.dispatch.users.get(username, function (err, user) {
+			if (err)
+				return done(err);
 			expect(user).to.be.ok;
 			expect(user.username).to.equal('tester');
-			return done(err);
+			return done();
 		});
 	});
 
 	it("should fail adding a user with an already existing username", function (done) {
 		var user = {
-			username: 'tester'
+			username: 'tester',
+			displayName: 'tester user',
+			_password: '1234',
+			_roles: ['user'],
+			_filter: ''
 		};
-		joola.dispatch.users.add(user, function (err, user) {
+		_sdk.dispatch.users.add(user, function (err, user) {
 			if (err)
 				return done();
 			return done(new Error('This should fail.'));
@@ -77,20 +123,25 @@ describe("sdk-users", function () {
 	it("should update a user", function (done) {
 		var user = {
 			username: 'tester1',
-			displayName: 'testing user'
+			displayName: 'testing user',
+			_password: '1234',
+			_roles: ['user'],
+			_filter: ''
 		};
-		joola.dispatch.users.add(user, function (err, user) {
+		_sdk.dispatch.users.add(user, function (err, user) {
 			if (err)
 				return done(err);
 			user.displayName = 'testing user with change';
-			joola.dispatch.users.update(user, function (err, user) {
+			_sdk.dispatch.users.update(user, function (err, user) {
 				if (err)
 					return done(err);
 
-				joola.dispatch.users.get(user.username, function (err, _user) {
+				_sdk.dispatch.users.get(user.username, function (err, _user) {
+					if (err)
+						return done(err);
 					expect(_user).to.be.ok;
-					expect(_user.displayName).to.equal('testing user');
-					return done(err);
+					expect(_user.displayName).to.equal('testing user with change');
+					return done();
 				});
 			});
 		});
@@ -99,9 +150,12 @@ describe("sdk-users", function () {
 	it("should fail updating a non existing user", function (done) {
 		var user = {
 			username: 'tester2',
-			displayName: 'testing user'
+			displayName: 'testing user',
+			_password: '1234',
+			_roles: ['user'],
+			_filter: ''
 		};
-		joola.dispatch.users.update(user, function (err, user) {
+		_sdk.dispatch.users.update(user, function (err, user) {
 			if (err)
 				return done();
 
@@ -113,10 +167,10 @@ describe("sdk-users", function () {
 		var user = {
 			username: 'tester'
 		};
-		joola.dispatch.users.delete(user, function (err, user) {
+		_sdk.dispatch.users.delete(user, function (err, user) {
 			if (err)
 				return done(err);
-			joola.dispatch.users.list(function (err, users) {
+			_sdk.dispatch.users.list(function (err, users) {
 				if (users[user.username])
 					return done('This should fail');
 				else
@@ -126,8 +180,8 @@ describe("sdk-users", function () {
 	});
 
 	after(function (done) {
-		joola.config.authentication.store = _store;
-		joola.config.authentication.bypassToken = _bypassToken;
+		joola.config.set('authentication:store', _store);
+		joola.config.set('authentication:bypassToken', _bypassToken);
 		done();
 	});
 });
