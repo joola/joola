@@ -21,6 +21,10 @@ describe("api-users", function () {
 			joola.config.clear('authentication:users:tester1', callback);
 		};
 		calls.push(call);
+		call = function (callback) {
+			joola.config.clear('authentication:users:tester-password', callback);
+		};
+		calls.push(call);
 		async.parallel(calls, done);
 	});
 
@@ -60,6 +64,22 @@ describe("api-users", function () {
 		});
 	});
 
+	it("should encrypt a user password", function (done) {
+		var user = {
+			username: 'tester-password',
+			displayName: 'tester user',
+			_password: '1234',
+			_roles: ['user'],
+			_filter: ''
+		};
+		joola.dispatch.users.add(user, function (err, user) {
+			if (err)
+				return done(err);
+
+			expect(user._password).to.not.equal('1234');
+			return done();
+		});
+	});
 
 	it("should get a user by username", function (done) {
 		var username = 'tester';
@@ -144,5 +164,11 @@ describe("api-users", function () {
 					return done(err);
 			});
 		});
+	});
+
+	it("should hash passwords correctly", function (done) {
+		var hashOK = joola.dispatch.users.hashPassword('password') != 'password';
+		expect(hashOK).to.equal(true);
+		return done();
 	});
 });
