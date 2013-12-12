@@ -17,24 +17,65 @@ describe("api-datasources", function () {
 	});
 
 	it("should add a data source", function (done) {
-		joola.dispatch.datasources.add({name: 'testSuite-api', type: 'test', _connectionString: 'test'}, function (err, datasource) {
+		var ds = {
+			name: 'testSuite-api',
+			type: 'mysql',
+			dbhost: 'db.joola.io',
+			dbport: 3306,
+			dbname: 'master',
+			dbuser: 'test',
+			dbpass: 'test'
+		};
+		joola.dispatch.datasources.add(ds, function (err, datasource) {
+			if (err)
+				return done(err);
 			expect(datasource).to.be.ok;
-			done(err);
+			done();
+		});
+	});
+
+	it("should fail to add a data source with incomplete details", function (done) {
+		var ds = {
+			name: 'testSuite-api',
+			type: 'test'
+		};
+		joola.dispatch.datasources.add(ds, function (err, datasource) {
+			if (err)
+				return done();
+
+			return done(new Error('This should fail'));
 		});
 	});
 
 	it("should update a data source", function (done) {
-		joola.dispatch.datasources.update({name: 'testSuite-api', type: 'test2', _connectionString: 'test2'}, function (err, datasource) {
-			expect(datasource.type).to.equal('test2');
-			done(err);
+		var ds = {
+			name: 'testSuite-api',
+			type: 'mysql',
+			dbhost: 'db.joola.io',
+			dbport: 3306,
+			dbname: 'master',
+			dbuser: 'test2',
+			dbpass: 'test2'
+		};
+		joola.dispatch.datasources.update(ds, function (err, datasource) {
+			if (err)
+				return done(err);
+			expect(datasource.dbuser).to.equal('test2');
+			done();
 		});
 	});
 
 	it("should delete a data source", function (done) {
-		joola.dispatch.datasources.delete({name: 'testSuite-api'}, function (err) {
+		var ds = {
+			name: 'testSuite-api'
+		};
+		joola.dispatch.datasources.delete(ds, function (err) {
 			if (err)
 				return done(err);
 			joolaio.dispatch.datasources.list(function (err, datasources) {
+				if (err)
+					return done(err);
+				console.log(datasources);
 				var exist = _.filter(datasources, function (item) {
 					return item.name == 'testSuite-api';
 				});
