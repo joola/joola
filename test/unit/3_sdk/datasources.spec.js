@@ -14,52 +14,82 @@ describe("sdk-datasources", function () {
 	before(function (done) {
 		_store = joola.config.authentication.store;
 		_bypassToken = joola.config.authentication.bypassToken;
-		joola.config.authentication.store = 'bypass';
-		joola.config.authentication.bypassToken = '123';
+		joola.config.set('authentication:store', 'bypass');
+		joola.config.set('authentication:bypassToken', '123');
 
 		joolaio.TOKEN = '123';
-		done();
+
+			done();
+
 	});
 
 	it("should return a valid list of data sources", function (done) {
+		console.log(_sdk.dispatch);
 		_sdk.dispatch.datasources.list(function (err) {
+			return done(err);
+		});
+	});
+
+	xit("should add a data source", function (done) {
+		var ds = {
+			name: 'testSuite-sdk',
+			type: 'mysql',
+			dbhost: 'db.joola.io',
+			dbport: 3306,
+			dbname: 'master',
+			dbuser: 'test',
+			dbpass: 'test'
+		};
+		_sdk.dispatch.datasources.add(ds, function (err, datasource) {
+			if (err)
+				return done(err);
+			expect(datasource).to.be.ok;
 			return done();
 		});
 	});
 
-	it("should add a data source", function (done) {
-		_sdk.dispatch.datasources.add({name: 'testSuite-sdk', type: 'test', _connectionString: 'test'}, function (err, datasource) {
-			expect(datasource).to.be.ok;
-			return done(err);
-		});
-	});
-
-	it("should get a data source", function (done) {
+	xit("should get a data source", function (done) {
 		_sdk.dispatch.datasources.get('testSuite-sdk', function (err, datasource) {
+			if (err)
+				return done(err);
 			expect(datasource).to.be.ok;
 			expect(datasource.name).to.equal('testSuite-sdk');
-			return done(err);
+			return done();
 		});
 	});
 
-	it("should update a data source", function (done) {
-		_sdk.dispatch.datasources.update({name: 'testSuite-sdk', type: 'test2', _connectionString: 'test'}, function (err, datasource) {
-			expect(datasource.type).to.equal('test2');
-			return done(err);
+	xit("should update a data source", function (done) {
+		var ds = {
+			name: 'testSuite-sdk',
+			type: 'mysql',
+			dbhost: 'db.joola.io',
+			dbport: 3306,
+			dbname: 'master',
+			dbuser: 'test2',
+			dbpass: 'test2'
+		};
+		_sdk.dispatch.datasources.update(ds, function (err, datasource) {
+			if (err)
+				return done(err);
+			expect(datasource.type).to.equal('mysql');
+			return done();
 		});
 	});
 
-	it("should delete a data source", function (done) {
+	xit("should delete a data source", function (done) {
 		_sdk.dispatch.datasources.delete({name: 'testSuite-sdk'}, function (err) {
 			if (err)
 				return done(err);
 			_sdk.dispatch.datasources.list(function (err, datasources) {
+				if (err)
+					return done(err);
+
 				var exist = _.filter(datasources, function (item) {
 					return item.name == 'testSuite-sdk';
 				});
 				try {
 					expect(exist.length).to.equal(0);
-					return done(err);
+					return done();
 				}
 				catch (ex) {
 					return done(ex);
@@ -69,8 +99,8 @@ describe("sdk-datasources", function () {
 	});
 
 	after(function (done) {
-		joola.config.authentication.store = _store;
-		joola.config.authentication.bypassToken = _bypassToken;
+		joola.config.set('authentication:store', _store);
+		joola.config.set('authentication:bypassToken', _bypassToken);
 		done();
 	});
 });
