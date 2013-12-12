@@ -31,6 +31,10 @@ describe("sdk-users", function () {
 			joola.config.clear('authentication:users:tester1', callback);
 		};
 		calls.push(call);
+		call = function (callback) {
+			joola.config.clear('authentication:users:tester-password', callback);
+		};
+		calls.push(call);
 		async.parallel(calls, done);
 	});
 
@@ -69,6 +73,23 @@ describe("sdk-users", function () {
 			if (err)
 				return done(err);
 			expect(user.username).to.equal('tester');
+			return done();
+		});
+	});
+
+	it("should encrypt a user password", function (done) {
+		var user = {
+			username: 'tester-password',
+			displayName: 'tester user',
+			_password: '1234',
+			_roles: ['user'],
+			_filter: ''
+		};
+		_sdk.dispatch.users.add(user, function (err, user) {
+			if (err)
+				return done(err);
+
+			expect(user._password).to.not.equal('1234');
 			return done();
 		});
 	});
