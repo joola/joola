@@ -150,6 +150,32 @@ describe("api-users", function () {
 		});
 	});
 
+	it("should hash passwords correctly", function (done) {
+		var hashOK = joola.dispatch.users.hashPassword('password') != 'password';
+		expect(hashOK).to.equal(true);
+		return done();
+	});
+
+	it("should authenticate users with correct credentials", function (done) {
+		joola.dispatch.users.authenticate('tester', '1234', function (err, user) {
+			if (err)
+				return done(err);
+			if (!user)
+				return done(new Error('We should have a valid user'));
+			return done();
+		});
+	});
+
+	it("should not authenticate users with incorrect credentials", function (done) {
+		joola.dispatch.users.authenticate('tester', '12345', function (err, user) {
+			if (err)
+				return done();
+			if (!user)
+				return done();
+			return done(new Error('This should fail'));
+		});
+	});
+
 	it("should delete a user", function (done) {
 		var user = {
 			username: 'tester'
@@ -164,11 +190,5 @@ describe("api-users", function () {
 					return done(err);
 			});
 		});
-	});
-
-	it("should hash passwords correctly", function (done) {
-		var hashOK = joola.dispatch.users.hashPassword('password') != 'password';
-		expect(hashOK).to.equal(true);
-		return done();
 	});
 });
