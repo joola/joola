@@ -4,7 +4,6 @@
 |-------------------------------------|-------------------------------|-----------------------------------|---------------------------------------------|-------------------------------------|
 | [![i1] [techdocs-image]] [techdocs] | [![i2] [setup-image]] [setup] | [![i3] [roadmap-image]] [roadmap] | [![i4] [contributing-image]] [contributing] | [![i5] [about-image]] [about] |
 
-
 <img src="http://i.imgur.com/Kx6l8s3.png" alt="joola.io logo" title="joola.io" align="right" />
 
 [joola.io][22] is a mass-scale data analytics and visualization framework. Some of the main benefits of using joola.io include:
@@ -85,7 +84,7 @@ Copyright (c) 2012-2013 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24]
 [architecture-doc]: https://github.com/joola/joola.io/wiki/Technical-architecture
 [talk-to-us]: https://github.com/joola/joola.io/wiki/Talk-to-us
 
-[about-image]: https://github.com/joola/joola.io/wiki/images/help.png
+[about-image]: https://github.com/joola/joola.io/wiki/images/about.png
 [techdocs-image]: https://github.com/joola/joola.io/wiki/images/techdocs.png
 [setup-image]: https://github.com/joola/joola.io/wiki/images/setup.png
 [roadmap-image]: https://github.com/joola/joola.io/wiki/images/roadmap.png
