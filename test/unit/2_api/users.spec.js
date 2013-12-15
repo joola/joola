@@ -133,12 +133,6 @@ describe("api-users", function () {
 		});
 	});
 
-	it("should hash passwords correctly", function (done) {
-		var hashOK = joola.dispatch.users.hashPassword('password') != 'password';
-		expect(hashOK).to.equal(true);
-		return done();
-	});
-
 	it("should authenticate users with correct credentials", function (done) {
 		joola.dispatch.users.authenticate('tester', '1234', function (err, user) {
 			if (err)

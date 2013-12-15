@@ -302,8 +302,6 @@ describe("auth", function () {
 		var password = '1234';
 		var hash = joola.auth.hashPassword(password);
 
-		console.log(hash);
-
 		assert(hash.indexOf('$') > -1);
 		done();
 	});
