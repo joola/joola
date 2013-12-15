@@ -12,4 +12,20 @@ describe("common-globals", function () {
 	it("should have underscore defined", function () {
 		expect(_).to.be.ok;
 	});
+
+	it("should have joola defined", function () {
+		expect(joola).to.be.ok;
+	});
+
+	it("should have joola.io defined", function () {
+		expect(joolaio).to.be.ok;
+	});
+
+	it("should have _joola defined", function () {
+		expect(_joolaio).to.be.ok;
+	});
+
+	it("should have _sdk defined", function () {
+		expect(_sdk).to.be.ok;
+	});
 });
