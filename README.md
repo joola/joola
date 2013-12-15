@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/joola/joola.io.png?label=ready)](https://waffle.io/joola/joola.io)  
 # joola.io
 The open-source data visualization framework.
 
