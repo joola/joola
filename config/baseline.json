@@ -109,18 +109,18 @@
 		"tokens": {
 			"expireAfter": 5000
 		},
-		"roles": [
-			{
-				"id": "admin",
+		"roles": {
+			"admin": {
+				"name": "admin",
 				"permissions": ["access_system", "manage_system"],
-				"filter": null
+				"filter": ""
 			},
-			{
-				"id": "user",
+			"user": {
+				"name": "user",
 				"permissions": ["access_system"],
-				"filter": null
+				"filter": ""
 			}
-		],
+		},
 		"users": {
 
 		}
