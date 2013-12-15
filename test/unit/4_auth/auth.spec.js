@@ -291,4 +291,27 @@ describe("auth", function () {
 		});
 	});
 
+	it("should encrypt a user password", function (done) {
+		var password = '1234';
+		var hash = joola.auth.hashPassword(password);
+		expect(hash).to.not.equal('1234');
+		done();
+	});
+
+	it("should store salt with the hash", function (done) {
+		var password = '1234';
+		var hash = joola.auth.hashPassword(password);
+
+		assert(hash.indexOf('$') > -1);
+		done();
+	});
+
+	it("should validate a password", function (done) {
+		var password = '1234';
+		var hash = 'nVHqYEJbh$81dc9bdb52d04dc20036dbd8313ed055';
+		var valid = joola.auth.validatePassword(password, hash);
+
+		assert(valid);
+		done();
+	});
 });

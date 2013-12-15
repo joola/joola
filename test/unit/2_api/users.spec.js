@@ -64,23 +64,6 @@ describe("api-users", function () {
 		});
 	});
 
-	it("should encrypt a user password", function (done) {
-		var user = {
-			username: 'tester-password',
-			displayName: 'tester user',
-			_password: '1234',
-			_roles: ['user'],
-			_filter: ''
-		};
-		joola.dispatch.users.add(user, function (err, user) {
-			if (err)
-				return done(err);
-
-			expect(user._password).to.not.equal('1234');
-			return done();
-		});
-	});
-
 	it("should get a user by username", function (done) {
 		var username = 'tester';
 		joola.dispatch.users.get(username, function (err, user) {
@@ -148,12 +131,6 @@ describe("api-users", function () {
 
 			return done(new Error('This should fail'));
 		});
-	});
-
-	it("should hash passwords correctly", function (done) {
-		var hashOK = joola.dispatch.users.hashPassword('password') != 'password';
-		expect(hashOK).to.equal(true);
-		return done();
 	});
 
 	it("should authenticate users with correct credentials", function (done) {
