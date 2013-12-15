@@ -21,8 +21,18 @@ describe("api-users", function () {
 			joola.config.clear('authentication:users:tester1', callback);
 		};
 		calls.push(call);
+		var call = function (callback) {
+			joola.config.clear('authentication:users:tester-org', callback);
+		};
+		calls.push(call);
 		call = function (callback) {
 			joola.config.clear('authentication:users:tester-password', callback);
+		};
+		calls.push(call);
+		call = function (callback) {
+			joola.dispatch.organizations.delete({name: 'test-org'}, function () {
+				joola.dispatch.organizations.add({name: 'test-org'}, callback);
+			});
 		};
 		calls.push(call);
 		async.parallel(calls, done);
@@ -45,7 +55,8 @@ describe("api-users", function () {
 			displayName: 'tester user',
 			_password: '1234',
 			_roles: ['user'],
-			_filter: ''
+			_filter: '',
+			organization: 'test-org'
 		};
 		joola.dispatch.users.add(user, function (err, user) {
 			return done(err);
@@ -81,7 +92,8 @@ describe("api-users", function () {
 			displayName: 'tester user',
 			_password: '1234',
 			_roles: ['user'],
-			_filter: ''
+			_filter: '',
+			organization: 'test-org'
 		};
 		joola.dispatch.users.add(user, function (err, user) {
 			if (err)
@@ -96,7 +108,8 @@ describe("api-users", function () {
 			displayName: 'testing user',
 			_password: '1234',
 			_roles: ['user'],
-			_filter: ''
+			_filter: '',
+			organization: 'test-org'
 		};
 		joola.dispatch.users.add(user, function (err, user) {
 			if (err)
@@ -117,13 +130,31 @@ describe("api-users", function () {
 		});
 	});
 
+	it("should apply filter on user level", function (done) {
+		var user = {
+			username: 'tester-org',
+			displayName: 'tester user',
+			_password: '1234',
+			_roles: ['user'],
+			_filter: 'test1=test2',
+			organization: 'test-org'
+		};
+		joola.dispatch.users.add(user, function (err, user) {
+			if (err)
+				return done(err);
+			expect(user._filter).to.equal('test1=test2');
+			return done(err);
+		});
+	});
+
 	it("should fail updating a non existing user", function (done) {
 		var user = {
 			username: 'tester2',
 			displayName: 'tester user',
 			_password: '1234',
 			_roles: ['user'],
-			_filter: ''
+			_filter: '',
+			organization: 'test-org'
 		};
 		joola.dispatch.users.update(user, function (err, user) {
 			if (err)

@@ -8,23 +8,24 @@
  *  Some rights reserved. See LICENSE, AUTHORS.
  **/
 
-var async = require('async');
 
+describe("sdk-organizations", function () {
+	var _bypassToken, _store;
 
-describe("api-organizations", function () {
 	before(function (done) {
-		var calls = [];
+		_bypassToken = joola.config.authentication.bypassToken;
+		_store = joola.config.authentication.store;
 
-		var call = function (callback) {
-			joola.config.clear('authentication:users:tester-org-filter', callback);
-		};
-		calls.push(call);
-		call = function (callback) {
-			joola.config.clear('authentication:organizations:test-org', callback);
-		};
-		calls.push(call);
+		_sdk.TOKEN = '123';
 
-		async.parallel(calls, done);
+		joola.config.set('authentication:store', 'bypass');
+		joola.config.set('authentication:bypassToken', '123');
+
+		joola.config.clear('authentication:organizations:test-org', function (err) {
+			if (err)
+				throw err;
+			done();
+		});
 	});
 
 	it("should add an organization", function (done) {
@@ -32,7 +33,7 @@ describe("api-organizations", function () {
 			name: 'test-org',
 			filter: ''
 		};
-		joola.dispatch.organizations.add(org, function (err, _org) {
+		_sdk.dispatch.organizations.add(org, function (err, _org) {
 			if (err)
 				return done(err);
 
@@ -42,7 +43,7 @@ describe("api-organizations", function () {
 	});
 
 	it("should return a valid list of organizations", function (done) {
-		joola.dispatch.organizations.list(function (err, orgs) {
+		_sdk.dispatch.organizations.list(function (err, orgs) {
 			return done(err);
 		});
 	});
@@ -52,7 +53,7 @@ describe("api-organizations", function () {
 			name: 'test-org',
 			filter: ''
 		};
-		joola.dispatch.organizations.add(org, function (err, _org) {
+		_sdk.dispatch.organizations.add(org, function (err, _org) {
 			if (err)
 				return done();
 
@@ -64,7 +65,7 @@ describe("api-organizations", function () {
 		var org = {
 
 		};
-		joola.dispatch.organizations.add(org, function (err, _org) {
+		_sdk.dispatch.organizations.add(org, function (err, _org) {
 			if (err)
 				return done();
 
@@ -77,24 +78,24 @@ describe("api-organizations", function () {
 			name: 'test-org',
 			_filter: 'test=test'
 		};
-		joola.dispatch.organizations.update(org, function (err, _org) {
+		_sdk.dispatch.organizations.update(org, function (err, _org) {
 			if (err)
 				return done(err);
 			expect(_org._filter).to.equal('test=test');
-			done();
+			return done();
 		});
 	});
 
 	it("should apply filter on organization members", function (done) {
 		var user = {
-			username: 'tester-org-filter',
+			username: 'tester',
 			displayName: 'tester user',
 			_password: '1234',
 			_roles: ['user'],
 			_filter: '',
 			organization: 'test-org'
 		};
-		joola.dispatch.users.add(user, function (err, user) {
+		_sdk.dispatch.users.add(user, function (err, user) {
 			if (err)
 				return done(err);
 			expect(user._filter).to.equal('test=test');
@@ -106,11 +107,11 @@ describe("api-organizations", function () {
 		var org = {
 			name: 'test-org'
 		};
-		joola.dispatch.organizations.delete(org, function (err) {
+		_sdk.dispatch.organizations.delete(org, function (err) {
 			if (err)
 				return done(err);
 
-			joola.dispatch.organizations.list(function (err, orgs) {
+			_sdk.dispatch.organizations.list(function (err, orgs) {
 				if (err)
 					return done(err);
 
@@ -132,11 +133,17 @@ describe("api-organizations", function () {
 		var org = {
 			name: 'test-org-notexist'
 		};
-		joola.dispatch.organizations.delete(org, function (err) {
+		_sdk.dispatch.organizations.delete(org, function (err) {
 			if (err)
 				return done();
 
 			return done(new Error('This should fail'));
 		});
+	});
+
+	after(function (done) {
+		joola.config.set('authentication:store', _store);
+		joola.config.set('authentication:bypassToken', _bypassToken);
+		done();
 	});
 });
