@@ -31,10 +31,18 @@ describe("stats", function () {
       if (err)
         return done(err);
 
-      joola.stats.incr('test-suite', {incrby:36}, function (err, value) {
+      joola.stats.incr('test-suite', {incrby: 36}, function (err, value) {
         expect(value).to.equal(36);
         done();
       });
+    });
+  });
+
+  it("should receive the stats over a socket instance", function (done) {
+    _sdk.events.once('stats:events', function () {
+      setTimeout(function () {
+        done();
+      }, 1001)
     });
   });
 
