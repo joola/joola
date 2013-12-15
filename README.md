@@ -1,5 +1,10 @@
 # joola.io [![Build Status][3]][4] [![Coverage Status][1]][2] 
 
+| **[Technical Docs] [techdocs]**     | **[Setup Guide] [setup]**     | **[Roadmap] [roadmap]**           | **[Contributing] [contributing]**           | **[About joola.io] [about]**     |
+|-------------------------------------|-------------------------------|-----------------------------------|---------------------------------------------|-------------------------------------|
+| [![i1] [techdocs-image]] [techdocs] | [![i2] [setup-image]] [setup] | [![i3] [roadmap-image]] [roadmap] | [![i4] [contributing-image]] [contributing] | [![i5] [about-image]] [about] |
+
+
 <img src="http://i.imgur.com/Kx6l8s3.png" alt="joola.io logo" title="joola.io" align="right" />
 
 [joola.io][22] is a mass-scale data analytics and visualization framework. Some of the main benefits of using joola.io include:
@@ -7,10 +12,6 @@
 1. Integrate existing data-sources and correlate data between them for analytics and visualization.
 2. Stores relevant data in a unique caching layer enabling rapid response times to queries and requests.
 3. Completely embedabble into existing sites, but also ships with a state-of-the-art analytics website.
-
-| **[Technical Docs] [techdocs]**     | **[Setup Guide] [setup]**     | **[Roadmap] [roadmap]**           | **[Contributing] [contributing]**           |
-|-------------------------------------|-------------------------------|-----------------------------------|---------------------------------------------|
-| [![i1] [techdocs-image]] [techdocs] | [![i2] [setup-image]] [setup] | [![i3] [roadmap-image]] [roadmap] | [![i4] [contributing-image]] [contributing] |
 
 ### Main features
 
@@ -26,8 +27,8 @@
 We've pre-loaded the package with a fully working sample site, so it's easy to get started.
 
 ```bash
-$ npm install joola.io
-$ npm start
+$ npm install -g joola.io
+$ joola.io --demo
 ```
 
 Following the installation, point your browser to `http://localhost:40002` and you'll be able to use the analytics site.
@@ -84,12 +85,14 @@ Copyright (c) 2012-2013 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24]
 [architecture-doc]: https://github.com/joola/joola.io/wiki/Technical-architecture
 [talk-to-us]: https://github.com/joola/joola.io/wiki/Talk-to-us
 
+[about-image]: https://github.com/joola/joola.io/wiki/images/help.png
 [techdocs-image]: https://github.com/joola/joola.io/wiki/images/techdocs.png
 [setup-image]: https://github.com/joola/joola.io/wiki/images/setup.png
 [roadmap-image]: https://github.com/joola/joola.io/wiki/images/roadmap.png
 [contributing-image]: https://github.com/joola/joola.io/wiki/images/contributing.png
 
-[techdocs]: https://github.com/joola/joola.io/wiki/joola.io-technical-documentation
+[about]: https://github.com/joola/joola.io/wiki/joola.io-overview
+[techdocs]: https://github.com/joola/joola.io/wiki/Technical-documentation
 [setup]: https://github.com/joola/joola.io/wiki/Setting-up-joola.io
 [roadmap]: https://github.com/joola/joola.io/wiki/Product-roadmap
 [contributing]: https://github.com/joola/joola.io/wiki/Contributing
