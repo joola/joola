@@ -1,0 +1,47 @@
+doctype 5
+html.wf-ffmetaserifwebpro-n5-active.wf-ffmetaserifwebpro-n7-active.wf-ffmetawebpro-n4-active.wf-active(lang='en')
+  head
+    title joola.io | Status Page
+    link(rel='stylesheet', href='/css/app.css')
+    style.
+      body.status {
+        background-color: whitesmoke;
+        font-size:92%;
+      }
+      body.status .status-wrapper {
+        margin: 30px;
+      }
+      body.status div.status-items {
+        float:left;
+        width:50%;
+      }
+      h1, h2, h3 {
+        text-transform: uppercase;
+      }
+  body.status
+    div.status-wrapper
+      div.logo
+        div.logo-image
+      h1 Application Status Summary
+      div.status-list
+        div.statuses
+          h3 Currently running version 
+            span(style="font-size:35px") #{data.version}
+          div.status-items.status-os.left
+            h3 Operating System
+            for result in Object.keys(data.os)
+              p #{result}: #{data.os[result]}
+          div.status-items.status-usage.right
+            h3 Usage
+            for result in Object.keys(data.usage.memory)
+              p #{result}: #{Math.round(parseInt(data.usage.memory[result]) / 1024 / 1024, 2)} Mb
+          div.clear-both
+          div.status-items.status-deps.left
+            h3 Dependencies
+            for result in Object.keys(data.dependencies)
+              p #{result}: #{data.dependencies[result]}           
+          div.status-items.status-devdeps.right
+            h3 devDependencies
+            for result in Object.keys(data.devDependencies)
+              p #{result}: #{data.devDependencies[result]}           
+          

@@ -1,7 +1,7 @@
 {
 	"name": "joola.io",
 	"preferGlobal": false,
-	"version": "3.2.2",
+	"version": "3.4.0",
 	"author": "Joola <info@joo.la>",
 	"description": "The open-source data visualization framework",
 	"engine": "node >= 0.10.x",
@@ -25,16 +25,12 @@
 	],
 	"scripts": {
 		"test": "make test",
-		"start": "node ./bin/_joola.io.js",
-		"debug": "npm-inspector && npm start && open \"http://http://127.0.0.1:8080/debug?port=5858\"",
-		"monitor": "mocha --reporter min --watch",
-		"debugtest": "mocha --debug-brk --reporter spec",
+		"start": "pm2 start service.json",
 		"blanket": {
 			"pattern": "lib",
 			"data-cover-never": "node_modules"
 		},
-		"coveralls": "mocha --require blanket --reporter mocha-lcov-reporter | node ./node_modules/coveralls/bin/coveralls.js",
-		"citest": "mocha --reporter xunit > test-reports.xml"
+		"coveralls": "make test-coveralls"
 	},
 	"bin": {
 		"joola.io": "./bin/joola.io"
@@ -47,38 +43,44 @@
 		"noSQL"
 	],
 	"dependencies": {
-		"joola.io.logger": "3.x",
-		"joola.io.config": "3.x",
-		"joola.io.engine": "3.x",
-		"joola.io.analytics": "3.x",
-
-		"winston": "0.x",
-		"async": "0.x",
-		"path": "0.x",
-		"flatiron": "0.x",
-		"flatiron-cli-config": "0.x",
-		"request": "2.x",
-		"dateformat": "1.x",
-		"pkginfo": "0.x",
-		"colors": "0.x",
-		"forever": "0.x",
-		"forever-monitor": "1.x",
-		"sleep": "1.x",
-		"supertest": "0.x",
-		"complete": "0.x"
+		"nconf": "*",
+		"nconf-redis": "https://github.com/itayw/nconf-redis/tarball/master",
+		"eventemitter2": "*",
+		"redis": "*",
+		"async": "*",
+		"express": "*",
+		"socket.io": "*",
+		"socket.io-wildcard": "*",
+		"socket.io-browserify": "*",
+		"jade": "*",
+		"bunyan": "https://github.com/itayw/node-bunyan/tarball/master",
+		"bunyan-format": "*",
+		"mongo-col": "https://github.com/Raynos/mongo-col/tarball/master",
+		"mongo-stream": "*",
+		"mongodb": "*",
+		"htpasswd": "*",
+		"moment": "*",
+		"twix": "*"
 	},
 	"devDependencies": {
-		"underscore": "1.x",
-		"mocha-lcov-reporter": "0.x",
-		"coveralls": "2.x",
-		"should": "1.x",
-		"mocha": "1.x",
-		"sinon": "1.x",
-		"chai": "1.x",
-		"sinon-chai": "2.x",
-		"blanket": "1.x",
-		"jshint": "2.x",
-		"supertest": "0.x"
+		"jsdox": "https://github.com/itayw/jsdox/tarball/master",
+		"underscore": "*",
+		"mocha-lcov-reporter": "*",
+		"coveralls": "*",
+		"should": "*",
+		"mocha": "*",
+		"istanbul": "*",
+		"expect": "*",
+		"blanket": "*",
+		"jshint": "*",
+		"supertest": "*",
+		"xtend": "*",
+		"request": "*",
+		"zombie": "*",
+		"mkdirp": "*",
+		"sinon": "*",
+		"chai": "*",
+		"sinon-chai": "*"
 	},
 	"license": "GPL-3.0"
 }

@@ -1,0 +1,176 @@
+include ../head
+body
+  include ../navbar
+  .container
+    .row
+      include ../sidebar
+      #content.col-sm-11
+        .row
+          .col-lg-12
+            div#log(ng-controller="logCtrl")
+              ul.list-inline
+                li: a(href="#", ng-click="eventDateFilter('all')") All
+                li: a(href="#", ng-click="eventDateFilter('day')") Last day
+                li: a(href="#", ng-click="eventDateFilter('1hour')") Last hour
+                li: a(href="#", ng-click="eventDateFilter('5min')") Last 5 minutes
+                li: a(href="#", ng-click="eventDateFilter('1min')") Last minute
+              table.table.table-striped
+                thead
+                  th(style="width:160px;") Timestamp
+                  th Hostname
+                  th Level
+                  th PID
+                  th Message
+                tbody#logtbody
+                  tr(ng-repeat="l in log")
+                    td {{l.time | date:'yyyy-MM-dd hh:mm:ss'}}
+                    td {{l.hostname}}
+                    td {{l.level}}
+                    td {{l.pid}}
+                    td {{l.msg}}
+                  
+          
+      #widgets-area.col-sm-2
+        ul#myTab.nav.tab-menu.nav-tabs
+          li.active
+            a(href='form-wizard.html#charts')
+              i.fa.fa-bar-chart-o
+          li
+            a(href='form-wizard.html#users')
+              i.fa.fa-group
+          li
+            a(href='form-wizard.html#messages')
+              i.fa.fa-envelope
+          li
+            a#close-widgets-area(href='form-wizard.html#')
+              i.fa.fa-sign-in
+        #myTabContent.tab-content
+          #charts.tab-pane.active
+            .bar-stat
+              span.title Account balance
+              span.value $19 999,99
+              span.chart.green 7,3,2,6,6,3,9,0,1,4
+            hr
+            .bar-stat
+              span.title Clients
+              span.value 1278
+              span.chart.yellow 8,2,5,4,7,4,7,2,5,9
+            hr
+            .bar-stat
+              span.title Orders
+              span.value 5876
+              span.chart.blue 2,4,6,8,3,5,9,3,2,2
+            hr
+            .bar-stat
+              span.title Messages
+              span.value 673
+              span.chart.red 0,3,3,8,3,3,2,7,8,4
+            hr
+            #cpu-usage
+            ul.progress-bars
+              li
+                span.title Free Memory
+                span.percent
+                .taskProgress.progressSlim.progressGreen 80
+              li
+                span.title Free HDD Drive
+                span.percent
+                .taskProgress.progressSlim.progressYellow 20
+              li
+                span.title Free SSD Drive
+                span.percent
+                .taskProgress.progressSlim.progressBlue 57
+              li
+                span.title Transfer
+                span.percent
+                .taskProgress.progressSlim.progressRed 45
+          #users.tab-pane
+            ul.users-list
+              li
+                a(href='form-wizard.html#')
+                  span.status.active
+                  span.avatar
+                    img.img-circle(src='/img/avatar.jpg', alt='Avatar')
+                  span.name Łukasz Holeczek
+              li
+                a(href='form-wizard.html#')
+                  span.status.busy
+                  span.avatar
+                    img.img-circle(src='/img/avatar2.jpg', alt='Avatar')
+                  span.name Megan Abott
+              li
+                a(href='form-wizard.html#')
+                  span.status.disable
+                  span.avatar
+                    img.img-circle(src='/img/avatar3.jpg', alt='Avatar')
+                  span.name Kate Ross
+              li
+                a(href='form-wizard.html#')
+                  span.status.active
+                  span.avatar
+                    img.img-circle(src='/img/avatar4.jpg', alt='Avatar')
+                  span.name Julie Blank
+              li
+                a(href='form-wizard.html#')
+                  span.status
+                  span.avatar
+                    img.img-circle(src='/img/avatar5.jpg', alt='Avatar')
+                  span.name Jane Sanders
+              li
+                a(href='form-wizard.html#') View all users
+          #messages.tab-pane
+            ul.messages-list
+              li
+                a(href='form-wizard.html#')
+                  .avatar
+                    img.img-circle(src='/img/avatar.jpg', alt='Avatar')
+                  span.name Łukasz Holeczek
+                  span.date 25/6/2013
+                  span.title Custom Bootstrap design for new client
+              li
+                a(href='form-wizard.html#')
+                  .avatar
+                    img.img-circle(src='/img/avatar2.jpg', alt='Avatar')
+                  span.name Megan Abott
+                  span.date 25/6/2013
+                  span.title Custom Bootstrap design for new client
+              li
+                a(href='form-wizard.html#')
+                  .avatar
+                    img.img-circle(src='/img/avatar3.jpg', alt='Avatar')
+                  span.name Kate Ross
+                  span.date 25/6/2013
+                  span.title Custom Bootstrap design for new client
+              li
+                a(href='form-wizard.html#')
+                  .avatar
+                    img.img-circle(src='/img/avatar4.jpg', alt='Avatar')
+                  span.name Julie Blank
+                  span.date 25/6/2013
+                  span.title Custom Bootstrap design for new client
+              li
+                a(href='form-wizard.html#')
+                  .avatar
+                    img.img-circle(src='/img/avatar5.jpg', alt='Avatar')
+                  span.name Jane Sanders
+                  span.date 25/6/2013
+                  span.title Custom Bootstrap design for new client
+              li
+                a(href='form-wizard.html#') View all messages
+      a#widgets-area-button.hidden-sm.hidden-xs.open
+        i.fa.fa-bars
+    #myModal.modal.fade
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+            h4.modal-title Modal title
+          .modal-body
+            p Here settings can be configured...
+          .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') Close
+            button.btn.btn-primary(type='button') Save changes
+  .clearfix
+  
+  include ../footer
+  script(src="/js/lib/logger.js")

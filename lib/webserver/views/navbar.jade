@@ -1,0 +1,26 @@
+.navbar
+  .navbar-inner
+    .container
+      button.navbar-toggle(type='button', data-toggle='collapse', data-target='.sidebar-nav.nav-collapse')
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand(href='index.html')
+        span JOOLA.IO
+
+      .nav-no-collapse.header-nav
+        ul.nav.pull-right
+          li.dropdown
+            a.btn.dropdown-toggle(data-toggle='dropdown', href='index.html#')
+              i.halflings.user.white
+              |  USERNAME 
+              span.caret
+            ul.dropdown-menu
+              li
+                a(href='index.html#')
+                  i.halflings.user.white
+                  | Profile
+              li
+                a(href='login.html')
+                  i.halflings.off.white
+                  | Logout

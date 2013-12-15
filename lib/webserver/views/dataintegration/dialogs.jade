@@ -1,0 +1,95 @@
+#datasourceAdd.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+        h4.modal-title Add a new data source
+      .modal-body
+        #step1.step-pane.active
+          form#form-new-datasource.form-horizontal(ng-submit="dsAdd()")
+            fieldset.col-sm-12
+              .form-group
+                label.control-label(for='selectError20') Data type
+                .controls
+                  select#selectError20.form-control(data-placeholder='Select the type of your data source', data-rel='chosen', ng-model="dbtype", name="type")
+                    option(value='')
+                    optgroup(label='Databases')
+                      option(value="mysql") MySQL
+                      option(value="postgresql") PostgreSQL
+                      option(value="mssql") Microsoft SQL Server
+                    optgroup(label='Online services')
+                      option(value="ga") Google Analytics
+                      option(value="gwt") Google Webmaster Tools
+                      option(value="sf") Salesforce
+              fieldset.col-sm-12
+              div(ng-show="dbtype=='mysql' || dbtype=='mssql' || dbtype=='postgresql'", ng-cloak)
+                .form-group
+                  label.control-label(for='input1') Data source name
+                  .controls
+                    input#input1.form-control(type='text', ng-model="name")
+                .form-group
+                  label.control-label(for='input1') Database host
+                  .controls
+                    input#input1.form-control(type='text', ng-model="dbhost")
+                .form-group
+                  label.control-label(for='input1') Database port
+                  .controls
+                    input#input1.form-control(type='text', ng-model="dbport")
+                .form-group
+                  label.control-label(for='input1') Database name
+                  .controls
+                    input#input1.form-control(type='text', ng-model="dbname")
+                .form-group
+                  label.control-label(for='input1') Username
+                  .controls
+                    input#input1.form-control(type='text', ng-model="dbuser")
+                .form-group
+                  label.control-label(for='input1') Password
+                  .controls
+                    input#input1.form-control(type='text', ng-model="dbpass")
+                //
+                  .form-group
+                    label.control-label(for='input2') Port
+                    .controls
+                      input#input2.form-control(type='text', name="dbport")
+                  .form-group
+                    label.control-label(for='input3') DB Name
+                    .controls
+                      input#input3.form-control(type='text', name="dbname")
+                  .form-group
+                    label.control-label(for='input3') DB Username
+                    .controls
+                      input#input3.form-control(type='text', name="dbuser")
+                  .form-group
+                    label.control-label(for='input3') DB Password
+                    .controls
+                      input#input3.form-control(type='text', name="dbpass")
+              div(ng-show="dbtype=='ga' || dbtype=='gwt'", ng-cloak)
+                .form-group
+                  label.control-label(for='input1') Google Username
+                  .controls
+                    input#input1.form-control(type='text')
+                .form-group
+                  label.control-label(for='input2') Google Password
+                  .controls
+                    input#input2.form-control(type='text')
+                .form-group
+                  label.control-label(for='input3') UA
+                  .controls
+                    input#input3.form-control(type='text')
+              div(ng-show="dbtype=='sf'", ng-cloak)
+                .form-group
+                  label.control-label(for='input1') Salesforce Username
+                  .controls
+                    input#input1.form-control(type='text')
+                .form-group
+                  label.control-label(for='input2') Salesforce Password
+                  .controls
+                    input#input2.form-control(type='text')
+                .form-group
+                  label.control-label(for='input3') Account ID
+                  .controls
+                    input#input3.form-control(type='text')
+      .modal-footer
+        button.btn.btn-default(type='button', data-dismiss='modal') Cancel
+        button.btn.btn-primary(type='button', ng-click='dsAdd()') Add

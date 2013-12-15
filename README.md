@@ -1,98 +1,60 @@
-# joola.io
-The open-source data visualization framework.
+# joola.io [![Build Status][3]][4] [![Coverage Status][1]][2] 
 
-[![Build Status][3]][4] [![dependency status][5]][6] [![dev dependency status][7]][8] [![Coverage Status][1]][2]
+| **[Technical Docs] [techdocs]**     | **[Setup Guide] [setup]**     | **[Roadmap] [roadmap]**           | **[Contributing] [contributing]**           | **[About joola.io] [about]**     |
+|-------------------------------------|-------------------------------|-----------------------------------|---------------------------------------------|-------------------------------------|
+| [![i1] [techdocs-image]] [techdocs] | [![i2] [setup-image]] [setup] | [![i3] [roadmap-image]] [roadmap] | [![i4] [contributing-image]] [contributing] | [![i5] [about-image]] [about] |
 
-[![NPM](https://nodei.co/npm/joola.io.png?downloads=true&stars=true)](https://nodei.co/npm/joola.io/)
+<img src="http://i.imgur.com/Kx6l8s3.png" alt="joola.io logo" title="joola.io" align="right" />
 
-## Overview
-[joola.io][22] is a distributed data processing and visualization framework. The framework is designed as an end-to-end
-solution for data analytics. The framework connects to your databases and using a JSON based mapping of dimensions and
-metrics, it exposes a RESTful API for querying the data. The Client SDK communicates with the engine to display,
-visualize and provide insight into the data. Developers can extend the framework in many ways, add data connectors,
-authentication plugins, visualizations and more.
+[joola.io][22] is a mass-scale data analytics and visualization framework. Some of the main benefits of using joola.io include:
 
-To learn more about the framework architecture, see our [documentation site][25].
+1. Integrate existing data-sources and correlate data between them for analytics and visualization.
+2. Stores relevant data in a unique caching layer enabling rapid response times to queries and requests.
+3. Completely embedabble into existing sites, but also ships with a state-of-the-art analytics website.
 
-### Main Features
+### Main features
+
 - **Big-data**, supports distributed caching and processing to cope with big-data needs.
 - **Fast**, advanced caching algorithm. Avg. query time of less than a few seconds.
-- **Integrate** quickly, seamlessly embed in your site.
+- **Embed** quickly, seamlessly integrate with your site.
 - **Distributed**, run on a single machine or a node-based matrix.
 - **Secure**, role-based, multi-tenant, data segregation.
 - **AaaS ready**, offer Analytics as a Service to your audience.
-- **Pluggable** data source, authentication and cache middleware
+- **Extendable** data source, authentication and cache middleware
 
-### Framework Components
-joola.io is a distributed framework, it can be hosted on a single node or expanded to a grid. The following our the
-different components composing the framework.
-- [joola.io][14] - This repo. CLI and the main entry point of the framework.
-- [joola.io.engine][9] - A RESTful API server holding and executing all logic relating to the framework.
-- [joola.io.analytics][10] - A fully working analytics website.
-- [joola.io.sdk][11] - Client side SDK to communicate with engine in a browser.
-- [joola.io.config][12] - Distributed configuration node for the framework.
-- [joola.io.logger][13] - Central logging node for the framework.
-
-## Getting Started
-Please see the following guides for using joola.io:
-- Start with the [complete documentation][25].
-- Learn about the framework [architecture][26].
-- [Code documentation][28] covers developing and extending.
-- Review [coding guidelines][29] if you're interested in submitting a pull-request.
-- Our [CI][23] monitor, we use Jenkins for the heavy lifting.
-
-### Quick Start
+### Getting started
 We've pre-loaded the package with a fully working sample site, so it's easy to get started.
 
-**Before** we get started, you'll need to install [nodejs][15].
 ```bash
-$ npm install joola.io
-$ node ./node_modules/joola.io/bin/_joola.io services start
+$ npm install -g joola.io
+$ joola.io --demo
 ```
+
 Following the installation, point your browser to `http://localhost:40002` and you'll be able to use the analytics site.
 
-### Sample Site and Data
-Our sample site and data are based on [serverfault's][16] archived data. It includes Q&A submitted up to a year ago.
-
-We are looking for additional sample data sources that may highlight more features of the framework, if you know of one,
-let us know [contact](#Contact).
-
-## Bug Reports
-We use [JIRA][17] as our issue tracker and project management tool.
-
-When submitting bug reports, please make sure you provide as much information as possible, including steps to reproduce.
-Each code commit relating to the ticket, will be marked, including builds and tests, so you'll have full transparency as
-to the status of your issue.
-
-## Contributing
+### Contributing
 We would love to get your help! We have outlined a simple [Contribution Policy][18] to support a transparent and easy merging
 of ideas, code, bug fixes and features.
 
 If you're looking for a place to start, you can always go over the list of [open issues][17], pick one and get started.
 If you're feeling lost or unsure, [just let us know](#Contact).
 
-## Contact
+### Contact
 Contacting us is easy, ping us on one of these:
+
 - [@joolaio][19]
 - [info@joo.la][20]
 - #joola.io on irc.freenode.net
 - You can even fill out a [form][21].
 
-## Project History
-We started this project a few years ago and it evolved into its current shape over two previous versions.
-Formerly known as Jarvis Analytics, the commercial version, the framework as evolved from C# to nodejs, from a single node
- to a full grid.
-
-We are in the process of migrating the previous commercial closed source product to this open-source project.
-
-## License
+### License
 Copyright (c) 2012-2013 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24] for details.
 
 
 [1]: https://coveralls.io/repos/joola/joola.io/badge.png
 [2]: https://coveralls.io/r/joola/joola.io
-[3]: https://travis-ci.org/joola/joola.io.png
-[4]: https://travis-ci.org/joola/joola.io
+[3]: https://travis-ci.org/joola/joola.io.png?branch=master
+[4]: https://travis-ci.org/joola/joola.io?branch=master
 [5]: https://david-dm.org/joola/joola.io.png
 [6]: https://david-dm.org/joola/joola.io
 [7]: https://david-dm.org/joola/joola.io/dev-status.png
@@ -119,5 +81,20 @@ Copyright (c) 2012-2013 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24]
 [28]: https://joolatech.atlassian.net/wiki/display/JAD/Developers
 [29]: https://joolatech.atlassian.net/wiki/display/JAD/Developers/Coding+Guidelines
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/joola/joola.io/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[architecture-doc]: https://github.com/joola/joola.io/wiki/Technical-architecture
+[talk-to-us]: https://github.com/joola/joola.io/wiki/Talk-to-us
 
+[about-image]: https://github.com/joola/joola.io/wiki/images/about.png
+[techdocs-image]: https://github.com/joola/joola.io/wiki/images/techdocs.png
+[setup-image]: https://github.com/joola/joola.io/wiki/images/setup.png
+[roadmap-image]: https://github.com/joola/joola.io/wiki/images/roadmap.png
+[contributing-image]: https://github.com/joola/joola.io/wiki/images/contributing.png
+
+[about]: https://github.com/joola/joola.io/wiki/joola.io-overview
+[techdocs]: https://github.com/joola/joola.io/wiki/Technical-documentation
+[setup]: https://github.com/joola/joola.io/wiki/Setting-up-joola.io
+[roadmap]: https://github.com/joola/joola.io/wiki/Product-roadmap
+[contributing]: https://github.com/joola/joola.io/wiki/Contributing
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/joola/joola.io/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
