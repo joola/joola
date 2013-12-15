@@ -1,4 +1,4 @@
-# joola.io [![Build Status][3]][4] [![Coverage Status][1]][2] 
+# joola.io [![Build Status][3]][4] [![Coverage Status][1]][2] [![Stories in Ready](https://badge.waffle.io/joola/joola.io.png?label=ready)](https://waffle.io/joola/joola.io)
 
 | **[Technical Docs] [techdocs]**     | **[Setup Guide] [setup]**     | **[Roadmap] [roadmap]**           | **[Contributing] [contributing]**           | **[About joola.io] [about]**     |
 |-------------------------------------|-------------------------------|-----------------------------------|---------------------------------------------|-------------------------------------|
