@@ -8,8 +8,8 @@
 
 [joola.io][22] is a mass-scale data analytics and visualization framework. Some of the main benefits of using joola.io include:
 
-1. Integrate existing data-sources and correlate data between them for analytics and visualization.
-2. Stores relevant data in a unique caching layer enabling rapid response times to queries and requests.
+1. Integrate existing data-sources to correlate, analyze and visualize data.
+2. Stores relevant data in a unique caching layer enabling scalable, rapid response times to queries and requests.
 3. Completely embedabble into existing sites, but also ships with a state-of-the-art analytics website.
 
 ### Main features
@@ -17,7 +17,7 @@
 - **Big-data**, supports distributed caching and processing to cope with big-data needs.
 - **Fast**, advanced caching algorithm. Avg. query time of less than a few seconds.
 - **Embed** quickly, seamlessly integrate with your site.
-- **Distributed**, run on a single machine or a node-based matrix.
+- **Scalable**, run on a single machine or a node-based matrix.
 - **Secure**, role-based, multi-tenant, data segregation.
 - **AaaS ready**, offer Analytics as a Service to your audience.
 - **Extendable** data source, authentication and cache middleware
