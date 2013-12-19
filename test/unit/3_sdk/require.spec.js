@@ -28,6 +28,10 @@ describe("sdk-require", function () {
     expect(_sdk.events).to.be.ok;
   });
 
+  xit("should have a valid USER", function () {
+    expect(_sdk.USER).to.be.ok;
+  });
+
   it("should be able to emit/catch events", function (done) {
     _sdk.events.once('test:test:test', function () {
       return done(null);
