@@ -47,6 +47,7 @@ describe("api-dimensions", function () {
       name: 'test-dimension-api',
       description: 'test-dimension-api',
       column: 'test-column',
+      category: 'test',
       roles: ['user']
     };
     joola.dispatch.dimensions.add(dt, function (err, dimension) {
@@ -64,6 +65,7 @@ describe("api-dimensions", function () {
       name: 'test-dimension-api',
       description: 'test-dimension-api',
       column: 'test-column',
+      category: 'test',
       roles: ['user']
     };
     joola.dispatch.dimensions.add(dt, function (err, dimension) {
@@ -103,6 +105,7 @@ describe("api-dimensions", function () {
       name: 'test-dimension-api',
       description: 'test-dimension-api-2',
       column: 'test-column',
+      category: 'test',
       roles: ['user']
     };
     joola.dispatch.dimensions.update(dt, function (err, dimension) {
