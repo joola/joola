@@ -65,18 +65,6 @@ describe("sdk-permissions", function () {
 		});
 	});
 
-	it("should fail to add a permission with incomplete details", function (done) {
-		var permission = {
-			name: 'test-permission-missing-details'
-		};
-		_sdk.dispatch.permissions.add(permission, function (err, _permission) {
-			if (err)
-				return done();
-
-			return done(new Error('This should fail'));
-		});
-	});
-
 	it("should delete a permission", function (done) {
 		var permission = {
 			name: 'test-permission'
