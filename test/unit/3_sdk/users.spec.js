@@ -40,6 +40,10 @@ describe("sdk-users", function () {
 			joola.config.clear('authentication:users:tester-password', callback);
 		};
 		calls.push(call);
+    call = function (callback) {
+      joola.config.clear('authentication:users:tester-sdk-by-token', callback);
+    };
+    calls.push(call);
 		call = function (callback) {
 			_sdk.dispatch.organizations.delete({name: 'test-org'}, function () {
 				_sdk.dispatch.organizations.add({name: 'test-org'}, callback);
@@ -136,16 +140,14 @@ describe("sdk-users", function () {
 
 	it("should update a user", function (done) {
 		var user = {
-			username: 'tester1',
+			username: 'tester',
 			displayName: 'testing user',
 			_password: '1234',
 			_roles: ['user'],
 			_filter: '',
 			organization: 'test-org'
 		};
-		_sdk.dispatch.users.add(user, function (err, user) {
-			if (err)
-				return done(err);
+		_sdk.dispatch.users.add(user, function (err, _user) {
 			user.displayName = 'testing user with change';
 			_sdk.dispatch.users.update(user, function (err, user) {
 				if (err)
@@ -231,6 +233,31 @@ describe("sdk-users", function () {
 			});
 		});
 	});
+
+  it("should get a userby token", function (done) {
+    var user = {
+      username: 'tester-sdk-by-token',
+      displayName: 'tester user',
+      _password: '1234',
+      _roles: ['user'],
+      _filter: '',
+      organization: 'test-org'
+    };
+    _sdk.dispatch.users.add(user, function (err, user) {
+      joola.auth.generateToken(user, function (err, token) {
+        if (err)
+          return done(err);
+
+        _sdk.dispatch.users.getByToken(token._, function (err, _user) {
+          if (err)
+            return done(err);
+
+          expect(_user.username).to.equal(user.username);
+          done(null);
+        });
+      });
+    });
+  });
 
 	after(function (done) {
 		joola.config.set('authentication:store', _store);
