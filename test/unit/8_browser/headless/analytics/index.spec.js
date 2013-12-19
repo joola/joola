@@ -25,7 +25,6 @@ describe('browser-analytics-index', function () {
 	it('should load the 404 page', function (done) {
 		var browser = new Browser({silent: true});
 		browser.visit("http://localhost:" + joola.config.interfaces.webserver.port + '/analytics/index2', function (err) {
-			console.log(err,browser.text());
 			expect(browser.text("title")).to.equal('Page not found');
 			done();
 		});
