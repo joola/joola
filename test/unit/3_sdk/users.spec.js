@@ -11,6 +11,7 @@ var async = require('async');
 
 describe("sdk-users", function () {
 	var _bypassToken, _store;
+
 	before(function (done) {
 
 		_bypassToken = joola.config.authentication.bypassToken;
@@ -32,7 +33,17 @@ describe("sdk-users", function () {
 		};
 		calls.push(call);
 		call = function (callback) {
+			joola.config.clear('authentication:users:tester-org', callback);
+		};
+		calls.push(call);
+		call = function (callback) {
 			joola.config.clear('authentication:users:tester-password', callback);
+		};
+		calls.push(call);
+		call = function (callback) {
+			_sdk.dispatch.organizations.delete({name: 'test-org'}, function () {
+				_sdk.dispatch.organizations.add({name: 'test-org'}, callback);
+			});
 		};
 		calls.push(call);
 		async.parallel(calls, done);
@@ -67,7 +78,8 @@ describe("sdk-users", function () {
 			displayName: 'tester user',
 			_password: '1234',
 			_roles: ['user'],
-			_filter: ''
+			_filter: '',
+			organization: 'test-org'
 		};
 		_sdk.dispatch.users.add(user, function (err, user) {
 			if (err)
@@ -83,7 +95,8 @@ describe("sdk-users", function () {
 			displayName: 'tester user',
 			_password: '1234',
 			_roles: ['user'],
-			_filter: ''
+			_filter: '',
+			organization: 'test-org'
 		};
 		_sdk.dispatch.users.add(user, function (err, user) {
 			if (err)
@@ -111,7 +124,8 @@ describe("sdk-users", function () {
 			displayName: 'tester user',
 			_password: '1234',
 			_roles: ['user'],
-			_filter: ''
+			_filter: '',
+			organization: 'test-org'
 		};
 		_sdk.dispatch.users.add(user, function (err, user) {
 			if (err)
@@ -126,7 +140,8 @@ describe("sdk-users", function () {
 			displayName: 'testing user',
 			_password: '1234',
 			_roles: ['user'],
-			_filter: ''
+			_filter: '',
+			organization: 'test-org'
 		};
 		_sdk.dispatch.users.add(user, function (err, user) {
 			if (err)
@@ -147,13 +162,31 @@ describe("sdk-users", function () {
 		});
 	});
 
+	it("should apply filter on user level", function (done) {
+		var user = {
+			username: 'tester-org',
+			displayName: 'tester user',
+			_password: '1234',
+			_roles: ['user'],
+			_filter: 'test1=test2',
+			organization: 'test-org'
+		};
+		_sdk.dispatch.users.add(user, function (err, user) {
+			if (err)
+				return done(err);
+			expect(user._filter).to.equal('test1=test2');
+			return done(err);
+		});
+	});
+
 	it("should fail updating a non existing user", function (done) {
 		var user = {
 			username: 'tester2',
 			displayName: 'testing user',
 			_password: '1234',
 			_roles: ['user'],
-			_filter: ''
+			_filter: '',
+			organization: 'test-org'
 		};
 		_sdk.dispatch.users.update(user, function (err, user) {
 			if (err)

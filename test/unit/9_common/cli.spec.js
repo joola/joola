@@ -78,7 +78,7 @@ describe("common-cli-arguments", function () {
       });
 
       app.stderr.on('data', function (data) {
-        console.log(data.toString('utf8'));
+        //console.log(data.toString('utf8'));
       });
 
       setTimeout(function () {
