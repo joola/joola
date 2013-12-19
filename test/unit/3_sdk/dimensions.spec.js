@@ -56,6 +56,7 @@ describe("sdk-dimensions", function () {
       name: 'test-dimension-sdk',
       description: 'test-dimension-sdk',
       column: 'test-column',
+      category:'test',
       roles: ['user']
     };
     _sdk.dispatch.dimensions.add(dt, function (err, dimension) {
@@ -73,6 +74,7 @@ describe("sdk-dimensions", function () {
       name: 'test-dimension-sdk',
       description: 'test-dimension-sdk',
       column: 'test-column',
+      category: 'test',
       roles: ['user']
     };
     _sdk.dispatch.dimensions.add(dt, function (err, dimension) {
@@ -100,6 +102,7 @@ describe("sdk-dimensions", function () {
       name: 'test-dimension-sdk',
       description: 'test-dimension-sdk-2',
       column: 'test-column',
+      category:'test',
       roles: ['user']
     };
     _sdk.dispatch.dimensions.update(dt, function (err, dimension) {
