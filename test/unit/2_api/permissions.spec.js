@@ -11,115 +11,99 @@
 var async = require('async');
 
 describe("api-permissions", function () {
-	before(function (done) {
-		var calls = [];
+  before(function (done) {
+    var calls = [];
 
-		var call = function (callback) {
-			joola.config.clear('authentication:permissions:tester-permissions-filter', callback);
-		};
-		calls.push(call);
-		call = function (callback) {
-			joola.config.clear('authentication:permissions:test-permission', callback);
-		};
-		calls.push(call);
+    var call = function (callback) {
+      joola.config.clear('authentication:permissions:tester-permissions-filter', callback);
+    };
+    calls.push(call);
+    call = function (callback) {
+      joola.config.clear('authentication:permissions:test-permission', callback);
+    };
+    calls.push(call);
 
-		async.parallel(calls, done);
-	});
+    async.parallel(calls, done);
+  });
 
-	it("should add a permission", function (done) {
-		var permission = {
-			name: 'test-permission',
-			permissions: []
-		};
-		joola.dispatch.permissions.add(permission, function (err, _permission) {
-			if (err)
-				return done(err);
+  it("should add a permission", function (done) {
+    var permission = {
+      name: 'test-permission'
+    };
+    joola.dispatch.permissions.add(permission, function (err, _permission) {
+      if (err)
+        return done(err);
 
-			expect(_permission).to.be.ok;
-			done();
-		});
-	});
+      expect(_permission).to.be.ok;
+      done();
+    });
+  });
 
-	it("should return a valid list of permissions", function (done) {
-		joola.dispatch.permissions.list(function (err, permissions) {
-			console.log(permissions);
-			return done(err);
-		});
-	});
+  it("should return a valid list of permissions", function (done) {
+    joola.dispatch.permissions.list(function (err, permissions) {
+      return done(err);
+    });
+  });
 
-	it("should fail adding an existing permission", function (done) {
-		var permission = {
-			name: 'test-permission',
-			permissions: []
-		};
-		joola.dispatch.permissions.add(permission, function (err, _permission) {
-			if (err)
-				return done();
+  it("should fail adding an existing permission", function (done) {
+    var permission = {
+      name: 'test-permission'
+    };
+    joola.dispatch.permissions.add(permission, function (err, _permission) {
+      if (err)
+        return done();
 
-			return done(new Error('This should fail'));
-		});
-	});
+      return done(new Error('This should fail'));
+    });
+  });
 
-	it("should fail to add a permission with incomplete details", function (done) {
-		var permission = {
-			name: 'test-permission-missing-details'
-		};
-		joola.dispatch.permissions.add(permission, function (err, _permission) {
-			if (err)
-				return done();
+  it("should fail to add a permission with incomplete details", function (done) {
+    var permission = {
+      name: 'test-permission-missing-details'
+    };
+    joola.dispatch.permissions.add(permission, function (err, _permission) {
+      if (err)
+        return done();
 
-			return done(new Error('This should fail'));
-		});
-	});
+      return done(new Error('This should fail'));
+    });
+  });
 
-	it("should update a permission", function (done) {
-		var permission = {
-			name: 'test-permission',
-			permissions: ['access_system']
-		};
-		joola.dispatch.permissions.update(permission, function (err, _permission) {
-			if (err)
-				return done(err);
-			expect(_permission.permissions.length).to.equal(1);
-			done();
-		});
-	});
+  it("should delete a permission", function (done) {
+    var permission = {
+      name: 'test-permission'
+    };
+    joola.dispatch.permissions.delete(permission, function (err) {
+      if (err)
+        return done(err);
 
-	it("should delete a permission", function (done) {
-		var permission = {
-			name: 'test-permission'
-		};
-		joola.dispatch.permissions.delete(permission , function (err) {
-			if (err)
-				return done(err);
+      joola.dispatch.permissions.list(function (err, permissions) {
+        if (err)
+          return done(err);
 
-			joola.dispatch.permissions.list(function (err, permissions) {
-				if (err)
-					return done(err);
+        var exist = _.filter(permissions, function (item) {
+          return item.name == 'test-permission';
+        });
+        try {
+          expect(exist.length).to.equal(0);
+          done();
+        }
+        catch (ex) {
+          done(ex);
+        }
+      });
+    });
+  });
 
-				var exist = _.filter(permissions, function (item) {
-					return item.name == 'test-permission';
-				});
-				try {
-					expect(exist.length).to.equal(0);
-					done();
-				}
-				catch (ex) {
-					done(ex);
-				}
-			});
-		});
-	});
+  it("should fail deleting a non existing permission", function (done) {
+    var permission = {
+      name: 'test-permission-notexist'
+    };
+    joola.dispatch.permissions.delete(permission, function (err) {
+      if (err)
+        return done();
 
-	it("should fail deleting a non existing permission", function (done) {
-		var permission = {
-			name: 'test-permission-notexist'
-		};
-		joola.dispatch.permissions.delete(permission, function (err) {
-			if (err)
-				return done();
-
-			return done(new Error('This should fail'));
-		});
-	});
+      return done(new Error('This should fail'));
+    });
+  });
 });

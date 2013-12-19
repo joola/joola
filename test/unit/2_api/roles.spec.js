@@ -42,7 +42,6 @@ describe("api-roles", function () {
 
 	it("should return a valid list of roles", function (done) {
 		joola.dispatch.roles.list(function (err, roles) {
-			console.log(roles);
 			return done(err);
 		});
 	});
