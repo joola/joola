@@ -58,7 +58,9 @@
     "mongo-col": "https://github.com/Raynos/mongo-col/tarball/master",
     "mongo-stream": "*",
     "mongodb": "*",
-    "htpasswd": "*"
+    "htpasswd": "*",
+    "moment": "*",
+    "twix": "*"
   },
   "devDependencies": {
     "jsdox": "https://github.com/itayw/jsdox/tarball/master",
