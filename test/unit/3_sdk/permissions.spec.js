@@ -36,8 +36,7 @@ describe("sdk-permissions", function () {
 
 	it("should add a permission", function (done) {
 		var permission = {
-			name: 'test-permission',
-			permissions: []
+			name: 'test-permission'
 		};
 		_sdk.dispatch.permissions.add(permission, function (err, _permission) {
 			if (err)
@@ -56,8 +55,7 @@ describe("sdk-permissions", function () {
 
 	it("should fail adding an existing permission", function (done) {
 		var permission = {
-			name: 'test-permission',
-			permissions: []
+			name: 'test-permission'
 		};
 		_sdk.dispatch.permissions.add(permission, function (err, _permission) {
 			if (err)
@@ -79,19 +77,6 @@ describe("sdk-permissions", function () {
 		});
 	});
 
-	it("should update a permission", function (done) {
-		var permission = {
-			name: 'test-permission',
-			permissions: ['access_system']
-		};
-		_sdk.dispatch.permissions.update(permission, function (err, _permission) {
-			if (err)
-				return done(err);
-			expect(_permission.permissions.length).to.equal(1);
-			done();
-		});
-	});
-
 	it("should delete a permission", function (done) {
 		var permission = {
 			name: 'test-permission'
@@ -104,7 +89,6 @@ describe("sdk-permissions", function () {
 				if (err)
 					return done(err);
 
-				console.log(permissions);
 				var exist = _.filter(permissions, function (item) {
 					return item.name == 'test-permission';
 				});

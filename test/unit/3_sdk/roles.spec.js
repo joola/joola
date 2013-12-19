@@ -104,7 +104,6 @@ describe("sdk-roles", function () {
 				if (err)
 					return done(err);
 
-				console.log(roles);
 				var exist = _.filter(roles, function (item) {
 					return item.name == 'test-role';
 				});
