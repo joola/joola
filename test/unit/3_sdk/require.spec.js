@@ -28,7 +28,7 @@ describe("sdk-require", function () {
     expect(_sdk.events).to.be.ok;
   });
 
-  xit("should have a valid USER", function () {
+  it("should have a valid USER", function () {
     expect(_sdk.USER).to.be.ok;
   });
 
