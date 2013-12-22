@@ -4,6 +4,7 @@ include layout_head
     form.form-signin(role="form", method="POST", action="/login")
       h2.form-signin-heading Please sign in
       h4.form-error #{error}
+      input(id="redirect", name="redirect", type="hidden", value="#{redirect}")
       input.form-control(id="email", name="email", type="text", placeholder="Email address", required="true", autofocus="true")
       input.form-control(id="password", name="password", type="password", placeholder="Password", required="true")
 
