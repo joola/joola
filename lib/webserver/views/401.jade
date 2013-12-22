@@ -1,8 +1,9 @@
-html
-  body
-    p Authentication error:
+include layout_head
+  div.container
+    h2.form-signin-heading Unauthorized.
     p #{error}
     p !{stack}
 
+include layout_footer
 
 //FOR TEST - 401
