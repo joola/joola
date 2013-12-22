@@ -1,0 +1,23 @@
+include ../head.jade
+body
+  #wrapper
+    include ../layout_navbar
+
+    #page-wrapper
+      .row
+        .col-lg-12
+          h1
+            | Dashboard&nbsp;
+            small Statistics Overview
+          ol.breadcrumb
+            li.active
+              i.fa.fa-dashboard
+              | &nbsp;Dashboard
+          .alert.alert-success.alert-dismissable
+            button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
+            | Welcome to SB Admin by
+            a.alert-link(href='http://startbootstrap.com') Start Bootstrap
+            | ! Feel free to use this template for your admin needs! We are using a few different plugins to handle the dynamic tables and charts, so make sure you check out the necessary documentation links provided.
+
+  include ../footer.jade
+            
