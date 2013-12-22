@@ -1,6 +1,119 @@
-#sidebar-left.col-sm-1
-  .nav-collapse.sidebar-nav.collapse.navbar-collapse.bs-navbar-collapse
-    ul.nav.nav-tabs.nav-stacked.main-menu
-      sidebar
-a#main-menu-toggle.hidden-xs.open
-  i.fa.fa-bars
+.collapse.navbar-collapse.navbar-ex1-collapse
+  ul.nav.navbar-nav.side-nav
+    sidebar
+ 
+    li.dropdown
+      a.dropdown-toggle(href='#', data-toggle='dropdown')
+        i.fa.fa-caret-square-o-down
+        |  Dropdown
+        b.caret
+      ul.dropdown-menu
+        li
+          a(href='#')  Dropdown Item
+        li
+          a(href='#')  Another Item
+        li
+          a(href='#')  Third Item
+        li
+          a(href='#')  Last Item
+  ul.nav.navbar-nav.navbar-right.navbar-user
+    li.dropdown.messages-dropdown
+      a.dropdown-toggle(href='#', data-toggle='dropdown')
+        i.fa.fa-envelope
+        |  Messages 
+        span.badge 7 
+        b.caret
+      ul.dropdown-menu
+        li.dropdown-header  7 New Messages 
+        li.message-preview
+          a(href='#')
+            span.avatar
+              img(src='http://placehold.it/50x50')
+            span.name John Smith:
+            span.message Hey there, I wanted to ask you something...
+            span.time
+              i.fa.fa-clock-o
+              | 4:34 PM
+        li.divider
+        li.message-preview
+          a(href='#')
+            span.avatar
+              img(src='http://placehold.it/50x50')
+            span.name John Smith:
+            span.message Hey there, I wanted to ask you something...
+            span.time
+              i.fa.fa-clock-o
+              | 4:34 PM
+        li.divider
+        li.message-preview
+          a(href='#')
+            span.avatar
+              img(src='http://placehold.it/50x50')
+            span.name John Smith:
+            span.message Hey there, I wanted to ask you something...
+            span.time
+              i.fa.fa-clock-o
+              | 4:34 PM
+        li.divider
+        li
+          a(href='#')
+            | View Inbox
+            span.badge 7
+    li.dropdown.alerts-dropdown
+      a.dropdown-toggle(href='#', data-toggle='dropdown')
+        i.fa.fa-bell
+        |  Alerts 
+        span.badge  3 
+        b.caret
+      ul.dropdown-menu
+        li
+          a(href='#')
+            | Default
+            span.label.label-default Default
+        li
+          a(href='#')
+            | Primary
+            span.label.label-primary Primary
+        li
+          a(href='#')
+            | Success
+            span.label.label-success Success
+        li
+          a(href='#')
+            | Info
+            span.label.label-info Info
+        li
+          a(href='#')
+            | Warning
+            span.label.label-warning Warning
+        li
+          a(href='#')
+            | Danger
+            span.label.label-danger Danger
+        li.divider
+        li
+          a(href='#') View All
+    li.dropdown.user-dropdown
+      a.dropdown-toggle(href='#', data-toggle='dropdown')
+        i.fa.fa-user
+        |  John Smith 
+        b.caret
+      ul.dropdown-menu
+        li
+          a(href='#')
+            i.fa.fa-user
+            | Profile
+        li
+          a(href='#')
+            i.fa.fa-envelope
+            | Inbox
+            span.badge 7
+        li
+          a(href='#')
+            i.fa.fa-gear
+            | Settings
+        li.divider
+        li
+          a(href='#')
+            i.fa.fa-power-off
+            | Log Out    
