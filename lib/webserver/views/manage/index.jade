@@ -1,23 +1,93 @@
-include ../head.jade
+include layout_head
 body
   #wrapper
-    include ../layout_navbar
-
+    include layout_navbar
     #page-wrapper
       .row
         .col-lg-12
-          h1
+          h1.page-caption
             | Dashboard&nbsp;
-            small Statistics Overview
-          ol.breadcrumb
+            small overview of joola.io
+          //ol.breadcrumb
             li.active
               i.fa.fa-dashboard
-              | &nbsp;Dashboard
+              |  Dashboard
           .alert.alert-success.alert-dismissable
             button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
-            | Welcome to SB Admin by
+            | &nbsp;Welcome to SB Admin by&nbsp;
             a.alert-link(href='http://startbootstrap.com') Start Bootstrap
             | ! Feel free to use this template for your admin needs! We are using a few different plugins to handle the dynamic tables and charts, so make sure you check out the necessary documentation links provided.
-
-  include ../footer.jade
+      .row
+        .col-lg-2
+          .panel.panel-info
+            .panel-heading
+              .row
+                .col-xs-6
+                  i.fa.fa-bug.fa-5x
+                .col-xs-6.text-right
+                  p.announcement-heading 456
+                  p.announcement-text Auth failures
+        .col-lg-2
+          .panel.panel-info
+            .panel-heading
+              .row
+                .col-xs-6
+                  i.fa.fa-bolt.fa-5x
+                .col-xs-6.text-right
+                  p.announcement-heading 80%
+                  p.announcement-text Cache hits
+        .col-lg-2
+          .panel.panel-info
+            .panel-heading
+              .row
+                .col-xs-6
+                  i.fa.fa-comments.fa-5x
+                .col-xs-6.text-right
+                  p.announcement-heading 456
+                  p.announcement-text New Mentions!
+        .col-lg-6
+          .panel.panel-primary
+            .panel-heading
+              h3.panel-title
+                i.fa.fa-clock-o
+                |  Recent Exceptions
+            .panel-body
+              .list-group
+                a.list-group-item(href='#')
+                  span.badge just now
+                  i.fa.fa-calendar
+                  |  Calendar updated
+                a.list-group-item(href='#')
+                  span.badge 4 minutes ago
+                  i.fa.fa-comment
+                  |  Commented on a post
+                a.list-group-item(href='#')
+                  span.badge 23 minutes ago
+                  i.fa.fa-truck
+                  |  Order 392 shipped
+                a.list-group-item(href='#')
+                  span.badge 46 minutes ago
+                  i.fa.fa-money
+                  |  Invoice 653 has been paid
+                a.list-group-item(href='#')
+                  span.badge 1 hour ago
+                  i.fa.fa-user
+                  |  A new user has been added
+                a.list-group-item(href='#')
+                  span.badge 2 hours ago
+                  i.fa.fa-check
+                  |  Completed task: "pick up dry cleaning"
+                a.list-group-item(href='#')
+                  span.badge yesterday
+                  i.fa.fa-globe
+                  |  Saved the world
+                a.list-group-item(href='#')
+                  span.badge two days ago
+                  i.fa.fa-check
+                  |  Completed task: "fix error on sales page"
+              .text-right
+                a(href='#')
+                  | View All Logs
+                  i.fa.fa-arrow-circle-right
+  include layout_footer
             

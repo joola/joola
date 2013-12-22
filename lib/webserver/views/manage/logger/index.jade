@@ -1,8 +1,13 @@
-include ../../layout_head
+include ../layout_head
 body
   #wrapper
-    include ../../layout_navbar
+    include ../layout_navbar
     #page-wrapper
+      .row
+        .col-lg-12
+          h1.page-caption
+            | Logs&nbsp;
+            small dig through the inner happenings of joola.io
       .row
         #content.col-sm-11
           .row
@@ -28,9 +33,6 @@ body
                       td {{l.level}}
                       td {{l.pid}}
                       td {{l.msg}}
-                    
-            
-        
       #myModal.modal.fade
         .modal-dialog
           .modal-content
@@ -44,5 +46,5 @@ body
               button.btn.btn-primary(type='button') Save changes
     .clearfix
   
-  include ../../layout_footer
+  include ../layout_footer
   script(src="/js/lib/logger.js")
