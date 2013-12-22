@@ -13,14 +13,14 @@
           li.dropdown
             a.btn.dropdown-toggle(data-toggle='dropdown', href='index.html#')
               i.halflings.user.white
-              |  USERNAME 
+              | &nbsp;#{user.displayName}&nbsp;
               span.caret
             ul.dropdown-menu
               li
-                a(href='index.html#')
+                a(href='index.html')
                   i.halflings.user.white
                   | Profile
               li
-                a(href='login.html')
+                a(href='/logout')
                   i.halflings.off.white
                   | Logout

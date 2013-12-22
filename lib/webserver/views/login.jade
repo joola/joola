@@ -1,5 +1,12 @@
-html
-  head
-    title Login
-  body
-    p Login
+include layout_head
+
+  div.container
+    form.form-signin(role="form", method="POST", action="/login")
+      h2.form-signin-heading Please sign in
+      h4.form-error #{error}
+      input.form-control(id="email", name="email", type="text", placeholder="Email address", required="true", autofocus="true")
+      input.form-control(id="password", name="password", type="password", placeholder="Password", required="true")
+
+      button.btn.btn-lg.btn-primary.btn-block(type="submit") Sign in
+
+include layout_footer
