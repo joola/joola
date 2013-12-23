@@ -1,3 +1,12 @@
 h1.page-caption {
   margin-top: 0;
 }
+
+.announcement-text
+{
+  font-weight: 700;
+  text-transform: uppercase;
+
+  float:right;
+  margin-right:20px;
+}
