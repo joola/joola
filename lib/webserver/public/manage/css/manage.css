@@ -10,3 +10,7 @@ h1.page-caption {
   float:right;
   margin-right:20px;
 }
+
+.dashboard-chart{
+  height:235px;
+}
