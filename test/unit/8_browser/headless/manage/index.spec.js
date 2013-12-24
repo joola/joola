@@ -15,7 +15,7 @@ var
 describe('browser-manage-index', function () {
 	it('should load the index page', function (done) {
 		var browser = new Browser({silent: true});
-		browser.visit("http://localhost:" + joola.config.interfaces.webserver.port + '/manage/index', function () {
+		browser.visit("http://localhost:" + joola.config.interfaces.webserver.port + '/manage/dashboard/index', function () {
 			expect(browser.text("title")).to.equal('joola.io Management Portal');
 			done();
 		});
@@ -31,7 +31,7 @@ describe('browser-manage-index', function () {
 
 	it('check that we have a valid username', function (done) {
 		var browser = new Browser({silent: true});
-		browser.visit("http://localhost:" + joola.config.interfaces.webserver.port + '/manage/index', function () {
+		browser.visit("http://localhost:" + joola.config.interfaces.webserver.port + '/manage/dashboard/index', function () {
 			var expected = 'USERNAME';
 			var actual = browser.text('.btn.dropdown-toggle');
 			expect(actual).to.equal(expected);

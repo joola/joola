@@ -1,0 +1,153 @@
+block variables
+  title = "joola.io - manage"
+include ../layout_head
+body
+  #wrapper
+    include ../layout_navbar
+    #page-wrapper
+      .row
+        .col-lg-12
+          h1.page-caption
+            | Dashboard&nbsp;
+            small overview of joola.io
+          ol.breadcrumb
+            li
+              a(href="/manage/dashboard/index")
+                i.fa.fa-dashboard
+                | &nbsp;Dashboard
+            li.active
+              i.fa.fa-circle-o
+              | &nbsp;Overview
+          .alert.alert-success
+            //button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
+            | Welcome to joola.io management console.
+            | The management console gathers all required monitors, tools, configuration and more needed to operate the system.
+            | To learn more about the management console, check out our&nbsp;
+            a(href="#wiki") wiki
+            | .
+      .row
+        .col-lg-3
+          .panel.panel-danger
+            .panel-heading
+              .row
+                .col-xs-5
+                  i.fa.fa-tasks.fa-5x
+                .col-xs-7.text-right
+                  p.announcement-heading.manage-dashboard-metric-load --
+                p.announcement-text System Load
+            a(href="#")
+              .panel-footer.announcement-bottom
+                .row
+                  .col-xs-8 View Nodes
+                  .col-xs-4.text-right
+                    i.fa.fa-arrow-circle-right
+        .col-lg-3
+          .panel.panel-success
+            .panel-heading
+              .row
+                .col-xs-5
+                  i.fa.fa-bullseye.fa-5x
+                .col-xs-7.text-right
+                  p.announcement-heading 80%
+                p.announcement-text Cache hits
+            a(href="#")
+              .panel-footer.announcement-bottom
+                .row
+                  .col-xs-8 Cache Management
+                  .col-xs-4.text-right
+                    i.fa.fa-arrow-circle-right
+        .col-lg-3
+          .panel.panel-warning
+            .panel-heading
+              .row
+                .col-xs-5
+                  i.fa.fa-bolt.fa-5x
+                .col-xs-7.text-right
+                  p.announcement-heading 1.4
+                p.announcement-text Query time (sec)
+            a(href="#")
+              .panel-footer.announcement-bottom
+                .row
+                  .col-xs-8 View Query Stats
+                  .col-xs-4.text-right
+                    i.fa.fa-arrow-circle-right
+        .col-lg-3
+          .panel.panel-info
+            .panel-heading
+              .row
+                .col-xs-5
+                  i.fa.fa-signal.fa-5x
+                .col-xs-7.text-right
+                  p.announcement-heading 61
+                p.announcement-text Events/second
+            a(href="#")
+              .panel-footer.announcement-bottom
+                .row
+                  .col-xs-8 Events Stats
+                  .col-xs-4.text-right
+                    i.fa.fa-arrow-circle-right
+      .row
+        .col-lg-12
+          .panel.panel-primary
+            .panel-heading
+              h3.panel-title
+                i.fa.fa-bar-chart-o &nbsp;System Load Statistics for past 1 day
+            .panel-body
+              div.dashboard-chart(id="dashboard-chart")
+
+      .row
+        .col-lg-4
+          .panel.panel-primary
+            .panel-heading
+              h3.panel-title
+                i.fa.fa-clock-o
+                | &nbsp;Recent cache misses
+            .panel-body
+              .list-group
+                a.list-group-item(href='#')
+                  span.badge just now
+                  i.fa.fa-calendar
+                  | &nbsp;Calendar updated
+              .text-right
+                a(href='#')
+                  | &nbsp;View All Tokens&nbsp;
+                  i.fa.fa-arrow-circle-right
+
+        .col-lg-4
+          .panel.panel-primary
+            .panel-heading
+              h3.panel-title
+                i.fa.fa-clock-o
+                | &nbsp;Recent logins
+            .panel-body
+              .list-group
+                a.list-group-item(href='#')
+                  span.badge just now
+                  i.fa.fa-calendar
+                  | &nbsp;Calendar updated
+              .text-right
+                a(href='#')
+                  | &nbsp;View All Tokens&nbsp;
+                  i.fa.fa-arrow-circle-right
+
+        .col-lg-4
+          .panel.panel-primary
+            .panel-heading
+              h3.panel-title
+                i.fa.fa-clock-o
+                | &nbsp;Recent exceptions
+            .panel-body
+              .list-group
+                a.list-group-item(href='#')
+                  span.badge just now
+                  i.fa.fa-calendar
+                  | &nbsp;Calendar updated
+              .text-right
+                a(href='#')
+                  | &nbsp;View All Tokens&nbsp;
+                  i.fa.fa-arrow-circle-right
+  include ../layout_footer
+  script.
+    $(window).on('page-ready',function(){
+      dashboard_setup();
+    })

@@ -1,24 +1,27 @@
 block variables
   title = "joola.io - manage"
-include layout_head
+include ../layout_head
 body
   #wrapper
-    include layout_navbar
+    include ../layout_navbar
     #page-wrapper
       .row
         .col-lg-12
           h1.page-caption
-            | Dashboard&nbsp;
-            small overview of joola.io
-          //ol.breadcrumb
+            | System Performance&nbsp;
+            small Nodes' performance and load
+          ol.breadcrumb
+            li
+              a(href="/manage/dashboard/index")
+                i.fa.fa-dashboard
+                | &nbsp;Dashboard
             li.active
-              i.fa.fa-dashboard
-              |  Dashboard
-          .alert.alert-success
+              i.fa.fa-tasks
+              | &nbsp;System Performance
+          .alert.alert-info
             //button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
-            | Welcome to joola.io management console.
-            | The management console gathers all required monitors, tools, configuration and more needed to operate the system.
-            | To learn more about the management console, check out our&nbsp;
+            | The System Performance view displays information about all participating nodes.
+            | For each node, you'll see a detailed breakdown of performance KPIs. To learn more about System Performance, check out our&nbsp;
             a(href="#wiki") wiki
             | .
       .row
@@ -142,5 +145,5 @@ body
                 a(href='#')
                   | &nbsp;View All Tokens&nbsp;
                   i.fa.fa-arrow-circle-right
-  include layout_footer
+  include ../layout_footer
             

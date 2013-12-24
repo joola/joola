@@ -6,8 +6,19 @@ body
       .row
         .col-lg-12
           h1.page-caption
-            | Logs&nbsp;
-            small dig through the inner happenings of joola.io
+            | Logs and Alerts&nbsp;
+            small
+          ol.breadcrumb
+            li.active
+              a(href="/manage/dashboard/index")
+                i.fa.fa-dashboard
+                | &nbsp;Logs and Alerts
+          .alert.alert-info
+            //button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
+            | The System Logs and Alerts view shows all logged events within the system.
+            | You can filter events by time period and other criteria. To learn more about this view, check out our&nbsp;
+            a(href="#wiki") wiki
+            | .
       .row
         #content.col-sm-11
           .row
