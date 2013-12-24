@@ -26,6 +26,15 @@ body
             | .
       .row
         .col-lg-3
+          .panel.panel-success
+            .panel-heading
+              .row
+                .col-xs-5
+                  i.fa.fa-power-off.fa-5x
+                .col-xs-7.text-right
+                  p.announcement-heading.manage-dashboard-metric-nodes --
+                p.announcement-text Nodes
+        .col-lg-3
           .panel.panel-danger
             .panel-heading
               .row
@@ -34,42 +43,6 @@ body
                 .col-xs-7.text-right
                   p.announcement-heading.manage-dashboard-metric-load --
                 p.announcement-text System Load
-            a(href="#")
-              .panel-footer.announcement-bottom
-                .row
-                  .col-xs-8 View Nodes
-                  .col-xs-4.text-right
-                    i.fa.fa-arrow-circle-right
-        .col-lg-3
-          .panel.panel-success
-            .panel-heading
-              .row
-                .col-xs-5
-                  i.fa.fa-bullseye.fa-5x
-                .col-xs-7.text-right
-                  p.announcement-heading 80%
-                p.announcement-text Cache hits
-            a(href="#")
-              .panel-footer.announcement-bottom
-                .row
-                  .col-xs-8 Cache Management
-                  .col-xs-4.text-right
-                    i.fa.fa-arrow-circle-right
-        .col-lg-3
-          .panel.panel-warning
-            .panel-heading
-              .row
-                .col-xs-5
-                  i.fa.fa-bolt.fa-5x
-                .col-xs-7.text-right
-                  p.announcement-heading 1.4
-                p.announcement-text Query time (sec)
-            a(href="#")
-              .panel-footer.announcement-bottom
-                .row
-                  .col-xs-8 View Query Stats
-                  .col-xs-4.text-right
-                    i.fa.fa-arrow-circle-right
         .col-lg-3
           .panel.panel-info
             .panel-heading
@@ -77,14 +50,18 @@ body
                 .col-xs-5
                   i.fa.fa-signal.fa-5x
                 .col-xs-7.text-right
-                  p.announcement-heading 61
-                p.announcement-text Events/second
-            a(href="#")
-              .panel-footer.announcement-bottom
-                .row
-                  .col-xs-8 Events Stats
-                  .col-xs-4.text-right
-                    i.fa.fa-arrow-circle-right
+                  p.announcement-heading.manage-dashboard-metric-events --
+                p.announcement-text Events
+        .col-lg-3
+          .panel.panel-warning
+            .panel-heading
+              .row
+                .col-xs-5
+                  i.fa.fa-lock.fa-5x
+                .col-xs-7.text-right
+                  p.announcement-heading.manage-dashboard-metric-event-loop-blocks --
+                p.announcement-text Event-loop-blocks
+
       .row
         .col-lg-12
           .panel.panel-primary
@@ -146,4 +123,7 @@ body
                   | &nbsp;View All Tokens&nbsp;
                   i.fa.fa-arrow-circle-right
   include ../layout_footer
-            
+  script.
+    $(window).on('page-ready',function(){
+      nodes_setup();
+    })
