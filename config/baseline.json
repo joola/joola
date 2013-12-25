@@ -127,14 +127,21 @@
       "admin": {
         "username": "admin",
         "_password": "password",
-        "_roles": ["admin","user"],
-        "displayName": ["Administrator"]
+        "_roles": ["admin", "user"],
+        "displayName": "Administrator",
+        "organization": "joola"
       },
       "demo": {
         "username": "demo",
         "_password": "password",
         "_roles": ["user"],
-        "displayName": ["demo user"]
+        "displayName": "demo user",
+        "organization": "joola"
+      }
+    },
+    "organizations": {
+      "joola": {
+        "name": "joola"
       }
     }
   }
