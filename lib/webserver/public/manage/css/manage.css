@@ -14,3 +14,44 @@ h1.page-caption {
 .dashboard-chart{
   height:235px;
 }
+
+dl{
+  margin-top:0;
+}
+
+.has-switch
+{
+  min-width: 60px;
+}
+
+.dl-horizontal dt {
+  padding-top:8px;
+  float: left;
+  width: auto;
+  clear: both;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dl-horizontal dd {
+  margin-left: auto;
+  float: right;
+}
+
+
+.dl-horizontal dd:not(:first-child) {
+  margin-top:5px;
+}
+
+
+.btn-terminate{
+  margin-top:10px;
+  width:100%
+}
+
+.flot-chart-moving-line, .morris-chart-donut{
+  margin:0;
+  height:100px;
+}
