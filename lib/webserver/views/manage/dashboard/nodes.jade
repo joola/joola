@@ -62,66 +62,49 @@ body
                   p.announcement-heading.manage-dashboard-metric-event-loop-blocks --
                 p.announcement-text Event-loop-blocks
 
-      .row
-        .col-lg-12
+      .row.nodelist
+        .col-lg-3.template-node.nodeitem.hidden
           .panel.panel-primary
             .panel-heading
               h3.panel-title
-                i.fa.fa-bar-chart-o &nbsp;System Load Statistics for past 1 day
+                i.fa.fa-power-off.node-caption &nbsp;ITAY-OFFICE:abcd1234
             .panel-body
-              div.dashboard-chart(id="dashboard-chart")
+              .row
+                .col-lg-8
+                  dl
+                    dt LAST SEEN
+                    dd.node-uptime ---
+                    dt CPU
+                    dd.node-cpu ---
+                    dt MEMORY
+                    dd.node-memory ---
+                .col-lg-4
+                  .row
+                    .col-lg-12
+                      button.btn.btn-danger.btn-terminate(type="button") Terminate
+                  .row
+                    .col-lg-12
+                      div.flot-chart-moving-line
 
-      .row
-        .col-lg-4
-          .panel.panel-primary
-            .panel-heading
-              h3.panel-title
-                i.fa.fa-clock-o
-                | &nbsp;Recent cache misses
-            .panel-body
-              .list-group
-                a.list-group-item(href='#')
-                  span.badge just now
-                  i.fa.fa-calendar
-                  | &nbsp;Calendar updated
-              .text-right
-                a(href='#')
-                  | &nbsp;View All Tokens&nbsp;
-                  i.fa.fa-arrow-circle-right
+                  //dl.dl-horizontal
+                    dt Online
+                    dd
+                      input.switch-small(id="animated-switch", type="checkbox", checked="true", data-on="success" data-off="danger")
+                    dt Web Server
+                      dd
+                        input.switch-small(id="animated-switch", type="checkbox", checked="true", data-on="success" data-off="danger")
+                    dt Dispatch
+                      dd
+                        input.switch-small(id="animated-switch", type="checkbox", checked="true", data-on="success" data-off="danger")
+              div.clearfix
+              .row
 
-        .col-lg-4
-          .panel.panel-primary
-            .panel-heading
-              h3.panel-title
-                i.fa.fa-clock-o
-                | &nbsp;Recent logins
-            .panel-body
-              .list-group
-                a.list-group-item(href='#')
-                  span.badge just now
-                  i.fa.fa-calendar
-                  | &nbsp;Calendar updated
-              .text-right
-                a(href='#')
-                  | &nbsp;View All Tokens&nbsp;
-                  i.fa.fa-arrow-circle-right
+                //.col-lg-4
+                //  div.morris-chart-donut(id="morris-chart-donut")
 
-        .col-lg-4
-          .panel.panel-primary
-            .panel-heading
-              h3.panel-title
-                i.fa.fa-clock-o
-                | &nbsp;Recent exceptions
-            .panel-body
-              .list-group
-                a.list-group-item(href='#')
-                  span.badge just now
-                  i.fa.fa-calendar
-                  | &nbsp;Calendar updated
-              .text-right
-                a(href='#')
-                  | &nbsp;View All Tokens&nbsp;
-                  i.fa.fa-arrow-circle-right
+
+
+
   include ../layout_footer
   script.
     $(window).on('page-ready',function(){
