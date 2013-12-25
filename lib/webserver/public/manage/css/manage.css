@@ -2,30 +2,29 @@ h1.page-caption {
   margin-top: 0;
 }
 
-.announcement-text
-{
+.announcement-text {
   font-weight: 700;
   text-transform: uppercase;
 
-  float:right;
-  margin-right:20px;
+  float: right;
+  margin-right: 20px;
 }
 
-.dashboard-chart{
-  height:235px;
+.dashboard-chart {
+  height: 235px;
 }
 
-dl{
-  margin-top:0;
+dl {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
-.has-switch
-{
+.has-switch {
   min-width: 60px;
 }
 
 .dl-horizontal dt {
-  padding-top:8px;
+  padding-top: 8px;
   float: left;
   width: auto;
   clear: both;
@@ -40,18 +39,21 @@ dl{
   float: right;
 }
 
-
 .dl-horizontal dd:not(:first-child) {
-  margin-top:5px;
+  margin-top: 5px;
 }
 
-
-.btn-terminate{
-  margin-top:10px;
-  width:100%
+.btn-terminate {
+  margin-top: 10px;
+  width: 100%
 }
 
-.flot-chart-moving-line, .morris-chart-donut{
-  margin:0;
-  height:100px;
+.flot-chart-moving-line, .morris-chart-donut {
+  margin: 0;
+  height: 50px;
+}
+
+.panel-heading-danger {
+  background-color: #a94442 !important;
+  border-color: #ebccd1 !important;
 }
