@@ -62,23 +62,30 @@ body
                   p.announcement-heading.manage-dashboard-metric-event-loop-blocks --
                 p.announcement-text Event-loop-blocks
 
-      .row.template
-        .col-lg-3
+      .row.nodelist
+        .col-lg-3.template-node.nodeitem.hidden
           .panel.panel-primary
             .panel-heading
               h3.panel-title
-                i.fa.fa-power-off &nbsp;ITAY-OFFICE:abcd1234
+                i.fa.fa-power-off.node-caption &nbsp;ITAY-OFFICE:abcd1234
             .panel-body
               .row
-                .col-lg-7
+                .col-lg-8
                   dl
-                    dt UPTIME
-                    dd 1 day, 2 hours, 23 minutes
+                    dt LAST SEEN
+                    dd.node-uptime ---
+                    dt CPU
+                    dd.node-cpu ---
+                    dt MEMORY
+                    dd.node-memory ---
+                .col-lg-4
+                  .row
+                    .col-lg-12
+                      button.btn.btn-danger.btn-terminate(type="button") Terminate
+                  .row
+                    .col-lg-12
+                      div.flot-chart-moving-line
 
-                  div.clearfix
-                  button.btn.btn-danger.btn-terminate(type="button") Terminate
-                .col-lg-5
-                  div.morris-chart-donut(id="morris-chart-donut")
                   //dl.dl-horizontal
                     dt Online
                     dd
@@ -91,8 +98,9 @@ body
                         input.switch-small(id="animated-switch", type="checkbox", checked="true", data-on="success" data-off="danger")
               div.clearfix
               .row
-                .col-lg-12
-                  div.flot-chart-moving-line(id="flot-chart-moving-line")
+
+                //.col-lg-4
+                //  div.morris-chart-donut(id="morris-chart-donut")
 
 
 
