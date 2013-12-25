@@ -1,0 +1,120 @@
+include ../layout_head
+body
+  #wrapper
+    include ../layout_navbar
+    #page-wrapper(ng-controller="userCtrl")
+      .row
+        .col-lg-12
+          h1.page-caption
+            | Logs and Alerts&nbsp;
+            small
+          ol.breadcrumb
+            li.active
+              a(href="/manage/dashboard/index")
+                i.fa.fa-dashboard
+                | &nbsp;Logs and Alerts
+          .alert.alert-info
+            //button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
+            | The System Logs and Alerts view shows all logged events within the system.
+            | You can filter events by time period and other criteria. To learn more about this view, check out our&nbsp;
+            a(href="#wiki") wiki
+            | .
+      .row
+        button#addUserBtn.btn.btn-default Add user
+        #content.col-sm-11
+          .row
+            .col-lg-12
+              div#log
+                table.table.table-striped
+                  thead
+                    th Username
+                    th Display name
+                    th Roles
+                    th Permissions
+                    th Organization
+                    th Auth store
+                    th Last login
+                    th Login count
+                    th Operations
+                  tbody#logtbody
+                    tr(ng-repeat="user in list")
+                      td {{user.username || 'N\\A'}}
+                      td {{user.displayName || 'N\\A'}}
+                      td {{user._roles || 'N\\A'}}
+                      td {{user._filter || 'N\\A'}}
+                      td {{user.organization || 'N\\A'}}
+                      td {{user.store || 'N\\A'}}
+                      td {{user.lastlogin || 'N\\A'}}
+                      td {{user.logincount || 'N\\A'}}
+                      td
+                        a(href="#", id="editUser", ng-click="userEdit(user.username)") Edit
+      #editUserDialog.modal.fade
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+              h4.modal-title 
+            .modal-body
+              form#editUserForm(role="form")
+                .form-group
+                  label(for="username") Username
+                  input.form-control(type="text", name="username", id="username", disabled="disabled")
+                .form-group
+                  label(for="displayname") Display Name
+                  input.form-control(type="text", name="displayName", id="displayname")
+                .form-group
+                  label(for="roles") Roles
+                  input.form-control(type="text", name="_roles", id="roles")
+                .form-group
+                  label(for="permissions") Permissions
+                  input.form-control(type="text", name="_filter", id="permissions")
+                .form-group
+                  label(for="organization") Organization
+                  input.form-control(type="text", name="organization",  id="organization")
+                .form-group
+                  label(for="store") Auth store
+                  input.form-control(type="text", name="store", id="store")
+
+            .modal-footer
+              .spinner
+                .cube1
+                .cube2
+              button.btn.btn-default(type='button', data-dismiss='modal') Close
+              button.btn.btn-primary(type='button', ng-click="updateUser()") Save changes
+
+      #addUserDialog.modal.fade
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+              h4.modal-title Add a new user
+            .modal-body
+              form#editUserForm(role="form")
+                .form-group
+                  label(for="add_username") Username
+                  input.form-control(type="text", name="add_username", id="add_username")
+                .form-group
+                  label(for="add_displayname") Display Name
+                  input.form-control(type="text", name="add_displayName", id="add_displayname")
+                .form-group
+                  label(for="add_roles") Roles
+                  input.form-control(type="text", name="add__roles", id="add_roles")
+                .form-group
+                  label(for="add_permissions") Permissions
+                  input.form-control(type="text", name="add__filter", id="add_permissions")
+                .form-group
+                  label(for="add_organization") Organization
+                  input.form-control(type="text", name="add_organization",  id="add_organization")
+                .form-group
+                  label(for="add_store") Auth store
+                  input.form-control(type="text", name="add_store", id="add_store")
+
+            .modal-footer
+              .spinner
+                .cube1
+                .cube2
+              button.btn.btn-default(type='button', data-dismiss='modal') Close
+              button.btn.btn-primary(type='button', ng-click="addUser()") Add user
+    .clearfix
+  include ../layout_footer
+  script(src="/js/lib/logger.js")
