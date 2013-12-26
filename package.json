@@ -61,8 +61,10 @@
     "htpasswd": "*",
     "moment": "*",
     "twix": "*",
-    "connect": "~2.12.0",
-    "cookie": "~0.1.0"
+    "connect": "*",
+    "cookie": "*",
+    "JSONStream": "*",
+    "event-stream": "*"
   },
   "devDependencies": {
     "jsdox": "https://github.com/itayw/jsdox/tarball/master",
