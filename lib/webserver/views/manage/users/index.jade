@@ -12,7 +12,7 @@ body
             li.active
               a(href="/manage/dashboard/index")
                 i.fa.fa-dashboard
-                | &nbsp;Logs and Alerts
+                | &nbsp;User management
           .alert.alert-info
             //button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
             | The System Logs and Alerts view shows all logged events within the system.
@@ -20,60 +20,66 @@ body
             a(href="#wiki") wiki
             | .
       .row
-        button#addUserBtn.btn.btn-default Add user
+
         #content.col-sm-11
           .row
             .col-lg-12
-              div#log
-                table.table.table-striped
-                  thead
-                    th Username
-                    th Display name
-                    th Roles
-                    th Permissions
-                    th Organization
-                    th Auth store
-                    th Last login
-                    th Login count
-                    th Operations
-                  tbody#logtbody
-                    tr(ng-repeat="user in list")
-                      td {{user.username || 'N\\A'}}
-                      td {{user.displayName || 'N\\A'}}
-                      td {{user._roles || 'N\\A'}}
-                      td {{user._filter || 'N\\A'}}
-                      td {{user.organization || 'N\\A'}}
-                      td {{user.store || 'N\\A'}}
-                      td {{user.lastlogin || 'N\\A'}}
-                      td {{user.logincount || 'N\\A'}}
-                      td
-                        a(href="#", id="editUser", ng-click="userEdit(user.username)") Edit
+              button#addUserBtn.btn.btn-default(ng-click="prepareAddUser()") Add user
+              
+              table.table.table-striped
+                thead
+                  th Username
+                  th Display name
+                  th Roles
+                  th Permissions
+                  th Organization
+                  th Auth store
+                  th Last login
+                  th Login count
+                  th Operations
+                tbody#logtbody
+                  tr(ng-repeat="user in list")
+                    td {{user.username || 'N\\A'}}
+                    td {{user.displayName || 'N\\A'}}
+                    td
+                      ul
+                        li(ng-repeat="role in user._roles") {{role}} 
+                    td {{user._filter || 'N\\A'}}
+                    td {{user.organization || 'N\\A'}}
+                    td {{user.store || 'N\\A'}}
+                    td {{user.lastlogin || 'N\\A'}}
+                    td {{user.logincount || 'N\\A'}}
+                    td
+                      a(href="#", id="editUser", ng-click="userEdit(user.username)") Edit
       #editUserDialog.modal.fade
         .modal-dialog
           .modal-content
             .modal-header
               button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
-              h4.modal-title 
+              h4.modal-title
             .modal-body
               form#editUserForm(role="form")
                 .form-group
                   label(for="username") Username
-                  input.form-control(type="text", name="username", id="username", disabled="disabled")
+                  input.form-control(type="text", name="username", id="username", value="{{editUsername}}", disabled="disabled")
                 .form-group
                   label(for="displayname") Display Name
-                  input.form-control(type="text", name="displayName", id="displayname")
+                  input.form-control(type="text", name="displayName", value="{{editDisplayName}}", id="displayname")
                 .form-group
                   label(for="roles") Roles
-                  input.form-control(type="text", name="_roles", id="roles")
+                  div.checkbox(ng-repeat="(rolekey,roleval) in editRoles")
+                    label
+                      input(type="checkbox", value="{{rolekey}}")
+                      | {{rolekey}}
                 .form-group
                   label(for="permissions") Permissions
-                  input.form-control(type="text", name="_filter", id="permissions")
+                  input.form-control(type="text", name="_filter", value="{{editPermissions}}", id="permissions")
                 .form-group
                   label(for="organization") Organization
-                  input.form-control(type="text", name="organization",  id="organization")
+                  input.form-control(type="text", name="organization", value="{{editOrganization}}", id="organization")
                 .form-group
                   label(for="store") Auth store
-                  input.form-control(type="text", name="store", id="store")
+                  input.form-control(type="text", name="store", value="{{editStore}}", id="store")
 
             .modal-footer
               .spinner
@@ -89,25 +95,31 @@ body
               button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
               h4.modal-title Add a new user
             .modal-body
-              form#editUserForm(role="form")
+              form#addUserForm(role="form")
                 .form-group
                   label(for="add_username") Username
-                  input.form-control(type="text", name="add_username", id="add_username")
+                  input.form-control(type="text", name="username", id="add_username")
+                .form-group
+                  label(for="add_password") Password
+                  input.form-control(type="text", name="_password", id="add_displayname")
                 .form-group
                   label(for="add_displayname") Display Name
-                  input.form-control(type="text", name="add_displayName", id="add_displayname")
+                  input.form-control(type="text", name="displayName", id="add_displayname")
                 .form-group
-                  label(for="add_roles") Roles
-                  input.form-control(type="text", name="add__roles", id="add_roles")
+                  label(for="roles") Roles
+                  div.checkbox(ng-repeat="(rolekey,roleval) in roleList")
+                    label
+                      input(type="checkbox", name="_roles" value="{{rolekey}}")
+                      | {{rolekey}}
                 .form-group
                   label(for="add_permissions") Permissions
-                  input.form-control(type="text", name="add__filter", id="add_permissions")
+                  input.form-control(type="text", name="_filter", id="add_permissions")
                 .form-group
                   label(for="add_organization") Organization
-                  input.form-control(type="text", name="add_organization",  id="add_organization")
+                  input.form-control(type="text", name="organization",  id="add_organization")
                 .form-group
                   label(for="add_store") Auth store
-                  input.form-control(type="text", name="add_store", id="add_store")
+                  input.form-control(type="text", name="store", id="add_store")
 
             .modal-footer
               .spinner
