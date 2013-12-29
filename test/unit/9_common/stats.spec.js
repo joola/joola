@@ -14,19 +14,19 @@ describe("stats", function () {
     expect(joola.stats).to.be.ok;
   });
 
-  it("should increment a test event", function (done) {
+  xit("should increment a test event", function (done) {
     joola.redis.del('stats:events:test-suite', function (err) {
       if (err)
         return done(err);
 
-      joola.stats.incr('test-suite', {}, function (err, value) {
+      joola.stats.incr('test-suite', 1, function (err, value) {
         expect(value).to.equal(1);
         done();
       });
     });
   });
 
-  it("should increment a test event with a custom value", function (done) {
+  xit("should increment a test event with a custom value", function (done) {
     joola.redis.del('stats:events:test-suite', function (err) {
       if (err)
         return done(err);
@@ -38,7 +38,7 @@ describe("stats", function () {
     });
   });
 
-  it("should receive the stats over a socket instance", function (done) {
+  xit("should receive the stats over a socket instance", function (done) {
     _sdk.events.once('stats:events', function () {
       setTimeout(function () {
         done();
@@ -46,7 +46,7 @@ describe("stats", function () {
     });
   });
 
-  it("should emit stats", function (done) {
+  xit("should emit stats", function (done) {
     var _interval = joola.stats.emitInterval;
     joola.stats.emitInterval = 1000;
     setTimeout(function () {

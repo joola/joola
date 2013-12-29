@@ -122,7 +122,27 @@ describe("sdk-users", function () {
 		});
 	});
 
-	it("should fail adding a user with an already existing username", function (done) {
+  it("should authenticate users with correct credentials", function (done) {
+    _sdk.dispatch.users.authenticate('tester', '1234', function (err, user) {
+      if (err)
+        return done(err);
+      if (!user)
+        return done(new Error('We should have a valid user'));
+      return done();
+    });
+  });
+
+  it("should not authenticate users with incorrect credentials", function (done) {
+    _sdk.dispatch.users.authenticate('tester', '12345', function (err, user) {
+      if (err)
+        return done();
+      if (!user)
+        return done();
+      return done(new Error('This should fail'));
+    });
+  });
+
+  it("should fail adding a user with an already existing username", function (done) {
 		var user = {
 			username: 'tester',
 			displayName: 'tester user',
@@ -194,26 +214,6 @@ describe("sdk-users", function () {
 			if (err)
 				return done();
 
-			return done(new Error('This should fail'));
-		});
-	});
-
-	it("should authenticate users with correct credentials", function (done) {
-		_sdk.dispatch.users.authenticate('tester', '1234', function (err, user) {
-			if (err)
-				return done(err);
-			if (!user)
-				return done(new Error('We should have a valid user'));
-			return done();
-		});
-	});
-
-	it("should not authenticate users with incorrect credentials", function (done) {
-		_sdk.dispatch.users.authenticate('tester', '12345', function (err, user) {
-			if (err)
-				return done();
-			if (!user)
-				return done();
 			return done(new Error('This should fail'));
 		});
 	});
