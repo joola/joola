@@ -14,7 +14,7 @@ var
 
 describe('browser-analytics-index', function () {
 
-	it('should load the index page', function (done) {
+	xit('should load the index page', function (done) {
 		var browser = new Browser({silent: true});
 		browser.visit("http://localhost:" + joola.config.interfaces.webserver.port + '/analytics/index', function () {
 			expect(browser.text("title")).to.equal('joola.io Management Portal');
@@ -22,7 +22,7 @@ describe('browser-analytics-index', function () {
 		});
 	});
 
-	it('should load the 404 page', function (done) {
+	xit('should load the 404 page', function (done) {
 		var browser = new Browser({silent: true});
 		browser.visit("http://localhost:" + joola.config.interfaces.webserver.port + '/analytics/index2', function (err) {
 			expect(browser.text("title")).to.equal('Page not found');
@@ -30,7 +30,7 @@ describe('browser-analytics-index', function () {
 		});
 	});
 
-	it('should load system offline page', function (done) {
+	xit('should load system offline page', function (done) {
 		var browser = new Browser({silent: true});
 		joola.state.set('core', 'offline', 'test in progress');
 		setTimeout(function () {
@@ -44,7 +44,7 @@ describe('browser-analytics-index', function () {
 		}, 3000);
 	});
 
-	it('check that we have a valid username', function (done) {
+	xit('check that we have a valid username', function (done) {
 		var browser = new Browser({silent: true});
 		browser.visit("http://localhost:" + joola.config.interfaces.webserver.port + '/analytics/index', function () {
 			var expected = 'USERNAME';

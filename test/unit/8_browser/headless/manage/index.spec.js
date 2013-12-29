@@ -13,7 +13,7 @@ var
 	Browser = require('zombie');
 
 describe('browser-manage-index', function () {
-	it('should load the index page', function (done) {
+	xit('should load the index page', function (done) {
 		var browser = new Browser({silent: true});
 		browser.visit("http://localhost:" + joola.config.interfaces.webserver.port + '/manage/dashboard/index', function () {
 			expect(browser.text("title")).to.equal('joola.io Management Portal');
@@ -21,7 +21,7 @@ describe('browser-manage-index', function () {
 		});
 	});
 
-	it('should load the 404 page', function (done) {
+	xit('should load the 404 page', function (done) {
 		var browser = new Browser({silent: true});
 		browser.visit("http://localhost:" + joola.config.interfaces.webserver.port + '/manage/index2', function () {
 			expect(browser.text("title")).to.equal('Page not found');
@@ -29,7 +29,7 @@ describe('browser-manage-index', function () {
 		});
 	});
 
-	it('check that we have a valid username', function (done) {
+	xit('check that we have a valid username', function (done) {
 		var browser = new Browser({silent: true});
 		browser.visit("http://localhost:" + joola.config.interfaces.webserver.port + '/manage/dashboard/index', function () {
 			var expected = 'USERNAME';
