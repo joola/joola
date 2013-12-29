@@ -6,7 +6,7 @@ body
       .row
         .col-lg-12
           h1.page-caption
-            | Logs and Alerts&nbsp;
+            | User Management&nbsp;
             small
           ol.breadcrumb
             li.active
@@ -69,7 +69,7 @@ body
                   label(for="roles") Roles
                   div.checkbox(ng-repeat="(rolekey,roleval) in editRoles")
                     label
-                      input(type="checkbox", value="{{rolekey}}")
+                      input(type="checkbox", value="{{rolekey}}", name="_roles", ng-checked="{{roleval.checked=='checked'}}")
                       | {{rolekey}}
                 .form-group
                   label(for="permissions") Permissions
