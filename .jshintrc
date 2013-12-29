@@ -1,6 +1,7 @@
 {
-  "indent"        : 2,
-  "globals"       : [
+  "evil": true,  // Tolerate use of `eval`.
+  "indent": 2,
+  "globals": [
     "require",
     "__dirname",
     "exports",
