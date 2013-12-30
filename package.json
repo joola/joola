@@ -47,6 +47,7 @@
     "nconf-redis": "https://github.com/itayw/nconf-redis/tarball/master",
     "eventemitter2": "*",
     "redis": "*",
+    "hiredis": "*",
     "async": "*",
     "express": "*",
     "socket.io": "*",
