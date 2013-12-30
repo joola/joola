@@ -32,14 +32,24 @@
       "redis": {
         "host": "localhost",
         "port": 6379,
-        "db": 0
+        "db": 0,
+        "pass": null
       }
     },
     "dispatch": {
       "redis": {
         "host": "localhost",
         "port": 6379,
-        "db": 0
+        "db": 1,
+        "pass": null
+      }
+    },
+    "socketio": {
+      "redis": {
+        "host": "localhost",
+        "port": 6379,
+        "db": 2,
+        "pass": null
       }
     },
     "stats": {
