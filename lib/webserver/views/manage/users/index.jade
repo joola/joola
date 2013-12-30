@@ -24,8 +24,10 @@ body
         #content.col-sm-11
           .row
             .col-lg-12
-              button#addUserBtn.btn.btn-default(ng-click="prepareAddUser()") Add user
-              
+              .pull-right
+                button#addUserBtn.btn.btn-primary(ng-click="prepareAddUser()") Add user
+              br
+              br
               table.table.table-striped
                 thead
                   th Username
@@ -50,7 +52,9 @@ body
                     td {{user.lastlogin || 'N\\A'}}
                     td {{user.logincount || 'N\\A'}}
                     td
-                      a(href="#", id="editUser", ng-click="userEdit(user.username)") Edit
+                      a(href="#", id="editUser", ng-click="userEdit(user.username)") Edit 
+                      | | 
+                      a(href="#", id="deleteUser", ng-click="userDel(user.username)") Delete 
       #editUserDialog.modal.fade
         .modal-dialog
           .modal-content
