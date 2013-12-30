@@ -57,3 +57,9 @@ dl {
   background-color: #a94442 !important;
   border-color: #ebccd1 !important;
 }
+
+@media (min-width: 768px) {
+  .navbar-nav.navbar-right:last-child {
+    margin-right: 0;
+  }
+}
