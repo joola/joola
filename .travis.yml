@@ -15,9 +15,6 @@ matrix:
     - node_js: "0.11"
     - node_js: "0.12"
 
-script: 'make test-cov'
-after_success: 'make coveralls'
-
 notifications:
   email:
     - 'updates@joo.la'
