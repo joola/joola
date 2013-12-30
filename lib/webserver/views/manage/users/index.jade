@@ -75,8 +75,11 @@ body
                   label(for="permissions") Permissions
                   input.form-control(type="text", name="_filter", value="{{editPermissions}}", id="permissions")
                 .form-group
-                  label(for="organization") Organization
-                  input.form-control(type="text", name="organization", value="{{editOrganization}}", id="organization")
+                  label(for="orgs") Organization
+                  div.radio(ng-repeat="(orgkey,orgval) in editOrgs")
+                    label
+                      input(type="radio", value="{{orgkey}}", name="organization", ng-checked="{{orgval.checked=='checked'}}")
+                      | {{orgkey}}
                 .form-group
                   label(for="store") Auth store
                   input.form-control(type="text", name="store", value="{{editStore}}", id="store")
@@ -115,8 +118,11 @@ body
                   label(for="add_permissions") Permissions
                   input.form-control(type="text", name="_filter", id="add_permissions")
                 .form-group
-                  label(for="add_organization") Organization
-                  input.form-control(type="text", name="organization",  id="add_organization")
+                  label(for="orgs") Organization
+                  div.radio(ng-repeat="(orgkey,orgval) in orgList")
+                    label
+                      input(type="radio", name="organization" value="{{orgkey}}")
+                      | {{orgkey}}
                 .form-group
                   label(for="add_store") Auth store
                   input.form-control(type="text", name="store", id="add_store")
