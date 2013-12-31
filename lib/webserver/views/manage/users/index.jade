@@ -54,7 +54,7 @@ body
                     td
                       a(href="#", id="editUser", ng-click="userEdit(user.username)") Edit 
                       | | 
-                      a(href="#", id="deleteUser", ng-click="userDel(user.username)") Delete 
+                      a(href="#", id="deleteUser", ng-click="dryDel(user.username)") Delete 
       #editUserDialog.modal.fade
         .modal-dialog
           .modal-content
@@ -137,6 +137,20 @@ body
                 .cube2
               button.btn.btn-default(type='button', data-dismiss='modal') Close
               button.btn.btn-primary(type='button', ng-click="addUser()") Add user
+      #warning.modal.fade
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+              h4.modal-title Warning
+            .modal-body
+              p: strong Are you sure you want to delete the user {{deluserval}}?
+            .modal-footer
+              .spinner
+                .cube1
+                .cube2
+              button.btn.btn-default(type='button', data-dismiss='modal') Close
+              button.btn.btn-danger(type='button', ng-click="userDel(deluserval)") Delete {{deluserval}}
     .clearfix
   include ../layout_footer
   script(src="/js/lib/logger.js")

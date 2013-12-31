@@ -1,0 +1,102 @@
+include ../layout_head
+  body
+    #wrapper
+      include ../layout_navbar
+      #page-wrapper(ng-controller="orgCtrl")
+        .row
+          .col-lg-12
+            h1.page-caption
+              | User Management&nbsp;
+              small
+            ol.breadcrumb
+              li.active
+                a(href="/manage/dashboard/index")
+                  i.fa.fa-dashboard
+                  | &nbsp;User management
+            .alert.alert-info
+              //button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
+              | The System Logs and Alerts view shows all logged events within the system.
+              | You can filter events by time period and other criteria. To learn more about this view, check out our&nbsp;
+              a(href="#wiki") wiki
+              | .
+        .row
+          #content.col-sm-12
+            .row
+              .col-lg-12
+                .pull-right
+                  button#addOrgBtn.btn.btn-primary Add organization
+                br
+                br
+                table.table.table-striped
+                  thead
+                    th Organization
+                    th Filter
+                    th Operations
+                  tbody#logtbody
+                    tr(ng-repeat="org in list", ng-cloak)
+                      td {{org.name || 'N\\A'}}
+                      td {{org._filter}}
+                      td
+                        a(href="#", id="editOrg", ng-click="orgEdit(org.name)") Edit 
+                        | | 
+                        a.showWarning(href="#", ng-click="dryDel(org.name)") Delete 
+        #editOrgDialog.modal.fade
+          .modal-dialog
+            .modal-content
+              .modal-header
+                button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                h4.modal-title
+              .modal-body
+                form#editOrgForm(role="form")
+                  .form-group
+                    label(for="name") Name
+                    input.form-control(type="text", name="name", id="orgname", value="{{editOrgname}}", disabled="disabled")
+                  .form-group
+                    label(for="filter") Filters
+                    input.form-control(type="text", name="_filter", id="filter", value="{{editFilters}}")
+
+                    
+              .modal-footer
+                .spinner
+                  .cube1
+                  .cube2
+                button.btn.btn-default(type='button', data-dismiss='modal') Close
+                button.btn.btn-primary(type='button', ng-click="updateOrg()") Save changes
+        #addOrgDialog.modal.fade
+          .modal-dialog
+            .modal-content
+              .modal-header
+                button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                h4.modal-title Add a new user
+              .modal-body
+                form#addOrgForm(role="form")
+                  .form-group
+                    label(for="add_orgname") Name
+                    input.form-control(type="text", name="name", id="add_orgname")
+                  .form-group
+                    label(for="filter") Filters
+                    input.form-control(type="text", name="_filter", id="filter")
+              .modal-footer
+                .spinner
+                  .cube1
+                  .cube2
+                button.btn.btn-default(type='button', data-dismiss='modal') Close
+                button.btn.btn-primary(type='button', ng-click="addOrg()") Add organization
+
+        #warning.modal.fade
+          .modal-dialog
+            .modal-content
+              .modal-header
+                button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                h4.modal-title Warning
+              .modal-body
+                p: strong Are you sure you want to delete the {{delorgval}} organization?
+              .modal-footer
+                .spinner
+                  .cube1
+                  .cube2
+                button.btn.btn-default(type='button', data-dismiss='modal') Close
+                button.btn.btn-danger(type='button', ng-click="orgDel(delorgval)") Delete {{delorgval}}
+      .clearfix
+    include ../layout_footer
+    script(src="/js/lib/logger.js")

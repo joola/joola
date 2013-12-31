@@ -44,7 +44,7 @@ body
                     td
                       a(href="#", id="editRole", ng-click="roleEdit(role.name)") Edit 
                       | | 
-                      a(href="#", id="deleteRole", ng-click="roleDel(role.name)") Delete 
+                      a(href="#", id="deleteRole", ng-click="dryDel(role.name)") Delete 
       #editRoleDialog.modal.fade
         .modal-dialog
           .modal-content
@@ -84,6 +84,11 @@ body
                 .form-group
                   label(for="add_rolename") Name
                   input.form-control(type="text", name="name", id="add_rolename")
+
+                .form-group
+                  label(for="filter") Filters
+                  input.form-control(type="text", name="_filter", id="filter")
+                
                 .form-group
                   .div.checkbox(ng-repeat="(permkey,permval) in permList")
                     label
@@ -96,6 +101,21 @@ body
                 .cube2
               button.btn.btn-default(type='button', data-dismiss='modal') Close
               button.btn.btn-primary(type='button', ng-click="addRole()") Add role
+
+      #warning.modal.fade
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+              h4.modal-title Warning
+            .modal-body
+              p: strong Are you sure you want to delete the role {{delroleval}}?
+            .modal-footer
+              .spinner
+                .cube1
+                .cube2
+              button.btn.btn-default(type='button', data-dismiss='modal') Close
+              button.btn.btn-danger(type='button', ng-click="roleDel(delroleval)") Delete {{delroleval}}
     .clearfix
   include ../layout_footer
   script(src="/js/lib/logger.js")
