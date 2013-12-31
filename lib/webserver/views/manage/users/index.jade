@@ -33,14 +33,14 @@ body
                   th Username
                   th Display name
                   th Roles
-                  th Permissions
+                  th Filter
                   th Organization
                   th Auth store
                   th Last login
                   th Login count
                   th Operations
                 tbody#logtbody
-                  tr(ng-repeat="user in list")
+                  tr(ng-repeat="user in list", ng-cloak)
                     td {{user.username || 'N\\A'}}
                     td {{user.displayName || 'N\\A'}}
                     td
@@ -76,8 +76,8 @@ body
                       input(type="checkbox", value="{{rolekey}}", name="_roles", ng-checked="{{roleval.checked=='checked'}}")
                       | {{rolekey}}
                 .form-group
-                  label(for="permissions") Permissions
-                  input.form-control(type="text", name="_filter", value="{{editPermissions}}", id="permissions")
+                  label(for="filters") Filter
+                  input.form-control(type="text", name="_filter", value="{{editFilters}}", id="filters")
                 .form-group
                   label(for="orgs") Organization
                   div.radio(ng-repeat="(orgkey,orgval) in editOrgs")
@@ -119,8 +119,8 @@ body
                       input(type="checkbox", name="_roles" value="{{rolekey}}")
                       | {{rolekey}}
                 .form-group
-                  label(for="add_permissions") Permissions
-                  input.form-control(type="text", name="_filter", id="add_permissions")
+                  label(for="add_filters") Filters
+                  input.form-control(type="text", name="_filter", id="add_filters")
                 .form-group
                   label(for="orgs") Organization
                   div.radio(ng-repeat="(orgkey,orgval) in orgList")

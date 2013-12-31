@@ -1,0 +1,97 @@
+include ../layout_head
+  body
+    #wrapper
+      include ../layout_navbar
+      #page-wrapper(ng-controller="roleCtrl")
+        .row
+          .col-lg-12
+            h1.page-caption
+              | User Management&nbsp;
+              small
+            ol.breadcrumb
+              li.active
+                a(href="/manage/dashboard/index")
+                  i.fa.fa-dashboard
+                  | &nbsp;User management
+            .alert.alert-info
+              //button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
+              | The System Logs and Alerts view shows all logged events within the system.
+              | You can filter events by time period and other criteria. To learn more about this view, check out our&nbsp;
+              a(href="#wiki") wiki
+              | .
+        .row
+          #content.col-sm-11
+          .row
+            .col-lg-12
+              .pull-right
+                button#addUserBtn.btn.btn-primary(ng-click="prepareAddRole()") Add role
+              br
+              br
+              table.table.table-striped
+                thead
+                  th Role
+                  th Permissions
+                  th Filter
+                  th Operations
+                tbody#logtbody
+                  tr(ng-repeat="role in list", ng-cloak)
+                    td {{role.name || 'N\\A'}}
+                    
+                    td
+                      ul
+                        li(ng-repeat="perm in role.permissions") {{perm}}
+                    td
+                      ul
+                        li(ng-repeat="filter in role._filters") {{filter}}
+                    td
+                      a(href="#", id="editRole", ng-click="roleEdit(role.name)") Edit 
+                      | | 
+                      a(href="#", id="deleteRole", ng-click="roleDel(role.name)") Delete 
+        #editRoleDialog.modal.fade
+          .modal-dialog
+            .modal-content
+              .modal-header
+                button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                h4.modal-title
+              .modal-body
+                form#editRoleForm(role="form")
+                  .form-group
+                    label(for="rolename") Role Name
+                    input.form-control(type="text", name="rolename", id="name", value="{{editRolename}}", disabled="disabled")
+
+                  .form-group
+                  label(for="permissions") Permissions
+                  div.checkbox(ng-repeat="(permkey,permval) in editPermissions")
+                    label
+                      input(type="checkbox", value="{{permkey}}", name="permissions", ng-checked="{{permval.checked=='checked'}}")
+                      | {{permval}}
+              .modal-footer
+                .spinner
+                  .cube1
+                  .cube2
+                button.btn.btn-default(type='button', data-dismiss='modal') Close
+                button.btn.btn-primary(type='button', ng-click="updateRole()") Save changes
+        #addRoleDialog.modal.fade
+          .modal-dialog
+            .modal-content
+              .modal-header
+                button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                h4.modal-title Add a new user
+              .modal-body
+                form#addUserForm(role="form")
+                  .form-group
+                    label(for="add_username") Username
+                    input.form-control(type="text", name="username", id="add_username")
+                  .form-group
+                    label(for="add_password") Password
+                    input.form-control(type="text", name="_password", id="add_displayname")
+                  
+              .modal-footer
+                .spinner
+                  .cube1
+                  .cube2
+                button.btn.btn-default(type='button', data-dismiss='modal') Close
+                button.btn.btn-primary(type='button', ng-click="addUser()") Add user
+      .clearfix
+    include ../layout_footer
+    script(src="/js/lib/logger.js")
