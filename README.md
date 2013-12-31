@@ -30,7 +30,7 @@ $ npm install -g joola.io
 $ joola.io --demo
 ```
 
-Following the installation, point your browser to `http://localhost:40002` and you'll be able to use the analytics site.
+Following the installation, point your browser to `http://localhost:8080` and you'll be able to use the analytics site.
 
 ### Contributing
 We would love to get your help! We have outlined a simple [Contribution Policy][18] to support a transparent and easy merging
@@ -95,6 +95,5 @@ Copyright (c) 2012-2013 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24]
 [setup]: https://github.com/joola/joola.io/wiki/Setting-up-joola.io
 [roadmap]: https://github.com/joola/joola.io/wiki/Product-roadmap
 [contributing]: https://github.com/joola/joola.io/wiki/Contributing
-
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/joola/joola.io/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
