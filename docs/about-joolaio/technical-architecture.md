@@ -1,3 +1,7 @@
+<a name="top" />
+
+[HOME](Home) > [ABOUT JOOLA.IO](joola.io-overview) > **Technical architecture**
+
 joola.io's **Events Sub-system** has a non-traditional design to support both local and distributed communication.
 
 The sub-system is divided into two parts:
