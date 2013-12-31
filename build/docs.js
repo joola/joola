@@ -60,6 +60,7 @@ var calls = [];
 call = function (callback) {
   var files = wrench.readdirSyncRecursive(docPath);
   var counter = 0;
+  var expected = files.length;
   files.forEach(function (file) {
     if ((file.substring(file.length - 3) == '.md' || file.substring(file.length - 4) == '.png') && exclusions.indexOf(file) == -1) {
       var targetDir = path.join(wikiPath, path.dirname(file));
@@ -73,16 +74,19 @@ call = function (callback) {
         mkdirp.sync(targetDir);
       }
 
-      console.info('Processing static doc [' + path.join(targetDir, filename) + ']');
+      //console.info('Processing static doc [' + path.join(targetDir, filename) + ']');
       copyFile(path.join(docPath, file), path.join(targetDir, filename), function (err) {
         if (err)
           console.error(err);
 
         counter++;
-        if (counter >= files.length)
+        if (counter >= expected) {
           return callback(null);
+        }
       });
     }
+    else
+      expected--;
   });
 };
 calls.push(call);
@@ -90,6 +94,7 @@ calls.push(call);
 var call = function (callback) {
   var files = wrench.readdirSyncRecursive(libPath);
   var counter = 0;
+  var expected = files.length;
   files.forEach(function (file) {
     if (file.substring(file.length - 3) == '.js' && exclusions.indexOf(file) == -1 && file.indexOf('webserver/public/') == -1) {
       var targetDir = path.join(wikiCodePath, path.dirname(file));
@@ -99,28 +104,66 @@ var call = function (callback) {
       var filename = file.replace(path.dirname(file), '');
       if (filename.substring(0, 1) == '/')
         filename = filename.substring(1);
-      filename = 'joola.lib.' + path.dirname(file).replace(/\//ig, '.') + '.' + filename.replace('.js', '.md');
+      filename = 'lib\\' + path.dirname(file).replace(/\//ig, '\\') + '\\' + filename.replace('.js', '') + ' (jsdoc).md';
 
-      console.info('Processing doc [' + path.join(targetDir, filename) + ']');
+      //console.info('Processing doc [' + path.join(targetDir, filename) + ']');
 
       process.argv.fullpath = true;
       jsdox.generateForDir(path.join(libPath, file), targetDir + '/' + filename, function (err) {
         if (err)
           console.error(err);
 
+        var stamp = '<a name="top" />\r\n\r\n[HOME](Home) > [[TECHNICAL DOCUMENTATION]] > [[CODE DOCUMENTATION]] > **' + filename.replace(' (jsdoc).md', '') + '**';
+        try {
+          var data = fs.readFileSync(path.join(targetDir, filename));
+          data = stamp + '\r\n\r\n' + data;
+          fs.writeFileSync(path.join(targetDir, filename), data);
+        }
+        catch (ex) {
+        }
         counter++;
-        if (counter >= files.length)
+        if (counter >= expected) {
           return callback(null);
+        }
       });
     }
+    else
+      expected--;
   });
 };
 
 calls.push(call);
-
-async.parallel(calls, function (err) {
-  if (err)
+async.series(calls, function (err) {
+  if (err) {
     throw err;
+  }
 
-  console.log('DONE');
+  var output = '';
+  var dirs = fs.readdirSync(libPath);
+  dirs.forEach(function (dir) {
+    var _dir = path.join(libPath, dir);
+    if (fs.lstatSync(_dir).isDirectory()) {
+      var data = fs.readFileSync(path.join(_dir, 'README.md'));
+      output += '#### ' + dir + '\r\n';
+      output += data + '\r\n\r\n';
+
+      var files = fs.readdirSync(_dir);
+      files.forEach(function (file) {
+        var _file = path.join(_dir, file);
+        if (fs.lstatSync(_file).isFile()) {
+          if (path.extname(_file) == '.js') {
+            var modulename = path.basename(_file, '.js');
+            console.log('lib', dir, modulename)
+            output += '<code><a href="' + 'lib\\' + dir + '\\' + modulename + ' (jsdoc)">' + modulename + '</a></code>';
+          }
+        }
+      });
+      output += '\r\n\r\n';
+    }
+  });
+
+  var data = fs.readFileSync(path.join(wikiCodePath, 'Code-documentation.md')).toString();
+  data = data.replace('[##INSERTSTRUCTURE##]', output);
+  fs.writeFileSync(path.join(wikiCodePath, 'Code-documentation.md'), data);
 });
+
