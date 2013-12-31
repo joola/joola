@@ -5,8 +5,8 @@
 - [[Technical architecture|technical-architecture]]
 
 **Thanks**
-- Sponsors
-- [Software and services](Software-and-services-thanks)
+- [[Sponsors]]
+- [Software and services](Thanks)
 - [Contributors](Our-contributors)
 
 **Useful resources**
@@ -16,3 +16,4 @@
 
 **External resources**
 - [joola.io website](http://joola.io)
+- [Joola Smart Solutions Ltd.](http://joola.io)
