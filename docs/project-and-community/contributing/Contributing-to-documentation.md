@@ -1,6 +1,6 @@
 <a name="top" />
 
-[HOME](Home) > [PROJECT & COMMUNITY](project-and-community) > [CONTRIBUTING](Contributing) > Documentation
+[HOME](Home) > [PROJECT & COMMUNITY](project-and-community) > [CONTRIBUTING](Contributing) > **Documentation**
 
 We welcome contributors to the joola.io documentation with open arms - just as we welcome contributors to the joola.io codebase!
 

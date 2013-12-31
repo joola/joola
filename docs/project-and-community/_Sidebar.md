@@ -1,4 +1,4 @@
-**[HOME](Home)** > **[PROJECT & COMMUNITY](project-and-community)**
+**[HOME](Home)** > **PROJECT & COMMUNITY**
 
 **Our community**
 - [[Talk to us]]  

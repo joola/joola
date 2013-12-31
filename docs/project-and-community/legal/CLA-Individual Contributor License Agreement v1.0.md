@@ -1,3 +1,7 @@
+<a name="top" />
+
+[HOME](Home) > [PROJECT & COMMUNITY](project-and-community) > [CLA](CLA) > **CLA-Individual Contributor License Agreement v1.0**
+
 Joola Smart Solutions Ltd.: Individual Contributor License Agreement ("Agreement") v1.0
 Based on the Apache Software Foundation Individual Contributor License 
 V2.0, with modifications.
