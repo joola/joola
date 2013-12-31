@@ -1,3 +1,7 @@
+<a name="top" />
+
+[HOME](Home) > [PROJECT & COMMUNITY](project-and-community) > [CONTRIBUTING](Contributing) > Development
+
 # How to contribute
 
 Third-party patches are essential for keeping joola.io great and we want to
