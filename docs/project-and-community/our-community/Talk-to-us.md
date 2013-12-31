@@ -1,3 +1,8 @@
+<a name="top" />
+
+[HOME](Home) > [PROJECT & COMMUNITY](project-and-community) > **Talk to us**
+
+
 We want to make it super-easy for joola.io users and contributors to talk to us and connect with each other, to share ideas,
 solve problems and help make joola.io awesome.
 Here are the main channels we're running currently, we'd love to hear from you on one of them:
