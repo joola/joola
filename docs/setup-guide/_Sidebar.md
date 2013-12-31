@@ -1,6 +1,6 @@
 [**HOME**](Home)
 
-[**Setup joola.io**](setting-up-joola.io)
+**Setup joola.io**
 
 - [Step 1: Install joola.io] (setting-up-install)
 - [Step 2: Basic configuration] (setting-up-basic-configuration)

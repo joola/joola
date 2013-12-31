@@ -23,7 +23,7 @@ For documentation geared towards business, product and analytics folk, please se
 This wiki is the main source of documentation for **developers** working with (or contributing to) the project. Sections include:
 * [[About joola.io|joola.io-overview]] (this section) - introducing joola.io, why we built it and what it does
 * [[Project and Community|project-and-community]] - the open-source project, our community and how to contribute
-* [[Setup Guide|setup-guide]] - a step-by-step guide to setting up and running joola.io
+* [[Setup Guide|setting-up-joola.io]] - a step-by-step guide to setting up and running joola.io
 * [[Technical Documentation|Technical-documentation]] - technical documentation on joola.io
 
 ### Additional support / resources
