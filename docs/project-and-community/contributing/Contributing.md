@@ -1,6 +1,6 @@
 <a name="top" />
 
-[HOME](Home) > [PROJECT & COMMUNITY](project-and-community) > CONTRIBUTING
+[HOME](Home) > [PROJECT & COMMUNITY](project-and-community) > **CONTRIBUTING**
 
 joola.io is open source software - we welcome contributors! Some things you might like to help out with:
 
