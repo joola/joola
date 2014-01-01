@@ -2,7 +2,8 @@
 
 **Introduction**
 - [joola.io overview](joolaio-overview)
-- [[Technical architecture|technical-architecture]]
+- [Technical architecture](technical-architecture)
+- [Sponsor joola.io](sponsor-joola.io)
 
 **Thanks**
 - [[Sponsors]]
