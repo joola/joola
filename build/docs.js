@@ -147,14 +147,17 @@ async.series(calls, function (err) {
       output += '#### ' + dir + '\r\n';
       output += data + '\r\n\r\n';
 
+      var counter = 0;
       var files = fs.readdirSync(_dir);
       files.forEach(function (file) {
         var _file = path.join(_dir, file);
         if (fs.lstatSync(_file).isFile()) {
           if (path.extname(_file) == '.js') {
             var modulename = path.basename(_file, '.js');
-            console.log('lib', dir, modulename)
+            if (counter % 8 == 0)
+              output += '\r\n\r\n';
             output += '<code><a href="' + 'lib\\' + dir + '\\' + modulename + ' (jsdoc)">' + modulename + '</a></code>';
+            counter++;
           }
         }
       });
