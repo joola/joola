@@ -37,6 +37,7 @@ This section describes the process and protocols we use throughout the developme
 - [Versioning](development-versioning)
 - [Release and publish](build-overview)
 - [[Contributing]]
+- [Roadmap](product-roadmap)
 
 ## Code documentation
 This wiki also includes a [_jsdoc_ section](code-documentation), in which code comments are taken directly from the source and published to the wiki in a formatted manner.

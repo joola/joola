@@ -5,6 +5,7 @@
 - [Data Integration](using-data-integration)
 - [Embedding](using-embedding)
 - [Extending](using-extending)
+- [[Examples]]
 - [[Troubleshooting]]
 - [[Walk-throughs]]
 
@@ -20,9 +21,12 @@
 - [SDK](subsystems-sdk)
 
 **The development process**
-- [[Overview]]
+- [Overview](development-process-overview)
+- [Testing](development-testing)
+- [Building](development-building)
+- [Versioning](development-versioning)
+- [Release and Publish](development-publish)
 - [[Contributing]]
 - [Roadmap](product-roadmap)
-- [Building and publishing](build-overview)
 
 **[[Code documentation]]**
