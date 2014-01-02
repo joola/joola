@@ -8,8 +8,8 @@ body
       .row
         .col-lg-12
           h1.page-caption
-            | System Performance&nbsp;
-            small Nodes' performance and load
+            | Message Dispatch&nbsp;
+            small The grid's heart-beat
           ol.breadcrumb
             li
               a(href="/manage/dashboard/index")
@@ -17,14 +17,32 @@ body
                 | &nbsp;Dashboard
             li.active
               i.fa.fa-tasks
-              | &nbsp;System Performance
-          .alert.alert-info
-            //button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
+              | &nbsp;Message Dispatch
+          //.alert.alert-info
+            button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
             | The System Performance view displays information about all participating nodes.
             | For each node, you'll see a detailed breakdown of performance KPIs. To learn more about System Performance, check out our&nbsp;
             a(href="#wiki") wiki
             | .
       .row
+        .col-lg-3
+          .panel.panel-info
+            .panel-heading
+              .row
+                .col-xs-5
+                  i.fa.fa-signal.fa-5x
+                .col-xs-7.text-right
+                  p.announcement-heading.manage-dashboard-metric-events --
+                p.announcement-text EPS
+        .col-lg-3
+          .panel.panel-warning
+            .panel-heading
+              .row
+                .col-xs-5
+                  i.fa.fa-lock.fa-5x
+                .col-xs-7.text-right
+                  p.announcement-heading.manage-dashboard-metric-event-loop-blocks --
+                p.announcement-text Event-loop-blocks
         .col-lg-3
           .panel.panel-success
             .panel-heading
@@ -43,70 +61,38 @@ body
                 .col-xs-7.text-right
                   p.announcement-heading.manage-dashboard-metric-load --
                 p.announcement-text System Load
+      .row(style="margin-bottom:10px")
         .col-lg-3
-          .panel.panel-info
-            .panel-heading
-              .row
-                .col-xs-5
-                  i.fa.fa-signal.fa-5x
-                .col-xs-7.text-right
-                  p.announcement-heading.manage-dashboard-metric-events --
-                p.announcement-text Events
-        .col-lg-3
-          .panel.panel-warning
-            .panel-heading
-              .row
-                .col-xs-5
-                  i.fa.fa-lock.fa-5x
-                .col-xs-7.text-right
-                  p.announcement-heading.manage-dashboard-metric-event-loop-blocks --
-                p.announcement-text Event-loop-blocks
+          div.right-inner-addon
+            i.fa.fa-search
+            input(type="search",class="form-control",placeholder="Search")
 
-      .row.nodelist
-        .col-lg-3.template-node.nodeitem.hidden
-          .panel.panel-primary
-            .panel-heading
-              h3.panel-title
-                i.fa.fa-power-off.node-caption &nbsp;ITAY-OFFICE:abcd1234
-            .panel-body
-              .row
-                .col-lg-8
-                  dl
-                    dt LAST SEEN
-                    dd.node-uptime ---
-                    dt CPU
-                    dd.node-cpu ---
-                    dt MEMORY
-                    dd.node-memory ---
-                .col-lg-4
+        .col-lg-6.pull-right(style="margin-top:5px")
+          ul.list-inline.pull-right
+            li: a(href="#", ng-click="eventDateFilter('all')") All
+            li: a(href="#", ng-click="eventDateFilter('day')") Pending
+            li: a(href="#", ng-click="eventDateFilter('1hour')") Picked
+            li: a(href="#", ng-click="eventDateFilter('5min')") Fulfilled
+      .row
+        #content.col-sm-12
+          .row.nodelist
+            .col-lg-3.template-node.nodeitem
+              .panel.panel-danger
+                .panel-heading
                   .row
-                    .col-lg-12
-                      button.btn.btn-danger.btn-terminate(type="button") Terminate
-                  .row
-                    .col-lg-12
-                      div.flot-chart-moving-line
-
-                  //dl.dl-horizontal
-                    dt Online
-                    dd
-                      input.switch-small(id="animated-switch", type="checkbox", checked="true", data-on="success" data-off="danger")
-                    dt Web Server
-                      dd
-                        input.switch-small(id="animated-switch", type="checkbox", checked="true", data-on="success" data-off="danger")
-                    dt Dispatch
-                      dd
-                        input.switch-small(id="animated-switch", type="checkbox", checked="true", data-on="success" data-off="danger")
-              div.clearfix
-              .row
-
-                //.col-lg-4
-                //  div.morris-chart-donut(id="morris-chart-donut")
-
-
-
+                    .col-xs-8
+                      p.announcement-text.pull-left.message-channel -------
+                    .col-xs-4
+                      p.announcement-text.pull-right.message-since(style="margin-right:0; text-transform:none") 1 sec
+                  .row.clearfix
+                    .col-xs-12(style="margin-top:10px;")
+                      p.message-fromto 1pW0Jb1YM...
+                  .row.clearfix
+                    .col-xs-12
+                      p.announcement-text.text-center.message-status(style="margin-right:0;float:none") PENDING
 
   include ../layout_footer
   script.
     $(window).on('page-ready',function(){
-      nodes_setup();
-    })
+      dispatch_setup();
+    });

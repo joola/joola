@@ -18,80 +18,34 @@ body
             li.active
               i.fa.fa-circle-o
               | &nbsp;Overview
-          .alert.alert-success
-            //button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
+          //.alert.alert-success
+            button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
             | Welcome to joola.io management console.
             | The management console gathers all required monitors, tools, configuration and more needed to operate the system.
             | To learn more about the management console, check out our&nbsp;
             a(href="#wiki") wiki
             | .
       .row
-        .col-lg-3
-          .panel.panel-danger
-            .panel-heading
-              .row
-                .col-xs-5
-                  i.fa.fa-tasks.fa-5x
-                .col-xs-7.text-right
-                  p.announcement-heading.manage-dashboard-metric-load --
-                p.announcement-text System Load
-            a(href="/manage/dashboard/nodes")
-              .panel-footer.announcement-bottom
-                .row
-                  .col-xs-8 View Nodes
-                  .col-xs-4.text-right
-                    i.fa.fa-arrow-circle-right
-        .col-lg-3
-          .panel.panel-success
-            .panel-heading
-              .row
-                .col-xs-5
-                  i.fa.fa-bullseye.fa-5x
-                .col-xs-7.text-right
-                  p.announcement-heading --%
-                p.announcement-text Cache hits
-            a(href="#")
-              .panel-footer.announcement-bottom
-                .row
-                  .col-xs-8 Cache Management
-                  .col-xs-4.text-right
-                    i.fa.fa-arrow-circle-right
-        .col-lg-3
-          .panel.panel-warning
-            .panel-heading
-              .row
-                .col-xs-5
-                  i.fa.fa-bolt.fa-5x
-                .col-xs-7.text-right
-                  p.announcement-heading --
-                p.announcement-text Query time (sec)
-            a(href="#")
-              .panel-footer.announcement-bottom
-                .row
-                  .col-xs-8 View Query Stats
-                  .col-xs-4.text-right
-                    i.fa.fa-arrow-circle-right
-        .col-lg-3
-          .panel.panel-info
-            .panel-heading
-              .row
-                .col-xs-5
-                  i.fa.fa-signal.fa-5x
-                .col-xs-7.text-right
-                  p.announcement-heading.manage-dashboard-metric-events --
-                p.announcement-text Events
-            a(href="#")
-              .panel-footer.announcement-bottom
-                .row
-                  .col-xs-8 Events Stats
-                  .col-xs-4.text-right
-                    i.fa.fa-arrow-circle-right
+        .col-lg-3.widget.widget-sytstemload
+        .col-lg-3.widget.widget-waittime
+        .col-lg-3.widget.widget-eps
+        .col-lg-3.widget.widget-roundtrip
+      .row
+        .col-lg-3.widget.widget-nodes
+        .col-lg-3.widget.widget-querytime
+        .col-lg-3.widget.widget-fulfilled
+        .col-lg-3.widget.widget-elb
+      .row
+        .col-lg-3.widget.widget-tokens
+        .col-lg-3.widget.widget-cachehits
+        .col-lg-3.widget.widget-fulfilltime
+        .col-lg-3.widget.widget-exceptions
       .row
         .col-lg-12
           .panel.panel-primary
             .panel-heading
               h3.panel-title
-                i.fa.fa-bar-chart-o &nbsp;System Load Statistics for past 1 day
+                i.fa.fa-bar-chart-o &nbsp;System Performance for the past minute.
             .panel-body
               div.dashboard-chart(id="dashboard-chart")
 

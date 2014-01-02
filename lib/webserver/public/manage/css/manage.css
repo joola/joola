@@ -5,9 +5,7 @@ h1.page-caption {
 .announcement-text {
   font-weight: 700;
   text-transform: uppercase;
-
-  float: right;
-  margin-right: 20px;
+font-size:100%;
 }
 
 .dashboard-chart {
@@ -62,4 +60,136 @@ dl {
   .navbar-nav.navbar-right:last-child {
     margin-right: 0;
   }
+}
+
+.logger {
+  height: 650px;
+  overflow-y: scroll;
+  overflow-x: auto;
+
+  border-collapse: collapse;
+
+  border-bottom: 1px solid #BED6EB;
+  border-left: 1px solid #BED6EB;
+}
+
+.logger .historyLink img {
+  vertical-align: middle;
+  margin-left: auto;
+  margin-right: auto;
+  left: 46%;
+  position: relative;
+  display: none;
+}
+
+.logger div {
+  font-family: "Lucida Grande", arial, sans-serif;
+  font-size: 12px;
+  /*
+  line-height: 20px;
+  margin: 0;
+  padding: 0;
+*/
+}
+
+.logger .label{
+  font-size:92%;
+}
+
+.logger .logrecord {
+  background-color: #F3F7FB;
+  border-top: 1px solid #BED6EB;
+
+  border-collapse: collapse;
+  line-height: 20px;
+  vertical-align: middle;
+}
+
+.logger .logrecord div {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.logger .logrecord div:not(:first-of-type) {
+
+}
+
+.logger .logrecord .timestamp {
+
+  background-color: #f7f7f7;
+
+  border-right: 1px solid #BED6EB;
+
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+  font-weight: normal;
+  text-align: left;
+}
+
+.logger .logrecord .hostname {
+  padding-left: 5px;
+  padding-right: 5px;
+
+  border-right: 1px solid #BED6EB;
+}
+
+.logger .logrecord .level {
+  width: 60px;
+  text-align: center;
+  padding-left: 5px;
+  padding-right: 5px;
+
+  border-right: 1px solid #BED6EB;
+}
+
+.logger .logrecord .message {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.logger .logrecord div {
+  display: inline-block;
+}
+
+.logger .logrecord:nth-child(even){
+ background: #CCC;
+}
+
+.logger .logrecord:nth-child(even){
+  background: #FFF;
+}
+.logger hr{
+  margin-top: 0;
+  margin-bottom: 0;
+  border: 0;
+  border-top: 5px solid #BED6EB;
+}
+.left-inner-addon {
+  position: relative;
+}
+.left-inner-addon input {
+  padding-left: 30px;
+}
+.left-inner-addon i {
+  position: absolute;
+  padding: 10px 12px;
+  pointer-events: none;
+}
+
+.right-inner-addon {
+  position: relative;
+}
+.right-inner-addon input {
+  padding-right: 30px;
+}
+.right-inner-addon i {
+  position: absolute;
+  right: 0px;
+  padding: 10px 12px;
+  pointer-events: none;
+}
+
+.widget .panel{
+  margin-bottom: 10px;
 }
