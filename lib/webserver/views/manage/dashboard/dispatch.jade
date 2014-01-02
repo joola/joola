@@ -1,0 +1,112 @@
+block variables
+  title = "joola.io - manage"
+include ../layout_head
+body
+  #wrapper
+    include ../layout_navbar
+    #page-wrapper
+      .row
+        .col-lg-12
+          h1.page-caption
+            | System Performance&nbsp;
+            small Nodes' performance and load
+          ol.breadcrumb
+            li
+              a(href="/manage/dashboard/index")
+                i.fa.fa-dashboard
+                | &nbsp;Dashboard
+            li.active
+              i.fa.fa-tasks
+              | &nbsp;System Performance
+          .alert.alert-info
+            //button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
+            | The System Performance view displays information about all participating nodes.
+            | For each node, you'll see a detailed breakdown of performance KPIs. To learn more about System Performance, check out our&nbsp;
+            a(href="#wiki") wiki
+            | .
+      .row
+        .col-lg-3
+          .panel.panel-success
+            .panel-heading
+              .row
+                .col-xs-5
+                  i.fa.fa-power-off.fa-5x
+                .col-xs-7.text-right
+                  p.announcement-heading.manage-dashboard-metric-nodes --
+                p.announcement-text Nodes
+        .col-lg-3
+          .panel.panel-danger
+            .panel-heading
+              .row
+                .col-xs-5
+                  i.fa.fa-tasks.fa-5x
+                .col-xs-7.text-right
+                  p.announcement-heading.manage-dashboard-metric-load --
+                p.announcement-text System Load
+        .col-lg-3
+          .panel.panel-info
+            .panel-heading
+              .row
+                .col-xs-5
+                  i.fa.fa-signal.fa-5x
+                .col-xs-7.text-right
+                  p.announcement-heading.manage-dashboard-metric-events --
+                p.announcement-text Events
+        .col-lg-3
+          .panel.panel-warning
+            .panel-heading
+              .row
+                .col-xs-5
+                  i.fa.fa-lock.fa-5x
+                .col-xs-7.text-right
+                  p.announcement-heading.manage-dashboard-metric-event-loop-blocks --
+                p.announcement-text Event-loop-blocks
+
+      .row.nodelist
+        .col-lg-3.template-node.nodeitem.hidden
+          .panel.panel-primary
+            .panel-heading
+              h3.panel-title
+                i.fa.fa-power-off.node-caption &nbsp;ITAY-OFFICE:abcd1234
+            .panel-body
+              .row
+                .col-lg-8
+                  dl
+                    dt LAST SEEN
+                    dd.node-uptime ---
+                    dt CPU
+                    dd.node-cpu ---
+                    dt MEMORY
+                    dd.node-memory ---
+                .col-lg-4
+                  .row
+                    .col-lg-12
+                      button.btn.btn-danger.btn-terminate(type="button") Terminate
+                  .row
+                    .col-lg-12
+                      div.flot-chart-moving-line
+
+                  //dl.dl-horizontal
+                    dt Online
+                    dd
+                      input.switch-small(id="animated-switch", type="checkbox", checked="true", data-on="success" data-off="danger")
+                    dt Web Server
+                      dd
+                        input.switch-small(id="animated-switch", type="checkbox", checked="true", data-on="success" data-off="danger")
+                    dt Dispatch
+                      dd
+                        input.switch-small(id="animated-switch", type="checkbox", checked="true", data-on="success" data-off="danger")
+              div.clearfix
+              .row
+
+                //.col-lg-4
+                //  div.morris-chart-donut(id="morris-chart-donut")
+
+
+
+
+  include ../layout_footer
+  script.
+    $(window).on('page-ready',function(){
+      nodes_setup();
+    })
