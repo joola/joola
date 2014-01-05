@@ -193,3 +193,16 @@ dl {
 .widget .panel{
   margin-bottom: 10px;
 }
+
+.nodelist{
+  min-height: 500px;
+}
+
+.dispatch-message p{
+  margin:0;
+}
+
+
+.dispatch-message .panel{
+  margin-bottom:5px;
+}

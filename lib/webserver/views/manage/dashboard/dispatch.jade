@@ -52,17 +52,31 @@ body
             li: a(href="#", ng-click="eventDateFilter('day')") Pending
             li: a(href="#", ng-click="eventDateFilter('1hour')") Picked
             li: a(href="#", ng-click="eventDateFilter('5min')") Fulfilled
-      .row
+      .row.nodelist
         #content.col-sm-12
-          .row.nodelist
-            .col-lg-3.template-node.nodeitem
-              .panel.panel-danger
+          .col-lg-12.template-node.nodeitem.dispatch-message.hidden
+            .panel.panel-info
+              .panel-heading
+                .row
+                  .col-xs-3
+                    p.announcement-text.pull-left.message-channel -------
+                  .col-xs-3
+                    p.message-from ---------
+                  .col-xs-3
+                    p.message-to ---------
+                  .col-xs-2
+                    p.announcement-text.text-center.message-status(style="margin-right:0;float:none") PENDING
+                  .col-xs-1
+                    p.announcement-text.pull-right.message-since(style="margin-right:0; text-transform:none") ---
+      //.row.nodelist
+            .col-lg-3.template-node.nodeitem.hidden
+              .panel.panel-info
                 .panel-heading
                   .row
                     .col-xs-8
                       p.announcement-text.pull-left.message-channel -------
                     .col-xs-4
-                      p.announcement-text.pull-right.message-since(style="margin-right:0; text-transform:none") 1 sec
+                      p.announcement-text.pull-right.message-since(style="margin-right:0; text-transform:none") ---
                   .row.clearfix
                     .col-xs-12(style="margin-top:10px;")
                       p.message-fromto 1pW0Jb1YM...
