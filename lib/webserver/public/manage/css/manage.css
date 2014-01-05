@@ -5,7 +5,7 @@ h1.page-caption {
 .announcement-text {
   font-weight: 700;
   text-transform: uppercase;
-font-size:100%;
+  font-size: 100%;
 }
 
 .dashboard-chart {
@@ -92,8 +92,8 @@ dl {
 */
 }
 
-.logger .label{
-  font-size:92%;
+.logger .label {
+  font-size: 92%;
 }
 
 .logger .logrecord {
@@ -152,25 +152,29 @@ dl {
   display: inline-block;
 }
 
-.logger .logrecord:nth-child(even){
- background: #CCC;
+.logger .logrecord:nth-child(even) {
+  background: #CCC;
 }
 
-.logger .logrecord:nth-child(even){
+.logger .logrecord:nth-child(even) {
   background: #FFF;
 }
-.logger hr{
+
+.logger hr {
   margin-top: 0;
   margin-bottom: 0;
   border: 0;
   border-top: 5px solid #BED6EB;
 }
+
 .left-inner-addon {
   position: relative;
 }
+
 .left-inner-addon input {
   padding-left: 30px;
 }
+
 .left-inner-addon i {
   position: absolute;
   padding: 10px 12px;
@@ -180,9 +184,11 @@ dl {
 .right-inner-addon {
   position: relative;
 }
+
 .right-inner-addon input {
   padding-right: 30px;
 }
+
 .right-inner-addon i {
   position: absolute;
   right: 0px;
@@ -190,31 +196,30 @@ dl {
   pointer-events: none;
 }
 
-.widget .panel{
+.widget .panel {
   margin-bottom: 10px;
 }
 
-.nodelist{
+.nodelist {
   min-height: 500px;
 }
 
-.dispatch-message p{
-  margin:0;
+.dispatch-message p {
+  margin: 0;
 }
 
-
-.dispatch-message .panel{
-  margin-bottom:5px;
+.dispatch-message .panel {
+  margin-bottom: 5px;
 }
 
-.popover{
+.popover {
   max-width: none;
 }
 
-hr{
+hr {
   border-color: #222;
 }
 
-body{
+body {
   padding-bottom: 0;
 }
