@@ -9,7 +9,7 @@ font-size:100%;
 }
 
 .dashboard-chart {
-  height: 235px;
+  height: 405px;
 }
 
 dl {
@@ -209,4 +209,12 @@ dl {
 
 .popover{
   max-width: none;
+}
+
+hr{
+  border-color: #222;
+}
+
+body{
+  padding-bottom: 0;
 }
