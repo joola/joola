@@ -108,7 +108,7 @@ body
                   input.form-control(type="text", name="username", id="add_username")
                 .form-group
                   label(for="add_password") Password
-                  input.form-control(type="text", name="_password", id="add_displayname")
+                  input.form-control(type="text", name="_password", id="add_password")
                 .form-group
                   label(for="add_displayname") Display Name
                   input.form-control(type="text", name="displayName", id="add_displayname")
@@ -116,7 +116,7 @@ body
                   label(for="roles") Roles
                   div.checkbox(ng-repeat="(rolekey,roleval) in roleList")
                     label
-                      input(type="checkbox", name="_roles" value="{{rolekey}}")
+                      input(type="checkbox", name="_roles", value="{{rolekey}}")
                       | {{rolekey}}
                 .form-group
                   label(for="add_filters") Filters
@@ -125,7 +125,7 @@ body
                   label(for="orgs") Organization
                   div.radio(ng-repeat="(orgkey,orgval) in orgList")
                     label
-                      input(type="radio", name="organization" value="{{orgkey}}")
+                      input(type="radio", name="organization", value="{{orgkey}}")
                       | {{orgkey}}
                 .form-group
                   label(for="add_store") Auth store
