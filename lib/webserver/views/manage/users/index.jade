@@ -82,7 +82,7 @@ body
                   label(for="orgs") Organization
                   div.radio(ng-repeat="(orgkey,orgval) in editOrgs")
                     label
-                      input(type="radio", value="{{orgkey}}", name="organization", ng-checked="{{orgval.checked=='checked'}}")
+                      input(type="radio", value="{{orgkey}}", id="orgs", name="organization", ng-checked="{{orgval.checked=='checked'}}")
                       | {{orgkey}}
                 .form-group
                   label(for="store") Auth store
