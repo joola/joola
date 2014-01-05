@@ -5,9 +5,7 @@ h1.page-caption {
 .announcement-text {
   font-weight: 700;
   text-transform: uppercase;
-
-  float: right;
-  margin-right: 20px;
+font-size:100%;
 }
 
 .dashboard-chart {
@@ -166,4 +164,49 @@ dl {
   margin-bottom: 0;
   border: 0;
   border-top: 5px solid #BED6EB;
+}
+.left-inner-addon {
+  position: relative;
+}
+.left-inner-addon input {
+  padding-left: 30px;
+}
+.left-inner-addon i {
+  position: absolute;
+  padding: 10px 12px;
+  pointer-events: none;
+}
+
+.right-inner-addon {
+  position: relative;
+}
+.right-inner-addon input {
+  padding-right: 30px;
+}
+.right-inner-addon i {
+  position: absolute;
+  right: 0px;
+  padding: 10px 12px;
+  pointer-events: none;
+}
+
+.widget .panel{
+  margin-bottom: 10px;
+}
+
+.nodelist{
+  min-height: 500px;
+}
+
+.dispatch-message p{
+  margin:0;
+}
+
+
+.dispatch-message .panel{
+  margin-bottom:5px;
+}
+
+.popover{
+  max-width: none;
 }
