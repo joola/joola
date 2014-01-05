@@ -153,6 +153,16 @@
       "joola": {
         "name": "joola"
       }
+    },
+    "datasources": {
+      "test-mysql": {
+        "name": "test-mysql",
+        "type": "mysql",
+        "dbhost": "db.joola.io",
+        "dbport": "3306",
+        "dbuser": "root",
+        "dbpass": "gingi.1"
+      }
     }
   }
 }
