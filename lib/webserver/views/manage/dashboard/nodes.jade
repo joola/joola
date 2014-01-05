@@ -18,49 +18,27 @@ body
             li.active
               i.fa.fa-tasks
               | &nbsp;System Performance
-          .alert.alert-info
-            //button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
+          //.alert.alert-info
+            button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
             | The System Performance view displays information about all participating nodes.
             | For each node, you'll see a detailed breakdown of performance KPIs. To learn more about System Performance, check out our&nbsp;
             a(href="#wiki") wiki
             | .
       .row
-        .col-lg-3
-          .panel.panel-success
-            .panel-heading
-              .row
-                .col-xs-5
-                  i.fa.fa-power-off.fa-5x
-                .col-xs-7.text-right
-                  p.announcement-heading.manage-dashboard-metric-nodes --
-                p.announcement-text Nodes
-        .col-lg-3
-          .panel.panel-danger
-            .panel-heading
-              .row
-                .col-xs-5
-                  i.fa.fa-tasks.fa-5x
-                .col-xs-7.text-right
-                  p.announcement-heading.manage-dashboard-metric-load --
-                p.announcement-text System Load
-        .col-lg-3
-          .panel.panel-info
-            .panel-heading
-              .row
-                .col-xs-5
-                  i.fa.fa-signal.fa-5x
-                .col-xs-7.text-right
-                  p.announcement-heading.manage-dashboard-metric-events --
-                p.announcement-text EPS
-        .col-lg-3
-          .panel.panel-warning
-            .panel-heading
-              .row
-                .col-xs-5
-                  i.fa.fa-lock.fa-5x
-                .col-xs-7.text-right
-                  p.announcement-heading.manage-dashboard-metric-event-loop-blocks --
-                p.announcement-text Event-loop-blocks
+        .col-lg-3.widget.widget-sytstemload
+        .col-lg-3.widget.widget-waittime
+        .col-lg-3.widget.widget-eps
+        .col-lg-3.widget.widget-roundtrip
+      .row
+        .col-lg-3.widget.widget-nodes
+        .col-lg-3.widget.widget-querytime
+        .col-lg-3.widget.widget-fulfilled
+        .col-lg-3.widget.widget-elb
+      .row
+        .col-lg-3.widget.widget-tokens
+        .col-lg-3.widget.widget-cachehits
+        .col-lg-3.widget.widget-fulfilltime
+        .col-lg-3.widget.widget-exceptions
 
       .row.nodelist
         .col-lg-3.template-node.nodeitem.hidden
