@@ -206,3 +206,7 @@ dl {
 .dispatch-message .panel{
   margin-bottom:5px;
 }
+
+.popover{
+  max-width: none;
+}
