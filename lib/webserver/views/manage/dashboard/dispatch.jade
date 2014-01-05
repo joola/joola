@@ -41,34 +41,43 @@ body
         .col-lg-3.widget.widget-exceptions
 
       .row(style="margin-bottom:10px")
-        .col-lg-3
-          div.right-inner-addon
-            i.fa.fa-search
-            input(type="search",class="form-control",placeholder="Search")
-
-        .col-lg-6.pull-right(style="margin-top:5px")
-          ul.list-inline.pull-right
-            li: a(href="#", ng-click="eventDateFilter('all')") All
-            li: a(href="#", ng-click="eventDateFilter('day')") Pending
-            li: a(href="#", ng-click="eventDateFilter('1hour')") Picked
-            li: a(href="#", ng-click="eventDateFilter('5min')") Fulfilled
+        .col-lg-12.playcontrols
+          div.pull-left(style="margin-right:10px;")
+            button.btn.btn-default.btn-pause
+              i.fa.fa-pause.playicon
+          div.pull-left
+            div.right-inner-addon
+              i.fa.fa-search
+              input(type="search",class="form-control",placeholder="Search")
+          div.pull-left(style="margin-left:15px;padding-top:15px")
+            div.pull-left Show: &nbsp;
+            ul.pull-right.list-inline
+              li: a(href="#", ng-click="eventDateFilter('all')") All
+              li: a(href="#", ng-click="eventDateFilter('day')") Pending
+              li: a(href="#", ng-click="eventDateFilter('1hour')") Picked
+              li: a(href="#", ng-click="eventDateFilter('5min')") Fulfilled
       .row.nodelist
         #content.col-sm-12
           .col-lg-12.template-node.nodeitem.dispatch-message.hidden
             .panel.panel-info
               .panel-heading
                 .row
-                  .col-xs-3
+                  .col-lg-2
                     p.announcement-text.pull-left.message-channel -------
-                  .col-xs-3
+                  .col-lg-2
                     p.message-from ---------
-                  .col-xs-3
+                  .col-lg-2
                     p.message-to ---------
-                  .col-xs-2
+                  .col-lg-2
                     p.announcement-text.text-center.message-status(style="margin-right:0;float:none") PENDING
-                  .col-xs-1
+                  .col-lg-2
                     p.announcement-text.pull-right.message-since(style="margin-right:0; text-transform:none") ---
-      //.row.nodelist
+                  .col-lg-2
+                    p.announcement-text.pull-right
+                      i.fa.fa-arrow-circle-right.icon-payload
+                      i.fa.fa-arrow-circle-left.icon-result(style="padding-left:3px;")
+                      i.fa.fa-dot-circle-o(style="padding-left:3px;")
+    //.row.nodelist
             .col-lg-3.template-node.nodeitem.hidden
               .panel.panel-info
                 .panel-heading
