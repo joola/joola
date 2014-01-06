@@ -1,0 +1,168 @@
+{
+  "id": "joola.io-config-baseline",
+  "description": "This is a baseline configuration file for joola.io",
+  "moreinfo": "https://github.com/joola/joola.io/wiki",
+
+  "_version": "0.0.1",
+
+  "interfaces": {
+    "webserver": {
+      "enabled": true,
+      "port": 40008,
+      "securePort": 40009,
+      "secure": false,
+      "keyFile": null,
+      "certFIle": null,
+      "websocket": {
+        "enabled": true
+      },
+      "sessionDurtaion": 1200000
+    },
+    "repl": {
+      "enabled": true,
+      "port": "1337"
+    },
+    "beacon": {
+      "enabled": true,
+      "port": "50008"
+    }
+  },
+  "store": {
+    "config": {
+      "redis": {
+        "host": "localhost",
+        "port": 6379,
+        "db": 0,
+        "pass": null
+      }
+    },
+    "dispatch": {
+      "redis": {
+        "host": "localhost",
+        "port": 6379,
+        "db": 1,
+        "pass": null
+      }
+    },
+    "socketio": {
+      "redis": {
+        "host": "localhost",
+        "port": 6379,
+        "db": 2,
+        "pass": null
+      }
+    },
+    "stats": {
+      "mongo": {
+        "host": "localhost",
+        "port": 27017,
+        "user": null,
+        "password": null,
+        "db": "stats"
+      }
+    },
+    "logger": {
+      "mongo": {
+        "host": "localhost",
+        "port": 27017,
+        "user": null,
+        "password": null,
+        "db": "logger"
+      },
+      "file": {
+        "path": "/tmp/joola.io/"
+      }
+    },
+    "beacon": {
+      "mongo": {
+        "host": "localhost",
+        "port": 27017,
+        "user": null,
+        "password": null,
+        "db": "beacon"
+      }
+    },
+    "cache": {
+      "mongo": {
+        "host": "localhost",
+        "port": 27017,
+        "user": null,
+        "password": null,
+        "db": "cache"
+      }
+    }
+  },
+  "engine": {
+    "cache": {
+      "lockTimeout": 5000,
+      "waitOnCache": 5000,
+      "waitInterval": 500
+    },
+    "query": {
+      "results": {
+        "cache": {
+          "enabled": false,
+          "expire": 0
+        }
+      }
+    }
+  },
+  "logging": {
+    "level": "silly",
+    "stores": ["mongo", "fs"]
+  },
+  "dispatch": {
+    "ttl": 5000,
+    "expires": 6
+  },
+  "authentication": {
+    "store": "internal",
+    "bypassToken": "123",
+    "tokens": {
+      "expireAfter": 1200000
+    },
+    "roles": {
+      "admin": {
+        "name": "admin",
+        "permissions": ["access_system", "manage_system"],
+        "filter": ""
+      },
+      "user": {
+        "name": "user",
+        "permissions": ["access_system"],
+        "filter": ""
+      }
+    },
+    "users": {
+      "admin": {
+        "username": "admin",
+        "_password": "password",
+        "_roles": ["admin", "user"],
+        "displayName": "Administrator",
+        "organization": "joola"
+      },
+      "demo": {
+        "username": "demo",
+        "_password": "password",
+        "_roles": ["user"],
+        "displayName": "demo user",
+        "organization": "joola"
+      }
+    },
+    "organizations": {
+      "joola": {
+        "name": "joola"
+      }
+    },
+    "datasources": {
+      "test-mysql": {
+        "name": "test-mysql",
+        "type": "mysql",
+        "dbhost": "db.joola.io",
+        "dbport": "3306",
+        "dbuser": "joolaio",
+        "dbpass": "joolaio"
+      }
+    }
+  }
+}
