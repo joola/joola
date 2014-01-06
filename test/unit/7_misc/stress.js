@@ -41,7 +41,7 @@ joola.state.on('state:change', function (state) {
           _sdk.dispatch.users.list(function (err, users) {
             console.log(iteration, Object.keys(users).length);
             iteration++;
-          },100);
+          },1);
         });
       });
     });

@@ -68,7 +68,8 @@
     "event-stream": "*",
     "usage": "*",
     "connect-redis": "*",
-    "repl.history": "*"
+    "repl.history": "*",
+    "mysql": "~2.0.0-rc2"
   },
   "devDependencies": {
     "jsdox": "https://github.com/itayw/jsdox/tarball/master",

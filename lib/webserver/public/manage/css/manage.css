@@ -5,13 +5,11 @@ h1.page-caption {
 .announcement-text {
   font-weight: 700;
   text-transform: uppercase;
-
-  float: right;
-  margin-right: 20px;
+  font-size: 100%;
 }
 
 .dashboard-chart {
-  height: 235px;
+  height: 405px;
 }
 
 dl {
@@ -94,8 +92,8 @@ dl {
 */
 }
 
-.logger .label{
-  font-size:92%;
+.logger .label {
+  font-size: 92%;
 }
 
 .logger .logrecord {
@@ -154,16 +152,186 @@ dl {
   display: inline-block;
 }
 
-.logger .logrecord:nth-child(even){
- background: #CCC;
+.logger .logrecord:nth-child(even) {
+  background: #CCC;
 }
 
-.logger .logrecord:nth-child(even){
+.logger .logrecord:nth-child(even) {
   background: #FFF;
 }
-.logger hr{
+
+.logger hr {
   margin-top: 0;
   margin-bottom: 0;
   border: 0;
   border-top: 5px solid #BED6EB;
+}
+
+
+.left-inner-addon {
+  position: relative;
+}
+
+.left-inner-addon input {
+  padding-left: 30px;
+}
+
+.left-inner-addon i {
+  position: absolute;
+  padding: 10px 12px;
+  pointer-events: none;
+}
+
+.right-inner-addon {
+  position: relative;
+}
+
+.right-inner-addon input {
+  padding-right: 30px;
+}
+
+.right-inner-addon i {
+  position: absolute;
+  right: 0px;
+  padding: 10px 12px;
+  pointer-events: none;
+}
+
+.widget .panel {
+  margin-bottom: 10px;
+}
+
+.nodelist {
+  min-height: 500px;
+}
+
+.dispatch-message p {
+  margin: 0;
+}
+
+.dispatch-message .panel {
+  margin-bottom: 5px;
+}
+
+.popover {
+  max-width: none;
+}
+
+hr {
+  border-color: #222;
+}
+
+body {
+  padding-bottom: 0;
+}
+
+.listcontainer {
+  -moz-transition: margin-left 218ms ease-in-out;
+  -webkit-transition: margin-left 218ms ease-in-out;
+  transition: margin-left 218ms ease-in-out;
+}
+
+.maintopic {
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#F9F9F9), to(#f5f5f5));
+  background-image: -moz-linear-gradient(center top, #F9F9F9, #f5f5f5);
+  border-bottom: 1px solid #DEDEDE;
+  color: #666;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  text-transform: uppercase;
+}
+
+.listcontainer .topic, .listcontainer .topicheader .topic {
+  color: #444;
+  font-size: 13px;
+  font-weight: normal;
+  padding: 0;
+  text-transform: none;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#F9F9F9), to(#f5f5f5));
+  background-image: -moz-linear-gradient(center top, #F9F9F9, #f5f5f5);
+  border-bottom: 1px solid #CCC;
+  cursor: pointer;
+}
+
+div.topic.active {
+  border-left: 4px solid #058DC7;
+}
+
+.listcontainer .topic.active .topicheader {
+  background-color: #E8E8E8;
+}
+div.topicheader, .table_wrapper ul.subtopic {
+  border-left: 4px solid transparent;
+}
+
+.listcontainer .subtopic .subtopicheader_wrapper .topiclink div {
+  margin-left: 10px;
+  padding-left: 5px;
+  text-indent: -5px;
+  word-wrap: break-word;
+  line-height: normal;
+}
+
+.subtopiccaption {
+  overflow: hidden;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display:inline-block;
+}
+
+.topic-dashboards i {
+  font-size:18px;
+  height: 24px;
+  width: 24px;
+}
+
+.listcontainer .topicheader .topicicon {
+  margin: 7px 6px 0 0;
+  float: left;
+}
+
+.colorspacer {
+  background-color: transparent;
+  padding: 0;
+  margin-right: 6px;
+}
+
+.listcontainer .topicheader .topiccaption {
+  height: 40px;
+  display: inline-block;
+  line-height: 40px;
+  padding: 0;
+}
+
+.listcontainer .subtopic .topiclink.active {
+  font-weight: bold;
+  text-transform: none;
+}
+
+.listcontainer .subtopic .subtopicheader_wrapper .topiclink, .listcontainer .subtopiclist_container .topiclink, .listcontainer .subtopiclist_container .topiclink:hover {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -moz-transition: all 130ms ease-in-out;
+  -webkit-transition: all 130ms ease-in-out;
+  transition: all 130ms ease-in-out;
+  color: #444;
+}
+
+.listcontainer .subtopic .subtopiclist_topics .topiclink, .listcontainer .subtopic .subtopicheader_wrapper .topiclink {
+  margin: 0px 0px 0px -18px;
+  text-decoration: none;
+}
+
+.listcontainer .subtopic .topiclink.active {
+  font-weight: bold;
+  
+  text-transform: none;
+}
+
+.subtopic {
+  list-style: none;
+  margin: 0;
 }
