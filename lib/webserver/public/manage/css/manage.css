@@ -232,9 +232,9 @@ body {
 }
 
 .maintopic {
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#F9F9F9), to(#f5f5f5));
-  background-image: -moz-linear-gradient(center top, #F9F9F9, #f5f5f5);
-  border-bottom: 1px solid #DEDEDE;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#333333), to(#222222));
+  background-image: -moz-linear-gradient(center top, #333333, #222222);
+  border-bottom: 1px solid #333333;
   color: #666;
   font-size: 12px;
   font-weight: bold;
@@ -243,26 +243,27 @@ body {
 }
 
 .listcontainer .topic, .listcontainer .topicheader .topic {
-  color: #444;
+  color: #cccccc;
   font-size: 13px;
   font-weight: normal;
   padding: 0;
   text-transform: none;
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#F9F9F9), to(#f5f5f5));
-  background-image: -moz-linear-gradient(center top, #F9F9F9, #f5f5f5);
-  border-bottom: 1px solid #CCC;
+  
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#333333), to(#222222));
+  background-image: -moz-linear-gradient(center top, #333333, #222222);
+  border-bottom: 1px solid #444444;
   cursor: pointer;
 }
 
+div.topic {
+  border-left: 4px solid transparent;
+}
 div.topic.active {
   border-left: 4px solid #058DC7;
 }
 
 .listcontainer .topic.active .topicheader {
-  background-color: #E8E8E8;
-}
-div.topicheader, .table_wrapper ul.subtopic {
-  border-left: 4px solid transparent;
+  background-color: #000000;
 }
 
 .listcontainer .subtopic .subtopicheader_wrapper .topiclink div {
@@ -281,10 +282,11 @@ div.topicheader, .table_wrapper ul.subtopic {
   display:inline-block;
 }
 
-.topic-dashboards i {
+.topicheader i {
   font-size:18px;
   height: 24px;
   width: 24px;
+  margin-right:5px;
 }
 
 .listcontainer .topicheader .topicicon {
@@ -305,10 +307,7 @@ div.topicheader, .table_wrapper ul.subtopic {
   padding: 0;
 }
 
-.listcontainer .subtopic .topiclink.active {
-  font-weight: bold;
-  text-transform: none;
-}
+
 
 .listcontainer .subtopic .subtopicheader_wrapper .topiclink, .listcontainer .subtopiclist_container .topiclink, .listcontainer .subtopiclist_container .topiclink:hover {
   -webkit-border-radius: 5px;
@@ -317,7 +316,7 @@ div.topicheader, .table_wrapper ul.subtopic {
   -moz-transition: all 130ms ease-in-out;
   -webkit-transition: all 130ms ease-in-out;
   transition: all 130ms ease-in-out;
-  color: #444;
+  color: #999999;
 }
 
 .listcontainer .subtopic .subtopiclist_topics .topiclink, .listcontainer .subtopic .subtopicheader_wrapper .topiclink {
@@ -325,13 +324,48 @@ div.topicheader, .table_wrapper ul.subtopic {
   text-decoration: none;
 }
 
-.listcontainer .subtopic .topiclink.active {
-  font-weight: bold;
-  
-  text-transform: none;
+.maintopiclink, .maintopiclink:hover {
+  color: #cccccc;
+  text-decoration:none;
 }
 
 .subtopic {
   list-style: none;
   margin: 0;
+  line-height:20px;
+}
+
+
+.listcontainer .subtopiclist .subtopiclistheader.topiclink:hover, .listcontainer .subtopic .subtopicheader_wrapper .topiclink:hover, .listcontainer .subtopiclist_container .topiclink:hover {
+  background-color: #000000;
+  text-decoration: none;
+}
+
+.listcontainer .subtopic .subtopiclist_topics .topiclink div, .listcontainer .subtopic .subtopicheader_wrapper .topiclink div {
+  margin-left: 10px;
+  padding-left: 5px;
+  text-indent: -5px;
+  word-wrap: break-word;
+  line-height: normal;
+}
+
+.listcontainer .subtopic .topiclink {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  color: #444;
+  display: inline-block;
+  font-weight: normal;
+  margin: 2px 0 0 -8px;
+  padding: 6px 0 6px 8px;
+  text-transform: none;
+  -moz-transition: all 130ms ease-in-out;
+  -webkit-transition: all 130ms ease-in-out;
+  transition: all 130ms ease-in-out;
+  width: 100%;
+}
+.listcontainer .subtopic .topiclink.active {
+  font-weight: bold;
+  color:#ffffff;
+  text-transform: none;
 }

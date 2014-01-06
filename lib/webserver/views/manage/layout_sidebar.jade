@@ -1,118 +1,53 @@
 .collapse.navbar-collapse.navbar-ex1-collapse
-  
   ul.nav.navbar-nav.side-nav
-    | <div class="menu_wrapper listcontainer"><div class="maintopic"></div><div class="topic topic-dashboards active"><div class="topicheader"><div class="colorspacer"></div><i class="fa fa-dashboard"></i><div class="topiccaption">Dashboards</div></div><ul class="nav-dashboards subtopic active"><li class="subtopicheader subtopicheader_wrapper"><a class="topiclink active" title="Gameplay" data-id="dashboard.gameplay"><div class="subtopiccaption">Gameplay</div></a></li><li class="subtopicheader subtopicheader_wrapper"><a class="topiclink" title="Players" data-id="dashboard.players"><div class="subtopiccaption">Players</div></a></li><li class="subtopicheader subtopicheader_wrapper"><a class="topiclink" title="Installations" data-id="dashboard.installations"><div class="subtopiccaption">Installations</div></a></li><li class="subtopicheader subtopicheader_wrapper"><a class="topiclink" title="GFL" data-id="dashboard.gfl"><div class="subtopiccaption">GFL</div></a></li></ul></div><div class="topic topic-reports"><div class="topicheader"><div class="colorspacer"></div><div class="topicicon"></div><div class="topiccaption">Reports</div></div><ul class="nav-reports subtopic"><li class="subtopicheader subtopicheader_wrapper"><a class="topiclink" title="Funnel" data-id="magic.funnel"><div class="subtopiccaption">Funnel</div></a></li><li class="subtopicheader subtopicheader_wrapper"><a class="topiclink" title="Gameplay" data-id="magic.gameplay"><div class="subtopiccaption">Gameplay</div></a></li><li class="subtopicheader subtopicheader_wrapper"><a class="topiclink" title="Players" data-id="magic.players"><div class="subtopiccaption">Players</div></a></li><li class="subtopicheader subtopicheader_wrapper"><a class="topiclink" title="Installations" data-id="magic.installations"><div class="subtopiccaption">Installations</div></a></li></ul></div></div>
-    //li.dropdown
-      a.dropdown-toggle(href='#', data-toggle='dropdown')
-        i.fa.fa-caret-square-o-down
-        | Dropdown
-        b.caret
-      ul.dropdown-menu
-        li
-          a(href='#')  Dropdown Item
-        li
-          a(href='#')  Another Item
-        li
-          a(href='#')  Third Item
-        li
-          a(href='#')  Last Item
+    .menu_wrapper.listcontainer
+      .maintopic
+      .topic.topic-dashboards
+        .topicheader
+          .colorspacer
+          i.fa.fa-dashboard
+          .topiccaption Dashboards
+        ul.nav-dashboards.subtopic
+          li.subtopicheader.subtopicheader_wrapper
+            a#dashboard-overview.topiclink(title='Overview', href="/manage/dashboard/index")
+              .subtopiccaption Overview
+          li.subtopicheader.subtopicheader_wrapper
+            a#nodes.topiclink(title='System Performance', href="/manage/dashboard/nodes")
+              .subtopiccaption System Performance
+          li.subtopicheader.subtopicheader_wrapper
+            a#dispatch.topiclink(title='Message Dispatch', href="/manage/dashboard/dispatch")
+              .subtopiccaption Message Dispatch
+      .topic.topic-reports
+        .topicheader
+          .colorspacer
+          .topicicon
+          i.fa.fa-table
+          .topiccaption: a.maintopiclink(href="/manage/dataintegration/index") Data Integration
+      .topic.topic-usermanagement
+        .topicheader
+          .colorspacer
+          .topicicon
+          i.fa.fa-users
+          .topiccaption User Management
+        ul.nav-reports.subtopic
+          li.subtopicheader.subtopicheader_wrapper
+            a#users.topiclink(title='Users', href="/manage/users/index")
+              .subtopiccaption Users
+          li.subtopicheader.subtopicheader_wrapper
+            a#roles.topiclink(title='Roles & Permissions', href="/manage/users/roles")
+              .subtopiccaption Roles & Permissions
+          li.subtopicheader.subtopicheader_wrapper
+            a#orgs.topiclink(title='Organizations', href="/manage/users/organizations")
+              .subtopiccaption Organizations
+          
+
   ul.nav.navbar-nav.navbar-right.navbar-user
-    //li.dropdown.messages-dropdown
-      a.dropdown-toggle(href='#', data-toggle='dropdown')
-        i.fa.fa-envelope
-        | Messages
-        span.badge 7 
-        b.caret
-      ul.dropdown-menu
-        li.dropdown-header  7 New Messages 
-        li.message-preview
-          a(href='#')
-            span.avatar
-              img(src='http://placehold.it/50x50')
-            span.name John Smith:
-            span.message Hey there, I wanted to ask you something...
-            span.time
-              i.fa.fa-clock-o
-              | 4:34 PM
-        li.divider
-        li.message-preview
-          a(href='#')
-            span.avatar
-              img(src='http://placehold.it/50x50')
-            span.name John Smith:
-            span.message Hey there, I wanted to ask you something...
-            span.time
-              i.fa.fa-clock-o
-              | 4:34 PM
-        li.divider
-        li.message-preview
-          a(href='#')
-            span.avatar
-              img(src='http://placehold.it/50x50')
-            span.name John Smith:
-            span.message Hey there, I wanted to ask you something...
-            span.time
-              i.fa.fa-clock-o
-              | 4:34 PM
-        li.divider
-        li
-          a(href='#')
-            | View Inbox
-            span.badge 7
-    //li.dropdown.alerts-dropdown
-      a.dropdown-toggle(href='#', data-toggle='dropdown')
-        i.fa.fa-bell
-        | Alerts
-        span.badge  3 
-        b.caret
-      ul.dropdown-menu
-        li
-          a(href='#')
-            | Default
-            span.label.label-default Default
-        li
-          a(href='#')
-            | Primary
-            span.label.label-primary Primary
-        li
-          a(href='#')
-            | Success
-            span.label.label-success Success
-        li
-          a(href='#')
-            | Info
-            span.label.label-info Info
-        li
-          a(href='#')
-            | Warning
-            span.label.label-warning Warning
-        li
-          a(href='#')
-            | Danger
-            span.label.label-danger Danger
-        li.divider
-        li
-          a(href='#') View All
     li.dropdown.user-dropdown
       a.dropdown-toggle(href='#', data-toggle='dropdown')
         i.fa.fa-user
         | &nbsp;#{user.displayName} &nbsp;
         b.caret
       ul.dropdown-menu
-        //li
-          a(href='#')
-            i.fa.fa-user
-            | &nbsp;Profile
-        //li
-          a(href='#')
-            i.fa.fa-envelope
-            | &nbsp;Inbox&nbsp;
-            span.badge 7
-        //li
-          a(href='#')
-            i.fa.fa-gear
-            | &nbsp;Settings
-        //li.divider
         li
           a(href='/logout')
             i.fa.fa-power-off
