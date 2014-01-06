@@ -91,7 +91,7 @@ describe("api-datasources", function () {
 		});
 	});
 
-	it("should delete a data source", function (done) {
+	xit("should delete a data source", function (done) {
 		var ds = {
 			name: 'testSuite-api'
 		};
