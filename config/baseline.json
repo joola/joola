@@ -197,6 +197,10 @@
           "type": "date"
         },
         {
+          "name": "activation_timestamp",
+          "type": "date"
+        },
+        {
           "name": "id",
           "type": "int"
         },
