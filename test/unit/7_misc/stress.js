@@ -38,11 +38,13 @@ joola.state.on('state:change', function (state) {
 
         var iteration = 0;
         setInterval(function () {
-          _sdk.dispatch.users.list(function (err, users) {
-            console.log(iteration, Object.keys(users).length);
-            iteration++;
-          },1);
-        });
+          joolaio.dispatch.beacon.insert('serverfault', {timestamp: new Date(), id: 1234, value: 0.5});
+          /*
+           _sdk.dispatch.users.list(function (err, users) {
+           console.log(iteration, Object.keys(users).length);
+           iteration++;*/
+        }, 1);
+
       });
     });
   }

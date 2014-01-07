@@ -186,7 +186,7 @@
         }
       ],
       "name": "serverFault",
-      "transform": "function transform (context, document){document.uid=joola.UID;document.playerid = 'Player ' + document.id; return document;}",
+      "transform": "function transform (context, document){document.node=joola.UID;document.playerid = 'Player ' + document.id; return document;}",
       "dimensions": [
         {
           "name": "hostname",
@@ -202,7 +202,8 @@
         },
         {
           "name": "playerid",
-          "type": "string"
+          "type": "string",
+          "virtual": true
         },
         {
           "name": "device"
@@ -210,6 +211,11 @@
         {
           "name": "country",
           "lookup": "so_country_name"
+        },
+        {
+          "name":"node",
+          "type":"string",
+          "virtual":true
         }
       ],
       "metrics": [
