@@ -264,15 +264,10 @@ div.topic.active {
 
 .listcontainer .topic.active .topicheader {
   background-color: #000000;
+  padding-left:8px;
 }
 
-.listcontainer .subtopic .subtopicheader_wrapper .topiclink div {
-  margin-left: 10px;
-  padding-left: 5px;
-  text-indent: -5px;
-  word-wrap: break-word;
-  line-height: normal;
-}
+
 
 .subtopiccaption {
   overflow: hidden;
@@ -343,7 +338,7 @@ div.topic.active {
 
 .listcontainer .subtopic .subtopiclist_topics .topiclink div, .listcontainer .subtopic .subtopicheader_wrapper .topiclink div {
   margin-left: 10px;
-  padding-left: 5px;
+  padding-left: 10px;
   text-indent: -5px;
   word-wrap: break-word;
   line-height: normal;
