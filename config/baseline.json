@@ -52,6 +52,14 @@
         "pass": null
       }
     },
+    "runtime": {
+      "redis": {
+        "host": "localhost",
+        "port": 6379,
+        "db": 3,
+        "pass": null
+      }
+    },
     "stats": {
       "mongo": {
         "host": "localhost",
