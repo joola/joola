@@ -52,6 +52,14 @@
         "pass": null
       }
     },
+    "runtime": {
+      "redis": {
+        "host": "localhost",
+        "port": 6379,
+        "db": 3,
+        "pass": null
+      }
+    },
     "stats": {
       "mongo": {
         "host": "localhost",
@@ -166,6 +174,52 @@
     }
   },
   "collections": {
+    "mousemove": {
+      "name": "POC-mousemove",
+      "dimensions": [
+        {
+          "name": "timestamp",
+          "type": "date"
+        }
+      ],
+      "metrics": [
+        {
+          "name": "x",
+          "type": "int"
+        },
+        {
+          "name": "y",
+          "type": "int"
+        }
+      ]
+    },
+    "blockchain": {
+      "name": "POC-blockchain",
+      "dimensions": [
+        {
+          "name": "timestamp",
+          "type": "date"
+        },
+        {
+          "name": "hash",
+          "type": "string"
+        }
+      ],
+      "metrics": [
+        {
+          "name": "inamount",
+          "type": "float"
+        },
+        {
+          "name": "outamount",
+          "type": "float"
+        },
+        {
+          "name": "delta",
+          "type": "float"
+        }
+      ]
+    },
     "serverfault": {
       "sources": [
         {
@@ -217,9 +271,9 @@
           "lookup": "so_country_name"
         },
         {
-          "name":"node",
-          "type":"string",
-          "virtual":true
+          "name": "node",
+          "type": "string",
+          "virtual": true
         }
       ],
       "metrics": [
