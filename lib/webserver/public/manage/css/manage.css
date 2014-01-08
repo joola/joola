@@ -264,6 +264,10 @@ div.topic.active {
 
 .listcontainer .topic.active .topicheader {
   background-color: #000000;
+  
+}
+
+.topicheader {
   padding-left:8px;
 }
 
