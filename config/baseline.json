@@ -153,16 +153,210 @@
       "joola": {
         "name": "joola"
       }
-    },
-    "datasources": {
-      "test-mysql": {
-        "name": "test-mysql",
-        "type": "mysql",
-        "dbhost": "db.joola.io",
-        "dbport": "3306",
-        "dbuser": "joolaio",
-        "dbpass": "joolaio"
-      }
     }
+  },
+  "datasources": {
+    "test-mysql": {
+      "name": "test-mysql",
+      "type": "mysql",
+      "dbhost": "db.joola.io",
+      "dbport": "3306",
+      "dbuser": "joolaio",
+      "dbpass": "joolaio"
+    }
+  },
+  "collections": {
+    "serverfault": {
+      "sources": [
+        {
+          "type": "mysql",
+          "dbhost": "",
+          "dbname": "sf",
+          "mappings": {
+            "timestamp": "col_timestamp",
+            "hostname": {
+              "sql": "@@dbname",
+              "alias": "hostname"
+            },
+            "device": "col_device"
+          }
+        },
+        {
+          "type": "beacon"
+        }
+      ],
+      "name": "serverFault",
+      "transform": "function transform (context, document){document.node=joola.UID;document.playerid = 'Player ' + document.id; return document;}",
+      "dimensions": [
+        {
+          "name": "hostname",
+          "type": "string"
+        },
+        {
+          "name": "timestamp",
+          "type": "date"
+        },
+        {
+          "name": "activation_timestamp",
+          "type": "date"
+        },
+        {
+          "name": "id",
+          "type": "int"
+        },
+        {
+          "name": "playerid",
+          "type": "string",
+          "virtual": true
+        },
+        {
+          "name": "device"
+        },
+        {
+          "name": "country",
+          "lookup": "so_country_name"
+        },
+        {
+          "name":"node",
+          "type":"string",
+          "virtual":true
+        }
+      ],
+      "metrics": [
+        {
+          "name": "value",
+          "type": "float",
+          "suffix": "%"
+        }
+      ]
+    },
+    "stackoverflow": {
+      "sources": [
+        {
+          "type": "mysql",
+          "dbhost": "",
+          "dbname": "so",
+          "mappings": {
+            "timestamp": "col_timestamp"
+          }
+        },
+        {
+          "type": "beacon"
+        }
+      ],
+      "name": "serverFault",
+      "transform": "function transform (document){document.uid=joola.UID;document.playerid = 'Player ' + document.id; return document;}",
+      "dimensions": [
+        {
+          "name": "timestamp",
+          "type": "date"
+        },
+        {
+          "name": "id",
+          "type": "int"
+        },
+        {
+          "name": "playerid",
+          "type": "string"
+        },
+        {
+          "name": "device"
+        },
+        {
+          "name": "country",
+          "lookup": "sf_country_name"
+        }
+      ],
+      "metrics": [
+        {
+          "name": "value1",
+          "type": "float",
+          "suffix": "%"
+        }
+      ]
+    },
+    "devices": {
+      "name": "devices",
+      "sources": [
+        {
+          "type": "mysql",
+          "dbhost": "",
+          "dbname": "so",
+          "mappings": {
+            "device_id": "id",
+            "device": "col_device",
+            "devicegroup": "col_devicegroup"
+          }
+        },
+        {
+          "type": "beacon"
+        }
+
+      ],
+      "dimensions": [
+        {
+          "name": "device_id",
+          "type": "int"
+        },
+        {
+          "name": "device",
+          "type": "string",
+          "parent": "devicegroup"
+        },
+        {
+          "name": "devicegroup",
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "countries": {
+    "name": "countries",
+    "sources": [
+      {
+        "type": "mysql",
+        "dbhost": "",
+        "dbname": "so",
+        "mappings": {
+          "country_id": "id",
+          "country": "col_countryname",
+          "so_country_name": "so_country_name",
+          "sf_country_name": "sf_country_name"
+        }
+      },
+      {
+        "type": "beacon"
+      },
+      {
+        "type": "json",
+        "url": "http://bitcoin-chain.org/:height/fetch?from={max(:tranid)}",
+        "height": "function(){return randomnumber;}",
+        "param2": "function(){return new Date()}",
+        "eager": {
+          "interval": 30
+        }
+      }
+    ],
+    "dimensions": [
+      {
+        "name": "country_id",
+        "type": "int",
+        "visible": "false"
+      },
+      {
+        "name": "country",
+        "type": "string"
+      },
+      {
+        "name": "sf_country_name",
+        "type": "string",
+        "visible": "false"
+      },
+      {
+        "name": "so_country_name",
+        "type": "string",
+        "visible": "false"
+      }
+    ]
   }
 }

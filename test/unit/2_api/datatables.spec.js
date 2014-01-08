@@ -100,7 +100,7 @@ describe("api-datatables", function () {
     });
   });
 
-  it("should delete a data table", function (done) {
+  xit("should delete a data table", function (done) {
     var ds = {
       name: 'test-table-api2'
     };
