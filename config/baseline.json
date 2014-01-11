@@ -180,12 +180,19 @@
         "name": "Timestamp",
         "type": "date"
       },
+      "second": {
+        "id": "date",
+        "name": "Date",
+        "type": "date",
+        "dependsOn": "timestamp",
+        "alias": "timebucket.second"
+      },
       "date": {
         "id": "date",
         "name": "Date",
         "type": "date",
         "dependsOn": "timestamp",
-        "tranform": "function(timestamp){ return timestamp.format('yyyy-mm-dd')"
+        "alias": "timebucket.date"
       }
     },
     "metrics": {
@@ -196,12 +203,15 @@
         "id": "POC-blockchain",
         "dimensions": {
           "timestamp": {
+            "id": "timestamp",
             "mapto": "timestamp"
           },
-          "bc.hash": {
+          "hash": {
+            "id": "hash",
             "type": "string"
           },
-          "bc.relay": {
+          "relayed_by": {
+            "id": "relayed_by",
             "type": "string"
           }
         },
