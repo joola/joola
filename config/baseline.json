@@ -173,244 +173,69 @@
       "dbpass": "joolaio"
     }
   },
-  "collections": {
-    "mousemove": {
-      "name": "POC-mousemove",
-      "dimensions": [
-        {
-          "name": "timestamp",
-          "type": "date"
-        }
-      ],
-      "metrics": [
-        {
-          "name": "x",
-          "type": "int"
-        },
-        {
-          "name": "y",
-          "type": "int"
-        }
-      ]
+  "datamap": {
+    "dimensions": {
+      "timestamp": {
+        "id": "timestamp",
+        "name": "Timestamp",
+        "type": "date"
+      },
+      "date": {
+        "id": "date",
+        "name": "Date",
+        "type": "date",
+        "dependsOn": "timestamp",
+        "tranform": "function(timestamp){ return timestamp.format('yyyy-mm-dd')"
+      }
     },
-    "blockchain": {
-      "name": "POC-blockchain",
-      "dimensions": [
-        {
-          "name": "timestamp",
-          "type": "date"
-        },
-        {
-          "name": "hash",
-          "type": "string"
-        }
-      ],
-      "metrics": [
-        {
-          "name": "inamount",
-          "type": "float"
-        },
-        {
-          "name": "outamount",
-          "type": "float"
-        },
-        {
-          "name": "delta",
-          "type": "float"
-        }
-      ]
-    },
-    "serverfault": {
-      "sources": [
-        {
-          "type": "mysql",
-          "dbhost": "",
-          "dbname": "sf",
-          "mappings": {
-            "timestamp": "col_timestamp",
-            "hostname": {
-              "sql": "@@dbname",
-              "alias": "hostname"
-            },
-            "device": "col_device"
-          }
-        },
-        {
-          "type": "beacon"
-        }
-      ],
-      "name": "serverFault",
-      "transform": "function transform (context, document){document.node=joola.UID;document.playerid = 'Player ' + document.id; return document;}",
-      "dimensions": [
-        {
-          "name": "hostname",
-          "type": "string"
-        },
-        {
-          "name": "timestamp",
-          "type": "date"
-        },
-        {
-          "name": "activation_timestamp",
-          "type": "date"
-        },
-        {
-          "name": "id",
-          "type": "int"
-        },
-        {
-          "name": "playerid",
-          "type": "string",
-          "virtual": true
-        },
-        {
-          "name": "device"
-        },
-        {
-          "name": "country",
-          "lookup": "so_country_name"
-        },
-        {
-          "name": "node",
-          "type": "string",
-          "virtual": true
-        }
-      ],
-      "metrics": [
-        {
-          "name": "value",
-          "type": "float",
-          "suffix": "%"
-        }
-      ]
-    },
-    "stackoverflow": {
-      "sources": [
-        {
-          "type": "mysql",
-          "dbhost": "",
-          "dbname": "so",
-          "mappings": {
-            "timestamp": "col_timestamp"
-          }
-        },
-        {
-          "type": "beacon"
-        }
-      ],
-      "name": "serverFault",
-      "transform": "function transform (document){document.uid=joola.UID;document.playerid = 'Player ' + document.id; return document;}",
-      "dimensions": [
-        {
-          "name": "timestamp",
-          "type": "date"
-        },
-        {
-          "name": "id",
-          "type": "int"
-        },
-        {
-          "name": "playerid",
-          "type": "string"
-        },
-        {
-          "name": "device"
-        },
-        {
-          "name": "country",
-          "lookup": "sf_country_name"
-        }
-      ],
-      "metrics": [
-        {
-          "name": "value1",
-          "type": "float",
-          "suffix": "%"
-        }
-      ]
-    },
-    "devices": {
-      "name": "devices",
-      "sources": [
-        {
-          "type": "mysql",
-          "dbhost": "",
-          "dbname": "so",
-          "mappings": {
-            "device_id": "id",
-            "device": "col_device",
-            "devicegroup": "col_devicegroup"
-          }
-        },
-        {
-          "type": "beacon"
-        }
+    "metrics": {
 
-      ],
-      "dimensions": [
-        {
-          "name": "device_id",
-          "type": "int"
+    },
+    "collections": {
+      "blockchain": {
+        "id": "POC-blockchain",
+        "dimensions": {
+          "timestamp": {
+            "mapto": "timestamp"
+          },
+          "bc.hash": {
+            "type": "string"
+          },
+          "bc.relay": {
+            "type": "string"
+          }
         },
-        {
-          "name": "device",
-          "type": "string",
-          "parent": "devicegroup"
-        },
-        {
-          "name": "devicegroup",
-          "type": "string"
+        "metrics": {
+          "inamount": {
+            "id": "inamount",
+            "name": "In amount",
+            "type": "float",
+            "aggregation": "sum"
+          },
+          "outamount": {
+            "id": "outamount",
+            "name": "Out amount",
+            "type": "float",
+            "aggregation": "sum"
+          },
+          "delta": {
+            "id": "delta",
+            "name": "Delta",
+            "type": "float",
+            "aggregation": "sum"
+          },
+          "bc.count": {
+            "id": "count",
+            "type": "int",
+            "aggregation": "count"
+          },
+          "bc.relaycount": {
+            "id": "relaycount",
+            "type": "int",
+            "aggregation": "ucount"
+          }
         }
-      ]
+      }
     }
-  },
-  "countries": {
-    "name": "countries",
-    "sources": [
-      {
-        "type": "mysql",
-        "dbhost": "",
-        "dbname": "so",
-        "mappings": {
-          "country_id": "id",
-          "country": "col_countryname",
-          "so_country_name": "so_country_name",
-          "sf_country_name": "sf_country_name"
-        }
-      },
-      {
-        "type": "beacon"
-      },
-      {
-        "type": "json",
-        "url": "http://bitcoin-chain.org/:height/fetch?from={max(:tranid)}",
-        "height": "function(){return randomnumber;}",
-        "param2": "function(){return new Date()}",
-        "eager": {
-          "interval": 30
-        }
-      }
-    ],
-    "dimensions": [
-      {
-        "name": "country_id",
-        "type": "int",
-        "visible": "false"
-      },
-      {
-        "name": "country",
-        "type": "string"
-      },
-      {
-        "name": "sf_country_name",
-        "type": "string",
-        "visible": "false"
-      },
-      {
-        "name": "so_country_name",
-        "type": "string",
-        "visible": "false"
-      }
-    ]
   }
 }
