@@ -186,7 +186,15 @@
       }
     },
     "metrics": {
-
+      "bc2mv": {
+        "id": "bc2mv",
+        "name": "Blockchain/MouseMove",
+        "type": "float",
+        "formula": {
+          "dependsOn": ["bccount", "mvcount"],
+          "run": "function(bccount, mvcount){return bccount/mvcount;}"
+        }
+      }
     },
     "collections": {
       "mousemove": {
@@ -242,28 +250,28 @@
             "name": "In amount",
             "type": "float",
             "aggregation": "sum",
-            "suffix":"BTC"
+            "suffix": "BTC"
           },
           "outamount": {
             "id": "outamount",
             "name": "Out amount",
             "type": "float",
             "aggregation": "sum",
-            "suffix":"BTC"
+            "suffix": "BTC"
           },
           "delta": {
             "id": "delta",
             "name": "Delta",
             "type": "float",
             "aggregation": "sum",
-            "suffix":"BTC"
+            "suffix": "BTC"
           },
           "bccount": {
             "id": "bccount",
             "name": "TX Count",
             "type": "int",
             "aggregation": "count",
-            "prefix":"TX #."
+            "prefix": "TX #."
           },
           "relaycount": {
             "id": "relaycount",
