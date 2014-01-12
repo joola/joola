@@ -12,4 +12,4 @@
 var joola = module.exports = require('./lib/joola.io');
 
 if (require.main === module)
-  joola.init({logger: {level: 'trace'}});
+  joola.init();
