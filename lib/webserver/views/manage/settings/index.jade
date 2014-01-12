@@ -1,0 +1,71 @@
+include ../layout_head
+body
+  #wrapper
+    include ../layout_navbar
+    #page-wrapper(ng-controller="settingsCtrl")
+      .row
+        .col-lg-12
+          h1.page-caption
+            | System Settings&nbsp;
+            small
+          ol.breadcrumb
+            li.active
+              a(href="/manage/dashboard/index")
+                i.fa.fa-dashboard
+                | &nbsp;General Settings
+          .alert.alert-info
+            //button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
+            | The System Logs and Alerts view shows all logged events within the system.
+            | You can filter events by time period and other criteria. To learn more about this view, check out our&nbsp;
+            a(href="#wiki") wiki
+            | .
+      .row
+        #content.col-sm-12
+          .row
+            .col-lg-4
+              form
+                .form-group
+                  label.control-label(for="systemname") System name 
+                  input.form-control(type="text", id="systemname", name="systemname", placeholder="mycompany")
+
+                .form-group
+                  label.control-label(for="adminemail") System URL
+                  input.form-control(type="email", id="systemurl", name="systemurl", placeholder="http://mycompany.com/analytics")
+
+                .form-group
+                  label.control-label(for="adminemail") System Port
+                  input.form-control(type="email", id="systemport", name="systemport", placeholder="8080")
+                
+                .form-group
+                  label.control-label(for="adminemail") Administrator email
+                  input.form-control(type="email", id="systemname", name="systemname", placeholder="john@doe.com")
+
+                
+                
+                .form-group
+                  
+                  label.control-label Email alerts
+                  br
+                  label.checkbox-inline
+                    input(type="checkbox", value="warnings")
+                    | Warnings
+                  label.checkbox-inline
+                    input(type="checkbox", value="warnings")
+                    | Errors
+                  label.checkbox-inline
+                    input(type="checkbox", value="warnings")
+                    | Loop blocks
+                  label.checkbox-inline
+                    input(type="checkbox", value="warnings")
+                    | Auth fails
+
+                .form-group
+                  label.control-label(for="adminemail") Date format
+                  input.form-control(type="text", id="dateformat", name="dateformat", placeholder="YYYY-MM-DD HH:ii:ss")
+            .col-sm-4
+              button.btn.btn-primary Purge Cache
+
+
+  .clearfix
+  include ../layout_footer
+  script(src="/js/lib/logger.js")
