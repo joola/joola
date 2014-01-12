@@ -70,9 +70,7 @@
     "usage": "*",
     "connect-redis": "*",
     "repl.history": "*",
-    "mysql": "~2.0.0-rc2",
-    "geoip-lite": "~1.1.2",
-    "sqlite3": "~2.1.19"
+    "geoip-lite": "*"
   },
   "devDependencies": {
     "jsdox": "https://github.com/itayw/jsdox/tarball/master",
