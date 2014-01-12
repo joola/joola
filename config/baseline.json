@@ -189,19 +189,50 @@
 
     },
     "collections": {
+      "mousemove": {
+        "id": "POC-mousemove",
+        "dimensions": {
+          "timestamp": {
+            "id": "timestamp",
+            "name": "Timestamp",
+            "mapto": "timestamp"
+          },
+          "x": {
+            "id": "x",
+            "name": "Position X",
+            "type": "string"
+          },
+          "y": {
+            "id": "y",
+            "name": "Position Y",
+            "type": "string"
+          }
+        },
+        "metrics": {
+          "mvcount": {
+            "id": "mvcount",
+            "name": "Mousemove Count",
+            "type": "int",
+            "aggregation": "count"
+          }
+        }
+      },
       "blockchain": {
         "id": "POC-blockchain",
         "dimensions": {
           "timestamp": {
             "id": "timestamp",
+            "name": "Timestamp",
             "mapto": "timestamp"
           },
           "hash": {
             "id": "hash",
+            "name": "TX Hash",
             "type": "string"
           },
           "relayed_by": {
             "id": "relayed_by",
+            "name": "TX Relayed By",
             "type": "ip"
           }
         },
@@ -210,27 +241,33 @@
             "id": "inamount",
             "name": "In amount",
             "type": "float",
-            "aggregation": "sum"
+            "aggregation": "sum",
+            "suffix":"BTC"
           },
           "outamount": {
             "id": "outamount",
             "name": "Out amount",
             "type": "float",
-            "aggregation": "sum"
+            "aggregation": "sum",
+            "suffix":"BTC"
           },
           "delta": {
             "id": "delta",
             "name": "Delta",
             "type": "float",
-            "aggregation": "sum"
+            "aggregation": "sum",
+            "suffix":"BTC"
           },
-          "count": {
-            "id": "count",
+          "bccount": {
+            "id": "bccount",
+            "name": "TX Count",
             "type": "int",
-            "aggregation": "count"
+            "aggregation": "count",
+            "prefix":"TX #."
           },
           "relaycount": {
             "id": "relaycount",
+            "name": "Unique Count of Relays",
             "type": "int",
             "aggregation": "ucount",
             "dependsOn": "relayed_by"
