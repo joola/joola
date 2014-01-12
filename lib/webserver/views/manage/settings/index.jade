@@ -18,22 +18,22 @@ body
         #content.col-sm-12
           .row
             .col-lg-4
-              form
+              form#systemsettings
                 .form-group
                   label.control-label(for="systemname") System name 
                   input.form-control(type="text", id="systemname", name="systemname", placeholder="mycompany")
 
                 .form-group
-                  label.control-label(for="adminemail") System host
-                  input.form-control(type="email", id="systemhost", name="systemhost", placeholder="localhost")
+                  label.control-label(for="systemhost") System host
+                  input.form-control(type="text", id="systemhost", name="systemhost", placeholder="localhost")
 
                 .form-group
-                  label.control-label(for="adminemail") System Port
-                  input.form-control(type="email", id="systemport", name="systemport", placeholder="8080")
+                  label.control-label(for="systemport") System Port
+                  input.form-control(type="text", id="systemport", name="systemport", placeholder="8080")
                 
                 .form-group
                   label.control-label(for="adminemail") Administrator email
-                  input.form-control(type="email", id="systemname", name="systemname", placeholder="john@doe.com")
+                  input.form-control(type="email", id="adminemail", name="adminemail", placeholder="john@doe.com")
 
                 
                 
@@ -55,7 +55,7 @@ body
                     | Auth fails
 
                 .form-group
-                  label.control-label(for="adminemail") Date format
+                  label.control-label(for="dateformat") Date format
                   input.form-control(type="text", id="dateformat", name="dateformat", placeholder="YYYY-MM-DD HH:ii:ss")
 
                 .form-group
