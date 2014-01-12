@@ -163,16 +163,6 @@
       }
     }
   },
-  "datasources": {
-    "test-mysql": {
-      "name": "test-mysql",
-      "type": "mysql",
-      "dbhost": "db.joola.io",
-      "dbport": "3306",
-      "dbuser": "joolaio",
-      "dbpass": "joolaio"
-    }
-  },
   "datamap": {
     "dimensions": {
       "timestamp": {
@@ -212,7 +202,7 @@
           },
           "relayed_by": {
             "id": "relayed_by",
-            "type": "string"
+            "type": "ip"
           }
         },
         "metrics": {
@@ -234,15 +224,16 @@
             "type": "float",
             "aggregation": "sum"
           },
-          "bc.count": {
+          "count": {
             "id": "count",
             "type": "int",
             "aggregation": "count"
           },
-          "bc.relaycount": {
+          "relaycount": {
             "id": "relaycount",
             "type": "int",
-            "aggregation": "ucount"
+            "aggregation": "ucount",
+            "dependsOn": "relayed_by"
           }
         }
       }
