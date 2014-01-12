@@ -13,12 +13,7 @@ body
               a(href="/manage/dashboard/index")
                 i.fa.fa-dashboard
                 | &nbsp;General Settings
-          .alert.alert-info
-            //button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
-            | The System Logs and Alerts view shows all logged events within the system.
-            | You can filter events by time period and other criteria. To learn more about this view, check out our&nbsp;
-            a(href="#wiki") wiki
-            | .
+          
       .row
         #content.col-sm-12
           .row
@@ -29,8 +24,8 @@ body
                   input.form-control(type="text", id="systemname", name="systemname", placeholder="mycompany")
 
                 .form-group
-                  label.control-label(for="adminemail") System URL
-                  input.form-control(type="email", id="systemurl", name="systemurl", placeholder="http://mycompany.com/analytics")
+                  label.control-label(for="adminemail") System host
+                  input.form-control(type="email", id="systemhost", name="systemhost", placeholder="localhost")
 
                 .form-group
                   label.control-label(for="adminemail") System Port
@@ -62,8 +57,14 @@ body
                 .form-group
                   label.control-label(for="adminemail") Date format
                   input.form-control(type="text", id="dateformat", name="dateformat", placeholder="YYYY-MM-DD HH:ii:ss")
-            .col-sm-4
-              button.btn.btn-primary Purge Cache
+
+                .form-group
+                  button.btn.btn-primary(ng-click="saveSettings()") Save settings 
+                  | &nbsp;
+                  button.btn.btn-warning Purge Cache
+                  | &nbsp;
+                  button.btn.btn-danger Take system offline 
+              
 
 
   .clearfix

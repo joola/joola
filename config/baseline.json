@@ -8,6 +8,7 @@
   "interfaces": {
     "webserver": {
       "enabled": true,
+      "host": "localhost",
       "port": 40008,
       "securePort": 40009,
       "secure": false,
