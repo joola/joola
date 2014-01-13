@@ -20,9 +20,8 @@ We've tried to keep things simple and divided the framework into the listed logi
 - [Core](subsystem-core) - Internal processes
 - [Common](subsystem-common) - Shared modules and code
 - [Dispatch](subsystem-dispatch) - The grid messaging system
-- [Collector](subsystems-collector) - External services can push events to the collector
 - [Query](subsystems-query) - Manages the aspects of querying the system
-- [Cache](subsystems-cache) - Handles the framework's internal cache
+- [Beacon](subsystems-beacon) - Handles the framework's internal cache
 - [Authentication](subsystems-auth) - All authentication aspects of the framework
 - [Web Server](subsystems-webserver) - Serves web content to end users
 - [SDK](subsystems-sdk) - Used to communicate with joola.io framework and manage it

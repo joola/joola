@@ -15,19 +15,20 @@ Each request handled by the system must have a security context, i.e. be assosci
 This ensures three main factors:
 - The request is made by a valid and authenticated user.
 - The action/endpoint requested by the user is allowed by his permissions.
-- The user will see only data relevant to his account.
+- The user will see only data and content relevant to his account.
 When a request is made, a [token validation](#tokens) process occurs, it ensures that we have a valid token and the user is
 authenticated and that the action/endpoint requested is allowed. During this process, we also force a `filter` on the request
 which is used throughout the framework to ensure only [relevant data](#segregate) for this user is communicated.
 
 #### Token generation
 joola.io exposes a dedicated endpoint `/api/auth/generateToken` for the purpose of token generation.
+//TODO: Add link to specific docs on generateToken. Add an example for generating token.
 
 #### Token validation
 joola.io uses it's `auth` middleware to check every request and evaluate its validity, here's the logical flow:
 
-//TODO: Add link to full image
 [[/images/authentication-flow.png]]
+//TODO: Add link to full image
 
 - Incoming request for non-static content
 - Check for query string `token` parameter
@@ -42,10 +43,11 @@ joola.io uses it's `auth` middleware to check every request and evaluate its val
 - If permissions ok, **process request**
 
 ### Data segregation
-
+//TODO: TBC
 
 ### Authentication stores
+//TODO: TBC
 
 #### Custom authentication stores
-
+//TODO: TBC
 
