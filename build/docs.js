@@ -176,9 +176,9 @@ async.series(calls, function (err) {
   data = data.replace('[##INSERTSTRUCTURE##]', output);
   fs.writeFileSync(path.join(wikiCodePath, 'Code-documentation.md'), data);
 
-  var data = fs.readFileSync(path.join(wikiCodePath, '/../subsystems/subsystem-common.md')).toString();
+  var data = fs.readFileSync(path.join(wikiCodePath, '/../subsystems/Subsystem-common.md')).toString();
   data = data.replace('[##INSERTSTRUCTURE_COMMON##]', common);
-  fs.writeFileSync(path.join(wikiCodePath, '/../subsystems/subsystem-common.md'), data);
+  fs.writeFileSync(path.join(wikiCodePath, '/../subsystems/Subsystem-common.md'), data);
 
 });
 
