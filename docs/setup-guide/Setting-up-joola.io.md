@@ -9,6 +9,85 @@ Setting up joola.io is a five step process:
 5. [Visualize your data!](#step5)
 
 <a name="step1" />
+## TL;DR
+```bash
+$ [sudo] npm install joola.io -g
+$ joola.io
+```
+
+```js
+//setup.js
+
+var joolaio = require('joola.io');
+
+joolaio.dispatch.collections.add('demo-collection', {
+	dimensions: {
+		timestamp: {
+			id: 'timestamp',
+			mapto: 'timestamp'
+		}
+	},
+	metrics: {
+		valueX: {
+			id: 'valueX',
+			type: 'int',
+			aggregation: 'sum',
+			prefix: 'Value X: '
+		}
+	}
+});
+
+joolaio.dispatch.collections.add('another-collection', {
+	dimensions: {
+		timestamp: {
+			id: 'timestamp',
+			mapto: 'timestamp'
+		}
+	},
+	metrics: {
+		valueY: {
+			id: 'valueY',
+			type: 'int',
+			aggregation: 'sum',
+			prefix: 'Value Y: '
+		}
+	}
+});
+```
+
+```js
+//collector.js
+
+var joolaio = require('joola.io');
+
+joolaio.dispatch.beacon.insert('demo-collection', {
+	timestamp: new Date(),
+	valueX: randomNumber()
+});
+
+joolaio.dispatch.beacon.insert('another-collection', {
+	timestamp: new Date(),
+	valueY: randomNumber()
+});
+```
+
+```js
+//query.js
+
+var joolaio = require('joola.io');
+
+joolaio.dispatch.query.fetch({
+		timeframe:'last_30_minutes',
+		interval: 'second',
+		dimensions: [ 'timestamp'],
+		metrics: ['valueX', 'valueY'],
+		filter: null
+	}, function (err, message) {
+		console.log(err,message);
+	});
+```
+
+<a name="step1" />
 ## Step 1: Install joola.io
 
 joola.io is developed using [NodeJS][NodeJS], therefore, before starting you'll need to install node as part of your environment.
@@ -90,10 +169,11 @@ Let's start with a simple query:
 	var joolaio = require('joola.io');
 
 	joolaio.dispatch.query.fetch({
-			timeframe:'last_30_minutes', interval: 'second',
+			timeframe:'last_30_minutes',
+			interval: 'second',
 			realtime: true,
-			dimensions: [ 'timestamp'],
-			metrics: ['inamount', 'outamount', 'bccount','bc2mv'],
+			dimensions: ['timestamp'],
+			metrics: ['x', 'y'],
 			filter: null
 		}, function (err, message) {
 			console.log(err,message);
