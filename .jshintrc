@@ -1,4 +1,4 @@
-{
+{ 
   "evil": true,  // Tolerate use of `eval`.
   "indent": 2,
   "globals": [
