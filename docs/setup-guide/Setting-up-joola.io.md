@@ -9,72 +9,182 @@ Setting up joola.io is a five step process:
 5. [Visualize your data!](#step5)
 
 <a name="step1" />
+## TL;DR
+```bash
+$ [sudo] npm install joola.io -g
+$ joola.io
+```
+
+```js
+//setup.js
+
+var joolaio = require('joola.io');
+
+joolaio.dispatch.collections.add('demo-collection', {
+	dimensions: {
+		timestamp: {
+			id: 'timestamp',
+			mapto: 'timestamp'
+		}
+	},
+	metrics: {
+		valueX: {
+			id: 'valueX',
+			type: 'int',
+			aggregation: 'sum',
+			prefix: 'Value X: '
+		}
+	}
+});
+
+joolaio.dispatch.collections.add('another-collection', {
+	dimensions: {
+		timestamp: {
+			id: 'timestamp',
+			mapto: 'timestamp'
+		}
+	},
+	metrics: {
+		valueY: {
+			id: 'valueY',
+			type: 'int',
+			aggregation: 'sum',
+			prefix: 'Value Y: '
+		}
+	}
+});
+```
+
+```js
+//collector.js
+
+var joolaio = require('joola.io');
+
+joolaio.dispatch.beacon.insert('demo-collection', {
+	timestamp: new Date(),
+	valueX: randomNumber()
+});
+
+joolaio.dispatch.beacon.insert('another-collection', {
+	timestamp: new Date(),
+	valueY: randomNumber()
+});
+```
+
+```js
+//query.js
+
+var joolaio = require('joola.io');
+
+joolaio.dispatch.query.fetch({
+		timeframe:'last_30_minutes',
+		interval: 'second',
+		dimensions: [ 'timestamp'],
+		metrics: ['valueX', 'valueY'],
+		filter: null
+	}, function (err, message) {
+		console.log(err,message);
+	});
+```
+
+<a name="step1" />
 ## Step 1: Install joola.io
 
-[[https://d3i6fms1cm1j0i.cloudfront.net/github-wiki/images/2-collectors.png]]
+joola.io is developed using [NodeJS][NodeJS], therefore, before starting you'll need to install node as part of your environment.
+Moving on, you'll need to install [MongoDB][Mongo] and [Redis][Redis], these are used by the caching layer.
 
-The Snowplow collector receives data from Snowplow trackers and logs that data to S3 for storage and further processing. Setting up a collector is the first step in the Snowplow setup process.
+Now that we have the pre-requisits done, let's get to the real deal:
+```bash
+$ [sudo] npm install joola.io -g
+$ joola.io --demo
+```
 
-[Setup a Snowplow collector now!](Setting-up-a-collector)
+This will install `joola.io` as a global package on the machine. While this is a good solution for most developers, some wish to have side-by-side installations of joola.io running on the same box.
+So, another option is to install a local copy of joola.io.
+```bash
+$ [sudo] mkdir /opt/joola.io
+$ [sudo] chown $USER /opt/joola.io
+$ cd /opt/joola.io
+$ npm install joola.io
+$ ./node_modules/joola/bin/joola.io
+```
 
-Setup your collector? Then proceed to [step 2: setup a tracker](#step2).
+The above example installs joola.io into a new directory within `/opt`. joola.io is installed without any special permissions required for out-of-the-box setup.
+
+**Note about ports:** installing joola.io without root permissions will not allow it to open ports lower than 1024 for security reasons. The default port is set to 8080 so this should not be an issue. However, should you wish to use port 80 or other lower than 1024, please run joola.io with root privileges.
+
+### The demo
+Running joola.io for the first time with default configuration or by specifying the `--demo` switch loads joola.io with our demo. The demo tries to highlight the different
+aspects of joola.io and is a great asset as building blocks to your custom joola.io implementation.
+
+### Where to start?
+Navigate your browser to `http://localhost:8080`. We have a welcome page made up especially for you and it will help you getting around.
 
 <a name="step2" />
 ## Step 2: Setup system configuration
+By now you have joola.io installed and running. Make sure you take a look at the Demo Welcome Page, it should offer a good place to start.
+Configuring the system can be done in two ways, directly editing the JSON configuration file, or by using the management interface, choose your flavor.
 
-[[https://d3i6fms1cm1j0i.cloudfront.net/github-wiki/images/1-trackers.png]]
+#### Interfaces
+//TODO: TBC
 
-Snowplow trackers generate event data and send that data to Snowplow collectors to be captured. The most common Snowplow tracker used is the Javascript tracker, which is integrated in websites (either directly or via a tag management solution) the same way that any web analytics tracker (e.g. Google Analytics or Omniture tags) is integrated.
+#### Stores
+//TODO: TBC
 
-[Setup a tracker now!](Setting-up-a-Tracker)
-
-**Note: once you have setup a collector and tracker, you can pause and perform the remainder of the setup steps later**. That is because your data is being successfully generated and logged. When you eventually proceed to [step 3: Setup EMrEtlRunner](#step3), you will be able to process all the data you have logged since setup.
-
-Setup your tracker? Now proceed to [step 3: setup EmrEtlRunner](#step3).
+#### Authentication
+//TODO: TBC
 
 <a name="step3" />
-## Step 3: Configure data stores
+## Step 3: Define your collections
+joola.io is all about providing insight from your data, but in order to do so it needs to know a few things about your data, you need to describe it for joola.io.
+During this process we'll define collections, dimensions and metrics. Having these defintions allows us to categorize, correlate and map your data into meaningful insight.
 
-[[https://d3i6fms1cm1j0i.cloudfront.net/github-wiki/images/3-enrich.png]]
+#### Collections
+//TODO: TBC
 
-The EmrEtlRunner application regularly takes the raw log files generated by the Snowplow collector and
+#### Dimensions
+//TODO: TBC
 
-1. **Cleans up the data** into a format that is easier to parse / analyse
-2. **Enriches the data** (e.g. infers the location of the visitor from his / her IP address and infers the search engine keywords from the query string)
-3. **Stores that cleaned, enriched data in S3**
-
-Once you have setup EmrEtlRunner, the process for taking the raw data generated by the collector, cleaning and enriching it will be automated.
-
-[Setup EmrEtlRunner now!](Setting-up-EmrEtlRunner)
-
-Setup EmrEtlRunner? Proceed to [step 4: setup the StorageLoader](#step4).
+#### Metrics
+//TODO: TBC
 
 <a name="step4" />
-## Step 4: Define dimensions/metrics and other content
-
-[[https://d3i6fms1cm1j0i.cloudfront.net/github-wiki/images/4-storage.png]]
-
-Most Snowplow users store their web event data in at least two places: S3 for processing in Hadoop (e.g. to enable machine learning via Mahout) and a database (e.g. Redshift or PostgreSQL) for more traditional OLAP analysis.
-
-The StorageLoader is an application to regularly transfer data from S3 into other databases e.g. Redshift. If you **only** wish to process your data using Hadoop on EMR, you do not need to setup the StorageLoader. However, if you would find it convenient to have your data in another data store (e.g. Redshift) then you can set this up at this stage.
-
-[Setup alternative data stores](Setting-up-alternative-data-stores).
-
-Setup the alternative data stores? Then proceed to [step 5: analyse your data](#step5).
+## Step 4: Send your data
+Feeding joola.io with data is very easy! We include the Client SDK as a library in a NodeJS project or even a simple webpage, then we instruct it to save the data.
+```js
+	var joolaio = require('joola.io');
+	joolaio.dispatch.beacon.insert('collection', {
+		timestamp: new Date(),
+		x: event.X,
+		y: event.Y
+	});
+```
+That's it, your data is in joola.io, that's all it takes.
 
 <a name="step5" />
 ## Step 5: Visualize your data!
+Now comes the cool part, taking the data we gathered and drawing it on a canvas in different shapes and forms.
+Let's start with a simple query:
+```js
+	var joolaio = require('joola.io');
 
-[[https://d3i6fms1cm1j0i.cloudfront.net/github-wiki/images/5-analytics.png]]
-
-Once your data is stored in S3 and Redshift, setup is complete and you are in a position to start analysing it. As part of the setup guide we run through the steps necessary to perform some intiial analysis and plugin a couple of analytics tools, to get you started.
-
-[Get started analysing Snowplow data](Getting-started-analyzing-Snowplow-data)
+	joolaio.dispatch.query.fetch({
+			timeframe:'last_30_minutes',
+			interval: 'second',
+			realtime: true,
+			dimensions: ['timestamp'],
+			metrics: ['x', 'y'],
+			filter: null
+		}, function (err, message) {
+			console.log(err,message);
+		});
+```
+This will print out a JSON structure full with documents meeting the criteria.
 
 ## Setup is complete!
 
-![architecture] [conceptual-architecture]
+You now have joola.io setup, configured and running!
 
-You now have all five Snowplow subsystems working!
-
-[conceptual-architecture]: https://d3i6fms1cm1j0i.cloudfront.net/github-wiki/images/conceptual-architecture.png
+[NodeJS]: http://nodejs.org
+[Mongo]: http://mongodb.org
+[Redis]: http://redis.io

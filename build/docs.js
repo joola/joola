@@ -139,13 +139,17 @@ async.series(calls, function (err) {
   }
 
   var output = '';
+  var common = '';
   var dirs = fs.readdirSync(libPath);
   dirs.forEach(function (dir) {
     var _dir = path.join(libPath, dir);
     if (fs.lstatSync(_dir).isDirectory()) {
+
       var data = fs.readFileSync(path.join(_dir, 'README.md'));
       output += '#### ' + dir + '\r\n';
+      //_dir.indexOf('lib/common') > -1 ? common += '#### ' + dir + '\r\n' : null;
       output += data + '\r\n\r\n';
+      //_dir.indexOf('lib/common') > -1 ? common += data + '\r\n\r\n' : null;
 
       var counter = 0;
       var files = fs.readdirSync(_dir);
@@ -154,9 +158,12 @@ async.series(calls, function (err) {
         if (fs.lstatSync(_file).isFile()) {
           if (path.extname(_file) == '.js') {
             var modulename = path.basename(_file, '.js');
-            if (counter % 8 == 0)
+            if (counter % 8 == 0){
               output += '\r\n\r\n';
+              _dir.indexOf('lib/common') > -1 ? common += '\r\n\r\n' : null;
+            }
             output += '<code><a href="' + 'lib\\' + dir + '\\' + modulename + ' (jsdoc)">' + modulename + '</a></code>';
+            _dir.indexOf('lib/common') > -1 ? common += '<code><a href="' + 'lib\\' + dir + '\\' + modulename + ' (jsdoc)">' + modulename + '</a></code>' : null;
             counter++;
           }
         }
@@ -168,5 +175,10 @@ async.series(calls, function (err) {
   var data = fs.readFileSync(path.join(wikiCodePath, 'Code-documentation.md')).toString();
   data = data.replace('[##INSERTSTRUCTURE##]', output);
   fs.writeFileSync(path.join(wikiCodePath, 'Code-documentation.md'), data);
+
+  var data = fs.readFileSync(path.join(wikiCodePath, '/../subsystems/Subsystem-common.md')).toString();
+  data = data.replace('[##INSERTSTRUCTURE_COMMON##]', common);
+  fs.writeFileSync(path.join(wikiCodePath, '/../subsystems/Subsystem-common.md'), data);
+
 });
 

@@ -9,4 +9,7 @@
  **/
 
 
-module.exports = require('./lib/joola.io');
+var joola = module.exports = require('./lib/joola.io');
+
+if (require.main === module)
+  joola.init();
