@@ -1,4 +1,4 @@
-lib/sdk/bin/* 
+lib/sdk/bin/*
 lib/common/index.js
 
 lib/webserver/public/*
