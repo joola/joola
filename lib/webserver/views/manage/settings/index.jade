@@ -21,22 +21,12 @@ body
               form#systemsettings
                 .form-group
                   label.control-label(for="systemname") System name 
-                  input.form-control(type="text", id="systemname", name="systemname", placeholder="mycompany")
-
-                .form-group
-                  label.control-label(for="systemhost") System host
-                  input.form-control(type="text", id="systemhost", name="systemhost", placeholder="localhost")
-
-                .form-group
-                  label.control-label(for="systemport") System Port
-                  input.form-control(type="text", id="systemport", name="systemport", placeholder="8080")
+                  input.form-control(type="text", id="systemname", name="systemname", ng-model="system.name", placeholder="mycompany")
                 
                 .form-group
                   label.control-label(for="adminemail") Administrator email
-                  input.form-control(type="email", id="adminemail", name="adminemail", placeholder="john@doe.com")
-
-                
-                
+                  input.form-control(type="email", id="adminemail", name="adminemail", ng-model="system.adminemail", placeholder="john@doe.com")
+           
                 .form-group
                   
                   label.control-label Email alerts
@@ -56,7 +46,7 @@ body
 
                 .form-group
                   label.control-label(for="dateformat") Date format
-                  input.form-control(type="text", id="dateformat", name="dateformat", placeholder="YYYY-MM-DD HH:ii:ss")
+                  input.form-control(type="text", id="dateformat", name="dateformat", ng-model="system.dateformat", placeholder="YYYY-MM-DD HH:ii:ss")
 
                 .form-group
                   button.btn.btn-primary(ng-click="saveSettings()") Save settings 

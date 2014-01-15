@@ -1,0 +1,56 @@
+include ../layout_head
+body
+  #wrapper
+    include ../layout_navbar
+    #page-wrapper(ng-controller="settingsCtrl")
+      .row
+        .col-lg-12
+          h1.page-caption
+            | System Settings&nbsp;
+            small
+          ol.breadcrumb
+            li.active
+              a(href="/manage/dashboard/index")
+                i.fa.fa-dashboard
+                | &nbsp;General Settings
+      .row
+        .col-sm-12
+          .row
+            .col-lg-4
+              .settingbox.well
+                form#webinterface
+                  .form-group
+                    label.control-label(for="systemhost") Webserver host
+                    input.form-control(type="text", id="systemhost", name="systemhost", ng-model="settings.interfaces.webserver.host", placeholder="localhost")
+                  .form-group
+                    label.control-label(for="systemport") Webserver port
+                    input.form-control(type="text", id="systemport", name="systemport", ng-model="settings.interfaces.webserver.port", placeholder="8080")
+
+            .col-lg-4
+              .settingbox.well
+                form#beaconinterface
+                  .form-group
+                    label.control-label(for="systemhost") Beacon host
+                    input.form-control(type="text", id="systemhost", name="systemhost", ng-model="system.host", placeholder="localhost")
+                  .form-group
+                    label.control-label(for="systemport") Beacon port
+                    input.form-control(type="text", id="systemport", name="systemport", ng-model="system.port", placeholder="8080")
+
+            .col-lg-4
+              .settingbox.well
+                form#replinterface
+                  .form-group
+                    label.control-label(for="systemhost") Repl host
+                    input.form-control(type="text", id="systemhost", name="systemhost", ng-model="system.host", placeholder="localhost")
+                  .form-group
+                    label.control-label(for="systemport") Repl port
+                    input.form-control(type="text", id="systemport", name="systemport", ng-model="system.port", placeholder="8080")
+
+            
+          .row
+            .col-lg-4
+              .form-group
+                button.btn.btn-primary(ng-click="saveSettings()") Save settings 
+  .clearfix
+  include ../layout_footer
+  script(src="/js/lib/logger.js")
