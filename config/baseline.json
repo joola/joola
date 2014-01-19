@@ -13,7 +13,7 @@
       "securePort": 40009,
       "secure": false,
       "keyFile": null,
-      "certFIle": null,
+      "certFile": null,
       "websocket": {
         "enabled": true
       },
@@ -72,6 +72,7 @@
     },
     "logger": {
       "mongo": {
+        "level": "silly",
         "host": "localhost",
         "port": 27017,
         "user": null,
@@ -79,6 +80,7 @@
         "db": "logger"
       },
       "file": {
+        "level": "silly",
         "path": "/tmp/joola.io/"
       }
     },
@@ -115,10 +117,6 @@
         }
       }
     }
-  },
-  "logging": {
-    "level": "silly",
-    "stores": ["mongo", "fs"]
   },
   "dispatch": {
     "ttl": 5000,
