@@ -367,3 +367,8 @@ div.topic.active {
   color:#ffffff;
   text-transform: none;
 }
+
+.successmessage {
+  color:green;
+  display:none;
+}
