@@ -9,85 +9,6 @@ Setting up joola.io is a five step process:
 5. [Visualize your data!](#step5)
 
 <a name="step1" />
-## TL;DR
-```bash
-$ [sudo] npm install joola.io -g
-$ joola.io
-```
-
-```js
-//setup.js
-
-var joolaio = require('joola.io');
-
-joolaio.dispatch.collections.add('demo-collection', {
-	dimensions: {
-		timestamp: {
-			id: 'timestamp',
-			mapto: 'timestamp'
-		}
-	},
-	metrics: {
-		valueX: {
-			id: 'valueX',
-			type: 'int',
-			aggregation: 'sum',
-			prefix: 'Value X: '
-		}
-	}
-});
-
-joolaio.dispatch.collections.add('another-collection', {
-	dimensions: {
-		timestamp: {
-			id: 'timestamp',
-			mapto: 'timestamp'
-		}
-	},
-	metrics: {
-		valueY: {
-			id: 'valueY',
-			type: 'int',
-			aggregation: 'sum',
-			prefix: 'Value Y: '
-		}
-	}
-});
-```
-
-```js
-//collector.js
-
-var joolaio = require('joola.io');
-
-joolaio.dispatch.beacon.insert('demo-collection', {
-	timestamp: new Date(),
-	valueX: randomNumber()
-});
-
-joolaio.dispatch.beacon.insert('another-collection', {
-	timestamp: new Date(),
-	valueY: randomNumber()
-});
-```
-
-```js
-//query.js
-
-var joolaio = require('joola.io');
-
-joolaio.dispatch.query.fetch({
-		timeframe:'last_30_minutes',
-		interval: 'second',
-		dimensions: [ 'timestamp'],
-		metrics: ['valueX', 'valueY'],
-		filter: null
-	}, function (err, message) {
-		console.log(err,message);
-	});
-```
-
-<a name="step1" />
 ## Step 1: Install joola.io
 
 joola.io is developed using [NodeJS][NodeJS], therefore, before starting you'll need to install node as part of your environment.
@@ -117,6 +38,8 @@ The above example installs joola.io into a new directory within `/opt`. joola.io
 Running joola.io for the first time with default configuration or by specifying the `--demo` switch loads joola.io with our demo. The demo tries to highlight the different
 aspects of joola.io and is a great asset as building blocks to your custom joola.io implementation.
 
+[Learn more about the demo and how to use it](The-Demo)
+
 ### Where to start?
 Navigate your browser to `http://localhost:8080`. We have a welcome page made up especially for you and it will help you getting around.
 
@@ -134,19 +57,18 @@ Configuring the system can be done in two ways, directly editing the JSON config
 #### Authentication
 //TODO: TBC
 
+[Setup your System now!](setting-up-the-system)
+
 <a name="step3" />
 ## Step 3: Define your collections
 joola.io is all about providing insight from your data, but in order to do so it needs to know a few things about your data, you need to describe it for joola.io.
 During this process we'll define collections, dimensions and metrics. Having these defintions allows us to categorize, correlate and map your data into meaningful insight.
 
 #### Collections
-//TODO: TBC
+Collections are used to store *documents*. Collections describe the document, its dimensions, 
+metrics and other descriptive information and guidelines on how to process the documents into meaningful insight. 
 
-#### Dimensions
-//TODO: TBC
-
-#### Metrics
-//TODO: TBC
+[Setup Collections now!](setting-up-collections)
 
 <a name="step4" />
 ## Step 4: Send your data
