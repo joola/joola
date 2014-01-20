@@ -4,15 +4,20 @@
   "moreinfo": "https://github.com/joola/joola.io/wiki",
 
   "_version": "0.0.1",
-
+  "general": {
+    "adminemail": "info@joo.la",
+    "dateformat": "YYYY-mm-dd hh:ii:ss",
+    "systemname": "joola"
+  },
   "interfaces": {
     "webserver": {
       "enabled": true,
+      "host": "localhost",
       "port": 40008,
       "securePort": 40009,
       "secure": false,
       "keyFile": null,
-      "certFIle": null,
+      "certFile": null,
       "websocket": {
         "enabled": true
       },
@@ -71,6 +76,7 @@
     },
     "logger": {
       "mongo": {
+        "level": "trace",
         "host": "localhost",
         "port": 27017,
         "user": null,
@@ -78,6 +84,7 @@
         "db": "logger"
       },
       "file": {
+        "level": "trace",
         "path": "/tmp/joola.io/"
       }
     },
@@ -114,10 +121,6 @@
         }
       }
     }
-  },
-  "logging": {
-    "level": "silly",
-    "stores": ["mongo", "fs"]
   },
   "dispatch": {
     "ttl": 5000,

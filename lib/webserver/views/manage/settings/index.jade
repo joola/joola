@@ -1,0 +1,88 @@
+include ../layout_head
+body
+  #wrapper
+    include ../layout_navbar
+    #page-wrapper(ng-controller="settingsCtrl")
+      .row
+        .col-lg-12
+          h1.page-caption
+            | System Settings&nbsp;
+            small
+          ol.breadcrumb
+            li.active
+              a(href="/manage/dashboard/index")
+                i.fa.fa-dashboard
+                | &nbsp;General Settings
+
+      .row
+        #content.col-sm-12
+          .row
+            .col-lg-4
+              form#systemsettings
+                .form-group
+                  label.control-label(for="systemname") System name 
+                  input.form-control(type="text", id="systemname", name="systemname", ng-model="settings.general.systemname", placeholder="mycompany")
+
+                .form-group
+                  label.control-label(for="adminemail") Administrator email
+                  input.form-control(type="email", id="adminemail", name="adminemail", ng-model="settings.general.adminemail", placeholder="john@doe.com")
+
+                .form-group
+
+                  label.control-label Email alerts
+                  br
+                  label.checkbox-inline
+                    input(type="checkbox", value="warnings")
+                    | Warnings
+                  label.checkbox-inline
+                    input(type="checkbox", value="warnings")
+                    | Errors
+                  label.checkbox-inline
+                    input(type="checkbox", value="warnings")
+                    | Loop blocks
+                  label.checkbox-inline
+                    input(type="checkbox", value="warnings")
+                    | Auth fails
+
+                .form-group
+                  label.control-label(for="dateformat") Date format
+                  input.form-control(type="text", id="dateformat", name="dateformat", ng-model="settings.general.dateformat", placeholder="YYYY-MM-DD HH:ii:ss")
+
+                .form-group
+                  label.control-label Log level
+                  .clearfix
+
+                  label.radio-inline
+                    input(type="radio", ng-model="settings.store.logger.mongo.level", value="trace")
+                    | Trace
+
+                  label.radio-inline
+                    input(type="radio", ng-model="settings.store.logger.mongo.level", value="debug")
+                    | Debug
+
+                  label.radio-inline
+                    input(type="radio", ng-model="settings.store.logger.mongo.level", value="info")
+                    | Info
+
+                  label.radio-inline
+                    input(type="radio", ng-model="settings.store.logger.mongo.level", value="warning")
+                    | Warning
+
+                  label.radio-inline
+                    input(type="radio", ng-model="settings.store.logger.mongo.level", value="error")
+                    | Error
+
+
+
+                .form-group
+                  button.btn.btn-primary(ng-click="saveSettings()") Save settings 
+                  | &nbsp;
+                  button.btn.btn-warning(ng-click="purgeCache()") Purge Cache
+                  | &nbsp;
+                  button.btn.btn-danger(ng-click="takeOffline()") Take system offline 
+
+
+
+  .clearfix
+  include ../layout_footer
+  script(src="/js/lib/logger.js")
