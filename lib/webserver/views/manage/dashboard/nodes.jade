@@ -18,12 +18,7 @@ body
             li.active
               i.fa.fa-tasks
               | &nbsp;System Performance
-          //.alert.alert-info
-            button.close(type='button', data-dismiss='alert', aria-hidden='true') ×
-            | The System Performance view displays information about all participating nodes.
-            | For each node, you'll see a detailed breakdown of performance KPIs. To learn more about System Performance, check out our&nbsp;
-            a(href="#wiki") wiki
-            | .
+
       .row
         .col-lg-3.widget.widget-sytstemload
         .col-lg-3.widget.widget-waittime
@@ -62,24 +57,13 @@ body
                       button.btn.btn-danger.btn-terminate(type="button") Terminate
                   .row
                     .col-lg-12
-                      div.flot-chart-moving-line
+                      .flot-chart-moving-line
 
-                  //dl.dl-horizontal
-                    dt Online
-                    dd
-                      input.switch-small(id="animated-switch", type="checkbox", checked="true", data-on="success" data-off="danger")
-                    dt Web Server
-                      dd
-                        input.switch-small(id="animated-switch", type="checkbox", checked="true", data-on="success" data-off="danger")
-                    dt Dispatch
-                      dd
-                        input.switch-small(id="animated-switch", type="checkbox", checked="true", data-on="success" data-off="danger")
-              div.clearfix
+                 
+              .clearfix
               .row
 
-                //.col-lg-4
-                //  div.morris-chart-donut(id="morris-chart-donut")
-
+           
 
 
 
