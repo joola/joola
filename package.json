@@ -63,8 +63,8 @@
     "htpasswd": "*",
     "moment": "*",
     "twix": "*",
-    "connect": "*",
-    "cookie": "*",
+    "connect": "~2.12.0",
+    "cookie": "~0.1.0",
     "JSONStream": "*",
     "event-stream": "*",
     "usage": "*",
@@ -90,7 +90,8 @@
     "mkdirp": "*",
     "sinon": "*",
     "chai": "*",
-    "sinon-chai": "*"
+    "sinon-chai": "*",
+    "wrench": "~1.5.6"
   },
   "license": "GPL-3.0"
 }
