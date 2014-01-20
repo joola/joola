@@ -4,7 +4,11 @@
   "moreinfo": "https://github.com/joola/joola.io/wiki",
 
   "_version": "0.0.1",
-
+  "general": {
+    "adminemail": "info@joo.la",
+    "dateformat": "YYYY-mm-dd hh:ii:ss",
+    "systemname": "joola"
+  },
   "interfaces": {
     "webserver": {
       "enabled": true,
@@ -72,7 +76,7 @@
     },
     "logger": {
       "mongo": {
-        "level": "silly",
+        "level": "trace",
         "host": "localhost",
         "port": 27017,
         "user": null,
@@ -80,7 +84,7 @@
         "db": "logger"
       },
       "file": {
-        "level": "silly",
+        "level": "trace",
         "path": "/tmp/joola.io/"
       }
     },
@@ -365,5 +369,8 @@
         "visible": "false"
       }
     ]
+  },
+  "logger": {
+    "level": "silly"
   }
 }

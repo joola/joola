@@ -13,7 +13,7 @@ body
               a(href="/manage/dashboard/index")
                 i.fa.fa-dashboard
                 | &nbsp;General Settings
-          
+
       .row
         #content.col-sm-12
           .row
@@ -21,14 +21,14 @@ body
               form#systemsettings
                 .form-group
                   label.control-label(for="systemname") System name 
-                  input.form-control(type="text", id="systemname", name="systemname", ng-model="system.name", placeholder="mycompany")
-                
+                  input.form-control(type="text", id="systemname", name="systemname", ng-model="settings.general.systemname", placeholder="mycompany")
+
                 .form-group
                   label.control-label(for="adminemail") Administrator email
-                  input.form-control(type="email", id="adminemail", name="adminemail", ng-model="system.adminemail", placeholder="john@doe.com")
-           
+                  input.form-control(type="email", id="adminemail", name="adminemail", ng-model="settings.general.adminemail", placeholder="john@doe.com")
+
                 .form-group
-                  
+
                   label.control-label Email alerts
                   br
                   label.checkbox-inline
@@ -46,7 +46,33 @@ body
 
                 .form-group
                   label.control-label(for="dateformat") Date format
-                  input.form-control(type="text", id="dateformat", name="dateformat", ng-model="system.dateformat", placeholder="YYYY-MM-DD HH:ii:ss")
+                  input.form-control(type="text", id="dateformat", name="dateformat", ng-model="settings.general.dateformat", placeholder="YYYY-MM-DD HH:ii:ss")
+
+                .form-group
+                  label.control-label Log level
+                  .clearfix
+
+                  label.radio-inline
+                    input(type="radio", ng-model="settings.store.logger.mongo.level", value="trace")
+                    | Trace
+
+                  label.radio-inline
+                    input(type="radio", ng-model="settings.store.logger.mongo.level", value="debug")
+                    | Debug
+
+                  label.radio-inline
+                    input(type="radio", ng-model="settings.store.logger.mongo.level", value="info")
+                    | Info
+
+                  label.radio-inline
+                    input(type="radio", ng-model="settings.store.logger.mongo.level", value="warning")
+                    | Warning
+
+                  label.radio-inline
+                    input(type="radio", ng-model="settings.store.logger.mongo.level", value="error")
+                    | Error
+
+
 
                 .form-group
                   button.btn.btn-primary(ng-click="saveSettings()") Save settings 
@@ -54,7 +80,7 @@ body
                   button.btn.btn-warning(ng-click="purgeCache()") Purge Cache
                   | &nbsp;
                   button.btn.btn-danger(ng-click="takeOffline()") Take system offline 
-              
+
 
 
   .clearfix
