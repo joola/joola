@@ -2,7 +2,7 @@
 
 **Using joola.io**
 - [Setup Guide](setting-up-joola.io)
-- [Data Integration](using-data-integration)
+- [Collections](collections)
 - [Embedding](using-embedding)
 - [Extending](using-extending)
 - [[Examples]]

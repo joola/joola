@@ -68,6 +68,26 @@ During this process we'll define collections, dimensions and metrics. Having the
 Collections are used to store *documents*. Collections describe the document, its dimensions, 
 metrics and other descriptive information and guidelines on how to process the documents into meaningful insight. 
 
+Here's a simple example of creating a new collection:
+```js
+//Definitions for new collections
+var newCollection = {
+  id: 'collection',
+  name: 'My First Collection',
+  description: 'This is my attempt with creating a collection',
+  type: 'data', dimensions:{"timestamp":{"id":"timestamp","type":"timestamp","mapto":"timestamp"}}, metrics:{"test":{"id":"test","name":"test","type":"int","aggregation":"sum"}}
+}
+
+//The actual instruction to add the new collection
+joolaio.dispatch.collections.add(newCollection, function(err, collection) { 
+  if (err) //if error, report it
+    throw err;
+  
+  //collection created succesfully, print it
+  console.log('New collection added', collection);
+});
+```
+
 [Setup Collections now!](setting-up-collections)
 
 <a name="step4" />

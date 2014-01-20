@@ -3,16 +3,11 @@
 The techincal documentation review the joola.io architecture, know-how and details breakdown of internal processes.
 
 ## Getting started
-Getting started with joola.io is as easy as installing the package.
-We've pre-loaded the package with a fully working sample site, so you can get a feel the system and its features.
-
-```bash
-$ npm install -g joola.io
-$ joola.io --demo
-```
-Once the package is installed, point your browser to `http://localhost:8080` and you'll be able to use the analytics site.
-
-For a more in-depth guide, we have the [Setup Guide](setting-up-joola.io).
+- [Basic example](your-first-event)
+- [Collections](collections)
+- [Dimensions and Metrics](dimensions-and-metrics)
+- [Subsystems](subsystems)
+- [Using joola.io](using-joola.io)
 
 ## Subsystems
 We've tried to keep things simple and divided the framework into the listed logical entities, each is aimed at serving a different aspect of the framework.
