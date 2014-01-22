@@ -8,16 +8,26 @@
 
 <script>
     var options = {
-        token: '123',
-        isBrowser: true,
         host: 'https://localhost:8081'
     };
+
     joolaio.init(options, function (err, result) {
         if (err)
             throw err;
+
         console.log('joola.io SDK initialized, version: ' + result.VERSION);
+
+        joolaio.users.authenticate('admin', 'password', function (err2, token) {
+            joolaio.TOKEN = token._;
+            joolaio.users.list(function (err, users) {
+                console.log(err, users);
+            });
+        });
     });
 
 </script>
 
 </html>
+
+
+
