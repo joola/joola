@@ -13,8 +13,8 @@
     "webserver": {
       "enabled": true,
       "host": "localhost",
-      "port": 40008,
-      "securePort": 40009,
+      "port": 8080,
+      "securePort": 8081,
       "secure": false,
       "keyFile": null,
       "certFile": null,

@@ -1,0 +1,23 @@
+<html>
+<head>
+    <script src="https://localhost:8081/joola.io.js"></script>
+</head>
+<body>
+
+</body>
+
+<script>
+    var options = {
+        token: '123',
+        isBrowser: true,
+        host: 'https://localhost:8081'
+    };
+    joolaio.init(options, function (err, result) {
+        if (err)
+            throw err;
+        console.log('joola.io SDK initialized, version: ' + result.VERSION);
+    });
+
+</script>
+
+</html>
