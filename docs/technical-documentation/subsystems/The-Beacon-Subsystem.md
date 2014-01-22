@@ -1,3 +1,5 @@
+[HOME](Home) > [SUBSYSTEMS](subsystems) > **BEACON**
+
 Beacon is the framework's data collector. 
 When we wish to store new data in joola.io's cache, then we use `beacon` for storing it.
 

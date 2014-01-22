@@ -1,5 +1,5 @@
 {
-  "evil": true,  // Tolerate use of `eval`.
+  "evil": true,
   "indent": 2,
   "globals": [
     "require",

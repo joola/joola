@@ -1,3 +1,5 @@
+[HOME](Home) > [SUBSYSTEMS](subsystems) > **DISPATCH**
+
 joola.io's heart-beat is controlled by the `dispatch` sub-system.
 
 We want the framework to be node oriented, i.e. you'll be able to deploy additional nodes to cope with increased work loads, this will allow near-linear scalability.

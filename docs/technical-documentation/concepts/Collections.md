@@ -1,3 +1,5 @@
+[HOME](Home) > [CONCEPTS](concepts) > **COLLECTIONS**
+
 Collections are used to store *documents*. Collections describe the document, its dimensions, 
 metrics and other descriptive information
 and guidelines on how to process the documents into meaningful insight. A collection has a minimum set of required 

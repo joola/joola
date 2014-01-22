@@ -1,3 +1,5 @@
+[HOME](Home) > [CONCEPTS](concepts) > **DIMENSIONS AND METRICS**
+
 ### Dimensions: Describe data
 A dimension is an descriptive attribute or characteristic of an object that can be given different values. 
 For example, a geographic location could have dimensions called Latitude, Longitude, or City Name. 

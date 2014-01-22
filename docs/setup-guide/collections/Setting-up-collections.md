@@ -1,7 +1,9 @@
+[HOME](Home) > [SETUP GUIDE](setting-up-joola.io) > **STEP 3: DEFINE COLLECTIONS**
+
 Setting up collections is an easy task, it can be done using the management interface or directly using code. 
 
 #### Add collections using code
-In order to access joola.io using code please make sure you review [use joola.io SDK](Accessing-joola.io-via-code).
+In order to access joola.io using code please make sure you review [using joola.io SDK](joola.io-sdk).
 
 ```js
 //Definitions for new collections
