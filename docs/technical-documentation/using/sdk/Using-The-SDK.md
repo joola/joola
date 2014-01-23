@@ -22,6 +22,9 @@ Create a webpage anywhere you wish and edit it to look something like below.
 </script>
 ```
 
+Open the html page we just created in your webbrowser and check out the console, 
+you'll notice the console.log containing the `joolaio` object.
+
 #### Using joola.io SDK from NodeJS
 For this walkthrough, we'll be using a standalone version of the SDK as in most cases dictate. 
 
@@ -85,7 +88,8 @@ joolaio.init(options, function(err){
 });
 ```
 
-Another possible approach is to wait on joola.io's [event](the-sdk-subsystem#events) stating the system is ready for 
+Another possible approach is to wait on joola.io's [event](the-sdk-subsystem#event-driven) stating the system is ready 
+for 
 operation.
 ```js
 joolaio.events.on('core.ready', function(){
