@@ -1,4 +1,4 @@
-[HOME](Home) > [SUBSYSTEMS](subsystems) > **DISPATCH**
+[HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [SUBSYSTEMS](subsystems) > **DISPATCH**
 
 joola.io's heart-beat is controlled by the `dispatch` sub-system.
 

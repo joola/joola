@@ -1,4 +1,4 @@
-[**HOME**](Home) > **TECHNICAL DOCUMENTATION**
+[**HOME**](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > **USING** 
 
 **Using joola.io**
 - [Setup Guide](setting-up-joola.io)
