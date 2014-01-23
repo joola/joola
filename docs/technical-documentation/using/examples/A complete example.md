@@ -1,3 +1,14 @@
+[HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [Examples](examples) > **A COMPLETE EXAMPLE**
+
+In this example we'll be creating a complete flow of reporting new events and then displaying them in a timeline 
+chart. All of this can be done with a single webpage.
+
+Before starting, please make sure you cover the [installing joola.io] section and that your system is up and running.
+ We'll be assuming that you'll be running on `http://localhost:8080`.
+ 
+This example is also available as a [gist](https://gist.github.com/itayw/8575664).
+
+```html
 <html>
 <head>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -122,6 +133,4 @@
   }
 </script>
 </html>
-
-
-
+```

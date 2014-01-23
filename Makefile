@@ -16,7 +16,7 @@ authors:
 compile:
 		@NODE_ENV=test
 		browserify ./lib/sdk/index.js -i ./lib/sdk/bin/joola.io.js -o ./lib/sdk/bin/joola.io.js --debug
-
+    
 lint:
 		@./node_modules/.bin/jshint ./lib
 

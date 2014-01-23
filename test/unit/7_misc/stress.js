@@ -1,3 +1,4 @@
+/*
 _joolaio = require('../../../joola.io.js');
 joola.state.on('state:change', function (state) {
   if ((state == 'working' || state == 'online')) {
@@ -39,10 +40,7 @@ joola.state.on('state:change', function (state) {
         var iteration = 0;
         setInterval(function () {
           joolaio.dispatch.beacon.insert('serverfault', {timestamp: new Date(), id: 1234, value: 0.5});
-          /*
-           _sdk.dispatch.users.list(function (err, users) {
-           console.log(iteration, Object.keys(users).length);
-           iteration++;*/
+
         }, 1);
 
       });
@@ -51,3 +49,4 @@ joola.state.on('state:change', function (state) {
   else if (!started)
     throw new Error('Failed to startup joola.io');
 });
+*/
