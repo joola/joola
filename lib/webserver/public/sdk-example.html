@@ -5,6 +5,11 @@
   <script src="http://code.highcharts.com/highcharts.js"></script>
   <script src="http://localhost:8080/3rd/jquery/ua-parser.min.js"></script>
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+  <script language="Javascript" src="http://www.codehelper.io/api/ips/?js"></script>
+  <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+  <script>
+    google.load('visualization', '1', {'packages': ['geochart']});
+  </script>
   <script src="http://localhost:8080/joola.io.js"></script>
 
   <style>
@@ -52,6 +57,19 @@
     To use this page, simply <strong>move and click your mouse</strong> to see the counters change.
   </p>
 
+  <div class="row">
+    <div class="col-lg-12 col-lg-offset-0">
+      <div id="chart-geo" style="height:470px;"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 text-right">
+      <div id="metric-visits" style="float:right;width:100%"></div>
+    </div>
+    <div class="col-lg-4 col-lg-offset-0">
+      <div id="chart-visits" style="height:70px;"></div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-lg-6 text-right">
       <div id="metric-moves" style="float:right;width:100%"></div>
@@ -231,6 +249,65 @@ joolaio.events.on('core.ready', function () {
     }
   };
 
+  var visitsCollection = {
+    id: 'visits',
+    name: 'A complete example',
+    description: 'This is a collection for the A complete example document.',
+    type: 'data',
+    dimensions: {
+      timestamp: {
+        id: 'timestamp',
+        name: 'Date',
+        mapto: 'timestamp'
+      },
+      browser: {
+        id: 'browser',
+        name: 'Browser',
+        type: 'string'
+      },
+      device: {
+        id: 'device',
+        name: 'Device',
+        type: 'string'
+      },
+      engine: {
+        id: 'engine',
+        name: 'Engine',
+        type: 'string'
+      },
+      os: {
+        id: 'os',
+        name: 'Operating System',
+        type: 'string'
+      },
+      ip: {
+        id: 'ip',
+        name: 'IP Address',
+        type: 'ip'
+      },
+      userid: {
+        id: 'userid',
+        name: 'User ID',
+        type: 'string'
+      }
+    },
+    metrics: {
+      visits: {
+        id: 'visits',
+        name: 'Visits',
+        type: 'int',
+        aggregation: 'sum'
+      },
+      visitors: {
+        id: 'visitors',
+        name: 'Unique Count of Visitors',
+        type: 'int',
+        aggregation: 'ucount',
+        dependsOn: 'userid'
+      }
+    }
+  };
+
   return getAddCollection(newCollection, function (err, collection) {
     if (err)
       throw err;
@@ -243,61 +320,86 @@ joolaio.events.on('core.ready', function () {
       return getAddCollection(clicksCollection, function (err, collection) {
         if (err)
           throw err;
-        //console.log('We have a collection', collection);
-        setupChart_moves();
-        setupChart_clicks();
-        setupChart_loadtime();
-        //now we start pushing events as they arrive
-        var moves = [];
-        $(document).mousemove(function (event) {
-          moves.push({
+
+        return getAddCollection(visitsCollection, function (err, collection) {
+          if (err)
+            throw err;
+          //console.log('We have a collection', collection);
+          setupChart_moves();
+          setupChart_clicks();
+          setupChart_loadtime();
+          setupChart_visits();
+          setupChart_geo();
+          //now we start pushing events as they arrive
+          var moves = [];
+          $(document).mousemove(function (event) {
+            moves.push({
+              timestamp: new Date(),
+              browser: $.ua.browser.name,
+              device: $.ua.device.name,
+              engine: $.ua.engine.name,
+              os: $.ua.os.name,
+              moves: 1
+            });
+          });
+
+          setInterval(function () {
+            if (moves.length > 0) {
+              joolaio.beacon.insert('moves', moves);
+              moves = [];
+            }
+          }, 100);
+
+          var clicks = [];
+          $(document).click(function (event) {
+            clicks.push({
+              timestamp: new Date(),
+              browser: $.ua.browser.name,
+              device: $.ua.device.name,
+              engine: $.ua.engine.name,
+              os: $.ua.os.name,
+              clicks: 1
+            });
+          });
+
+          setInterval(function () {
+            if (clicks.length > 0) {
+              joolaio.beacon.insert('clicks', clicks);
+              clicks = [];
+            }
+          }, 100);
+
+          var loadtime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
+
+          var message = {
             timestamp: new Date(),
             browser: $.ua.browser.name,
             device: $.ua.device.name,
             engine: $.ua.engine.name,
             os: $.ua.os.name,
-            moves: 1
-          });
-        });
+            loadtime: loadtime
+          };
 
-        setInterval(function () {
-          if (moves.length > 0) {
-            joolaio.beacon.insert('moves', moves);
-            moves = [];
+          joolaio.beacon.insert('pageload', message);
+
+          var uuid = null;//GetCookie('uuid');
+          if (uuid == null) {
+            uuid = joolaio.common.uuid();
+            //SetCookie('uuid', uuid, exp);
           }
-        }, 100);
-
-        var clicks = [];
-        $(document).click(function (event) {
-          clicks.push({
+          var message = {
             timestamp: new Date(),
             browser: $.ua.browser.name,
             device: $.ua.device.name,
             engine: $.ua.engine.name,
             os: $.ua.os.name,
-            clicks: 1
-          });
+            userid: uuid,
+            ip: codehelper_ip.IP,
+            visits: 1
+          };
+
+          joolaio.beacon.insert('visits', message);
         });
-
-        setInterval(function () {
-          if (clicks.length > 0) {
-            joolaio.beacon.insert('clicks', clicks);
-            clicks = [];
-          }
-        }, 100);
-
-        var loadtime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
-
-        var message = {
-          timestamp: new Date(),
-          browser: $.ua.browser.name,
-          device: $.ua.device.name,
-          engine: $.ua.engine.name,
-          os: $.ua.os.name,
-          loadtime: loadtime
-        };
-
-        joolaio.beacon.insert('pageload', message);
       });
     });
   });
@@ -610,8 +712,140 @@ function setupChart_geo() {
   };
   $metric.Metric(metricOptions);
 }
+
+function setupChart_visits() {
+  var $chart = $('#chart-visits');
+  var $metric = $('#metric-visits');
+
+  var query = {
+    timeframe: 'last_hour',
+    interval: 'minute',
+    dimensions: ['timestamp'],
+    metrics: ['visitors'],
+    filter: null,
+    realtime: true
+  };
+  var query2 = {
+    timeframe: 'last_hour',
+    interval: 'minute',
+    dimensions: [],
+    metrics: ['visitors'],
+    filter: null,
+    realtime: true
+  };
+
+  var timelineOptions = {
+    chart: {
+      title: {
+        text: null
+      },
+      chart: {
+        borderWidth: 0,
+        plotBorderWidth: 0,
+        type: 'area'
+      },
+      xAxis: {
+        labels: {
+          enabled: false
+        }
+      },
+      yAxis: {
+        title: {
+          text: null
+        },
+        labels: {
+          enabled: false
+        }
+      },
+      plotOptions: {
+        series: {
+          color: '#333333',
+          fillOpacity: 0.1,
+          lineWidth: 3,
+          connectNulls: true,
+          marker: {
+            enabled: false,
+            symbol: 'circle',
+            states: {
+              hover: {
+                enabled: true
+              }
+            }
+          }
+        }
+      }
+    },
+    query: query
+  };
+
+  $chart.Timeline(timelineOptions);
+
+  var metricOptions = {
+    caption: 'Visitors',
+    query: query2
+  };
+  $metric.Metric(metricOptions);
+}
+
+function setupChart_geo() {
+  var $chart = $('#chart-geo');
+  var query = {
+    timeframe: 'last_hour',
+    interval: 'minute',
+    dimensions: ['ip'],
+    metrics: ['visitors'],
+    filter: null,
+    realtime: true
+  };
+
+  var geoOptions = {
+    query: query
+  };
+  $chart.Geo(geoOptions);
+
+}
+
+var expDays = 30;
+var exp = new Date();
+exp.setTime(exp.getTime() + (expDays * 24 * 60 * 60 * 1000));
+
+function getCookieVal(offset) {
+  var endstr = document.cookie.indexOf(";", offset);
+  if (endstr == -1)
+    endstr = document.cookie.length;
+  return unescape(document.cookie.substring(offset, endstr));
+}
+
+function GetCookie(name) {
+  var arg = name + "=";
+  var alen = arg.length;
+  var clen = document.cookie.length;
+  var i = 0;
+  while (i < clen) {
+    var j = i + alen;
+    if (document.cookie.substring(i, j) == arg)
+      return getCookieVal(j);
+    i = document.cookie.indexOf(" ", i) + 1;
+    if (i == 0) break;
+  }
+  return null;
+}
+
+function SetCookie(name, value) {
+  var argv = SetCookie.arguments;
+  var argc = SetCookie.arguments.length;
+  var expires = (argc > 2) ? argv[2] : null;
+  var path = (argc > 3) ? argv[3] : null;
+  var domain = (argc > 4) ? argv[4] : null;
+  var secure = (argc > 5) ? argv[5] : false;
+  document.cookie = name + "=" + escape(value) +
+      ((expires == null) ? "" : ("; expires=" + expires.toGMTString())) +
+      ((path == null) ? "" : ("; path=" + path)) +
+      ((domain == null) ? "" : ("; domain=" + domain)) +
+      ((secure == true) ? "; secure" : "");
+}
+
+
 </script>
 </html>
-
-
 
