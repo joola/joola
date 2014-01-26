@@ -71,11 +71,12 @@
     "connect-redis": "*",
     "repl.history": "*",
     "geoip-lite": "*",
+    "underscore": "*",
     "cloneextend": "0.0.3"
   },
   "devDependencies": {
     "jsdox": "https://github.com/itayw/jsdox/tarball/master",
-    "underscore": "*",
+
     "mocha-lcov-reporter": "*",
     "coveralls": "*",
     "should": "*",
