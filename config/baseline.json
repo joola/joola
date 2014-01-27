@@ -71,7 +71,11 @@
         "port": 27017,
         "user": null,
         "password": null,
-        "db": "stats"
+        "db": "stats",
+        "options": {
+          "capped": "true",
+          "size": 10240000
+        }
       }
     },
     "logger": {
@@ -81,7 +85,11 @@
         "port": 27017,
         "user": null,
         "password": null,
-        "db": "logger"
+        "db": "logger",
+        "options": {
+          "capped": "true",
+          "size": 10240000
+        }
       },
       "file": {
         "level": "trace",
@@ -94,7 +102,11 @@
         "port": 27017,
         "user": null,
         "password": null,
-        "db": "beacon"
+        "db": "beacon",
+        "options": {
+          "capped": "true",
+          "size": 10240000
+        }
       }
     },
     "cache": {
