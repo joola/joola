@@ -167,6 +167,7 @@
     }
   },
   "datamap": {
+    "mode": "promiscuous",
     "dimensions": {
       "timestamp": {
         "id": "timestamp",

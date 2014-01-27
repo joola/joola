@@ -11,5 +11,5 @@
 
 var joola = module.exports = require('./lib/joola.io');
 
-if (require.main === module)
+if (require.main === module || require.main.filename.indexOf('ProcessContainer.js') > -1 /*Allow PM2*/)
   joola.init();
