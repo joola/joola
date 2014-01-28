@@ -1,0 +1,358 @@
+<html>
+<head>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/3rd/google/prettify/prettify.css"/>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="http://code.highcharts.com/highcharts.js"></script>
+  <script src="/3rd/jquery/ua-parser.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+  <script language="Javascript" src="http://www.codehelper.io/api/ips/?js"></script>
+  <script language="Javascript" src="/3rd/google/prettify/prettify.js"></script>
+  <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+  <script>
+    google.load('visualization', '1', {'packages': ['geochart']});
+  </script>
+  <script src="/joola.io.js"></script>
+
+  <style>
+    body {
+      margin-bottom: 20px;
+    }
+
+    .jio.metric.value {
+      font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue", "Arial Narrow", Arial, sans-serif;
+      font-weight: bold;
+      font-stretch: condensed;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1;
+      color: #333;
+      font-size: 62px;
+    }
+
+    .jio.metric.caption {
+      font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue", "Arial Narrow", Arial, sans-serif;
+      font-weight: bold;
+      font-stretch: condensed;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1;
+      margin: 0 0 6px;
+
+      text-transform: uppercase;
+      font-size: 18px;
+      color: #999;
+    }
+
+    .row {
+      margin-top: 40px;
+    }
+
+    pre {
+      background-color: transparent;
+    }
+
+    pre.prettyprint {
+      padding: 2px;
+      border: 0;
+    }
+
+    .small .metric.value {
+      float: left;
+      font-size: 18px;
+      margin-left: 10px;
+      line-height: 1;
+    }
+
+    .small .metric.caption {
+      font-size: 18px;
+      float: left;
+      margin: 0;
+
+    }
+  </style>
+</head>
+<body onload="prettyPrint()">
+<h1>Bitcoin blockchain statistics</h1>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="col-lg-4">
+      <div class="row">
+        <div class="col-lg-6">
+          <div id="metric-transactions"></div>
+        </div>
+        <div class="col-lg-4">
+          <div id="chart-transactions" style="height:100px;"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div id="metric-avgsize" style="overflow:hidden"></div>
+          <div id="metric-minsize" class="small" style="overflow:hidden;float:left;margin-right:20px;"></div>
+          <div id="metric-maxsize" class="small" style="overflow:hidden"></div>
+        </div>
+        <div class="col-lg-4">
+          <div id="chart-avgsize" style="height:100px;"></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6">
+          <div id="metric-nodes"></div>
+        </div>
+        <div class="col-lg-4">
+          <div id="chart-nodes" style="height:100px;"></div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="col-lg-8">
+      <div id="chart-geo"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+</body>
+<script>
+joolaio.init({}, function (err) {
+  if (err)
+    throw err;
+  joolaio.users.authenticate('admin', 'password', function (err, token) {
+    if (err)
+      throw err;
+    joolaio.TOKEN = token._;
+  });
+});
+
+joolaio.events.on('core.ready', function () {
+
+  var wsUri = "ws://ws.blockchain.info:8335/inv";
+  var output;
+
+
+  output = document.getElementById("output");
+  testWebSocket();
+
+
+  function testWebSocket() {
+    websocket = new WebSocket(wsUri);
+    websocket.onopen = function (evt) {
+      onOpen(evt)
+    };
+    websocket.onclose = function (evt) {
+      onClose(evt)
+    };
+    websocket.onmessage = function (evt) {
+      onMessage(evt)
+    };
+    websocket.onerror = function (evt) {
+      onError(evt)
+    };
+  }
+
+  function onOpen(evt) {
+    writeToScreen("CONNECTED");
+    doSend('{"op":"unconfirmed_sub"}');
+    doSend('{"op":"blocks_sub"}');
+  }
+
+  function onClose(evt) {
+    writeToScreen("DISCONNECTED");
+  }
+
+  var transactions = [];
+  var blocks = [];
+
+  function onMessage(evt) {
+    var jsondata = JSON.parse(evt.data);
+
+    var size = jsondata.x.size;
+    //console.log(relayed_by);
+
+    if (jsondata.x.height) {
+      blocks.push({
+        timestamp: null,
+        block_ip: jsondata.x.foundBy.ip,
+        group: jsondata.x.foundBy.description,
+        btc: jsondata.x.totalBTCSent,
+        reward: jsondata.x.reward,
+        size: size,
+        transactions: 1
+      });
+    }
+    else {
+      var relayed_by = jsondata.x.relayed_by;
+      if (relayed_by == '127.0.0.1')
+        relayed_by = '190.93.243.195';
+      transactions.push({
+        timestamp: null,
+        transaction_ip: relayed_by,
+        size: size,
+        transactions: 1
+      });
+    }
+
+
+    setInterval(function () {
+      if (transactions.length > 0) {
+        joolaio.beacon.insert('transactions', transactions);
+        transactions = [];
+      }
+    }, 100);
+
+    setInterval(function () {
+      if (blocks.length > 0) {
+        joolaio.beacon.insert('blocks', blocks);
+        blocks = [];
+      }
+    }, 100);
+  }
+
+  function onError(evt) {
+    writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
+  }
+
+  function doSend(message) {
+    writeToScreen("SENT: " + message);
+    websocket.send(message);
+  }
+
+  function writeToScreen(message) {
+    /*
+     var pre = document.createElement("p");
+     pre.style.wordWrap = "break-word";
+     pre.innerHTML = message;
+     output.appendChild(pre);
+     */
+  }
+
+
+  console.info('joola.io SDK ready, version: ' + joolaio.VERSION + ', token: ' + joolaio.TOKEN);
+
+
+  setupSparkline('transactions', 'Transactions', {
+      timeframe: 'last_hour',
+      interval: 'minute',
+      dimensions: ['timestamp'],
+      metrics: ['transactions']
+    }
+  );
+
+  setupSparkline('avgsize', 'Avg. tx size', {
+      timeframe: 'last_hour',
+      interval: 'minute',
+      dimensions: ['timestamp'],
+      metrics: [
+        {id: 'avgsize', name: 'avgsize', dependsOn: 'size', aggregation: 'avg', suffix: 'b',
+          type: 'float', decimals: 2}
+      ]
+    }
+  );
+
+  setupSparkline('nodes', 'Unique nodes', {
+      timeframe: 'last_hour',
+      interval: 'minute',
+      dimensions: ['timestamp'],
+      metrics: [
+        {id: 'transaction_uip', name: 'transaction_uip', dependsOn: 'transaction_ip', aggregation: 'ucount',
+          type: 'int'}
+      ]
+    }
+  );
+
+  setupMetric('maxsize', 'Max', {
+      timeframe: 'last_hour',
+      interval: 'minute',
+      dimensions: ['timestamp'],
+      metrics: [
+        {id: 'maxsize', name: 'maxsize', dependsOn: 'size', aggregation: 'max', suffix: 'b',
+          type: 'float', decimals: 2}
+      ]
+    }
+  );
+
+  setupMetric('minsize', 'Min', {
+      timeframe: 'last_hour',
+      interval: 'minute',
+      dimensions: ['timestamp'],
+      metrics: [
+        {id: 'minsize', name: 'minsize', dependsOn: 'size', aggregation: 'min', suffix: 'b',
+          type: 'float', decimals: 2}
+      ]
+    }
+  );
+
+  setupGeo('geo', {
+    timeframe: 'last_hour',
+    interval: 'minute',
+    dimensions: ['transaction_ip'],
+    metrics: ['transactions']
+  });
+
+
+});
+
+
+function setupSparkline(divname, caption, query) {
+  query.realtime = true;
+  $('#chart-' + divname).Sparkline({query: query});
+  $('#metric-' + divname).Metric({caption: caption, query: query});
+}
+
+function setupMetric(divname, caption, query) {
+  query.realtime = true;
+  $('#metric-' + divname).Metric({caption: caption, query: query});
+}
+
+function setupGeo(divname, query) {
+  query.realtime = true;
+  $('#chart-' + divname).Geo({query: query});
+}
+
+var expDays = 30;
+var exp = new Date();
+exp.setTime(exp.getTime() + (expDays * 24 * 60 * 60 * 1000));
+
+function getCookieVal(offset) {
+  var endstr = document.cookie.indexOf(";", offset);
+  if (endstr == -1)
+    endstr = document.cookie.length;
+  return unescape(document.cookie.substring(offset, endstr));
+}
+
+function GetCookie(name) {
+  var arg = name + "=";
+  var alen = arg.length;
+  var clen = document.cookie.length;
+  var i = 0;
+  while (i < clen) {
+    var j = i + alen;
+    if (document.cookie.substring(i, j) == arg)
+      return getCookieVal(j);
+    i = document.cookie.indexOf(" ", i) + 1;
+    if (i == 0) break;
+  }
+  return null;
+}
+
+function SetCookie(name, value) {
+  var argv = SetCookie.arguments;
+  var argc = SetCookie.arguments.length;
+  var expires = (argc > 2) ? argv[2] : null;
+  var path = (argc > 3) ? argv[3] : null;
+  var domain = (argc > 4) ? argv[4] : null;
+  var secure = (argc > 5) ? argv[5] : false;
+  document.cookie = name + "=" + escape(value) +
+    ((expires == null) ? "" : ("; expires=" + expires.toGMTString())) +
+    ((path == null) ? "" : ("; path=" + path)) +
+    ((domain == null) ? "" : ("; domain=" + domain)) +
+    ((secure == true) ? "; secure" : "");
+}
+
+
+</script>
+</html>
+
