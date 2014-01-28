@@ -246,7 +246,7 @@
           interval: 'minute',
           dimensions: ['timestamp'],
           metrics: [
-            {id: 'avgloadtime', name: 'avgloadtime', dependsOn: 'loadtime', aggregation: 'avg',
+            {id: 'avgloadtime', name: 'avgloadtime', dependsOn: 'loadtime', aggregation: 'avg', prefix: '$', suffix: 'ms',
               type: 'float', decimals: 4}
           ]
         }
