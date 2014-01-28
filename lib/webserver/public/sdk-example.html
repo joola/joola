@@ -208,55 +208,59 @@
   joolaio.events.on('core.ready', function () {
     console.info('joola.io SDK ready, version: ' + joolaio.VERSION + ', token: ' + joolaio.TOKEN);
 
+    /*
+     setupGeo('geo', {
+     timeframe: 'last_hour',
+     interval: 'minute',
+     dimensions: ['ip'],
+     metrics: ['visits']
+     });
 
-    setupGeo('geo', {
-      timeframe: 'last_hour',
-      interval: 'minute',
-      dimensions: ['ip'],
-      metrics: ['visits']
-    });
+     setupSparkline('moves', 'Mouse Moves', {
+     timeframe: 'last_hour',
+     interval: 'minute',
+     dimensions: ['timestamp'],
+     metrics: ['moves']
+     }
+     );
+     setupSparkline('clicks', 'Clicks', {
+     timeframe: 'last_hour',
+     interval: 'minute',
+     dimensions: ['timestamp'],
+     metrics: ['clicks']
+     }
+     );
+     */
     setupSparkline('visits', 'Visitors', {
           timeframe: 'last_hour',
           interval: 'minute',
           dimensions: ['timestamp'],
-          metrics: ['visits']
+          metrics: [
+            {id: 'visitors', name: 'visitors', dependsOn: 'userid', aggregation: 'ucount',
+              type: 'int'}
+          ]
         }
     );
-
     setupSparkline('loadtime', 'Avg. Page Load Time', {
           timeframe: 'last_hour',
           interval: 'minute',
           dimensions: ['timestamp'],
-          metrics: ['loadtime']
+          metrics: [
+            {id: 'avgloadtime', name: 'avgloadtime', dependsOn: 'loadtime', aggregation: 'avg',
+              type: 'float', decimals: 4}
+          ]
         }
     );
 
-    setupSparkline('moves', 'Mouse Moves', {
-          timeframe: 'last_hour',
-          interval: 'minute',
-          dimensions: ['timestamp'],
-          metrics: ['moves']
-        }
-    );
+//    return setupListeners(function (err) {
+    // if (err)
+    //  throw err;
 
-    setupSparkline('clicks', 'Clicks', {
-          timeframe: 'last_hour',
-          interval: 'minute',
-          dimensions: ['timestamp'],
-          metrics: ['clicks']
-        }
-    );
-
-
-    return setupListeners(function (err) {
-      if (err)
-        throw err;
-
-      return sendPageLoadEvents(function (err) {
-        //  if (err)
-        //    throw err;
-      });
+    return sendPageLoadEvents(function (err) {
+      //  if (err)
+      //    throw err;
     });
+    //});
   });
 
   function sendPageLoadEvents(callback) {
