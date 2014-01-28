@@ -306,7 +306,7 @@ joolaio.events.on('core.ready', function () {
     }
   );
 
-  setupSparkline('minblocksize', 'MIN', {
+  setupMetric('minblocksize', 'MIN', {
       timeframe: 'last_hour',
       interval: 'minute',
       dimensions: ['timestamp'],
@@ -317,7 +317,7 @@ joolaio.events.on('core.ready', function () {
     }
   );
 
-  setupSparkline('maxblocksize', 'MAX', {
+  setupMetric('maxblocksize', 'MAX', {
       timeframe: 'last_hour',
       interval: 'minute',
       dimensions: ['timestamp'],
