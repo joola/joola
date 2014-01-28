@@ -73,9 +73,10 @@
         "password": null,
         "db": "stats",
         "options": {
-          "capped": "true",
+          "capped": true,
           "size": 10240000
-        }
+        },
+        "expireAfterSeconds": 3600
       }
     },
     "logger": {
@@ -87,9 +88,10 @@
         "password": null,
         "db": "logger",
         "options": {
-          "capped": "true",
+          "capped": true,
           "size": 10240000
-        }
+        },
+        "expireAfterSeconds": 3600
       },
       "file": {
         "level": "trace",
@@ -104,9 +106,10 @@
         "password": null,
         "db": "beacon",
         "options": {
-          "capped": "true",
+          "capped": true,
           "size": 10240000
-        }
+        },
+        "expireAfterSeconds": 3600
       }
     },
     "cache": {
