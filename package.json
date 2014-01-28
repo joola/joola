@@ -72,11 +72,11 @@
     "repl.history": "*",
     "geoip-lite": "*",
     "underscore": "*",
-    "cloneextend": "0.0.3"
+    "cloneextend": "0.0.3",
+    "querystring": "~0.2.0"
   },
   "devDependencies": {
     "jsdox": "https://github.com/itayw/jsdox/tarball/master",
-
     "mocha-lcov-reporter": "*",
     "coveralls": "*",
     "should": "*",
