@@ -85,96 +85,21 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-4 text-right">
+    <div class="col-lg-6 text-right">
       <div id="metric-visits" style="float:right;width:100%"></div>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-4">
       <div id="chart-visits" style="height:70px;"></div>
-    </div>
-    <div class="col-lg-5">
-      <div class="panel-group" id="accordion">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                Collection JSON
-              </a>
-            </h4>
-          </div>
-          <div id="collapseOne" class="panel-collapse collapse">
-            <div class="panel-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
-              moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-              Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
-              shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
-              proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
-              aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-            </div>
-          </div>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                Visualization Code
-              </a>
-            </h4>
-          </div>
-          <div id="collapseTwo" class="panel-collapse collapse">
-            <div class="panel-body">
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-lg-4 text-right">
+    <div class="col-lg-6 text-right">
       <div id="metric-moves" style="width:100%"></div>
     </div>
-    <div class="col-lg-3 col-lg-offset-0">
+    <div class="col-lg-4 col-lg-offset-0">
       <div id="chart-moves" style="height:90px;"></div>
     </div>
-    <div class="col-lg-5">
-      <div class="panel-group">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                Collection JSON
-              </a>
-            </h4>
-          </div>
-          <div class="panel-collapse collapse">
-            <div class="panel-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
-              moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
-              Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
-              shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
-              proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
-              aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-            </div>
-          </div>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                Visualization Code
-              </a>
-            </h4>
-          </div>
-          <div class="panel-collapse collapse">
-            <div class="panel-body">
-
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
   </div>
   <div class="row">
     <div class="col-lg-6 text-right">
@@ -208,29 +133,29 @@
   joolaio.events.on('core.ready', function () {
     console.info('joola.io SDK ready, version: ' + joolaio.VERSION + ', token: ' + joolaio.TOKEN);
 
-    /*
-     setupGeo('geo', {
-     timeframe: 'last_hour',
-     interval: 'minute',
-     dimensions: ['ip'],
-     metrics: ['visits']
-     });
 
-     setupSparkline('moves', 'Mouse Moves', {
-     timeframe: 'last_hour',
-     interval: 'minute',
-     dimensions: ['timestamp'],
-     metrics: ['moves']
-     }
-     );
-     setupSparkline('clicks', 'Clicks', {
-     timeframe: 'last_hour',
-     interval: 'minute',
-     dimensions: ['timestamp'],
-     metrics: ['clicks']
-     }
-     );
-     */
+    setupGeo('geo', {
+      timeframe: 'last_hour',
+      interval: 'minute',
+      dimensions: ['ip'],
+      metrics: ['visits']
+    });
+
+    setupSparkline('moves', 'Mouse Moves', {
+          timeframe: 'last_hour',
+          interval: 'minute',
+          dimensions: ['timestamp'],
+          metrics: ['moves']
+        }
+    );
+    setupSparkline('clicks', 'Clicks', {
+          timeframe: 'last_hour',
+          interval: 'minute',
+          dimensions: ['timestamp'],
+          metrics: ['clicks']
+        }
+    );
+
     setupSparkline('visits', 'Visitors', {
           timeframe: 'last_hour',
           interval: 'minute',
@@ -241,6 +166,7 @@
           ]
         }
     );
+
     setupSparkline('loadtime', 'Avg. Page Load Time', {
           timeframe: 'last_hour',
           interval: 'minute',
@@ -252,15 +178,15 @@
         }
     );
 
-//    return setupListeners(function (err) {
-    // if (err)
-    //  throw err;
+    return setupListeners(function (err) {
+      // if (err)
+      //  throw err;
 
-    return sendPageLoadEvents(function (err) {
-      //  if (err)
-      //    throw err;
+      return sendPageLoadEvents(function (err) {
+        //  if (err)
+        //    throw err;
+      });
     });
-    //});
   });
 
   function sendPageLoadEvents(callback) {
@@ -335,6 +261,7 @@
   }
 
   function setupGeo(divname, query) {
+    query.realtime = true;
     $('#chart-' + divname).Geo({query: query});
   }
 
