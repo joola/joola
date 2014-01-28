@@ -104,6 +104,17 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="col-lg-6">
+          <div id="metric-avgblocksize" style="overflow:hidden"></div>
+          <div id="metric-minblocksize" class="small" style="overflow:hidden;float:left;margin-right:20px;"></div>
+          <div id="metric-maxblocksize" class="small" style="overflow:hidden"></div>
+        </div>
+        <div class="col-lg-4">
+          <div id="chart-avgblocksize" style="height:100px;"></div>
+        </div>
+      </div>
+
     </div>
 
 
@@ -179,7 +190,7 @@ joolaio.events.on('core.ready', function () {
         group: jsondata.x.foundBy.description,
         btc: jsondata.x.totalBTCSent,
         reward: jsondata.x.reward,
-        size: size,
+        block_size: size,
         transactions: 1
       });
     }
@@ -190,7 +201,7 @@ joolaio.events.on('core.ready', function () {
       transactions.push({
         timestamp: null,
         transaction_ip: relayed_by,
-        size: size,
+        transaction_size: size,
         transactions: 1
       });
     }
@@ -244,7 +255,7 @@ joolaio.events.on('core.ready', function () {
         interval: 'minute',
         dimensions: ['timestamp'],
         metrics: [
-          {id: 'avgsize', name: 'avgsize', dependsOn: 'size', aggregation: 'avg', suffix: 'b',
+          {id: 'avgsize', name: 'avgsize', dependsOn: 'transaction_size', aggregation: 'avg', suffix: 'b',
             type: 'float', decimals: 2}
         ]
       }
@@ -255,7 +266,7 @@ joolaio.events.on('core.ready', function () {
         interval: 'minute',
         dimensions: ['timestamp'],
         metrics: [
-          {id: 'maxsize', name: 'maxsize', dependsOn: 'size', aggregation: 'max', suffix: 'b',
+          {id: 'maxsize', name: 'maxsize', dependsOn: 'transaction_size', aggregation: 'max', suffix: 'b',
             type: 'float', decimals: 2}
         ]
       }
@@ -266,7 +277,7 @@ joolaio.events.on('core.ready', function () {
         interval: 'minute',
         dimensions: ['timestamp'],
         metrics: [
-          {id: 'minsize', name: 'minsize', dependsOn: 'size', aggregation: 'min', suffix: 'b',
+          {id: 'minsize', name: 'minsize', dependsOn: 'transaction_size', aggregation: 'min', suffix: 'b',
             type: 'float', decimals: 2}
         ]
       }
@@ -282,6 +293,41 @@ joolaio.events.on('core.ready', function () {
         ]
       }
   );
+
+
+  setupSparkline('avgblocksize', 'Avg. block size', {
+      timeframe: 'last_hour',
+      interval: 'minute',
+      dimensions: ['timestamp'],
+      metrics: [
+        {id: 'avgblocksize', name: 'avgblocksize', dependsOn: 'block_size', aggregation: 'avg', suffix: 'b',
+          type: 'float', decimals: 2}
+      ]
+    }
+  );
+
+  setupSparkline('minblocksize', 'MIN', {
+      timeframe: 'last_hour',
+      interval: 'minute',
+      dimensions: ['timestamp'],
+      metrics: [
+        {id: 'minblocksize', name: 'minblocksize', dependsOn: 'block_size', aggregation: 'min', suffix: 'b',
+          type: 'float', decimals: 2}
+      ]
+    }
+  );
+
+  setupSparkline('maxblocksize', 'MAX', {
+      timeframe: 'last_hour',
+      interval: 'minute',
+      dimensions: ['timestamp'],
+      metrics: [
+        {id: 'maxblocksize', name: 'maxblocksize', dependsOn: 'block_size', aggregation: 'max', suffix: 'b',
+          type: 'float', decimals: 2}
+      ]
+    }
+  );
+  
 
   setupGeo('geo', {
     timeframe: 'last_hour',
