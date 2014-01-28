@@ -73,7 +73,8 @@
     "geoip-lite": "*",
     "underscore": "*",
     "cloneextend": "0.0.3",
-    "querystring": "~0.2.0"
+    "querystring": "~0.2.0",
+    "json-stringify-safe": "~5.0.0"
   },
   "devDependencies": {
     "jsdox": "https://github.com/itayw/jsdox/tarball/master",

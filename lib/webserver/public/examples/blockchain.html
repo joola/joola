@@ -229,60 +229,58 @@ joolaio.events.on('core.ready', function () {
      */
   }
 
-
   console.info('joola.io SDK ready, version: ' + joolaio.VERSION + ', token: ' + joolaio.TOKEN);
 
-
   setupSparkline('transactions', 'Transactions', {
-      timeframe: 'last_hour',
-      interval: 'minute',
-      dimensions: ['timestamp'],
-      metrics: ['transactions']
-    }
+        timeframe: 'last_hour',
+        interval: 'minute',
+        dimensions: ['timestamp'],
+        metrics: ['transactions']
+      }
   );
 
   setupSparkline('avgsize', 'Avg. tx size', {
-      timeframe: 'last_hour',
-      interval: 'minute',
-      dimensions: ['timestamp'],
-      metrics: [
-        {id: 'avgsize', name: 'avgsize', dependsOn: 'size', aggregation: 'avg', suffix: 'b',
-          type: 'float', decimals: 2}
-      ]
-    }
-  );
-
-  setupSparkline('nodes', 'Unique nodes', {
-      timeframe: 'last_hour',
-      interval: 'minute',
-      dimensions: ['timestamp'],
-      metrics: [
-        {id: 'transaction_uip', name: 'transaction_uip', dependsOn: 'transaction_ip', aggregation: 'ucount',
-          type: 'int'}
-      ]
-    }
+        timeframe: 'last_hour',
+        interval: 'minute',
+        dimensions: ['timestamp'],
+        metrics: [
+          {id: 'avgsize', name: 'avgsize', dependsOn: 'size', aggregation: 'avg', suffix: 'b',
+            type: 'float', decimals: 2}
+        ]
+      }
   );
 
   setupMetric('maxsize', 'Max', {
-      timeframe: 'last_hour',
-      interval: 'minute',
-      dimensions: ['timestamp'],
-      metrics: [
-        {id: 'maxsize', name: 'maxsize', dependsOn: 'size', aggregation: 'max', suffix: 'b',
-          type: 'float', decimals: 2}
-      ]
-    }
+        timeframe: 'last_hour',
+        interval: 'minute',
+        dimensions: ['timestamp'],
+        metrics: [
+          {id: 'maxsize', name: 'maxsize', dependsOn: 'size', aggregation: 'max', suffix: 'b',
+            type: 'float', decimals: 2}
+        ]
+      }
   );
 
   setupMetric('minsize', 'Min', {
-      timeframe: 'last_hour',
-      interval: 'minute',
-      dimensions: ['timestamp'],
-      metrics: [
-        {id: 'minsize', name: 'minsize', dependsOn: 'size', aggregation: 'min', suffix: 'b',
-          type: 'float', decimals: 2}
-      ]
-    }
+        timeframe: 'last_hour',
+        interval: 'minute',
+        dimensions: ['timestamp'],
+        metrics: [
+          {id: 'minsize', name: 'minsize', dependsOn: 'size', aggregation: 'min', suffix: 'b',
+            type: 'float', decimals: 2}
+        ]
+      }
+  );
+
+  setupSparkline('nodes', 'Unique nodes', {
+        timeframe: 'last_hour',
+        interval: 'minute',
+        dimensions: ['timestamp'],
+        metrics: [
+          {id: 'transaction_uip', name: 'transaction_uip', dependsOn: 'transaction_ip', aggregation: 'ucount',
+            type: 'int'}
+        ]
+      }
   );
 
   setupGeo('geo', {
@@ -291,8 +289,6 @@ joolaio.events.on('core.ready', function () {
     dimensions: ['transaction_ip'],
     metrics: ['transactions']
   });
-
-
 });
 
 
@@ -346,10 +342,10 @@ function SetCookie(name, value) {
   var domain = (argc > 4) ? argv[4] : null;
   var secure = (argc > 5) ? argv[5] : false;
   document.cookie = name + "=" + escape(value) +
-    ((expires == null) ? "" : ("; expires=" + expires.toGMTString())) +
-    ((path == null) ? "" : ("; path=" + path)) +
-    ((domain == null) ? "" : ("; domain=" + domain)) +
-    ((secure == true) ? "; secure" : "");
+      ((expires == null) ? "" : ("; expires=" + expires.toGMTString())) +
+      ((path == null) ? "" : ("; path=" + path)) +
+      ((domain == null) ? "" : ("; domain=" + domain)) +
+      ((secure == true) ? "; secure" : "");
 }
 
 
