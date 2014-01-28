@@ -1,5 +1,6 @@
 <html>
 <head>
+  <title>joola.io SDK Example</title>
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="/3rd/google/prettify/prettify.css"/>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -207,6 +208,13 @@
   joolaio.events.on('core.ready', function () {
     console.info('joola.io SDK ready, version: ' + joolaio.VERSION + ', token: ' + joolaio.TOKEN);
 
+
+    setupGeo('geo', {
+      timeframe: 'last_hour',
+      interval: 'minute',
+      dimensions: ['ip'],
+      metrics: ['visits']
+    });
     setupSparkline('visits', 'Visitors', {
           timeframe: 'last_hour',
           interval: 'minute',
@@ -214,20 +222,7 @@
           metrics: ['visits']
         }
     );
-    setupSparkline('moves', 'Mouse Moves', {
-          timeframe: 'last_hour',
-          interval: 'minute',
-          dimensions: ['timestamp'],
-          metrics: ['moves']
-        }
-    );
-    setupSparkline('clicks', 'Clicks', {
-          timeframe: 'last_hour',
-          interval: 'minute',
-          dimensions: ['timestamp'],
-          metrics: ['clicks']
-        }
-    );
+
     setupSparkline('loadtime', 'Avg. Page Load Time', {
           timeframe: 'last_hour',
           interval: 'minute',
@@ -235,44 +230,52 @@
           metrics: ['loadtime']
         }
     );
-    setupGeo('geo', {
-      timeframe: 'last_hour',
-      interval: 'minute',
-      dimensions: ['ip'],
-      metrics: ['visits']
-    });
+
+    setupSparkline('moves', 'Mouse Moves', {
+          timeframe: 'last_hour',
+          interval: 'minute',
+          dimensions: ['timestamp'],
+          metrics: ['moves']
+        }
+    );
+
+    setupSparkline('clicks', 'Clicks', {
+          timeframe: 'last_hour',
+          interval: 'minute',
+          dimensions: ['timestamp'],
+          metrics: ['clicks']
+        }
+    );
+
 
     return setupListeners(function (err) {
       if (err)
         throw err;
 
       return sendPageLoadEvents(function (err) {
-        if (err)
-          throw err;
+        //  if (err)
+        //    throw err;
       });
     });
   });
 
   function sendPageLoadEvents(callback) {
-    var loadtime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
-
-    var message = {
+    joolaio.beacon.insert('pageload', {
       timestamp: null,
       browser: $.ua.browser.name,
       device: $.ua.device.name,
       engine: $.ua.engine.name,
       os: $.ua.os.name,
-      loadtime: loadtime
-    };
-
-    joolaio.beacon.insert('pageload', message);
+      loadtime: window.performance.timing.loadEventEnd - window.performance.timing.navigationStart
+    });
 
     var uuid = GetCookie('uuid');
     if (uuid == null) {
       uuid = joolaio.common.uuid();
       SetCookie('uuid', uuid, exp);
     }
-    message = {
+
+    joolaio.beacon.insert('visits', {
       timestamp: null,
       browser: $.ua.browser.name,
       device: $.ua.device.name,
@@ -281,9 +284,7 @@
       userid: uuid,
       ip: codehelper_ip.IP,
       visits: 1
-    };
-
-    joolaio.beacon.insert('visits', message);
+    });
 
     return callback(null);
   }
@@ -291,7 +292,7 @@
   var clicks = [];
   function setupListeners(callback) {
     $(document).mousemove(function (event) {
-      moves.push({
+      joolaio.beacon.insert('moves', {
         timestamp: null,
         browser: $.ua.browser.name,
         device: $.ua.device.name,
@@ -300,16 +301,16 @@
         moves: 1
       });
     });
-
-    setInterval(function () {
-      if (moves.length > 0) {
-        joolaio.beacon.insert('moves', moves);
-        moves = [];
-      }
-    }, 100);
+    /*
+     setInterval(function () {
+     if (moves.length > 0) {
+     joolaio.beacon.insert('moves', moves);
+     moves = [];
+     }
+     }, 100);*/
 
     $(document).click(function (event) {
-      clicks.push({
+      joolaio.beacon.insert('clicks', {
         timestamp: null,
         browser: $.ua.browser.name,
         device: $.ua.device.name,
@@ -317,14 +318,8 @@
         os: $.ua.os.name,
         clicks: 1
       });
+      clicks.push();
     });
-
-    setInterval(function () {
-      if (clicks.length > 0) {
-        joolaio.beacon.insert('clicks', clicks);
-        clicks = [];
-      }
-    }, 100);
 
     return callback(null);
   }
