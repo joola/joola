@@ -10,14 +10,14 @@
 - [[Walk-throughs]]
 
 **Subsystems**
-- [Core](Subsystem-core)
-- [Common](Subsystem-common)
-- [Dispatch](Subsystem-dispatch)
-- [Query](Subsystem-query)
-- [Beacon](Subsystem-beacon)
-- [Authentication](Subsystem-auth)
-- [Web Server](Subsystem-webserver)
-- [SDK](Subsystem-sdk)
+- [Core](The-COre-Subsystem)
+- [Common](The-Common-Subsystem)
+- [Dispatch](The-Dispatch-Subsystem)
+- [Query](The-Query-Subsystem)
+- [Beacon](The-Beacon-Subsystem)
+- [Authentication](The-Authentication-Subsystem)
+- [Web Server](The-Webserver-Subsystem)
+- [SDK](The-SDK-Subsystem)
 
 **The development process**
 - [Overview](development-process-overview)

@@ -3,7 +3,7 @@
 Setting up collections is an easy task, it can be done using the management interface or directly using code. 
 
 #### Add collections using code
-In order to access joola.io using code please make sure you review [using joola.io SDK](joola.io-sdk).
+In order to access joola.io using code please make sure you review [using joola.io SDK](using-the-sdk).
 
 ```js
 //Definitions for new collections

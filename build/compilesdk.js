@@ -2,7 +2,7 @@ var
   fs = require('fs'),
   path = require('path'),
   spawn = require('child_process').spawn,
-  browserify = spawn('browserify', [path.join(__dirname, '../lib/sdk/browser.js'), '-i', path.join(__dirname, '../lib/sdk/bin/joola.io.js'), '-o', path.join(__dirname, '../lib/sdk/bin/joola.io.js')]);
+  browserify = spawn('browserify', [path.join(__dirname, '../lib/sdk/index.js'), '-i', path.join(__dirname, '../lib/sdk/bin/joola.io.js'), '-o', path.join(__dirname, '../lib/sdk/bin/joola.io.js')]);
 
 var buffer = '';
 browserify.stdout.on('data', function (data) {

@@ -13,8 +13,8 @@
     "webserver": {
       "enabled": true,
       "host": "localhost",
-      "port": 40008,
-      "securePort": 40009,
+      "port": 8080,
+      "securePort": 8081,
       "secure": false,
       "keyFile": null,
       "certFile": null,
@@ -71,7 +71,12 @@
         "port": 27017,
         "user": null,
         "password": null,
-        "db": "stats"
+        "db": "stats",
+        "options": {
+          "capped": true,
+          "size": 10240000
+        },
+        "expireAfterSeconds": 3600
       }
     },
     "logger": {
@@ -81,7 +86,12 @@
         "port": 27017,
         "user": null,
         "password": null,
-        "db": "logger"
+        "db": "logger",
+        "options": {
+          "capped": true,
+          "size": 10240000
+        },
+        "expireAfterSeconds": 3600
       },
       "file": {
         "level": "trace",
@@ -94,7 +104,12 @@
         "port": 27017,
         "user": null,
         "password": null,
-        "db": "beacon"
+        "db": "beacon",
+        "options": {
+          "capped": true,
+          "size": 10240000
+        },
+        "expireAfterSeconds": 3600
       }
     },
     "cache": {
@@ -167,6 +182,7 @@
     }
   },
   "datamap": {
+    "mode": "promiscuous",
     "dimensions": {
       "timestamp": {
         "id": "timestamp",
