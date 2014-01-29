@@ -190,7 +190,7 @@ joolaio.events.on('core.ready', function () {
         group: jsondata.x.foundBy.description,
         btc: jsondata.x.totalBTCSent,
         reward: jsondata.x.reward,
-        block_size: size,
+        block_size: size/1024,
         transactions: 1
       });
     }
@@ -243,16 +243,16 @@ joolaio.events.on('core.ready', function () {
   console.info('joola.io SDK ready, version: ' + joolaio.VERSION + ', token: ' + joolaio.TOKEN);
 
   setupSparkline('transactions', 'Transactions', {
-        timeframe: 'last_hour',
-        interval: 'minute',
+        timeframe: 'last_day',
+        interval: 'hour',
         dimensions: ['timestamp'],
         metrics: ['transactions']
       }
   );
 
   setupSparkline('avgsize', 'Avg. tx size', {
-        timeframe: 'last_hour',
-        interval: 'minute',
+        timeframe: 'last_day',
+        interval: 'hour',
         dimensions: ['timestamp'],
         metrics: [
           {id: 'avgsize', name: 'avgsize', dependsOn: 'transaction_size', aggregation: 'avg', suffix: 'b',
@@ -262,8 +262,8 @@ joolaio.events.on('core.ready', function () {
   );
 
   setupMetric('maxsize', 'Max', {
-        timeframe: 'last_hour',
-        interval: 'minute',
+        timeframe: 'last_day',
+        interval: 'hour',
         dimensions: ['timestamp'],
         metrics: [
           {id: 'maxsize', name: 'maxsize', dependsOn: 'transaction_size', aggregation: 'max', suffix: 'b',
@@ -273,8 +273,8 @@ joolaio.events.on('core.ready', function () {
   );
 
   setupMetric('minsize', 'Min', {
-        timeframe: 'last_hour',
-        interval: 'minute',
+        timeframe: 'last_day',
+        interval: 'hour',
         dimensions: ['timestamp'],
         metrics: [
           {id: 'minsize', name: 'minsize', dependsOn: 'transaction_size', aggregation: 'min', suffix: 'b',
@@ -284,8 +284,8 @@ joolaio.events.on('core.ready', function () {
   );
 
   setupSparkline('nodes', 'Unique nodes', {
-        timeframe: 'last_hour',
-        interval: 'minute',
+        timeframe: 'last_day',
+        interval: 'hour',
         dimensions: ['timestamp'],
         metrics: [
           {id: 'transaction_uip', name: 'transaction_uip', dependsOn: 'transaction_ip', aggregation: 'ucount',
@@ -296,33 +296,33 @@ joolaio.events.on('core.ready', function () {
 
 
   setupSparkline('avgblocksize', 'Avg. block size', {
-      timeframe: 'last_hour',
-      interval: 'minute',
+      timeframe: 'last_day',
+      interval: 'hour',
       dimensions: ['timestamp'],
       metrics: [
-        {id: 'avgblocksize', name: 'avgblocksize', dependsOn: 'block_size', aggregation: 'avg', suffix: 'b',
+        {id: 'avgblocksize', name: 'avgblocksize', dependsOn: 'block_size', aggregation: 'avg', suffix: 'KB',
           type: 'float', decimals: 2}
       ]
     }
   );
 
-  setupSparkline('minblocksize', 'MIN', {
-      timeframe: 'last_hour',
-      interval: 'minute',
+  setupMetric('minblocksize', 'MIN', {
+      timeframe: 'last_day',
+      interval: 'hour',
       dimensions: ['timestamp'],
       metrics: [
-        {id: 'minblocksize', name: 'minblocksize', dependsOn: 'block_size', aggregation: 'min', suffix: 'b',
+        {id: 'minblocksize', name: 'minblocksize', dependsOn: 'block_size', aggregation: 'min', suffix: 'KB',
           type: 'float', decimals: 2}
       ]
     }
   );
 
-  setupSparkline('maxblocksize', 'MAX', {
-      timeframe: 'last_hour',
-      interval: 'minute',
+  setupMetric('maxblocksize', 'MAX', {
+      timeframe: 'last_day',
+      interval: 'hour',
       dimensions: ['timestamp'],
       metrics: [
-        {id: 'maxblocksize', name: 'maxblocksize', dependsOn: 'block_size', aggregation: 'max', suffix: 'b',
+        {id: 'maxblocksize', name: 'maxblocksize', dependsOn: 'block_size', aggregation: 'max', suffix: 'KB',
           type: 'float', decimals: 2}
       ]
     }
@@ -330,8 +330,8 @@ joolaio.events.on('core.ready', function () {
   
 
   setupGeo('geo', {
-    timeframe: 'last_hour',
-    interval: 'minute',
+    timeframe: 'last_day',
+    interval: 'hour',
     dimensions: ['transaction_ip'],
     metrics: ['transactions']
   });
