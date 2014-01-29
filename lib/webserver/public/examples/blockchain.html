@@ -114,7 +114,9 @@
           <div id="chart-avgblocksize" style="height:100px;"></div>
         </div>
       </div>
-
+      <div class="col-lg-6">
+        <div id="pie-mining-groups" style="height:250px;"></div>
+      </div>
     </div>
 
 
@@ -190,7 +192,7 @@ joolaio.events.on('core.ready', function () {
         group: jsondata.x.foundBy.description,
         btc: jsondata.x.totalBTCSent,
         reward: jsondata.x.reward,
-        block_size: size/1024,
+        block_size: size / 1024,
         transactions: 1
       });
     }
@@ -243,61 +245,61 @@ joolaio.events.on('core.ready', function () {
   console.info('joola.io SDK ready, version: ' + joolaio.VERSION + ', token: ' + joolaio.TOKEN);
 
   setupSparkline('transactions', 'Transactions', {
-        timeframe: 'last_day',
-        interval: 'hour',
-        dimensions: ['timestamp'],
-        metrics: ['transactions']
-      }
+      timeframe: 'last_hour',
+      interval: 'minute',
+      dimensions: ['timestamp'],
+      metrics: ['transactions']
+    }
   );
 
   setupSparkline('avgsize', 'Avg. tx size', {
-        timeframe: 'last_day',
-        interval: 'hour',
-        dimensions: ['timestamp'],
-        metrics: [
-          {id: 'avgsize', name: 'avgsize', dependsOn: 'transaction_size', aggregation: 'avg', suffix: 'b',
-            type: 'float', decimals: 2}
-        ]
-      }
+      timeframe: 'last_hour',
+      interval: 'minute',
+      dimensions: ['timestamp'],
+      metrics: [
+        {id: 'avgsize', name: 'avgsize', dependsOn: 'transaction_size', aggregation: 'avg', suffix: 'b',
+          type: 'float', decimals: 2}
+      ]
+    }
   );
 
   setupMetric('maxsize', 'Max', {
-        timeframe: 'last_day',
-        interval: 'hour',
-        dimensions: ['timestamp'],
-        metrics: [
-          {id: 'maxsize', name: 'maxsize', dependsOn: 'transaction_size', aggregation: 'max', suffix: 'b',
-            type: 'float', decimals: 2}
-        ]
-      }
+      timeframe: 'last_hour',
+      interval: 'minute',
+      dimensions: ['timestamp'],
+      metrics: [
+        {id: 'maxsize', name: 'maxsize', dependsOn: 'transaction_size', aggregation: 'max', suffix: 'b',
+          type: 'float', decimals: 2}
+      ]
+    }
   );
 
   setupMetric('minsize', 'Min', {
-        timeframe: 'last_day',
-        interval: 'hour',
-        dimensions: ['timestamp'],
-        metrics: [
-          {id: 'minsize', name: 'minsize', dependsOn: 'transaction_size', aggregation: 'min', suffix: 'b',
-            type: 'float', decimals: 2}
-        ]
-      }
+      timeframe: 'last_hour',
+      interval: 'minute',
+      dimensions: ['timestamp'],
+      metrics: [
+        {id: 'minsize', name: 'minsize', dependsOn: 'transaction_size', aggregation: 'min', suffix: 'b',
+          type: 'float', decimals: 2}
+      ]
+    }
   );
 
   setupSparkline('nodes', 'Unique nodes', {
-        timeframe: 'last_day',
-        interval: 'hour',
-        dimensions: ['timestamp'],
-        metrics: [
-          {id: 'transaction_uip', name: 'transaction_uip', dependsOn: 'transaction_ip', aggregation: 'ucount',
-            type: 'int'}
-        ]
-      }
+      timeframe: 'last_hour',
+      interval: 'minute',
+      dimensions: ['timestamp'],
+      metrics: [
+        {id: 'transaction_uip', name: 'transaction_uip', dependsOn: 'transaction_ip', aggregation: 'ucount',
+          type: 'int'}
+      ]
+    }
   );
 
 
   setupSparkline('avgblocksize', 'Avg. block size', {
-      timeframe: 'last_day',
-      interval: 'hour',
+      timeframe: 'last_hour',
+      interval: 'minute',
       dimensions: ['timestamp'],
       metrics: [
         {id: 'avgblocksize', name: 'avgblocksize', dependsOn: 'block_size', aggregation: 'avg', suffix: 'KB',
@@ -307,8 +309,8 @@ joolaio.events.on('core.ready', function () {
   );
 
   setupMetric('minblocksize', 'MIN', {
-      timeframe: 'last_day',
-      interval: 'hour',
+      timeframe: 'last_hour',
+      interval: 'minute',
       dimensions: ['timestamp'],
       metrics: [
         {id: 'minblocksize', name: 'minblocksize', dependsOn: 'block_size', aggregation: 'min', suffix: 'KB',
@@ -318,8 +320,8 @@ joolaio.events.on('core.ready', function () {
   );
 
   setupMetric('maxblocksize', 'MAX', {
-      timeframe: 'last_day',
-      interval: 'hour',
+      timeframe: 'last_hour',
+      interval: 'minute',
       dimensions: ['timestamp'],
       metrics: [
         {id: 'maxblocksize', name: 'maxblocksize', dependsOn: 'block_size', aggregation: 'max', suffix: 'KB',
@@ -327,11 +329,18 @@ joolaio.events.on('core.ready', function () {
       ]
     }
   );
-  
+
+  setupPie('mining-groups', 'Mining groups', {
+      timeframe: 'last_hour',
+      dimensions: ['group'],
+      metrics: ['btc']
+    }
+  );
+
 
   setupGeo('geo', {
-    timeframe: 'last_day',
-    interval: 'hour',
+    timeframe: 'last_hour',
+    interval: 'minute',
     dimensions: ['transaction_ip'],
     metrics: ['transactions']
   });
@@ -353,7 +362,10 @@ function setupGeo(divname, query) {
   query.realtime = true;
   $('#chart-' + divname).Geo({query: query});
 }
-
+function setupPie(divname, caption, query) {
+  query.realtime = true;
+  $('#pie-' + divname).Pie({query: query});
+}
 var expDays = 30;
 var exp = new Date();
 exp.setTime(exp.getTime() + (expDays * 24 * 60 * 60 * 1000));
@@ -388,10 +400,10 @@ function SetCookie(name, value) {
   var domain = (argc > 4) ? argv[4] : null;
   var secure = (argc > 5) ? argv[5] : false;
   document.cookie = name + "=" + escape(value) +
-      ((expires == null) ? "" : ("; expires=" + expires.toGMTString())) +
-      ((path == null) ? "" : ("; path=" + path)) +
-      ((domain == null) ? "" : ("; domain=" + domain)) +
-      ((secure == true) ? "; secure" : "");
+    ((expires == null) ? "" : ("; expires=" + expires.toGMTString())) +
+    ((path == null) ? "" : ("; path=" + path)) +
+    ((domain == null) ? "" : ("; domain=" + domain)) +
+    ((secure == true) ? "; secure" : "");
 }
 
 
