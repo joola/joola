@@ -261,7 +261,7 @@ var moves = [];
 var clicks = [];
 function setupListeners(callback) {
   $(document).mousemove(function (event) {
-    joolaio.beacon.insert('moves', {
+    moves.push({
       timestamp: null,
       browser: $.ua.browser.name,
       device: $.ua.device.name,
@@ -271,14 +271,18 @@ function setupListeners(callback) {
       ip: codehelper_ip.IP,
       moves: 1
     });
+
+    if (moves.length > 100) {
+      joolaio.beacon.insert('moves', moves);
+      moves = [];
+    }
   });
-  /*
-   setInterval(function () {
-   if (moves.length > 0) {
-   joolaio.beacon.insert('moves', moves);
-   moves = [];
-   }
-   }, 100);*/
+  setInterval(function () {
+    if (moves.length > 0) {
+      joolaio.beacon.insert('moves', moves);
+      moves = [];
+    }
+  }, 100);
 
   $(document).click(function (event) {
     joolaio.beacon.insert('clicks', {
