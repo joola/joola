@@ -187,6 +187,22 @@
             "_roles": ["user"],
             "displayName": "demo user",
             "organization": "joola"
+          },
+          "beacon": {
+            "username": "beacon",
+            "_password": "password",
+            "_roles": ["beacon"],
+            "displayName": "beacon user",
+            "organization": "joola",
+            "APIToken": "7890"
+          },
+          "reader": {
+            "username": "reader",
+            "_password": "password",
+            "_roles": ["reader"],
+            "displayName": "reader user",
+            "organization": "joola",
+            "APIToken": "1234"
           }
         }
       }
