@@ -44,6 +44,8 @@
     "noSQL"
   ],
   "dependencies": {
+    "joola.io.sdk": "*",
+
     "nconf": "*",
     "nconf-redis": "https://github.com/itayw/nconf-redis/tarball/master",
     "eventemitter2": "*",
