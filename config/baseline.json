@@ -157,27 +157,38 @@
         "name": "user",
         "permissions": ["access_system"],
         "filter": ""
-      }
-    },
-    "users": {
-      "admin": {
-        "username": "admin",
-        "_password": "password",
-        "_roles": ["admin", "user"],
-        "displayName": "Administrator",
-        "organization": "joola"
       },
-      "demo": {
-        "username": "demo",
-        "_password": "password",
-        "_roles": ["user"],
-        "displayName": "demo user",
-        "organization": "joola"
+      "beacon": {
+        "name": "beacon",
+        "permissions": ["access_system", "beacon_insert"],
+        "filter": ""
+      },
+      "reader": {
+        "name": "reader",
+        "permissions": ["access_system", "query_fetch"],
+        "filter": ""
       }
     },
     "organizations": {
       "joola": {
-        "name": "joola"
+        "id": "joola",
+        "name": "joola",
+        "users": {
+          "admin": {
+            "username": "admin",
+            "_password": "password",
+            "_roles": ["admin", "user"],
+            "displayName": "Administrator",
+            "organization": "joola"
+          },
+          "demo": {
+            "username": "demo",
+            "_password": "password",
+            "_roles": ["user"],
+            "displayName": "demo user",
+            "organization": "joola"
+          }
+        }
       }
     }
   },
