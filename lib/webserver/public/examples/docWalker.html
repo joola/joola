@@ -81,10 +81,16 @@
           {
             key: 'testcalc',
             formula: {
-              dependsOn: ['value', 'value'],
-              run: function (value1, value2) {
-                return value1 / value2;
-              }
+              dependsOn: [
+                {
+                  key: 'calcavgvalue',
+                  dependsOn: 'value',
+                  name: 'avgvalue',
+                  aggregation: 'min'
+                },
+                'value'
+              ],
+              run: 'function (value1, value2) {return value1 / value2;}'
             }
           }
         ]/*,
