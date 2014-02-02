@@ -19,7 +19,7 @@
       margin-bottom: 20px;
     }
 
-    .jio.metric.value {
+    .jio.metricbox.value {
       font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue", "Arial Narrow", Arial, sans-serif;
       font-weight: bold;
       font-stretch: condensed;
@@ -29,7 +29,7 @@
       font-size: 62px;
     }
 
-    .jio.metric.caption {
+    .jio.metricbox.caption {
       font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue", "Arial Narrow", Arial, sans-serif;
       font-weight: bold;
       font-stretch: condensed;
@@ -55,14 +55,14 @@
       border: 0;
     }
 
-    .small .metric.value {
+    .small .metricbox.value {
       float: left;
       font-size: 18px;
       margin-left: 10px;
       line-height: 1;
     }
 
-    .small .metric.caption {
+    .small .metricbox.caption {
       font-size: 18px;
       float: left;
       margin: 0;
@@ -130,17 +130,9 @@
 </div>
 </body>
 <script>
-joolaio.init({}, function (err) {
+joolaio.init({APIToken: '7890'}, function (err) {
   if (err)
     throw err;
-  joolaio.users.authenticate('admin', 'password', function (err, token) {
-    if (err)
-      throw err;
-    joolaio.TOKEN = token._;
-  });
-});
-
-joolaio.events.on('core.ready', function () {
 
   var wsUri = "ws://ws.blockchain.info:8335/inv";
   var output;
@@ -336,7 +328,6 @@ joolaio.events.on('core.ready', function () {
       metrics: ['btc']
     }
   );
-
 
   setupGeo('geo', {
     timeframe: 'last_hour',
