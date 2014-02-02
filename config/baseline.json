@@ -179,7 +179,8 @@
             "_password": "password",
             "_roles": ["admin", "user"],
             "displayName": "Administrator",
-            "organization": "joola"
+            "organization": "joola",
+            "APIToken": "12345"
           },
           "demo": {
             "username": "demo",
