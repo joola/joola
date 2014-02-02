@@ -45,7 +45,6 @@
   ],
   "dependencies": {
     "joola.io.sdk": "*",
-
     "nconf": "*",
     "nconf-redis": "https://github.com/itayw/nconf-redis/tarball/master",
     "eventemitter2": "*",
@@ -76,7 +75,8 @@
     "underscore": "*",
     "cloneextend": "0.0.3",
     "querystring": "~0.2.0",
-    "json-stringify-safe": "~5.0.0"
+    "json-stringify-safe": "~5.0.0",
+    "deep-equal": "~0.2.1"
   },
   "devDependencies": {
     "jsdox": "https://github.com/itayw/jsdox/tarball/master",
