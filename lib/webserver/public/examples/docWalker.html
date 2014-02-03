@@ -50,6 +50,13 @@
     //         return console.error(err);
     //console.log(meta);
 
+    joolaio.alerts.set('test-alert', {
+      dimensions: ['ip'],
+      metrics: ['value']
+    }, 'hook', 'http://localhost:8080/api/hook/do', function (err, result) {
+      console.log(err, result);
+    });
+
     joolaio.beacon.insert('testing', document, function (err, doc) {
       if (err)
         return console.error(err);
