@@ -12,6 +12,7 @@ var async = require('async');
 
 describe("api-permissions", function () {
   before(function (done) {
+    return done();
     var calls = [];
 
     var call = function (callback) {
@@ -26,7 +27,7 @@ describe("api-permissions", function () {
     async.parallel(calls, done);
   });
 
-  it("should add a permission", function (done) {
+  xit("should add a permission", function (done) {
     var permission = {
       name: 'test-permission'
     };
@@ -39,13 +40,13 @@ describe("api-permissions", function () {
     });
   });
 
-  it("should return a valid list of permissions", function (done) {
+  xit("should return a valid list of permissions", function (done) {
     joola.dispatch.permissions.list(function (err, permissions) {
       return done(err);
     });
   });
 
-  it("should fail adding an existing permission", function (done) {
+  xit("should fail adding an existing permission", function (done) {
     var permission = {
       name: 'test-permission'
     };
@@ -57,7 +58,7 @@ describe("api-permissions", function () {
     });
   });
 
-  it("should delete a permission", function (done) {
+  xit("should delete a permission", function (done) {
     var permission = {
       name: 'test-permission'
     };
@@ -83,7 +84,7 @@ describe("api-permissions", function () {
     });
   });
 
-  it("should fail deleting a non existing permission", function (done) {
+  xit("should fail deleting a non existing permission", function (done) {
     var permission = {
       name: 'test-permission-notexist'
     };

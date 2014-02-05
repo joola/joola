@@ -8,66 +8,28 @@
  *  Some rights reserved. See LICENSE, AUTHORS.
  **/
 
-
-var orig_env = process.env.NODE_ENV;
-
 before(function (done) {
-  var started = false;
-
-  try {
-    _joolaio = require('../../joola.io.js');
+  require('../../joola.io.js').init({}, function (err) {
+    if (err)
+      return done(err);
     joola.state.on('state:change', function (state) {
-      if ((state == 'working' || state == 'online') && !started) {
-        started = true;
-
-        var testUser = {
-          username: 'test-user',
-          displayName: 'testing user',
-          _password: '1234',
-          _roles: ['admin'],
-          _filter: '',
-          organization: 'testOrg'
-        };
-
-        joola.auth.generateToken(testUser, function (err, _token) {
+      if (state !== 'online')
+        return done(new Error('Failed to initialize engine, check logs.'));
+      joola.auth.generateToken({username: 'testuser', organization: 'joola'}, function (err, token) {
+        global._token = token;
+        global.joolaio = joola.sdk;
+        joolaio.init({host: 'http://127.0.0.1:8080'}, function (err) {
           if (err)
-            throw err;
-
-          _sdk = require('../../lib/sdk/index');
-          var options = {
-            TOKEN: _token._,
-            isBrowser: false,
-            debug: {
-              enabled: false,
-              events: {
-                enabled: false,
-                trace: false
-              },
-              functions: {
-                enabled: false
-              }
-            }
-          };
-          _sdk.init(options, function (err) {
-            if (err)
-              throw err;
-
-            return done();
-          });
+            return done(err);
+          return done();
         });
-      }
-      else if (!started)
-        throw new Error('Failed to startup joola.io');
+      });
     });
-  }
-  catch (ex) {
-    console.log(ex);
-    console.log(ex.stack);
-    throw ex;
-  }
+  });
 });
 
 after(function (done) {
-  process.env.NODE_ENV = orig_env;
-  done();
+  shutdown(0, function () {
+    return done();
+  });
 });

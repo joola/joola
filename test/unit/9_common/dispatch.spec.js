@@ -137,7 +137,7 @@ describe("dispatch", function () {
 
   it("should have a short roundtrip with 1.5mb of payload(less < 1000ms)", function (done) {
     var start = new Date().getTime();
-    joola.dispatch.request('roundtrip', start, function (err, duration) {
+    joola.dispatch.request(_token._, 'roundtrip', start, function (err, duration) {
       if (duration > 1000)
         return done(new Error('Roundtrip is too long'));
       else

@@ -1,6 +1,5 @@
 "use strict";
 describe("common-globals", function () {
-
 	it("should have sinon defined", function () {
 		expect(sinon).to.be.ok;
 	});
@@ -19,13 +18,5 @@ describe("common-globals", function () {
 
 	it("should have joola.io defined", function () {
 		expect(joolaio).to.be.ok;
-	});
-
-	it("should have _joola defined", function () {
-		expect(_joolaio).to.be.ok;
-	});
-
-	it("should have _sdk defined", function () {
-		expect(_sdk).to.be.ok;
 	});
 });

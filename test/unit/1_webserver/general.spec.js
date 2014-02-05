@@ -17,7 +17,7 @@ var
 
 describe("webserver-general", function () {
   it("should have HTTP port open", function (done) {
-    request.get('http://localhost:40008', function (err, response, body) {
+    request.get('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '', function (err, response, body) {
       if (err)
         return done(err);
 
@@ -27,11 +27,25 @@ describe("webserver-general", function () {
   });
 
   it("should have HTTPS port open", function (done) {
-    request.get('https://localhost:40009', function (err, response, body) {
+    request.get('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.securePort + '', function (err, response, body) {
       if (err)
         return done(err);
 
       expect(response.statusCode).to.equal(200);
+      done();
+    });
+  });
+
+  it("should show a custom 404", function (done) {
+    request.get('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/doesnotexist.html', function (err, response, body) {
+      assert(response.statusCode == 404 && body.indexOf('<!--FOR TEST - 404-->') > -1);
+      done();
+    });
+  });
+
+  it("should show a custom 500", function (done) {
+    request.get('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/api/test/createtesterror', function (err, response, body) {
+      assert(response.statusCode == 500);
       done();
     });
   });
