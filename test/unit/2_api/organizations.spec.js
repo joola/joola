@@ -94,7 +94,7 @@ describe("api-organizations", function () {
     });
   });
 
-  xit("should apply filter on organization members", function (done) {
+  it("should apply filter on organization members", function (done) {
     var user = {
       username: 'tester-org-filter',
       displayName: 'tester user',
@@ -103,7 +103,8 @@ describe("api-organizations", function () {
       _filter: '',
       organization: 'test-org-' + this.uid
     };
-    joola.dispatch.users.add(this.context, user, function (err, user) {
+    joola.dispatch.users.add(this.context, 'test-org-' + this.uid, user, function (err, user) {
+      console.log('done', err, user);
       if (err)
         return done(err);
       expect(user._filter).to.equal('test=test');
@@ -112,6 +113,7 @@ describe("api-organizations", function () {
   });
 
   it("should delete an organization", function (done) {
+    var self = this;
     var org = {
       id: 'test-org-' + this.uid,
       name: 'test-org-' + this.uid
@@ -120,12 +122,12 @@ describe("api-organizations", function () {
       if (err)
         return done(err);
 
-      joola.dispatch.organizations.list(this.context, function (err, orgs) {
+      joola.dispatch.organizations.list(self.context, function (err, orgs) {
         if (err)
           return done(err);
 
         var exist = _.filter(orgs, function (item) {
-          return item.name == 'test-org-' + this.uid;
+          return item.name == 'test-org-' + self.uid;
         });
         try {
           expect(exist.length).to.equal(0);
