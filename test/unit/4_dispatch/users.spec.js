@@ -9,7 +9,7 @@
  **/
 var async = require('async');
 
-describe("api-users", function () {
+describe("users", function () {
   before(function (done) {
     this.context = {user: _token.user};
     this.uid = joola.common.uuid();
@@ -143,12 +143,24 @@ describe("api-users", function () {
   });
 
   it("should authenticate users with correct credentials", function (done) {
-    joola.dispatch.users.authenticate(this.context, this.organization, 'test', 'password', function (err, user) {
-      if (err)
-        return done(err);
-      if (!user)
-        return done(new Error('We should have a valid user'));
-      return done();
+    var self=this;
+    var user = {
+      username: 'tester-password-' + this.uid,
+      displayName: 'tester user',
+      _password: 'password',
+      _roles: ['user'],
+      _filter: '',
+      organization: this.organization
+    };
+    joola.dispatch.users.add(this.context, this.organization, user, function (err, user) {
+
+      joola.dispatch.users.authenticate(self.context, self.organization, 'tester-password-' + self.uid, 'password', function (err, user) {
+        if (err)
+          return done(err);
+        if (!user)
+          return done(new Error('We should have a valid user'));
+        return done();
+      });
     });
   });
 

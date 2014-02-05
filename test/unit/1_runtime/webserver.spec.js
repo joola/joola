@@ -15,7 +15,7 @@ var
   path = require('path'),
   request = require('request');
 
-describe("webserver-general", function () {
+describe("webserver", function () {
   it("should have HTTP port open", function (done) {
     request.get('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '', function (err, response, body) {
       if (err)

@@ -9,10 +9,10 @@
  **/
 
 
-describe("api-metrics", function () {
+describe("dimensions", function () {
   before(function (done) {
     return done();
-    joola.config.clear('metrics:test-metric-api', function (err) {
+    joola.config.clear('dimensions:test-dimension-api', function (err) {
       if (err)
         throw err;
 
@@ -22,7 +22,7 @@ describe("api-metrics", function () {
         type: 'data',
         primaryKey: 'id',
         dateColumn: 'date',
-        metrics: {
+        dimensions: {
           1: 1
         },
         metrics: {
@@ -35,45 +35,41 @@ describe("api-metrics", function () {
     });
   });
 
-  xit("should return a valid list of metrics", function (done) {
-    joola.dispatch.metrics.list(function (err) {
+  xit("should return a valid list of dimensions", function (done) {
+    joola.dispatch.dimensions.list(function (err) {
       return done(err);
     });
   });
 
-  xit("should add a metric", function (done) {
+  xit("should add a dimension", function (done) {
     var dt = {
       datatable: 'test-table-api',
-      id: 'test-metric-api',
-      name: 'test-metric-api',
-      description: 'test-metric-api',
+      id: 'test-dimension-api',
+      name: 'test-dimension-api',
+      description: 'test-dimension-api',
       column: 'test-column',
-      type: 'int',
-      aggregation: 'sum',
       category: 'test',
       roles: ['user']
     };
-    joola.dispatch.metrics.add(dt, function (err, metric) {
+    joola.dispatch.dimensions.add(dt, function (err, dimension) {
       if (err)
         return done(err);
-      expect(metric).to.be.ok;
+      expect(dimension).to.be.ok;
       done();
     });
   });
 
-  xit("should fail adding an existing metric", function (done) {
+  xit("should fail adding an existing dimension", function (done) {
     var dt = {
       datatable: 'test-table-api',
-      id: 'test-metric-api',
-      name: 'test-metric-api',
-      description: 'test-metric-api',
+      id: 'test-dimension-api',
+      name: 'test-dimension-api',
+      description: 'test-dimension-api',
       column: 'test-column',
-      type: 'int',
-      aggregation: 'sum',
       category: 'test',
       roles: ['user']
     };
-    joola.dispatch.metrics.add(dt, function (err, metric) {
+    joola.dispatch.dimensions.add(dt, function (err, dimension) {
       if (err)
         return done();
 
@@ -81,11 +77,11 @@ describe("api-metrics", function () {
     });
   });
 
-  xit("should fail to add a metric with incomplete details", function (done) {
+  xit("should fail to add a dimension with incomplete details", function (done) {
     var dt = {
       id: 'test-table-api-incomplete'
     };
-    joola.dispatch.metrics.add(dt, function (err, metric) {
+    joola.dispatch.dimensions.add(dt, function (err, dimension) {
       if (err)
         return done();
 
@@ -93,50 +89,48 @@ describe("api-metrics", function () {
     });
   });
 
-  xit("should get a metric", function (done) {
-    joola.dispatch.metrics.get('test-metric-api', function (err, metric) {
+  xit("should get a dimension", function (done) {
+    joola.dispatch.dimensions.get('test-dimension-api', function (err, dimension) {
       if (err)
         return done(err);
-      expect(metric).to.be.ok;
-      expect(metric.name).to.equal('test-metric-api');
+      expect(dimension).to.be.ok;
+      expect(dimension.name).to.equal('test-dimension-api');
       return done();
     });
   });
 
-  xit("should update a metric", function (done) {
+  xit("should update a dimension", function (done) {
     var dt = {
       datatable: 'test-table-api',
-      id: 'test-metric-api',
-      name: 'test-metric-api',
-      description: 'test-metric-api-2',
+      id: 'test-dimension-api',
+      name: 'test-dimension-api',
+      description: 'test-dimension-api-2',
       column: 'test-column',
-      type: 'int',
-      aggregation: 'sum',
       category: 'test',
       roles: ['user']
     };
-    joola.dispatch.metrics.update(dt, function (err, metric) {
+    joola.dispatch.dimensions.update(dt, function (err, dimension) {
       if (err)
         return done(err);
-      expect(metric.description).to.equal('test-metric-api-2');
+      expect(dimension.description).to.equal('test-dimension-api-2');
       done();
     });
   });
 
-  xit("should delete a metric", function (done) {
+  xit("should delete a dimension", function (done) {
     var ds = {
-      name: 'test-metric-api'
+      name: 'test-dimension-api'
     };
-    joola.dispatch.metrics.delete(ds, function (err) {
+    joola.dispatch.dimensions.delete(ds, function (err) {
       if (err)
         return done(err);
 
-      joola.dispatch.metrics.list(function (err, metrics) {
+      joola.dispatch.dimensions.list(function (err, dimensions) {
         if (err)
           return done(err);
 
-        var exist = _.filter(metrics, function (item) {
-          return item.name == 'test-metric-api';
+        var exist = _.filter(dimensions, function (item) {
+          return item.name == 'test-dimension-api';
         });
         try {
           expect(exist.length).to.equal(0);
@@ -149,11 +143,11 @@ describe("api-metrics", function () {
     });
   });
 
-  xit("should fail deleting a non existing metric", function (done) {
+  xit("should fail deleting a non existing dimension", function (done) {
     var ds = {
-      name: 'test-metric-api-notexist'
+      name: 'test-dimension-api-notexist'
     };
-    joola.dispatch.metrics.delete(ds, function (err) {
+    joola.dispatch.dimensions.delete(ds, function (err) {
       if (err)
         return done();
 

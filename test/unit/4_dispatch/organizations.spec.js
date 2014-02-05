@@ -11,7 +11,7 @@
 var async = require('async');
 
 
-describe("api-organizations", function () {
+describe("organizations", function () {
   before(function (done) {
     this.context = {user: _token.user};
     this.uid = joola.common.uuid();

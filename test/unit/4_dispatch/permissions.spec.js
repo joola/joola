@@ -10,7 +10,7 @@
 
 var async = require('async');
 
-describe("api-permissions", function () {
+describe("permissions", function () {
   before(function (done) {
     this.context = {user: _token.user};
     this.uid = joola.common.uuid();

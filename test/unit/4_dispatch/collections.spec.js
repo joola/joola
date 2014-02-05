@@ -9,7 +9,7 @@
  **/
 
 
-describe("api-collections", function () {
+describe("collections", function () {
   before(function (done) {
     return done();
     joola.config.clear('dimensions:test-dimension-api', function (err) {
