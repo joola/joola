@@ -12,132 +12,141 @@ var async = require('async');
 
 
 describe("api-organizations", function () {
-	before(function (done) {
-    return done();
-		var calls = [];
+  before(function (done) {
+    this.context = {user: _token.user};
+    this.uid = joola.common.uuid();
+    done();
+  });
+  /*
+   before(function (done) {
+   var calls = [];
 
-		var call = function (callback) {
-			joola.config.clear('authentication:users:tester-org-filter', callback);
-		};
-		calls.push(call);
-		call = function (callback) {
-			joola.config.clear('authentication:organizations:test-org', callback);
-		};
-		calls.push(call);
+   var call = function (callback) {
+   joola.config.clear('authentication:users:tester-org-filter', callback);
+   };
+   calls.push(call);
+   call = function (callback) {
+   joola.config.clear('authentication:organizations:test-org', callback);
+   };
+   calls.push(call);
 
-		async.parallel(calls, done);
-	});
+   async.parallel(calls, done);
+   });*/
 
-	xit("should add an organization", function (done) {
-		var org = {
-			name: 'test-org',
-			filter: ''
-		};
-		joola.dispatch.organizations.add(org, function (err, _org) {
-			if (err)
-				return done(err);
+  it("should add an organization", function (done) {
+    var org = {
+      id: 'test-org-' + this.uid,
+      name: 'test-org-' + this.uid,
+      _filter: ''
+    };
+    joola.dispatch.organizations.add(this.context, org, function (err, _org) {
+      if (err)
+        return done(err);
 
-			expect(_org).to.be.ok;
-			done();
-		});
-	});
+      expect(_org).to.be.ok;
+      done();
+    });
+  });
 
-	xit("should return a valid list of organizations", function (done) {
-		joola.dispatch.organizations.list(function (err, orgs) {
-			return done(err);
-		});
-	});
+  it("should return a valid list of organizations", function (done) {
+    joola.dispatch.organizations.list(this.context, function (err, orgs) {
+      return done(err);
+    });
+  });
 
-	xit("should fail adding an existing organization", function (done) {
-		var org = {
-			name: 'test-org',
-			filter: ''
-		};
-		joola.dispatch.organizations.add(org, function (err, _org) {
-			if (err)
-				return done();
+  it("should fail adding an existing organization", function (done) {
+    var org = {
+      id: 'test-org-' + this.uid,
+      name: 'test-org-' + this.uid,
+      _filter: ''
+    };
+    joola.dispatch.organizations.add(this.context, org, function (err, _org) {
+      if (err)
+        return done();
 
-			return done(new Error('This should fail'));
-		});
-	});
+      return done(new Error('This should fail'));
+    });
+  });
 
-	xit("should fail to add an organization with incomplete details", function (done) {
-		var org = {
+  it("should fail to add an organization with incomplete details", function (done) {
+    var org = {
 
-		};
-		joola.dispatch.organizations.add(org, function (err, _org) {
-			if (err)
-				return done();
+    };
+    joola.dispatch.organizations.add(this.context, org, function (err, _org) {
+      if (err)
+        return done();
 
-			return done(new Error('This should fail'));
-		});
-	});
+      return done(new Error('This should fail'));
+    });
+  });
 
-	xit("should update an organization", function (done) {
-		var org = {
-			name: 'test-org',
-			_filter: 'test=test'
-		};
-		joola.dispatch.organizations.update(org, function (err, _org) {
-			if (err)
-				return done(err);
-			expect(_org._filter).to.equal('test=test');
-			done();
-		});
-	});
+  it("should update an organization", function (done) {
+    var org = {
+      id: 'test-org-' + this.uid,
+      name: 'test-org-' + this.uid,
+      _filter: 'test=test'
+    };
+    joola.dispatch.organizations.update(this.context, org, function (err, _org) {
+      if (err)
+        return done(err);
+      expect(_org._filter).to.equal('test=test');
+      done();
+    });
+  });
 
-	xit("should apply filter on organization members", function (done) {
-		var user = {
-			username: 'tester-org-filter',
-			displayName: 'tester user',
-			_password: '1234',
-			_roles: ['user'],
-			_filter: '',
-			organization: 'test-org'
-		};
-		joola.dispatch.users.add(user, function (err, user) {
-			if (err)
-				return done(err);
-			expect(user._filter).to.equal('test=test');
-			return done(err);
-		});
-	});
+  xit("should apply filter on organization members", function (done) {
+    var user = {
+      username: 'tester-org-filter',
+      displayName: 'tester user',
+      _password: '1234',
+      _roles: ['user'],
+      _filter: '',
+      organization: 'test-org-' + this.uid
+    };
+    joola.dispatch.users.add(this.context, user, function (err, user) {
+      if (err)
+        return done(err);
+      expect(user._filter).to.equal('test=test');
+      return done(err);
+    });
+  });
 
-	xit("should delete an organization", function (done) {
-		var org = {
-			name: 'test-org'
-		};
-		joola.dispatch.organizations.delete(org, function (err) {
-			if (err)
-				return done(err);
+  it("should delete an organization", function (done) {
+    var org = {
+      id: 'test-org-' + this.uid,
+      name: 'test-org-' + this.uid
+    };
+    joola.dispatch.organizations.delete(this.context, org, function (err) {
+      if (err)
+        return done(err);
 
-			joola.dispatch.organizations.list(function (err, orgs) {
-				if (err)
-					return done(err);
+      joola.dispatch.organizations.list(this.context, function (err, orgs) {
+        if (err)
+          return done(err);
 
-				var exist = _.filter(orgs, function (item) {
-					return item.name == 'test-org';
-				});
-				try {
-					expect(exist.length).to.equal(0);
-					done();
-				}
-				catch (ex) {
-					done(ex);
-				}
-			});
-		});
-	});
+        var exist = _.filter(orgs, function (item) {
+          return item.name == 'test-org-' + this.uid;
+        });
+        try {
+          expect(exist.length).to.equal(0);
+          done();
+        }
+        catch (ex) {
+          done(ex);
+        }
+      });
+    });
+  });
 
-	xit("should fail deleting a non existing organization", function (done) {
-		var org = {
-			name: 'test-org-notexist'
-		};
-		joola.dispatch.organizations.delete(org, function (err) {
-			if (err)
-				return done();
+  it("should fail deleting a non existing organization", function (done) {
+    var org = {
+      name: 'test-org-' + this.uid
+    };
+    joola.dispatch.organizations.delete(this.context, org, function (err) {
+      if (err)
+        return done();
 
-			return done(new Error('This should fail'));
-		});
-	});
+      return done(new Error('This should fail'));
+    });
+  });
 });
