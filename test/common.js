@@ -14,7 +14,7 @@ global.expect = chai.expect;
 
 global.common = exports;
 
-global.nolog = true;
+//global.nolog = true;
 
 process.env.NODE_ENV = 'test';
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; //allow node-request to deal with Error: DEPTH_ZERO_SELF_SIGNED_CERT
