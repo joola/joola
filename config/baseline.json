@@ -204,6 +204,14 @@
             "displayName": "reader user",
             "organization": "joola",
             "APIToken": "1234"
+          },
+          "test": {
+            "username": "test",
+            "_password": "password",
+            "_roles": [],
+            "displayName": "test user",
+            "organization": "joola",
+            "APIToken": "1236"
           }
         }
       }
