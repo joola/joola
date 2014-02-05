@@ -104,7 +104,6 @@ describe("api-organizations", function () {
       organization: 'test-org-' + this.uid
     };
     joola.dispatch.users.add(this.context, 'test-org-' + this.uid, user, function (err, user) {
-      console.log('done', err, user);
       if (err)
         return done(err);
       expect(user._filter).to.equal('test=test');
@@ -142,7 +141,7 @@ describe("api-organizations", function () {
 
   it("should fail deleting a non existing organization", function (done) {
     var org = {
-      name: 'test-org-' + this.uid
+      id: 'test-org-' + this.uid
     };
     joola.dispatch.organizations.delete(this.context, org, function (err) {
       if (err)

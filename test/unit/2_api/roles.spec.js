@@ -11,115 +11,98 @@
 var async = require('async');
 
 describe("api-roles", function () {
-	before(function (done) {
-    return done();
-		var calls = [];
+  before(function (done) {
+    this.context = {user: _token.user};
+    this.uid = joola.common.uuid();
+    this.organization = 'test-org-' + joola.common.uuid();
+    done();
+  });
 
-		var call = function (callback) {
-			joola.config.clear('authentication:roles:tester-roles-filter', callback);
-		};
-		calls.push(call);
-		call = function (callback) {
-			joola.config.clear('authentication:roles:test-role', callback);
-		};
-		calls.push(call);
+  it("should add a role", function (done) {
+    var role = {
+      name: 'test-role',
+      permissions: []
+    };
+    joola.dispatch.roles.add(this.context, this.organization, role, function (err, _role) {
+      if (err)
+        return done(err);
 
-		async.parallel(calls, done);
-	});
+      expect(_role).to.be.ok;
+      done();
+    });
+  });
 
-	xit("should add a role", function (done) {
-		var role = {
-			name: 'test-role',
-			permissions: []
-		};
-		joola.dispatch.roles.add(role, function (err, _role) {
-			if (err)
-				return done(err);
+  it("should return a valid list of roles", function (done) {
+    joola.dispatch.roles.list(this.context, this.organization, function (err, roles) {
+      return done(err);
+    });
+  });
 
-			expect(_role).to.be.ok;
-			done();
-		});
-	});
+  it("should fail adding an existing role", function (done) {
+    var role = {
+      name: 'test-role',
+      permissions: []
+    };
+    joola.dispatch.roles.add(this.context, this.organization, role, function (err, _role) {
+      if (err)
+        return done();
 
-	xit("should return a valid list of roles", function (done) {
-		joola.dispatch.roles.list(function (err, roles) {
-			return done(err);
-		});
-	});
+      return done(new Error('This should fail'));
+    });
+  });
 
-	xit("should fail adding an existing role", function (done) {
-		var role = {
-			name: 'test-role',
-			permissions: []
-		};
-		joola.dispatch.roles.add(role, function (err, _role) {
-			if (err)
-				return done();
+  it("should fail to add a role with incomplete details", function (done) {
+    var role = {
+      name: 'test-role-missing-details'
+    };
+    joola.dispatch.roles.add(this.context, this.organization, role, function (err, _role) {
+      if (err)
+        return done();
 
-			return done(new Error('This should fail'));
-		});
-	});
+      return done(new Error('This should fail'));
+    });
+  });
 
-	xit("should fail to add a role with incomplete details", function (done) {
-		var role = {
-			name: 'test-role-missing-details'
-		};
-		joola.dispatch.roles.add(role, function (err, _role) {
-			if (err)
-				return done();
+  it("should update a role", function (done) {
+    var role = {
+      name: 'test-role',
+      permissions: ['access_system']
+    };
+    joola.dispatch.roles.update(this.context, this.organization, role, function (err, _role) {
+      if (err)
+        return done(err);
+      expect(_role.permissions.length).to.equal(1);
+      done();
+    });
+  });
 
-			return done(new Error('This should fail'));
-		});
-	});
+  it("should delete a role", function (done) {
+    var self = this;
+    var role = {
+      name: 'test-role'
+    };
+    joola.dispatch.roles.delete(this.context, this.organization, role, function (err) {
+      if (err)
+        return done(err);
 
-	xit("should update a role", function (done) {
-		var role = {
-			name: 'test-role',
-			permissions: ['access_system']
-		};
-		joola.dispatch.roles.update(role, function (err, _role) {
-			if (err)
-				return done(err);
-			expect(_role.permissions.length).to.equal(1);
-			done();
-		});
-	});
+      joola.dispatch.roles.get(self.context, self.organization, role.name, function (err, role) {
+        if (err)
+          return done();
 
-	xit("should delete a role", function (done) {
-		var role = {
-			name: 'test-role'
-		};
-		joola.dispatch.roles.delete(role , function (err) {
-			if (err)
-				return done(err);
+        return done('Failed to delete role');
+      });
+    });
+  });
 
-			joola.dispatch.roles.list(function (err, roles) {
-				if (err)
-					return done(err);
+  it("should fail deleting a non existing role", function (done) {
+    var role = {
+      name: 'test-role-notexist'
+    };
+    joola.dispatch.roles.delete(this.context, this.organization, role, function (err) {
+      if (err)
+        return done();
 
-				var exist = _.filter(roles, function (item) {
-					return item.name == 'test-role';
-				});
-				try {
-					expect(exist.length).to.equal(0);
-					done();
-				}
-				catch (ex) {
-					done(ex);
-				}
-			});
-		});
-	});
-
-	xit("should fail deleting a non existing role", function (done) {
-		var role = {
-			name: 'test-role-notexist'
-		};
-		joola.dispatch.roles.delete(role, function (err) {
-			if (err)
-				return done();
-
-			return done(new Error('This should fail'));
-		});
-	});
+      return done(new Error('This should fail'));
+    });
+  });
 });
