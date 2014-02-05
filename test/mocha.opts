@@ -1,4 +1,4 @@
---reporter spec
+--reporter dot
 --recursive
 --timeout 10000
 

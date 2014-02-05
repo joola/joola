@@ -18,7 +18,7 @@ describe("common-cli-arguments", function () {
   var packageFile = path.join(__dirname, '../../../', 'package.json');
   var version = require(packageFile).version;
 
-  xit("should printout version number [" + version + "]", function (done) {
+  it("should printout version number [" + version + "]", function (done) {
     var spawn = require('child_process').spawn;
     var binPath = path.join(__dirname, '../../../', 'joola.io.js');
     var app = spawn('node', [binPath, '--version', '--nolog']);
@@ -41,7 +41,7 @@ describe("common-cli-arguments", function () {
     });
   });
 
-  xit("should print out usage correctly", function (done) {
+  it("should print out usage correctly", function (done) {
     var spawn = require('child_process').spawn;
     var binPath = path.join(__dirname, '../../../', 'joola.io.js');
     var app = spawn('node', [binPath, '--help', '--nolog']);
@@ -65,7 +65,7 @@ describe("common-cli-arguments", function () {
     });
   });
 
-  xit("should start REPL", function (done) {
+  it("should start REPL", function (done) {
     this.timeout(15000);
     try {
       var spawn = require('child_process').spawn;
@@ -101,7 +101,7 @@ describe("common-cli-arguments", function () {
     }
   });
 
-  xit("code: usage()", function (done) {
+  it("code: usage()", function (done) {
     var cli = require('../../../lib/common/cli');
     var actual = '';
     var unhook = hook_stdout(function (string) {
@@ -115,7 +115,7 @@ describe("common-cli-arguments", function () {
     done();
   });
 
-  xit("code: process() true for shouldExit (version, help)", function (done) {
+  it("code: process() true for shouldExit (version, help)", function (done) {
     var cli = require('../../../lib/common/cli');
     var actual = '';
     var unhook = hook_stdout(function (string) {
@@ -138,7 +138,7 @@ describe("common-cli-arguments", function () {
     done();
   });
 
-  xit("code: process() true for shouldExit (nolog)", function (done) {
+  it("code: process() true for shouldExit (nolog)", function (done) {
     var cli = require('../../../lib/common/cli');
     var actual = '';
     var unhook = hook_stdout(function (string) {

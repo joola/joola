@@ -51,14 +51,15 @@ describe("dispatch", function () {
       counter++;
       if (counter == expected)
         return done(null);
+    }, function () {
+      joola.dispatch.on('test-emit-double', function (result) {
+        counter++;
+        if (counter == expected)
+          return done(null);
+      }, function () {
+        joola.dispatch.emit('test-emit-double', 'test');
+      });
     });
-    joola.dispatch.on('test-emit-double', function (result) {
-      counter++;
-      if (counter == expected)
-        return done(null);
-    });
-
-    joola.dispatch.emit('test-emit-double', 'test');
   });
 
   it("should prevent multiple catches with the same callback", function (done) {
@@ -82,11 +83,13 @@ describe("dispatch", function () {
     };
     joola.dispatch.on('test-emit-double-prevent', function (err) {
       return callback(err);
+    }, function () {
+      joola.dispatch.on('test-emit-double-prevent', function (err) {
+        return callback(err);
+      }, function () {
+        joola.dispatch.emit('test-emit-double-prevent', 'test');
+      });
     });
-    joola.dispatch.on('test-emit-double-prevent', function (err) {
-      return callback(err);
-    });
-    joola.dispatch.emit('test-emit-double-prevent', 'test');
   });
 
   it("should remove listener", function (done) {
