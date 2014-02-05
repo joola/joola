@@ -24,8 +24,9 @@ describe("dispatch", function () {
   it("should catch emits", function (done) {
     joola.dispatch.on('test-emit', function (result) {
       return done(null);
+    }, function () {
+      joola.dispatch.emit('test-emit', 'test');
     });
-    joola.dispatch.emit('test-emit', 'test');
   });
 
   it("should catch multiple emits", function (done) {
@@ -35,10 +36,11 @@ describe("dispatch", function () {
       actual++;
       if (actual >= expected)
         return done(null);
+    }, function () {
+      joola.dispatch.emit('test-emit-multiple', 'test');
+      joola.dispatch.emit('test-emit-multiple', 'test');
+      joola.dispatch.emit('test-emit-multiple', 'test');
     });
-    joola.dispatch.emit('test-emit-multiple', 'test');
-    joola.dispatch.emit('test-emit-multiple', 'test');
-    joola.dispatch.emit('test-emit-multiple', 'test');
   });
 
   it("should catch multiple emits with different callbacks", function (done) {

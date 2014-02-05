@@ -14,8 +14,6 @@ global.expect = chai.expect;
 
 global.common = exports;
 
-global._joolaio = null;
-global._sdk = null;
 global.nolog = true;
 
 process.env.NODE_ENV = 'test';
