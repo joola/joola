@@ -29,7 +29,11 @@ before(function (done) {
 });
 
 after(function (done) {
-  shutdown(0, function () {
+  if (shutdown) {
+    shutdown(0, function () {
+      return done();
+    });
+  }
+  else
     return done();
-  });
 });

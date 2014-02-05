@@ -28,7 +28,7 @@ describe("dispatch", function () {
     joola.dispatch.emit('test-emit', 'test');
   });
 
-  xit("should catch multiple emits", function (done) {
+  it("should catch multiple emits", function (done) {
     var expected = 3;
     var actual = 0;
     joola.dispatch.on('test-emit-multiple', function (result) {
@@ -41,7 +41,7 @@ describe("dispatch", function () {
     joola.dispatch.emit('test-emit-multiple', 'test');
   });
 
-  xit("should catch multuple emits with different callbacks", function (done) {
+  it("should catch multiple emits with different callbacks", function (done) {
     var expected = 2;
     var counter = 0;
     joola.dispatch.on('test-emit-double', function (result) {
@@ -59,17 +59,35 @@ describe("dispatch", function () {
     joola.dispatch.emit('test-emit-double', 'test');
   });
 
-  xit("should prevent multuple catches with the same callback", function (done) {
-    joola.dispatch.on('test-emit-double-prevent', function (result) {
-      return done(null);
+  it("should prevent multiple catches with the same callback", function (done) {
+    var counter = 0;
+    var expected = 2;
+    var errors = 0;
+    var expectederrors = 1;
+
+    var donecalled = false;
+
+    var callback = function (err) {
+      counter++;
+      if (err)
+        errors++;
+      if (errors === expectederrors) {
+        donecalled = true;
+        return done();
+      }
+      else if (counter == expected && !donecalled)
+        return done(new Error('Not prevented'));
+    };
+    joola.dispatch.on('test-emit-double-prevent', function (err) {
+      return callback(err);
     });
-    joola.dispatch.on('test-emit-double-prevent', function (result) {
-      return done(null);
+    joola.dispatch.on('test-emit-double-prevent', function (err) {
+      return callback(err);
     });
     joola.dispatch.emit('test-emit-double-prevent', 'test');
   });
 
-  xit("should remove listener", function (done) {
+  it("should remove listener", function (done) {
     var actual = 0;
     var expected = 2;
 
@@ -96,34 +114,29 @@ describe("dispatch", function () {
     });
   });
 
-  xit("should remove all listeners for a channel", function (done) {
+  it("should remove all listeners for a channel", function (done) {
     var actual = 0;
     var expected = 2;
 
-    var cb = function (result) {
+    var cb1 = function (result) {
       actual++;
     };
+    var cb2 = function (result) {
+      var a = 1;
+      actual++;
+    };
+    joola.dispatch.on('test-emit-remove-all', cb1);
+    joola.dispatch.on('test-emit-remove-all', cb2);
 
-    joola.dispatch.on('test-emit-remove-all', cb);
+    var list = joola.dispatch.removeAllListeners('test-emit-remove-all');
+    if (list.length == 2)
+      return done();
+    else
+      return done(new Error('Failed to remove all listeners'));
 
-    joola.dispatch.emit('test-emit-remove-all', 'test', function () {
-      joola.dispatch.emit('test-emit-remove-all', 'test', function () {
-        setTimeout(function () {
-          joola.dispatch.removeAllListeners('test-emit-remove-all');
-          joola.dispatch.emit('test-emit-remove-all', 'test');
-
-          setTimeout(function () {
-            if (actual == expected)
-              return done(null);
-            else
-              return done(new Error('Listener still connected [' + actual + ']'));
-          }, 500);
-        }, 500);
-      });
-    });
   });
 
-  xit("should listen once for emits", function (done) {
+  it("should listen once for emits", function (done) {
     var expected = 1;
     var actual = 0;
     joola.dispatch.once('test-emit-once', function (result) {
