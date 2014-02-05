@@ -14,14 +14,21 @@ var
   browser = new Browser({silent: true});
 
 describe("auth", function () {
-  xit("should return static content with no login issues", function (done) {
+  before(function (done) {
+    this.context = {user: _token.user};
+    this.uid = joola.common.uuid();
+    this.organization = 'test-org-' + joola.common.uuid();
+    done();
+  });
+
+  it("should return static content with no login issues", function (done) {
     browser.visit('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/manage/img/logo-manage.png', function () {
       expect(browser.success).to.equal(true);
       done();
     });
   });
 
-  xit("should return login page with no issues", function (done) {
+  it("should return login page with no issues", function (done) {
     browser.visit('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/login', function () {
       expect(browser.text("title")).to.equal('joola.io - Login');
       done();
@@ -50,9 +57,20 @@ describe("auth", function () {
     });
   });
 
-  xit("should return 401 error if no token", function (done) {
-    browser.visit('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/api/test/action', function () {
+  it("should return 401 error if no token and content-type application/json", function (done) {
+    var options = {};
+    options.headers = {'content-type': 'application/json'};
+    browser.visit('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/api/test/action', options, function () {
       expect(browser.statusCode).to.equal(401);
+      browser = new Browser({silent: true});
+      done();
+    });
+  });
+
+  it("should return 200 and login page if no token", function (done) {
+    browser.visit('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/api/test/action', function () {
+      expect(browser.text("title")).to.equal('joola.io - Login');
+      expect(browser.statusCode).to.equal(200);
       done();
     });
   });
@@ -82,7 +100,7 @@ describe("auth", function () {
     });
   });
 
-  xit("should generate a valid security token", function (done) {
+  it("should generate a valid security token", function (done) {
     var user = {
       username: 'test'
     };
@@ -105,27 +123,30 @@ describe("auth", function () {
     joola.auth.generateToken(user, function (err, token) {
       joola.config.authentication.tokens.expireAfter = _expireAfter;
 
-      joola.auth.validateToken(token._, function (err, valid) {
+      joola.auth.validateToken(token._, null, function (err, valid) {
         if (err)
           return done(err);
         expect(valid).to.be.ok;
         setTimeout(function () {
-          joola.auth.validateToken(token._, function (err, valid) {
-            expect(err).to.be.ok;
-            done();
+          joola.auth.validateToken(token._, null, function (err, valid) {
+            console.log('validate', valid);
+            if (err)
+              done();
+            else
+              done(new Error('Failed to expire token'));
           });
         }, 2000);
       });
     });
   });
 
-  xit("should expire a token", function (done) {
+  it("should expire a token", function (done) {
     var user = {
       username: 'test'
     };
     joola.auth.generateToken(user, function (err, token) {
       joola.auth.expireToken(token, function (err) {
-        joola.auth.validateToken(token, function (err, valid) {
+        joola.auth.validateToken(token, null, function (err, valid) {
           expect(err).to.be.ok;
           done();
         });
@@ -148,8 +169,8 @@ describe("auth", function () {
     });
   });
 
-  xit("should validate a route", function (done) {
-    var modulename = 'datasources';
+  it("should validate a route", function (done) {
+    var modulename = 'collections';
     var action = 'list';
 
     joola.auth.validateRoute(modulename, action, function (err, action) {
@@ -158,7 +179,7 @@ describe("auth", function () {
     });
   });
 
-  xit("should error on invalid a route", function (done) {
+  it("should error on invalid a route", function (done) {
     var modulename = 'datasources2';
     var action = 'list';
 
@@ -170,8 +191,8 @@ describe("auth", function () {
     });
   });
 
-  xit("should validate an action", function (done) {
-    var modulename = 'datasources';
+  it("should validate an action", function (done) {
+    var modulename = 'collections';
     var action = 'list';
 
     var user = {
@@ -200,8 +221,8 @@ describe("auth", function () {
     });
   });
 
-  xit("should fail validating an action when no user", function (done) {
-    var modulename = 'datasources';
+  it("should fail validating an action when no user", function (done) {
+    var modulename = 'collections';
     var action = 'list';
 
     var req = {
@@ -227,7 +248,7 @@ describe("auth", function () {
     });
   });
 
-  xit("should fail validating an action when no permission", function (done) {
+  it("should fail validating an action when no permission", function (done) {
     var modulename = 'test';
     var action = 'nopermission';
 
@@ -259,7 +280,7 @@ describe("auth", function () {
     });
   });
 
-  xit("should validate an action when permission ok", function (done) {
+  it("should validate an action when permission ok", function (done) {
     var modulename = 'test';
     var action = 'withpermission';
 
@@ -291,14 +312,14 @@ describe("auth", function () {
     });
   });
 
-  xit("should encrypt a user password", function (done) {
+  it("should encrypt a user password", function (done) {
     var password = '1234';
     var hash = joola.auth.hashPassword(password);
     expect(hash).to.not.equal('1234');
     done();
   });
 
-  xit("should store salt with the hash", function (done) {
+  it("should store salt with the hash", function (done) {
     var password = '1234';
     var hash = joola.auth.hashPassword(password);
 
@@ -306,7 +327,7 @@ describe("auth", function () {
     done();
   });
 
-  xit("should validate a password", function (done) {
+  it("should validate a password", function (done) {
     var password = '1234';
     var hash = 'nVHqYEJbh$81dc9bdb52d04dc20036dbd8313ed055';
     var valid = joola.auth.validatePassword(password, hash);
@@ -315,14 +336,14 @@ describe("auth", function () {
     done();
   });
 
-  xit("should get a user by token", function (done) {
+  it("should get a user by token", function (done) {
     var user = {
-      username: 'test',
+      username: 'test-' + joola.common.uuid(),
       _password: '1234',
       _roles: ['user'],
       organization: 'test-org'
     };
-    joola.dispatch.users.add(user, function (err, _user) {
+    joola.dispatch.users.add(this.context, this.organization, user, function (err, _user) {
       joola.auth.generateToken(user, function (err, token) {
         if (err)
           return done(err);
