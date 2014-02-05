@@ -12,26 +12,17 @@ var async = require('async');
 
 describe("api-permissions", function () {
   before(function (done) {
-    return done();
-    var calls = [];
-
-    var call = function (callback) {
-      joola.config.clear('authentication:permissions:tester-permissions-filter', callback);
-    };
-    calls.push(call);
-    call = function (callback) {
-      joola.config.clear('authentication:permissions:test-permission', callback);
-    };
-    calls.push(call);
-
-    async.parallel(calls, done);
+    this.context = {user: _token.user};
+    this.uid = joola.common.uuid();
+    this.organization = 'test-org-' + joola.common.uuid();
+    done();
   });
 
-  xit("should add a permission", function (done) {
+  it("should add a permission", function (done) {
     var permission = {
-      name: 'test-permission'
+      name: 'test-permission-' + this.uid
     };
-    joola.dispatch.permissions.add(permission, function (err, _permission) {
+    joola.dispatch.permissions.add(this.context, permission, function (err, _permission) {
       if (err)
         return done(err);
 
@@ -40,17 +31,17 @@ describe("api-permissions", function () {
     });
   });
 
-  xit("should return a valid list of permissions", function (done) {
-    joola.dispatch.permissions.list(function (err, permissions) {
+  it("should return a valid list of permissions", function (done) {
+    joola.dispatch.permissions.list(this.context, function (err, permissions) {
       return done(err);
     });
   });
 
-  xit("should fail adding an existing permission", function (done) {
+  it("should fail adding an existing permission", function (done) {
     var permission = {
-      name: 'test-permission'
+      name: 'test-permission-' + this.uid
     };
-    joola.dispatch.permissions.add(permission, function (err, _permission) {
+    joola.dispatch.permissions.add(this.context, permission, function (err, _permission) {
       if (err)
         return done();
 
@@ -58,15 +49,16 @@ describe("api-permissions", function () {
     });
   });
 
-  xit("should delete a permission", function (done) {
+  it("should delete a permission", function (done) {
+    var self = this;
     var permission = {
-      name: 'test-permission'
+      name: 'test-permission-' + this.uid
     };
-    joola.dispatch.permissions.delete(permission, function (err) {
+    joola.dispatch.permissions.delete(this.context, permission, function (err) {
       if (err)
         return done(err);
 
-      joola.dispatch.permissions.list(function (err, permissions) {
+      joola.dispatch.permissions.list(self.context, function (err, permissions) {
         if (err)
           return done(err);
 
@@ -84,11 +76,11 @@ describe("api-permissions", function () {
     });
   });
 
-  xit("should fail deleting a non existing permission", function (done) {
+  it("should fail deleting a non existing permission", function (done) {
     var permission = {
       name: 'test-permission-notexist'
     };
-    joola.dispatch.permissions.delete(permission, function (err) {
+    joola.dispatch.permissions.delete(this.context, permission, function (err) {
       if (err)
         return done();
 
