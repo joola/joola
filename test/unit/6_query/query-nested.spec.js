@@ -6,7 +6,7 @@ describe("query-nested", function () {
     done();
   });
 
-  it("should perform a nested query", function (done) {
+  xit("should perform a nested query", function (done) {
     var query = {
       timeframe: 'last_day',
       interval: 'minute',
