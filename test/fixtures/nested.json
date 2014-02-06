@@ -1,0 +1,16 @@
+[
+  {
+    "timestamp": null,
+    "attribute": "test",
+    "value": {
+      "actual": 1
+    }
+  },
+  {
+    "timestamp": null,
+    "attribute": "test",
+    "value": {
+      "actual": 2
+    }
+  }
+]

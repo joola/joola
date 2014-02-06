@@ -18,6 +18,9 @@ before(function (done) {
       joola.auth.generateToken({username: 'testuser', organization: 'joola'}, function (err, token) {
         global._token = token;
         global.joolaio = joola.sdk;
+
+        global.uid = joola.common.uuid();
+
         joolaio.init({host: 'http://127.0.0.1:8080'}, function (err) {
           if (err)
             return done(err);
