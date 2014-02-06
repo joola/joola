@@ -49,6 +49,45 @@ describe("permissions", function () {
     });
   });
 
+
+  it("should update a permission", function (done) {
+    var permission = {
+      name: 'test-permission-' + this.uid,
+      test: 1
+    };
+    joola.dispatch.permissions.update(this.context, permission, function (err, _permission) {
+      if (err)
+        return done(err);
+      expect(_permission.test).to.equal(1);
+      done();
+    });
+  });
+
+  it("should fail updating unknown permission", function (done) {
+    var permission = {
+      name: 'test-permission1-' + this.uid,
+      test: 1
+    };
+    joola.dispatch.permissions.update(this.context, permission, function (err) {
+      if (err)
+        return done();
+
+      done(new Error('This should have failed'));
+    });
+  });
+
+  it("should fail updating permission with incomplete details", function (done) {
+    var permission = {
+
+    };
+    joola.dispatch.permissions.update(this.context, permission, function (err) {
+      if (err)
+        return done();
+
+      done(new Error('This should have failed'));
+    });
+  });
+
   it("should delete a permission", function (done) {
     var self = this;
     var permission = {

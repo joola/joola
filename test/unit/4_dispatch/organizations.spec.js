@@ -94,6 +94,32 @@ describe("organizations", function () {
     });
   });
 
+  it("should fail updating unknown organization", function (done) {
+    var org = {
+      id: 'test-org1-' + this.uid,
+      name: 'test-org-' + this.uid,
+      _filter: 'test=test'
+    };
+    joola.dispatch.organizations.update(this.context, org, function (err, _org) {
+      if (err)
+        return done();
+
+      done(new Error('This should have failed'));
+    });
+  });
+
+  it("should fail updating organization with incomplete details", function (done) {
+    var org = {
+      id: 'test-org1-' + this.uid
+    };
+    joola.dispatch.organizations.update(this.context, org, function (err, _org) {
+      if (err)
+        return done();
+
+      done(new Error('This should have failed'));
+    });
+  });
+  
   it("should apply filter on organization members", function (done) {
     var user = {
       username: 'tester-org-filter',

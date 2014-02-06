@@ -89,11 +89,11 @@ describe("common-cli-arguments", function () {
           var buffer = new Buffer('shutdown();\n');
           sock.end(buffer);
         });
-      }, 1000);
+      }, 2000);
 
       app.on('close', function (code) {
         //expect(code).to.equal(0);
-        done();
+        setTimeout(done, 3000);
       });
     }
     catch (ex) {
@@ -122,15 +122,15 @@ describe("common-cli-arguments", function () {
       actual += string;
     });
 
-    process.argv.push('--version') ;
+    process.argv.push('--version');
     var shouldExit = cli.process();
-    process.argv.splice(process.argv.length-1);
+    process.argv.splice(process.argv.length - 1);
     var expected = true;
     expect(shouldExit).to.equal(expected);
 
     process.argv.push('--help');
     var shouldExit = cli.process();
-    process.argv.splice(process.argv.length-1);
+    process.argv.splice(process.argv.length - 1);
     var expected = true;
     expect(shouldExit).to.equal(expected);
 
@@ -149,7 +149,7 @@ describe("common-cli-arguments", function () {
     var shouldExit = cli.process();
     var expected = false;
     expect(shouldExit).to.equal(expected);
-    process.argv.splice(process.argv.length-1);
+    process.argv.splice(process.argv.length - 1);
 
     unhook();
     done();

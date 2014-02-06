@@ -20,7 +20,7 @@ describe("roles", function () {
 
   it("should add a role", function (done) {
     var role = {
-      name: 'test-role',
+      name: 'test-role-' + this.uid,
       permissions: []
     };
     joola.dispatch.roles.add(this.context, this.organization, role, function (err, _role) {
@@ -40,7 +40,7 @@ describe("roles", function () {
 
   it("should fail adding an existing role", function (done) {
     var role = {
-      name: 'test-role',
+      name: 'test-role-' + this.uid,
       permissions: []
     };
     joola.dispatch.roles.add(this.context, this.organization, role, function (err, _role) {
@@ -65,7 +65,7 @@ describe("roles", function () {
 
   it("should update a role", function (done) {
     var role = {
-      name: 'test-role',
+      name: 'test-role-' + this.uid,
       permissions: ['access_system']
     };
     joola.dispatch.roles.update(this.context, this.organization, role, function (err, _role) {
@@ -76,10 +76,35 @@ describe("roles", function () {
     });
   });
 
+  it("should fail updating unknown role", function (done) {
+    var role = {
+      name: 'test-role1-' + this.uid,
+      permissions: ['access_system']
+    };
+    joola.dispatch.roles.update(this.context, this.organization, role, function (err, _role) {
+      if (err)
+        return done();
+
+      done(new Error('This should have failed'));
+    });
+  });
+
+  it("should fail updating role with incomplete details", function (done) {
+    var role = {
+      name: 'test-role-' + this.uid
+    };
+    joola.dispatch.roles.update(this.context, this.organization, role, function (err, _role) {
+      if (err)
+        return done();
+
+      done(new Error('This should have failed'));
+    });
+  });
+
   it("should delete a role", function (done) {
     var self = this;
     var role = {
-      name: 'test-role'
+      name: 'test-role-' + this.uid
     };
     joola.dispatch.roles.delete(this.context, this.organization, role, function (err) {
       if (err)

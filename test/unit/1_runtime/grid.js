@@ -12,17 +12,16 @@ describe("grid", function () {
   });
 
   it("should start an additional node", function (done) {
+    var doneCalled = false;
     var spawn = require('child_process').spawn;
     var binPath = path.join(__dirname, '../../../', 'joola.io.js');
-    app = spawn('node', [binPath, '--nolog']);
+    app = spawn('node', [binPath, '--nolog', '--node']);
 
     joola.dispatch.on('nodes:state:change', function (channel, message) {
-      if (message[1].status === 'online')
+      if (!doneCalled && message[1].status === 'online') {
+        doneCalled = true;
         done();
-    });
-
-    app.on('close', function (code) {
-      done(new Error('Failed to init new joola.io'));
+      }
     });
   });
 
@@ -36,7 +35,10 @@ describe("grid", function () {
   });
 
   after(function (done) {
-    app.kill(0);
-    done();
+    app.kill('SIGINT');
+    app.on('exit', function (code) {
+      //allow time for the node to register off
+      setTimeout(done, 5000);
+    });
   });
 });

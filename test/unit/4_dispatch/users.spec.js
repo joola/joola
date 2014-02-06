@@ -143,7 +143,7 @@ describe("users", function () {
   });
 
   it("should authenticate users with correct credentials", function (done) {
-    var self=this;
+    var self = this;
     var user = {
       username: 'tester-password-' + this.uid,
       displayName: 'tester user',
@@ -191,6 +191,18 @@ describe("users", function () {
     });
   });
 
+  it("should fail deleting a non existing user", function (done) {
+    var self = this;
+    var user = {
+      username: 'tester1-' + this.uid
+    };
+    joola.dispatch.users.delete(this.context, this.organization, user, function (err) {
+      if (err)
+        return done();
+      return done('This should fail');
+    });
+  });
+
   it("should get a userby token", function (done) {
     var self = this;
     var user = {
@@ -214,6 +226,53 @@ describe("users", function () {
           done(null);
         });
       });
+    });
+  });
+
+  it("should validate a correct username/password", function (done) {
+    joola.dispatch.users.authenticate(this.context, this.organization, 'demo', 'password', function (err, user) {
+      if (err)
+        return done(err);
+
+      expect(user).to.be.ok;
+      return done();
+    });
+  });
+
+  it("should fail validating incorrect username/password [missing user]", function (done) {
+    joola.dispatch.users.authenticate(this.context, this.organization, 'demo1', 'password1', function (err, user) {
+      if (err)
+        return done();
+
+      return done(new Error('This should fail'));
+    });
+  });
+  
+  it("should fail validating incorrect username/password [password mismatch]", function (done) {
+    joola.dispatch.users.authenticate(this.context, this.organization, 'demo', 'password1', function (err, user) {
+      if (err)
+        return done();
+
+      return done(new Error('This should fail'));
+    });
+  });
+
+  it("should verify a valid APIToken", function (done) {
+    joola.dispatch.users.verifyAPIToken(this.context, '12345', function (err, user) {
+      if (err)
+        return done(err);
+
+      expect(user).to.be.ok;
+      return done();
+    });
+  });
+
+  it("should fail verifying a non-existing APIToken", function (done) {
+    joola.dispatch.users.verifyAPIToken(this.context, '000012345', function (err, user) {
+      if (err)
+        return done();
+
+      return done(new Error('This should fail'));
     });
   });
 });
