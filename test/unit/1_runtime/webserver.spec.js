@@ -76,19 +76,38 @@ describe("webserver", function () {
   });
 
   it("should have Emit on WebSocket", function (done) {
-    var io = require('socket.io-client');
-    var socket = io.connect('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port);
-    socket.on('connect', function () {
-      socket.emit('testmessage', message);
+    var io = require('socket.io-browserify');
+    io.socket = joolaio.io.connect(joolaio.options.host);
+    var message = 'this is a test message';
+    io.socket.on('testmessage', function (_message) {
+      expect(_message).to.equal(message);
+      done();
     });
+    io.socket.emit('testmessage', message);
+  });
 
-    var message = 'testing websocket';
-    socket.on('testmessage', function (_message) {
-      expect(message).to.equal(_message);
- 
+  it("should have valid route on WebSocket", function (done) {
+    var io = require('socket.io-browserify');
+    io.socket = joolaio.io.connect(joolaio.options.host);
+    io.socket.once('/organizations/list:done', function (_message) {
+      done();
     });
-    //should be moved into the socket.on, bypass for now for istanbul
-    done();
+    var options = 
+      {
+        APIToken: '12345',
+        _path: '/organizations/list'
+      }
+    ;
+    io.socket.emit('/organizations/list', options);
+  });
+
+  it("should return on WebSocket route with no details", function (done) {
+    var io = require('socket.io-browserify');
+    io.socket = joolaio.io.connect(joolaio.options.host);
+    io.socket.once('/organizations/list:done', function (_message) {
+      done();
+    });
+    io.socket.emit('/organizations/list');
   });
 
   it("should show a custom 404", function (done) {
