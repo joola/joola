@@ -1,16 +1,3 @@
-/**
- *  @title joola.io
- *  @overview the open-source data analytics framework
- *  @copyright Joola Smart Solutions, Ltd. <info@joo.la>
- *  @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
- *
- *  Licensed under GNU General Public License 3.0 or later.
- *  Some rights reserved. See LICENSE, AUTHORS.
- **/
-
-
-"use strict";
-
 var
   path = require('path');
 
@@ -33,7 +20,7 @@ describe("common-cli-arguments", function () {
     });
 
     app.on('close', function (code) {
-      if (code != 0)
+      if (code !== 0)
         throw new Error('Failed to spawn node, code: ' + code);
 
       expect(buffer).to.equal('v' + version + '\n');
@@ -56,10 +43,10 @@ describe("common-cli-arguments", function () {
     });
 
     app.on('close', function (code) {
-      if (code != 0)
+      if (code !== 0)
         throw new Error('Failed to spawn node, code: ' + code);
 
-      var message = require('../../../lib/common/cli')._message()
+      var message = require('../../../lib/common/cli')._message();
       expect(buffer).to.equal(message + '\n');
       done();
     });
@@ -129,9 +116,9 @@ describe("common-cli-arguments", function () {
     expect(shouldExit).to.equal(expected);
 
     process.argv.push('--help');
-    var shouldExit = cli.process();
+    shouldExit = cli.process();
     process.argv.splice(process.argv.length - 1);
-    var expected = true;
+    expected = true;
     expect(shouldExit).to.equal(expected);
 
     unhook();

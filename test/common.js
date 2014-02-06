@@ -1,5 +1,3 @@
-"use strict";
-
 var
 	path = require('path');
 
@@ -26,10 +24,10 @@ global.hook_stdout = function (callback) {
 		return function (string, encoding, fd) {
 			//write.apply(process.stdout, arguments);
 			callback(string, encoding, fd);
-		}
+		};
 	})(process.stdout.write);
 
 	return function () {
 		process.stdout.write = old_write;
-	}
+	};
 };

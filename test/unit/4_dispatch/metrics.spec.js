@@ -8,7 +8,7 @@
  *  Some rights reserved. See LICENSE, AUTHORS.
  **/
 
-
+/*
 describe("metrics", function () {
   before(function (done) {
     return done();
@@ -160,4 +160,4 @@ describe("metrics", function () {
       return done(new Error('This should fail'));
     });
   });
-});
+});*/

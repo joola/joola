@@ -31,7 +31,7 @@ describe("grid", function () {
         done();
       else
         done(new Error('Failed to rely dispatch messages to secondary node'));
-    })
+    });
   });
 
   after(function (done) {

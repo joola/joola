@@ -9,34 +9,14 @@
  *  @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
  */
 
-describe("common-utils", function () {
-	it("should generate uuid - 9 chars long", function () {
-		var expected = 9;
-		var actual = joola.common.uuid().length;
-		expect(actual).to.equal(expected);
-	});
-
-	it("should generate uuid - unique", function (done) {
-		var ids = [];
-
-		for (var i = 0; i < 100; i++) {
-			var uuid = joola.common.uuid();
-			if (ids.indexOf(uuid) > -1) {
-				return done(new Error('Found duplicate uuid [' + uuid + ']'));
-			}
-			ids.push(uuid);
-		}
-
-		return done();
-	});
-
+describe("common-mixin", function () {
 	it("should mixin", function () {
 		var expected = {
 			test1: 1,
 			test2: 2
 		};
 		var actual = joola.common.mixin({}, expected);
-		assert(actual.test1 && actual.test2)
+		assert(actual.test1 && actual.test2);
 	});
 
 	it("should mixin - no overwrite", function () {

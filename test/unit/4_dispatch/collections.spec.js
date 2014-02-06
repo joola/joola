@@ -8,7 +8,7 @@
  *  Some rights reserved. See LICENSE, AUTHORS.
  **/
 
-
+/*
 describe("collections", function () {
   before(function (done) {
     return done();
@@ -155,3 +155,4 @@ describe("collections", function () {
     });
   });
 });
+  */

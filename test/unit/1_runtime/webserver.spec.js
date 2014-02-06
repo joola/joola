@@ -1,16 +1,3 @@
-/**
- *  @title joola.io
- *  @overview the open-source data analytics framework
- *  @copyright Joola Smart Solutions, Ltd. <info@joo.la>
- *  @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
- *
- *  Licensed under GNU General Public License 3.0 or later.
- *  Some rights reserved. See LICENSE, AUTHORS.
- **/
-
-
-"use strict";
-
 var
   path = require('path'),
   request = require('request');
@@ -46,6 +33,27 @@ describe("webserver", function () {
   it("should show a custom 500", function (done) {
     request.get('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/api/test/createtesterror', function (err, response, body) {
       assert(response.statusCode == 500);
+      done();
+    });
+  });
+
+  it("should show a status page", function (done) {
+    request.get('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/status', function (err, response, body) {
+      if (err)
+        return done(err);
+
+      expect(response.statusCode).to.equal(200);
+      expect(body.indexOf('joola.io | Status Page'));
+      done();
+    });
+  });
+
+  it("should serve api endpoints", function (done) {
+    request.get('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/api.js', function (err, response, body) {
+      if (err)
+        return done(err);
+
+      expect(response.statusCode).to.equal(200);
       done();
     });
   });

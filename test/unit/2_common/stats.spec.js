@@ -42,7 +42,7 @@ describe("stats", function () {
     _sdk.events.once('stats:events', function () {
       setTimeout(function () {
         done();
-      }, 1001)
+      }, 1001);
     });
   });
 

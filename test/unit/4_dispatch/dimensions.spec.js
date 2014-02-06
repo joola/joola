@@ -8,7 +8,7 @@
  *  Some rights reserved. See LICENSE, AUTHORS.
  **/
 
-
+/*
 describe("dimensions", function () {
   before(function (done) {
     return done();
@@ -154,4 +154,4 @@ describe("dimensions", function () {
       return done(new Error('This should fail'));
     });
   });
-});
+});*/

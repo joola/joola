@@ -18,7 +18,7 @@ compile:
 		browserify ./lib/sdk/index.js -i ./lib/sdk/bin/joola.io.js -o ./lib/sdk/bin/joola.io.js --debug
     
 lint:
-		@./node_modules/.bin/jshint ./lib
+		@./node_modules/.bin/jshint ./lib ./lib ./test
 
 doc:
 		find ./wiki/* ! -iregex '(.git|.npm)' | xargs rm -fr
