@@ -148,13 +148,13 @@ describe("collections", function () {
       done(new Error('This should fail'));
     });
   });
-  
+
   it("should get collection max date", function (done) {
     var self = this;
     joola.beacon.insert(this.context, this.collection, {timestamp: null}, function (err) {
       if (err)
         return done(err);
-      joola.dispatch.collections.maxdate(self.context, self.context.user.organization, self.collection, null, function (err,maxdate) {
+      joola.dispatch.collections.maxdate(self.context, self.context.user.organization, self.collection, null, function (err, maxdate) {
         if (err)
           return done(err);
 
@@ -194,6 +194,18 @@ describe("collections", function () {
         return done();
 
       done(new Error('This should fail'));
+    });
+  });
+
+  it("should get a collection meta data", function (done) {
+    var self = this;
+    var document = require('../../fixtures/basic.json')[0];
+    joola.dispatch.collections.metadata(self.context, self.context.user.organization, document, self.collection, function (err, meta) {
+      if (err)
+        return done(err);
+
+      expect(meta).to.be.ok;
+      done();
     });
   });
 });
