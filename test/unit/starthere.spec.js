@@ -9,6 +9,7 @@
  **/
 
 before(function (done) {
+  var self = this;
   require('../../joola.io.js').init({}, function (err, joola) {
     global.joola = joola;
     if (err)
@@ -16,17 +17,21 @@ before(function (done) {
     joola.state.on('state:change', function (state) {
       if (state !== 'online')
         return done(new Error('Failed to initialize engine, check logs.'));
-      joola.auth.generateToken({username: 'testuser', organization: 'joola'}, function (err, token) {
-        global._token = token;
-        global.joolaio = joola.sdk;
 
-        global.uid = joola.common.uuid();
+      global.joolaio = joola.sdk;
+      global.uid = joola.common.uuid();
 
-        joolaio.init({host: 'http://127.0.0.1:8080'}, function (err) {
-          if (err)
-            return done(err);
-          return done();
+      joolaio.init({host: 'http://127.0.0.1:8080', APIToken: '12345'}, function (err) {
+        if (err)
+          return done(err);
+        joolaio.users.verifyAPIToken('12345', function (err, _user) {
+          self.user = _user;
+          joola.auth.generateToken(_user, function (err, token) {
+            global._token = token;
+            return done();
+          });
         });
+
       });
     });
   });
