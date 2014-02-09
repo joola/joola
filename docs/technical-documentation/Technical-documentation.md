@@ -3,10 +3,16 @@
 The technical documentation review the joola.io architecture, know-how and details breakdown of internal processes.
 
 ## Getting Started
-- [Step 1. Setup joola.io](setup-joola.io)
+- [Step 1. Setup joola.io](setting-up-joola.io)
 - [Step 2. Send Your Data](pushing-data)
 - [Step 3. Query, Analyze and Visualize](analytics-and-visualization)
 - [Step 4. Take it Further...](using-joola.io)
+
+#### Useful Resources
+- [[Basic Concepts]]
+- [[Examples]]
+- [[Troubleshooting]]
+- [[FAQ]]
 
 ## The Framework
 We've tried to keep things simple and divided the framework into the listed logical entities, each is aimed at serving a different aspect of the framework.
