@@ -6,12 +6,11 @@ case `uname` in
 esac
 
 if [ -x "$basedir/node" ]; then
-  "$basedir/pm2" "start" "$basedir/service.json" "$@"
+  "$basedir/node"  "$basedir/lib/joola.io.js" "$@"
   ret=$?
 else
-  pm2 start "$basedir/service.json" "$@"
+  node  "$basedir/joola.io.js" "$@"
   ret=$?
 fi
 exit $ret
-
 

@@ -1,8 +1,6 @@
 @echo off
 
-set my_command=pm2
-set my_params="%~dp0\service.json" %*
+set my_command=node
+set my_params="%~dp0\..\joola.io" %*
 
-    %my_command% start %my_params%
-
-
+    %my_command% %my_params%

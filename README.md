@@ -12,7 +12,7 @@
 2. Stores relevant data in a unique caching layer enabling scalable, rapid response times to queries and requests.
 3. Completely embedabble into existing sites, but also ships with a state-of-the-art analytics website.
 
-### Main features
+### Main Features
 
 - **Big-data**, supports distributed caching and processing to cope with big-data needs.
 - **Fast**, advanced caching algorithm. Avg. query time of less than a few seconds.
@@ -22,15 +22,58 @@
 - **AaaS ready**, offer Analytics as a Service to your audience.
 - **Extendable** data source, authentication and cache middleware
 
-### Getting started
+### Getting Started
 We've pre-loaded the package with a fully working sample site, so it's easy to get started.
 
+Before getting started, please install [MongoDB](http://mongodb.org) and [Redis](http://redis.io). For the specific example below to work out-of-the-box, it's required to have both installed on localhost.
+ For a more details on the installation process, please refer to [this guide](http://github.com/joola/joola.io/wiki/install-joola.io).
+
 ```bash
-$ npm install -g joola.io
-$ joola.io --demo
+$ [sudo] npm install -g http://github.com/joola/joola.io/tarball/develop
+$ joola.io
 ```
 
 Following the installation, point your browser to `http://localhost:8080` and you'll be able to use the analytics site.
+
+[**Learn more about getting started with joola.io**](http://github.com/joola/joola.io/wiki/technical-documentation)
+
+##### To push your first event
+```js
+var joolaio = require('joola.io.sdk');
+
+joolaio.init({host: 'http://localhost:8080', APIToken: '12345'}, function(err) {
+  var document = {
+    timestamp: new Date(),
+    attribute: 'I\'m an attribute',
+    value: 123
+  };
+  joolaio.beacon.insert('collection-name', document, function(err) { 
+    console.log('Document saved');
+  });
+});
+```
+
+[**Learn more about pushing data**](http://github.com/joola/joola.io/wiki/pushing-data')
+
+##### Your first visualization
+```html
+<html>
+  <body>
+    <div id="drawhere">
+
+    <script src="http://localhost:8080/joola.io.js">
+    <script>
+    var joolaio = require('joola.io.sdk');
+
+    joolaio.init({host: 'http://localhost:8080', APIToken: '12345'}, function(err) {
+      joolaio.viz.timeline({container: document.getElementById('drawhere'), query: {dimensions:['timestamp'], metrics: ['value']}}
+    });
+    </script>
+  </body>
+</html>
+```
+
+[**Learn more about analytics and visualizations**](http://github.com/joola/joola.io/wiki/analytics-and-visualizations)
 
 ### Contributing
 We would love to get your help! We have outlined a simple [Contribution Policy][18] to support a transparent and easy merging
