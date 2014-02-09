@@ -53,7 +53,7 @@ joolaio.init({host: 'http://localhost:8080', APIToken: '12345'}, function(err) {
 });
 ```
 
-[**Learn more about pushing data**](http://github.com/joola/joola.io/wiki/pushing-data')
+[**Learn more about pushing data**](http://github.com/joola/joola.io/wiki/pushing-data)
 
 ##### Your first visualization
 ```html

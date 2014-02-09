@@ -25,15 +25,11 @@
   ],
   "scripts": {
     "test": "make test",
-    "start": "pm2 start service.json",
-    "blanket": {
-      "pattern": "lib",
-      "data-cover-never": "node_modules"
-    },
+    "start": "node ./joola.io.js",
     "coveralls": "make test-coveralls"
   },
   "bin": {
-    "joola.io": "./bin/joola.io"
+    "joola.io": "./joola.io.js"
   },
   "main": "./joola.io.js",
   "keywords": [
