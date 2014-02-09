@@ -173,6 +173,18 @@ describe("collections", function () {
     });
   });
 
+  it("should get a collection meta data", function (done) {
+    var self = this;
+    var document = require('../../fixtures/basic.json')[0];
+    joola.dispatch.collections.metadata(self.context, self.context.user.organization, document, self.collection, function (err, meta) {
+      if (err)
+        return done(err);
+
+      expect(meta).to.be.ok;
+      done();
+    });
+  });
+  
   it("should delete a collection", function (done) {
     var self = this;
     joola.dispatch.collections.delete(this.context, this.context.user.organization, this.collection, function (err) {
@@ -196,16 +208,4 @@ describe("collections", function () {
       done(new Error('This should fail'));
     });
   });
-
-  it("should get a collection meta data", function (done) {
-    var self = this;
-    var document = require('../../fixtures/basic.json')[0];
-    joola.dispatch.collections.metadata(self.context, self.context.user.organization, document, self.collection, function (err, meta) {
-      if (err)
-        return done(err);
-
-      expect(meta).to.be.ok;
-      done();
-    });
-  });
-});
+}); 

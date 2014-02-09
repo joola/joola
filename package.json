@@ -46,7 +46,7 @@
   "dependencies": {
     "joola.io.sdk": "http://github.com/joola/joola.io.sdk/tarball/develop",
     "nconf": "*",
-    "nconf-redis": "https://github.com/itayw/nconf-redis/tarball/master",
+    "nconf-redis": "https://github.com/itayw/nconf-redis/tarball/develop",
     "eventemitter2": "*",
     "redis": "*",
     "hiredis": "*",

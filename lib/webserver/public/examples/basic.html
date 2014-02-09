@@ -30,16 +30,10 @@
 <script src="/joola.io.js"></script>
 
 <script>
-  joolaio.init({}, function (err) {
+  joolaio.init({APIToken:'12345'}, function (err) {
     if (err)
       throw err;
-    joolaio.users.authenticate('admin', 'password', function (err, token) {
-      if (err)
-        throw err;
-      joolaio.TOKEN = token._;
-    });
   });
-
 
   joolaio.events.on('core.ready', function () {
     console.info('joola.io SDK ready, version: ' + joolaio.VERSION + ', token: ' + joolaio.TOKEN);
