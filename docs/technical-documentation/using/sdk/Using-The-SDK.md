@@ -32,13 +32,13 @@ First, we install the library.
 ```bash
 $ mkdir /tmp/joola.io-sdk-example
 $ cd /tmp/joola.io-sdk-example
-$ npm install http://github.com/joola/joola.io/tarball/develop
+$ npm install http://github.com/joola/joola.io.sdk/tarball/develop
 $ nano joola.io-sdk-example.js
 ```
 
 We proceed to require it.
 ```js
-var joolaio = require('joola.io').sdk;
+var joolaio = require('joola.io.sdk');
 
 console.log('joola.io object is:', joolaio);
 ```
@@ -64,17 +64,15 @@ var options = {
 joolaio.init(options, function (err, result) {
     if (err)
         throw err;
-    joolaio.users.authenticate('admin', 'password', function (err, token) {
+    joolaio.users.authenticate('organization', 'user', 'password', function (err, token) {
         joolaio.TOKEN = token._;
         
         //joola.io is now ready for work, event `core.ready` is emitted
     });
 });
-
 ```
 
-
-In this example, the page/module receives the token in advnace.
+In this example, the page/module receives the token in advance.
 ```js
 var options = {
   host: 'http://localhost:8080',
@@ -88,9 +86,22 @@ joolaio.init(options, function(err){
 });
 ```
 
-Another possible approach is to wait on joola.io's [event](the-sdk-subsystem#event-driven) stating the system is ready 
-for 
-operation.
+In this example, the page/module will be using an APIToken.
+```js
+var options = {
+  host: 'http://localhost:8080',
+  APIToken: '12345'
+}
+joolaio.init(options, function(err){
+  if (err)
+    throw err;
+    
+  console.log('joola.io is ready for work');
+});
+```
+
+If you prefer, you can employ another possible approach for initializing joola.io and wait on [event](the-sdk-subsystem#event-driven) stating the system is ready 
+for operation.
 ```js
 joolaio.events.on('core.ready', function(){
   console.log('joola.io is ready for work');
@@ -104,6 +115,18 @@ joolaio.init(options);
 ```
 
 [Learn more about using Security Tokens](security-and-authentication)
+## Step 3: Using the SDK
+The SDK allows you to control all aspects of the framework, so you'll find an API call for everything you need. 
+These include the management aspects of the framework, such as adding organizations, users and assigning roles and permissions.
+  The SDK is used to push data in and query data out of joola.io, the flexibility of the SDK coupled with its developer oriented design make it an easy-to-use tool. 
+
+Here's a short list of different examples relevant to the SDK. If you wish to learn more about the SDK and its functionality, please refer to its docs.
+
+- Pushing data
+- Query, analytics and visualization
+- Collections and meta data
+- Manage Organizations, users and roles
+- System health and stats
 
 ## Step 3: Use
 Now that we have the SDK initialized with a security context, we can start communicating events, 

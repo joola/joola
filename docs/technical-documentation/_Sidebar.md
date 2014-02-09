@@ -20,8 +20,8 @@
 - [SDK](The-SDK-Subsystem)
 
 **The development process**
-- [Overview](development-process-overview)
-- [Testing](development-testing)
+- [Overview](the-development-process)
+- [Testing](Code-Testing)
 - [Building](development-building)
 - [Versioning](development-versioning)
 - [Release and Publish](development-publish)
