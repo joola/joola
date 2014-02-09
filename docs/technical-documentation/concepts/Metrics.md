@@ -1,16 +1,4 @@
-[HOME](Home) > [CONCEPTS](concepts) > **DIMENSIONS AND METRICS**
-
-### Dimensions: Describe data
-A dimension is an descriptive attribute or characteristic of an object that can be given different values. 
-For example, a geographic location could have dimensions called Latitude, Longitude, or City Name. 
-Values for the City Name dimension could be San Francisco, Berlin, or Singapore.
-Browser, Device, Date are all examples of dimensions that may appear as part of joola.io.
- 
-Dimensions are system wide (based on the system/user permissions) and may appear in all of your reports, 
-though you might see different ones depending on the specific report. 
-Use them to help organize, segment, and analyze your data. In some reports, you can add and remove dimensions to see different aspects of your data.
-
-[Learn more about adding metrics](Setting-up-collections)
+[HOME](Home) > [CONCEPTS](basic-concepts) > **METRICS**
 
 ### Metrics: Measure data
 Metrics are individual elements of a dimension that can be measured as a sum or a ratio. 

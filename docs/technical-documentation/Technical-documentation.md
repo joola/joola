@@ -4,9 +4,9 @@ The technical documentation review the joola.io architecture, know-how and detai
 
 ## Getting Started
 - [Step 1. Setup joola.io](setting-up-joola.io)
-- [Step 2. Send Your Data](pushing-data)
+- [Step 2. Push Your Data](pushing-data)
 - [Step 3. Query, Analyze and Visualize](analytics-and-visualization)
-- [Step 4. Take it Further...](using-joola.io)
+- [Step 4. Even more...](using-joola.io)
 
 #### Useful Resources
 - [[Basic Concepts]]

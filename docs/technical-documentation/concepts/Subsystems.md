@@ -1,4 +1,4 @@
-[HOME](Home) > **SUBSYSTEMS**
+[HOME](Home) > [CONCEPTS](basic-concepts) > **SUBSYSTEMS**
 
 joola.io is an extensive framework and in order to allow rapid development and easier introduction to code, 
 we have broken it down to several subsystems, each addressing a different aspect of the framework.

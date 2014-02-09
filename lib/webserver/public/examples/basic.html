@@ -30,40 +30,13 @@
 <script src="/joola.io.js"></script>
 
 <script>
-  joolaio.init({}, function (err) {
-    if (err)
-      throw err;
-    joolaio.users.authenticate('admin', 'password', function (err, token) {
-      if (err)
-        throw err;
-      joolaio.TOKEN = token._;
+    joolaio.init({APIToken: '7890'}, function (err) {
+        if (err)
+            throw err;
+
+        console.info('joola.io SDK ready, version: ' + joolaio.VERSION + ', token: ' + joolaio.TOKEN);
+
     });
-  });
-
-
-  joolaio.events.on('core.ready', function () {
-    console.info('joola.io SDK ready, version: ' + joolaio.VERSION + ', token: ' + joolaio.TOKEN);
-
-    joolaio.beacon.insert('basic-01',
-        {
-          timestamp: null,
-          test: 1,
-          abc: {
-            def: 2
-          }
-        });
-
-    joolaio.query.fetch({
-      timeframe: 'last_hour',
-      interval: 'minute',
-      dimensions: ['timestamp'],
-      metrics: ['test', 'abc.def']
-    }, function (err, results) {
-      if (err)
-        throw err;
-      console.log(results.documents);
-    })
-  });
 </script>
 <!--<script language="Javascript" src="http://www.codehelper.io/api/ips/?js"></script>-->
 </body>
