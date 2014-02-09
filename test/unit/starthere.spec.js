@@ -8,66 +8,41 @@
  *  Some rights reserved. See LICENSE, AUTHORS.
  **/
 
-
-var orig_env = process.env.NODE_ENV;
-
 before(function (done) {
-  var started = false;
-
-  try {
-    _joolaio = require('../../joola.io.js');
+  var self = this;
+  require('../../joola.io.js').init({}, function (err, joola) {
+    global.joola = joola;
+    if (err)
+      return done(err);
     joola.state.on('state:change', function (state) {
-      if ((state == 'working' || state == 'online') && !started) {
-        started = true;
+      if (state !== 'online')
+        return done(new Error('Failed to initialize engine, check logs.'));
 
-        var testUser = {
-          username: 'test-user',
-          displayName: 'testing user',
-          _password: '1234',
-          _roles: ['admin'],
-          _filter: '',
-          organization: 'testOrg'
-        };
+      global.joolaio = joola.sdk;
+      global.uid = joola.common.uuid();
 
-        joola.auth.generateToken(testUser, function (err, _token) {
-          if (err)
-            throw err;
-
-          _sdk = require('../../lib/sdk/index');
-          var options = {
-            TOKEN: _token._,
-            isBrowser: false,
-            debug: {
-              enabled: false,
-              events: {
-                enabled: false,
-                trace: false
-              },
-              functions: {
-                enabled: false
-              }
-            }
-          };
-          _sdk.init(options, function (err) {
-            if (err)
-              throw err;
-
+      joolaio.init({host: 'http://127.0.0.1:8080', APIToken: '12345'}, function (err) {
+        if (err)
+          return done(err);
+        joolaio.users.verifyAPIToken('12345', function (err, _user) {
+          self.user = _user;
+          joola.auth.generateToken(_user, function (err, token) {
+            global._token = token;
             return done();
           });
         });
-      }
-      else if (!started)
-        throw new Error('Failed to startup joola.io');
+
+      });
     });
-  }
-  catch (ex) {
-    console.log(ex);
-    console.log(ex.stack);
-    throw ex;
-  }
+  });
 });
 
 after(function (done) {
-  process.env.NODE_ENV = orig_env;
-  done();
+  if (shutdown) {
+    shutdown(0, function () {
+      return done();
+    });
+  }
+  else
+    return done();
 });

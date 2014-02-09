@@ -5,9 +5,9 @@ html(lang='en', ng-app="ngjoola", xmlns:ng="http://angularjs.org")
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(name='description', content='')
     meta(name='author', content='')
-    - var title = title || "joola.io"
-    - var error = error || ""
-    - var redirect = redirect || ""
+    - var title = locals.title || "joola.io"
+    - var error = locals.error || ""
+    - var redirect = locals.redirect || ""
     title #{title}
 
     link(href='/shared/css/bootstrap.min.css', rel='stylesheet')

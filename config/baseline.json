@@ -150,7 +150,7 @@
     "roles": {
       "admin": {
         "name": "admin",
-        "permissions": ["access_system", "manage_system"],
+        "permissions": ["access_system", "manage_system", "manage_users"],
         "filter": ""
       },
       "user": {
@@ -180,7 +180,8 @@
             "_roles": ["admin", "user"],
             "displayName": "Administrator",
             "organization": "joola",
-            "APIToken": "12345"
+            "APIToken": "12345",
+            "su": true
           },
           "demo": {
             "username": "demo",
@@ -204,6 +205,14 @@
             "displayName": "reader user",
             "organization": "joola",
             "APIToken": "1234"
+          },
+          "test": {
+            "username": "test",
+            "_password": "password",
+            "_roles": [],
+            "displayName": "test user",
+            "organization": "joola",
+            "APIToken": "1236"
           }
         }
       }
