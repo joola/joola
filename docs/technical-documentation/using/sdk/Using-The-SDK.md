@@ -122,43 +122,9 @@ These include the management aspects of the framework, such as adding organizati
 
 Here's a short list of different examples relevant to the SDK. If you wish to learn more about the SDK and its functionality, please refer to its docs.
 
-- Pushing data
-- Query, analytics and visualization
-- Collections and meta data
-- Manage Organizations, users and roles
-- System health and stats
-
-## Step 3: Use
-Now that we have the SDK initialized with a security context, we can start communicating events, 
-query for insight and manage the different framework aspects.
-
-For example, let's query the system:
-```js
-var query = {
-              timeframe:'last_30_minutes',
-              interval: 'second',
-              realtime: true,
-              dimensions: ['timestamp'],
-              metrics: ['x', 'y'],
-              filter: null
-            };
-            
-joolaio.query.fetch({query: query}, function(err, results) {
-  if (err)
-    throw err;
-    
-  console.log('Query results', results);
-});
-```
-
-Another basic example would be to list all available collections in the system:
-```js
-joolaio.collections.list(function(err, collections) {
-  if (err)
-    throw err;
-    
-  console.log('Collections', collections);
-});
-```
-
-## What's next?
+- [Security and Authentication](security-and-authentication)
+- [Pushing data](pushing-data)
+- [Query, analytics and visualization](analytics-and-visualization)
+- [Collections and meta data](collections)
+- [Manage Organizations, users and roles](user-management)
+- [System health and stats](system-health)

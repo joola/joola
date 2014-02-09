@@ -2,12 +2,12 @@
 
 **Using joola.io**
 - [Setup Guide](setting-up-joola.io)
-- [Collections](collections)
+- [The joola.io SDK](using-the-sdk)
+- [Pushing Data](pushing-data)
+- [Analytics and Visualization](Analytics-and-Visualization)
 - [Embedding](using-embedding)
-- [Extending](using-extending)
 - [[Examples]]
 - [[Troubleshooting]]
-- [[Walk-throughs]]
 
 **Subsystems**
 - [Core](The-COre-Subsystem)

@@ -9,6 +9,7 @@ The technical documentation review the joola.io architecture, know-how and detai
 - [Step 4. Even more...](using-joola.io)
 
 #### Useful Resources
+- [[Using the SDK]]
 - [[Basic Concepts]]
 - [[Examples]]
 - [[Troubleshooting]]
