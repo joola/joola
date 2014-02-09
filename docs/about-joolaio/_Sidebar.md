@@ -1,7 +1,7 @@
 **ABOUT JOOLA.IO**
 
 **Introduction**
-- [joola.io overview](joolaio-overview)
+- [joola.io overview](joola.io-overview)
 - [Technical architecture](technical-architecture)
 - [Sponsor joola.io](sponsor-joola.io)
 

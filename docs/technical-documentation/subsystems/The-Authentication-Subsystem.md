@@ -1,3 +1,5 @@
+[HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [SUBSYSTEMS](subsystems) > **AUTHENTICATION**
+
 joola.io is a secure system, meaning that any request must have a secure context with a valid authentication token.
 
 The topic of Authentication is broad and contains several sub-topics:
