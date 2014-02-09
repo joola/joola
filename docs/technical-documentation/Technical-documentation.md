@@ -1,15 +1,14 @@
 [**HOME**](Home) > **TECHNICAL DOCUMENTATION**
 
-The techincal documentation review the joola.io architecture, know-how and details breakdown of internal processes.
+The technical documentation review the joola.io architecture, know-how and details breakdown of internal processes.
 
-## Getting started
-- [Basic example](your-first-event)
-- [Collections](collections)
-- [Dimensions and Metrics](dimensions-and-metrics)
-- [Subsystems](subsystems)
-- [Using joola.io](using-joola.io)
+## Getting Started
+- [Step 1. Setup joola.io](setup-joola.io)
+- [Step 2. Send Your Data](pushing-data)
+- [Step 3. Query, Analyze and Visualize](analytics-and-visualization)
+- [Step 4. Take it Further...](using-joola.io)
 
-## Subsystems
+## The Framework
 We've tried to keep things simple and divided the framework into the listed logical entities, each is aimed at serving a different aspect of the framework.
 
 - [Core](The-Core-Subsystem) - Internal processes
@@ -21,7 +20,7 @@ We've tried to keep things simple and divided the framework into the listed logi
 - [Web Server](The-Webserver-Subsystem) - Serves web content to end users
 - [SDK](The-SDK-Subsystem) - Used to communicate with joola.io framework and manage it
 
-## The development process
+## The Development Process
 We aim to create the world's best mass-scale data analytics framework and for that, we need to have a solid and robust development process.
 This section describes the process and protocols we use throughout the development of the framework.
 
