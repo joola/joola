@@ -9,7 +9,8 @@
  **/
 
 before(function (done) {
-  require('../../joola.io.js').init({}, function (err) {
+  require('../../joola.io.js').init({}, function (err, joola) {
+    global.joola = joola;
     if (err)
       return done(err);
     joola.state.on('state:change', function (state) {
