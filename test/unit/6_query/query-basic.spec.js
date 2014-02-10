@@ -264,7 +264,9 @@ describe("query-basic", function () {
     var query = {
       timeframe: 'last_day',
       interval: 'minute',
-      dimensions: [{key: 'timestamp', name: 'Timestamp', dependsOn: 'timestamp'}],
+      dimensions: [
+        {key: 'timestamp', name: 'Timestamp', dependsOn: 'timestamp'}
+      ],
       metrics: [
         {key: 'value', name: 'value', dependsOn: 'value', aggregation: 'avg', decimals: 0}
       ]
@@ -274,6 +276,128 @@ describe("query-basic", function () {
         return done(err);
 
       expect(result.documents.length).to.equal(1440);
+      return done();
+    });
+  });
+
+  it("should perform a freestyle formula query [two metrics]", function (done) {
+    var query = {
+      timeframe: 'this_day',
+      interval: 'minute',
+      dimensions: [],
+      metrics: [
+        {
+          key: 'calcvalue',
+          name: 'calcvalue',
+          formula: {
+            dependsOn: ['another', 'value'],
+            run: 'function(another, value){return another * value;}'
+          }}
+      ]
+    };
+    joola.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result.documents[0].values.calcvalue).to.equal(90);
+      return done();
+    });
+  });
+
+
+  it("should perform a freestyle formula query [three metrics]", function (done) {
+    var query = {
+      timeframe: 'this_day',
+      interval: 'minute',
+      dimensions: [],
+      metrics: [
+        {
+          key: 'calcvalue',
+          name: 'calcvalue',
+          formula: {
+            dependsOn: ['another', 'value', 'third'],
+            run: 'function(another, value, third){return another * value * third;}'
+          }}
+      ]
+    };
+    joola.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result.documents[0].values.calcvalue).to.equal(27000);
+      return done();
+    });
+  });
+
+  it("should perform a freestyle formula query [metric and fixed]", function (done) {
+    var query = {
+      timeframe: 'this_day',
+      interval: 'minute',
+      dimensions: [],
+      metrics: [
+        {
+          key: 'calcvalue',
+          name: 'calcvalue',
+          formula: {
+            dependsOn: ['another'],
+            run: 'function(another){return another * 100;}'
+          }}
+      ]
+    };
+    joola.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result.documents[0].values.calcvalue).to.equal(3000);
+      return done();
+    });
+  });
+
+  it("should perform a freestyle unique count", function (done) {
+    var query = {
+      timeframe: 'this_day',
+      interval: 'minute',
+      dimensions: [],
+      metrics: [
+        {
+          key: 'uniquevalue',
+          name: 'uniquevalue',
+          aggregation: 'ucount',
+          datatype: 'number',
+          dependsOn: ['attribute']
+        }
+      ]
+    };
+    joola.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result.documents[0].values.uniquevalue).to.equal(1);
+      return done();
+    });
+  });
+
+  it("should perform a freestyle transform", function (done) {
+    var query = {
+      timeframe: 'this_day',
+      interval: 'minute',
+      dimensions: [],
+      metrics: [
+        {
+          key: 'uniquevalue',
+          name: 'uniquevalue',
+          aggregation: 'ucount',
+          datatype: 'number',
+          dependsOn: ['attribute'],
+          transform: 'function(value){return value*100;}'
+        }
+      ]
+    };
+    joola.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result.documents[0].fvalues.uniquevalue).to.equal(100);
       return done();
     });
   });

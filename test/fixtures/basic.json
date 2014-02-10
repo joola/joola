@@ -2,11 +2,15 @@
   {
     "timestamp": null,
     "attribute": "test",
-    "value": 1
+    "value": 1,
+    "another": 10,
+    "third": 100
   },
   {
     "timestamp": null,
     "attribute": "test",
-    "value": 2
+    "value": 2,
+    "another": 20,
+    "third": 200
   }
 ]
