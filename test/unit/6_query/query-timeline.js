@@ -28,7 +28,7 @@ describe("query-timeline", function () {
       timeframe: 'this_second',
       interval: 'second',
       dimensions: ['timestamp'],
-      metrics: ['value2']
+      metrics: ['value']
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
@@ -47,7 +47,7 @@ describe("query-timeline", function () {
       timeframe: 'last_second',
       interval: 'second',
       dimensions: ['timestamp'],
-      metrics: ['value2']
+      metrics: ['value']
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
@@ -66,7 +66,7 @@ describe("query-timeline", function () {
       timeframe: 'this_second',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: ['value2']
+      metrics: ['value']
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
@@ -85,7 +85,7 @@ describe("query-timeline", function () {
       timeframe: 'last_second',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: ['value2']
+      metrics: ['value']
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
@@ -104,7 +104,7 @@ describe("query-timeline", function () {
       timeframe: 'this_17_seconds',
       interval: 'second',
       dimensions: ['timestamp'],
-      metrics: ['value2']
+      metrics: ['value']
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
@@ -123,7 +123,7 @@ describe("query-timeline", function () {
       timeframe: 'last_17_seconds',
       interval: 'second',
       dimensions: ['timestamp'],
-      metrics: ['value2']
+      metrics: ['value']
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
@@ -143,7 +143,7 @@ describe("query-timeline", function () {
       timeframe: 'this_minute',
       interval: 'second',
       dimensions: ['timestamp'],
-      metrics: ['value2']
+      metrics: ['value']
     };
 
     var _date = new Date();
@@ -165,7 +165,7 @@ describe("query-timeline", function () {
       timeframe: 'last_minute',
       interval: 'second',
       dimensions: ['timestamp'],
-      metrics: ['value2']
+      metrics: ['value']
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
@@ -184,7 +184,7 @@ describe("query-timeline", function () {
       timeframe: 'this_minute',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: ['value2']
+      metrics: ['value']
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
@@ -203,7 +203,7 @@ describe("query-timeline", function () {
       timeframe: 'last_minute',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: ['value2']
+      metrics: ['value']
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
@@ -222,7 +222,7 @@ describe("query-timeline", function () {
       timeframe: 'this_17_minutes',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: ['value2']
+      metrics: ['value']
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
@@ -241,7 +241,7 @@ describe("query-timeline", function () {
       timeframe: 'last_17_minutes',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: ['value2']
+      metrics: ['value']
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
@@ -260,7 +260,7 @@ describe("query-timeline", function () {
       timeframe: 'this_hour',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: ['value2']
+      metrics: ['value']
     };
 
     var _date = new Date();
@@ -282,7 +282,7 @@ describe("query-timeline", function () {
       timeframe: 'last_hour',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: ['value2']
+      metrics: ['value']
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
@@ -301,7 +301,7 @@ describe("query-timeline", function () {
       timeframe: 'this_3_hour',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: ['value2']
+      metrics: ['value']
     };
 
     var _date = new Date();
@@ -323,7 +323,7 @@ describe("query-timeline", function () {
       timeframe: 'last_3_hour',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: ['value2']
+      metrics: ['value']
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
@@ -341,7 +341,7 @@ describe("query-timeline", function () {
       timeframe: 'this_day',
       interval: 'hour',
       dimensions: ['timestamp'],
-      metrics: ['value2']
+      metrics: ['value']
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
@@ -363,7 +363,7 @@ describe("query-timeline", function () {
       timeframe: 'last_day',
       interval: 'second',
       dimensions: ['timestamp'],
-      metrics: ['value2']
+      metrics: ['value']
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
@@ -382,7 +382,7 @@ describe("query-timeline", function () {
       timeframe: 'last_day',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: ['value2']
+      metrics: ['value']
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
@@ -401,7 +401,7 @@ describe("query-timeline", function () {
       timeframe: 'last_day',
       interval: 'hour',
       dimensions: ['timestamp'],
-      metrics: ['value2']
+      metrics: ['value']
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
@@ -420,7 +420,7 @@ describe("query-timeline", function () {
       timeframe: 'last_day',
       interval: 'day',
       dimensions: ['timestamp'],
-      metrics: ['value2']
+      metrics: ['value']
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
@@ -439,7 +439,7 @@ describe("query-timeline", function () {
       timeframe: 'last_7_days',
       interval: 'day',
       dimensions: ['timestamp'],
-      metrics: ['value2']
+      metrics: ['value']
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
@@ -461,10 +461,11 @@ describe("query-timeline", function () {
     var query = {
       timeframe: {
         start: _startdate,
-        end: _enddate},
+        end: _enddate
+      },
       interval: 'day',
       dimensions: ['timestamp'],
-      metrics: ['value2']
+      metrics: ['value']
     };
 
     joola.query.fetch(this.context, query, function (err, result) {

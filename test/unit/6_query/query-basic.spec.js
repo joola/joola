@@ -22,7 +22,7 @@ describe("query-basic", function () {
     process.on("uncaughtException", uncaughtExceptionHandler);
   });
 
-  it("should not fail performing a query with no arguments", function (done) {
+  xit("should not fail performing a query with no arguments", function (done) {
     var query = {};
     var expected = 0;
 
@@ -37,7 +37,7 @@ describe("query-basic", function () {
 
   it("should perform a basic query with minimal arguments", function (done) {
     var query = {
-      metrics: ['value']
+      metrics: ['value','another']
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
@@ -87,6 +87,24 @@ describe("query-basic", function () {
       dimensions: [],
       metrics: [
         {key: 'value', name: 'value', dependsOn: 'value', aggregation: 'avg'}
+      ]
+    };
+    joola.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result.documents[0].values.value).to.equal(1.5);
+      return done();
+    });
+  });
+
+  it("should perform a freestyle query with specific collection [avg]", function (done) {
+    var query = {
+      timeframe: 'this_day',
+      interval: 'minute',
+      dimensions: [],
+      metrics: [
+        {key: 'value', name: 'value', dependsOn: 'value', aggregation: 'avg', collection: this.collection}
       ]
     };
     joola.query.fetch(this.context, query, function (err, result) {
@@ -292,7 +310,8 @@ describe("query-basic", function () {
           formula: {
             dependsOn: ['another', 'value'],
             run: 'function(another, value){return another * value;}'
-          }}
+          }
+        }
       ]
     };
     joola.query.fetch(this.context, query, function (err, result) {
@@ -317,7 +336,8 @@ describe("query-basic", function () {
           formula: {
             dependsOn: ['another', 'value', 'third'],
             run: 'function(another, value, third){return another * value * third;}'
-          }}
+          }
+        }
       ]
     };
     joola.query.fetch(this.context, query, function (err, result) {
@@ -341,7 +361,8 @@ describe("query-basic", function () {
           formula: {
             dependsOn: ['another'],
             run: 'function(another){return another * 100;}'
-          }}
+          }
+        }
       ]
     };
     joola.query.fetch(this.context, query, function (err, result) {
@@ -434,7 +455,7 @@ describe("query-basic", function () {
         {
           key: 'persecond',
           name: 'persecond',
-          aggregation: 'avg',
+          aggregation: 'ucount',
           datatype: 'number',
           dependsOn: ['attribute'],
           transform: 'function(value){return value/60;}'

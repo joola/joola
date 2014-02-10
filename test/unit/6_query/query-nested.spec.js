@@ -6,21 +6,37 @@ describe("query-nested", function () {
     done();
   });
 
-  xit("should perform a nested query", function (done) {
+  it("should perform a nested query", function (done) {
     var query = {
-      timeframe: 'last_day',
+      timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
-      metrics: ['value.actual']
+      metrics: ['nvalue.actual']
     };
     joola.query.fetch(this.context, query, function (err, result) {
-      //console.log(result);
-      //console.log(result.documents[0].values);
-      //if (!result.documents[0].values.value)
-      //  return done(new Error('Failed [null]'));
+      if (err)
+        return done(err);
 
-      //expect(result.documents[0].values.value).to.equal(3);
-      done(err);
+      expect(result.documents[0].values.actual).to.equal(3);
+      return done(err);
+    });
+  });
+
+  it("should perform a freestyle query [avg]", function (done) {
+    var query = {
+      timeframe: 'this_day',
+      interval: 'minute',
+      dimensions: [],
+      metrics: [
+        {key: 'actual', name: 'value', dependsOn: 'nvalue.actual', aggregation: 'avg'}
+      ]
+    };
+    joola.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result.documents[0].values.actual).to.equal(1.5);
+      return done();
     });
   });
 });

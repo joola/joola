@@ -2,14 +2,14 @@
   {
     "timestamp": null,
     "attribute": "test",
-    "value": {
+    "nvalue": {
       "actual": 1
     }
   },
   {
     "timestamp": null,
     "attribute": "test",
-    "value": {
+    "nvalue": {
       "actual": 2
     }
   }

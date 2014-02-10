@@ -107,7 +107,7 @@ describe("common-utils", function () {
         }
       }
     };
-    var result = joola.common.checkNested(obj, 'a', 'b', 'c');
+    var result = joola.common.checkNested(obj, 'a.b.c');
     expect(result).to.equal(123);
   });
 
@@ -119,7 +119,8 @@ describe("common-utils", function () {
         }
       }
     };
-    var result = joola.common.checkNested(obj, 'a', 'b', 'c');
+    var result = joola.common.checkNested(obj, 'a.b.c');
+    result = result || null;
     expect(result).to.equal(null);
   });
 
@@ -131,10 +132,11 @@ describe("common-utils", function () {
         }
       }
     };
-    var result = joola.common.checkNested(obj, 'a', 'b1', 'c');
+    var result = joola.common.checkNested(obj, 'a.b.c');
+    result = result || null;
     expect(result).to.equal(null);
   });
-  
+
   it("should typeof(null)", function () {
     expect(joola.common.typeof(null)).to.equal('null');
   });
