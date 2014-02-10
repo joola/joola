@@ -1,6 +1,6 @@
 <a name="top" />
 
-[HOME](Home) > [ABOUT JOOLA.IO](joola.io-overview) > **Sponsor joola.io**
+[HOME](Home) > [ABOUT JOOLA.IO](joola.io-overview) > **SPONSOR JOOLA.IO**
 
 We want joola.io to be the best open-source data analytics framework that exist.
 Already we have released 3 major versions, sold commercial licenses and built a small community around the framework.

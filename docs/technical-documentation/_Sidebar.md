@@ -22,10 +22,10 @@
 **The development process**
 - [Overview](the-development-process)
 - [Testing](Code-Testing)
-- [Building](development-building)
-- [Versioning](development-versioning)
-- [Release and Publish](development-publish)
+- [Style Guide](code-style-guidelines)
+- [Versioning](versioning)
+- [Release and Publish](software-release-process)
 - [[Contributing]]
 - [Roadmap](product-roadmap)
 
-**[[Code documentation]]**
+**[[Code Documentation]]**

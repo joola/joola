@@ -31,11 +31,11 @@ We've tried to keep things simple and divided the framework into the listed logi
 We aim to create the world's best mass-scale data analytics framework and for that, we need to have a solid and robust development process.
 This section describes the process and protocols we use throughout the development of the framework.
 
-- [The development process](development-process-overview)
-- [Testing](development-testing)
-- [Building](development-building)
-- [Versioning](development-versioning)
-- [Release and publish](build-overview)
+- [The development process](the-development-process)
+- [Testing](code-testing)
+- [Code Style](code-style-guidelines)
+- [Versioning](versioning)
+- [Release and publish](software-release-process)
 - [[Contributing]]
 - [Roadmap](product-roadmap)
 
