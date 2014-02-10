@@ -2,12 +2,12 @@
 
 **Using joola.io**
 - [Setup Guide](setting-up-joola.io)
-- [Collections](collections)
+- [The joola.io SDK](using-the-sdk)
+- [Pushing Data](pushing-data)
+- [Analytics and Visualization](Analytics-and-Visualization)
 - [Embedding](using-embedding)
-- [Extending](using-extending)
 - [[Examples]]
 - [[Troubleshooting]]
-- [[Walk-throughs]]
 
 **Subsystems**
 - [Core](The-COre-Subsystem)
@@ -20,12 +20,12 @@
 - [SDK](The-SDK-Subsystem)
 
 **The development process**
-- [Overview](development-process-overview)
-- [Testing](development-testing)
-- [Building](development-building)
-- [Versioning](development-versioning)
-- [Release and Publish](development-publish)
+- [Overview](the-development-process)
+- [Testing](Code-Testing)
+- [Style Guide](code-style-guidelines)
+- [Versioning](versioning)
+- [Release and Publish](software-release-process)
 - [[Contributing]]
 - [Roadmap](product-roadmap)
 
-**[[Code documentation]]**
+**[[Code Documentation]]**

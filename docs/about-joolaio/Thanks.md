@@ -1,6 +1,6 @@
 <a name="top" />
 
-[HOME](Home) > [ABOUT JOOLA.IO](joola.io-overview) > **Thanks**
+[HOME](Home) > [ABOUT JOOLA.IO](joola.io-overview) > **THANKS**
 
 Over the past few years we gathered many friends and supporters to the project.
  This page is to thank the companies and open source projects that made this project what it is.

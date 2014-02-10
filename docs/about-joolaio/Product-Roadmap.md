@@ -1,6 +1,6 @@
 <a name="top" />
 
-[HOME](Home) > [ABOUT JOOLA.IO](joola.io-overview) > **Product roadmap**
+[HOME](Home) > [ABOUT JOOLA.IO](joola.io-overview) > **PRODUCT ROADMAP**
 
 ## Overview
 
