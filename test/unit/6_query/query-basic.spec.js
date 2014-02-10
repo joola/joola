@@ -424,4 +424,29 @@ describe("query-basic", function () {
       return done();
     });
   });
+
+  it("should perform a freestyle avg. per second", function (done) {
+    var query = {
+      timeframe: 'last_day',
+      interval: 'minute',
+      dimensions: ['timestamp'],
+      metrics: [
+        {
+          key: 'persecond',
+          name: 'persecond',
+          aggregation: 'avg',
+          datatype: 'number',
+          dependsOn: ['attribute'],
+          transform: 'function(value){return value/60;}'
+        }
+      ]
+    };
+    joola.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result.documents.length).to.equal(1440);
+      return done();
+    });
+  });
 });
