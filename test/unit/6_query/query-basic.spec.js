@@ -377,7 +377,7 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a freestyle transform", function (done) {
+  it("should perform a freestyle metric transform", function (done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
@@ -398,6 +398,29 @@ describe("query-basic", function () {
         return done(err);
 
       expect(result.documents[0].fvalues.uniquevalue).to.equal(100);
+      return done();
+    });
+  });
+
+  it("should perform a freestyle dimension transform", function (done) {
+    var query = {
+      timeframe: 'this_day',
+      interval: 'minute',
+      dimensions: [
+        {
+          key: 'attribute',
+          name: 'attribute',
+          datatype: 'string',
+          transform: 'function(value){return "transformed-" + value;}'
+        }
+      ],
+      metrics: ['value', 'another']
+    };
+    joola.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result.documents[0].fvalues.attribute).to.equal('transformed-' + 'test');
       return done();
     });
   });
