@@ -50,7 +50,7 @@ describe("query-basic", function () {
 
   it("should perform a basic query", function (done) {
     var query = {
-      timeframe: 'last_day',
+      timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
       metrics: ['value']
@@ -64,9 +64,25 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a freestyle query [avg]", function (done) {
+  it("should perform a basic timeline query", function (done) {
     var query = {
       timeframe: 'last_day',
+      interval: 'minute',
+      dimensions: ['timestamp'],
+      metrics: ['value']
+    };
+    joola.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result.documents.length).to.equal(1440);
+      return done();
+    });
+  });
+
+  it("should perform a freestyle query [avg]", function (done) {
+    var query = {
+      timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
       metrics: [
@@ -84,7 +100,7 @@ describe("query-basic", function () {
 
   it("should perform a freestyle query [min]", function (done) {
     var query = {
-      timeframe: 'last_day',
+      timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
       metrics: [
@@ -102,7 +118,7 @@ describe("query-basic", function () {
 
   it("should perform a freestyle query [max]", function (done) {
     var query = {
-      timeframe: 'last_day',
+      timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
       metrics: [
@@ -117,10 +133,10 @@ describe("query-basic", function () {
       return done();
     });
   });
-  
+
   it("should perform a freestyle query [name]", function (done) {
     var query = {
-      timeframe: 'last_day',
+      timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
       metrics: [
@@ -138,7 +154,7 @@ describe("query-basic", function () {
 
   it("should perform a freestyle query [prefix]", function (done) {
     var query = {
-      timeframe: 'last_day',
+      timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
       metrics: [
@@ -156,7 +172,7 @@ describe("query-basic", function () {
 
   it("should perform a freestyle query [suffix]", function (done) {
     var query = {
-      timeframe: 'last_day',
+      timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
       metrics: [
@@ -174,7 +190,7 @@ describe("query-basic", function () {
 
   it("should perform a freestyle query [prefix+suffix]", function (done) {
     var query = {
-      timeframe: 'last_day',
+      timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
       metrics: [
@@ -190,9 +206,27 @@ describe("query-basic", function () {
     });
   });
 
- it("should perform a freestyle query [decmials=2]", function (done) {
+  it("should perform a freestyle query [decmials=4]", function (done) {
     var query = {
-      timeframe: 'last_day',
+      timeframe: 'this_day',
+      interval: 'minute',
+      dimensions: [],
+      metrics: [
+        {key: 'value', name: 'value', dependsOn: 'value', aggregation: 'avg', decimals: 4}
+      ]
+    };
+    joola.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result.documents[0].fvalues.value).to.equal('1.5000');
+      return done();
+    });
+  });
+
+  it("should perform a freestyle query [decmials=2]", function (done) {
+    var query = {
+      timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
       metrics: [
@@ -208,9 +242,9 @@ describe("query-basic", function () {
     });
   });
 
- it("should perform a freestyle query [decmials=0]", function (done) {
+  it("should perform a freestyle query [decmials=0]", function (done) {
     var query = {
-      timeframe: 'last_day',
+      timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
       metrics: [
@@ -222,6 +256,24 @@ describe("query-basic", function () {
         return done(err);
 
       expect(result.documents[0].fvalues.value).to.equal('2');
+      return done();
+    });
+  });
+
+  it("should perform a freestyle query [timestamp]", function (done) {
+    var query = {
+      timeframe: 'last_day',
+      interval: 'minute',
+      dimensions: [{key: 'timestamp', name: 'Timestamp', dependsOn: 'timestamp'}],
+      metrics: [
+        {key: 'value', name: 'value', dependsOn: 'value', aggregation: 'avg', decimals: 0}
+      ]
+    };
+    joola.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result.documents.length).to.equal(1440);
       return done();
     });
   });
