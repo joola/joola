@@ -66,7 +66,13 @@ joolaio.init({host: 'http://localhost:8080', APIToken: '12345'}, function(err) {
     var joolaio = require('joola.io.sdk');
 
     joolaio.init({host: 'http://localhost:8080', APIToken: '12345'}, function(err) {
-      joolaio.viz.timeline({container: document.getElementById('drawhere'), query: {dimensions:['timestamp'], metrics: ['value']}}
+      joolaio.viz.timeline({
+      	container: document.getElementById('drawhere'),
+      	query: {
+      		dimensions:['timestamp'],
+      		metrics: ['value']
+      	}
+      }
     });
     </script>
   </body>
