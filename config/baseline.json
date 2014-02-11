@@ -177,7 +177,7 @@
           "admin": {
             "username": "admin",
             "_password": "password",
-            "_roles": ["admin", "user"],
+            "_roles": ["admin", "user", "beacon"],
             "displayName": "Administrator",
             "organization": "joola",
             "APIToken": "12345",
