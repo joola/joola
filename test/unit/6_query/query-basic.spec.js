@@ -37,7 +37,7 @@ describe("query-basic", function () {
 
   it("should perform a basic query with minimal arguments", function (done) {
     var query = {
-      metrics: ['value','another']
+      metrics: ['value', 'another']
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)

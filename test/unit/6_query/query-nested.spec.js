@@ -39,4 +39,82 @@ describe("query-nested", function () {
       return done();
     });
   });
+
+  it("should perform a freestyle query [dimension]", function (done) {
+    var query = {
+      timeframe: 'this_day',
+      interval: 'minute',
+      dimensions: ['user.username', 'attribute' ],
+      metrics: [
+        {key: 'actual', name: 'value', dependsOn: 'nvalue.actual', aggregation: 'avg'}
+      ]
+    };
+    joola.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result.documents.length).to.equal(2);
+      return done();
+    });
+  });
+
+  it("should perform a freestyle query [dimension+adhoc]", function (done) {
+    var query = {
+      timeframe: 'this_day',
+      interval: 'minute',
+      dimensions: ['user.username', {key: 'attribute', name: 'attribute'} ],
+      metrics: [
+        {key: 'actual', name: 'value', dependsOn: 'nvalue.actual', aggregation: 'avg'}
+      ]
+    };
+    joola.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result.documents.length).to.equal(2);
+      return done();
+    });
+  });
+
+  it("should perform a freestyle query [adhoc+adhoc]", function (done) {
+    var query = {
+      timeframe: 'this_day',
+      interval: 'minute',
+      dimensions: [
+        {key: 'user.username'},
+        {key: 'attribute', name: 'attribute'}
+      ],
+      metrics: [
+        {key: 'actual', name: 'value', dependsOn: 'nvalue.actual', aggregation: 'avg'}
+      ]
+    };
+    joola.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result.documents.length).to.equal(2);
+      return done();
+    });
+  });
+
+  it("should perform a freestyle query [adhoc w/ collection]", function (done) {
+    var query = {
+      timeframe: 'this_day',
+      interval: 'minute',
+      dimensions: [
+        {key: 'user.username', collection: this.collection},
+        {key: 'attribute', name: 'attribute'}
+      ],
+      metrics: [
+        {key: 'actual', name: 'value', dependsOn: 'nvalue.actual', aggregation: 'avg'}
+      ]
+    };
+    joola.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result.documents.length).to.equal(2);
+      return done();
+    });
+  });
 });
