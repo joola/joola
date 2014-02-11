@@ -48,6 +48,19 @@ describe("query-basic", function () {
     });
   });
 
+  it("should perform a basic query with minimal arguments [no timestamp]", function (done) {
+    var query = {
+      metrics: ['visitors']
+    };
+    joola.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result.documents[0].values.visitors).to.equal(2);
+      return done();
+    });
+  });
+  
   it("should perform a basic query", function (done) {
     var query = {
       timeframe: 'this_day',
@@ -470,4 +483,6 @@ describe("query-basic", function () {
       return done();
     });
   });
+  
+  
 });
