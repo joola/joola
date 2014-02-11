@@ -2,14 +2,22 @@
   {
     "timestamp": null,
     "attribute": "test",
-    "value": {
+    "user": {
+      "username": "test1",
+      "country": "japan"
+    },
+    "nvalue": {
       "actual": 1
     }
   },
   {
     "timestamp": null,
     "attribute": "test",
-    "value": {
+    "user": {
+      "username": "test2",
+      "country": "france"
+    },
+    "nvalue": {
       "actual": 2
     }
   }

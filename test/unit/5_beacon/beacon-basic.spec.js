@@ -28,4 +28,13 @@ describe("beacon-basic", function () {
       done(err);
     });
   });
+
+  it("should load documents with no timestamp", function (done) {
+    var documents = [
+      {"visitors": 2}
+    ];
+    joola.beacon.insert(this.context, this.collection + '-nots', documents, function (err) {
+      done(err);
+    });
+  });
 });
