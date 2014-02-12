@@ -64,6 +64,14 @@
 
   <div class="row">
     <div class="col-lg-12 col-lg-offset-0">
+
+      <div id="chart-punchcard" style="height:250px;"></div>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12 col-lg-offset-0">
       <div class="col-lg-6">
         <div id="table-moves_browser" style="height:250px;"></div>
       </div>
@@ -113,7 +121,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="/3rd/jquery/ua-parser.min.js"></script>
-<script src="/3rd/sorttable/sorttable.js"></script>
+<script src="http://reflect.io:8080/3rd/sorttable/tablesort.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 
 <script language="Javascript" src="/3rd/google/prettify/prettify.js"></script>
@@ -135,14 +143,14 @@ joolaio.init({APIToken: '7890'}, function (err) {
   console.info('joola.io SDK ready, version: ' + joolaio.VERSION + ', token: ' + joolaio.TOKEN);
 
   setupGeo('geo', {
-    timeframe: 'last_hour',
+    timeframe: 'this_hour',
     interval: 'minute',
     dimensions: ['ip'],
     metrics: ['visits']
   });
 
   setupSparkline('moves', 'Mouse Moves', {
-        timeframe: 'last_hour',
+        timeframe: 'this_hour',
         interval: 'minute',
         dimensions: ['timestamp'],
         metrics: ['moves']
@@ -150,7 +158,7 @@ joolaio.init({APIToken: '7890'}, function (err) {
   );
 
   setupSparkline('clicks', 'Clicks', {
-        timeframe: 'last_hour',
+        timeframe: 'this_hour',
         interval: 'minute',
         dimensions: ['timestamp'],
         metrics: ['clicks']
@@ -158,36 +166,36 @@ joolaio.init({APIToken: '7890'}, function (err) {
   );
 
   setupSparkline('visits', 'Visitors', {
-        timeframe: 'last_hour',
+        timeframe: 'this_hour',
         interval: 'minute',
         dimensions: ['timestamp'],
         metrics: [
-          {id: 'visitors', name: 'visitors', dependsOn: 'userid', aggregation: 'ucount',
+          {key: 'visitors', name: 'visitors', dependsOn: 'userid', aggregation: 'ucount',
             type: 'int'}
         ]
       }
   );
 
   setupSparkline('loadtime', 'Avg. Page Load Time', {
-        timeframe: 'last_hour',
+        timeframe: 'this_hour',
         interval: 'minute',
         dimensions: ['timestamp'],
         metrics: [
-          {id: 'avgloadtime', name: 'avgloadtime', dependsOn: 'loadtime', aggregation: 'avg', suffix: 'ms',
+          {key: 'avgloadtime', name: 'avgloadtime', dependsOn: 'loadtime', aggregation: 'avg', suffix: 'ms',
             type: 'float', decimals: 4}
         ]
       }
   );
 
   setupPie('loadtime_browser', 'Load Time by Browser', {
-        timeframe: 'last_hour',
+        timeframe: 'this_hour',
         dimensions: ['browser'],
         metrics: ['moves']
       }
   );
 
   setupTable('moves_browser', 'Mouse Moves by Browser', {
-        timeframe: 'last_hour',
+        timeframe: 'this_hour',
         dimensions: [
           {key: 'browser', name: 'Browser'},
           {key: 'userid', name: 'User'}
@@ -202,6 +210,18 @@ joolaio.init({APIToken: '7890'}, function (err) {
       }
   );
 
+
+  setupPunchCard('punchcard', 'Mouse Moves by Day/Hour', {
+        timeframe: 'this_month',
+        dimensions: [
+          {key: 'dow', name: 'Day of Week', attribute: 'timestamp_timebucket.dow'},
+          {key: 'hod', name: 'Hour of Day', attribute: 'timestamp_timebucket.hod'}
+        ],
+        metrics: [
+          {key: 'moves', name: 'Moves'}
+        ]
+      }
+  );
 
   setupListeners();
   sendPageLoadEvents();
@@ -289,6 +309,11 @@ function setupSparkline(divname, caption, query) {
   $('#metric-' + divname).Metric({caption: caption, query: query});
 }
 
+function setupPunchCard(divname, caption, query) {
+  //query.realtime = true;
+  $('#chart-' + divname).PunchCard({query: query});
+}
+
 function setupGeo(divname, query) {
   query.realtime = true;
   $('#chart-' + divname).Geo({query: query});
@@ -296,7 +321,7 @@ function setupGeo(divname, query) {
 
 function setupPie(divname, caption, query) {
   query.realtime = true;
-  $('#pie-' + divname).Pie({query: query});
+ $('#pie-' + divname).Pie({query: query});
 }
 
 function setupTable(divname, caption, query) {
