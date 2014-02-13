@@ -46,6 +46,7 @@ describe("cache-basic", function () {
       var _date = new Date(lastDate);
       _date.setSeconds(_date.getSeconds() - 1);
       _document.timestamp = new Date(_date);
+      _document.user.id = i;
       _document.user.registrationDate = new Date(_date);
       _document.visits.lastVisit = new Date(_date);
       documents.push(ce.clone(_document));
@@ -64,11 +65,35 @@ describe("cache-basic", function () {
           {
             key: 'visits.count',
             collection: self.collection
+          },
+          {
+            key: 'min_user_id',
+            dependsOn: 'user.id',
+            collection: self.collection,
+            aggregation: 'min'
+          },
+          {
+            key: 'max_user_id',
+            dependsOn: 'user.id',
+            collection: self.collection,
+            aggregation: 'max'
+          },
+          {
+            key: 'avg_user_id',
+            dependsOn: 'user.id',
+            collection: self.collection,
+            aggregation: 'avg'
+          },
+          {
+            key: 'count_user_id',
+            dependsOn: 'user.id',
+            collection: self.collection,
+            aggregation: 'count'
           }
         ]
       };
       joola.query.fetch(self.context, query, function (err, documents) {
-        //console.log(err, documents);
+        console.log(err, documents.documents[0]);
         done();
       });
     });
@@ -84,6 +109,16 @@ describe("cache-basic", function () {
 
     var _document = ce.clone(this.document_visit);
     _document.timestamp = new Date(endDate);
+    _document.user.id = 6;
+    _document.user.registrationDate = new Date(endDate);
+    _document.visits.lastVisit = new Date(endDate);
+    documents.push(_document);
+
+     _document = ce.clone(this.document_visit);
+    _document.timestamp = new Date(endDate);
+    _document.user.id = 7;
+    _document.user.registrationDate = new Date(endDate);
+    _document.visits.lastVisit = new Date(endDate);
     documents.push(_document);
     joola.beacon.insert(self.context, this.collection, documents, function (err) {
       var query = {
@@ -97,14 +132,37 @@ describe("cache-basic", function () {
           {
             key: 'visits.count',
             collection: self.collection
+          },
+          {
+            key: 'min_user_id',
+            dependsOn: 'user.id',
+            collection: self.collection,
+            aggregation: 'min'
+          },
+          {
+            key: 'max_user_id',
+            dependsOn: 'user.id',
+            collection: self.collection,
+            aggregation: 'max'
+          },
+          {
+            key: 'avg_user_id',
+            dependsOn: 'user.id',
+            collection: self.collection,
+            aggregation: 'avg'
+          },
+          {
+            key: 'count_user_id',
+            dependsOn: 'user.id',
+            collection: self.collection,
+            aggregation: 'count'
           }
         ]
       };
       joola.query.fetch(self.context, query, function (err, documents) {
-        console.log(err, documents);
+        console.log(err, documents.documents[0].values);
         done();
       });
     });
-
   });
 });
