@@ -37,7 +37,7 @@ describe("cache-basic", function () {
     process.on("uncaughtException", uncaughtExceptionHandler);
   });
 
-  it("should insert, query once and not use cache", function (done) {
+  xit("should insert, query once and not use cache", function (done) {
     var self = this;
     var documents = [];
     var lastDate = this.base_date;
@@ -99,7 +99,7 @@ describe("cache-basic", function () {
     });
   });
 
-  it("should insert more documents, query and use previous cache", function (done) {
+  xit("should insert more documents, query and use previous cache", function (done) {
     var self = this;
     var documents = [];
     var startDate = new Date(this.base_date);
@@ -114,7 +114,7 @@ describe("cache-basic", function () {
     _document.visits.lastVisit = new Date(endDate);
     documents.push(_document);
 
-     _document = ce.clone(this.document_visit);
+    _document = ce.clone(this.document_visit);
     _document.timestamp = new Date(endDate);
     _document.user.id = 7;
     _document.user.registrationDate = new Date(endDate);
