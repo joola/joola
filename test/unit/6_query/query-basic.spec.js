@@ -22,7 +22,7 @@ describe("query-basic", function () {
     process.on("uncaughtException", uncaughtExceptionHandler);
   });
 
-  xit("should not fail performing a query with no arguments", function (done) {
+  it("should not fail performing a query with no arguments", function (done) {
     var query = {};
     var expected = 0;
 
@@ -60,7 +60,7 @@ describe("query-basic", function () {
       return done();
     });
   });
-  
+
   it("should perform a basic query", function (done) {
     var query = {
       timeframe: 'this_day',
@@ -483,6 +483,6 @@ describe("query-basic", function () {
       return done();
     });
   });
-  
-  
+
+
 });

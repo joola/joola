@@ -142,31 +142,34 @@ joolaio.init({APIToken: '7890'}, function (err) {
 
   console.info('joola.io SDK ready, version: ' + joolaio.VERSION + ', token: ' + joolaio.TOKEN);
 
-  setupGeo('geo', {
-    timeframe: 'this_hour',
-    interval: 'minute',
-    dimensions: ['ip'],
-    metrics: ['visits']
-  });
-
-  setupSparkline('moves', 'Mouse Moves', {
-        timeframe: 'this_hour',
-        interval: 'minute',
-        dimensions: ['timestamp'],
-        metrics: ['moves']
-      }
-  );
-
   setupSparkline('clicks', 'Clicks', {
-        timeframe: 'this_hour',
+        timeframe: 'this_minute',
         interval: 'minute',
         dimensions: ['timestamp'],
         metrics: ['clicks']
       }
   );
+  /*
+  setupSparkline('moves', 'Mouse Moves', {
+        timeframe: 'last_minute',
+        interval: 'minute',
+        dimensions: ['timestamp'],
+        metrics: ['moves']
+      }
+  );
+ 
+  setupGeo('geo', {
+    timeframe: 'last_hour',
+    interval: 'minute',
+    dimensions: ['ip'],
+    metrics: ['visits']
+  });
+
+
+
 
   setupSparkline('visits', 'Visitors', {
-        timeframe: 'this_hour',
+        timeframe: 'last_hour',
         interval: 'minute',
         dimensions: ['timestamp'],
         metrics: [
@@ -177,7 +180,7 @@ joolaio.init({APIToken: '7890'}, function (err) {
   );
 
   setupSparkline('loadtime', 'Avg. Page Load Time', {
-        timeframe: 'this_hour',
+        timeframe: 'last_hour',
         interval: 'minute',
         dimensions: ['timestamp'],
         metrics: [
@@ -188,14 +191,14 @@ joolaio.init({APIToken: '7890'}, function (err) {
   );
 
   setupPie('loadtime_browser', 'Load Time by Browser', {
-        timeframe: 'this_hour',
+        timeframe: 'last_hour',
         dimensions: ['browser'],
         metrics: ['moves']
       }
   );
 
   setupTable('moves_browser', 'Mouse Moves by Browser', {
-        timeframe: 'this_hour',
+        timeframe: 'last_hour',
         dimensions: [
           {key: 'browser', name: 'Browser'},
           {key: 'userid', name: 'User'}
@@ -222,8 +225,9 @@ joolaio.init({APIToken: '7890'}, function (err) {
         ]
       }
   );
-
+   */
   setupListeners();
+
   sendPageLoadEvents();
 
 });
@@ -305,7 +309,7 @@ function setupListeners() {
 
 function setupSparkline(divname, caption, query) {
   query.realtime = true;
-  $('#chart-' + divname).Sparkline({query: query});
+  //$('#chart-' + divname).Sparkline({query: query});
   $('#metric-' + divname).Metric({caption: caption, query: query});
 }
 
@@ -315,17 +319,17 @@ function setupPunchCard(divname, caption, query) {
 }
 
 function setupGeo(divname, query) {
-  query.realtime = true;
+  //query.realtime = true;
   $('#chart-' + divname).Geo({query: query});
 }
 
 function setupPie(divname, caption, query) {
-  query.realtime = true;
+  //query.realtime = true;
  $('#pie-' + divname).Pie({query: query});
 }
 
 function setupTable(divname, caption, query) {
-  query.realtime = true;
+  //query.realtime = true;
   $('#table-' + divname).MiniTable({query: query});
 }
 

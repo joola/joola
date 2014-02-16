@@ -68,10 +68,14 @@ describe("webserver", function () {
   });
 
   it("should have WebSocket", function (done) {
+    var called = false;
     var io = require('socket.io-client');
     var socket = io.connect('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port);
     socket.on('connect', function () {
-      done();
+      if (!called) {
+        called = true;
+        done();
+      }
     });
   });
 
@@ -92,12 +96,12 @@ describe("webserver", function () {
     io.socket.once('/organizations/list:done', function (_message) {
       done();
     });
-    var options = 
+    var options =
       {
         APIToken: '12345',
         _path: '/organizations/list'
       }
-    ;
+      ;
     io.socket.emit('/organizations/list', options);
   });
 

@@ -120,6 +120,15 @@
         "password": null,
         "db": "cache"
       }
+    },
+    "results": {
+      "mongo": {
+        "host": "localhost",
+        "port": 27017,
+        "user": null,
+        "password": null,
+        "db": "results"
+      }
     }
   },
   "engine": {
