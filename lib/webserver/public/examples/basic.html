@@ -1,10 +1,8 @@
 <html>
 <head>
   <title>joola.io SDK Example</title>
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="/3rd/google/prettify/prettify.css"/>
 </head>
-<body onload="prettyPrint()">
+<body>
 <div class="container">
   <h1>joola.io Examples</h1>
 
@@ -16,29 +14,26 @@
   <p>
   </p>
 
+  <div id="metric-basic"></div>
+
 </div>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<script src="http://code.highcharts.com/highcharts.js"></script>
-<script src="/3rd/sorttable/sorttable.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-
-<script language="Javascript" src="/3rd/google/prettify/prettify.js"></script>
-<script type='text/javascript' src='https://www.google.com/jsapi'></script>
-<script>
-  google.load('visualization', '1', {'packages': ['geochart']});
-</script>
 <script src="/joola.io.js"></script>
-
 <script>
     joolaio.init({APIToken: '7890'}, function (err) {
         if (err)
-            throw err;
-
+          throw err;
         console.info('joola.io SDK ready, version: ' + joolaio.VERSION + ', token: ' + joolaio.TOKEN);
 
-    });
+        $('#metric-basic').Metric({caption: 'Basic metric', query: {
+          timeframe: 'this_month',
+          interval: 'minute',
+          dimensions: ['timestamp'],
+          metrics: ['clicks']
+        }
+        });
+      });
+
 </script>
-<!--<script language="Javascript" src="http://www.codehelper.io/api/ips/?js"></script>-->
 </body>
 </html>
 
