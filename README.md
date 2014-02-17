@@ -93,11 +93,11 @@ Contacting us is easy, ping us on one of these:
 
 - [@joolaio][19]
 - [info@joo.la][20]
-- #joola.io on irc.freenode.net
+- \#joola.io on irc.freenode.net
 - You can even fill out a [form][21].
 
 ### License
-Copyright (c) 2012-2013 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24] for details.
+Copyright (c) 2012-2014 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24] for details.
 
 
 [1]: https://coveralls.io/repos/joola/joola.io/badge.png?branch=develop

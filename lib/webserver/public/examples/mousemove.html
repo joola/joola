@@ -149,6 +149,16 @@ joolaio.init({APIToken: '7890'}, function (err) {
         metrics: ['clicks']
       }
   );
+
+
+    joolaio.query.fetch({
+        timeframe: 'this_minute',
+        interval: 'minute',
+        dimensions: ['timestamp'],
+        metrics: ['clicks']
+    },function(err,results){
+        console.log(results);
+    })
   /*
   setupSparkline('moves', 'Mouse Moves', {
         timeframe: 'last_minute',
