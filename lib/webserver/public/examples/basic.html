@@ -1,47 +1,47 @@
 <html>
 <head>
-    <title>joola.io SDK Example</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
+  <title>joola.io SDK Example</title>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
 </head>
 <body>
 <div class="container">
-    <h1>joola.io Examples</h1>
+  <h1>joola.io Examples</h1>
 
-    <h2>Basic</h2>
+  <h2>Basic</h2>
 
-    <p class="lead">
-    </p>
+  <p class="lead">
+  </p>
 
-    <p>
-    </p>
+  <p>
+  </p>
 
-    <div id="canvas">
-        <div id="datepicker"></div>
-                    <div id="metric-basic"></div>
-    </div>
+  <div id="canvas">
+    <div id="datepicker"></div>
+    <div id="metric-basic"></div>
+  </div>
 </div>
 <script src="/joola.io.js"></script>
 <script>
-    joolaio.init({APIToken: '7890'}, function (err) {
-        if (err)
-            throw err;
-        console.info('joola.io SDK ready, version: ' + joolaio.VERSION + ', token: ' + joolaio.TOKEN);
+  joolaio.init({APIToken: '7890'}, function (err) {
+    if (err)
+      throw err;
+    console.info('joola.io SDK ready, version: ' + joolaio.VERSION + ', token: ' + joolaio.TOKEN);
 
-        $('#canvas').Canvas({
-            abc: 123
-        }, function (err, canvas) {
-            $('#datepicker').DatePicker({});
-            $('#metric-basic').Metric({
-                //canvas: canvas,
-                caption: 'Basic metric', query: {
-                    timeframe: 'this_month',
-                    interval: 'minute',
-                    dimensions: ['timestamp'],
-                    metrics: ['clicks']
-                }
-            });
-        });
+    $('#canvas').Canvas({
+      abc: 123
+    }, function (err, canvas) {
+      $('#datepicker').DatePicker({});
+      $('#metric-basic').Metric({
+        //canvas: canvas,
+        caption: 'Basic metric', query: {
+          timeframe: 'this_month',
+          interval: 'minute',
+          dimensions: ['timestamp'],
+          metrics: ['clicks']
+        }
+      });
     });
+  });
 
 </script>
 </body>

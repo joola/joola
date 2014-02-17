@@ -6,8 +6,7 @@ html(lang='en', xmlns:ng="http://angularjs.org")
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(name='description', content='')
     meta(name='author', content='')
-
-    - var title = title || "joola.io"
+    - var title = locals.title || "joola.io"
     title #{title}
 
     link(href='/3rd/bootstrap/css/bootstrap.min.css', rel='stylesheet')
