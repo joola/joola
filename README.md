@@ -10,7 +10,7 @@
 
 1. Integrate existing data-sources to correlate, analyze and visualize data.
 2. Stores relevant data in a unique caching layer enabling scalable, rapid response times to queries and requests.
-3. Completely embedabble into existing sites, but also ships with a state-of-the-art analytics website.
+3. Completely embeddable into existing sites, but also ships with a state-of-the-art analytics website.
 
 ### Main Features
 
