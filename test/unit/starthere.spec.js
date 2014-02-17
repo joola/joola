@@ -15,12 +15,12 @@ before(function (done) {
     if (err)
       return done(err);
     joola.state.on('state:change', function (state) {
+
       if (state !== 'online')
         return done(new Error('Failed to initialize engine, check logs.'));
 
       global.joolaio = joola.sdk;
       global.uid = joola.common.uuid();
-
       joolaio.init({host: 'http://127.0.0.1:8080', APIToken: '12345'}, function (err) {
         if (err)
           return done(err);
