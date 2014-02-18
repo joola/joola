@@ -5,4 +5,20 @@ processed during the [build process](Building-documentation) and exported as an 
 The strucuture aligns with the `lib` folder of the project's code, each file as its functions, properties, methods and events
 detailed with all relevant documentation and know-how.
 
+# API Reference
+
+- [`joola`](#joola)
+  - [`init([options])`](#)
+  - [joola options](#)
+  - [collections object](#)
+      - [`collections` properties](#)
+      - [`collections` methods](#)
+          - [`collections.list([callback])`](#)
+          - [`collections.get([organization], id, [callback])`](#)
+          - [`collections.add([organization], meta, [callback])`](#)
+          - [`collections.update([organization], meta, [callback])`](#)
+          - [`collections.delete([organization], id, [callback])`](#)
+      - [`collections` events](#collections-events)
+      
+      
 [##INSERTSTRUCTURE##]
