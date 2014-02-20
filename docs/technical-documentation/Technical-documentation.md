@@ -12,6 +12,8 @@ The technical documentation review the joola.io architecture, know-how and detai
 - [[Using the SDK]]
 - [[Basic Concepts]]
 - [[Examples]]
+- [[Workshops]]
+- [[Labs]]
 - [[Troubleshooting]]
 - [[FAQ]]
 

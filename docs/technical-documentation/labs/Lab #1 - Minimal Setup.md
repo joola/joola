@@ -1,0 +1,1 @@
+[HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [LABS](labs) > **LAB #1 - Minimal Setup**

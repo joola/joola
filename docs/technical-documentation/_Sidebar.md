@@ -7,6 +7,8 @@
 - [Analytics and Visualization](Analytics-and-Visualization)
 - [Embedding](using-embedding)
 - [[Examples]]
+- [[Workshops]]
+- [[Labs]]
 - [[Troubleshooting]]
 
 **Subsystems**
