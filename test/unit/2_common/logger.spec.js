@@ -10,7 +10,7 @@
  */
 
 describe("common-logger", function () {
-  it("should get the ring buffer", function () {
+  xit("should get the ring buffer", function () {
     var logs = joola.logger.getBuffer();
     expect(logs).to.be.ok;
   });
