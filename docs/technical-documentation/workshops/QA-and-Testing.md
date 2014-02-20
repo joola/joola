@@ -13,7 +13,7 @@ Train QA and Testing staff on relevant aspects of joola.io, specifically:
 - Developers
 
 ### Setup
-- Dedicated lab environment for the workshop (Lab #1, minimal setup)(lab--1--minimal-setup)
+- Dedicated lab environment for the workshop (Lab #1, minimal setup)(Lab-%231---Minimal-Setup)
 - All attendants must have network access and credentials for the lab environment 
 - The meeting room needs to have a projector
 - Each attendant needs to laptop/workstation to be able to operate the lab

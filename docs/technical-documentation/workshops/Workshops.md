@@ -1,6 +1,6 @@
 [HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > **WORKSHOPS**
 
-joola.io is an extensive framework with many facets and capabilities. To highlight all of these capabilities and as part of the Professional Services carried by [[joo.la]] we have compiled the following publicly available workshops.
+joola.io is an extensive framework with many facets and capabilities. To highlight all of these capabilities and as part of the Professional Services carried by [joo.la][joo.la] we have compiled the following publicly available workshops.
 
 Each workshop has the following structure:
 - The goal of the workshop
