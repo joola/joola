@@ -91,9 +91,9 @@ If you're feeling lost or unsure, [just let us know](#Contact).
 ### Contact
 Contacting us is easy, ping us on one of these:
 
+- Gitter on joola/joola.io [![Gitter chat](https://badges.gitter.im/joola/joola.io.png)](https://gitter.im/joola/joola.io)
 - [@joolaio][19]
 - [info@joo.la][20]
-- \#joola.io on irc.freenode.net
 - You can even fill out a [form][21].
 
 ### License
