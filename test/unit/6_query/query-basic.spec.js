@@ -35,7 +35,7 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a basic query with minimal arguments", function (done) {
+  xit("should perform a basic query with minimal arguments", function (done) {
     var query = {
       metrics: ['value', 'another']
     };
