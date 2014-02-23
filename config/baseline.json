@@ -80,6 +80,9 @@
       }
     },
     "logger": {
+      "console": {
+        "level": "info"
+      },
       "mongo": {
         "level": "trace",
         "host": "localhost",
@@ -95,7 +98,7 @@
       },
       "file": {
         "level": "trace",
-        "path": "/tmp/joola.io/"
+        "path": "/var/log/joola.io/"
       }
     },
     "beacon": {
