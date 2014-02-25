@@ -159,7 +159,7 @@ joolaio.init({APIToken: '7890'}, function (err) {
     },function(err,results){
         console.log(results);
     })
-  /*
+  
   setupSparkline('moves', 'Mouse Moves', {
         timeframe: 'last_minute',
         interval: 'minute',
@@ -235,7 +235,7 @@ joolaio.init({APIToken: '7890'}, function (err) {
         ]
       }
   );
-   */
+   
   setupListeners();
 
   sendPageLoadEvents();
@@ -319,27 +319,27 @@ function setupListeners() {
 
 function setupSparkline(divname, caption, query) {
   query.realtime = true;
-  //$('#chart-' + divname).Sparkline({query: query});
+  $('#chart-' + divname).Sparkline({query: query});
   $('#metric-' + divname).Metric({caption: caption, query: query});
 }
 
 function setupPunchCard(divname, caption, query) {
-  //query.realtime = true;
+  query.realtime = true;
   $('#chart-' + divname).PunchCard({query: query});
 }
 
 function setupGeo(divname, query) {
-  //query.realtime = true;
+  query.realtime = true;
   $('#chart-' + divname).Geo({query: query});
 }
 
 function setupPie(divname, caption, query) {
-  //query.realtime = true;
+  query.realtime = true;
  $('#pie-' + divname).Pie({query: query});
 }
 
 function setupTable(divname, caption, query) {
-  //query.realtime = true;
+  query.realtime = true;
   $('#table-' + divname).MiniTable({query: query});
 }
 
