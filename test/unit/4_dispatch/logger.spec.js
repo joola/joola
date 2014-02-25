@@ -4,7 +4,7 @@ describe("logger", function () {
     return done();
   });
 
-  xit("should return an array of logged items", function (done) {
+  it("should return an array of logged items", function (done) {
     joola.dispatch.logger.fetch(this.context, function (err, logs) {
       if (err)
         return done(err);
@@ -14,7 +14,7 @@ describe("logger", function () {
     });
   });
 
-  xit("should return an array of logged items from timestamp", function (done) {
+  it("should return an array of logged items from timestamp", function (done) {
     var start_ts = new Date();
     start_ts.setMinutes(start_ts.getMinutes() - 1);
     joola.dispatch.logger.fetchSince(this.context, start_ts, function (err, logs) {
@@ -26,7 +26,7 @@ describe("logger", function () {
     });
   });
 
-  xit("should return an array of logged items until timestamp", function (done) {
+  it("should return an array of logged items until timestamp", function (done) {
     var end_ts = new Date();
     joola.dispatch.logger.fetchUntil(this.context, end_ts, function (err, logs) {
       if (err)

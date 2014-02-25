@@ -17,7 +17,8 @@
 
   <div id="canvas">
     <div id="datepicker"></div>
-    <div id="metric-basic"></div>
+    <div id="metric-clicks-firefox"></div>
+    <div id="metric-clicks-chrome"></div>
   </div>
 </div>
 <script src="/joola.io.js"></script>
@@ -25,21 +26,63 @@
   joolaio.init({APIToken: '7890'}, function (err) {
     if (err)
       throw err;
-    console.info('joola.io SDK ready, version: ' + joolaio.VERSION + ', token: ' + joolaio.TOKEN);
-
     $('#canvas').Canvas({
-      abc: 123
-    }, function (err, canvas) {
-      $('#datepicker').DatePicker({});
-      $('#metric-basic').Metric({
-        //canvas: canvas,
-        caption: 'Basic metric', query: {
-          timeframe: 'this_month',
-          interval: 'minute',
-          dimensions: ['timestamp'],
-          metrics: ['clicks']
+      title: 'test canvas',
+      somevalue: 123,
+      datepicker: '#datepicker',
+
+      dimensions: [],
+      metrics: [
+        {
+          key: 'avgclicks',
+          name: 'Avg. Clicks',
+          dependsOn: ['clicks'],
+          aggregation: 'avg'
         }
-      });
+      ],
+      query: {
+        timeframe: 'this_hour',
+        interval: 'minute',
+        realtime: false
+      },
+      viz: [
+        {
+          container: '#metric-clicks-firefox',
+          type: 'Metric',
+          cssClass: 'test-class',
+          caption: 'Firefox Clicks',
+          query: {
+            metrics: ['clicks'],
+            filter: [
+              ['browser', 'eq', 'Firefox']
+            ]
+          }
+        },
+        {
+          container: '#metric-clicks-chrome',
+          type: 'Metric',
+          cssClass: 'test-class',
+          caption: 'Chrome Clicks',
+          query: {
+            metrics: ['clicks'],
+            filter: [
+              ['browser', 'eq', 'Chrome']
+            ]
+          }
+        }
+      ]
+    }, function (err, canvas) {
+      window.canvas = canvas;
+      /*$('#metric-basic').Metric({
+       canvas: canvas,
+       caption: 'Basic metric', 
+       query: {
+       timeframe: 'this_month',
+       interval: 'minute',
+       dimensions: [],
+       metrics: ['clicks']
+       }
+       });*/
     });
   });
 
