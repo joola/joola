@@ -33,7 +33,7 @@ Train QA and Testing engineers on relevant aspects of joola.io, specifically:
 - 10:30-12:30 - Hands-on experience with writing data accuracy tests
 
 ## The Workshop
-The instructor will prepare the lab address on the board to be available for guests arriving (Slide #2).
+The instructor will prepare the lab address on the screen to be available for guests arriving (Slide #2).
 
 #### 09:00 - Gathering
 During this period, while guests arrive, encourage them to try and connect to the lab and ensure there are no apparent network issues.
