@@ -174,35 +174,6 @@ describe("users", function () {
     });
   });
 
-  it("should delete a user", function (done) {
-    var self = this;
-    var user = {
-      username: 'tester-' + this.uid
-    };
-    joola.dispatch.users.delete(this.context, this.organization, user, function (err) {
-      if (err)
-        return done(err);
-      joola.dispatch.users.get(self.context, self.organization, user.username, function (err, user) {
-        if (user)
-          return done('This should fail');
-        else
-          return done();
-      });
-    });
-  });
-
-  it("should fail deleting a non existing user", function (done) {
-    var self = this;
-    var user = {
-      username: 'tester1-' + this.uid
-    };
-    joola.dispatch.users.delete(this.context, this.organization, user, function (err) {
-      if (err)
-        return done();
-      return done('This should fail');
-    });
-  });
-
   it("should get a userby token", function (done) {
     var self = this;
     var user = {
@@ -229,8 +200,8 @@ describe("users", function () {
     });
   });
 
-  xit("should validate a correct username/password", function (done) {
-    joola.dispatch.users.authenticate(this.context, this.organization, 'demo', 'password', function (err, user) {
+  it("should validate a correct username/password", function (done) {
+    joola.dispatch.users.authenticate(this.context, this.organization, 'tester-api-by-token-' + this.uid, '1234', function (err, user) {
       if (err)
         return done(err);
 
@@ -240,20 +211,73 @@ describe("users", function () {
   });
 
   it("should fail validating incorrect username/password [missing user]", function (done) {
-    joola.dispatch.users.authenticate(this.context, this.organization, 'demo1', 'password1', function (err, user) {
+    joola.dispatch.users.authenticate(this.context, this.organization, '1tester-api-by-token-' + this.uid, '1234', function (err, user) {
       if (err)
         return done();
 
       return done(new Error('This should fail'));
     });
   });
-  
+
   it("should fail validating incorrect username/password [password mismatch]", function (done) {
-    joola.dispatch.users.authenticate(this.context, this.organization, 'demo', 'password1', function (err, user) {
+    joola.dispatch.users.authenticate(this.context, this.organization, 'tester-api-by-token-' + this.uid, '12345', function (err, user) {
       if (err)
         return done();
 
       return done(new Error('This should fail'));
+    });
+  });
+
+  it("should validate a changed password", function (done) {
+    var self = this;
+    var user = {
+      username: 'tester-' + this.uid,
+      displayName: 'testing user',
+      _password: '12345',
+      _roles: ['user'],
+      _filter: '',
+      organization: this.organization
+    };
+    user.displayName = 'testing user with change';
+    joola.dispatch.users.update(self.context, self.organization, user, function (err) {
+      if (err)
+        return done(err);
+      joola.dispatch.users.authenticate(self.context, self.organization, 'tester-' + self.uid, '12345', function (err, user) {
+        if (err)
+          return done(err);
+
+        expect(user).to.be.ok;
+        return done();
+      });
+    });
+  });
+
+  it("should delete a user", function (done) {
+    var self = this;
+    var user = {
+      username: 'tester-' + this.uid
+    };
+    joola.dispatch.users.delete(this.context, this.organization, user, function (err) {
+      if (err)
+        return done(err);
+      joola.dispatch.users.get(self.context, self.organization, user.username, function (err, user) {
+        if (user)
+          return done('This should fail');
+        else
+          return done();
+      });
+    });
+  });
+
+  it("should fail deleting a non existing user", function (done) {
+    var self = this;
+    var user = {
+      username: 'tester1-' + this.uid
+    };
+    joola.dispatch.users.delete(this.context, this.organization, user, function (err) {
+      if (err)
+        return done();
+      return done('This should fail');
     });
   });
 
