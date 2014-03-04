@@ -19,9 +19,9 @@ describe("beacon-route", function () {
     });
     var options =
     {
-      APIToken: '7890',
+      APIToken: 'apitoken-root',
       _path: '/beacon/insert',
-      collection: 'test-beacon-route-' +  this.uid,
+      collection: 'test-beacon-route-' + this.uid,
       document: {
         attribute: 'attribute',
         value: 123
@@ -36,14 +36,13 @@ describe("beacon-route", function () {
     io.socket.once('/beacon/insert:done', function (_message) {
       if (_message.code === 500)
         return done();
-
       return done(new Error('Failed'));
     });
     var options =
     {
-      APIToken: '7890',
+      APIToken: 'apitoken-root',
       _path: '/beacon/insert',
-      collection: 'test-beacon-route-' +  this.uid,
+      collection: 'test-beacon-route-' + this.uid,
       document: 'invalid json'
     };
     io.socket.emit('/beacon/insert', options);
@@ -61,7 +60,7 @@ describe("beacon-route", function () {
     });
     var options =
     {
-      APIToken: '7890',
+      APIToken: 'apitoken-root',
       _path: '/beacon/insert',
       collection: 'test-beacon-route-' + this.uid,
       document: JSON.stringify({document: {

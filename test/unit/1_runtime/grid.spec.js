@@ -7,7 +7,7 @@ describe("grid", function () {
   before(function (done) {
     this.context = {user: _token.user};
     this.uid = joola.common.uuid();
-    this.organization = _token.user.organization;
+    this.workspace = _token.user.workspace;
     return done();
   });
 
@@ -26,7 +26,7 @@ describe("grid", function () {
   });
 
   it("should handle dispatch messages on a secondary node", function (done) {
-    joola.dispatch.request(_token._, 'organizations:list', {}, function (err, result, message) {
+    joola.dispatch.request(_token._, 'workspaces:list', {}, function (err, result, message) {
       if (message.from !== message['fulfilled-by'])
         done();
       else

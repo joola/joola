@@ -17,7 +17,7 @@ describe("auth", function () {
   before(function (done) {
     this.context = {user: _token.user};
     this.uid = joola.common.uuid();
-    this.organization = 'test-org-' + joola.common.uuid();
+    this.workspace = 'test-org-' + joola.common.uuid();
     done();
   });
 
@@ -197,7 +197,8 @@ describe("auth", function () {
 
     var user = {
       username: 'tester',
-      _roles: ['admin']
+      _roles: ['root'],
+      workspace: 'root'
     };
     var req = {
       params: {
@@ -286,7 +287,8 @@ describe("auth", function () {
 
     var user = {
       username: 'tester',
-      _roles: ['user']
+      _roles: ['user'],
+      workspace: 'root'
     };
     var req = {
       params: {
@@ -341,9 +343,9 @@ describe("auth", function () {
       username: 'test-' + joola.common.uuid(),
       _password: '1234',
       _roles: ['user'],
-      organization: 'test-org'
+      workspace: 'test-org'
     };
-    joola.dispatch.users.add(this.context, this.organization, user, function (err, _user) {
+    joola.dispatch.users.add(this.context, this.workspace, user, function (err, _user) {
       joola.auth.generateToken(user, function (err, token) {
         if (err)
           return done(err);

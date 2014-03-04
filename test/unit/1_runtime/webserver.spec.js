@@ -93,25 +93,25 @@ describe("webserver", function () {
   it("should have valid route on WebSocket", function (done) {
     var io = require('socket.io-browserify');
     io.socket = joolaio.io.connect(joolaio.options.host);
-    io.socket.once('/organizations/list:done', function (_message) {
+    io.socket.once('/workspaces/list:done', function (_message) {
       done();
     });
     var options =
       {
         APIToken: '12345',
-        _path: '/organizations/list'
+        _path: '/workspaces/list'
       }
       ;
-    io.socket.emit('/organizations/list', options);
+    io.socket.emit('/workspaces/list', options);
   });
 
   it("should return on WebSocket route with no details", function (done) {
     var io = require('socket.io-browserify');
     io.socket = joolaio.io.connect(joolaio.options.host);
-    io.socket.once('/organizations/list:done', function (_message) {
+    io.socket.once('/workspaces/list:done', function (_message) {
       done();
     });
-    io.socket.emit('/organizations/list');
+    io.socket.emit('/workspaces/list');
   });
 
   it("should show a custom 404", function (done) {

@@ -11,7 +11,7 @@
 var async = require('async');
 
 
-describe("organizations", function () {
+describe("workspaces", function () {
   before(function (done) {
     this.context = {user: _token.user};
     this.uid = joola.common.uuid();
@@ -26,20 +26,20 @@ describe("organizations", function () {
    };
    calls.push(call);
    call = function (callback) {
-   joola.config.clear('authentication:organizations:test-org', callback);
+   joola.config.clear('authentication:workspaces:test-org', callback);
    };
    calls.push(call);
 
    async.parallel(calls, done);
    });*/
 
-  it("should add an organization", function (done) {
+  it("should add an workspace", function (done) {
     var org = {
       id: 'test-org-' + this.uid,
       name: 'test-org-' + this.uid,
       _filter: ''
     };
-    joola.dispatch.organizations.add(this.context, org, function (err, _org) {
+    joola.dispatch.workspaces.add(this.context, org, function (err, _org) {
       if (err)
         return done(err);
 
@@ -48,19 +48,19 @@ describe("organizations", function () {
     });
   });
 
-  it("should return a valid list of organizations", function (done) {
-    joola.dispatch.organizations.list(this.context, function (err, orgs) {
+  it("should return a valid list of workspaces", function (done) {
+    joola.dispatch.workspaces.list(this.context, function (err, orgs) {
       return done(err);
     });
   });
 
-  it("should fail adding an existing organization", function (done) {
+  it("should fail adding an existing workspace", function (done) {
     var org = {
       id: 'test-org-' + this.uid,
       name: 'test-org-' + this.uid,
       _filter: ''
     };
-    joola.dispatch.organizations.add(this.context, org, function (err, _org) {
+    joola.dispatch.workspaces.add(this.context, org, function (err, _org) {
       if (err)
         return done();
 
@@ -68,11 +68,11 @@ describe("organizations", function () {
     });
   });
 
-  it("should fail to add an organization with incomplete details", function (done) {
+  it("should fail to add an workspace with incomplete details", function (done) {
     var org = {
 
     };
-    joola.dispatch.organizations.add(this.context, org, function (err, _org) {
+    joola.dispatch.workspaces.add(this.context, org, function (err, _org) {
       if (err)
         return done();
 
@@ -80,13 +80,13 @@ describe("organizations", function () {
     });
   });
 
-  it("should update an organization", function (done) {
+  it("should update an workspace", function (done) {
     var org = {
       id: 'test-org-' + this.uid,
       name: 'test-org-' + this.uid,
       _filter: 'test=test'
     };
-    joola.dispatch.organizations.update(this.context, org, function (err, _org) {
+    joola.dispatch.workspaces.update(this.context, org, function (err, _org) {
       if (err)
         return done(err);
       expect(_org._filter).to.equal('test=test');
@@ -94,13 +94,13 @@ describe("organizations", function () {
     });
   });
 
-  it("should fail updating unknown organization", function (done) {
+  it("should fail updating unknown workspace", function (done) {
     var org = {
       id: 'test-org1-' + this.uid,
       name: 'test-org-' + this.uid,
       _filter: 'test=test'
     };
-    joola.dispatch.organizations.update(this.context, org, function (err, _org) {
+    joola.dispatch.workspaces.update(this.context, org, function (err, _org) {
       if (err)
         return done();
 
@@ -108,11 +108,11 @@ describe("organizations", function () {
     });
   });
 
-  it("should fail updating organization with incomplete details", function (done) {
+  it("should fail updating workspace with incomplete details", function (done) {
     var org = {
       id: 'test-org1-' + this.uid
     };
-    joola.dispatch.organizations.update(this.context, org, function (err, _org) {
+    joola.dispatch.workspaces.update(this.context, org, function (err, _org) {
       if (err)
         return done();
 
@@ -120,14 +120,14 @@ describe("organizations", function () {
     });
   });
   
-  it("should apply filter on organization members", function (done) {
+  it("should apply filter on workspace members", function (done) {
     var user = {
       username: 'tester-org-filter',
       displayName: 'tester user',
       _password: '1234',
       _roles: ['user'],
       _filter: '',
-      organization: 'test-org-' + this.uid
+      workspace: 'test-org-' + this.uid
     };
     joola.dispatch.users.add(this.context, 'test-org-' + this.uid, user, function (err, user) {
       if (err)
@@ -137,17 +137,17 @@ describe("organizations", function () {
     });
   });
 
-  it("should delete an organization", function (done) {
+  it("should delete an workspace", function (done) {
     var self = this;
     var org = {
       id: 'test-org-' + this.uid,
       name: 'test-org-' + this.uid
     };
-    joola.dispatch.organizations.delete(this.context, org, function (err) {
+    joola.dispatch.workspaces.delete(this.context, org, function (err) {
       if (err)
         return done(err);
 
-      joola.dispatch.organizations.list(self.context, function (err, orgs) {
+      joola.dispatch.workspaces.list(self.context, function (err, orgs) {
         if (err)
           return done(err);
 
@@ -165,11 +165,11 @@ describe("organizations", function () {
     });
   });
 
-  it("should fail deleting a non existing organization", function (done) {
+  it("should fail deleting a non existing workspace", function (done) {
     var org = {
       id: 'test-org-' + this.uid
     };
-    joola.dispatch.organizations.delete(this.context, org, function (err) {
+    joola.dispatch.workspaces.delete(this.context, org, function (err) {
       if (err)
         return done();
 

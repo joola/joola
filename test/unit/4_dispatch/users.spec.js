@@ -13,7 +13,7 @@ describe("users", function () {
   before(function (done) {
     this.context = {user: _token.user};
     this.uid = joola.common.uuid();
-    this.organization = _token.user.organization;
+    this.workspace = _token.user.workspace;
     return done();
   });
 
@@ -23,7 +23,7 @@ describe("users", function () {
   });
 
   it("should list all available users", function (done) {
-    joola.dispatch.users.list(this.context, this.organization, function (err, users) {
+    joola.dispatch.users.list(this.context, this.workspace, function (err, users) {
       return done(err);
     });
   });
@@ -35,9 +35,9 @@ describe("users", function () {
       _password: '1234',
       _roles: ['user'],
       _filter: '',
-      organization: this.organization
+      workspace: this.workspace
     };
-    joola.dispatch.users.add(this.context, this.organization, user, function (err, user) {
+    joola.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
       return done(err);
     });
   });
@@ -46,7 +46,7 @@ describe("users", function () {
     var user = {
       username: 'tester2'
     };
-    joola.dispatch.users.add(this.context, this.organization, user, function (err, user) {
+    joola.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
       if (err)
         return done();
 
@@ -57,7 +57,7 @@ describe("users", function () {
   it("should get a user by username", function (done) {
     var username = 'tester-' + this.uid;
     var self = this;
-    joola.dispatch.users.get(this.context, this.organization, username, function (err, user) {
+    joola.dispatch.users.get(this.context, this.workspace, username, function (err, user) {
       if (err)
         return done(err);
       expect(user).to.be.ok;
@@ -73,9 +73,9 @@ describe("users", function () {
       _password: '1234',
       _roles: ['user'],
       _filter: '',
-      organization: this.organization
+      workspace: this.workspace
     };
-    joola.dispatch.users.add(this.context, this.organization, user, function (err, user) {
+    joola.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
       if (err)
         return done();
       return done(new Error('This should fail.'));
@@ -90,14 +90,14 @@ describe("users", function () {
       _password: '1234',
       _roles: ['user'],
       _filter: '',
-      organization: this.organization
+      workspace: this.workspace
     };
     user.displayName = 'testing user with change';
-    joola.dispatch.users.update(self.context, self.organization, user, function (err) {
+    joola.dispatch.users.update(self.context, self.workspace, user, function (err) {
       if (err)
         return done(err);
 
-      joola.dispatch.users.get(self.context, self.organization, user.username, function (err, _user) {
+      joola.dispatch.users.get(self.context, self.workspace, user.username, function (err, _user) {
         if (err)
           return done(err);
         expect(_user).to.be.ok;
@@ -115,9 +115,9 @@ describe("users", function () {
       _password: '1234',
       _roles: ['user'],
       _filter: 'test1=test2',
-      organization: this.organization
+      workspace: this.workspace
     };
-    joola.dispatch.users.update(this.context, this.organization, user, function (err, user) {
+    joola.dispatch.users.update(this.context, this.workspace, user, function (err, user) {
       if (err)
         return done(err);
       expect(user._filter).to.equal('test1=test2');
@@ -132,9 +132,9 @@ describe("users", function () {
       _password: '1234',
       _roles: ['user'],
       _filter: '',
-      organization: 'test-org'
+      workspace: 'test-org'
     };
-    joola.dispatch.users.update(this.context, this.organization, user, function (err, user) {
+    joola.dispatch.users.update(this.context, this.workspace, user, function (err, user) {
       if (err)
         return done();
 
@@ -150,11 +150,11 @@ describe("users", function () {
       _password: 'password',
       _roles: ['user'],
       _filter: '',
-      organization: this.organization
+      workspace: this.workspace
     };
-    joola.dispatch.users.add(this.context, this.organization, user, function (err, user) {
+    joola.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
 
-      joola.dispatch.users.authenticate(self.context, self.organization, 'tester-password-' + self.uid, 'password', function (err, user) {
+      joola.dispatch.users.authenticate(self.context, self.workspace, 'tester-password-' + self.uid, 'password', function (err, user) {
         if (err)
           return done(err);
         if (!user)
@@ -165,7 +165,7 @@ describe("users", function () {
   });
 
   it("should not authenticate users with incorrect credentials", function (done) {
-    joola.dispatch.users.authenticate(this.context, this.organization, 'test', 'incorrect.password', function (err, user) {
+    joola.dispatch.users.authenticate(this.context, this.workspace, 'test', 'incorrect.password', function (err, user) {
       if (err)
         return done();
       if (!user)
@@ -182,9 +182,9 @@ describe("users", function () {
       _password: '1234',
       _roles: ['user'],
       _filter: '',
-      organization: this.organization
+      workspace: this.workspace
     };
-    joola.dispatch.users.add(this.context, this.organization, user, function (err, user) {
+    joola.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
       joola.auth.generateToken(user, function (err, token) {
         if (err)
           return done(err);
@@ -201,7 +201,7 @@ describe("users", function () {
   });
 
   it("should validate a correct username/password", function (done) {
-    joola.dispatch.users.authenticate(this.context, this.organization, 'tester-api-by-token-' + this.uid, '1234', function (err, user) {
+    joola.dispatch.users.authenticate(this.context, this.workspace, 'tester-api-by-token-' + this.uid, '1234', function (err, user) {
       if (err)
         return done(err);
 
@@ -211,7 +211,7 @@ describe("users", function () {
   });
 
   it("should fail validating incorrect username/password [missing user]", function (done) {
-    joola.dispatch.users.authenticate(this.context, this.organization, '1tester-api-by-token-' + this.uid, '1234', function (err, user) {
+    joola.dispatch.users.authenticate(this.context, this.workspace, '1tester-api-by-token-' + this.uid, '1234', function (err, user) {
       if (err)
         return done();
 
@@ -220,7 +220,7 @@ describe("users", function () {
   });
 
   it("should fail validating incorrect username/password [password mismatch]", function (done) {
-    joola.dispatch.users.authenticate(this.context, this.organization, 'tester-api-by-token-' + this.uid, '12345', function (err, user) {
+    joola.dispatch.users.authenticate(this.context, this.workspace, 'tester-api-by-token-' + this.uid, '12345', function (err, user) {
       if (err)
         return done();
 
@@ -236,13 +236,13 @@ describe("users", function () {
       _password: '12345',
       _roles: ['user'],
       _filter: '',
-      organization: this.organization
+      workspace: this.workspace
     };
     user.displayName = 'testing user with change';
-    joola.dispatch.users.update(self.context, self.organization, user, function (err) {
+    joola.dispatch.users.update(self.context, self.workspace, user, function (err) {
       if (err)
         return done(err);
-      joola.dispatch.users.authenticate(self.context, self.organization, 'tester-' + self.uid, '12345', function (err, user) {
+      joola.dispatch.users.authenticate(self.context, self.workspace, 'tester-' + self.uid, '12345', function (err, user) {
         if (err)
           return done(err);
 
@@ -257,10 +257,10 @@ describe("users", function () {
     var user = {
       username: 'tester-' + this.uid
     };
-    joola.dispatch.users.delete(this.context, this.organization, user, function (err) {
+    joola.dispatch.users.delete(this.context, this.workspace, user, function (err) {
       if (err)
         return done(err);
-      joola.dispatch.users.get(self.context, self.organization, user.username, function (err, user) {
+      joola.dispatch.users.get(self.context, self.workspace, user.username, function (err, user) {
         if (user)
           return done('This should fail');
         else
@@ -274,7 +274,7 @@ describe("users", function () {
     var user = {
       username: 'tester1-' + this.uid
     };
-    joola.dispatch.users.delete(this.context, this.organization, user, function (err) {
+    joola.dispatch.users.delete(this.context, this.workspace, user, function (err) {
       if (err)
         return done();
       return done('This should fail');
@@ -282,7 +282,7 @@ describe("users", function () {
   });
 
   it("should verify a valid APIToken", function (done) {
-    joola.dispatch.users.verifyAPIToken(this.context, '12345', function (err, user) {
+    joola.dispatch.users.verifyAPIToken(this.context, 'apitoken-root', function (err, user) {
       if (err)
         return done(err);
 
