@@ -32,11 +32,39 @@ body
         .col-lg-3.widget.widget-roundtrip
       .row
         .col-lg-3.widget.widget-nodes
+          .panel.panel-info
+            .panel-heading
+              .row
+                .col-xs-1
+                  .fa.fa-1x.fa-power-off
+                .col-xs-7(style="padding-left:10px;padding-right:0")
+                  p.announcement-text Node count
+                .col-xs-3(style="padding-right:0;")
+                  p.announcement-text.text-right.manage-dashboard-metric-nodes
+        
         .col-lg-3.widget.widget-querytime
         .col-lg-3.widget.widget-fulfilled
+          .panel.panel-info
+            .panel-heading
+              .row
+                .col-xs-1
+                  .fa.fa-1x.fa-users
+                .col-xs-7(style="padding-left:10px;padding-right:0")
+                  p.announcement-text Fullfilled
+                .col-xs-3(style="padding-right:0;")
+                  p.announcement-text.text-right.manage-dashboard-metric-fulfilled
         .col-lg-3.widget.widget-elb
       .row
         .col-lg-3.widget.widget-tokens
+          .panel.panel-info
+            .panel-heading
+              .row
+                .col-xs-1
+                  .fa.fa-1x.fa-users
+                .col-xs-7(style="padding-left:10px;padding-right:0")
+                  p.announcement-text Tokens
+                .col-xs-3(style="padding-right:0;")
+                  p.announcement-text.text-right.manage-dashboard-metric-tokens
         .col-lg-3.widget.widget-cachehits
         .col-lg-3.widget.widget-fulfilltime
         .col-lg-3.widget.widget-exceptions
