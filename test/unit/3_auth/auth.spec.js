@@ -202,6 +202,7 @@ describe("auth", function () {
     };
     var req = {
       params: {
+        workspace: 'root'
       },
       user: user
     };
@@ -228,6 +229,7 @@ describe("auth", function () {
 
     var req = {
       params: {
+        workspace: 'root'
       }
     };
     var res = {};
