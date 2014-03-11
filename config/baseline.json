@@ -21,7 +21,8 @@
       "websocket": {
         "enabled": true
       },
-      "sessionDurtaion": 1200000
+      "sessionDurtaion": 1200000,
+      "timeout": 15000
     },
     "repl": {
       "enabled": true,
@@ -135,11 +136,6 @@
     }
   },
   "engine": {
-    "cache": {
-      "lockTimeout": 5000,
-      "waitOnCache": 5000,
-      "waitInterval": 500
-    },
     "query": {
       "results": {
         "cache": {
@@ -150,8 +146,7 @@
     }
   },
   "dispatch": {
-    "ttl": 5000,
-    "expires": 6
+    "expires": 60
   },
   "authentication": {
     "store": "internal",
