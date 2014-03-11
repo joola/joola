@@ -129,8 +129,10 @@ body
                 a(href='#')
                   | &nbsp;View All Tokens&nbsp;
                   i.fa.fa-arrow-circle-right
-  include ../layout_footer
+  
   script.
-    $(window).on('page-ready',function(){
-      dashboard_setup();
-    })
+    jtoken = '#{token}';
+  include ../layout_footer
+  
+  script(src='/manage/js/dashboard.js')
+  script(src='/manage/js/manage.js')
