@@ -144,5 +144,3 @@ Copyright (c) 2012-2014 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24]
 [setup]: https://github.com/joola/joola.io/wiki/Setting-up-joola.io
 [roadmap]: https://github.com/joola/joola.io/wiki/Product-roadmap
 [contributing]: https://github.com/joola/joola.io/wiki/Contributing
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/joola/joola.io/trend.png)](https://bitdeli.com/free "Bitdeli Badge")

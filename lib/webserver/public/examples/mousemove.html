@@ -64,23 +64,20 @@
 
   <div class="row">
     <div class="col-lg-12 col-lg-offset-0">
+      <div class="col-lg-6">
 
-      <div id="chart-punchcard" style="height:250px;"></div>
+        <div id="table-moves_browser" style="height:250px;"></div>
+      </div>
+      <div class="col-lg-6">
+        <div id="pie-loadtime_browser" style="height:250px;"></div>
+      </div>
 
     </div>
   </div>
 
   <div class="row">
-    <div class="col-lg-12 col-lg-offset-0">
-      <div class="col-lg-6">
-        <div id="table-moves_browser" style="height:250px;"></div>
-      </div>
-      <div class="col-lg-3">
-        <div id="pie-loadtime_browser" style="height:250px;"></div>
-      </div>
-      <div class="col-lg-3">
-        <div id="chart-geo" style="height:250px;"></div>
-      </div>
+    <div class="col-lg-12">
+      <div id="chart-geo" style="height:350px;"></div>
     </div>
   </div>
 
@@ -143,7 +140,7 @@ joolaio.init({APIToken: '7890'}, function (err) {
   console.info('joola.io SDK ready, version: ' + joolaio.VERSION + ', token: ' + joolaio.TOKEN);
 
   setupSparkline('clicks', 'Clicks', {
-        timeframe: 'this_minute',
+        timeframe: 'this_hour',
         interval: 'minute',
         dimensions: ['timestamp'],
         metrics: ['clicks']
@@ -151,35 +148,32 @@ joolaio.init({APIToken: '7890'}, function (err) {
   );
 
 
-    joolaio.query.fetch({
-        timeframe: 'this_minute',
-        interval: 'minute',
-        dimensions: ['timestamp'],
-        metrics: ['clicks']
-    },function(err,results){
-        console.log(results);
-    })
-  
+  joolaio.query.fetch({
+    timeframe: 'this_hour',
+    interval: 'minute',
+    dimensions: ['timestamp'],
+    metrics: ['clicks']
+  }, function (err, results) {
+    console.log(results);
+  })
+
   setupSparkline('moves', 'Mouse Moves', {
-        timeframe: 'last_minute',
+        timeframe: 'this_hour',
         interval: 'minute',
         dimensions: ['timestamp'],
         metrics: ['moves']
       }
   );
- 
+
   setupGeo('geo', {
-    timeframe: 'last_hour',
+    timeframe: 'this_hour',
     interval: 'minute',
     dimensions: ['ip'],
     metrics: ['visits']
   });
 
-
-
-
   setupSparkline('visits', 'Visitors', {
-        timeframe: 'last_hour',
+        timeframe: 'this_hour',
         interval: 'minute',
         dimensions: ['timestamp'],
         metrics: [
@@ -190,25 +184,25 @@ joolaio.init({APIToken: '7890'}, function (err) {
   );
 
   setupSparkline('loadtime', 'Avg. Page Load Time', {
-        timeframe: 'last_hour',
+        timeframe: 'this_hour',
         interval: 'minute',
         dimensions: ['timestamp'],
         metrics: [
           {key: 'avgloadtime', name: 'avgloadtime', dependsOn: 'loadtime', aggregation: 'avg', suffix: 'ms',
-            type: 'float', decimals: 4}
+            type: 'float', decimals: 0}
         ]
       }
   );
 
   setupPie('loadtime_browser', 'Load Time by Browser', {
-        timeframe: 'last_hour',
+        timeframe: 'this_hour',
         dimensions: ['browser'],
         metrics: ['moves']
       }
   );
 
   setupTable('moves_browser', 'Mouse Moves by Browser', {
-        timeframe: 'last_hour',
+        timeframe: 'this_hour',
         dimensions: [
           {key: 'browser', name: 'Browser'},
           {key: 'userid', name: 'User'}
@@ -218,37 +212,20 @@ joolaio.init({APIToken: '7890'}, function (err) {
           {key: 'clicks', name: 'Clicks'},
           {key: 'visits', name: 'Visits'},
           {key: 'avgloadtime', name: 'Avg. Load Time', dependsOn: 'loadtime', aggregation: 'avg', suffix: 'ms',
-            type: 'float', decimals: 4}
+            type: 'float', decimals: 0}
         ]
       }
   );
 
-
-  setupPunchCard('punchcard', 'Mouse Moves by Day/Hour', {
-        timeframe: 'this_month',
-        dimensions: [
-          {key: 'dow', name: 'Day of Week', attribute: 'timestamp_timebucket.dow'},
-          {key: 'hod', name: 'Hour of Day', attribute: 'timestamp_timebucket.hod'}
-        ],
-        metrics: [
-          {key: 'moves', name: 'Moves'}
-        ]
-      }
-  );
-   
   setupListeners();
-
   sendPageLoadEvents();
-
 });
-
 
 var uuid = GetCookie('uuid');
 if (uuid == null) {
   uuid = joolaio.common.uuid();
   SetCookie('uuid', uuid, exp);
 }
-
 
 function sendPageLoadEvents() {
   $().ready(function () {
@@ -301,7 +278,6 @@ function setupListeners() {
       moves = [];
     }
   }, 100);
-
   $(document).click(function (event) {
     joolaio.beacon.insert('clicks', {
       timestamp: null,
@@ -323,11 +299,6 @@ function setupSparkline(divname, caption, query) {
   $('#metric-' + divname).Metric({caption: caption, query: query});
 }
 
-function setupPunchCard(divname, caption, query) {
-  query.realtime = true;
-  $('#chart-' + divname).PunchCard({query: query});
-}
-
 function setupGeo(divname, query) {
   query.realtime = true;
   $('#chart-' + divname).Geo({query: query});
@@ -335,7 +306,7 @@ function setupGeo(divname, query) {
 
 function setupPie(divname, caption, query) {
   query.realtime = true;
- $('#pie-' + divname).Pie({query: query});
+  $('#pie-' + divname).Pie({query: query});
 }
 
 function setupTable(divname, caption, query) {
@@ -385,7 +356,6 @@ function SetCookie(name, value) {
 
 
 </script>
-<!--<script language="Javascript" src="http://www.codehelper.io/api/ips/?js"></script>-->
 </body>
 </html>
 

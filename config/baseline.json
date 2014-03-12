@@ -21,7 +21,8 @@
       "websocket": {
         "enabled": true
       },
-      "sessionDurtaion": 1200000
+      "sessionDurtaion": 1200000,
+      "timeout": 15000
     },
     "repl": {
       "enabled": true,
@@ -94,8 +95,7 @@
     }
   },
   "dispatch": {
-    "ttl": 5000,
-    "expires": 6
+    "expires": 60
   },
   "workspaces": {
     "root": {
