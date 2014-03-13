@@ -53,9 +53,6 @@ describe("query-nested", function () {
       if (err)
         return done(err);
 
-      console.log(require('util').inspect(result, {depth:null}));
-
-
       expect(result.documents.length).to.equal(2);
       return done();
     });

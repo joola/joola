@@ -11,7 +11,7 @@ describe("query-basic", function () {
   after(function (done) {
     var self = this;
     joola.collections.delete(this.context, this.workspace, this.collection, function () {
-      joola.collections.delete(self.context, self.workspace, self.collection + '-nots', function(){
+      joola.collections.delete(self.context, self.workspace, self.collection + '-nots', function () {
         done();
       });
     });
@@ -72,7 +72,7 @@ describe("query-basic", function () {
     });
   });
 
- it("should perform a basic timeline query", function (done) {
+  it("should perform a basic timeline query", function (done) {
     var query = {
       timeframe: 'last_day',
       interval: 'minute',
@@ -124,7 +124,7 @@ describe("query-basic", function () {
     });
   });
 
- it("should perform a freestyle query [min]", function (done) {
+  it("should perform a freestyle query [min]", function (done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
@@ -357,7 +357,7 @@ describe("query-basic", function () {
     });
   });
 
- it("should perform a freestyle formula query [metric and fixed]", function (done) {
+  it("should perform a freestyle formula query [metric and fixed]", function (done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
