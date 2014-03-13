@@ -19,4 +19,9 @@ The following workshops are available:
 - [[QA and Testing]]
 - [[Website Integration]]
 
+#### Guided Workshops
+If you prefer, we can arrange for an online/on-site workshop to be delivered for your engineers.  
+For more information, please [contact us][contact].
+
 [joo.la]: http://joo.la
+[contact]: http://joo.la#contact
