@@ -65,7 +65,7 @@
     "JSONStream": "*",
     "event-stream": "*",
     "usage": "*",
-    "connect-redis": "*",
+    "connect-redis": "~1.4.7",
     "repl.history": "*",
     "geoip-lite": "*",
     "underscore": "*",
