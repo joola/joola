@@ -14,7 +14,7 @@ describe("beacon-basic", function () {
     });
   });
 
-  it("should failing loading a duplicate single document", function (done) {
+  it("should fail loading a duplicate single document", function (done) {
     var documents = require('../../fixtures/nested.json');
     joola.beacon.insert(this.context, this.collection, documents[0], function (err, documents) {
       expect(documents[0].saved).to.equal(false);
