@@ -47,7 +47,7 @@
     "redis": "*",
     "hiredis": "*",
     "async": "*",
-    "express": "*",
+    "express": "3.4.4",
     "socket.io": "*",
     "socket.io-wildcard": "*",
     "socket.io-browserify": "*",
