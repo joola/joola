@@ -61,7 +61,8 @@
         "timeframe": "last_minute",
         "interval": "second",
         "dimensions": ["timestamp"],
-        "metrics": ["event"]
+        "metrics": ["event"],
+        "realtime": true
         }
       </div>
     </div>
@@ -92,7 +93,7 @@
 
 <script src="/joola.io.js"></script>
 <script>
-  joolaio.init({APIToken: '12345'}, function (err) {
+  joolaio.init({APIToken: 'apitoken-root'}, function (err) {
     if (err)
       throw err;
   });
