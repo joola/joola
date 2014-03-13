@@ -21,17 +21,14 @@ before(function (done) {
 
       global.joolaio = joola.sdk;
       global.uid = joola.common.uuid();
-      joolaio.init({host: 'http://127.0.0.1:8080', APIToken: '12345'}, function (err) {
+      joolaio.init({host: 'http://127.0.0.1:8080', APIToken: 'apitoken-root'}, function (err) {
         if (err)
           return done(err);
-        joolaio.users.verifyAPIToken('12345', function (err, _user) {
-          self.user = _user;
-          joola.auth.generateToken(_user, function (err, token) {
-            global._token = token;
-            return done();
-          });
-        });
 
+        joola.auth.generateToken(joolaio.USER, function (err, token) {
+          global._token = token;
+          return done();
+        });
       });
     });
   });

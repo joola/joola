@@ -27,10 +27,6 @@
     "repl": {
       "enabled": true,
       "port": "1337"
-    },
-    "beacon": {
-      "enabled": true,
-      "port": "50008"
     }
   },
   "store": {
@@ -66,20 +62,6 @@
         "pass": null
       }
     },
-    "stats": {
-      "mongo": {
-        "host": "localhost",
-        "port": 27017,
-        "user": null,
-        "password": null,
-        "db": "stats",
-        "options": {
-          "capped": true,
-          "size": 10240000
-        },
-        "expireAfterSeconds": 3600
-      }
-    },
     "logger": {
       "console": {
         "level": "info"
@@ -102,20 +84,6 @@
         "path": "/tmp/joola.io/"
       }
     },
-    "beacon": {
-      "mongo": {
-        "host": "localhost",
-        "port": 27017,
-        "user": null,
-        "password": null,
-        "db": "beacon",
-        "options": {
-          "capped": true,
-          "size": 10240000
-        },
-        "expireAfterSeconds": 3600
-      }
-    },
     "cache": {
       "mongo": {
         "host": "localhost",
@@ -124,29 +92,37 @@
         "password": null,
         "db": "cache"
       }
-    },
-    "results": {
-      "mongo": {
-        "host": "localhost",
-        "port": 27017,
-        "user": null,
-        "password": null,
-        "db": "results"
-      }
-    }
-  },
-  "engine": {
-    "query": {
-      "results": {
-        "cache": {
-          "enabled": false,
-          "expire": 0
-        }
-      }
     }
   },
   "dispatch": {
     "expires": 60
+  },
+  "workspaces": {
+    "root": {
+      "roles": {
+        "root": {
+          "name": "root",
+          "permissions": ["access_system", "manage_system", "manage_users", "beacon_insert", "query_fetch"],
+          "filter": ""
+        },
+        "user": {
+          "name": "user",
+          "permissions": ["access_system"],
+          "filter": ""
+        }
+      },
+      "users": {
+        "root": {
+          "username": "root",
+          "_password": "password",
+          "_roles": ["root"],
+          "displayName": "Administrator",
+          "workspace": "root",
+          "APIToken": "apitoken-root",
+          "su": true
+        }
+      }
+    }
   },
   "authentication": {
     "store": "internal",
@@ -223,44 +199,6 @@
           }
         }
       }
-    }
-  },
-  "datamap": {
-    "mode": "promiscuous",
-    "dimensions": {
-      "timestamp": {
-        "id": "timestamp",
-        "name": "Timestamp",
-        "type": "date"
-      },
-      "second": {
-        "id": "date",
-        "name": "Date",
-        "type": "date",
-        "dependsOn": "timestamp",
-        "alias": "timebucket.second"
-      },
-      "date": {
-        "id": "date",
-        "name": "Date",
-        "type": "date",
-        "dependsOn": "timestamp",
-        "alias": "timebucket.date"
-      }
-    },
-    "metrics": {
-      "bc2mv": {
-        "id": "bc2mv",
-        "name": "Blockchain/MouseMove",
-        "type": "float",
-        "formula": {
-          "dependsOn": ["bccount", "mvcount"],
-          "run": "function(bccount, mvcount){return bccount/mvcount;}"
-        }
-      }
-    },
-    "collections": {
-
     }
   }
 }

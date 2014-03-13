@@ -14,7 +14,7 @@ describe("roles", function () {
   before(function (done) {
     this.context = {user: _token.user};
     this.uid = joola.common.uuid();
-    this.organization = 'test-org-' + joola.common.uuid();
+    this.workspace = 'test-org-' + joola.common.uuid();
     done();
   });
 
@@ -23,7 +23,7 @@ describe("roles", function () {
       name: 'test-role-' + this.uid,
       permissions: []
     };
-    joola.dispatch.roles.add(this.context, this.organization, role, function (err, _role) {
+    joola.dispatch.roles.add(this.context, this.workspace, role, function (err, _role) {
       if (err)
         return done(err);
 
@@ -33,7 +33,7 @@ describe("roles", function () {
   });
 
   it("should return a valid list of roles", function (done) {
-    joola.dispatch.roles.list(this.context, this.organization, function (err, roles) {
+    joola.dispatch.roles.list(this.context, this.workspace, function (err, roles) {
       return done(err);
     });
   });
@@ -43,7 +43,7 @@ describe("roles", function () {
       name: 'test-role-' + this.uid,
       permissions: []
     };
-    joola.dispatch.roles.add(this.context, this.organization, role, function (err, _role) {
+    joola.dispatch.roles.add(this.context, this.workspace, role, function (err, _role) {
       if (err)
         return done();
 
@@ -55,7 +55,7 @@ describe("roles", function () {
     var role = {
       name: 'test-role-missing-details'
     };
-    joola.dispatch.roles.add(this.context, this.organization, role, function (err, _role) {
+    joola.dispatch.roles.add(this.context, this.workspace, role, function (err, _role) {
       if (err)
         return done();
 
@@ -68,7 +68,7 @@ describe("roles", function () {
       name: 'test-role-' + this.uid,
       permissions: ['access_system']
     };
-    joola.dispatch.roles.update(this.context, this.organization, role, function (err, _role) {
+    joola.dispatch.roles.update(this.context, this.workspace, role, function (err, _role) {
       if (err)
         return done(err);
       expect(_role.permissions.length).to.equal(1);
@@ -81,7 +81,7 @@ describe("roles", function () {
       name: 'test-role1-' + this.uid,
       permissions: ['access_system']
     };
-    joola.dispatch.roles.update(this.context, this.organization, role, function (err, _role) {
+    joola.dispatch.roles.update(this.context, this.workspace, role, function (err, _role) {
       if (err)
         return done();
 
@@ -93,7 +93,7 @@ describe("roles", function () {
     var role = {
       name: 'test-role-' + this.uid
     };
-    joola.dispatch.roles.update(this.context, this.organization, role, function (err, _role) {
+    joola.dispatch.roles.update(this.context, this.workspace, role, function (err, _role) {
       if (err)
         return done();
 
@@ -106,11 +106,11 @@ describe("roles", function () {
     var role = {
       name: 'test-role-' + this.uid
     };
-    joola.dispatch.roles.delete(this.context, this.organization, role, function (err) {
+    joola.dispatch.roles.delete(this.context, this.workspace, role, function (err) {
       if (err)
         return done(err);
 
-      joola.dispatch.roles.get(self.context, self.organization, role.name, function (err, role) {
+      joola.dispatch.roles.get(self.context, self.workspace, role.name, function (err, role) {
         if (err)
           return done();
 
@@ -123,7 +123,7 @@ describe("roles", function () {
     var role = {
       name: 'test-role-notexist'
     };
-    joola.dispatch.roles.delete(this.context, this.organization, role, function (err) {
+    joola.dispatch.roles.delete(this.context, this.workspace, role, function (err) {
       if (err)
         return done();
 

@@ -8,20 +8,6 @@ describe("query-timeline", function () {
     done();
   });
 
-  var d;
-  var uncaughtExceptionHandler;
-
-  beforeEach(function () {
-    d = domain.create();
-    uncaughtExceptionHandler = _.last(process.listeners("uncaughtException"));
-    process.removeListener("uncaughtException", uncaughtExceptionHandler);
-  });
-
-  afterEach(function () {
-    d.dispose();
-    process.on("uncaughtException", uncaughtExceptionHandler);
-  });
-
   it("should perform a timeline query [this_second/second]", function (done) {
     var expected = 1;
     var query = {
@@ -42,7 +28,7 @@ describe("query-timeline", function () {
   });
 
   it("should perform a timeline query [last_second/second]", function (done) {
-    var expected = 1;
+    var expected = 2;
     var query = {
       timeframe: 'last_second',
       interval: 'second',
@@ -118,7 +104,7 @@ describe("query-timeline", function () {
   });
 
   it("should perform a timeline query [last_n_seconds/second]", function (done) {
-    var expected = 17;
+    var expected = 18;
     var query = {
       timeframe: 'last_17_seconds',
       interval: 'second',
@@ -160,7 +146,7 @@ describe("query-timeline", function () {
   });
 
   it("should perform a timeline query [last_minute/second]", function (done) {
-    var expected = 60;
+    var expected = 61;
     var query = {
       timeframe: 'last_minute',
       interval: 'second',
@@ -198,7 +184,7 @@ describe("query-timeline", function () {
   });
 
   it("should perform a timeline query [last_minute/minute]", function (done) {
-    var expected = 1;
+    var expected = 2;
     var query = {
       timeframe: 'last_minute',
       interval: 'minute',
@@ -236,7 +222,7 @@ describe("query-timeline", function () {
   });
 
   it("should perform a timeline query [last_n_minutes/minute]", function (done) {
-    var expected = 17;
+    var expected = 18;
     var query = {
       timeframe: 'last_17_minutes',
       interval: 'minute',
@@ -277,7 +263,7 @@ describe("query-timeline", function () {
   });
 
   it("should perform a timeline query [last_hour/minute]", function (done) {
-    var expected = 60;
+    var expected = 61;
     var query = {
       timeframe: 'last_hour',
       interval: 'minute',
@@ -318,7 +304,7 @@ describe("query-timeline", function () {
   });
 
   it("should perform a timeline query [last_n_hour/minute]", function (done) {
-    var expected = 180;
+    var expected = 181;
     var query = {
       timeframe: 'last_3_hour',
       interval: 'minute',
@@ -358,7 +344,7 @@ describe("query-timeline", function () {
   });
 
   it("should perform a timeline query [last_day/second]", function (done) {
-    var expected = 86400;
+    var expected = 86401;
     var query = {
       timeframe: 'last_day',
       interval: 'second',
@@ -377,7 +363,7 @@ describe("query-timeline", function () {
   });
 
   it("should perform a timeline query [last_day/minute]", function (done) {
-    var expected = 1440;
+    var expected = 1441;
     var query = {
       timeframe: 'last_day',
       interval: 'minute',
@@ -396,7 +382,7 @@ describe("query-timeline", function () {
   });
 
   it("should perform a timeline query [last_day/hour]", function (done) {
-    var expected = 24;
+    var expected = 25;
     var query = {
       timeframe: 'last_day',
       interval: 'hour',
@@ -415,7 +401,7 @@ describe("query-timeline", function () {
   });
 
   it("should perform a timeline query [last_day/day]", function (done) {
-    var expected = 1;
+    var expected = 2;
     var query = {
       timeframe: 'last_day',
       interval: 'day',
@@ -434,7 +420,7 @@ describe("query-timeline", function () {
   });
 
   it("should perform a timeline query [last_7_days/day]", function (done) {
-    var expected = 7;
+    var expected = 8;
     var query = {
       timeframe: 'last_7_days',
       interval: 'day',
