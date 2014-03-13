@@ -88,6 +88,24 @@ describe("query-basic", function () {
     });
   });
 
+  it("should perform a freestyle query [without dependsOn]", function (done) {
+    var query = {
+      timeframe: 'this_day',
+      interval: 'minute',
+      dimensions: [],
+      metrics: [
+        {key: 'value', name: 'value', aggregation: 'avg'}
+      ]
+    };
+    joola.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+  
+      expect(result.documents[0].values.value).to.equal(1.5);
+      return done();
+    });
+  });
+  
   it("should perform a freestyle query [avg]", function (done) {
     var query = {
       timeframe: 'this_day',
@@ -105,7 +123,7 @@ describe("query-basic", function () {
       return done();
     });
   });
-
+  
   it("should perform a freestyle query with specific collection [avg]", function (done) {
     var query = {
       timeframe: 'this_day',
