@@ -14,7 +14,7 @@ describe("permissions", function () {
   before(function (done) {
     this.context = {user: _token.user};
     this.uid = joola.common.uuid();
-    this.organization = 'test-org-' + joola.common.uuid();
+    this.workspace= 'test-org-' + joola.common.uuid();
     done();
   });
 

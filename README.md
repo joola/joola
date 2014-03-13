@@ -1,4 +1,4 @@
-# joola.io [![Build Status][3]][4] [![Coverage Status][1]][2]
+# joola.io [![Build Status][3]][4] [![Coverage Status][1]][2] [![Gitter chat](https://badges.gitter.im/joola/joola.io.png)](https://gitter.im/joola/joola.io)
 
 | **[Technical Docs] [techdocs]**     | **[Setup Guide] [setup]**     | **[Roadmap] [roadmap]**           | **[Contributing] [contributing]**           | **[About joola.io] [about]**     |
 |-------------------------------------|-------------------------------|-----------------------------------|---------------------------------------------|-------------------------------------|
@@ -91,9 +91,9 @@ If you're feeling lost or unsure, [just let us know](#Contact).
 ### Contact
 Contacting us is easy, ping us on one of these:
 
+- [![Gitter chat](https://badges.gitter.im/joola/joola.io.png)](https://gitter.im/joola/joola.io)
 - [@joolaio][19]
 - [info@joo.la][20]
-- \#joola.io on irc.freenode.net
 - You can even fill out a [form][21].
 
 ### License
@@ -144,5 +144,3 @@ Copyright (c) 2012-2014 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24]
 [setup]: https://github.com/joola/joola.io/wiki/Setting-up-joola.io
 [roadmap]: https://github.com/joola/joola.io/wiki/Product-roadmap
 [contributing]: https://github.com/joola/joola.io/wiki/Contributing
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/joola/joola.io/trend.png)](https://bitdeli.com/free "Bitdeli Badge")

@@ -42,9 +42,9 @@ describe("query-nested", function () {
 
   it("should perform a freestyle query [dimension]", function (done) {
     var query = {
-      timeframe: 'this_day',
+      timeframe: 'last_day',
       interval: 'minute',
-      dimensions: ['user.username', 'attribute' ],
+      dimensions: ['user.username', 'nattribute' ],
       metrics: [
         {key: 'actual', name: 'value', dependsOn: 'nvalue.actual', aggregation: 'avg'}
       ]
@@ -52,6 +52,9 @@ describe("query-nested", function () {
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
+
+      console.log(require('util').inspect(result, {depth:null}));
+
 
       expect(result.documents.length).to.equal(2);
       return done();
@@ -62,7 +65,7 @@ describe("query-nested", function () {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
-      dimensions: ['user.username', {key: 'attribute', name: 'attribute'} ],
+      dimensions: ['user.username', {key: 'nattribute', name: 'attribute'} ],
       metrics: [
         {key: 'actual', name: 'value', dependsOn: 'nvalue.actual', aggregation: 'avg'}
       ]
@@ -82,7 +85,7 @@ describe("query-nested", function () {
       interval: 'minute',
       dimensions: [
         {key: 'user.username'},
-        {key: 'attribute', name: 'attribute'}
+        {key: 'nattribute', name: 'nattribute'}
       ],
       metrics: [
         {key: 'actual', name: 'value', dependsOn: 'nvalue.actual', aggregation: 'avg'}
@@ -103,7 +106,7 @@ describe("query-nested", function () {
       interval: 'minute',
       dimensions: [
         {key: 'user.username', collection: this.collection},
-        {key: 'attribute', name: 'attribute'}
+        {key: 'nattribute', name: 'attribute'}
       ],
       metrics: [
         {key: 'actual', name: 'value', dependsOn: 'nvalue.actual', aggregation: 'avg'}

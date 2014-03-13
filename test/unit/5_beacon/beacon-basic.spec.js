@@ -4,6 +4,7 @@ describe("beacon-basic", function () {
     this.uid = global.uid;
     this.collection = 'test-collection-basic-' + this.uid;
 
+    console.log('collection-beacon', this.collection);
     done();
   });
 
@@ -31,7 +32,7 @@ describe("beacon-basic", function () {
 
   it("should load documents with no timestamp", function (done) {
     var documents = [
-      {"visitors": 2}
+      {"timetamp": null,  "visitors": 2}
     ];
     joola.beacon.insert(this.context, this.collection + '-nots', documents, function (err) {
       done(err);
