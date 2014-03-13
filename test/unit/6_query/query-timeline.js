@@ -8,20 +8,6 @@ describe("query-timeline", function () {
     done();
   });
 
-  var d;
-  var uncaughtExceptionHandler;
-
-  beforeEach(function () {
-    d = domain.create();
-    uncaughtExceptionHandler = _.last(process.listeners("uncaughtException"));
-    process.removeListener("uncaughtException", uncaughtExceptionHandler);
-  });
-
-  afterEach(function () {
-    d.dispose();
-    process.on("uncaughtException", uncaughtExceptionHandler);
-  });
-
   it("should perform a timeline query [this_second/second]", function (done) {
     var expected = 1;
     var query = {
@@ -377,7 +363,7 @@ describe("query-timeline", function () {
   });
 
   it("should perform a timeline query [last_day/minute]", function (done) {
-    var expected = 1440;
+    var expected = 1441;
     var query = {
       timeframe: 'last_day',
       interval: 'minute',

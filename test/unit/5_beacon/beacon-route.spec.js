@@ -65,7 +65,7 @@ describe("beacon-route", function () {
       collection: 'test-beacon-route-' + this.uid,
       document: JSON.stringify({document: {
         attribute: 'attribute1',
-        value: 1234
+        value1: 1234
       }})
     };
     io.socket.emit('/beacon/insert', options);

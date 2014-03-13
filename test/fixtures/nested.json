@@ -1,7 +1,7 @@
 [
   {
     "timestamp": null,
-    "attribute": "test",
+    "nattribute": "test",
     "user": {
       "username": "test1",
       "country": "japan"
@@ -12,7 +12,7 @@
   },
   {
     "timestamp": null,
-    "attribute": "test",
+    "nattribute": "test",
     "user": {
       "username": "test2",
       "country": "france"
