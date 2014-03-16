@@ -118,7 +118,7 @@
           "_roles": ["root"],
           "displayName": "Administrator",
           "workspace": "root",
-          "APIToken": "apitoken-root",
+          "_APIToken": "apitoken-root",
           "su": true
         }
       }
