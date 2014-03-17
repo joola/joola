@@ -23,20 +23,6 @@ describe("cache-basic", function () {
     done();
   });
 
-  var d;
-  var uncaughtExceptionHandler;
-
-  beforeEach(function () {
-    d = domain.create();
-    uncaughtExceptionHandler = _.last(process.listeners("uncaughtException"));
-    process.removeListener("uncaughtException", uncaughtExceptionHandler);
-  });
-
-  afterEach(function () {
-    d.dispose();
-    process.on("uncaughtException", uncaughtExceptionHandler);
-  });
-
   xit("should insert, query once and not use cache", function (done) {
     var self = this;
     var documents = [];

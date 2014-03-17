@@ -8,15 +8,6 @@ describe("query-basic", function () {
     done();
   });
 
-  after(function (done) {
-    var self = this;
-    joola.collections.delete(this.context, this.workspace, this.collection, function () {
-      joola.collections.delete(self.context, self.workspace, self.collection + '-nots', function () {
-        done();
-      });
-    });
-  });
-
   it("should not fail performing a query with no arguments", function (done) {
     var query = {};
     var expected = 0;
@@ -25,33 +16,43 @@ describe("query-basic", function () {
       if (err)
         return done(err);
       var actual = result.documents.length;
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
       expect(actual).to.equal(expected);
       return done();
     });
   });
 
-  xit("should perform a basic query with minimal arguments", function (done) {
+  it("should perform a basic query with minimal arguments", function (done) {
     var query = {
-      metrics: ['value', 'another']
+      metrics: ['value', 'another'],
+      collection: this.collection
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
 
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents[0].values.value).to.equal(3);
       return done();
     });
   });
 
-  xit("should perform a basic query with minimal arguments [no timestamp]", function (done) {
+  it("should perform a basic query with minimal arguments [no timestamp]", function (done) {
     var query = {
-      metrics: ['visitors']
+      metrics: ['value'],
+      collection: this.collection
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
 
-      expect(result.documents[0].values.visitors).to.equal(2);
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
+      expect(result.documents[0].values.value).to.equal(3);
       return done();
     });
   });
@@ -61,12 +62,15 @@ describe("query-basic", function () {
       timeframe: 'last_day',
       interval: 'minute',
       dimensions: [],
-      metrics: ['value']
+      metrics: ['value'],
+      collection: this.collection
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents[0].values.value).to.equal(3);
       return done();
     });
@@ -77,12 +81,15 @@ describe("query-basic", function () {
       timeframe: 'last_day',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: ['value']
+      metrics: ['value'],
+      collection: this.collection
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents.length).to.equal(1441);
       return done();
     });
@@ -95,17 +102,20 @@ describe("query-basic", function () {
       dimensions: [],
       metrics: [
         {key: 'value', name: 'value', aggregation: 'avg'}
-      ]
+      ],
+      collection: this.collection
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-  
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents[0].values.value).to.equal(1.5);
       return done();
     });
   });
-  
+
   it("should perform a freestyle query [avg]", function (done) {
     var query = {
       timeframe: 'this_day',
@@ -113,17 +123,20 @@ describe("query-basic", function () {
       dimensions: [],
       metrics: [
         {key: 'value', name: 'value', dependsOn: 'value', aggregation: 'avg'}
-      ]
+      ],
+      collection: this.collection
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents[0].values.value).to.equal(1.5);
       return done();
     });
   });
-  
+
   it("should perform a freestyle query with specific collection [avg]", function (done) {
     var query = {
       timeframe: 'this_day',
@@ -131,12 +144,15 @@ describe("query-basic", function () {
       dimensions: [],
       metrics: [
         {key: 'value', name: 'value', dependsOn: 'value', aggregation: 'avg', collection: this.collection}
-      ]
+      ],
+      collection: this.collection
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents[0].values.value).to.equal(1.5);
       return done();
     });
@@ -149,12 +165,15 @@ describe("query-basic", function () {
       dimensions: [],
       metrics: [
         {key: 'value', name: 'value', dependsOn: 'value', aggregation: 'min'}
-      ]
+      ],
+      collection: this.collection
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents[0].values.value).to.equal(1);
       return done();
     });
@@ -167,12 +186,15 @@ describe("query-basic", function () {
       dimensions: [],
       metrics: [
         {key: 'value', name: 'value', dependsOn: 'value', aggregation: 'max'}
-      ]
+      ],
+      collection: this.collection
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents[0].values.value).to.equal(2);
       return done();
     });
@@ -185,12 +207,15 @@ describe("query-basic", function () {
       dimensions: [],
       metrics: [
         {key: 'value', name: 'Value', dependsOn: 'value', aggregation: 'avg'}
-      ]
+      ],
+      collection: this.collection
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(result.metrics[0].name).to.equal('Value');
       return done();
     });
@@ -203,12 +228,15 @@ describe("query-basic", function () {
       dimensions: [],
       metrics: [
         {key: 'value', name: 'value', dependsOn: 'value', prefix: '$'}
-      ]
+      ],
+      collection: this.collection
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents[0].fvalues.value).to.equal('$3');
       return done();
     });
@@ -221,12 +249,15 @@ describe("query-basic", function () {
       dimensions: [],
       metrics: [
         {key: 'value', name: 'value', dependsOn: 'value', suffix: 'ms'}
-      ]
+      ],
+      collection: this.collection
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents[0].fvalues.value).to.equal('3ms');
       return done();
     });
@@ -239,12 +270,15 @@ describe("query-basic", function () {
       dimensions: [],
       metrics: [
         {key: 'value', name: 'value', dependsOn: 'value', prefix: '$', suffix: 'ms'}
-      ]
+      ],
+      collection: this.collection
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents[0].fvalues.value).to.equal('$3ms');
       return done();
     });
@@ -257,12 +291,15 @@ describe("query-basic", function () {
       dimensions: [],
       metrics: [
         {key: 'value', name: 'value', dependsOn: 'value', aggregation: 'avg', decimals: 4}
-      ]
+      ],
+      collection: this.collection
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents[0].fvalues.value).to.equal('1.5000');
       return done();
     });
@@ -275,12 +312,15 @@ describe("query-basic", function () {
       dimensions: [],
       metrics: [
         {key: 'value', name: 'value', dependsOn: 'value', aggregation: 'avg', decimals: 2}
-      ]
+      ],
+      collection: this.collection
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents[0].fvalues.value).to.equal('1.50');
       return done();
     });
@@ -293,12 +333,15 @@ describe("query-basic", function () {
       dimensions: [],
       metrics: [
         {key: 'value', name: 'value', dependsOn: 'value', aggregation: 'avg', decimals: 0}
-      ]
+      ],
+      collection: this.collection
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents[0].fvalues.value).to.equal('2');
       return done();
     });
@@ -313,12 +356,15 @@ describe("query-basic", function () {
       ],
       metrics: [
         {key: 'value', name: 'value', dependsOn: 'value', aggregation: 'avg', decimals: 0}
-      ]
+      ],
+      collection: this.collection
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents.length).to.equal(1441);
       return done();
     });
@@ -338,12 +384,15 @@ describe("query-basic", function () {
             run: 'function(another, value){return another * value;}'
           }
         }
-      ]
+      ],
+      collection: this.collection
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents[0].values.calcvalue).to.equal(90);
       return done();
     });
@@ -364,12 +413,15 @@ describe("query-basic", function () {
             run: 'function(another, value, third){return another * value * third;}'
           }
         }
-      ]
+      ],
+      collection: this.collection
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents[0].values.calcvalue).to.equal(27000);
       return done();
     });
@@ -389,12 +441,15 @@ describe("query-basic", function () {
             run: 'function(another){return another * 100;}'
           }
         }
-      ]
+      ],
+      collection: this.collection
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents[0].values.calcvalue).to.equal(3000);
       return done();
     });
@@ -413,12 +468,15 @@ describe("query-basic", function () {
           datatype: 'number',
           dependsOn: ['attribute']
         }
-      ]
+      ],
+      collection: this.collection
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents[0].values.uniquevalue).to.equal(1);
       return done();
     });
@@ -438,18 +496,21 @@ describe("query-basic", function () {
           dependsOn: ['attribute'],
           transform: 'function(value){return value*100;}'
         }
-      ]
+      ],
+      collection: this.collection
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents[0].fvalues.uniquevalue).to.equal(100);
       return done();
     });
   });
 
-  xit("should perform a freestyle dimension transform", function (done) {
+  it("should perform a freestyle dimension transform", function (done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
@@ -461,12 +522,15 @@ describe("query-basic", function () {
           transform: 'function(value){return "transformed-" + value;}'
         }
       ],
-      metrics: ['value', 'another']
+      metrics: ['value', 'another'],
+      collection: this.collection
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents[0].fvalues.attribute).to.equal('transformed-' + 'test');
       return done();
     });
@@ -486,12 +550,15 @@ describe("query-basic", function () {
           dependsOn: ['attribute'],
           transform: 'function(value){return value/60;}'
         }
-      ]
+      ],
+      collection: this.collection
     };
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents.length).to.equal(1441);
       return done();
     });

@@ -5,16 +5,27 @@ describe("query-timeline", function () {
     this.context = {user: _token.user};
     this.uid = global.uid;
     this.collection = 'test-collection-basic-' + this.uid;
+
     done();
   });
-
+  /*
+   after(function (done) {
+   var self = this;
+   joola.collections.delete(this.context, this.workspace, this.collection, function () {
+   joola.collections.delete(self.context, self.workspace, self.collection + '-nots', function () {
+   done();
+   });
+   });
+   });
+   */
   it("should perform a timeline query [this_second/second]", function (done) {
     var expected = 1;
     var query = {
       timeframe: 'this_second',
       interval: 'second',
       dimensions: ['timestamp'],
-      metrics: ['value']
+      metrics: ['value'],
+      collection: this.collection
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
@@ -22,6 +33,9 @@ describe("query-timeline", function () {
         return done(err);
       var actual = result.documents.length;
 
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(actual).to.equal(expected);
       return done();
     });
@@ -33,14 +47,17 @@ describe("query-timeline", function () {
       timeframe: 'last_second',
       interval: 'second',
       dimensions: ['timestamp'],
-      metrics: ['value']
+      metrics: ['value'],
+      collection: this.collection
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(actual).to.equal(expected);
       return done();
     });
@@ -52,14 +69,17 @@ describe("query-timeline", function () {
       timeframe: 'this_second',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: ['value']
+      metrics: ['value'],
+      collection: this.collection
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(actual).to.equal(expected);
       return done();
     });
@@ -71,14 +91,17 @@ describe("query-timeline", function () {
       timeframe: 'last_second',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: ['value']
+      metrics: ['value'],
+      collection: this.collection
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(actual).to.equal(expected);
       return done();
     });
@@ -90,14 +113,17 @@ describe("query-timeline", function () {
       timeframe: 'this_17_seconds',
       interval: 'second',
       dimensions: ['timestamp'],
-      metrics: ['value']
+      metrics: ['value'],
+      collection: this.collection
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(actual).to.equal(expected);
       return done();
     });
@@ -109,14 +135,17 @@ describe("query-timeline", function () {
       timeframe: 'last_17_seconds',
       interval: 'second',
       dimensions: ['timestamp'],
-      metrics: ['value']
+      metrics: ['value'],
+      collection: this.collection
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(actual).to.equal(expected);
       return done();
     });
@@ -129,7 +158,8 @@ describe("query-timeline", function () {
       timeframe: 'this_minute',
       interval: 'second',
       dimensions: ['timestamp'],
-      metrics: ['value']
+      metrics: ['value'],
+      collection: this.collection
     };
 
     var _date = new Date();
@@ -151,14 +181,17 @@ describe("query-timeline", function () {
       timeframe: 'last_minute',
       interval: 'second',
       dimensions: ['timestamp'],
-      metrics: ['value']
+      metrics: ['value'],
+      collection: this.collection
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(actual).to.equal(expected);
       return done();
     });
@@ -170,14 +203,17 @@ describe("query-timeline", function () {
       timeframe: 'this_minute',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: ['value']
+      metrics: ['value'],
+      collection: this.collection
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(actual).to.equal(expected);
       return done();
     });
@@ -189,14 +225,17 @@ describe("query-timeline", function () {
       timeframe: 'last_minute',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: ['value']
+      metrics: ['value'],
+      collection: this.collection
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(actual).to.equal(expected);
       return done();
     });
@@ -208,14 +247,17 @@ describe("query-timeline", function () {
       timeframe: 'this_17_minutes',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: ['value']
+      metrics: ['value'],
+      collection: this.collection
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(actual).to.equal(expected);
       return done();
     });
@@ -227,14 +269,17 @@ describe("query-timeline", function () {
       timeframe: 'last_17_minutes',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: ['value']
+      metrics: ['value'],
+      collection: this.collection
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(actual).to.equal(expected);
       return done();
     });
@@ -246,7 +291,8 @@ describe("query-timeline", function () {
       timeframe: 'this_hour',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: ['value']
+      metrics: ['value'],
+      collection: this.collection
     };
 
     var _date = new Date();
@@ -268,14 +314,17 @@ describe("query-timeline", function () {
       timeframe: 'last_hour',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: ['value']
+      metrics: ['value'],
+      collection: this.collection
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(actual).to.equal(expected);
       return done();
     });
@@ -287,7 +336,8 @@ describe("query-timeline", function () {
       timeframe: 'this_3_hour',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: ['value']
+      metrics: ['value'],
+      collection: this.collection
     };
 
     var _date = new Date();
@@ -309,14 +359,17 @@ describe("query-timeline", function () {
       timeframe: 'last_3_hour',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: ['value']
+      metrics: ['value'],
+      collection: this.collection
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(actual).to.equal(expected);
       return done();
     });
@@ -327,7 +380,8 @@ describe("query-timeline", function () {
       timeframe: 'this_day',
       interval: 'hour',
       dimensions: ['timestamp'],
-      metrics: ['value']
+      metrics: ['value'],
+      collection: this.collection
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
@@ -349,14 +403,17 @@ describe("query-timeline", function () {
       timeframe: 'last_day',
       interval: 'second',
       dimensions: ['timestamp'],
-      metrics: ['value']
+      metrics: ['value'],
+      collection: this.collection
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(actual).to.equal(expected);
       return done();
     });
@@ -368,14 +425,17 @@ describe("query-timeline", function () {
       timeframe: 'last_day',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: ['value']
+      metrics: ['value'],
+      collection: this.collection
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(actual).to.equal(expected);
       return done();
     });
@@ -387,14 +447,17 @@ describe("query-timeline", function () {
       timeframe: 'last_day',
       interval: 'hour',
       dimensions: ['timestamp'],
-      metrics: ['value']
+      metrics: ['value'],
+      collection: this.collection
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(actual).to.equal(expected);
       return done();
     });
@@ -406,14 +469,17 @@ describe("query-timeline", function () {
       timeframe: 'last_day',
       interval: 'day',
       dimensions: ['timestamp'],
-      metrics: ['value']
+      metrics: ['value'],
+      collection: this.collection
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(actual).to.equal(expected);
       return done();
     });
@@ -425,14 +491,17 @@ describe("query-timeline", function () {
       timeframe: 'last_7_days',
       interval: 'day',
       dimensions: ['timestamp'],
-      metrics: ['value']
+      metrics: ['value'],
+      collection: this.collection
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(actual).to.equal(expected);
       return done();
     });
@@ -451,14 +520,17 @@ describe("query-timeline", function () {
       },
       interval: 'day',
       dimensions: ['timestamp'],
-      metrics: ['value']
+      metrics: ['value'],
+      collection: this.collection
     };
 
     joola.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
-
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
       expect(actual).to.equal(expected);
       return done();
     });
