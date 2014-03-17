@@ -127,7 +127,7 @@ describe("collections", function () {
 
   it("should get collection min date", function (done) {
     var self = this;
-    joola.beacon.insert(this.context, this.collection, {timestamp: null}, function (err) {
+    joola.beacon.insert(this.context, this.context.user.workspace, this.collection, {timestamp: null}, function (err) {
       if (err)
         return done(err);
       joola.dispatch.collections.mindate(self.context, self.context.user.workspace, self.collection, null, function (err, mindate) {
@@ -151,7 +151,7 @@ describe("collections", function () {
 
   it("should get collection max date", function (done) {
     var self = this;
-    joola.beacon.insert(this.context, this.collection, {timestamp: null}, function (err) {
+    joola.beacon.insert(this.context, this.context.user.workspace, this.collection, {timestamp: null}, function (err) {
       if (err)
         return done(err);
       joola.dispatch.collections.maxdate(self.context, self.context.user.workspace, self.collection, null, function (err, maxdate) {
@@ -184,7 +184,7 @@ describe("collections", function () {
       done();
     });
   });
-  
+
   it("should delete a collection", function (done) {
     var self = this;
     joola.dispatch.collections.delete(this.context, this.context.user.workspace, this.collection, function (err) {

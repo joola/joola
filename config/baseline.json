@@ -101,14 +101,14 @@
     "root": {
       "roles": {
         "root": {
-          "name": "root",
-          "permissions": ["access_system", "manage_system", "manage_users", "beacon_insert", "query_fetch"],
-          "filter": ""
+          "key": "root",
+          "_permissions": ["access_system", "manage_system", "manage_users", "beacon_insert", "query_fetch"],
+          "_filter": ""
         },
         "user": {
-          "name": "user",
-          "permissions": ["access_system"],
-          "filter": ""
+          "key": "user",
+          "_permissions": ["access_system"],
+          "_filter": ""
         }
       },
       "users": {

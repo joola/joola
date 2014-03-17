@@ -22,11 +22,11 @@ describe("workspaces", function () {
    var calls = [];
 
    var call = function (callback) {
-   joola.config.clear('authentication:users:tester-org-filter', callback);
+   joola.config.clear('authentication:users:tester-workspace-filter', callback);
    };
    calls.push(call);
    call = function (callback) {
-   joola.config.clear('authentication:workspaces:test-org', callback);
+   joola.config.clear('authentication:workspaces:test-workspace', callback);
    };
    calls.push(call);
 
@@ -34,33 +34,33 @@ describe("workspaces", function () {
    });*/
 
   it("should add an workspace", function (done) {
-    var org = {
-      id: 'test-org-' + this.uid,
-      name: 'test-org-' + this.uid,
+    var workspace = {
+      key: 'test-workspace-' + this.uid,
+      name: 'test-workspace-' + this.uid,
       _filter: ''
     };
-    joola.dispatch.workspaces.add(this.context, org, function (err, _org) {
+    joola.dispatch.workspaces.add(this.context, workspace, function (err, _workspace) {
       if (err)
         return done(err);
 
-      expect(_org).to.be.ok;
+      expect(_workspace).to.be.ok;
       done();
     });
   });
 
   it("should return a valid list of workspaces", function (done) {
-    joola.dispatch.workspaces.list(this.context, function (err, orgs) {
+    joola.dispatch.workspaces.list(this.context, function (err, workspaces) {
       return done(err);
     });
   });
 
   it("should fail adding an existing workspace", function (done) {
-    var org = {
-      id: 'test-org-' + this.uid,
-      name: 'test-org-' + this.uid,
+    var workspace = {
+      key: 'test-workspace-' + this.uid,
+      name: 'test-workspace-' + this.uid,
       _filter: ''
     };
-    joola.dispatch.workspaces.add(this.context, org, function (err, _org) {
+    joola.dispatch.workspaces.add(this.context, workspace, function (err, _workspace) {
       if (err)
         return done();
 
@@ -69,10 +69,10 @@ describe("workspaces", function () {
   });
 
   it("should fail to add an workspace with incomplete details", function (done) {
-    var org = {
+    var workspace = {
 
     };
-    joola.dispatch.workspaces.add(this.context, org, function (err, _org) {
+    joola.dispatch.workspaces.add(this.context, workspace, function (err, _workspace) {
       if (err)
         return done();
 
@@ -81,26 +81,26 @@ describe("workspaces", function () {
   });
 
   it("should update an workspace", function (done) {
-    var org = {
-      id: 'test-org-' + this.uid,
-      name: 'test-org-' + this.uid,
+    var workspace = {
+      key: 'test-workspace-' + this.uid,
+      name: 'test-workspace-' + this.uid,
       _filter: 'test=test'
     };
-    joola.dispatch.workspaces.update(this.context, org, function (err, _org) {
+    joola.dispatch.workspaces.update(this.context, workspace, function (err, _workspace) {
       if (err)
         return done(err);
-      expect(_org._filter).to.equal('test=test');
+      expect(_workspace._filter).to.equal('test=test');
       done();
     });
   });
 
   it("should fail updating unknown workspace", function (done) {
-    var org = {
-      id: 'test-org1-' + this.uid,
-      name: 'test-org-' + this.uid,
+    var workspace = {
+      key: 'test-workspace1-' + this.uid,
+      name: 'test-workspace-' + this.uid,
       _filter: 'test=test'
     };
-    joola.dispatch.workspaces.update(this.context, org, function (err, _org) {
+    joola.dispatch.workspaces.update(this.context, workspace, function (err, _workspace) {
       if (err)
         return done();
 
@@ -109,10 +109,10 @@ describe("workspaces", function () {
   });
 
   it("should fail updating workspace with incomplete details", function (done) {
-    var org = {
-      id: 'test-org1-' + this.uid
+    var workspace = {
+      key: 'test-workspace1-' + this.uid
     };
-    joola.dispatch.workspaces.update(this.context, org, function (err, _org) {
+    joola.dispatch.workspaces.update(this.context, workspace, function (err, _workspace) {
       if (err)
         return done();
 
@@ -122,14 +122,14 @@ describe("workspaces", function () {
   
   it("should apply filter on workspace members", function (done) {
     var user = {
-      username: 'tester-org-filter',
+      username: 'tester-workspace-filter',
       displayName: 'tester user',
       _password: '1234',
       _roles: ['user'],
       _filter: '',
-      workspace: 'test-org-' + this.uid
+      workspace: 'test-workspace-' + this.uid
     };
-    joola.dispatch.users.add(this.context, 'test-org-' + this.uid, user, function (err, user) {
+    joola.dispatch.users.add(this.context, 'test-workspace-' + this.uid, user, function (err, user) {
       if (err)
         return done(err);
       expect(user._filter).to.equal('test=test');
@@ -139,20 +139,20 @@ describe("workspaces", function () {
 
   it("should delete an workspace", function (done) {
     var self = this;
-    var org = {
-      id: 'test-org-' + this.uid,
-      name: 'test-org-' + this.uid
+    var workspace = {
+      key: 'test-workspace-' + this.uid,
+      name: 'test-workspace-' + this.uid
     };
-    joola.dispatch.workspaces.delete(this.context, org, function (err) {
+    joola.dispatch.workspaces.delete(this.context, workspace, function (err) {
       if (err)
         return done(err);
 
-      joola.dispatch.workspaces.list(self.context, function (err, orgs) {
+      joola.dispatch.workspaces.list(self.context, function (err, workspaces) {
         if (err)
           return done(err);
 
-        var exist = _.filter(orgs, function (item) {
-          return item.name == 'test-org-' + self.uid;
+        var exist = _.filter(workspaces, function (item) {
+          return item.name == 'test-workspace-' + self.uid;
         });
         try {
           expect(exist.length).to.equal(0);
@@ -166,10 +166,10 @@ describe("workspaces", function () {
   });
 
   it("should fail deleting a non existing workspace", function (done) {
-    var org = {
-      id: 'test-org-' + this.uid
+    var workspace = {
+      key: 'test-workspace-' + this.uid
     };
-    joola.dispatch.workspaces.delete(this.context, org, function (err) {
+    joola.dispatch.workspaces.delete(this.context, workspace, function (err) {
       if (err)
         return done();
 

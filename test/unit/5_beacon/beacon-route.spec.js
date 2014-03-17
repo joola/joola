@@ -21,6 +21,7 @@ describe("beacon-route", function () {
     {
       APIToken: 'apitoken-root',
       _path: '/beacon/insert',
+      workspace: this.context.user.workspace,
       collection: 'test-beacon-route-' + this.uid,
       document: {
         attribute: 'attribute',
@@ -42,6 +43,7 @@ describe("beacon-route", function () {
     {
       APIToken: 'apitoken-root',
       _path: '/beacon/insert',
+      workspace: this.context.user.workspace,
       collection: 'test-beacon-route-' + this.uid,
       document: 'invalid json'
     };
@@ -62,6 +64,7 @@ describe("beacon-route", function () {
     {
       APIToken: 'apitoken-root',
       _path: '/beacon/insert',
+      workspace: this.context.user.workspace,
       collection: 'test-beacon-route-' + this.uid,
       document: JSON.stringify({document: {
         attribute: 'attribute1',
