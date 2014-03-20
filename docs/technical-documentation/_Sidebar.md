@@ -21,7 +21,7 @@
 - [Web Server](The-Webserver-Subsystem)
 - [SDK](The-SDK-Subsystem)
 
-**The development process**
+**The Development Process**
 - [Overview](the-development-process)
 - [Testing](Code-Testing)
 - [Style Guide](code-style-guidelines)

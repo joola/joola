@@ -17,7 +17,6 @@ The following workshops are available:
 - [[Developing with joola.io]]
 - [[System and Security]]
 - [[QA and Testing]]
-- [[Website Integration]]
 
 #### Guided Workshops
 If you prefer, we can arrange for an online/on-site workshop to be delivered for your engineers.  

@@ -15,7 +15,7 @@ Each of these topics is covered in high-level, for more detailed discussions, we
 ### Setup
 - Dedicated lab environment for the workshop [Lab #1, minimal setup](Lab-%231---Minimal-Setup)
 - The workshop space needs to have a projector
-- This workshop is accompanied by an online presentation available @ TBC
+- This workshop is accompanied by an online presentation available @ [[http://www.slidecaptain.com/flows/5318d94d12739b1f43007034/workshop-technical-review-of-joola-io/]]
 
 ### Pre-requisite
 - None

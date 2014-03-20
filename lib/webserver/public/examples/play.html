@@ -118,10 +118,16 @@
     }
   });
 
+
+  db["gameplay.gameround_gamesession"].remove({date: {$gte: new Date(2014, 2, 17)}});
+
+  console.log('playground-' + uid);
+  
   var plot = function () {
     var json = editor2.getSession().getValue();
     try {
       json = JSON.parse(json);
+      json.collection = 'playground-' + uid;
       var metrics = [];
       json.metrics.forEach(function (m) {
         m = {
