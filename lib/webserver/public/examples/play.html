@@ -61,8 +61,7 @@
         "timeframe": "last_minute",
         "interval": "second",
         "dimensions": ["timestamp"],
-        "metrics": ["event"],
-        "realtime": true
+        "metrics": ["event"]
         }
       </div>
     </div>
@@ -100,7 +99,7 @@
 </script>
 
 <script>
-  var uid = joolaio.common.uuid();
+  var uid = 'TEST';//joolaio.common.uuid();
   $('#push').on('click', function () {
     var json = editor.getSession().getValue();
     try {
@@ -120,7 +119,7 @@
 
 
   console.log('playground-' + uid);
-  
+
   var plot = function () {
     var json = editor2.getSession().getValue();
     try {
@@ -128,10 +127,15 @@
       json.collection = 'playground-' + uid;
       var metrics = [];
       json.metrics.forEach(function (m) {
-        m = {
-          key: m,
-          collection: 'playground-' + uid
-        };
+        if (typeof m === 'object') {
+          m.collection = 'playground-' + uid;
+        }
+        else {
+          m = {
+            key: m,
+            collection: 'playground-' + uid
+          };
+        }
         metrics.push(m);
       });
       json.metrics = metrics;
