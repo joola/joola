@@ -92,6 +92,60 @@
         "password": null,
         "db": "cache"
       }
+    },
+    "cache-second": {
+      "mongo": {
+        "host": "localhost",
+        "port": 27017,
+        "user": null,
+        "password": null,
+        "db": "cache-second"
+      }
+    },
+    "cache-minute": {
+      "mongo": {
+        "host": "localhost",
+        "port": 27017,
+        "user": null,
+        "password": null,
+        "db": "cache-minute"
+      }
+    },
+    "cache-hour": {
+      "mongo": {
+        "host": "localhost",
+        "port": 27017,
+        "user": null,
+        "password": null,
+        "db": "cache-hour"
+      }
+    },
+    "cache-ddate": {
+      "mongo": {
+        "host": "localhost",
+        "port": 27017,
+        "user": null,
+        "password": null,
+        "db": "cache-ddate"
+      }
+    },
+    "cache-month": {
+      "mongo": {
+        "host": "localhost",
+        "port": 27017,
+        "user": null,
+        "password": null,
+        "db": "cache-month"
+      }
+    },
+    "cache-year": {
+      "mongo": {
+        "host": "localhost",
+        "port": 27017,
+        "user": null,
+        "password": null,
+        "db": "cache-year"
+      }
     }
   },
   "dispatch": {
