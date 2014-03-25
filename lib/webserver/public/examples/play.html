@@ -45,7 +45,8 @@
       </div>
     </div>
     <div class="col-lg-1">
-      <button id="push" class="btn btn-default btn-primary" style="margin-top:130px;margin-left:-5px">Push =></button>
+      <button id="push" class="btn btn-default btn-primary" style="margin-top:130px;margin-left:-5px">Push =>
+      </button>
     </div>
     <div class="col-lg-6">
       <div id="editor3">
@@ -58,15 +59,20 @@
   <div class="row">
     <div class="col-lg-5">
       <div id="editor2">{
-        "timeframe": "last_minute",
-        "interval": "second",
+        "timeframe": "last_hour",
+        "interval": "minute",
         "dimensions": ["timestamp"],
-        "metrics": ["event"]
+        "metrics": ["event"],
+        "realtime":{
+        "enabled":true,
+        "interval":5000
+        }
         }
       </div>
     </div>
     <div class="col-lg-1">
-      <button id="query" class="btn btn-default btn-primary" style="margin-top:130px;margin-left:-5px">Query =></button>
+      <button id="query" class="btn btn-default btn-primary" style="margin-top:130px;margin-left:-5px">Query =>
+      </button>
     </div>
     <div class="col-lg-6">
       <div id="chart"></div>
@@ -143,6 +149,19 @@
       json.metrics = metrics;
       $('#chart').Sparkline({
         force: true,
+        /*chart: {
+          chart: {
+            type: 'column'
+          },
+          plotOptions: {
+            series: {
+              pointPadding: 0.05,
+              groupPadding: 0.1,
+              borderWidth: 0,
+              shadow: false
+            }
+          }
+        },*/
         query: json
       });
     }
