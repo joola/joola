@@ -113,6 +113,8 @@
       });
     }
     catch (ex) {
+      console.log(ex);
+      console.log(ex.stack);
       editor3.getSession().setValue(ex);
     }
   });
@@ -145,6 +147,7 @@
       });
     }
     catch (ex) {
+      console.log(ex);
       editor3.getSession().setValue(ex);
     }
   };
