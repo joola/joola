@@ -96,7 +96,7 @@
   editor3.getSession().setMode("ace/mode/javascript");
 </script>
 
-<script src="/joola.io.js"></script>
+<script src="/joola.io.min.js"></script>
 <script>
   joolaio.init({APIToken: 'apitoken-root'}, function (err) {
     if (err)
@@ -150,18 +150,18 @@
       $('#chart').Sparkline({
         force: true,
         /*chart: {
-          chart: {
-            type: 'column'
-          },
-          plotOptions: {
-            series: {
-              pointPadding: 0.05,
-              groupPadding: 0.1,
-              borderWidth: 0,
-              shadow: false
-            }
-          }
-        },*/
+         chart: {
+         type: 'column'
+         },
+         plotOptions: {
+         series: {
+         pointPadding: 0.05,
+         groupPadding: 0.1,
+         borderWidth: 0,
+         shadow: false
+         }
+         }
+         },*/
         query: json
       });
     }
