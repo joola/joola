@@ -48,7 +48,7 @@
     "hiredis": "*",
     "async": "*",
     "express": "3.4.4",
-    "socket.io": "*",
+    "socket.io": "~0.9.14",
     "socket.io-wildcard": "*",
     "socket.io-browserify": "*",
     "jade": "*",
