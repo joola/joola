@@ -24,6 +24,7 @@ describe("beacon-route", function () {
       workspace: this.context.user.workspace,
       collection: 'test-beacon-route-' + this.uid,
       document: {
+        timestamp: null,
         attribute: 'attribute',
         value: 123
       }
@@ -55,6 +56,7 @@ describe("beacon-route", function () {
     io.socket = joolaio.io.connect(joolaio.options.host);
     io.socket.once('/beacon/insert:done', function (_message) {
       //TODO: confirm document is actually written
+
       if (_message.code === 500)
         return done(new Error('Failed'));
 
@@ -67,6 +69,7 @@ describe("beacon-route", function () {
       workspace: this.context.user.workspace,
       collection: 'test-beacon-route-' + this.uid,
       document: JSON.stringify({document: {
+        timestamp: new Date(),
         attribute: 'attribute1',
         value1: 1234
       }})

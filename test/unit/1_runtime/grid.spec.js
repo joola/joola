@@ -38,7 +38,7 @@ describe("grid", function () {
     app.kill('SIGINT');
     app.on('exit', function (code) {
       //allow time for the node to register off
-      setTimeout(done, 5000);
+      setTimeout(done, 0);
     });
   });
 });
