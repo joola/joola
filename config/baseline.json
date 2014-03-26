@@ -193,7 +193,7 @@
     "store": "internal",
     "bypassToken": "123",
     "tokens": {
-      "expireAfter": 5000
+      "expireAfter": 1200000
     }
   }
 }
