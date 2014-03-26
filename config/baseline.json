@@ -84,6 +84,15 @@
         "path": "/tmp/joola.io/"
       }
     },
+    "messages": {
+      "mongo": {
+        "host": "localhost",
+        "port": 27017,
+        "user": null,
+        "password": null,
+        "db": "dispatch"
+      }
+    },
     "cache": {
       "mongo": {
         "host": "localhost",
@@ -128,7 +137,7 @@
     "store": "internal",
     "bypassToken": "123",
     "tokens": {
-      "expireAfter": 1200000
+      "expireAfter": 5000
     }
   }
 }
