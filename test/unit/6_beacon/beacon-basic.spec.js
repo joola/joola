@@ -11,7 +11,8 @@ describe("beacon-basic", function () {
   it("should load a single document", function (done) {
     var self = this;
     joola.beacon.insert(this.context, this.context.user.workspace, this.collection, ce.clone(this.documents[0]), function (err, doc) {
-      self.dup = doc[0].timestamp;
+
+      self.dup = new Date(doc[0].timestamp).toISOString();
       doc = doc[0];
 
       done(err);
@@ -21,10 +22,24 @@ describe("beacon-basic", function () {
   it("should fail loading a duplicate single document", function (done) {
     var doc = ce.clone(this.documents[0]);
     doc.timestamp = this.dup;
+
     joola.beacon.insert(this.context, this.context.user.workspace, this.collection, doc, function (err, doc) {
       doc = doc[0];
 
       expect(doc.saved).to.equal(false);
+      done();
+    });
+  });
+
+  it("should not fail loading a duplicate multiple document", function (done) {
+    var doc = ce.clone(this.documents[0]);
+    doc.timestamp = this.dup;
+
+    joola.beacon.insert(this.context, this.context.user.workspace, this.collection, [doc, doc], function (err, doc) {
+      expect(doc.length).to.equal(2);
+      doc.forEach(function (d) {
+        expect(d.saved).to.equal(false);
+      });
       done();
     });
   });
@@ -43,21 +58,47 @@ describe("beacon-basic", function () {
         return done(err);
 
       docs.forEach(function (d) {
-
         expect(d.saved).to.equal(true);
       });
       done();
     });
-
   });
 
-  it("should fail loading documents with no timestamp", function (done) {
+  it("should complete loading documents with no dimensions correctly", function (done) {
     var documents = [
-      {"visitors": 2}
+      {"visitors": 2},
+      {"visitors": 3},
+      {"visitors": 4}
     ];
-    joola.beacon.insert(this.context, this.context.user.workspace, this.collection + '-nots', documents, function (err) {
-      if (!err)
-        return done(new Error('This should have failed'));
+    joola.beacon.insert(this.context, this.context.user.workspace, this.collection + '-nots', documents, function (err, docs) {
+      if (err)
+        return done(err);
+
+      expect(docs.length).to.equal(3);
+      docs.forEach(function (d) {
+        expect(d.saved).to.equal(true);
+      });
+
+      done();
+    });
+  });
+
+  it("should complete loading documents with no timestamp", function (done) {
+    var documents = [
+      {"visitors": 2},
+      {"visitors": 3},
+      {"visitors": 4}
+    ];
+    joola.beacon.insert(this.context, this.context.user.workspace, this.collection + '-nots', documents, function (err, docs) {
+      if (err)
+        return done(err);
+
+      expect(docs.length).to.equal(3);
+      docs.forEach(function (d) {
+        expect(d.saved).to.equal(true);
+        expect(d.timestamp).to.be.ok;
+      });
+
       done();
     });
   });

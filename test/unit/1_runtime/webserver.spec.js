@@ -98,7 +98,7 @@ describe("webserver", function () {
     });
     var options =
       {
-        APIToken: '12345',
+        APIToken: 'apitoken-root',
         _path: '/workspaces/list'
       }
       ;
