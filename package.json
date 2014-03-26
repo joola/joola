@@ -73,7 +73,11 @@
     "querystring": "~0.2.0",
     "json-stringify-safe": "^5.0.0",
     "deep-equal": "~0.2.1",
-    "localeval": "~13.12.11"
+    "localeval": "~13.12.11",
+    "benchmark": "^1.0.0",
+    "microtime": "^0.5.1",
+    "commander": "^2.1.0",
+    "humanize-number": "0.0.2"
   },
   "devDependencies": {
     "jsdox": "https://github.com/itayw/jsdox/tarball/master",
