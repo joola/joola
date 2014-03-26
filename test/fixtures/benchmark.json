@@ -1,7 +1,7 @@
 {
-  workspace: 'root',
-  collection: 'testing-benchmark',
-  document: [
+  "workspace": "root",
+  "collection": "testing-benchmark",
+  "document": [
     {
       "timestamp": null,
       "Operating System": "Mac OS X 10.8_4",
