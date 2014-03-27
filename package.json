@@ -77,7 +77,8 @@
     "benchmark": "^1.0.0",
     "microtime": "^0.5.1",
     "commander": "^2.1.0",
-    "humanize-number": "0.0.2"
+    "humanize-number": "0.0.2",
+    "traverse": "^0.6.6"
   },
   "devDependencies": {
     "jsdox": "https://github.com/itayw/jsdox/tarball/master",

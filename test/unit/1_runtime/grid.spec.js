@@ -20,7 +20,7 @@ describe("grid", function () {
     joola.dispatch.on('nodes:state:change', function (channel, message) {
       if (!doneCalled && message[1].status === 'online') {
         doneCalled = true;
-        done();
+        setTimeout(done,1000);
       }
     });
   });

@@ -92,7 +92,8 @@
         "port": 27017,
         "user": null,
         "password": null,
-        "db": "dispatch"
+        "db": "dispatch",
+        "unique": false
       }
     },
     "cache": {

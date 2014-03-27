@@ -8,6 +8,27 @@
     },
     "nvalue": {
       "actual": 1
+    },
+    "n2value": {
+      "actual2": {
+        "thevalue": 3
+      }
+    }
+  },
+  {
+    "timestamp": null,
+    "nattribute": "test",
+    "user": {
+      "username": "test1",
+      "country": "japan"
+    },
+    "nvalue": {
+      "actual": 5
+    },
+    "n2value": {
+      "actual2": {
+        "thevalue": 4
+      }
     }
   },
   {

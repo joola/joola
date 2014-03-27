@@ -14,7 +14,7 @@ describe("beacon-basic", function () {
 
       self.dup = new Date(doc[0].timestamp).toISOString();
       doc = doc[0];
-
+      expect(doc.saved).to.equal(true);
       done(err);
     });
   });
@@ -25,7 +25,6 @@ describe("beacon-basic", function () {
 
     joola.beacon.insert(this.context, this.context.user.workspace, this.collection, doc, function (err, doc) {
       doc = doc[0];
-
       expect(doc.saved).to.equal(false);
       done();
     });
