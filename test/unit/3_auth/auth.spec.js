@@ -47,12 +47,12 @@ describe("auth", function () {
 
   xit("should validate a token presented in headers", function (done) {
     var options = {};
-    options.headers = {'joolaio-token': '12345'};
+    options.headers = {'joolaio-token': 'apitoken-root'};
     browser.visit('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/api/test/action', options, function () {
       var result = browser.text();
       result = JSON.parse(result);
 
-      expect(result.debug.header_token).to.equal('12345');
+      expect(result.debug.header_token).to.equal('apitoken-root');
       done();
     });
   });

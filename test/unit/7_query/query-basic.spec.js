@@ -35,13 +35,15 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.value).to.equal(3);
+      expect(result.documents[0].values.value).to.equal(4);
       return done();
     });
   });
 
   it("should perform a basic query with minimal arguments [no timestamp]", function (done) {
     var query = {
+      timeframe: 'last_minute',
+      interval: 'raw',
       metrics: ['value'],
       collection: this.collection
     };
@@ -52,7 +54,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.value).to.equal(3);
+      expect(result.documents[0].values.value).to.equal(4);
       return done();
     });
   });
@@ -71,7 +73,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.value).to.equal(3);
+      expect(result.documents[0].values.value).to.equal(4);
       return done();
     });
   });
@@ -111,7 +113,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.value).to.equal(1.5);
+      expect(result.documents[0].values.value).to.equal(1.33);
       return done();
     });
   });
@@ -132,7 +134,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.value).to.equal(1.5);
+      expect(result.documents[0].values.value).to.equal(1.33);
       return done();
     });
   });
@@ -153,7 +155,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.value).to.equal(1.5);
+      expect(result.documents[0].values.value).to.equal(1.33);
       return done();
     });
   });
@@ -237,7 +239,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].fvalues.value).to.equal('$3');
+      expect(result.documents[0].fvalues.value).to.equal('$4');
       return done();
     });
   });
@@ -258,7 +260,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].fvalues.value).to.equal('3ms');
+      expect(result.documents[0].fvalues.value).to.equal('4ms');
       return done();
     });
   });
@@ -279,7 +281,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].fvalues.value).to.equal('$3ms');
+      expect(result.documents[0].fvalues.value).to.equal('$4ms');
       return done();
     });
   });
@@ -300,7 +302,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].fvalues.value).to.equal('1.5000');
+      expect(result.documents[0].fvalues.value).to.equal('1.3333');
       return done();
     });
   });
@@ -321,7 +323,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].fvalues.value).to.equal('1.50');
+      expect(result.documents[0].fvalues.value).to.equal('1.33');
       return done();
     });
   });
@@ -342,7 +344,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].fvalues.value).to.equal('2');
+      expect(result.documents[0].fvalues.value).to.equal('1');
       return done();
     });
   });
@@ -393,7 +395,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.calcvalue).to.equal(90);
+      expect(result.documents[0].values.calcvalue).to.equal(160);
       return done();
     });
   });
@@ -422,7 +424,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.calcvalue).to.equal(27000);
+      expect(result.documents[0].values.calcvalue).to.equal(64000);
       return done();
     });
   });
@@ -450,7 +452,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.calcvalue).to.equal(3000);
+      expect(result.documents[0].values.calcvalue).to.equal(4000);
       return done();
     });
   });

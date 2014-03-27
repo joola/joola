@@ -80,7 +80,7 @@ describe("common-cli-arguments", function () {
 
       app.on('close', function (code) {
         //expect(code).to.equal(0);
-        setTimeout(done, 3000);
+        setTimeout(done, 0);
       });
     }
     catch (ex) {

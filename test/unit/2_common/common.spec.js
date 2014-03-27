@@ -88,7 +88,7 @@ describe("common-utils", function () {
   it("should generate uuid - unique", function (done) {
     var ids = [];
 
-    for (var i = 0; i < 32000; i++) {
+    for (var i = 0; i < 3200; i++) {
       var uuid = joola.common.uuid();
       if (ids.indexOf(uuid) > -1) {
         return done(new Error('Found duplicate uuid [' + uuid + ']'));

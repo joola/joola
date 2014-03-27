@@ -22,7 +22,8 @@
         "enabled": true
       },
       "sessionDurtaion": 1200000,
-      "timeout": 15000
+      "timeout": 15000,
+      "blacklist": []
     },
     "repl": {
       "enabled": true,
@@ -77,6 +78,7 @@
           "capped": true,
           "size": 10240000
         },
+        "unique": false,
         "expireAfterSeconds": 3600
       },
       "file": {
@@ -90,7 +92,8 @@
         "port": 27017,
         "user": null,
         "password": null,
-        "db": "dispatch"
+        "db": "dispatch",
+        "unique": false
       }
     },
     "cache": {
@@ -100,6 +103,60 @@
         "user": null,
         "password": null,
         "db": "cache"
+      }
+    },
+    "cache-second": {
+      "mongo": {
+        "host": "localhost",
+        "port": 27017,
+        "user": null,
+        "password": null,
+        "db": "cache-second"
+      }
+    },
+    "cache-minute": {
+      "mongo": {
+        "host": "localhost",
+        "port": 27017,
+        "user": null,
+        "password": null,
+        "db": "cache-minute"
+      }
+    },
+    "cache-hour": {
+      "mongo": {
+        "host": "localhost",
+        "port": 27017,
+        "user": null,
+        "password": null,
+        "db": "cache-hour"
+      }
+    },
+    "cache-ddate": {
+      "mongo": {
+        "host": "localhost",
+        "port": 27017,
+        "user": null,
+        "password": null,
+        "db": "cache-ddate"
+      }
+    },
+    "cache-month": {
+      "mongo": {
+        "host": "localhost",
+        "port": 27017,
+        "user": null,
+        "password": null,
+        "db": "cache-month"
+      }
+    },
+    "cache-year": {
+      "mongo": {
+        "host": "localhost",
+        "port": 27017,
+        "user": null,
+        "password": null,
+        "db": "cache-year"
       }
     }
   },
@@ -137,7 +194,7 @@
     "store": "internal",
     "bypassToken": "123",
     "tokens": {
-      "expireAfter": 5000
+      "expireAfter": 1200000
     }
   }
 }

@@ -45,7 +45,8 @@
       </div>
     </div>
     <div class="col-lg-1">
-      <button id="push" class="btn btn-default btn-primary" style="margin-top:130px;margin-left:-5px">Push =></button>
+      <button id="push" class="btn btn-default btn-primary" style="margin-top:130px;margin-left:-5px">Push =>
+      </button>
     </div>
     <div class="col-lg-6">
       <div id="editor3">
@@ -58,16 +59,20 @@
   <div class="row">
     <div class="col-lg-5">
       <div id="editor2">{
-        "timeframe": "last_minute",
-        "interval": "second",
+        "timeframe": "last_hour",
+        "interval": "minute",
         "dimensions": ["timestamp"],
         "metrics": ["event"],
-        "realtime": true
+        "realtime":{
+        "enabled":true,
+        "interval":5000
+        }
         }
       </div>
     </div>
     <div class="col-lg-1">
-      <button id="query" class="btn btn-default btn-primary" style="margin-top:130px;margin-left:-5px">Query =></button>
+      <button id="query" class="btn btn-default btn-primary" style="margin-top:130px;margin-left:-5px">Query =>
+      </button>
     </div>
     <div class="col-lg-6">
       <div id="chart"></div>
@@ -91,7 +96,7 @@
   editor3.getSession().setMode("ace/mode/javascript");
 </script>
 
-<script src="/joola.io.js"></script>
+<script src="/joola.io.min.js"></script>
 <script>
   joolaio.init({APIToken: 'apitoken-root'}, function (err) {
     if (err)
@@ -100,7 +105,7 @@
 </script>
 
 <script>
-  var uid = joolaio.common.uuid();
+  var uid = 'TEST';//joolaio.common.uuid();
   $('#push').on('click', function () {
     var json = editor.getSession().getValue();
     try {
@@ -114,13 +119,14 @@
       });
     }
     catch (ex) {
+      console.log(ex);
+      console.log(ex.stack);
       editor3.getSession().setValue(ex);
     }
   });
-
-
-  console.log('playground-' + uid);
   
+  console.log('playground-' + uid);
+
   var plot = function () {
     var json = editor2.getSession().getValue();
     try {
@@ -128,19 +134,38 @@
       json.collection = 'playground-' + uid;
       var metrics = [];
       json.metrics.forEach(function (m) {
-        m = {
-          key: m,
-          collection: 'playground-' + uid
-        };
+        if (typeof m === 'object') {
+          m.collection = 'playground-' + uid;
+        }
+        else {
+          m = {
+            key: m,
+            collection: 'playground-' + uid
+          };
+        }
         metrics.push(m);
       });
       json.metrics = metrics;
       $('#chart').Sparkline({
         force: true,
+        /*chart: {
+         chart: {
+         type: 'column'
+         },
+         plotOptions: {
+         series: {
+         pointPadding: 0.05,
+         groupPadding: 0.1,
+         borderWidth: 0,
+         shadow: false
+         }
+         }
+         },*/
         query: json
       });
     }
     catch (ex) {
+      console.log(ex);
       editor3.getSession().setValue(ex);
     }
   };
