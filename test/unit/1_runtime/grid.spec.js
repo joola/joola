@@ -25,7 +25,7 @@ describe("grid", function () {
     });
   });
 
-  it("should handle dispatch messages on a secondary node", function (done) {
+  xit("should handle dispatch messages on a secondary node", function (done) {
     joola.dispatch.request(_token._, 'workspaces:list', {}, function (err, result, message) {
       if (message.from !== message['fulfilled-by'])
         done();
