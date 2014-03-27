@@ -24,7 +24,8 @@ doc:
 		find ./wiki/* ! -iregex '(.git|.npm)' | xargs rm -fr
 		node build/docs.js
 
-test-cov:	
+test-cov:
+		$(MAKE) lint
 		$(MAKE) istanbul
 
 istanbul:
