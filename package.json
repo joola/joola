@@ -8,9 +8,9 @@
   "private": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/joola/joola.io.git"
+    "url": "http://github.com/joola/joola.io.git"
   },
-  "bugs": "https://joolatech.atlassian.net/browse/JARVIS",
+  "bugs": "http://github.com/joola/joola.io/issues",
   "contributors": [
     {
       "name": "Itay Weinberger",
@@ -42,7 +42,7 @@
   "dependencies": {
     "joola.io.sdk": "http://github.com/joola/joola.io.sdk/tarball/develop",
     "nconf": "*",
-    "nconf-redis": "https://github.com/itayw/nconf-redis/tarball/develop",
+    "nconf-redis": "http://github.com/itayw/nconf-redis/tarball/develop",
     "eventemitter2": "*",
     "redis": "*",
     "hiredis": "*",
@@ -52,9 +52,9 @@
     "socket.io-wildcard": "*",
     "socket.io-browserify": "*",
     "jade": "*",
-    "bunyan": "https://github.com/itayw/node-bunyan/tarball/master",
+    "bunyan": "http://github.com/itayw/node-bunyan/tarball/master",
     "bunyan-format": "*",
-    "mongo-col": "https://github.com/Raynos/mongo-col/tarball/master",
+    "mongo-col": "http://github.com/Raynos/mongo-col/tarball/master",
     "mongo-stream": "*",
     "mongodb": "*",
     "htpasswd": "*",
@@ -83,7 +83,7 @@
     "circular-json": "~0.1.6"
   },
   "devDependencies": {
-    "jsdox": "https://github.com/itayw/jsdox/tarball/master",
+    "jsdox": "http://github.com/itayw/jsdox/tarball/master",
     "mocha-lcov-reporter": "*",
     "coveralls": "*",
     "should": "*",
