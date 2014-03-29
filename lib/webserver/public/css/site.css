@@ -255,3 +255,13 @@ div[jio-type="metric"].active .jio.metricbox.caption {
 .codepen-container{
   margin-bottom: 10px;
 }
+
+
+.editor {
+  border: 1px solid #ddd;
+  height: 300px;
+}
+
+#push{
+  margin-top: 150px;
+}

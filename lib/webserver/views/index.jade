@@ -88,7 +88,7 @@ main.bs-docs-masthead(id="content", role="main")
     .col-md-12
       .bs-docs-section(id="gettingstarted")
         h1.page-header Getting Started
-        p.lead An overview of joola.io, how to setup and use, basic usage, and more.
+        p.lead An overview of joola.io, how to setup, configure and use.
         p.
           joola.io was designed by developers for developers. We did the heavy-lifting with all that is data and framework related,
           this is what makes joola.io so easy and fun to play with.<br/>
@@ -245,7 +245,46 @@ main.bs-docs-masthead(id="content", role="main")
               a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about authentication
         .row
         h2 Pushing data
-
+        p.
+          After the framework is setup (if you see the demo above, then it's fine), we can move on to push data into joola.io.
+          Data to be pushed is described as an array of JSON documents, where each document describes all details needed for later retrieval.
+          Collections are used to batch data into logical containers, they store valualble metadata needed when querying information.
+          <br/>Once data is pushed it's immediately available for query and visualization and pushing it cannot get easier.
+        h3 A quick demo
+        .row
+          .col-md-6
+            p.
+             Describe your data as a JSON document and choose a collection to push to.
+             <br/>When you're done click on the 'Push' button to see results on the right pane.
+            form(role="form")
+              .form-group
+                label Collection name
+                div.input-group
+                  input.form-control(type="text" ,id="collectionName", placeholder="Enter a collection name")
+                  span.input-group-btn
+                    button.btn.btn-default(type="button", id="pushEvent") Push!
+            #editor.editor.
+              {
+                "timestamp": null,
+                "article": "Sample Analytics",
+                "browser": "Chrome",
+                "device": "Desktop",
+                "engine": "Webkit",
+                "os": "Linux",
+                "userid": "demo@joo.la",
+                "ip": "127.0.0.1",
+                "referrer": "http://joo.la",
+                "visits": 1,
+                "loadtime": 123
+              }
+          .col-md-6
+            p(style="padding-bottom:15px").
+              Beacon transforms documents during the 'push' process. It adds time buckets and other helpers to allow faster querying and visualization.
+              Data is then crunched to several time resolutions, each allowing cached data to be purged after a certain period of time, thus reducing the overall disk usage and query time.
+              Following the push of data, you will see a transformed document below.
+            #editor2.editor.
+              Use the editor on the left to describe the data you want to push.
+              Results will show up here.
         h2 Visualization
   .row
     .col-md-12
