@@ -143,8 +143,6 @@
   margin-bottom: 0;
 }
 
-
-
 div[jio-type="metric"] {
   border: 1px solid #dededc;
   border-top: rgba(0, 0, 0, 0);
@@ -252,16 +250,23 @@ div[jio-type="metric"].active .jio.metricbox.caption {
   border-radius: 4px;
 }
 
-.codepen-container{
+.codepen-container {
   margin-bottom: 10px;
 }
-
 
 .editor {
   border: 1px solid #ddd;
   height: 300px;
 }
 
-#push{
+#push {
   margin-top: 150px;
+}
+
+.checkbox {
+  padding-left: 40px;
+}
+
+label.checkbox {
+  font-weight: normal;
 }
