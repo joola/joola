@@ -68,7 +68,8 @@ main.bs-docs-masthead(id="content", role="main")
         };
 
         joolaio.beacon.insert('demo-mousemoves', doc);
-      a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about pushing data
+      p.center-block.text-center
+        a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about pushing data
     .col-md-6
       p Drawing visualizations is as easy as describing what you would like to see.
       pre.prettyprint(lang="javascript").
@@ -81,36 +82,130 @@ main.bs-docs-masthead(id="content", role="main")
         };
 
         $('#container').Timeline({query: query});
-      a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about visualization
+      p.center-block.text-center
+        a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about visualization
 
   .row
     .col-md-12
       .bs-docs-section(id="gettingstarted")
         h1.page-header Getting Started
         p.lead An overview of joola.io, how to setup and use, basic usage, and more.
+        p.
+          joola.io was designed by developers for developers. We did the heavy-lifting with all that is data and framework related,
+          this is what makes joola.io so easy and fun to play with.<br/>
+          The project is rich with <a href="http://github.com/joola/joola.io">documentation</a>, <a href="#examples">examples</a> and <a href="http:github.com/joola/joola.io/wiki/workshops">workshops</a>.
+        p.
+          Below is a quick guide for getting started with your first visualization and some basic concepts used throughout.
+        .bs-callout.bs-callout-warning
+          h4 Assumptions
+          p.
+            Please note that for this getting started guide we'll be assuming <code>localhost</code> as your server and <code>apitoken-root</code> as your APIToken (default).
+            <br/>Also, when referring to dependencies such as MongoDB, Redis, etc... we assume that these are installed on your <code>localhost</code>.
+          p.
+            For a complete setup and configuration guide, please refer to our <a href="http://github.com/joola/joola.io/wiki">wiki</a>.
+        h2 Connecting to joola.io
+        p.
+          There are several ways to communicate with your joola.io node and they all eventually (bar the REPL) use joola.io's API endpoints to pass instructions and data.<br/>
+          Our main method of communication is using the SDK, it exposes a standard method to consume joola.io's API endpoints.
+        .row
+          .col-md-6
+            h3 Using the SDK
+            p.
+              The SDK is a single Javascript file containing all that is needed to operate ALL aspects of joola.io. The SDK is not only used to control joola.io, but also responsible for visualizing data on screen.
+            pre.prettyprint(lang="javascript").
+              var joolaio = require('joola.io.sdk');
+              joolaio.init({
+                  host:'YOURHOST', APIToken: 'YOURTOKEN'
+                }, function(err){
+                if (err) throw err;
+                console.log('joola.io ready, version', joolaio.VERSION);
+                //joola.io ready, version 3.4.0
+              });
+            p.center-block.text-center
+              a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about the SDK
+          .col-md-6
+            h3 Using the CLI (Command Line Interface)
+            p.
+              The CLI is based on the SDK and offers an easy manner for communication with joola.io without needing to write lines of code.
+              In addition, the CLI offers a shorthand call of built-in joola.io functions, it will automatically add callback and print out to your calls.
+            pre.prettyprint(lang="bash").
+              $ joola.io.cli -h host -u username -p password
+
+              joola.io.cli (0.0.1) starting...
+              Connecting to joola.io @ http://localhost:8080...
+
+              joola.io root@localhost:8080> joolaio.VERSION
+              '3.4.0'
+              joola.io root@localhost:8080>
+            p.center-block.text-center
+              a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about the CLI
         h2 Configuration
+        p.
+          joola.io has a wide range of configurable settings. Setting these options can be done manually with joola.io launch or during runtime.
+          Runtime configuration effect all nodes on the grid immediately and allows in-place scalability and security changes to be put in place.
+        .row
+          .col-md-6
+            h3 Baseconfig.json
+            p.
+              joola.io's initial configuration is loaded from <code>config/baseconfig.json</code>.
+              By changing these values and calling <code>$ joola.io --baseconfig</code>, you can apply an initial configuration to your joola.io node.
+            pre.prettyprint(lang="bash").
+              configuration/
+                ├── interfaces/
+                ├── authentcation/
+                ├── store/
+                │   ├── configuration/
+                │   ├── cache/
+                │   └── logger/
+                ├── workspaces/
+                │   ├── users/
+                │   ├── roles/
+                │   ├── collections/
+                │   └── canvases/
+                └── alerts
+            p.center-block.text-center
+              a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about base config
+          .col-md-6
+            h3 Runtime configuration
+            p.
+              Runtime configuration allows for nodes to be updated without a service restart. By connecting to a single node, you are connected to the grid, so
+              issuing a config change will effect all at once.
+            pre.prettyprint(lang="bash").
+              $ joola.io.cli -h host -u username -p password
 
+              joola.io.cli (0.0.1) starting...
+              Connecting to joola.io @ http://localhost:8080...
+              joola.io> joolaio.config.get('store:logger:mongo')
+              { host: 'localhost',
+                password: null,
+                level: 'trace',
+                unique: false,
+                port: 27017,
+                user: null,
+                db: 'logger',
+                options: { capped: true, size: 10240000 } }
+            p.center-block.text-center
+              a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about runtime config
         h2 Authentication
-
+        .row
         h2 Pushing data
 
         h2 Visualization
-
   .row
     .col-md-12
       .bs-docs-section(id="examples")
         h1.page-header Examples
-        p.lead All of our examples include needed HTML, CSS and JS as Pens on <a href="http://codepen.io">CodePen.io</a>.
+        p.lead All examples include needed HTML, CSS and JS as Pens on <a href="http://codepen.io">CodePen.io</a>.
   .row
     .col-md-6.codepen-container
       p.codepen(data-height="268", data-theme-id="0", data-slug-hash="usxht", data-default-tab="result")
     .col-md-6.codepen-container
-      p.codepen(data-height="268", data-theme-id="0", data-slug-hash="LvkDp", data-default-tab="result")
+      p.codepen(data-height="268", data-theme-id="0", data-slug-hash="usxht", data-default-tab="html")
   .row
     .col-md-6.codepen-container
-      p.codepen(data-height="268", data-theme-id="0", data-slug-hash="LvkDp", data-default-tab="result")
+      p.codepen(data-height="268", data-theme-id="0", data-slug-hash="usxht", data-default-tab="css")
     .col-md-6.codepen-container
-      p.codepen(data-height="268", data-theme-id="0", data-slug-hash="LvkDp", data-default-tab="result")
+      p.codepen(data-height="268", data-theme-id="0", data-slug-hash="usxht", data-default-tab="js")
 
 script(async, src="//codepen.io/assets/embed/ei.js")
 include layout_footer
