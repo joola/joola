@@ -227,3 +227,7 @@ div[jio-type="metric"].active .jio.metricbox.caption {
   border: 1px solid #e1e1e8;
   border-radius: 4px;
 }
+
+.codepen-container{
+  margin-bottom: 10px;
+}
