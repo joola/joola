@@ -84,7 +84,6 @@ main.bs-docs-masthead(id="content", role="main")
         $('#container').Timeline({query: query});
       p.center-block.text-center
         a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about visualization
-
   .row
     .col-md-12
       .bs-docs-section(id="gettingstarted")
@@ -115,14 +114,12 @@ main.bs-docs-masthead(id="content", role="main")
             pre.prettyprint(lang="javascript").
               var joolaio = require('joola.io.sdk');
               joolaio.init({
-                  host:'YOURHOST', APIToken: 'YOURTOKEN'
+                  host:'http://localhost:8080', APIToken: 'apitoken-root'
                 }, function(err){
                 if (err) throw err;
                 console.log('joola.io ready, version', joolaio.VERSION);
                 //joola.io ready, version 3.4.0
               });
-            p.center-block.text-center
-              a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about the SDK
           .col-md-6
             h3 Using the CLI (Command Line Interface)
             p.
@@ -137,8 +134,9 @@ main.bs-docs-masthead(id="content", role="main")
               joola.io root@localhost:8080> joolaio.VERSION
               '3.4.0'
               joola.io root@localhost:8080>
-            p.center-block.text-center
-              a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about the CLI
+        .row
+          p.center-block.text-center
+            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about the SDK
         h2 Configuration
         p.
           joola.io has a wide range of configurable settings. Setting these options can be done manually with joola.io launch or during runtime.
@@ -163,8 +161,6 @@ main.bs-docs-masthead(id="content", role="main")
                 │   ├── collections/
                 │   └── canvases/
                 └── alerts
-            p.center-block.text-center
-              a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about base config
           .col-md-6
             h3 Runtime configuration
             p.
@@ -184,9 +180,69 @@ main.bs-docs-masthead(id="content", role="main")
                 user: null,
                 db: 'logger',
                 options: { capped: true, size: 10240000 } }
-            p.center-block.text-center
-              a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about runtime config
+        .row
+          p.center-block.text-center
+            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about configuration
         h2 Authentication
+        p.
+          joola.io is a secure, multi-tenant framework. This means that any action carried out requires a security context and users must authenticate before they
+          can communicate with the system. There are several authentication methods available.
+        .row
+          .col-md-12
+            h3 API Tokens
+            p.
+              An API token is a simple string that is assosiciated with a user account. Accessing joola.io with this API token will create a security context for the user and allow them to access the system according to their permissions and filters.
+            strong HTML
+            pre.prettyprint(lang="html").
+              &lt;script src="http://localhost:8080/joola.io.min.js?APIToken=apitoken-root"></script>
+            strong Node.JS
+            pre.prettyprint(lang="javascript").
+              var joolaio = require('joola.io.sdk');
+              joolaio.init({
+                host: 'http://localhost:8080',
+                APIToken: 'apitoken-root'
+              }, function(err, result) {});
+        .row
+          .col-md-12
+            h3 Server-side authentication
+            p.
+              API tokens are useful, but not very every scenario. On some, the admin wish to avoid users holding long-term tokens and instead wishes to issue a short-term, "single-use" token for accessing joola.io.
+            pre.prettyprint(lang="javascript").
+              var joolaio = require('joola.io.sdk');
+              joolaio.authenticate('workspace', 'username', 'password', function(err, token) {
+                //we're now logged in as root
+                console.log('we now have a token for the user', token);
+              });
+        .row
+          .col-md-12
+            h3 Command Line Interface (CLI)
+            p.
+              The CLI uses the SDK for communicating with a joola.io node, so you can apply the same authentication methods as used throughout the SDK.
+              <br/>However, it does support a few switches that make it easier to use.
+            pre.prettyprint(lang="bash").
+              $ joola.io.cli --help
+              # Shows a list of all possible commands and options
+              $ joola.io.cli -h "http://localhost:8080" -u root -p password
+              # Logged in as root on localhost:8080
+        .row
+          .col-md-12
+            h3 Single Sign On (SSO)
+            p.
+              Often admins already have their own userbase and would like to display data to signed users. In such cases, joola.io's internal user management is redundant and we should avoid duplicating user details.
+              <br/>Therefore, when we want to apply SSO we impersonate the user by creating a token for it. The example below shows generating a token for a user, which will be allowed to see only items where the <code>browser='Chrome'</code>.
+            pre.prettyprint(lang="javascript").
+              var user = {
+                username: 'demo user',
+                _roles: ['user'],
+                _filter: [
+                  ['browser', 'eq', 'Chrome']
+                ]
+              };
+              joolaio.users.generateToken('workspace', user, function(err, token) {
+                console.log('Here is our new token', token);
+              });
+            p.center-block.text-center
+              a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about authentication
         .row
         h2 Pushing data
 
