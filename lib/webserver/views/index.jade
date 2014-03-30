@@ -313,7 +313,7 @@ main.bs-docs-masthead(id="content", role="main")
               .form-group
                 label Collection name
                 div.input-group
-                  input.form-control(type="text" ,id="collectionName", placeholder="Enter a collection name")
+                  input.form-control(type="text" ,id="viz-collectionName", placeholder="Enter a collection name")
                   span.input-group-btn
                     button.btn.btn-default(type="button", id="visualize") Visualize!
                     button.btn.btn-default.dropdown-toggle(type="button", data-toggle="dropdown", id="visualize")
@@ -331,20 +331,19 @@ main.bs-docs-masthead(id="content", role="main")
                         label.checkbox
                           input.viz-check(type="checkbox", data-attr="table")
                           | Table
+                      li
+                        label.checkbox
+                          input.viz-check(type="checkbox", data-attr="pie")
+                          | Pie            
             #editor3.editor.
               {
-                "timestamp": null,
-                "article": "Sample Analytics",
-                "browser": "Chrome",
-                "device": "Desktop",
-                "engine": "Webkit",
-                "os": "Linux",
-                "userid": "demo@joo.la",
-                "ip": "127.0.0.1",
-                "referrer": "http://joo.la",
-                "visits": 1,
-                "loadtime": 123
+                "timeframe": "last_minute",
+                "interval": "second",
+                "dimensions": ["timestamp"],
+                "metrics": ["visits"]
               }
+          .col-md-6
+            #vizcontainer.active
   .row
     .col-md-12
       .bs-docs-section(id="examples")
