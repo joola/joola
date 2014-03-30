@@ -141,7 +141,7 @@ describe("dispatch", function () {
 
   });
 
-  it("should listen once for emits", function (done) {
+  xit("should listen once for emits", function (done) {
     var expected = 1;
     var actual = 0;
     joola.dispatch.once('test-emit-once', function (result) {

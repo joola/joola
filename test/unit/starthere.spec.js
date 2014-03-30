@@ -15,7 +15,6 @@ before(function (done) {
     if (err)
       return done(err);
     joola.state.on('state:change', function (state) {
-
       if (state !== 'online')
         return done(new Error('Failed to initialize engine, check logs.'));
 
@@ -24,10 +23,11 @@ before(function (done) {
       joolaio.init({host: 'http://127.0.0.1:8080', APIToken: 'apitoken-root'}, function (err) {
         if (err)
           return done(err);
-
-        joola.auth.generateToken(joolaio.USER, function (err, token) {
-          global._token = token;
-          return done();
+        joolaio.events.on('ready', function () {
+          joola.auth.generateToken(joolaio.USER, function (err, token) {
+            global._token = token;
+            return done();
+          });
         });
       });
     });
