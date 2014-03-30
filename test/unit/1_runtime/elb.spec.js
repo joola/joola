@@ -17,7 +17,7 @@ describe("event loop blocks", function () {
 
   it("should not cause an event loop block on excessive beacon [single doc]", function (done) {
     var self = this;
-    var requested = 500;
+    var requested = 1000;
     var date = new Date().getTime();
     var push = function (i) {
       var doc = self.documents[0];
