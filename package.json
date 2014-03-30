@@ -29,7 +29,8 @@
     "coveralls": "make test-coveralls"
   },
   "bin": {
-    "joola.io": "./joola.io.js"
+    "joola.io": "./joola.io.js",
+    "jio": "./node_modules/joola.io.cli/bin/joola.io.cli"
   },
   "main": "./joola.io.js",
   "keywords": [
@@ -41,6 +42,7 @@
   ],
   "dependencies": {
     "joola.io.sdk": "http://github.com/joola/joola.io.sdk/tarball/develop",
+    "joola.io.cli": "http://github.com/joola/joola.io.cli/tarball/develop",
     "nconf": "*",
     "nconf-redis": "http://github.com/itayw/nconf-redis/tarball/develop",
     "eventemitter2": "*",
