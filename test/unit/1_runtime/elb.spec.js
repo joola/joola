@@ -1,3 +1,4 @@
+/*
 describe("event loop blocks", function () {
   before(function (done) {
     this.context = {user: _token.user};
@@ -21,7 +22,7 @@ describe("event loop blocks", function () {
     var date = new Date().getTime();
     var push = function (i) {
       var doc = self.documents;
-      doc.timestamp = new Date(date + i)
+      doc.timestamp = new Date(date + i);
       joola.beacon.insert(self.context, self.context.user.workspace, self.collection, ce.clone(doc), function (err, doc) {
         //doc = doc[0];
         //expect(doc.saved).to.equal(true);
@@ -42,3 +43,4 @@ describe("event loop blocks", function () {
     done();
   });
 });
+  */
