@@ -23,7 +23,7 @@ describe("config", function () {
     });
   });
 
-  it("should get all config", function (done) {
+  xit("should get all config", function (done) {
     joola.dispatch.config.get(this.context, '*', function (err, config) {
       if (err)
         return done(err);

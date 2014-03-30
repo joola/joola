@@ -5,15 +5,10 @@ html(lang='en')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(name='description', content='')
     meta(name='author', content='')
-    - var title = locals.title || "joola.io"
-    - var error = locals.error || ""
-    - var redirect = locals.redirect || ""
-    title #{title}
+    title joola.io
 
-    link(href='/shared/css/bootstrap.min.css', rel='stylesheet')
-    link(href='/shared/css/jio-analytics.css', rel='stylesheet')
-    link(href='/shared/css/style.min.css', rel='stylesheet')
-    link(href='/shared/css/font-awesome.min.css', rel='stylesheet')
+    link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
+    link(rel="stylesheet", href="//google-code-prettify.googlecode.com/svn/trunk/src/prettify.css")
+    link(rel="stylesheet", href="css/pretty.css")
+    link(rel="stylesheet", href="css/site.css")
   body
-    div.jioa-topa
-    div.jioa-canvas
