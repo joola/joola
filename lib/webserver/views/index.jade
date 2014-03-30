@@ -74,8 +74,8 @@ main.bs-docs-masthead(id="content", role="main")
       p Drawing visualizations is as easy as describing what you would like to see.
       pre.prettyprint(lang="javascript").
         var query = {
-          timeframe: 'last_minute',
-          interval: 'second',
+          timeframe: 'last_hour',
+          interval: 'minute',
           dimensions: ['timestamp'],
           metrics: ['mousemoves'],
           collection: 'demo-mousemoves'
@@ -337,8 +337,8 @@ main.bs-docs-masthead(id="content", role="main")
                           | Pie            
             #editor3.editor.
               {
-                "timeframe": "last_minute",
-                "interval": "second",
+                "timeframe": "last_hour",
+                "interval": "minute",
                 "dimensions": ["timestamp"],
                 "metrics": ["visits"]
               }
