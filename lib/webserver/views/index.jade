@@ -321,7 +321,7 @@ main.bs-docs-masthead(id="content", role="main")
                     ul.dropdown-menu
                       li
                         label.checkbox
-                          input.viz-check(type="checkbox", data-attr="sparkline")
+                          input.viz-check(type="checkbox", data-attr="sparkline", checked="true")
                           | Sparkline
                       li
                         label.checkbox
@@ -360,6 +360,11 @@ main.bs-docs-masthead(id="content", role="main")
       p.codepen(data-height="268", data-theme-id="0", data-slug-hash="usxht", data-default-tab="css")
     .col-md-6.codepen-container
       p.codepen(data-height="268", data-theme-id="0", data-slug-hash="usxht", data-default-tab="js")
+
+  .row(style="margin-top:15px;")
+    p.center-block.text-center
+      a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io/wiki/examples", role="button") Browse all examples
+
 
 script(async, src="//codepen.io/assets/embed/ei.js")
 include layout_footer
