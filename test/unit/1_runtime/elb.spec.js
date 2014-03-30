@@ -6,12 +6,18 @@ describe("event loop blocks", function () {
     this.collection = 'test-collection-ebl-' + this.uid;
     this.documents = require('../../fixtures/basic.json');
     this.start = new Date().getTime();
+    this.elbtotal = 0;
+    var self = this;
+    joola.events.on('elb', function (delta) {
+      self.elbtotal += delta;
+    });
+
     return done();
   });
 
   it("should not cause an event loop block on excessive beacon [single doc]", function (done) {
     var self = this;
-    var requested = 1000;
+    var requested = 500;
     var date = new Date().getTime();
     var push = function (i) {
       var doc = self.documents[0];
@@ -31,6 +37,8 @@ describe("event loop blocks", function () {
   after(function (done) {
     this.end = new Date().getTime();
     console.log('duration', this.end - this.start, 'ms');
+    console.log('blocked', this.elbtotal, 'ms');
+    console.log('busy', this.elbtotal/(this.end-this.start)*100, '%');
     done();
   });
 });
