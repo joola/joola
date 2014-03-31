@@ -18,7 +18,7 @@ describe("collections", function () {
 
   it("should add a collection", function (done) {
     var collection = {
-      id: this.collection,
+      key: this.collection,
       name: this.collection
     };
     joola.dispatch.collections.add(this.context, this.context.user.workspace, collection, function (err, collection) {
@@ -32,7 +32,7 @@ describe("collections", function () {
 
   it("should fail adding an existing collection", function (done) {
     var collection = {
-      id: this.collection,
+      key: this.collection,
       name: this.collection
     };
     joola.dispatch.collections.add(this.context, this.context.user.workspace, collection, function (err) {
@@ -45,7 +45,7 @@ describe("collections", function () {
 
   it("should fail adding collection with incomplete details", function (done) {
     var collection = {
-      id: this.collection + '1'
+      key: this.collection + '1'
     };
     joola.dispatch.collections.add(this.context, this.context.user.workspace, collection, function (err) {
       if (err)
@@ -57,7 +57,7 @@ describe("collections", function () {
 
   it("should update a collection", function (done) {
     var collection = {
-      id: this.collection,
+      key: this.collection,
       name: this.collection,
       test: 1
     };
@@ -72,7 +72,7 @@ describe("collections", function () {
 
   it("should fail updating a collection with incomplete details", function (done) {
     var collection = {
-      id: this.collection
+      key: this.collection
     };
     joola.dispatch.collections.update(this.context, this.context.user.workspace, collection, function (err, _collection) {
       if (err)
@@ -84,7 +84,7 @@ describe("collections", function () {
 
   it("should fail updating non existing collection", function (done) {
     var collection = {
-      id: this.collection + '1',
+      key: this.collection + '1',
       name: this.collection
     };
     joola.dispatch.collections.update(this.context, this.context.user.workspace, collection, function (err, _collection) {
@@ -102,7 +102,7 @@ describe("collections", function () {
         return done(err);
 
       expect(collection).to.be.ok;
-      expect(collection.id).to.equal(self.collection);
+      expect(collection.key).to.equal(self.collection);
       return done();
     });
   });
