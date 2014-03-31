@@ -93,7 +93,8 @@
         "user": null,
         "password": null,
         "db": "dispatch",
-        "unique": false
+        "unique": false,
+        "expireAfterSeconds": 60
       }
     },
     "cache": {
@@ -102,7 +103,8 @@
         "port": 27017,
         "user": null,
         "password": null,
-        "db": "cache"
+        "db": "cache",
+        "expireAfterSeconds": 60
       }
     },
     "cache-second": {
@@ -111,7 +113,8 @@
         "port": 27017,
         "user": null,
         "password": null,
-        "db": "cache-second"
+        "db": "cache-second",
+        "expireAfterSeconds": 90
       }
     },
     "cache-minute": {
@@ -120,7 +123,8 @@
         "port": 27017,
         "user": null,
         "password": null,
-        "db": "cache-minute"
+        "db": "cache-minute",
+        "expireAfterSeconds": 5400
       }
     },
     "cache-hour": {
@@ -129,7 +133,8 @@
         "port": 27017,
         "user": null,
         "password": null,
-        "db": "cache-hour"
+        "db": "cache-hour",
+        "expireAfterSeconds": 90
       }
     },
     "cache-ddate": {
@@ -138,7 +143,8 @@
         "port": 27017,
         "user": null,
         "password": null,
-        "db": "cache-ddate"
+        "db": "cache-ddate",
+        "expireAfterSeconds": 90
       }
     },
     "cache-month": {
@@ -147,7 +153,8 @@
         "port": 27017,
         "user": null,
         "password": null,
-        "db": "cache-month"
+        "db": "cache-month",
+        "expireAfterSeconds": 90
       }
     },
     "cache-year": {
@@ -156,7 +163,8 @@
         "port": 27017,
         "user": null,
         "password": null,
-        "db": "cache-year"
+        "db": "cache-year",
+        "expireAfterSeconds": 90
       }
     }
   },
@@ -193,6 +201,7 @@
           "key": "stats-node-count",
           "name": "stats-node-count",
           "strongTyped": true,
+          "expireAfterSeconds": 3600,
           "timestamp": {
             "datatype": "date",
             "type": "dimension",
@@ -222,6 +231,7 @@
           "key": "stats-token-count",
           "name": "stats-token-count",
           "strongTyped": true,
+          "expireAfterSeconds": 3600,
           "timestamp": {
             "datatype": "date",
             "type": "dimension",
@@ -251,6 +261,7 @@
           "key": "stats-usage",
           "name": "stats-usage",
           "strongTyped": true,
+          "expireAfterSeconds": 3600,
           "timestamp": {
             "datatype": "date",
             "type": "dimension",
@@ -286,37 +297,37 @@
           "key": "stats-events-request",
           "name": "stats-events-request",
           "strongTyped": true,
-          "stats-events-request": {
-            "timestamp": {
-              "datatype": "date",
-              "type": "dimension",
-              "name": "timestamp",
-              "key": "timestamp"
-            },
-            "node": {
-              "datatype": "string",
-              "type": "dimension",
-              "name": "node",
-              "key": "node"
-            },
-            "event": {
-              "datatype": "string",
-              "type": "dimension",
-              "name": "event",
-              "key": "event"
-            },
-            "events": {
-              "datatype": "number",
-              "type": "metric",
-              "name": "events",
-              "key": "events"
-            }
+          "expireAfterSeconds": 3600,
+          "timestamp": {
+            "datatype": "date",
+            "type": "dimension",
+            "name": "timestamp",
+            "key": "timestamp"
+          },
+          "node": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "node",
+            "key": "node"
+          },
+          "event": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "event",
+            "key": "event"
+          },
+          "events": {
+            "datatype": "number",
+            "type": "metric",
+            "name": "events",
+            "key": "events"
           }
         },
         "stats-events-fulfilled": {
           "key": "stats-events-fulfilled",
           "name": "stats-events-fulfilled",
           "strongTyped": true,
+          "expireAfterSeconds": 3600,
           "timestamp": {
             "datatype": "date",
             "type": "dimension",
@@ -346,6 +357,179 @@
             "type": "metric",
             "name": "fulfilledtime",
             "key": "fulfilledtime"
+          }
+        },
+        "demo-visits": {
+          "key": "demo-visits",
+          "name": "demo-visits",
+          "strongTyped": true,
+          "timestamp": {
+            "datatype": "date",
+            "type": "dimension",
+            "name": "timestamp",
+            "key": "timestamp"
+          },
+          "browser": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "browser",
+            "key": "browser"
+          },
+          "engine": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "engine",
+            "key": "engine"
+          },
+          "os": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "os",
+            "key": "os"
+          },
+          "userid": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "userid",
+            "key": "userid"
+          },
+          "ip": {
+            "datatype": "ip",
+            "type": "dimension",
+            "name": "ip",
+            "key": "ip"
+          },
+          "referrer": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "referrer",
+            "key": "referrer"
+          },
+          "visits": {
+            "datatype": "number",
+            "type": "metric",
+            "name": "visits",
+            "key": "visits",
+            "min": 0,
+            "max": 1
+          },
+          "loadtime": {
+            "datatype": "number",
+            "type": "metric",
+            "name": "loadtime",
+            "key": "loadtime",
+            "min": 0,
+            "max": 10000
+          }
+        },
+        "demo-clicks": {
+          "key": "demo-clicks",
+          "name": "demo-clicks",
+          "strongTyped": true,
+          "timestamp": {
+            "datatype": "date",
+            "type": "dimension",
+            "name": "timestamp",
+            "key": "timestamp"
+          },
+          "browser": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "browser",
+            "key": "browser"
+          },
+          "engine": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "engine",
+            "key": "engine"
+          },
+          "os": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "os",
+            "key": "os"
+          },
+          "userid": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "userid",
+            "key": "userid"
+          },
+          "ip": {
+            "datatype": "ip",
+            "type": "dimension",
+            "name": "ip",
+            "key": "ip"
+          },
+          "referrer": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "referrer",
+            "key": "referrer"
+          },
+          "clicks": {
+            "datatype": "number",
+            "type": "metric",
+            "name": "clicks",
+            "key": "clicks",
+            "min": 0,
+            "max": 1
+          }
+        },
+        "demo-mousemoves": {
+          "key": "demo-mousemoves",
+          "name": "demo-mousemoves",
+          "strongTyped": true,
+          "timestamp": {
+            "datatype": "date",
+            "type": "dimension",
+            "name": "timestamp",
+            "key": "timestamp"
+          },
+          "browser": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "browser",
+            "key": "browser"
+          },
+          "engine": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "engine",
+            "key": "engine"
+          },
+          "os": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "os",
+            "key": "os"
+          },
+          "userid": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "userid",
+            "key": "userid"
+          },
+          "ip": {
+            "datatype": "ip",
+            "type": "dimension",
+            "name": "ip",
+            "key": "ip"
+          },
+          "referrer": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "referrer",
+            "key": "referrer"
+          },
+          "mousemoves": {
+            "datatype": "number",
+            "type": "metric",
+            "name": "mousemoves",
+            "key": "mousemoves",
+            "min": 0,
+            "max": 1000
           }
         }
       }
