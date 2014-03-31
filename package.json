@@ -82,7 +82,8 @@
     "humanize-number": "0.0.2",
     "traverse": "^0.6.6",
     "colors": "~0.6.2",
-    "circular-json": "~0.1.6"
+    "circular-json": "~0.1.6",
+    "deep-diff": "^0.1.4"
   },
   "devDependencies": {
     "jsdox": "http://github.com/itayw/jsdox/tarball/master",
