@@ -187,6 +187,167 @@
           "_APIToken": "apitoken-root",
           "su": true
         }
+      },
+      "collections": {
+        "stats-node-count": {
+          "key": "stats-node-count",
+          "name": "stats-node-count",
+          "strongTyped": true,
+          "timestamp": {
+            "datatype": "date",
+            "type": "dimension",
+            "name": "timestamp",
+            "key": "timestamp"
+          },
+          "node": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "node",
+            "key": "node"
+          },
+          "event": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "event",
+            "key": "event"
+          },
+          "nodes": {
+            "datatype": "number",
+            "type": "metric",
+            "name": "nodes",
+            "key": "nodes"
+          }
+        },
+        "stats-token-count": {
+          "key": "stats-token-count",
+          "name": "stats-token-count",
+          "strongTyped": true,
+          "timestamp": {
+            "datatype": "date",
+            "type": "dimension",
+            "name": "timestamp",
+            "key": "timestamp"
+          },
+          "node": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "node",
+            "key": "node"
+          },
+          "event": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "event",
+            "key": "event"
+          },
+          "tokens": {
+            "datatype": "number",
+            "type": "metric",
+            "name": "tokens",
+            "key": "tokens"
+          }
+        },
+        "stats-usage": {
+          "key": "stats-usage",
+          "name": "stats-usage",
+          "strongTyped": true,
+          "timestamp": {
+            "datatype": "date",
+            "type": "dimension",
+            "name": "timestamp",
+            "key": "timestamp"
+          },
+          "node": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "node",
+            "key": "node"
+          },
+          "event": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "event",
+            "key": "event"
+          },
+          "cpu": {
+            "datatype": "number",
+            "type": "metric",
+            "name": "cpu",
+            "key": "cpu"
+          },
+          "mem": {
+            "datatype": "number",
+            "type": "metric",
+            "name": "mem",
+            "key": "mem"
+          }
+        },
+        "stats-events-request": {
+          "key": "stats-events-request",
+          "name": "stats-events-request",
+          "strongTyped": true,
+          "stats-events-request": {
+            "timestamp": {
+              "datatype": "date",
+              "type": "dimension",
+              "name": "timestamp",
+              "key": "timestamp"
+            },
+            "node": {
+              "datatype": "string",
+              "type": "dimension",
+              "name": "node",
+              "key": "node"
+            },
+            "event": {
+              "datatype": "string",
+              "type": "dimension",
+              "name": "event",
+              "key": "event"
+            },
+            "events": {
+              "datatype": "number",
+              "type": "metric",
+              "name": "events",
+              "key": "events"
+            }
+          }
+        },
+        "stats-events-fulfilled": {
+          "key": "stats-events-fulfilled",
+          "name": "stats-events-fulfilled",
+          "strongTyped": true,
+          "timestamp": {
+            "datatype": "date",
+            "type": "dimension",
+            "name": "timestamp",
+            "key": "timestamp"
+          },
+          "node": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "node",
+            "key": "node"
+          },
+          "event": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "event",
+            "key": "event"
+          },
+          "fulfilled": {
+            "datatype": "number",
+            "type": "metric",
+            "name": "fulfilled",
+            "key": "fulfilled"
+          },
+          "fulfilledtime": {
+            "datatype": "number",
+            "type": "metric",
+            "name": "fulfilledtime",
+            "key": "fulfilledtime"
+          }
+        }
       }
     }
   },
