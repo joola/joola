@@ -11,6 +11,7 @@ sdk.init({host: 'http://localhost:8080', APIToken: 'apitoken-root', debug: {enab
   if (err)
     throw err;
 
+  console.log('joola.io ready...');
   var n = 0;
   var ops = 100;
   var req = 0;
@@ -18,15 +19,14 @@ sdk.init({host: 'http://localhost:8080', APIToken: 'apitoken-root', debug: {enab
   var bytes = program.size || 1024;
   var fixtures = require('../test/fixtures/benchmark.json');
   bytes = new Buffer(JSON.stringify(fixtures)).length;
-  console.log('bytes', bytes, fixtures.length);
   var prev = start = Date.now();
   var results = [];
-  var uid = joolaio.common.uuid();
+  var uid = 'TEST1';//joolaio.common.uuid();
   console.log();
 
   function insert() {
     req++;
-    joolaio.beacon.insert('benchmark-' + uid, fixtures, function (err, docs) {
+    joolaio.beacon.insert('benchmark-' + uid, fixtures, {}, function (err, docs) {
       if (err)
         errd++;
       if (n++ % ops == 0) {
@@ -39,7 +39,7 @@ sdk.init({host: 'http://localhost:8080', APIToken: 'apitoken-root', debug: {enab
       }
 
     });
-    setTimeout(insert, 0);
+    setTimeout(insert, 50);
   }
 
   insert();
@@ -81,5 +81,5 @@ sdk.init({host: 'http://localhost:8080', APIToken: 'apitoken-root', debug: {enab
   }
 
   process.on('SIGINT', done);
-  setTimeout(done, program.duration || 5000);
+  setTimeout(done, program.duration || 10000);
 });

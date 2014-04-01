@@ -105,7 +105,9 @@
     "chai": "*",
     "sinon-chai": "*",
     "wrench": "~1.5.6",
-    "socket.io-client": "~0.9.16"
+    "socket.io-client": "~0.9.16",
+    "commander": "~2.2.0",
+    "humanize-number": "0.0.2"
   },
   "license": "GPL-3.0"
 }
