@@ -83,7 +83,8 @@
     "traverse": "^0.6.6",
     "colors": "~0.6.2",
     "circular-json": "~0.1.6",
-    "deep-diff": "^0.1.4"
+    "deep-diff": "^0.1.4",
+    "stomp": "https://github.com/joola/stomp-js/tarball/master"
   },
   "devDependencies": {
     "jsdox": "http://github.com/itayw/jsdox/tarball/master",
