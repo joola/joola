@@ -45,6 +45,12 @@
         "port": 6379,
         "db": 1,
         "pass": null
+      },
+      "stomp": {
+        "host": "localhost",
+        "port": 61613,
+        "user": "guest",
+        "pass": "guest"
       }
     },
     "socketio": {
