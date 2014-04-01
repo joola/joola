@@ -8,7 +8,8 @@ node_js:
 services:
   - redis-server
   - mongodb
-
+  - rabbitmq
+  
 #matrix:
 #  fast_finish: true
 #  allow_failures:
