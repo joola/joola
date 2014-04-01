@@ -92,17 +92,6 @@
         "path": "/tmp/joola.io/"
       }
     },
-    "messages": {
-      "mongo": {
-        "host": "localhost",
-        "port": 27017,
-        "user": null,
-        "password": null,
-        "db": "dispatch",
-        "unique": false,
-        "expireAfterSeconds": 60
-      }
-    },
     "cache": {
       "mongo": {
         "host": "localhost",
@@ -110,7 +99,7 @@
         "user": null,
         "password": null,
         "db": "cache",
-        "expireAfterSeconds": 60
+        "expireAfterSeconds": 0
       }
     },
     "cache-second": {
