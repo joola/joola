@@ -17,7 +17,7 @@ services:
 #    - node_js: "0.12"
 
 before_script:
-  - rabbitmq-plugins enable rabbitmq_stomp
+  - sudo rabbitmq-plugins enable rabbitmq_stomp
 script: 'make test-cov'
 after_success: 'make coveralls'
  
