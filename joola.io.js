@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /**
  *  @title joola.io
  *  @overview the open-source data analytics framework
