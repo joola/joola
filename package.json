@@ -69,7 +69,7 @@
     "usage": "*",
     "connect-redis": "~1.4.7",
     "repl.history": "*",
-    "geoip-lite": "*",
+    
     "underscore": "*",
     "cloneextend": "0.0.3",
     "querystring": "~0.2.0",
