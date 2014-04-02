@@ -20,6 +20,7 @@ before_script:
   - sudo rabbitmqctl stop_app
   - sudo rabbitmq-plugins enable rabbitmq_stomp
   - sudo rabbitmqctl start_app
+  
 script: 'make test-cov'
 after_success: 'make coveralls'
  
