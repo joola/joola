@@ -18,7 +18,7 @@ services:
 
 before_script:
   - sudo rabbitmq-plugins enable rabbitmq_stomp
-  - sudo service rabbitmq-server start
+  - sudo service rabbitmq-server restart
   - sudo rabbitmqctl status
   - sudo rabbitmq-plugins list
   
