@@ -69,7 +69,10 @@ redis.
 ```js
   {
     "config": {"redis": {"host": "localhost", "port": 6379, "db": 0, "pass": null }},
-    "dispatch": {"redis": {"host": "localhost", "port": 6379, "db": 1, "pass": null}},
+    "dispatch": {
+      "redis": {"host": "localhost", "port": 6379, "db": 1, "pass": null},
+      "stomp": {"host": "localhost", "port": 61613, "user": "guest", "pass": "guest"}
+    },
     "socketio": {"redis": {"host": "localhost", "port": 6379, "db": 2, "pass": null}},
     "runtime": {"redis": {"host": "localhost", "port": 6379, "db": 3, "pass": null}},
     "stats": {"mongo": {"host": "localhost", "port": 27017, "user": null, "password": null, "db": "stats"}},

@@ -102,7 +102,7 @@ main.bs-docs-masthead(id="content", role="main")
             <br/>Also, when referring to dependencies such as MongoDB, Redis, etc... we assume that these are installed on your <code>localhost</code>.
           p.
             For a complete setup and configuration guide, please refer to our <a href="http://github.com/joola/joola.io/wiki">wiki</a>.
-        h2 Installing joola.io
+        h2 Installation
         p.
           joola.io is written in JavaScript and runs on Node.JS which uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
           In addition we use additional components as part of the stack, all required to be installed prior to installing joola.io. 
@@ -128,6 +128,34 @@ main.bs-docs-masthead(id="content", role="main")
               img(src="img/rabbitmq-logo.png")
             p.
               RabbitMQ is a messaging broker - an intermediary for messaging. It gives your applications a common platform to send and receive messages, and your messages a safe place to live until received.
+        .row
+          .col-md-12
+            h3 Installing joola.io
+            p. joola.io can be installed from either the NPM registry or directly from the GitHub repository.
+        .row
+          .col-md-6
+            h4 Installing from NPM registry
+            pre.prettyprint(lang="bash").
+              $ npm install joola.io
+              # OR 
+              $ npm install -g joola.io #for global install
+          .col-md-6
+            h4 Installing from GitHub repository
+            pre.prettyprint(lang="bash").
+              $ git clone http://github.com/joola/joola.io/tarball/master .
+              # OR
+              $ npm install http://github.com/joola/joola.io/tarball/master
+        .row
+          .col-md-12
+            h4 First time run
+            pre.prettyprint(lang="bash").
+              # for global installations
+              $ joola.io
+              # for local installations
+              $ node node_modules/joola.io/joola.io.js
+
+              08:50:44.179Z WARN joola.io: Found an empty configuration store, building initial...
+              08:50:44.360Z INFO joola.io: joola.io version 0.4.0 started [CH3mIJWhy].
         h2 Connecting to joola.io
         p.
           There are several ways to communicate with your joola.io node and they all eventually (bar the REPL) use joola.io's API endpoints to pass instructions and data.<br/>

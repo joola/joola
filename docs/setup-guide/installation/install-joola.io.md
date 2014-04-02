@@ -20,7 +20,7 @@ joola.io uses redis to store many different key-value pairs needed for its opera
 its performance, scalability, redundancy and other capabilities.
 
 >
-**Note:** joola.io is designed to support more than a single key-value store for its operation. In the future, 
+**Note:** joola.io is designed to support more than a single key-value store type for its operation. In the future, 
 we will offer support for additional store types.
 
 [Learn more about installing Redis](http://redis.io/download)
@@ -33,10 +33,20 @@ querying, fast in-place updates, map/reduce and more.
 joola.io uses mongodb to store interim cache records and it is the basis of joola.io high performance.
 
 >
-**Note:** joola.io is designed to support more than a single store for its cache layer. In the future, 
+**Note:** joola.io is designed to support more than a single store type for its cache layer. In the future, 
 we will offer support for additional store types.
 
 [Learn more about installing MongoDB](http://www.mongodb.org/downloads)
+
+#### RabbitMQ
+RabbitMQ is a messaging broker - an intermediary for messaging. It gives your applications a common platform to send and receive messages, and your messages a safe place to live until received.
+joola.io uses RabbitMQ to manage its message dispatch and routing and it is the basis of joola.io high performance.
+
+>
+**Note:** joola.io is designed to support more than a single store type for its messaging layer. In the future, 
+we will offer support for additional store types.
+
+[Learn more about installing RabbitMQ](http://www.rabbitmq.org//download.html)
 
 ## Step 2: Install joola.io
 joola.io is an [npm](http://npmjs.org) package and installing it is as simple as running:
