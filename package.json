@@ -1,84 +1,113 @@
 {
-	"name": "joola.io",
-	"preferGlobal": false,
-	"version": "3.2.2",
-	"author": "Joola <info@joo.la>",
-	"description": "The open-source data visualization framework",
-	"engine": "node >= 0.10.x",
-	"private": false,
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/joola/joola.io.git"
-	},
-	"bugs": "https://joolatech.atlassian.net/browse/JARVIS",
-	"contributors": [
-		{
-			"name": "Itay Weinberger",
-			"email": "itay@joo.la",
-			"url": "http://joo.la"
-		},
-		{
-			"name": "Or Weinberger",
-			"email": "or@joo.la",
-			"url": "http://joo.la"
-		}
-	],
-	"scripts": {
-		"test": "make test",
-		"start": "node ./bin/_joola.io.js",
-		"debug": "npm-inspector && npm start && open \"http://http://127.0.0.1:8080/debug?port=5858\"",
-		"monitor": "mocha --reporter min --watch",
-		"debugtest": "mocha --debug-brk --reporter spec",
-		"blanket": {
-			"pattern": "lib",
-			"data-cover-never": "node_modules"
-		},
-		"coveralls": "mocha --require blanket --reporter mocha-lcov-reporter | node ./node_modules/coveralls/bin/coveralls.js",
-		"citest": "mocha --reporter xunit > test-reports.xml"
-	},
-	"bin": {
-		"joola.io": "./bin/joola.io"
-	},
-	"keywords": [
-		"data",
-		"analytics",
-		"big-data",
-		"visualization",
-		"noSQL"
-	],
-	"dependencies": {
-		"joola.io.logger": "3.x",
-		"joola.io.config": "3.x",
-		"joola.io.engine": "3.x",
-		"joola.io.analytics": "3.x",
-
-		"winston": "0.x",
-		"async": "0.x",
-		"path": "0.x",
-		"flatiron": "0.x",
-		"flatiron-cli-config": "0.x",
-		"request": "2.x",
-		"dateformat": "1.x",
-		"pkginfo": "0.x",
-		"colors": "0.x",
-		"forever": "0.x",
-		"forever-monitor": "1.x",
-		"sleep": "1.x",
-		"supertest": "0.x",
-		"complete": "0.x"
-	},
-	"devDependencies": {
-		"underscore": "1.x",
-		"mocha-lcov-reporter": "0.x",
-		"coveralls": "2.x",
-		"should": "1.x",
-		"mocha": "1.x",
-		"sinon": "1.x",
-		"chai": "1.x",
-		"sinon-chai": "2.x",
-		"blanket": "1.x",
-		"jshint": "2.x",
-		"supertest": "0.x"
-	},
-	"license": "GPL-3.0"
+  "name": "joola.io",
+  "preferGlobal": false,
+  "version": "0.4.0",
+  "author": "Joola <info@joo.la>",
+  "description": "The open-source data visualization framework",
+  "engine": "node >= 0.10.x",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/joola/joola.io.git"
+  },
+  "bugs": "http://github.com/joola/joola.io/issues",
+  "contributors": [
+    {
+      "name": "Itay Weinberger",
+      "email": "itay@joo.la",
+      "url": "http://joo.la"
+    },
+    {
+      "name": "Or Weinberger",
+      "email": "or@joo.la",
+      "url": "http://joo.la"
+    }
+  ],
+  "scripts": {
+    "test": "make test",
+    "start": "node ./joola.io.js",
+    "coveralls": "make test-coveralls"
+  },
+  "bin": {
+    "joola.io": "./joola.io.js",
+    "jio": "./node_modules/joola.io.cli/bin/joola.io.cli"
+  },
+  "main": "./joola.io.js",
+  "keywords": [
+    "data",
+    "analytics",
+    "big-data",
+    "visualization",
+    "noSQL"
+  ],
+  "dependencies": {
+    "joola.io.sdk": "http://github.com/joola/joola.io.sdk/tarball/develop",
+    "joola.io.cli": "http://github.com/joola/joola.io.cli/tarball/develop",
+    "nconf": "*",
+    "nconf-redis": "http://github.com/itayw/nconf-redis/tarball/develop",
+    "eventemitter2": "*",
+    "redis": "*",
+    "hiredis": "*",
+    "async": "*",
+    "express": "3.4.4",
+    "socket.io": "~0.9.14",
+    "socket.io-wildcard": "*",
+    "socket.io-browserify": "*",
+    "jade": "*",
+    "bunyan": "http://github.com/itayw/node-bunyan/tarball/master",
+    "bunyan-format": "*",
+    "mongo-col": "http://github.com/Raynos/mongo-col/tarball/master",
+    "mongo-stream": "*",
+    "mongodb": "*",
+    "htpasswd": "*",
+    "moment": "~2.5.1",
+    "twix": "~0.4.0",
+    "connect": "~2.12.0",
+    "cookie": "~0.1.0",
+    "JSONStream": "*",
+    "event-stream": "*",
+    "usage": "*",
+    "connect-redis": "~1.4.7",
+    "repl.history": "*",
+    "geoip-lite": "*",
+    "underscore": "*",
+    "cloneextend": "0.0.3",
+    "querystring": "~0.2.0",
+    "json-stringify-safe": "^5.0.0",
+    "deep-equal": "~0.2.1",
+    "localeval": "~13.12.11",
+    "benchmark": "^1.0.0",
+    "microtime": "^0.5.1",
+    "commander": "^2.1.0",
+    "humanize-number": "0.0.2",
+    "traverse": "^0.6.6",
+    "colors": "~0.6.2",
+    "circular-json": "~0.1.6",
+    "deep-diff": "^0.1.4",
+    "stomp": "https://github.com/joola/stomp-js/tarball/master"
+  },
+  "devDependencies": {
+    "jsdox": "http://github.com/itayw/jsdox/tarball/master",
+    "mocha-lcov-reporter": "*",
+    "coveralls": "*",
+    "should": "*",
+    "mocha": "*",
+    "istanbul": "*",
+    "expect": "*",
+    "blanket": "*",
+    "jshint": "*",
+    "supertest": "*",
+    "xtend": "*",
+    "request": "*",
+    "zombie": "*",
+    "mkdirp": "*",
+    "sinon": "*",
+    "chai": "*",
+    "sinon-chai": "*",
+    "wrench": "~1.5.6",
+    "socket.io-client": "~0.9.16",
+    "commander": "~2.2.0",
+    "humanize-number": "0.0.2"
+  },
+  "license": "GPL-3.0"
 }

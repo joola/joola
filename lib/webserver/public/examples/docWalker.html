@@ -1,0 +1,121 @@
+<html>
+<head>
+  <title>joola.io SDK Example</title>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/3rd/google/prettify/prettify.css"/>
+</head>
+<body onload="prettyPrint()">
+<div class="container">
+  <h1>joola.io Examples</h1>
+
+  <h2>Basic</h2>
+
+  <p class="lead">
+  </p>
+
+  <p>
+  </p>
+
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="/3rd/sorttable/sorttable.js"></script>
+<script src="/3rd/jquery/ua-parser.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+<script language="Javascript" src="/3rd/google/prettify/prettify.js"></script>
+<script type='text/javascript' src='https://www.google.com/jsapi'></script>
+<script>
+  google.load('visualization', '1', {'packages': ['geochart']});
+</script>
+<script src="/joola.io.js"></script>
+
+<script>
+  joolaio.init({APIToken: '7890'}, function (err) {
+    if (err)
+      throw err;
+
+    console.info('joola.io SDK ready, version: ' + joolaio.VERSION + ', token: ' + joolaio.TOKEN);
+
+    var document = {
+      timestamp: {key: 'timestamp', type: 'dimension', datatype: 'date', value: new Date()},
+      ip: '123.123.123.123',
+      attribute: 'test',
+      value: {key: 'value', type: 'metric', datatype: 'number', value: 123, aggregation: 'sum'},
+      performance: window.performance,
+      ua: $.ua
+    };
+    //joolaio.collections.metadata(document, function (err, meta) {
+    //    if (err)
+    //         return console.error(err);
+    //console.log(meta);
+
+    joolaio.alerts.set('test-alert', {
+      dimensions: ['ip'],
+      metrics: ['value']
+    }, 'hook', 'http://localhost:8080/api/hook/do', function (err, result) {
+      console.log(err, result);
+    });
+
+    joolaio.beacon.insert('testing', document, function (err, doc) {
+      if (err)
+        return console.error(err);
+
+      //console.log(doc);
+
+      joolaio.query.fetch({
+        timeframe: 'last_day',
+        interval: 'hour',
+        dimensions: [ 'ip'],
+        metrics: [
+          'value',
+          {
+            key: 'avgvalue',
+            dependsOn: 'value',
+            name: 'avgvalue',
+            aggregation: 'sum',
+            filter: [
+              ['ua.browser.name', 'eq', 'Firefox']
+            ]
+          },
+          'performance.timing.domLoading',
+          {
+            key: 'uniqueips',
+            dependsOn: 'ip',
+            name: 'uniqueips',
+            aggregation: 'ucount'
+          },
+          {
+            key: 'testcalc',
+            formula: {
+              dependsOn: [
+                {
+                  key: 'calcavgvalue',
+                  dependsOn: 'value',
+                  name: 'avgvalue',
+                  aggregation: 'min'
+                },
+                'value'
+              ],
+              run: 'function (value1, value2) {return value1 / value2;}'
+            }
+          }
+        ]/*,
+         filter: [
+         ['ua.engine.name', 'eq', 'WebKit']
+         ]*/
+      }, function (err, documents) {
+        console.log(err, documents);
+      });
+
+    })
+    ;
+    // });
+
+  })
+  ;
+</script>
+<!--<script language="Javascript" src="http://www.codehelper.io/api/ips/?js"></script>-->
+</body>
+</html>
+

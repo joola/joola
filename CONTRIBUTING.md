@@ -8,8 +8,7 @@ follow so that we can have a chance of keeping on top of things.
 ## Getting Started
 
 * Make sure you have a [GitHub account](https://github.com/signup/free)
-* Make sure you have a [JIRA account](https://joolatech.atlassian.net/browse/JARVIS)
-* Submit a ticket for your issue (https://joolatech.atlassian.net/browse/JARVIS),
+* Submit a ticket for your issue (http://github.com/joola/joola.io/issues),
 assuming one does not already exist.
   * Clearly describe the issue including steps to reproduce when it is a bug.
   * Make sure you select the relating components to the issue.
@@ -18,20 +17,20 @@ assuming one does not already exist.
 
 ## Making Changes
 
-* Create a ticket branch (name your branch JARVIS-nnn, according to the ticket you raised) from where you want to base your work.
+* Create a ticket branch (name your branch issue#nnn, according to the ticket you raised) from where you want to base your work.
   * This is usually the develop branch.
   * Only target release branches if you are certain your fix must be on that
     branch.
   * To quickly create a ticket branch based on master; `git branch
-    feature/JARVIS-nnn develop` then checkout the new branch with `git
-    checkout feature/JARVIS-nnn`.  Please avoid working directly on the
+    feature/issue#nnn develop` then checkout the new branch with `git
+    checkout feature/issue#nnn`. Please avoid working directly on the
     `master` branch.
 * Make commits of logical units.
 * Check for unnecessary whitespace with `git diff --check` before committing.
-* Make sure your commit messages are in the proper format `JARVIS-nnn message`.
+* Make sure your commit messages are in the proper format `#issuenumber message`.
 
 ````
-    JARVIS-123 Make the example in CONTRIBUTING imperative and concrete
+    #123 Make the example in CONTRIBUTING imperative and concrete
 
     Without this patch applied the example commit message in the CONTRIBUTING
     document is not a concrete example.  This is a problem because the
@@ -45,18 +44,19 @@ assuming one does not already exist.
 ````
 
 * Make sure you have added the necessary tests for your changes.
+* Make sure you lint your code (run: ```make lint```).
 * Run _all_ the tests to assure nothing else was accidentally broken.
 
 ## Documentation
 
-We manage documentation using Confluence (https://joolatech.atlassian.net/wiki/display/JAD).
+Documentation is managed under the repo's wiki.
 For changes of a trivial nature to comments and documentation, it is not
-always necessary to update confluence. For contributions affecting documentation,
+always necessary to update the wiki. For contributions affecting documentation,
 please contact project admins to ensure you have been granted with an editor role.
 
 ## Submitting Changes
 
-* Sign the [Contributor License Agreement]().
+* Sign the [Contributor License Agreement][cla].
 * Push your changes to a ticket branch in your fork of the repository.
 * Submit a pull request to the repository in the joola organization.
 * Update your JIRA ticket to mark that you have submitted code and are ready for it to be reviewed.
@@ -64,8 +64,10 @@ please contact project admins to ensure you have been granted with an editor rol
 
 # Additional Resources
 
-* [Bug tracker (JIRA)](https://joolatech.atlassian.net/browse/JARVIS)
-* [Contributor License Agreement]()
+* [Issues tracker](http://github.com/joola/joola.io/issues)
+* [Contributor License Agreement][cla]
 * [General GitHub documentation](http://help.github.com/)
 * [GitHub pull request documentation](http://help.github.com/send-pull-requests/)
 * #joola.io IRC channel on freenode.org
+
+[cla]: https://github.com/joola/joola.io/wiki/CLA
