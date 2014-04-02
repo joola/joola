@@ -102,6 +102,28 @@ main.bs-docs-masthead(id="content", role="main")
             <br/>Also, when referring to dependencies such as MongoDB, Redis, etc... we assume that these are installed on your <code>localhost</code>.
           p.
             For a complete setup and configuration guide, please refer to our <a href="http://github.com/joola/joola.io/wiki">wiki</a>.
+        h2 Installing joola.io
+        p.
+          joola.io is written in JavaScript and runs on Node.JS which uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
+          In addition we use additional components as part of the stack, all required to be installed prior to installing joola.io. 
+          <br/><strong>Remember:</strong> we'll assume <code>localhost</code> is used throughout this page. If you wish to use another machine, please refer to the configuration section on the <a href="http://github.com/joola/joola/io/wiki">wiki</a>.
+        .row
+          .col-md-3
+            h3 Node.JS
+            p.
+              Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
+          .col-md-3
+            h3 Redis
+            p.
+              Redis is an open source, BSD licensed, advanced key-value store. It is often referred to as a data structure server since keys can contain strings, hashes, lists, sets and sorted sets.
+          .col-md-3
+            h3 MongoDB
+            p.
+              MongoDB (from "humongous") is an open-source document database, and the leading NoSQL database, Written in C++.
+          .col-md-3
+            h3 RabbitMQ 
+            p.
+              RabbitMQ is a messaging broker - an intermediary for messaging. It gives your applications a common platform to send and receive messages, and your messages a safe place to live until received.
         h2 Connecting to joola.io
         p.
           There are several ways to communicate with your joola.io node and they all eventually (bar the REPL) use joola.io's API endpoints to pass instructions and data.<br/>
