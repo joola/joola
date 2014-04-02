@@ -109,7 +109,7 @@
         "user": null,
         "password": null,
         "db": "cache-second",
-        "expireAfterSeconds": 90
+        "expireAfterSeconds": 0
       }
     },
     "cache-minute": {
@@ -119,7 +119,7 @@
         "user": null,
         "password": null,
         "db": "cache-minute",
-        "expireAfterSeconds": 5400
+        "expireAfterSeconds": 0
       }
     },
     "cache-hour": {
@@ -129,7 +129,7 @@
         "user": null,
         "password": null,
         "db": "cache-hour",
-        "expireAfterSeconds": 90
+        "expireAfterSeconds": 0
       }
     },
     "cache-ddate": {
@@ -139,7 +139,7 @@
         "user": null,
         "password": null,
         "db": "cache-ddate",
-        "expireAfterSeconds": 90
+        "expireAfterSeconds": 0
       }
     },
     "cache-month": {
@@ -149,7 +149,7 @@
         "user": null,
         "password": null,
         "db": "cache-month",
-        "expireAfterSeconds": 90
+        "expireAfterSeconds": 0
       }
     },
     "cache-year": {
@@ -159,7 +159,7 @@
         "user": null,
         "password": null,
         "db": "cache-year",
-        "expireAfterSeconds": 90
+        "expireAfterSeconds": 0
       }
     }
   },
@@ -178,6 +178,16 @@
           "key": "user",
           "_permissions": ["access_system"],
           "_filter": ""
+        },
+        "beacon": {
+          "key": "user",
+          "_permissions": ["beacon_insert"],
+          "_filter": ""
+        },
+        "reader": {
+          "key": "user",
+          "_permissions": ["access_system", "beacon_insert"],
+          "_filter": ""
         }
       },
       "users": {
@@ -188,6 +198,24 @@
           "displayName": "Administrator",
           "workspace": "root",
           "_APIToken": "apitoken-root",
+          "su": true
+        },
+        "beacon": {
+          "username": "beacon",
+          "_password": "password",
+          "_roles": ["beacon"],
+          "displayName": "Beacon",
+          "workspace": "root",
+          "_APIToken": "apitoken-beacon",
+          "su": true
+        },
+        "reader": {
+          "username": "reader",
+          "_password": "password",
+          "_roles": ["reader"],
+          "displayName": "Reader",
+          "workspace": "root",
+          "_APIToken": "apitoken-reader",
           "su": true
         }
       },
