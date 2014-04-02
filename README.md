@@ -19,21 +19,22 @@
 - **Embed** quickly, seamlessly integrate with your site.
 - **Scalable**, run on a single machine or a node-based matrix.
 - **Secure**, role-based, multi-tenant, data segregation.
-- **AaaS ready**, offer Analytics as a Service to your audience.
 - **Extendable** data source, authentication and cache middleware
 
 ### Getting Started
 We've pre-loaded the package with a fully working sample site, so it's easy to get started.
 
-Before getting started, please install [MongoDB](http://mongodb.org) and [Redis](http://redis.io). For the specific example below to work out-of-the-box, it's required to have both installed on localhost.
+Before getting started, please install [MongoDB](http://mongodb.org), [Redis](http://redis.io) and [RabbitMQ](http://www.rabbitmq.com/). For the specific example below to work out-of-the-box, it's required to have both installed on localhost.
  For a more details on the installation process, please refer to [this guide](http://github.com/joola/joola.io/wiki/install-joola.io).
 
 ```bash
-$ [sudo] npm install -g http://github.com/joola/joola.io/tarball/develop
+$ [sudo] npm install -g joola.io
 $ joola.io
+# To connect using CLI
+$ jio --host=http://localhost:8080 --apitoken=apitoken-root
 ```
 
-Following the installation, point your browser to `http://localhost:8080` and you'll be able to use the analytics site.
+Following the installation, point your browser to `http://localhost:8080` and you'll be able to use the framework.
 
 [**Learn more about getting started with joola.io**](http://github.com/joola/joola.io/wiki/technical-documentation)
 
@@ -41,7 +42,7 @@ Following the installation, point your browser to `http://localhost:8080` and yo
 ```js
 var joolaio = require('joola.io.sdk');
 
-joolaio.init({host: 'http://localhost:8080', APIToken: '12345'}, function(err) {
+joolaio.init({host: 'http://localhost:8080', APIToken: 'apitoken-beacon'}, function(err) {
   var document = {
     timestamp: new Date(),
     attribute: 'I\'m an attribute',
@@ -65,7 +66,7 @@ joolaio.init({host: 'http://localhost:8080', APIToken: '12345'}, function(err) {
     <script>
     var joolaio = require('joola.io.sdk');
 
-    joolaio.init({host: 'http://localhost:8080', APIToken: '12345'}, function(err) {
+    joolaio.init({host: 'http://localhost:8080', APIToken: 'apitoken-beacon'}, function(err) {
       joolaio.viz.timeline({
       	container: document.getElementById('drawhere'),
       	query: {
