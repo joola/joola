@@ -44,12 +44,12 @@ Following the installation, point your browser to `http://localhost:8080` and yo
 var joolaio = require('joola.io.sdk');
 
 joolaio.init({host: 'http://localhost:8080', APIToken: 'apitoken-beacon'}, function(err) {
-  var document = {
+  var doc = {
     timestamp: new Date(),
     attribute: 'I\'m an attribute',
     value: 123
   };
-  joolaio.beacon.insert('collection-name', document, function(err) { 
+  joolaio.beacon.insert('collection-name', doc, function(err) { 
     console.log('Document saved');
   });
 });
