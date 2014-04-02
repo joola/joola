@@ -17,9 +17,11 @@ services:
 #    - node_js: "0.12"
 
 before_script:
-  - sudo rabbitmqctl stop_app
   - sudo rabbitmq-plugins enable rabbitmq_stomp
-  - sudo rabbitmqctl start_app
+  - sudo service rabbitmq-server restart
+  - sudo rabbitmqctl status
+  - sudo rabbitmq-plugins list
+  
 script: 'make test-cov'
 after_success: 'make coveralls'
  
