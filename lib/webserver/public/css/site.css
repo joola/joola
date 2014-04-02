@@ -279,3 +279,9 @@ div[jio-type="metric"].active .jio.metricbox.caption {
 label.checkbox {
   font-weight: normal;
 }
+
+@media (max-width: 768px) {
+  a.github-ribbon {
+    display: none;
+  }
+}
