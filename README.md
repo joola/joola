@@ -29,7 +29,7 @@ Before getting started, please install [MongoDB](http://mongodb.org), [Redis](ht
  For a more details on the installation process, please refer to [this guide](http://github.com/joola/joola.io/wiki/install-joola.io).
 
 ```bash
-$ [sudo] npm install joola.io
+$ npm install joola.io
 $ node node_modules/joola.io/joola.io.js
 # To connect using CLI
 $ jio --host=http://localhost:8080 --apitoken=apitoken-root
