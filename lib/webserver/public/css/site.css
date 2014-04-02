@@ -152,6 +152,56 @@
   border-top: 1px solid #e5e5e5;
 }
 
+.bs-docs-footer-links {
+  margin-top: 20px;
+  padding-left: 0;
+  color: #999;
+}
+
+.bs-docs-footer-links li {
+  display: inline;
+  padding: 0 2px;
+}
+
+.bs-docs-footer-links li:first-child {
+  padding-left: 0;
+}
+
+.bs-docs-social {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.bs-docs-social-buttons {
+  display: inline-block;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.bs-docs-social-buttons li {
+  display: inline-block;
+  line-height: 1;
+  padding: 5px 8px;
+}
+
+.github-btn {
+  border: 0;
+  overflow: hidden;
+}
+
+.bs-docs-social-buttons li {
+  display: inline-block;
+  line-height: 1;
+  padding: 5px 8px;
+}
+
+.bs-docs-social-buttons li {
+  display: inline-block;
+  line-height: 1;
+  padding: 5px 8px;
+}
+
 div[jio-type="metric"] {
   border: 1px solid #dededc;
   border-top: rgba(0, 0, 0, 0);
