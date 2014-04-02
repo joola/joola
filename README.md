@@ -6,7 +6,7 @@
 
 <img src="http://i.imgur.com/Kx6l8s3.png" alt="joola.io logo" title="joola.io" align="right" />
 
-[joola.io][22] is a realtime data analytics and visualization framework. Some of the main benefits of using joola.io include:
+[joola.io][22] is a real-time data analytics and visualization framework. Some of the main benefits of using joola.io include:
 
 1. Integrate existing data-sources to correlate, analyze and visualize data.
 2. Stores relevant data in a unique caching layer enabling scalable, rapid response times to queries and requests.
@@ -15,12 +15,12 @@
 ### Main Features
 
 - **Big-data**, supports distributed caching and processing to cope with big-data needs.
-- **Real-time**, real-time data processing. Display analytics as they arrive.
+- **Real-time** big-data processing. Display analytics as they arrive.
 - **Fast**, advanced caching algorithm. Avg. query time of less than a few seconds.
 - **Embed** quickly, seamlessly integrate with your site.
 - **Scalable**, run on a single machine or a node-based matrix.
 - **Secure**, role-based, multi-tenant, data segregation.
-- **Extend** easily to add more data sources, authentication and cache middleware.
+- **Extend**, easy to add more data sources, authentication and cache middleware.
 
 ### Getting Started
 We've pre-loaded the package with a fully working sample site, so it's easy to get started.
