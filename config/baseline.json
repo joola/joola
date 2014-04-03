@@ -166,6 +166,9 @@
   "dispatch": {
     "expires": 60
   },
+  "cache": {
+    "crunch": false
+  },
   "workspaces": {
     "root": {
       "roles": {
