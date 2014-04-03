@@ -29,7 +29,7 @@ main.bs-docs-masthead(id="content", role="main")
   .container
     img(src="img/hero.png")
     //p.lead Liberating data analytics.
-    p.lead Liberating big-data analytics
+    p.lead Liberating data analytics
     p.lead
       a.btn.btn-outline-inverse.btn-lg(href="http://github.com/joola/joola.io") View the GitHub project
     p.version Currently v#{version}
@@ -38,7 +38,8 @@ main.bs-docs-masthead(id="content", role="main")
   .row
     .col-md-12
       .bs-docs-section(id="demo")
-        h1.page-header Demo
+        h1.page-header Demo 
+          small (site usage over last hour) 
         p.lead A Demo of joola.io basic functionality and a great way to check system health.
 
     .col-md-12
@@ -58,7 +59,7 @@ main.bs-docs-masthead(id="content", role="main")
     .col-md-12
       p The demo responds to actions and events on this page. Everytime you move your mouse, visit the page or click on it, an event is pushed into joola.io and then visualized.
     .col-md-6
-      p On every mouse-move the following document is compiled and pushed via Beacon:
+      p When you move your mouse the following document is compiled and pushed via Beacon:
       pre.prettyprint(lang="javascript").
         var doc = {
           timestamp: null,
@@ -100,12 +101,12 @@ main.bs-docs-masthead(id="content", role="main")
           h4 Assumptions
           p.
             Please note that for this getting started guide we'll be assuming <code>localhost</code> as your server and <code>apitoken-root</code> as your APIToken (default).
-            <br/>Also, when referring to dependencies such as MongoDB, Redis, etc... we assume that these are installed on your <code>localhost</code>.
+            <br/>Also, when referring to dependencies such as <a href="http://mongodb.org">MongoDB</a>, <a href="http://redis.io">Redis</a>, etc... we assume that these are installed on your <code>localhost</code>.
           p.
             For a complete setup and configuration guide, please refer to our <a href="http://github.com/joola/joola.io/wiki">wiki</a>.
         h2 Installation
         p.
-          joola.io is written in JavaScript and runs on Node.JS, an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
+          joola.io is written in JavaScript and runs using <a href="http://nodejs.org">Node.JS</a>, an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
           In addition we use additional components as part of the stack, all required to be installed prior to installing joola.io. 
           <br/><strong>Remember:</strong> we'll assume <code>localhost</code> is used throughout this page. If you wish to use another machine, please refer to the configuration section on the <a href="http://github.com/joola/joola/io/wiki">wiki</a>.
         .row
@@ -116,7 +117,7 @@ main.bs-docs-masthead(id="content", role="main")
               a(href="http://nodejs.org")
                 img(src="img/nodejs-logo.png")
             p.download-intro.
-              joola.io is written in JavaScript and runs using Node.JS, an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
+              joola.io is written in JavaScript and runs using <a href="http://nodejs.org">Node.JS</a>, an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
             p.center-block.text-center
               a.btn.btn-lg.btn-outline(href="http://nodejs.org/download/", role="button") Install Node.JS
           .col-md-3
