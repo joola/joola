@@ -105,30 +105,46 @@ main.bs-docs-masthead(id="content", role="main")
             For a complete setup and configuration guide, please refer to our <a href="http://github.com/joola/joola.io/wiki">wiki</a>.
         h2 Installation
         p.
-          joola.io is written in JavaScript and runs on Node.JS which uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
+          joola.io is written in JavaScript and runs on Node.JS, an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
           In addition we use additional components as part of the stack, all required to be installed prior to installing joola.io. 
           <br/><strong>Remember:</strong> we'll assume <code>localhost</code> is used throughout this page. If you wish to use another machine, please refer to the configuration section on the <a href="http://github.com/joola/joola/io/wiki">wiki</a>.
         .row
+          .col-md-12
+            h3 Before installing joola.io
           .col-md-3
             .logo3rd
-              img(src="img/nodejs-logo.png")
-            p.
-              Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
+              a(href="http://nodejs.org")
+                img(src="img/nodejs-logo.png")
+            p.download-intro.
+              joola.io is written in JavaScript and runs using Node.JS, an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
+            p.center-block.text-center
+              a.btn.btn-lg.btn-outline(href="http://nodejs.org/download/", role="button") Install Node.JS
           .col-md-3
             .logo3rd
-              img(src="img/redis-logo.png")
-            p.
+              a(href="http://redis.io")
+                img(src="img/redis-logo.png")
+            p.download-intro.
               Redis is an open source, BSD licensed, advanced key-value store. It is often referred to as a data structure server since keys can contain strings, hashes, lists, sets and sorted sets.
+              joola.io uses Redis to store its configuration and metadata.
+            p.center-block.text-center
+              a.btn.btn-lg.btn-outline(href="http://redis.io/download", role="button") Install Redis
           .col-md-3
             .logo3rd
-              img(src="img/mongodb-logo.png")
-            p.
-              MongoDB (from "humongous") is an open-source document database, and the leading NoSQL database, Written in C++.
+              a(href="http://mongodb.org")
+                img(src="img/mongodb-logo.png")
+            p.download-intro.
+              Documents pushed into joola.io are stored in a cache layer which is currently based on MongoDB, an open-source document database, and the leading NoSQL database. In the future, we'll support additional providers such as Cassandra, RethinkDB and more.
+            p.center-block.text-center
+              a.btn.btn-lg.btn-outline(href="http://www.mongodb.org/downloads", role="button") Install MongoDB          
           .col-md-3
             .logo3rd
-              img(src="img/rabbitmq-logo.png")
-            p.
-              RabbitMQ is a messaging broker - an intermediary for messaging. It gives your applications a common platform to send and receive messages, and your messages a safe place to live until received.
+              a(href="http://www.rabbitmq.com")
+                img(src="img/rabbitmq-logo.png")
+            p.download-intro.
+              In order to provide a scalabale framework that can handle very high loads of data consumption, joola.io uses STOMP to communicate with leading Message Queues. 
+              We have chosen RabbitMQ as the default MQ provider due to its simplicity and power.
+            p.center-block.text-center
+              a.btn.btn-lg.btn-outline(href="http://www.rabbitmq.com/download.html", role="button") Install RabbitMQ        
         .row
           .col-md-12
             h3 Installing joola.io
