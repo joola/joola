@@ -1,12 +1,12 @@
-[HOME](Home) > [SDK](sdk) > **USER MANAGEMENT**
+[HOME](Home) > [SDK](sdk) > **ANALYTICS AND VISUALIZATION**
 
 ### What's next?
 
 - [Getting and using the SDK](using-the-sdk)
 - [Security and authentication](security-and-authentication)
 - [Pushing data](pushing-data)
-- [Query, analytics and visualization](analytics-and-visualization)
+- **Query, analytics and visualization**
 - [Collections and meta data](collections)
-- **Workspaces, users and roles**
+- [Workspaces, users and roles](user-management)
 - [System health and stats](system-health)
 - [Complete API documentation](sdk-api-documentation)
