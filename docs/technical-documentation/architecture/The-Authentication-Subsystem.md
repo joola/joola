@@ -1,4 +1,4 @@
-[HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [SUBSYSTEMS](subsystems) > **AUTHENTICATION**
+[HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [ARCHITECTURE](architecture) > **AUTHENTICATION**
 
 joola.io is a secure system, meaning that any request must have a secure context with a valid authentication token.
 

@@ -1,3 +1,5 @@
+[HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [ARCHITECTURE](architecture) > **COMMON**
+
 As a framework, joola.io addresses many runtime issues, some are common and shared between the different framework sub-systems.
 For example, several systems need to access mongo, so we have a common module to deal with mongo connections and actions.
 

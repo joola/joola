@@ -1,4 +1,4 @@
-[HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [SUBSYSTEMS](subsystems) > **SDK**
+[HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [ARCHITECTURE](architecture) > **SDK**
 
 joola.io offers a Client SDK which can be used to connect, operate, manage, load events, 
 query and visualize data. Every feature and ability the framework has to offer can be utilized from the SDK. joola.io
