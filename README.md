@@ -1,8 +1,8 @@
 # joola.io [![Build Status][3]][4] [![Coverage Status][1]][2] [![Gitter chat](https://badges.gitter.im/joola/joola.io.png)](https://gitter.im/joola/joola.io)
 
-| **[Technical Docs] [techdocs]**     | **[Setup Guide] [setup]**     | **[Roadmap] [roadmap]**           | **[Contributing] [contributing]**           | **[About joola.io] [about]**     |
+| **[Technical Docs] [techdocs]**     | **[Setup Guide] [setup]**     | **[SDK Docs] [sdk-docs]**           | **[Contributing] [contributing]**           | **[About joola.io] [about]**     |
 |-------------------------------------|-------------------------------|-----------------------------------|---------------------------------------------|-------------------------------------|
-| [![i1] [techdocs-image]] [techdocs] | [![i2] [setup-image]] [setup] | [![i3] [roadmap-image]] [roadmap] | [![i4] [contributing-image]] [contributing] | [![i5] [about-image]] [about] |
+| [![i1] [techdocs-image]] [techdocs] | [![i2] [setup-image]] [setup] | [![i3] [sdk-docs-image]] [sdk-docs] | [![i4] [contributing-image]] [contributing] | [![i5] [about-image]] [about] |
 
 <img src="http://i.imgur.com/Kx6l8s3.png" alt="joola.io logo" title="joola.io" align="right" />
 
@@ -138,11 +138,11 @@ Copyright (c) 2012-2014 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24]
 [about-image]: https://raw.github.com/joola/joola.io/develop/docs/images/about.png
 [techdocs-image]: https://raw.github.com/joola/joola.io/develop/docs/images/techdocs.png
 [setup-image]: https://raw.github.com/joola/joola.io/develop/docs/images/setup.png
-[roadmap-image]: https://raw.github.com/joola/joola.io/develop/docs/images/roadmap.png
+[sdk-docs-image]: https://raw.github.com/joola/joola.io/develop/docs/images/roadmap.png
 [contributing-image]: https://raw.github.com/joola/joola.io/develop/docs/images/contributing.png
 
 [about]: https://github.com/joola/joola.io/wiki/joola.io-overview
 [techdocs]: https://github.com/joola/joola.io/wiki/Technical-documentation
 [setup]: https://github.com/joola/joola.io/wiki/Setting-up-joola.io
-[roadmap]: https://github.com/joola/joola.io/wiki/Product-roadmap
+[sdk-docs]: https://github.com/joola/joola.io/wiki/sdk
 [contributing]: https://github.com/joola/joola.io/wiki/Contributing

@@ -19,6 +19,7 @@ before(function (done) {
         return done(new Error('Failed to initialize engine, check logs.'));
 
       global.joolaio = joola.sdk;
+      global.joola_proxy = joola;
       global.uid = joola.common.uuid();
       joolaio.init({host: 'http://127.0.0.1:8080', APIToken: 'apitoken-root'}, function (err) {
         if (err)

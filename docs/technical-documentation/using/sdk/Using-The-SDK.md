@@ -1,6 +1,4 @@
-[HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [USING](using-joola.io) > **JOOLA.IO SDK**
-
-joola.io offers a complete SDK written in Javascript. 
+[HOME](Home) > [SDK](sdk) > **GETTING AND USING THE SDK**
 
 ## Step 1: Include/require the SDK
 In order to use the SDK, you will first need to include it in either a webpage or a NodeJS package.  
