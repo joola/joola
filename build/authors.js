@@ -4,7 +4,15 @@ var
   spawn = require('child_process').spawn,
   git = spawn('git', ["log", "--format='%aN##<%aE>'"]);
 
-var exclusions = ['<chef@bitdeli.com>'];
+var exclusions = [
+  '<chef@bitdeli.com>',
+  '<team@waffle.io>',
+  'itayw',
+  'orweinberger',
+  'orjoola',
+  '<orweinberger@gmail.com>',
+  '<vincent.palmer@odobo.com>'
+];
 
 var buffer = '';
 git.stdout.on('data', function (data) {
@@ -34,7 +42,7 @@ git.on('close', function (code) {
         var name = name.replace('\'', '');
         var email = email.replace('\'', '');
 
-        if (exclusions.indexOf(email) == -1) {
+        if (exclusions.indexOf(email) == -1 && exclusions.indexOf(name) == -1) {
           authors.push({
             name: name,
             email: email
