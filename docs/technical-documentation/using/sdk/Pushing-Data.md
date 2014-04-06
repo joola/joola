@@ -1,4 +1,4 @@
-[HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [USING](using-joola.io) > **PUSHING DATA**
+[HOME](Home) > [SDK](sdk) > **PUSHING DATA**
 
 It's very easy to get data into joola.io. The technique to do so vary on the specific implementation and feature set required.  
 Before we start, we'll assume that you've already [installed your joola.io](setting-up-joola.io) and that you've read the [Using the SDK guide](using-the-sdk).
