@@ -28,10 +28,6 @@ after_success: 'make coveralls'
 notifications:
   email:
     - 'updates@joo.la'
-  irc:
-    channels:
-      - 'chat.freenode.net#joola.io'
-    skip_join: true
   webhooks:
     urls:
       - https://webhooks.gitter.im/e/c4aa904abf1dabb42f95
