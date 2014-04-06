@@ -162,8 +162,8 @@ async.series(calls, function (err) {
               output += '\r\n\r\n';
               _dir.indexOf('lib/common') > -1 ? common += '\r\n\r\n' : null;
             }
-            output += '<code><a href="' + 'lib\\' + dir + '\\' + modulename + ' (jsdoc)">' + modulename + '</a></code>';
-            _dir.indexOf('lib/common') > -1 ? common += '<code><a href="' + 'lib\\' + dir + '\\' + modulename + ' (jsdoc)">' + modulename + '</a></code>' : null;
+            output += ' <code><a href="' + 'lib\\' + dir + '\\' + modulename + ' (jsdoc)">' + modulename + '</a></code> ';
+            _dir.indexOf('lib/common') > -1 ? common += ' <code><a href="' + 'lib\\' + dir + '\\' + modulename + ' (jsdoc)">' + modulename + '</a></code> ' : null;
             counter++;
           }
         }
