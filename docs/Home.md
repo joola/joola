@@ -11,7 +11,7 @@ If this is your first time hearing about joola.io, we recommend starting with th
 
 ###Quick navigation
 
-| **[Technical Docs] [techdocs]**     | **[Setup Guide] [setup]**     | **[SDK Docs] [sdk-docs]**           | **[Contributing] [contributing]**           | **[About joola.io] [about]**     | **[Issues] [issues]**     |
+| **[Technical Docs] [techdocs]**     | **[Setup Guide] [setup]**     | **[SDK] [sdk-docs]**           | **[Contributing] [contributing]**           | **[About joola.io] [about]**     | **[Issues] [issues]**     |
 |-------------------------------------|-------------------------------|-----------------------------------|---------------------------------------------|-------------------------------------|-------------------------------------|
 | [![i1] [techdocs-image]] [techdocs] | [![i2] [setup-image]] [setup] | [![i3] [sdk-docs-image]] [sdk-docs] | [![i4] [contributing-image]] [contributing] | [![i5] [about-image]] [about] | [![i6] [issues-image]] [issues] |
 

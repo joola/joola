@@ -1,6 +1,6 @@
 # joola.io [![Build Status][3]][4] [![Coverage Status][1]][2] [![Gitter chat](https://badges.gitter.im/joola/joola.io.png)](https://gitter.im/joola/joola.io)
 
-| **[Technical Docs] [techdocs]**     | **[Setup Guide] [setup]**     | **[SDK Docs] [sdk-docs]**           | **[Contributing] [contributing]**           | **[About joola.io] [about]**     |
+| **[Technical Docs] [techdocs]**     | **[Setup Guide] [setup]**     | **[SDK] [sdk-docs]**           | **[Contributing] [contributing]**           | **[About joola.io] [about]**     |
 |-------------------------------------|-------------------------------|-----------------------------------|---------------------------------------------|-------------------------------------|
 | [![i1] [techdocs-image]] [techdocs] | [![i2] [setup-image]] [setup] | [![i3] [sdk-docs-image]] [sdk-docs] | [![i4] [contributing-image]] [contributing] | [![i5] [about-image]] [about] |
 
