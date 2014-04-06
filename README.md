@@ -10,12 +10,12 @@
 
 1. Integrate existing data-sources to correlate, analyze and visualize data.
 2. Stores relevant data in a unique caching layer enabling scalable, rapid response times to queries and requests.
-3. Completely embeddable into existing sites, but also ships with a state-of-the-art analytics website.
+3. Seamlessly embeddable into existing sites, including single sign on and advanced features.
 
 ### Main Features
 
 - **Big-data**, supports distributed caching and processing to cope with big-data needs.
-- **Real-time** big-data processing. Display analytics as they arrive.
+- **Real-time** data processing. Display analytics as they arrive.
 - **Fast**, advanced caching algorithm. Avg. query time of less than a few seconds.
 - **Embed** quickly, seamlessly integrate with your site.
 - **Scalable**, run on a single machine or a node-based matrix.
@@ -25,8 +25,10 @@
 ### Getting Started
 We've pre-loaded the package with a fully working sample site, so it's easy to get started.
 
-Before getting started, please install [MongoDB](http://mongodb.org), [Redis](http://redis.io) and [RabbitMQ](http://www.rabbitmq.com/). For the specific example below to work out-of-the-box, it's required to have both installed on localhost.
- For a more details on the installation process, please refer to [this guide](http://github.com/joola/joola.io/wiki/install-joola.io).
+joola.io uses several leading open-source software for its operation. Before getting started, please install [MongoDB](http://mongodb.org), [Redis](http://redis.io) and [RabbitMQ](http://www.rabbitmq.com/). 
+
+For the example below to work out-of-the-box, it's required to have both joola.io and its dependencies installed on localhost.
+ For more details on the installation process, please refer to [this guide](http://github.com/joola/joola.io/wiki/install-joola.io).
 
 ```bash
 $ npm install joola.io -g 
@@ -81,7 +83,7 @@ joolaio.init({host: 'http://localhost:8080', APIToken: 'apitoken-beacon'}, funct
 </html>
 ```
 
-[**Learn more about analytics and visualizations**](http://github.com/joola/joola.io/wiki/analytics-and-visualizations)
+[**Learn more about analytics and visualizations**](http://github.com/joola/joola.io/wiki/analytics-and-visualization)
 
 ### Contributing
 We would love to get your help! We have outlined a simple [Contribution Policy][18] to support a transparent and easy merging
