@@ -69,7 +69,6 @@
     "usage": "*",
     "connect-redis": "~1.4.7",
     "repl.history": "*",
-    "geoip-lite": "*",
     "underscore": "*",
     "cloneextend": "0.0.3",
     "querystring": "~0.2.0",
@@ -108,6 +107,9 @@
     "socket.io-client": "~0.9.16",
     "commander": "~2.2.0",
     "humanize-number": "0.0.2"
+  },
+  "optionalDependencies": {
+    "geoip-lite": "*"
   },
   "license": "GPL-3.0"
 }
