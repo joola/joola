@@ -10,7 +10,7 @@
 
 1. Integrate existing data-sources to correlate, analyze and visualize data.
 2. Stores relevant data in a unique caching layer enabling scalable, rapid response times to queries and requests.
-3. Seamlessly embeddable into existing sites, including single sign on and advanced features.
+3. Seamlessly embeddable into existing sites, including single-sign-on and advanced features.
 
 ### Main Features
 
