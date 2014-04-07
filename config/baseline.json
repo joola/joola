@@ -203,14 +203,21 @@
           "_APIToken": "apitoken-root",
           "su": true
         },
+        "user": {
+          "username": "user",
+          "_password": "password",
+          "_roles": ["user"],
+          "displayName": "User",
+          "workspace": "root",
+          "_APIToken": "apitoken-user"
+        },
         "beacon": {
           "username": "beacon",
           "_password": "password",
           "_roles": ["beacon"],
           "displayName": "Beacon",
           "workspace": "root",
-          "_APIToken": "apitoken-beacon",
-          "su": true
+          "_APIToken": "apitoken-beacon"
         },
         "reader": {
           "username": "reader",
@@ -218,8 +225,7 @@
           "_roles": ["reader"],
           "displayName": "Reader",
           "workspace": "root",
-          "_APIToken": "apitoken-reader",
-          "su": true
+          "_APIToken": "apitoken-reader"
         }
       },
       "collections": {
@@ -228,6 +234,10 @@
           "name": "stats-node-count",
           "strongTyped": true,
           "expireAfterSeconds": 3600,
+          "roles": {
+            "read": ["reader"],
+            "write": ["beacon"]
+          },
           "timestamp": {
             "datatype": "date",
             "type": "dimension",
