@@ -71,7 +71,7 @@ main.bs-docs-masthead(id="content", role="main")
 
         joolaio.beacon.insert('demo-mousemoves', doc);
       p.center-block.text-center
-        a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about pushing data
+        a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io/pushing-data", role="button") Learn more about pushing data
     .col-md-6
       p Drawing visualizations is as easy as describing what you would like to see.
       pre.prettyprint(lang="javascript").
@@ -85,7 +85,7 @@ main.bs-docs-masthead(id="content", role="main")
 
         $('#container').Timeline({query: query});
       p.center-block.text-center
-        a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about visualization
+        a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io/wiki/analytics-and-visualization", role="button") Learn more about visualization
   .row
     .col-md-12
       .bs-docs-section(id="gettingstarted")
@@ -208,7 +208,7 @@ main.bs-docs-masthead(id="content", role="main")
               joola.io root@localhost:8080>
         .row
           p.center-block.text-center
-            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about the SDK
+            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io/sdk", role="button") Learn more about the SDK
         h2 Configuration
         p.
           joola.io has a wide range of configurable settings. Setting these options can be done manually with joola.io launch or during runtime.
@@ -254,7 +254,7 @@ main.bs-docs-masthead(id="content", role="main")
                 options: { capped: true, size: 10240000 } }
         .row
           p.center-block.text-center
-            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about configuration
+            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io/wiki/configuration", role="button") Learn more about configuration
         h2 Authentication
         p.
           joola.io is a secure, multi-tenant framework. This means that any action carried out requires a security context and users must authenticate before they
@@ -323,19 +323,19 @@ main.bs-docs-masthead(id="content", role="main")
               });
         .row
           p.center-block.text-center
-            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about authentication
+            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io/wiki/security-and-authentication", role="button") Learn more about authentication
         .row
         h2 Pushing data
         p.
           After the framework is setup (if you see the demo above, then it's fine), we can move on to push data into joola.io.
           Data to be pushed is described as an array of JSON documents, where each document describes all details needed for later retrieval.
-          Collections are used to batch data into logical containers, they store valualble metadata needed when querying information.
+          <a href="http://github.com/joola/joola.io/wiki/collections">Collections</a> are used to batch data into logical containers, they store valualble metadata needed when <a href="https://github.com/joola/joola.io/wiki/analytics-and-visualization">querying</a> information.
           Once data is pushed it's immediately available for query and visualization and pushing it cannot get easier.
         h3 A quick demo
         .row
           .col-md-6
             p.
-             Describe your data as a JSON document and choose a collection to push to.
+             Describe your data as a JSON document and choose a <a href="http://github.com/joola/joola.io/wiki/collections">collection</a> to push to.
              <br/>When you're done click on the 'Push' button to see results on the right pane.
             form(role="form")
               .form-group
@@ -368,10 +368,10 @@ main.bs-docs-masthead(id="content", role="main")
               Results will show up here.
         .row(style="margin-top:15px;")
           p.center-block.text-center
-            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about pushing data
+            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io/wiki/pushing-data", role="button") Learn more about pushing data
         h2 Visualization
         p.
-          Now we get to the real deal, visualizing your data. It's simple and fun! We create a simple JSON to describe the query and choose a visualization type to plot it.
+          Now we get to the real deal, visualizing your data. It's simple and fun! We create a simple JSON to describe the <a href="https://github.com/joola/joola.io/wiki/analytics-and-visualization">query</a> and choose a visualization type to plot it.
           <br/>There are several different visualization types to play with and the open nature of the framework makes it easy to write your own and add more visualizations.
         h3 A quick demo
         .row
@@ -379,7 +379,7 @@ main.bs-docs-masthead(id="content", role="main")
             p.
              Describe the data you would like to visualize. Specify the timeframe, interval, dimensions and metrics participating.
              You can also ask for realtime updates of the visualization.
-             <br/>When you're done describing, don't forget to specify which collection to query and choose a visualization type.
+             <br/>When you're done describing, don't forget to specify which <a href="http://github.com/joola/joola.io/wiki/collections">collection</a> to <a href="https://github.com/joola/joola.io/wiki/SDK-API-Documentation#joolaioquery">query</a> and choose a visualization type.
              Results will be shown on the right pane.
             form(role="form")
               .form-group
@@ -416,6 +416,9 @@ main.bs-docs-masthead(id="content", role="main")
               }
           .col-md-6
             #vizcontainer.active
+        .row(style="margin-top:15px;")
+          p.center-block.text-center
+            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io/wiki/analytics-and-visualization", role="button") Learn more about visualizations
   //.row
     .col-md-12
       .bs-docs-section(id="examples")
