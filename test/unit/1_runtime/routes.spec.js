@@ -74,7 +74,7 @@ describe("routes", function () {
     http.request(options, callback).end();
   });
 
-  xit("should get the SDK [w/ token]", function (done) {
+  it("should get the SDK [w/ token]", function (done) {
     var options = {
       host: 'localhost',
       port: '8080',
@@ -94,6 +94,7 @@ describe("routes", function () {
       });
 
       response.on('error', function (err) {
+        console.log('err');
         return done(err);
       });
     };
@@ -128,7 +129,7 @@ describe("routes", function () {
     http.request(options, callback).end();
   });
 
-  xit("should get the minified SDK [w/ token]", function (done) {
+  it("should get the minified SDK [w/ token]", function (done) {
     var options = {
       host: 'localhost',
       port: '8080',
