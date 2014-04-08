@@ -46,7 +46,7 @@ joola.io uses RabbitMQ to manage its message dispatch and routing and it is the 
 **Note:** joola.io is designed to support more than a single store type for its messaging layer. In the future, 
 we will offer support for additional store types.
 
-[Learn more about installing RabbitMQ](http://www.rabbitmq.org//download.html)
+[Learn more about installing RabbitMQ](http://www.rabbitmq.org/download.html)
 
 ## Step 2: Install joola.io
 joola.io is an [npm](http://npmjs.org) package and installing it is as simple as running:
