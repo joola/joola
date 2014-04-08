@@ -28,6 +28,9 @@ test-cov:
 		$(MAKE) lint
 		$(MAKE) istanbul
 
+test-cov-partial:
+		./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha ./test/unit/starthere.spec.js ./test/unit/3_auth/routes.spec.js -- -R spec test
+
 istanbul:
 		./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R spec test
 
