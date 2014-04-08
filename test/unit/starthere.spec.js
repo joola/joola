@@ -21,7 +21,7 @@ before(function (done) {
       global.joolaio = joola.sdk;
       global.joola_proxy = joola;
       global.uid = joola.common.uuid();
-      joolaio.init({host: 'http://127.0.0.1:8080', APIToken: 'apitoken-root'}, function (err) {
+      joolaio.init({host: 'http://127.0.0.1:8080', APIToken: 'apitoken-root', debug: {enabled: true}}, function (err) {
         if (err)
           return done(err);
         //joolaio.events.on('ready', function () {

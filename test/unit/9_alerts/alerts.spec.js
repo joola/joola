@@ -5,24 +5,6 @@ describe("alerts", function () {
     done();
   });
 
-  it("should send an alert", function (done) {
-    var id = 'test-alert';
-    var query = {
-      timeframe: 'last_minute',
-      interval: 'second',
-      metrics: ['event']
-    };
-    var type = 'webhook';
-    var endpoint = '/nowehere';
-
-    joola.alerts.set(this.context, query, type, endpoint, function (err) {
-      if (err)
-        return done(err);
-
-      done();
-    });
-  });
-
   it("should send an alert w/ route", function (done) {
     var id = 'test-alert';
     var query = {
@@ -37,7 +19,7 @@ describe("alerts", function () {
       if (err)
         return done(err);
 
-      done();
+      setTimeout(done, 2000);
     });
   });
 });
