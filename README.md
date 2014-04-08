@@ -25,7 +25,7 @@
 ### Getting Started
 We've pre-loaded the package with a fully working sample site, so it's easy to get started.
 
-joola.io uses several leading open-source software for its operation. Before getting started, please install [MongoDB](http://mongodb.org), [Redis](http://redis.io) and [RabbitMQ](http://www.rabbitmq.com/). 
+joola.io uses several leading open-source software for its operation. Before getting started, please install [MongoDB](http://mongodb.org), [Redis](http://redis.io) and [RabbitMQ](http://www.rabbitmq.com/), for more details on these pre-requisites please refer to the [wiki](http://github.com/joola/joola.io/wiki/install-joola.io).  
 
 For the example below to work out-of-the-box, it's required to have both joola.io and its dependencies installed on localhost.
  For more details on the installation process, please refer to [this guide](http://github.com/joola/joola.io/wiki/install-joola.io).

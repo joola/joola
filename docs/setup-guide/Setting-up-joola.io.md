@@ -12,7 +12,7 @@ Setting up joola.io is a five step process:
 ## Step 1: Install joola.io
 
 joola.io is developed using [NodeJS][NodeJS], therefore, before starting you'll need to install node as part of your environment.
-Moving on, you'll need to install [MongoDB][Mongo] and [Redis][Redis], these are used by the caching layer.
+Moving on, you'll need to install [MongoDB][Mongo], [Redis][Redis] and [RabbitMQ][RabbitMQ], these are used by the caching layer.
 
 Now that we have the pre-requisits done, let's get to the real deal:
 ```bash
@@ -190,3 +190,4 @@ You now have joola.io setup, configured and running!
 [NodeJS]: http://nodejs.org
 [Mongo]: http://mongodb.org
 [Redis]: http://redis.io
+[RabbitMQ]: http://www.rabbitmq.com
