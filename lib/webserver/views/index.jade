@@ -329,13 +329,13 @@ main.bs-docs-masthead(id="content", role="main")
         p.
           After the framework is setup (if you see the demo above, then it's fine), we can move on to push data into joola.io.
           Data to be pushed is described as an array of JSON documents, where each document describes all details needed for later retrieval.
-          Collections are used to batch data into logical containers, they store valualble metadata needed when querying information.
+          <a href="http://github.com/joola/joola.io/wiki/collections">Collections</a> are used to batch data into logical containers, they store valualble metadata needed when <a href="https://github.com/joola/joola.io/wiki/analytics-and-visualization">querying</a> information.
           Once data is pushed it's immediately available for query and visualization and pushing it cannot get easier.
         h3 A quick demo
         .row
           .col-md-6
             p.
-             Describe your data as a JSON document and choose a collection to push to.
+             Describe your data as a JSON document and choose a <a href="http://github.com/joola/joola.io/wiki/collections">collection</a> to push to.
              <br/>When you're done click on the 'Push' button to see results on the right pane.
             form(role="form")
               .form-group
@@ -371,7 +371,7 @@ main.bs-docs-masthead(id="content", role="main")
             a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io/wiki/pushing-data", role="button") Learn more about pushing data
         h2 Visualization
         p.
-          Now we get to the real deal, visualizing your data. It's simple and fun! We create a simple JSON to describe the query and choose a visualization type to plot it.
+          Now we get to the real deal, visualizing your data. It's simple and fun! We create a simple JSON to describe the <a href="https://github.com/joola/joola.io/wiki/analytics-and-visualization">query</a> and choose a visualization type to plot it.
           <br/>There are several different visualization types to play with and the open nature of the framework makes it easy to write your own and add more visualizations.
         h3 A quick demo
         .row
@@ -379,7 +379,7 @@ main.bs-docs-masthead(id="content", role="main")
             p.
              Describe the data you would like to visualize. Specify the timeframe, interval, dimensions and metrics participating.
              You can also ask for realtime updates of the visualization.
-             <br/>When you're done describing, don't forget to specify which collection to query and choose a visualization type.
+             <br/>When you're done describing, don't forget to specify which <a href="http://github.com/joola/joola.io/wiki/collections">collection</a> to <a href="https://github.com/joola/joola.io/wiki/SDK-API-Documentation#joolaioquery">query</a> and choose a visualization type.
              Results will be shown on the right pane.
             form(role="form")
               .form-group
