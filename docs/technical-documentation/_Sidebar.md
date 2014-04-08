@@ -11,7 +11,7 @@
 - [[Labs]]
 - [[Troubleshooting]]
 
-**Subsystems**
+**Architecture**
 - [Core](The-COre-Subsystem)
 - [Common](The-Common-Subsystem)
 - [Dispatch](The-Dispatch-Subsystem)
