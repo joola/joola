@@ -337,8 +337,12 @@ label.checkbox {
 }
 
 .logo3rd {
-  text-align:center;
-  margin-bottom:15px;
-  margin-top:15px;
-  height:70px;
+  text-align: center;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  height: 70px;
+}
+
+p.download-intro {
+  height: 140px
 }

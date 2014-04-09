@@ -79,7 +79,6 @@ describe("cache-basic", function () {
         ]
       };
       joola.query.fetch(self.context, query, function (err, documents) {
-        console.log(err, documents.documents[0]);
         done();
       });
     });
@@ -146,7 +145,6 @@ describe("cache-basic", function () {
         ]
       };
       joola.query.fetch(self.context, query, function (err, documents) {
-        console.log(err, documents.documents[0].values);
         done();
       });
     });

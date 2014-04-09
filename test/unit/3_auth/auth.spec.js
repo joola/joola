@@ -129,7 +129,6 @@ describe("auth", function () {
         expect(valid).to.be.ok;
         setTimeout(function () {
           joola.auth.validateToken(token._, null, function (err, valid) {
-            console.log('validate', valid);
             if (err)
               done();
             else

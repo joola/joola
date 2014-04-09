@@ -29,7 +29,7 @@ main.bs-docs-masthead(id="content", role="main")
   .container
     img(src="img/hero.png")
     //p.lead Liberating data analytics.
-    p.lead Liberating big-data analytics
+    p.lead Liberating data analytics
     p.lead
       a.btn.btn-outline-inverse.btn-lg(href="http://github.com/joola/joola.io") View the GitHub project
     p.version Currently v#{version}
@@ -38,7 +38,8 @@ main.bs-docs-masthead(id="content", role="main")
   .row
     .col-md-12
       .bs-docs-section(id="demo")
-        h1.page-header Demo
+        h1.page-header Demo 
+          small (site usage over last hour) 
         p.lead A Demo of joola.io basic functionality and a great way to check system health.
 
     .col-md-12
@@ -58,7 +59,7 @@ main.bs-docs-masthead(id="content", role="main")
     .col-md-12
       p The demo responds to actions and events on this page. Everytime you move your mouse, visit the page or click on it, an event is pushed into joola.io and then visualized.
     .col-md-6
-      p On every mouse-move the following document is compiled and pushed via Beacon:
+      p When you move your mouse the following document is compiled and pushed to joola.io:
       pre.prettyprint(lang="javascript").
         var doc = {
           timestamp: null,
@@ -70,7 +71,7 @@ main.bs-docs-masthead(id="content", role="main")
 
         joolaio.beacon.insert('demo-mousemoves', doc);
       p.center-block.text-center
-        a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about pushing data
+        a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io/pushing-data", role="button") Learn more about pushing data
     .col-md-6
       p Drawing visualizations is as easy as describing what you would like to see.
       pre.prettyprint(lang="javascript").
@@ -84,7 +85,7 @@ main.bs-docs-masthead(id="content", role="main")
 
         $('#container').Timeline({query: query});
       p.center-block.text-center
-        a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about visualization
+        a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io/wiki/analytics-and-visualization", role="button") Learn more about visualization
   .row
     .col-md-12
       .bs-docs-section(id="gettingstarted")
@@ -100,35 +101,51 @@ main.bs-docs-masthead(id="content", role="main")
           h4 Assumptions
           p.
             Please note that for this getting started guide we'll be assuming <code>localhost</code> as your server and <code>apitoken-root</code> as your APIToken (default).
-            <br/>Also, when referring to dependencies such as MongoDB, Redis, etc... we assume that these are installed on your <code>localhost</code>.
+            <br/>Also, when referring to dependencies such as <a href="http://mongodb.org">MongoDB</a>, <a href="http://redis.io">Redis</a>, etc... we assume that these are installed on your <code>localhost</code>.
           p.
             For a complete setup and configuration guide, please refer to our <a href="http://github.com/joola/joola.io/wiki">wiki</a>.
         h2 Installation
         p.
-          joola.io is written in JavaScript and runs on Node.JS which uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
+          joola.io is written in JavaScript and runs using <a href="http://nodejs.org">Node.JS</a>, an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
           In addition we use additional components as part of the stack, all required to be installed prior to installing joola.io. 
           <br/><strong>Remember:</strong> we'll assume <code>localhost</code> is used throughout this page. If you wish to use another machine, please refer to the configuration section on the <a href="http://github.com/joola/joola/io/wiki">wiki</a>.
         .row
+          .col-md-12
+            h3 Before installing joola.io
           .col-md-3
             .logo3rd
-              img(src="img/nodejs-logo.png")
-            p.
-              Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
+              a(href="http://nodejs.org")
+                img(src="img/nodejs-logo.png")
+            p.download-intro.
+              joola.io is written in JavaScript and runs using <a href="http://nodejs.org">Node.JS</a>, an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
+            p.center-block.text-center
+              a.btn.btn-lg.btn-outline(href="http://nodejs.org/download/", role="button") Install Node.JS
           .col-md-3
             .logo3rd
-              img(src="img/redis-logo.png")
-            p.
+              a(href="http://redis.io")
+                img(src="img/redis-logo.png")
+            p.download-intro.
               Redis is an open source, BSD licensed, advanced key-value store. It is often referred to as a data structure server since keys can contain strings, hashes, lists, sets and sorted sets.
+              joola.io uses Redis to store its configuration and metadata.
+            p.center-block.text-center
+              a.btn.btn-lg.btn-outline(href="http://redis.io/download", role="button") Install Redis
           .col-md-3
             .logo3rd
-              img(src="img/mongodb-logo.png")
-            p.
-              MongoDB (from "humongous") is an open-source document database, and the leading NoSQL database, Written in C++.
+              a(href="http://mongodb.org")
+                img(src="img/mongodb-logo.png")
+            p.download-intro.
+              Documents pushed into joola.io are stored in a cache layer which is currently based on MongoDB, an open-source document database, and the leading NoSQL database. In the future, we'll support additional providers such as Cassandra, RethinkDB and more.
+            p.center-block.text-center
+              a.btn.btn-lg.btn-outline(href="http://www.mongodb.org/downloads", role="button") Install MongoDB          
           .col-md-3
             .logo3rd
-              img(src="img/rabbitmq-logo.png")
-            p.
-              RabbitMQ is a messaging broker - an intermediary for messaging. It gives your applications a common platform to send and receive messages, and your messages a safe place to live until received.
+              a(href="http://www.rabbitmq.com")
+                img(src="img/rabbitmq-logo.png")
+            p.download-intro.
+              In order to provide a scalabale framework that can handle very high loads of data consumption, joola.io uses STOMP to communicate with leading Message Queues. 
+              We have chosen RabbitMQ as the default MQ provider due to its simplicity and power.
+            p.center-block.text-center
+              a.btn.btn-lg.btn-outline(href="http://www.rabbitmq.com/download.html", role="button") Install RabbitMQ        
         .row
           .col-md-12
             h3 Installing joola.io
@@ -191,7 +208,7 @@ main.bs-docs-masthead(id="content", role="main")
               joola.io root@localhost:8080>
         .row
           p.center-block.text-center
-            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about the SDK
+            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io/sdk", role="button") Learn more about the SDK
         h2 Configuration
         p.
           joola.io has a wide range of configurable settings. Setting these options can be done manually with joola.io launch or during runtime.
@@ -237,7 +254,7 @@ main.bs-docs-masthead(id="content", role="main")
                 options: { capped: true, size: 10240000 } }
         .row
           p.center-block.text-center
-            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about configuration
+            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io/wiki/configuration", role="button") Learn more about configuration
         h2 Authentication
         p.
           joola.io is a secure, multi-tenant framework. This means that any action carried out requires a security context and users must authenticate before they
@@ -306,19 +323,19 @@ main.bs-docs-masthead(id="content", role="main")
               });
         .row
           p.center-block.text-center
-            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about authentication
+            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io/wiki/security-and-authentication", role="button") Learn more about authentication
         .row
         h2 Pushing data
         p.
           After the framework is setup (if you see the demo above, then it's fine), we can move on to push data into joola.io.
           Data to be pushed is described as an array of JSON documents, where each document describes all details needed for later retrieval.
-          Collections are used to batch data into logical containers, they store valualble metadata needed when querying information.
+          <a href="http://github.com/joola/joola.io/wiki/collections">Collections</a> are used to batch data into logical containers, they store valualble metadata needed when <a href="https://github.com/joola/joola.io/wiki/analytics-and-visualization">querying</a> information.
           Once data is pushed it's immediately available for query and visualization and pushing it cannot get easier.
         h3 A quick demo
         .row
           .col-md-6
             p.
-             Describe your data as a JSON document and choose a collection to push to.
+             Describe your data as a JSON document and choose a <a href="http://github.com/joola/joola.io/wiki/collections">collection</a> to push to.
              <br/>When you're done click on the 'Push' button to see results on the right pane.
             form(role="form")
               .form-group
@@ -351,10 +368,10 @@ main.bs-docs-masthead(id="content", role="main")
               Results will show up here.
         .row(style="margin-top:15px;")
           p.center-block.text-center
-            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io", role="button") Learn more about pushing data
+            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io/wiki/pushing-data", role="button") Learn more about pushing data
         h2 Visualization
         p.
-          Now we get to the real deal, visualizing your data. It's simple and fun! We create a simple JSON to describe the query and choose a visualization type to plot it.
+          Now we get to the real deal, visualizing your data. It's simple and fun! We create a simple JSON to describe the <a href="https://github.com/joola/joola.io/wiki/analytics-and-visualization">query</a> and choose a visualization type to plot it.
           <br/>There are several different visualization types to play with and the open nature of the framework makes it easy to write your own and add more visualizations.
         h3 A quick demo
         .row
@@ -362,7 +379,7 @@ main.bs-docs-masthead(id="content", role="main")
             p.
              Describe the data you would like to visualize. Specify the timeframe, interval, dimensions and metrics participating.
              You can also ask for realtime updates of the visualization.
-             <br/>When you're done describing, don't forget to specify which collection to query and choose a visualization type.
+             <br/>When you're done describing, don't forget to specify which <a href="http://github.com/joola/joola.io/wiki/collections">collection</a> to <a href="https://github.com/joola/joola.io/wiki/SDK-API-Documentation#joolaioquery">query</a> and choose a visualization type.
              Results will be shown on the right pane.
             form(role="form")
               .form-group
@@ -399,6 +416,9 @@ main.bs-docs-masthead(id="content", role="main")
               }
           .col-md-6
             #vizcontainer.active
+        .row(style="margin-top:15px;")
+          p.center-block.text-center
+            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io/wiki/analytics-and-visualization", role="button") Learn more about visualizations
   //.row
     .col-md-12
       .bs-docs-section(id="examples")

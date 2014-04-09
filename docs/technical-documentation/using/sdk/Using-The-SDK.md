@@ -1,6 +1,4 @@
-[HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [USING](using-joola.io) > **JOOLA.IO SDK**
-
-joola.io offers a complete SDK written in Javascript. 
+[HOME](Home) > [SDK](sdk) > **GETTING AND USING THE SDK**
 
 ## Step 1: Include/require the SDK
 In order to use the SDK, you will first need to include it in either a webpage or a NodeJS package.  
@@ -128,3 +126,14 @@ Here's a short list of different examples relevant to the SDK. If you wish to le
 - [Collections and meta data](collections)
 - [Manage Organizations, users and roles](user-management)
 - [System health and stats](system-health)
+
+### What's next?
+
+- **Getting and using the SDK**
+- [Security and authentication](security-and-authentication)
+- [Pushing data](pushing-data)
+- [Query, analytics and visualization](analytics-and-visualization)
+- [Collections and meta data](collections)
+- [Workspaces, users and roles](user-management)
+- [System health and stats](system-health)
+- [Complete API documentation](sdk-api-documentation)

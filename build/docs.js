@@ -162,8 +162,8 @@ async.series(calls, function (err) {
               output += '\r\n\r\n';
               _dir.indexOf('lib/common') > -1 ? common += '\r\n\r\n' : null;
             }
-            output += '<code><a href="' + 'lib\\' + dir + '\\' + modulename + ' (jsdoc)">' + modulename + '</a></code>';
-            _dir.indexOf('lib/common') > -1 ? common += '<code><a href="' + 'lib\\' + dir + '\\' + modulename + ' (jsdoc)">' + modulename + '</a></code>' : null;
+            output += ' <code><a href="' + 'lib\\' + dir + '\\' + modulename + ' (jsdoc)">' + modulename + '</a></code> ';
+            _dir.indexOf('lib/common') > -1 ? common += ' <code><a href="' + 'lib\\' + dir + '\\' + modulename + ' (jsdoc)">' + modulename + '</a></code> ' : null;
             counter++;
           }
         }
@@ -176,9 +176,9 @@ async.series(calls, function (err) {
   data = data.replace('[##INSERTSTRUCTURE##]', output);
   fs.writeFileSync(path.join(wikiCodePath, 'Code-documentation.md'), data);
 
-  var data = fs.readFileSync(path.join(wikiCodePath, '/../subsystems/The-Common-Subsystem.md')).toString();
+  var data = fs.readFileSync(path.join(wikiCodePath, '/../architecture/The-Common-Subsystem.md')).toString();
   data = data.replace('[##INSERTSTRUCTURE_COMMON##]', common);
-  fs.writeFileSync(path.join(wikiCodePath, '/../subsystems/The-Common-Subsystem.md'), data);
+  fs.writeFileSync(path.join(wikiCodePath, '/../architecture/The-Common-Subsystem.md'), data);
 
 });
 

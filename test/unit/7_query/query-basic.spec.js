@@ -12,7 +12,7 @@ describe("query-basic", function () {
     var query = {};
     var expected = 0;
 
-    joola.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
@@ -28,7 +28,7 @@ describe("query-basic", function () {
       metrics: ['value', 'another'],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
 
@@ -47,7 +47,7 @@ describe("query-basic", function () {
       metrics: ['value'],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
 
@@ -67,7 +67,7 @@ describe("query-basic", function () {
       metrics: ['value'],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -86,7 +86,7 @@ describe("query-basic", function () {
       metrics: ['value'],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -107,7 +107,7 @@ describe("query-basic", function () {
       ],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -128,7 +128,7 @@ describe("query-basic", function () {
       ],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -149,7 +149,7 @@ describe("query-basic", function () {
       ],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -170,7 +170,7 @@ describe("query-basic", function () {
       ],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -191,7 +191,7 @@ describe("query-basic", function () {
       ],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -212,7 +212,7 @@ describe("query-basic", function () {
       ],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -233,7 +233,7 @@ describe("query-basic", function () {
       ],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -254,7 +254,7 @@ describe("query-basic", function () {
       ],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -275,7 +275,7 @@ describe("query-basic", function () {
       ],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -296,7 +296,7 @@ describe("query-basic", function () {
       ],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -317,7 +317,7 @@ describe("query-basic", function () {
       ],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -338,7 +338,7 @@ describe("query-basic", function () {
       ],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -361,7 +361,7 @@ describe("query-basic", function () {
       ],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -389,7 +389,7 @@ describe("query-basic", function () {
       ],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -418,7 +418,7 @@ describe("query-basic", function () {
       ],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -446,7 +446,7 @@ describe("query-basic", function () {
       ],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -473,7 +473,7 @@ describe("query-basic", function () {
       ],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -501,7 +501,7 @@ describe("query-basic", function () {
       ],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -527,7 +527,7 @@ describe("query-basic", function () {
       metrics: ['value', 'another'],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -555,7 +555,7 @@ describe("query-basic", function () {
       ],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;

@@ -7,17 +7,10 @@ We want to make it super-easy for joola.io users and contributors to talk to us 
 solve problems and help make joola.io awesome.
 Here are the main channels we're running currently, we'd love to hear from you on one of them:
 
-## Google Group
+## Gitter
+[![Gitter chat](https://badges.gitter.im/joola/joola.io.png)](https://gitter.im/joola/joola.io)
 
-[joola.io Google Group] [google-group]
-
-The joola.io Google Group is a good first stop for a general inquiry about joola.io or a specific support issue (e.g. trouble setting joola.io up). It's also a good forum for discussions about the roadmap or potential new functionality.
-
-## IRC
-
-`#joola.io`
-
-We're big fans of IRC here at joola. We have a `#joola.io` channel on Freenode - stop by and say hi, you can even use [Freenode's webchat service] [freenode-webchat] so don't need to install anything to access it. Soon, this channel will be linked to our GitHub - so you can see new issues, merged pull requests and so on as they happen.
+We're big fans of Gitter here at joola. We have a `#joola/joola.io` channel - stop by and say hi. Soon, this channel will be linked to our GitHub - so you can see new issues, merged pull requests and so on as they happen.
 
 ## Twitter
 

@@ -1,4 +1,4 @@
-[HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [USING](using-joola.io) > **PUSHING DATA**
+[HOME](Home) > [SDK](sdk) > **PUSHING DATA**
 
 It's very easy to get data into joola.io. The technique to do so vary on the specific implementation and feature set required.  
 Before we start, we'll assume that you've already [installed your joola.io](setting-up-joola.io) and that you've read the [Using the SDK guide](using-the-sdk).
@@ -80,3 +80,15 @@ The above will result with the meta data for value now be marked as `type=string
 The metric `value2` is described with specific requirements for average and prefix.
  
 [**Learn more about collections, dimensions and metrics**](collections)
+
+### What's next?
+
+- [Getting and using the SDK](using-the-sdk)
+- [Security and authentication](security-and-authentication)
+- **Pushing data**
+- [Query, analytics and visualization](analytics-and-visualization)
+- [Collections and meta data](collections)
+- [Workspaces, users and roles](user-management)
+- [System health and stats](system-health)
+- [Complete API documentation](sdk-api-documentation)
+
