@@ -39,11 +39,14 @@ joolaio.init({host: 'http://localhost:8080', APIToken: 'apitoken-root', ajax: tr
           console.log('Progress: %s complete', percent);
         })
         .on('end', function (stats, errorCount) {
+          console.log(stats);
           stats.name = flowModule.name;
           results.flows[flowModule.name] = stats;
+
+          if (++actual === results.flowCount)
+            return alldone();
         });
-      if (++actual === results.flowCount)
-        return alldone();
+
     });
   });
 
