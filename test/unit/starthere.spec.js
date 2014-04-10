@@ -14,7 +14,7 @@ before(function (done) {
     global.joola = joola;
     if (err)
       return done(err);
-    joola.state.on('state:change', function (state) {
+    joola.state.once('state:change', function (state) {
       if (state !== 'online')
         return done(new Error('Failed to initialize engine, check logs.'));
 
