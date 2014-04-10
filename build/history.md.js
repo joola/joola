@@ -11,20 +11,24 @@ var github = new GitHubApi({
   timeout: 5000
 });
 
+var REPO = 'joola.io';
+var USER = 'joola';
+
 /*
+--optional
 github.authenticate({
-  type: "oauth",
-  token: process.env.JOOLA_BUILD_GITHUB_TOKEN
+  type: 'oauth',
+  token: 'yourtoken'
 });
 */
 
 var MDContent = '';
 var calls = [];
-github.repos.getTags({user: 'joola', repo: 'joola.io'}, function (err, tags) {
+github.repos.getTags({user: USER, repo: REPO}, function (err, tags) {
   if (err)
     throw err;
 
-  github.issues.getAllMilestones({user: 'joola', repo: 'joola.io', state: 'closed'}, function (err, milestones) {
+  github.issues.getAllMilestones({user: USER, repo: REPO, state: 'closed'}, function (err, milestones) {
     if (err)
       throw err;
     tags.forEach(function (tag) {
@@ -33,7 +37,7 @@ github.repos.getTags({user: 'joola', repo: 'joola.io'}, function (err, tags) {
       });
       if (milestone) {
         var call = function (callback) {
-          github.issues.repoIssues({user: 'joola', repo: 'joola.io', state: 'closed', milestone: milestone.number}, function (err, issues) {
+          github.issues.repoIssues({user: USER, repo: REPO, state: 'closed', milestone: milestone.number}, function (err, issues) {
             if (err)
               throw err;
             if (issues.length == 0)
