@@ -9,6 +9,7 @@
  *  Some rights reserved. See LICENSE, AUTHORS.
  **/
 
+'use strict';
 
 var joola = module.exports = require('./lib/joola.io');
 
