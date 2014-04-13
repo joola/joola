@@ -36,8 +36,8 @@ before(function (done) {
 });
 
 after(function (done) {
-  if (shutdown) {
-    shutdown(0, function () {
+  if (joola.shutdown) {
+    joola.shutdown(0, function () {
       return done();
     });
   }
