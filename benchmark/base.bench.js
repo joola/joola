@@ -1,12 +1,17 @@
-var common = require('../lib/common/index');
-var benchrest = require('bench-rest');
+var
+  util = require('util'),
+  benchrest = require('bench-rest'),
+
+  common = require('../lib/common/index');
+
 var flows = [
   './flows/beacon.spec.js',
-  //'./flows/beacon.large.spec.js',
+  './flows/beacon.large.spec.js',
   './flows/metadata.spec.js'
 ];
 
 global.JOOLA_ADDRESS = 'http://127.0.0.1:8080';
+const VERSION = '0.0.1';
 
 var results = {};
 results.benchmarkID = common.uuid();
@@ -17,13 +22,16 @@ results.flowCount = flows.length;
 var actual = 0;
 
 var joolaio = require('joola.io.sdk');
-joolaio.init({host: 'http://localhost:8080', APIToken: 'apitoken-root', ajax: true}, function (err) {
+joolaio.init({host: JOOLA_ADDRESS, APIToken: 'apitoken-root', ajax: true}, function (err) {
+  if (err)
+    throw err;
+
   joolaio.system.nodeDetails(function (err, details) {
     if (err)
       throw err;
 
     results.nodeDetails = details;
-
+    results.version = VERSION;
     flows.forEach(function (flow) {
       console.log('Running Flow', flow);
       var flowModule = require(flow);
@@ -36,10 +44,10 @@ joolaio.init({host: 'http://localhost:8080', APIToken: 'apitoken-root', ajax: tr
           console.error('Failed in %s with err: ', ctxName, err);
         })
         .on('progress', function (stats, percent, concurrent, ips) {
-          console.log('Progress: %s complete', percent);
+          console.log('Progress: %s complete', percent, concurrent, ips);
         })
         .on('end', function (stats, errorCount) {
-          console.log(stats);
+          //console.log(stats);
           stats.name = flowModule.name;
           results.flows[flowModule.name] = stats;
 
@@ -51,7 +59,7 @@ joolaio.init({host: 'http://localhost:8080', APIToken: 'apitoken-root', ajax: tr
   });
 
   function alldone() {
-    console.log(results);
+    console.log(util.inspect(results, {depth: null, colors: true}));
     joolaio.beacon.insert('benchmark', results, function (err) {
       if (err)
         throw err;

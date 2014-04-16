@@ -1,9 +1,9 @@
 module.exports = {
-  name: 'beacon.large',
+  name: 'beacon_large',
   runOptions: {
     limit: 1,         // concurrent connections
     iterations: 1,  // number of iterations to perform
-    progress: 1000
+    progress: 5000
     //prealloc: 10     
   },
   flow: {
