@@ -58,7 +58,7 @@
     "bunyan-format": "*",
     "mongo-col": "http://github.com/Raynos/mongo-col/tarball/master",
     "mongo-stream": "*",
-    "mongodb": "*",
+    "mongodb": "^1.4.0",
     "htpasswd": "*",
     "moment": "~2.5.1",
     "twix": "~0.4.0",
