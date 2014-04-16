@@ -1,10 +1,10 @@
 module.exports = {
   name: 'metadata',
   runOptions: {
-    limit: 1,         // concurrent connections
-    iterations: 10,  // number of iterations to perform
+    limit: 10,         // concurrent connections
+    iterations: 100,  // number of iterations to perform
     progress: 5000
-    //prealloc: 10     
+    //prealloc: 10
   },
   flow: {
     before: [],      // operations to do before anything

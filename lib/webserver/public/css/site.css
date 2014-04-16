@@ -221,12 +221,9 @@ div[jio-type="metric"] {
 
 }
 
-#metricbox-2 {
-  padding-left: 15px;
-}
-
-#metricbox-3 {
-
+#metricbox-2,
+#metricbox-3,
+#metricbox-4 {
   padding-left: 15px;
 }
 

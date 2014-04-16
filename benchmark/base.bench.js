@@ -6,7 +6,7 @@ var
 
 var flows = [
   './flows/beacon.spec.js',
-  './flows/beacon.large.spec.js',
+  //'./flows/beacon.large.spec.js',
   './flows/metadata.spec.js'
 ];
 
@@ -16,7 +16,7 @@ const VERSION = '0.0.1';
 var results = {};
 results.benchmarkID = common.uuid();
 results.timestamp = new Date();
-results.flows = {};
+results.flows =[];
 results.flowCount = flows.length;
 
 var actual = 0;
@@ -49,7 +49,7 @@ joolaio.init({host: JOOLA_ADDRESS, APIToken: 'apitoken-root', ajax: true}, funct
         .on('end', function (stats, errorCount) {
           //console.log(stats);
           stats.name = flowModule.name;
-          results.flows[flowModule.name] = stats;
+          results.flows.push(stats);
 
           if (++actual === results.flowCount)
             return alldone();
