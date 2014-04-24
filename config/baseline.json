@@ -22,7 +22,7 @@
         "enabled": true
       },
       "sessionDurtaion": 1200000,
-      "timeout": 15000,
+      "timeout": 60000,
       "blacklist": []
     },
     "repl": {

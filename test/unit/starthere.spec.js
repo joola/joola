@@ -14,14 +14,14 @@ before(function (done) {
     global.joola = joola;
     if (err)
       return done(err);
-    joola.state.on('state:change', function (state) {
+    joola.state.once('state:change', function (state) {
       if (state !== 'online')
         return done(new Error('Failed to initialize engine, check logs.'));
 
       global.joolaio = joola.sdk;
       global.joola_proxy = joola;
       global.uid = joola.common.uuid();
-      joolaio.init({host: 'http://127.0.0.1:8080', APIToken: 'apitoken-root'}, function (err) {
+      joolaio.init({host: 'http://127.0.0.1:8080', APIToken: 'apitoken-root', debug: {enabled: true}}, function (err) {
         if (err)
           return done(err);
         //joolaio.events.on('ready', function () {
@@ -36,8 +36,8 @@ before(function (done) {
 });
 
 after(function (done) {
-  if (shutdown) {
-    shutdown(0, function () {
+  if (joola.shutdown) {
+    joola.shutdown(0, function () {
       return done();
     });
   }

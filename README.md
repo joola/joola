@@ -1,6 +1,6 @@
-# joola.io [![Build Status][3]][4] [![Coverage Status][1]][2] [![Gitter chat](https://badges.gitter.im/joola/joola.io.png)](https://gitter.im/joola/joola.io)
+# joola.io [![Build Status][3]][4] [![Gitter chat](https://badges.gitter.im/joola/joola.io.png)](https://gitter.im/joola/joola.io)
 
-| **[Technical Docs] [techdocs]**     | **[Setup Guide] [setup]**     | **[SDK Docs] [sdk-docs]**           | **[Contributing] [contributing]**           | **[About joola.io] [about]**     |
+| **[Technical Docs] [techdocs]**     | **[Setup Guide] [setup]**     | **[SDK] [sdk-docs]**           | **[Contributing] [contributing]**           | **[About joola.io] [about]**     |
 |-------------------------------------|-------------------------------|-----------------------------------|---------------------------------------------|-------------------------------------|
 | [![i1] [techdocs-image]] [techdocs] | [![i2] [setup-image]] [setup] | [![i3] [sdk-docs-image]] [sdk-docs] | [![i4] [contributing-image]] [contributing] | [![i5] [about-image]] [about] |
 
@@ -25,7 +25,7 @@
 ### Getting Started
 We've pre-loaded the package with a fully working sample site, so it's easy to get started.
 
-joola.io uses several leading open-source software for its operation. Before getting started, please install [MongoDB](http://mongodb.org), [Redis](http://redis.io) and [RabbitMQ](http://www.rabbitmq.com/). 
+joola.io uses several leading open-source software for its operation. Before getting started, please install [MongoDB](http://mongodb.org), [Redis](http://redis.io) and [RabbitMQ](http://www.rabbitmq.com/), for more details on these pre-requisites please refer to the [wiki](http://github.com/joola/joola.io/wiki/install-joola.io).  
 
 For the example below to work out-of-the-box, it's required to have both joola.io and its dependencies installed on localhost.
  For more details on the installation process, please refer to [this guide](http://github.com/joola/joola.io/wiki/install-joola.io).
@@ -106,8 +106,8 @@ Copyright (c) 2012-2014 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24]
 
 [1]: https://coveralls.io/repos/joola/joola.io/badge.png?branch=develop
 [2]: https://coveralls.io/r/joola/joola.io?branch=develop
-[3]: https://travis-ci.org/joola/joola.io.png?branch=develop
-[4]: https://travis-ci.org/joola/joola.io?branch=develop
+[3]: https://travis-ci.org/joola/joola.io.png?branch=master
+[4]: https://travis-ci.org/joola/joola.io?branch=master
 [5]: https://david-dm.org/joola/joola.io.png
 [6]: https://david-dm.org/joola/joola.io
 [7]: https://david-dm.org/joola/joola.io/dev-status.png

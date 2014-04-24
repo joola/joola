@@ -86,7 +86,7 @@ describe("query-timeline", function () {
   });
 
   it("should perform a timeline query [last_second/minute]", function (done) {
-    var expected = 1;
+    var expected = 2; //because a second can split over minutes.
     var query = {
       timeframe: 'last_second',
       interval: 'minute',
@@ -102,7 +102,7 @@ describe("query-timeline", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(actual).to.equal(expected);
+      expect(actual).to.be.lessThan(expected);
       return done();
     });
   });
