@@ -43,8 +43,6 @@
   "dependencies": {
     "joola.io.sdk": "http://github.com/joola/joola.io.sdk/tarball/develop",
     "joola.io.cli": "http://github.com/joola/joola.io.cli/tarball/develop",
-    "nconf": "*",
-    "nconf-redis": "http://github.com/itayw/nconf-redis/tarball/develop",
     "eventemitter2": "*",
     "redis": "*",
     "hiredis": "*",
@@ -83,7 +81,8 @@
     "colors": "~0.6.2",
     "circular-json": "~0.1.6",
     "deep-diff": "^0.1.4",
-    "stomp": "https://github.com/joola/stomp-js/tarball/master"
+    "stomp": "https://github.com/joola/stomp-js/tarball/master",
+    "config": "^0.4.35"
   },
   "devDependencies": {
     "jsdox": "http://github.com/itayw/jsdox/tarball/master",
