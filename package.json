@@ -82,7 +82,8 @@
     "circular-json": "~0.1.6",
     "deep-diff": "^0.1.4",
     "stomp": "https://github.com/joola/stomp-js/tarball/master",
-    "config": "^0.4.35"
+    "config": "^0.4.35",
+    "yaml": "~0.2.3"
   },
   "devDependencies": {
     "jsdox": "http://github.com/itayw/jsdox/tarball/master",
