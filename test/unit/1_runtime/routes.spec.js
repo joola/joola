@@ -94,7 +94,6 @@ describe("routes", function () {
       });
 
       response.on('error', function (err) {
-        console.log('err');
         return done(err);
       });
     };
