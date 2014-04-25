@@ -3,7 +3,7 @@
   "description": "This is a baseline configuration file for joola.io",
   "moreinfo": "https://github.com/joola/joola.io/wiki",
 
-  "_version": "0.0.1",
+  "version": "0.0.4",
   "general": {
     "adminemail": "info@joo.la",
     "dateformat": "YYYY-mm-dd hh:ii:ss",
@@ -14,7 +14,7 @@
       "enabled": true,
       "host": "localhost",
       "port": 8080,
-      "securePort": 8081,
+      "securePort": 8084,
       "secure": false,
       "keyFile": null,
       "certFile": null,

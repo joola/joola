@@ -83,7 +83,10 @@
     "deep-diff": "^0.1.4",
     "stomp": "https://github.com/joola/stomp-js/tarball/master",
     "config": "^0.4.35",
-    "yaml": "~0.2.3"
+    "yaml": "~0.2.3",
+    "semver": "~2.2.1",
+    "kindof": "~1.0.0",
+    "describe-json": "0.0.6"
   },
   "devDependencies": {
     "jsdox": "http://github.com/itayw/jsdox/tarball/master",
