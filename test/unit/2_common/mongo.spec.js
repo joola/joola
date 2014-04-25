@@ -18,12 +18,17 @@ describe("common-mongo", function () {
   });
 
   it("should fail setup a collection for unknown store", function (done) {
-    joola.mongo.collection(this.store + '1', this.collection, function (err) {
-      if (err)
-        done();
-      else
-        done(new Error('This should have failed'));
-    });
+    try {
+      joola.mongo.collection(this.store + '1', this.collection, function (err) {
+        if (err)
+          done();
+        else
+          done(new Error('This should have failed'));
+      });
+    }
+    catch (ex) {
+      return done();
+    }
   });
 
   it("should insert a document", function (done) {
@@ -46,7 +51,7 @@ describe("common-mongo", function () {
     ], {}, function (err) {
       if (err)
         return done(err);
-      
+
       return done();
     });
   });

@@ -281,7 +281,8 @@ describe("auth", function () {
 
     var user = {
       username: 'tester',
-      _roles: ['user']
+      _roles: ['user'],
+      workspace: 'root'
     };
     var req = {
       params: {
