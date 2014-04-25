@@ -33,7 +33,7 @@ describe("common-config", function () {
 	});
 
 	it("should delete a config value", function (done) {
-		joola.config.set('test:test2', 'test123', 1, function (err) {
+		joola.config.set('test:test2', 'test123', function (err) {
 			if (err)
 				return done(err);
 
