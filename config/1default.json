@@ -1,20 +1,16 @@
 {
-  "id": "joola.io-config-baseline",
-  "description": "This is a baseline configuration file for joola.io",
-  "moreinfo": "https://github.com/joola/joola.io/wiki",
-
-  "version": "0.0.4",
+  "version": "0.0.1",
   "general": {
-    "adminemail": "info@joo.la",
+    "adminemail": "admin@domain.com",
     "dateformat": "YYYY-mm-dd hh:ii:ss",
-    "systemname": "joola"
+    "systemname": "joola.io"
   },
   "interfaces": {
     "webserver": {
       "enabled": true,
       "host": "localhost",
       "port": 8080,
-      "securePort": 8084,
+      "securePort": 8081,
       "secure": false,
       "keyFile": null,
       "certFile": null,
@@ -99,66 +95,6 @@
         "user": null,
         "password": null,
         "db": "cache",
-        "expireAfterSeconds": 0
-      }
-    },
-    "cache-second": {
-      "mongo": {
-        "host": "localhost",
-        "port": 27017,
-        "user": null,
-        "password": null,
-        "db": "cache-second",
-        "expireAfterSeconds": 0
-      }
-    },
-    "cache-minute": {
-      "mongo": {
-        "host": "localhost",
-        "port": 27017,
-        "user": null,
-        "password": null,
-        "db": "cache-minute",
-        "expireAfterSeconds": 0
-      }
-    },
-    "cache-hour": {
-      "mongo": {
-        "host": "localhost",
-        "port": 27017,
-        "user": null,
-        "password": null,
-        "db": "cache-hour",
-        "expireAfterSeconds": 0
-      }
-    },
-    "cache-ddate": {
-      "mongo": {
-        "host": "localhost",
-        "port": 27017,
-        "user": null,
-        "password": null,
-        "db": "cache-ddate",
-        "expireAfterSeconds": 0
-      }
-    },
-    "cache-month": {
-      "mongo": {
-        "host": "localhost",
-        "port": 27017,
-        "user": null,
-        "password": null,
-        "db": "cache-month",
-        "expireAfterSeconds": 0
-      }
-    },
-    "cache-year": {
-      "mongo": {
-        "host": "localhost",
-        "port": 27017,
-        "user": null,
-        "password": null,
-        "db": "cache-year",
         "expireAfterSeconds": 0
       }
     }
