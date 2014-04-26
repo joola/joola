@@ -6,8 +6,8 @@ interfaces:
     port: 8080
     securePort: 8081
     secure: false
-    keyFile: null
-    certFile: null
+    keyFile: ./config/certs/localhost.key
+    certFile: ./config/certs/localhost.csr
     websocket:
       enabled: true
     sessionDurtaion: 1200000

@@ -10,7 +10,6 @@ Setting up joola.io is a five step process:
 
 <a name="step1" />
 ## Step 1: Install joola.io
-
 joola.io is developed using [NodeJS][NodeJS], therefore, before starting you'll need to install node as part of your environment.
 Moving on, you'll need to install [MongoDB][Mongo], [Redis][Redis] and [RabbitMQ][RabbitMQ], these are used by the caching layer.
 
@@ -41,59 +40,49 @@ Running joola.io for the first time with default configuration or by specifying 
 with our demo. The demo highlights the different aspects of joola.io and is a great asset as building blocks to your 
 custom joola.io implementation.
 
+>
+**Note:** Default configuration assumes `localhost` for your pre-requisits, this means that you have Redis, MongoDB, etc... installed on `localhost` using the default configuration.
+If this is not the case, please refer to the [next step](#step-2-setup-system-configuration) of system configuration.
+
 Navigate your browser to `http://localhost:8080`. We have a welcome page made up especially for you and it will help you getting around.
 
 [Learn more about the demo and how to use it](The-Demo)
 
 <a name="step2" />
 ## Step 2: Setup system configuration
-By now you have joola.io installed and running. Make sure you take a look at the Demo Welcome Page, it should offer a good place to start.
-Configuring the system can be done in two ways, directly editing the JSON configuration file, or by using the management interface, choose your flavor.
+By now you have joola.io installed and running (if you have pre-requisits installed on localhost).
+Make sure you take a look at the Demo Welcome Page, it should offer a good place to start.
+Configuring the system can be done in several ways, by editing the configuration files, by using the API/SDK, or by using the management interface, choose your flavor.
 
-#### Interfaces
-joola.io exposes several public interfaces which may be accessible by the developer and/or users.
+#### Configuration Sections
+The configuration file contains several sections needed for the operation of the framework. We've tried to keep it both simple and clear.
 
-The **Web Server** interface provides the system's UI and API endpoints for managing the system on all of 
-its aspects.  
-The **Beacon** interface exposes a set of API endpoints for storing and managing data within joola.io.    
-Lastly, the **REPL** interface provides a `read–eval–print loop` that allows developers to debug joola.io in realtime
- in case needed. 
+##### Interfaces
+The interfaces section covers all required settings for joola.io's public/internal interfaces, for example its webserver.
 
-#### Stores
-joola.io needs uses different stores for its operation, these range from a redis store for configuration to a mongodb
- database used by the caching layer.
+##### Store
+The store section include all configuration needed for the different stores used by the framework, for example Redis.
+You'll notice that each store is named, for example the `config` store and it has a redis configuration section.
+Other stores can point to the same redis, but we wanted to enable developers to customize their deployments by scale and allow different stores to be used.
 
-As you can see from the default configuration shown below, all settings assume `localhost` is running mongodb and 
-redis.
+##### Authentication
+The authentication section contains all relevant configuration for the framework's security and authentication.
 
-```js
-  {
-    "config": {"redis": {"host": "localhost", "port": 6379, "db": 0, "pass": null }},
-    "dispatch": {
-      "redis": {"host": "localhost", "port": 6379, "db": 1, "pass": null},
-      "stomp": {"host": "localhost", "port": 61613, "user": "guest", "pass": "guest"}
-    },
-    "socketio": {"redis": {"host": "localhost", "port": 6379, "db": 2, "pass": null}},
-    "runtime": {"redis": {"host": "localhost", "port": 6379, "db": 3, "pass": null}},
-    "stats": {"mongo": {"host": "localhost", "port": 27017, "user": null, "password": null, "db": "stats"}},
-    "logger": {
-      "mongo": {"level": "trace", "host": "localhost", "port": 27017, "user": null, "password": null, "db": "logger"},
-      "file": {"level": "trace", "path": "/tmp/joola.io/"}
-    },
-    "beacon": {"mongo": {"host": "localhost", "port": 27017, "user": null, "password": null, "db": "beacon"}},
-    "cache": {"mongo": {"host": "localhost", "port": 27017, "user": null, "password": null, "db": "cache"}}
-  }
-```
+##### Dispatch
+The dispatch section contains configuration relevant to the internal messaging system of joola.io ([Dispatch](the-dispatch-subsystem)). You can control timeouts, logic and more.
+
+##### Workspaces
+[Workspaces](Workspaces) contain many artificats used by the system, collections, users, roles and much more.
 
 #### Authentication
 joola.io is a secure framework. Accessing the framework can only be done by pre-defined and allowed users and every action 
 carried out by the system must have a security context associated with it, i.e. which user has asked for the action.
 It is possible to allow `anonymous` access, but this is turned off by default.
 
-The framework ships with a pre-configured user `admin` and the default password of `admin`. We recommend changing the
+The framework ships with a pre-configured user `root` and the default password of `password`. We recommend changing the
  default password after the first login. 
  
-[Setup your System now!](setting-up-the-system)
+[Configure your System now!](Configuration)
 
 <a name="step3" />
 ## Step 3: Define your collections
