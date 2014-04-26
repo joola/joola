@@ -1,4 +1,4 @@
-[HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [Installation](install-joola.io) > **CONFIGURATION**
+[HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [INSTALLATION](install-joola.io) > **CONFIGURATION**
 
 joola.io is designed to allow developers to easily setup and control their configuration.
    

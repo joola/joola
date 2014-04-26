@@ -68,8 +68,9 @@ $ npm test
 ```
 
 ## Step 4: Configure joola.io
+Configuring the system can be done in several ways, by editing the configuration files, by using the API/SDK, or by using the management interface, choose your flavor.
 
-[[Configuration]]
+[**Learn more about configuration**](Configuration)
 
 
 ## Step 5: First run
