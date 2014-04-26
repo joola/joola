@@ -24,26 +24,36 @@ store:
   config:
     redis:
       dsn: redis://127.0.0.1
+      ## if dsn not specific then these are required
+      # host: 127.0.0.1
+      # port: 6379
+      # db: 0
+      # pass: null
   dispatch:
     redis:
       dsn: redis://127.0.0.1
     stomp:
-      host: 127.0.0.1
-      port: 61613
-      user: guest
-      pass: guest
+      dsn: stomp://guest:guest@127.0.0.1:61613
+      # if dsn not specific then these are required
+      # host: 127.0.0.1
+      # port: 61613
+      # user: guest
+      # pass: guest
   socketio:
     redis:
-      host: 127.0.0.1
-      port: 6379
-      db: 0
-      pass: null
+      dsn: redis://127.0.0.1
   logger:
     console:
       level: trace
     mongo:
       level: trace
       dsn: mongodb://localhost:27017/logger
+      # if dsn not specific then these are required
+      host: 127.0.0.1
+      port: 27017
+      user: null
+      password: null
+      db: logger
       options:
         capped: true
         size: 10240000
@@ -55,11 +65,6 @@ store:
   cache:
     mongo:
       dsn: mongodb://localhost:27017/cache
-      host: 127.0.0.1
-      port: 27017
-      user: null
-      password: null
-      db: cache
       expireAfterSeconds: 0
 dispatch:
     expires: 60
