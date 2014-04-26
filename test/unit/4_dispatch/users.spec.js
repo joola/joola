@@ -103,6 +103,7 @@ describe("users", function () {
         expect(_user).to.be.ok;
         if (_user.displayName === 'testing user with change')
           return done();
+
         return done(new Error('Failed to update user'));
       });
     });

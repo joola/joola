@@ -67,7 +67,12 @@ $ cd /opt/joola.io
 $ npm test
 ```
 
-## Step 4: First run
+## Step 4: Configure joola.io
+
+[[Configuration]]
+
+
+## Step 5: First run
 Now that you have joola.io installed, you can run it by simply doing:
 
 ```bash

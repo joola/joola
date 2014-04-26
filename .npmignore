@@ -5,3 +5,5 @@ lib-cov
 coverage
 
 .*
+
+config/runtime.json

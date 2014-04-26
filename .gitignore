@@ -19,3 +19,5 @@ node_modules
 atlassian-ide-plugin.xml
 
 coverage
+
+config/runtime.json

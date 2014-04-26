@@ -115,7 +115,6 @@ describe("auth", function () {
     joola.auth.generateToken(user, function (err, token) {
       if (err)
         return done(err);
-      console.log(err, token);
       expect(token._).to.be.ok;
       expect(token.user).to.be.ok;
       expect(token.timestamp).to.be.ok;
@@ -282,7 +281,8 @@ describe("auth", function () {
 
     var user = {
       username: 'tester',
-      _roles: ['user']
+      _roles: ['user'],
+      workspace: 'root'
     };
     var req = {
       params: {
