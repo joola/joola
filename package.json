@@ -86,7 +86,8 @@
     "yaml": "~0.2.3",
     "semver": "~2.2.1",
     "kindof": "~1.0.0",
-    "describe-json": "0.0.6"
+    "describe-json": "0.0.6",
+    "coffee-script": "~1.7.1"
   },
   "devDependencies": {
     "jsdox": "http://github.com/itayw/jsdox/tarball/master",

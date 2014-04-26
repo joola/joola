@@ -2,6 +2,7 @@
 
 **Using joola.io**
 - [Setup Guide](setting-up-joola.io)
+- [Configuration](Configuration)
 - [The joola.io SDK](using-the-sdk)
 - [Pushing Data](pushing-data)
 - [Analytics and Visualization](Analytics-and-Visualization)
