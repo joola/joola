@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 0.0.6
 interfaces:
   webserver:
     enabled: true
@@ -17,24 +17,12 @@ interfaces:
     enabled: true
     port: 1337
 store:
-  runtime:
-    redis:
-      host: 127.0.0.1
-      port: 6379
-      db: 0
-      pass: null
   config:
     redis:
-      host: 127.0.0.1
-      port: 6379
-      db: 0
-      pass: null
+      dsn: redis://127.0.0.1
   dispatch:
     redis:
-      host: 127.0.0.1
-      port: 6379
-      db: 0
-      pass: null
+      dsn: redis://127.0.0.1
     stomp:
       host: 127.0.0.1
       port: 61613
@@ -51,11 +39,7 @@ store:
       level: trace
     mongo:
       level: trace
-      host: 127.0.0.1
-      port: 27017
-      user: null
-      password: null
-      db: logger
+      dsn: mongodb://localhost:27017/logger
       options:
         capped: true
         size: 10240000
@@ -66,6 +50,7 @@ store:
       path: /tmp/joola.io/
   cache:
     mongo:
+      dsn: mongodb://localhost:27017/cache
       host: 127.0.0.1
       port: 27017
       user: null
