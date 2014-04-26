@@ -48,7 +48,7 @@ store:
       pass: null
   logger:
     console:
-      level: trace
+      level: info
     mongo:
       level: trace
       host: 127.0.0.1
