@@ -48,7 +48,7 @@ store:
       pass: null
   logger:
     console:
-      level: info
+      level: trace
     mongo:
       level: trace
       host: 127.0.0.1
@@ -79,7 +79,6 @@ authentication:
   bypassToken: null
   tokens:
     expireAfter: 1200000
-
 workspaces:
   root:
     roles:
