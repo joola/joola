@@ -121,7 +121,7 @@ workspaces:
         workspace: "root"
         _APIToken: "apitoken-root"
         su: true
-        rateLimit: 5
+        rateLimit: 5000
       beacon:
         username: "beacon"
         _password: "password"
