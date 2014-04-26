@@ -36,8 +36,7 @@ describe("beacon-route", function () {
     var io = require('socket.io-browserify');
     io.socket = joolaio.io.connect(joolaio.options.host);
     io.socket.once('/beacon/insert:done', function (_message) {
-      console.log(_message);
-      if (_message.headers.StatusCode === 500)
+      if (_message.headers.StatusCode === 400)
         return done();
       return done(new Error('Failed'));
     });
