@@ -40,7 +40,7 @@ store:
       pass: null
   logger:
     console:
-      level: info
+      level: trace
     mongo:
       level: trace
       dsn: mongodb://localhost:27017/logger
