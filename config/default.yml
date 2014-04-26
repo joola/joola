@@ -1,8 +1,9 @@
-version: 0.0.1
+version: 0.0.3
 interfaces:
   webserver:
     enabled: true
-    host: 127.0.0.1
+    host: joola.io #used for response-header [Server]
+    bind: 0.0.0.0
     port: 8080
     securePort: 8081
     secure: false
@@ -13,6 +14,9 @@ interfaces:
     sessionDurtaion: 1200000
     timeout: 60000
     blacklist: null
+    allowOrigin: "*"
+    headers:
+      - X-Powered-By: joola.io
   repl:
     enabled: true
     port: 1337
@@ -117,6 +121,7 @@ workspaces:
         workspace: "root"
         _APIToken: "apitoken-root"
         su: true
+        rateLimit: 5000
       beacon:
         username: "beacon"
         _password: "password"

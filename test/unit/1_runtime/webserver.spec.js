@@ -67,11 +67,12 @@ describe("webserver", function () {
     });
   });
 
-  it("should have WebSocket", function (done) {
+  xit("should have WebSocket", function (done) {
     var called = false;
     var io = require('socket.io-client');
     var socket = io.connect('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port);
     socket.on('connect', function () {
+      socket.disconnect();
       if (!called) {
         called = true;
         done();
@@ -79,7 +80,7 @@ describe("webserver", function () {
     });
   });
 
-  it("should have Emit on WebSocket", function (done) {
+  xit("should have Emit on WebSocket", function (done) {
     var io = require('socket.io-browserify');
     io.socket = joolaio.io.connect(joolaio.options.host);
     var message = 'this is a test message';

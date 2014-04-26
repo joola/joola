@@ -12,7 +12,7 @@ describe("beacon-route", function () {
     io.socket = joolaio.io.connect(joolaio.options.host);
     io.socket.once('/beacon/insert:done', function (_message) {
       //TODO: confirm document is actually written
-      if (_message.code === 500)
+      if (_message.headers.StatusCode === 500)
         return done(new Error('Failed'));
 
       return done();
@@ -36,7 +36,8 @@ describe("beacon-route", function () {
     var io = require('socket.io-browserify');
     io.socket = joolaio.io.connect(joolaio.options.host);
     io.socket.once('/beacon/insert:done', function (_message) {
-      if (_message.code === 500)
+      console.log(_message);
+      if (_message.headers.StatusCode === 500)
         return done();
       return done(new Error('Failed'));
     });
