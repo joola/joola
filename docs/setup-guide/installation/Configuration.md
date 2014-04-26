@@ -13,11 +13,11 @@ Configuration parsing and management is done using the [`config`][node-config] m
 
 ### Configuration life-cycle
 To support node based clusters, configuration lives in the central configuration store and it is the only source of "truth".
-Since configuration can change during runtime and changes are not peristed to local configuration files, but rather only to central store.
-Therefore, it is very common that local configuration differs from central.
+Configuration changes during runtime and these changes are not peristed to local configuration files, but are only kept in the central store.
+The local configuration file is simply an initial bootstrap and therefore, it is very common that local configuration differs from central.
 
-The best to look at it, is that the local configuration file is simply an initial bootstrap.
-Once bootstrapped, changes to configuration are done using the API or by loading newer versions of the configuration files. If a change in central configuration is detected, all connected nodes are informed and update their configuration to reflect the latest from central store.
+Once bootstrapped, changes to configuration are done using the API or by loading newer versions of the configuration files.
+If a change in central configuration is detected, all connected nodes are informed and update their configuration to reflect the latest from central store.
 
 ##### Configuration version
 joola.io supports an optional `version` attribute as part of the configuration file. This enable a `semver` comparison between the central stored configuration and the local configuration file.
