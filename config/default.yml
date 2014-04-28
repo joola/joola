@@ -44,7 +44,7 @@ store:
       dsn: redis://127.0.0.1
   logger:
     console:
-      level: trace
+      level: info
     mongo:
       level: trace
       dsn: mongodb://localhost:27017/logger
