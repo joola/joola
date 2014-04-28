@@ -14,7 +14,7 @@ interfaces:
     sessionDurtaion: 1200000
     timeout: 60000
     blacklist: null
-    allowOrigin: "*"
+    allowOrigin: null
     headers:
       - X-Powered-By: joola.io
   repl:
