@@ -56,6 +56,12 @@ These are applied after configuration files have been loaded.
 export $NODE_CONFIG={"interfaces":{"webserver":{"port":8585}}}
 ```
 
+Developers can also override specific configuration settings by using the following:
+```
+# This will set the webserver port to 8585
+export $JOOLA_CONFIG_INTERFACES_WEBSERVER_PORT=8585
+```
+
 ##### Command line switches
 All environment variables described above may also be supplied on the command line.
 ```
