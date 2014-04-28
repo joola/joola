@@ -47,7 +47,6 @@
     "redis": "*",
     "hiredis": "*",
     "async": "*",
-    "express": "3.4.4",
     "socket.io": "~0.9.14",
     "socket.io-wildcard": "*",
     "socket.io-browserify": "*",
@@ -88,7 +87,11 @@
     "describe-json": "0.0.6",
     "coffee-script": "~1.7.1",
     "js-yaml": "~3.0.2",
-    "socket.io-client": "~0.9.16"
+    "socket.io-client": "~0.9.16",
+    "express": "^4.1.1",
+    "static-favicon": "^1.0.2",
+    "body-parser": "^1.0.2",
+    "compression": "^1.0.1"
   },
   "devDependencies": {
     "jsdox": "http://github.com/itayw/jsdox/tarball/master",
