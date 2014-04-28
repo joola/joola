@@ -6,88 +6,89 @@ describe("security-permissions-users", function () {
     var self = this;
     this.uid = joola.common.uuid();
 
-    joolaio.options.APIToken = 'apitoken-root';
+    joolaio.set('APIToken', 'apitoken-root', function () {
+      self.workspace = {
+        key: 'test-org-permissions-' + self.uid,
+        name: 'test-org-permissions-' + self.uid
+      };
+      self.role_admin = {
+        key: 'test-admin-role-' + self.uid,
+        _permissions: ['access_system', 'manage_system', 'manage_users']
+      };
+      self.role_guest = {
+        key: 'test-guest-role-' + self.uid,
+        _permissions: ['access_system']
+      };
+      self.role_user = {
+        key: 'test-user-role-' + self.uid,
+        _permissions: ['access_system']
+      };
 
-    self.workspace = {
-      key: 'test-org-permissions-' + self.uid,
-      name: 'test-org-permissions-' + self.uid
-    };
-    self.role_admin = {
-      key: 'test-admin-role-' + self.uid,
-      _permissions: ['access_system', 'manage_system', 'manage_users']
-    };
-    self.role_guest = {
-      key: 'test-guest-role-' + self.uid,
-      _permissions: ['access_system']
-    };
-    self.role_user = {
-      key: 'test-user-role-' + self.uid,
-      _permissions: ['access_system']
-    };
+      self.user_admin = {
+        username: 'test-admin-' + self.uid,
+        _password: 'password',
+        workspace: self.workspace.key,
+        _roles: ['test-admin-role-' + self.uid],
+        _APIToken: 'admin-' + self.uid
+      };
+      self.user_guest = {
+        username: 'test-guest-' + self.uid,
+        _password: 'password',
+        workspace: self.workspace.key,
+        _roles: ['test-guest-role-' + self.uid],
+        _APIToken: 'guest-' + self.uid
+      };
+      self.user_user = {
+        username: 'test-user-' + self.uid,
+        _password: 'password',
+        workspace: self.workspace.key,
+        _roles: ['test-user-role-' + self.uid],
+        _APIToken: 'user-' + self.uid
+      };
+      self.user_fordelete = {
+        username: 'test-fordelete-' + self.uid,
+        _password: 'password',
+        workspace: self.workspace.key,
+        _roles: ['test-guest-role-' + self.uid],
+        _APIToken: 'fordelete-' + self.uid
+      };
 
-    self.user_admin = {
-      username: 'test-admin-' + self.uid,
-      _password: 'password',
-      workspace: self.workspace.key,
-      _roles: ['test-admin-role-' + self.uid],
-      _APIToken: 'admin-' + self.uid
-    };
-    self.user_guest = {
-      username: 'test-guest-' + self.uid,
-      _password: 'password',
-      workspace: self.workspace.key,
-      _roles: ['test-guest-role-' + self.uid],
-      _APIToken: 'guest-' + self.uid
-    };
-    self.user_user = {
-      username: 'test-user-' + self.uid,
-      _password: 'password',
-      workspace: self.workspace.key,
-      _roles: ['test-user-role-' + self.uid],
-      _APIToken: 'user-' + self.uid
-    };
-    self.user_fordelete = {
-      username: 'test-fordelete-' + self.uid,
-      _password: 'password',
-      workspace: self.workspace.key,
-      _roles: ['test-guest-role-' + self.uid],
-      _APIToken: 'fordelete-' + self.uid
-    };
+      var calls = [];
 
-    var calls = [];
-
-    calls.push(function (callback) {
-      joolaio.workspaces.add(self.workspace, callback);
+      calls.push(function (callback) {
+        joolaio.workspaces.add(self.workspace, callback);
+      });
+      calls.push(function (callback) {
+        joolaio.roles.add(self.workspace.key, self.role_admin, callback);
+      });
+      calls.push(function (callback) {
+        joolaio.roles.add(self.workspace.key, self.role_guest, callback);
+      });
+      calls.push(function (callback) {
+        joolaio.roles.add(self.workspace.key, self.role_user, callback);
+      });
+      calls.push(function (callback) {
+        joolaio.users.add(self.workspace.key, self.user_admin, callback);
+      });
+      calls.push(function (callback) {
+        joolaio.users.add(self.workspace.key, self.user_guest, callback);
+      });
+      calls.push(function (callback) {
+        joolaio.users.add(self.workspace.key, self.user_user, callback);
+      });
+      calls.push(function (callback) {
+        joolaio.users.add(self.workspace.key, self.user_fordelete, callback);
+      });
+      async.series(calls, done);
     });
-    calls.push(function (callback) {
-      joolaio.roles.add(self.workspace.key, self.role_admin, callback);
-    });
-    calls.push(function (callback) {
-      joolaio.roles.add(self.workspace.key, self.role_guest, callback);
-    });
-    calls.push(function (callback) {
-      joolaio.roles.add(self.workspace.key, self.role_user, callback);
-    });
-    calls.push(function (callback) {
-      joolaio.users.add(self.workspace.key, self.user_admin, callback);
-    });
-    calls.push(function (callback) {
-      joolaio.users.add(self.workspace.key, self.user_guest, callback);
-    });
-    calls.push(function (callback) {
-      joolaio.users.add(self.workspace.key, self.user_user, callback);
-    });
-    calls.push(function (callback) {
-      joolaio.users.add(self.workspace.key, self.user_fordelete, callback);
-    });
-    async.series(calls, done);
   });
 
   it("su should be able to list users", function (done) {
     var self = this;
 
-    joolaio.options.APIToken = 'apitoken-root';
-    joolaio.users.list('root', done);
+    joolaio.set('APIToken', 'apitoken-root', function () {
+      joolaio.users.list('root', done);
+    });
   });
 
   it("guest should not be able to list users", function (done) {
