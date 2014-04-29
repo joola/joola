@@ -8,30 +8,80 @@ Notes API is a *short texts saving* service similar to its physical paper presen
 # Group Notes
 Notes related resources of the **Notes API**
 
-## Notes Collection [/notes]
-### List all Notes [GET]
+## Workspaces [/workspaces]
+### List all Workspaces [GET]
 + Response 200 (application/json)
 
         [{
-          "id": 1, "title": "Jogging in park"
-        }, {
-          "id": 2, "title": "Pick-up posters from post-office"
+          "key": "demo-mousemoves",
+          "name": "demo-mousemoves",
+          "strongTyped": true,
+          "timestamp": {
+            "datatype": "date",
+            "type": "dimension",
+            "name": "timestamp",
+            "key": "timestamp"
+          },
+          "browser": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "browser",
+            "key": "browser"
+          },
+          "engine": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "engine",
+            "key": "engine"
+          },
+          "os": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "os",
+            "key": "os"
+          },
+          "userid": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "userid",
+            "key": "userid"
+          },
+          "ip": {
+            "datatype": "ip",
+            "type": "dimension",
+            "name": "ip",
+            "key": "ip"
+          },
+          "referrer": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "referrer",
+            "key": "referrer"
+          },
+          "mousemoves": {
+            "datatype": "number",
+            "type": "metric",
+            "name": "mousemoves",
+            "key": "mousemoves",
+            "min": 0,
+            "max": 1000
+          }
         }]
 
-### Create a Note [POST]
+### Create a Workspace [POST]
 + Request (application/json)
 
         { "title": "Buy cheese and bread for breakfast." }
 
-+ Response 201 (application/json)
++ Response 200 (application/json)
 
         { "id": 3, "title": "Buy cheese and bread for breakfast." }
 
-## Note [/notes/{id}]
-A single Note object with all its details
+## Workspace [/workspaces/{key}]
+A single Workspace object with all its details
 
 + Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
+    + key (required, string, `demo-collection`) ... String `key` of the Workspace to perform action with. Has example value.
 
 ### Retrieve a Note [GET]
 + Response 200 (application/json)
