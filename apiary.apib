@@ -7,7 +7,7 @@ joola.io is an open-source data analytics and visualization framework.
 # Group Workspaces
 Notes related resources of the **Workspaces API**
 
-## Workspaces [/workspaces]
+## Workspaces [/workspaces{?APIToken}]
 ### List all Workspaces [GET]
 + Response 200 (application/json)
 
@@ -80,12 +80,13 @@ Notes related resources of the **Workspaces API**
 
         { "message": "workspace already exists", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
-## Workspace [/workspaces/{key}]
+## Workspace [/workspaces/{key}{?APIToken}]
 A single Workspace object with all its details
 
 + Parameters
     + key (required, string, `demo-collection`) ... String `key` of the Workspace to perform action with. Has example value.
-
+    + APIToken (required, string, 'your-api-token') ... String `APIToken`.
+    
 ### Retrieve a Note [GET]
 + Response 200 (application/json)
 
