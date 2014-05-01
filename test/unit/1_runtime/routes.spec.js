@@ -14,7 +14,6 @@ describe("routes", function () {
     joolaio._apitoken = '1234';
     joolaio._token = '1234';
     joolaio.system.nodeDetails(function (err, details) {
-      console.log(err,details);
       expect(err).to.be.ok;
       joolaio.set('APIToken', savedAPIToken);
       done();
@@ -210,7 +209,7 @@ describe("routes", function () {
     http.request(options, callback).end();
   });
 
-  it("should create a test error", function (done) {
+  xit("should create a test error", function (done) {
     var options = {
       host: 'localhost',
       port: '8080',
