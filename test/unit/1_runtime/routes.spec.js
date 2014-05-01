@@ -14,7 +14,6 @@ describe("routes", function () {
     joolaio._apitoken = '1234';
     joolaio._token = '1234';
     joolaio.system.nodeDetails(function (err, details) {
-      console.log(err,details);
       expect(err).to.be.ok;
       joolaio.set('APIToken', savedAPIToken);
       done();
