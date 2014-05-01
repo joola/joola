@@ -21,7 +21,10 @@ before_script:
   - sudo service rabbitmq-server restart
   - sudo rabbitmqctl status
   - sudo rabbitmq-plugins list
-  
+
+env:
+  JOOLAIO_CONFIG_SDK_URL=https://raw.githubusercontent.com/joola/joola.io.sdk/feature/%2376/bin/joola.io.js
+
 script: 'make test-cov'
 after_success: 'make coveralls'
  
