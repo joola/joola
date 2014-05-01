@@ -1,4 +1,4 @@
-version: 0.0.6
+version: 0.0.8
 interfaces:
   webserver:
     enabled: true
@@ -16,7 +16,7 @@ interfaces:
     blacklist: null
     allowOrigin: null
     headers:
-      - X-Powered-By: joola.io
+      X-Powered-By: joola.io
   repl:
     enabled: true
     port: 1337
@@ -44,7 +44,7 @@ store:
       dsn: redis://127.0.0.1
   logger:
     console:
-      level: info
+      level: trace
     mongo:
       level: trace
       dsn: mongodb://localhost:27017/logger
@@ -73,6 +73,8 @@ authentication:
   bypassToken: null
   tokens:
     expireAfter: 1200000
+#sdk:
+  # url: https://raw.githubusercontent.com/joola/joola.io.sdk/feature/%2376/bin/joola.io.js
 workspaces:
   root:
     roles:
