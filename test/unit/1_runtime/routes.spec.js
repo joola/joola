@@ -210,7 +210,7 @@ describe("routes", function () {
     http.request(options, callback).end();
   });
 
-  it("should create a test error", function (done) {
+  xit("should create a test error", function (done) {
     var options = {
       host: 'localhost',
       port: '8080',
