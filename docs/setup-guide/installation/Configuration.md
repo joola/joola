@@ -60,6 +60,13 @@ Developers can also override specific configuration settings by using the follow
 ```
 # This will set the webserver port to 8585
 export $JOOLA_CONFIG_INTERFACES_WEBSERVER_PORT=8585
+
+# Set MongoDB DSN
+$ export JOOLA_STORE_DISPATCH_STOMP_DSN=stomp://guest:guest@127.0.0.1:61613
+
+# Set Stomp DSN
+$ export JOOLA_STORE_CACHE_MONGO_DSN=mongodb://localhost:27017/cache
+
 ```
 
 ##### Command line switches
@@ -86,6 +93,7 @@ stores:
       host: lab03
  
 # Environment variable
+# Set Redis host to `lab04`
 $ export JOOLA_STORE_CONFIG_REDIS_HOST=lab04
 
 # Then running with 
