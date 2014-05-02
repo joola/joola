@@ -6,7 +6,7 @@ interfaces:
     bind: 0.0.0.0
     port: 8080
     securePort: 8081
-    secure: false
+    secure: true
     keyFile: ./config/certs/localhost.key
     certFile: ./config/certs/localhost.csr
     websocket:
