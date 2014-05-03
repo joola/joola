@@ -1,4 +1,4 @@
-version: 0.0.8
+version: 0.0.9
 interfaces:
   webserver:
     enabled: true
@@ -45,6 +45,10 @@ store:
   logger:
     console:
       level: trace
+    # loggly:
+      # level: trace
+      # token: your-api-token
+      # domain: loggly-subdomain
     mongo:
       level: trace
       dsn: mongodb://localhost:27017/logger
