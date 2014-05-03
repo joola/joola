@@ -1,1 +1,1 @@
-web: node joola.io.js
+web: node joola.io.js --trace
