@@ -1,4 +1,4 @@
-version: 0.0.8
+version: 0.0.9
 interfaces:
   webserver:
     enabled: true
@@ -28,7 +28,7 @@ store:
       # host: 127.0.0.1
       # port: 6379
       # db: 0
-      # pass: null
+      # auth: null
   dispatch:
     redis:
       dsn: redis://127.0.0.1
@@ -39,12 +39,13 @@ store:
       # port: 61613
       # user: guest
       # pass: guest
-  socketio:
-    redis:
-      dsn: redis://127.0.0.1
   logger:
     console:
       level: trace
+    # loggly:
+      # level: trace
+      # token: your-api-token
+      # domain: loggly-subdomain
     mongo:
       level: trace
       dsn: mongodb://localhost:27017/logger
