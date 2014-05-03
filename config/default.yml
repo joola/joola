@@ -39,9 +39,6 @@ store:
       # port: 61613
       # user: guest
       # pass: guest
-  socketio:
-    redis:
-      dsn: redis://127.0.0.1
   logger:
     console:
       level: trace
