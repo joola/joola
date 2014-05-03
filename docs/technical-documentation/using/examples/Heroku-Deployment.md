@@ -1,4 +1,4 @@
-[HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [Examples](examples) > **HEROKU DEPLOYMENT**
+[HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [EXAMPLES](examples) > **HEROKU DEPLOYMENT**
 
 This walkthrough will show how you can install joola.io on an [Heroku][heroku] instance.
 
@@ -51,7 +51,7 @@ $ heroku addons:add mongohq
 After you've installed the Redis Cloud add-on, you'll need to set joola.io relevant environment variables.
 ```bash
 $ heroku config:get MONGOHQ_URL
-mongodb://heroku:*************************************@oceanic.mongohq.com:*********/app**********
+# mongodb://heroku:*************************************@oceanic.mongohq.com:*********/app**********
 
 $ heroku config:set JOOLAIO_CONFIG_STORE_CACHE_MONGO_DSN=<MONGOHQ_URL>
 ```
@@ -66,10 +66,10 @@ $ heroku addons:add cloudamqp
 After you've installed the CloudAMQP add-on, you'll need to set joola.io relevant environment variables.
 ```bash
 $ heroku config:get CLOUDAMQP_URL
-amqp://********:****************@turtle.rmq.cloudamqp.com/**************
+# amqp://********:****************@turtle.rmq.cloudamqp.com/**************
 
 # You need to change the connection string to be stomp://
-stomp://********:****************@turtle.rmq.cloudamqp.com/**************
+# stomp://********:****************@turtle.rmq.cloudamqp.com/**************
 
 $ heroku config:set JOOLAIO_CONFIG_STORE_DISPATCH_STOMP_DSN=<CLOUDAMQP_URL>
 ```
@@ -84,7 +84,7 @@ $ git push heroku develop:master
 # publish from develop
 $ git push heroku develop:master
 
-# publish from feature branch
+# publish from feature branch (#406)
 $ git push heroku feature/#406:master
 ```
 
