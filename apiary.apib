@@ -196,3 +196,88 @@ A single Collection object with all its details
 
 ### Remove a Note [DELETE]
 + Response 204
+
+
+
+
+# Group Roles
+joola.io uses `Roles` to assign `Permissions` to `Users`.
+
+## Roles [/roles/{workspace}]
+### List all Roles [GET]
++ Response 200 (application/json)
+
+        {
+          "root": {
+            "key": "root",
+            "_permissions": ["access_system", "manage_system", "manage_users", "beacon_insert", "query_fetch"],
+            "_filter": []
+          },
+          "user": {
+            "key": "user",
+            "_permissions": ["access_system"],
+            "_filter": []
+          },
+          "beacon": {
+            "key": "user",
+            "_permissions": ["beacon_insert"],
+            "_filter": []
+          },
+          "reader": {
+            "key": "user",
+            "_permissions": ["access_system"],
+            "_filter": []
+          }
+        }
+
+### Create a Role [POST]
++ Request (application/json)
+
+        { "key": "role-name", "name": "Role Name", "_filter": [] }
+
++ Response 200 (application/json)
+
+        { "key": "role-name", "name": "Role Name", "_filter": [] }
+
++ Response 500 (application/json)
+
+        { "message": "role already exists", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+## Role [/roles/{workspace}/{key}]
+A single Collection object with all its details
+
++ Parameters
+    + key (required, string, `role-user`) ... String `key` of the Role.
+
+### Retrieve a Role [GET]
++ Response 200 (application/json)
+
+        {
+            "key": "root",
+            "_permissions": ["access_system", "manage_system", "manage_users", "beacon_insert", "query_fetch"],
+            "_filter": []
+        }
+
++ Response 500 (application/json)
+
+        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+### Update a Role [PATCH]
++ Request (application/json)
+
+        { "key": "role-name", "name": "New Role Name", "_filter": [['dimension', 'eq', 'value']] }
+        
++ Response 200
+
+        { "key": "role-name", "name": "New Role Name", "_filter": [['dimension', 'eq', 'value']] }
+
++ Response 500 (application/json)
+
+        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+### Remove a Role [DELETE]
++ Response 200
+
++ Response 500 (application/json)
+
+        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
