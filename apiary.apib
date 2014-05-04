@@ -65,15 +65,22 @@ joola.io API uses the following Verbs.
 There are three ways to authenticate through joola.io API. 
 Requests that require authentication will return 404 Not Found, instead of 403 Forbidden, in some places. This is to prevent the accidental leakage of private information to unauthorized users.
 
-Basic Authentication
+### Basic Authentication
 
+```bash
 $ curl -u "username:password" http://localhost:8080/system/version
-APIToken (sent in a header)
+```
 
+### APIToken (sent in a header)
+
+```bash
 $ curl -H "Authorization: token my-apitoken" http://localhost:8080/system/version
-APIToken (sent as a parameter)
+```
 
+### APIToken (sent as a parameter)
+```bash
 $ curl http://localhost:8080/system/version?APIToken=my-apitoken
+```
 
 ## Rate Limits
 joola.io support rate limits. The default rate is `5000` requests per hour, but can be changed as part of the [configuration](http://github.com/joola/joola.io/wiki/configuration).
