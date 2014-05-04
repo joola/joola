@@ -351,14 +351,22 @@ joola.io uses `Roles` to assign `Permissions` to `Users`.
           }
         }
 
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
 ### Create a Role [POST]
 + Request (application/json)
 
-        { "key": "role-name", "permissions": ["access_system"], "_filter": [] }
+        { "key": "role-name", "_permissions": ["access_system"], "_filter": [] }
 
 + Response 200 (application/json)
 
-        { "key": "role-name", "permissions": ["access_system"], , "_filter": [] }
+        { "key": "role-name", "_permissions": ["access_system"], , "_filter": [] }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 + Response 500 (application/json)
 
@@ -380,6 +388,10 @@ A single Collection object with all its details
             "_filter": []
         }
 
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
 + Response 500 (application/json)
 
         { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
@@ -393,12 +405,20 @@ A single Collection object with all its details
 
         { "key": "role-name", "name": "New Role Name", "_filter": [['dimension', 'eq', 'value']] }
 
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
 + Response 500 (application/json)
 
         { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 ### Remove a Role [DELETE]
 + Response 200
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 + Response 500 (application/json)
 
