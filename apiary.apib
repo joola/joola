@@ -118,7 +118,7 @@ The headers include the information about the current rate limit status:
 # Group Workspaces
 Notes related resources of the **Workspaces API**
 
-## Workspaces [/workspaces{?APIToken}]
+## Workspaces [/workspaces]
 ### List all Workspaces [GET]
 + Response 200 (application/json)
 
@@ -191,13 +191,12 @@ Notes related resources of the **Workspaces API**
 
         { "message": "workspace already exists", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
-## Workspace [/workspaces/{key}{?APIToken}]
+## Workspace [/workspaces/{key}]
 A single Workspace object with all its details
 
 + Parameters
     + key (required, string, `demo-collection`) ... String `key` of the Workspace to perform action with. Has example value.
-    + APIToken (required, string, `your-api-token`) ... String `APIToken`.
-    
+
 ### Retrieve a Note [GET]
 + Response 200 (application/json)
 
@@ -355,7 +354,13 @@ joola.io uses `Roles` to assign `Permissions` to `Users`.
 ### Create a Role [POST]
 + Request (application/json)
 
-        { "key": "role-name", "permissions": ["access_system"], "_filter": [] }
+    + Header
+
+            Authorization: Basic `workspace/username:password`
+            
+    + Body 
+    
+            { "key": "role-name", "permissions": ["access_system"], "_filter": [] }
 
 + Response 200 (application/json)
 
