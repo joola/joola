@@ -4,10 +4,55 @@ HOST: http://demo.joola.io
 # joola.io
 joola.io is an open-source data analytics and visualization framework.
 
+## Schema
+All data is sent and received as JSON.
+
+```bash
+$ curl -i http://127.0.0.1:8080/system/version?APIToken=apitoken-root
+
+HTTP/1.1 200 OK
+Server: joola.io
+Access-Control-Allow-Credentials: true
+Access-Control-Expose-Headers: ETag, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+X-JoolaIO-Request-Id: HpEO6kDLn:1399190956781:Uj184Jhop
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4987
+X-RateLimit-Reset: 1399192026
+Retry-After: 1069
+X-JoolaIO-Duration: 14
+X-JoolaIO-Requested-By: HpEO6kDLn
+X-JoolaIO-Fulfilled-By: HpEO6kDLn
+X-JoolaIO-Duration-Fulfilled: 2
+Content-Type: application/json
+Content-Length: 36
+ETag: "867689076"
+Date: Sun, 04 May 2014 08:09:16 GMT
+```
+
+Blank fields are included as `null` instead of being omitted.
+
+All timestamps are returned in ISO 8601 format:
+
+```
+YYYY-MM-DDTHH:MM:SSZ
+```
+
+## HTTP Verbs
+joola.io API uses the following Verbs.
+
+| Header   | Description                                                                                                                                                                                         |
+|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `HEAD`   | Can be issued against any resource to get just the HTTP header info.                                                                                                                                |
+| `GET`    | Used for retrieving resources.                                                                                                                                                                      |
+| `POST`   | Used for creating resources, or performing custom actions (such as merging a pull request).                                                                                                         |
+| `PATCH`  | Used for updating resources with partial JSON data. For instance, an Issue resource has title and body attributes. A PATCH request may accept one or more of the attributes to update the resource. |
+| `PUT`    | Used for replacing resources or collections. For PUT requests with no bodyattribute, be sure to set the Content-Length header to zero.                                                              |
+| `DELETE` | Used for deleting resources.                                                                                                                                                                        |
+
 ## Authentication
 
 ## Rate Limits
-joola.io support rate limits. The default rate is `5000` requests per hour, but can be changed as part of the [configuration](configuration).
+joola.io support rate limits. The default rate is `5000` requests per hour, but can be changed as part of the [configuration](http://github.com/joola/joola.io/wiki/configuration).
 
 You can check the returned HTTP headers of any API request to see your current rate limit:
 
