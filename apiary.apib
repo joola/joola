@@ -384,7 +384,7 @@ A single Collection object with all its details
 
 + Parameters
     + workspace (required, string, `workspace-demo`) ... String `workspace` of the Workspace containing the Role.
-    + key (required, string, `role-user`) ... String `key` of the Role.
+    + key (required, string, `role-name`) ... String `key` of the Role.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### Retrieve a Role [GET]
@@ -407,11 +407,11 @@ A single Collection object with all its details
 ### Update a Role [PATCH]
 + Request (application/json)
 
-        { "name": "New Role Name", "_filter": [['dimension', 'eq', 'value']] }
+        { "name": "New Role Name", "_filter": [["dimension", "eq", "value"]] }
         
 + Response 200
 
-        { "key": "role-name", "name": "New Role Name", "_filter": [['dimension', 'eq', 'value']] }
+        { "key": "role-name", "name": "New Role Name", "_filter": [["dimension", "eq", "value"]] }
 
 + Response 401 (application/json)
 
