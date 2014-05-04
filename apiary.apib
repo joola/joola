@@ -320,19 +320,13 @@ joola.io uses `Roles` to assign `Permissions` to `Users`.
 | _permissions | array  | Permissions associated with this Role.  |
 | _filter      | array  | Filters to apply on users of this Role. |
 
-## Roles [/roles/{workspace}]
+## Roles [/roles/{workspace}{?APIToken}]
 
 + Parameters
     + workspace (required, string, `workspace-key`) ... String `workspace` of the Workspace containing the Role.
-
-### List all Roles [GET]
-+ Request all Roles
-
-    + Headers
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
     
-            Accept: application/json
-            Authorization: token apitoken-demo
-
+### List all Roles [GET]
 + Response 200 (application/json)
 
         {
