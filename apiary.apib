@@ -354,13 +354,7 @@ joola.io uses `Roles` to assign `Permissions` to `Users`.
 ### Create a Role [POST]
 + Request (application/json)
 
-    + Header
-
-            Authorization: Basic `workspace/username:password`
-            
-    + Body 
-    
-            { "key": "role-name", "permissions": ["access_system"], "_filter": [] }
+        { "key": "role-name", "permissions": ["access_system"], "_filter": [] }
 
 + Response 200 (application/json)
 
