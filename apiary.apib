@@ -78,7 +78,7 @@ Requests that require authentication will return 404 Not Found, instead of 403 F
 #### Basic Authentication
 
 ```bash
-$ curl -u "username:password" http://localhost:8080/system/version
+$ curl -u "workspace/username:password" http://localhost:8080/system/version
 ```
 
 #### APIToken (sent in a header)
@@ -355,11 +355,11 @@ joola.io uses `Roles` to assign `Permissions` to `Users`.
 ### Create a Role [POST]
 + Request (application/json)
 
-        { "key": "role-name", "name": "Role Name", "_filter": [] }
+        { "key": "role-name", "permissions": ["access_system"], "_filter": [] }
 
 + Response 200 (application/json)
 
-        { "key": "role-name", "name": "Role Name", "_filter": [] }
+        { "key": "role-name", "permissions": ["access_system"], , "_filter": [] }
 
 + Response 500 (application/json)
 
