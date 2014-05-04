@@ -4,7 +4,33 @@ HOST: http://demo.joola.io
 # joola.io
 joola.io is an open-source data analytics and visualization framework.
 
-## `_private` attributes
+## Authentication
+
+## Rate Limits
+joola.io support rate limits. The default rate is `5000` requests per hour, but can be changed as part of the [configuration](configuration).
+
+You can check the returned HTTP headers of any API request to see your current rate limit:
+
+```bash
+$ curl -i http://127.0.0.1:8080/system/version?APIToken=apitoken-root
+
+HTTP/1.1 200 OK
+Date: Sun, 04 May 2014 07:39:52 GMT
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4989
+X-RateLimit-Reset: 1399192026
+```
+
+The headers include the information about the current rate limit status:
+
+| Header                | Description                                                                     |
+|-----------------------|---------------------------------------------------------------------------------|
+| X-RateLimit-Limit     | The maximum number of requests that the consumer is permitted to make per hour. |
+| X-RateLimit-Remaining | The number of requests remaining in the current rate limit window.              |
+| X-RateLimit-Reset     | The time at which the current rate limit window resets in UTC epoch seconds.    |
+
+
+## _private attributes
 joola.io is a secure, multi-tenant framework written in JavaScript. 
 This means that some users may be privied to some information while others don't, based on their roles and permissions.
 
@@ -298,3 +324,5 @@ A single Collection object with all its details
 + Response 500 (application/json)
 
         { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+[configuration]: http://github.com/joola/joola.io/wiki/configuration
