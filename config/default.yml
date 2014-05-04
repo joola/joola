@@ -77,7 +77,7 @@ authentication:
 #sdk:
   # url: https://raw.githubusercontent.com/joola/joola.io.sdk/feature/%2376/bin/joola.io.js
 workspaces:
-  root:
+  workspace-demo:
     roles:
       root:
         key: "root"
@@ -87,23 +87,23 @@ workspaces:
           - "manage_users"
           - "beacon_insert"
           - "query_fetch"
-        _filter: ""
+        _filter: []
       user:
         key: "user"
         _permissions:
           - "access_system"
-        _filter: ""
+        _filter: []
       beacon:
         key: "user"
         _permissions:
           - "beacon_insert"
-        _filter: ""
+        _filter: []
       reader:
         key: "user"
         _permissions:
           - "access_system"
           - "beacon_insert"
-        _filter: ""
+        _filter: []
     users:
       root:
         username: "root"
@@ -111,8 +111,8 @@ workspaces:
         _roles:
           - "root"
         displayName: "Administrator"
-        workspace: "root"
-        _APIToken: "apitoken-root"
+        workspace: "workspace-demo"
+        _APIToken: "apitoken-demo"
         su: true
         rateLimit: 5000
       beacon:
@@ -121,7 +121,7 @@ workspaces:
         _roles:
           - "beacon"
         displayName: "Beacon"
-        workspace: "root"
+        workspace: "workspace-demo"
         _APIToken: "apitoken-beacon"
         su: true
       reader:
@@ -130,7 +130,7 @@ workspaces:
         _roles:
           - "reader"
         displayName: "Reader"
-        workspace: "root"
+        workspace: "workspace-demo"
         _APIToken: "apitoken-reader"
         su: true
     collections:

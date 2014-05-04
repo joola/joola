@@ -1,12 +1,122 @@
 FORMAT: 1A
-HOST: http://demo.joola.io
+HOST: http://lab01.joo.la:8080
 
 # joola.io
 joola.io is an open-source data analytics and visualization framework.
-Notes API is a *short texts saving* service similar to its physical paper presence on your table.
 
-# Group Notes
-Notes related resources of the **Notes API**
+This describes the resources that make up the joola.io API. 
+If you have any problems or requests please open an [issue](http://github.com/joola/joola.io/issues).
+
+## Current Version
+To check what version of joola.io is running, run:
+
+```bash
+$ curl http://localhost:8080/system/version?APIToken=apitoken
+
+{"version": "joola.io version 0.4.1"}
+```
+
+## Schema
+All data is sent and received as JSON.
+
+```bash
+$ curl -i http://127.0.0.1:8080/system/version?APIToken=apitoken-root
+
+HTTP/1.1 200 OK
+Server: joola.io
+Access-Control-Allow-Credentials: true
+Access-Control-Expose-Headers: ETag, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+X-JoolaIO-Request-Id: HpEO6kDLn:1399190956781:Uj184Jhop
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4987
+X-RateLimit-Reset: 1399192026
+Retry-After: 1069
+X-JoolaIO-Duration: 14
+X-JoolaIO-Requested-By: HpEO6kDLn
+X-JoolaIO-Fulfilled-By: HpEO6kDLn
+X-JoolaIO-Duration-Fulfilled: 2
+Content-Type: application/json
+Content-Length: 36
+ETag: "867689076"
+Date: Sun, 04 May 2014 08:09:16 GMT
+```
+
+Blank fields are included as `null` instead of being omitted.
+
+All timestamps are returned in ISO 8601 format:
+
+```
+YYYY-MM-DDTHH:MM:SSZ
+```
+
+### _private Attributes
+joola.io is a secure, multi-tenant framework written in JavaScript. 
+This means that some users may be privied to some information while others don't, based on their roles and permissions.
+
+Security needs to be extended all the way to the end-user browser, i.e. some users may be able to see what roles are assosciated with an action, while others do not.
+The open nature of JavaScript as a language and our development as a concept, make it tricky to hide certain properties.
+The only way to deal with it is by not sending sensetive information back to the client. In order to indicate to the framework what attributes should be sanitized before reaching the client, we use a `_private` convention.
+
+Any JSON attribute marked as `_private` will be sanitized and not sent to the end-user, unless the user belong to the `root` role.
+
+## HTTP Verbs
+joola.io API uses the following Verbs.
+
+| Header   | Description                                                                                                                                                                                         |
+|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `HEAD`   | Can be issued against any resource to get just the HTTP header info.                                                                                                                                |
+| `GET`    | Used for retrieving resources.                                                                                                                                                                      |
+| `POST`   | Used for creating resources, or performing custom actions (such as merging a pull request).                                                                                                         |
+| `PATCH`  | Used for updating resources with partial JSON data. For instance, an Issue resource has title and body attributes. A PATCH request may accept one or more of the attributes to update the resource. |
+| `PUT`    | Used for replacing resources or collections. For PUT requests with no bodyattribute, be sure to set the Content-Length header to zero.                                                              |
+| `DELETE` | Used for deleting resources.                                                                                                                                                                        |
+
+## Authentication
+There are three ways to authenticate through joola.io API. 
+Requests that require authentication will return 404 Not Found, instead of 403 Forbidden, in some places. This is to prevent the accidental leakage of private information to unauthorized users.
+
+#### Basic Authentication
+
+```bash
+$ curl -u "workspace/username:password" http://localhost:8080/system/version
+```
+
+#### APIToken (sent in a header)
+
+```bash
+$ curl -H "Authorization: token my-apitoken" http://localhost:8080/system/version
+```
+
+#### APIToken (sent as a parameter)
+```bash
+$ curl http://localhost:8080/system/version?APIToken=my-apitoken
+```
+
+## Rate Limits
+joola.io support rate limits. The default rate is `5000` requests per hour, but can be changed as part of the [configuration](http://github.com/joola/joola.io/wiki/configuration).
+
+You can check the returned HTTP headers of any API request to see your current rate limit:
+
+```bash
+$ curl -i http://127.0.0.1:8080/system/version?APIToken=apitoken-root
+
+HTTP/1.1 200 OK
+Date: Sun, 04 May 2014 07:39:52 GMT
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4989
+X-RateLimit-Reset: 1399192026
+```
+
+The headers include the information about the current rate limit status:
+
+| Header                | Description                                                                     |
+|-----------------------|---------------------------------------------------------------------------------|
+| X-RateLimit-Limit     | The maximum number of requests that the consumer is permitted to make per hour. |
+| X-RateLimit-Remaining | The number of requests remaining in the current rate limit window.              |
+| X-RateLimit-Reset     | The time at which the current rate limit window resets in UTC epoch seconds.    |
+
+# Group Workspaces
+Notes related resources of the **Workspaces API**
 
 ## Workspaces [/workspaces]
 ### List all Workspaces [GET]
@@ -71,11 +181,15 @@ Notes related resources of the **Notes API**
 ### Create a Workspace [POST]
 + Request (application/json)
 
-        { "title": "Buy cheese and bread for breakfast." }
+        { "key": "workspace-name", "name": "Workspace Name" }
 
 + Response 200 (application/json)
 
-        { "id": 3, "title": "Buy cheese and bread for breakfast." }
+        { "key": "workspace-name", "name": "Workspace Name" }
+
++ Response 500 (application/json)
+
+        { "message": "workspace already exists", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 ## Workspace [/workspaces/{key}]
 A single Workspace object with all its details
@@ -96,3 +210,226 @@ A single Workspace object with all its details
 
 ### Remove a Note [DELETE]
 + Response 204
+
+# Group Collections
+Notes related resources of the **Collections API**
+
+## Collections [/collections]
+### List all Collections [GET]
++ Response 200 (application/json)
+
+        [{
+          "key": "demo-mousemoves",
+          "name": "demo-mousemoves",
+          "strongTyped": true,
+          "timestamp": {
+            "datatype": "date",
+            "type": "dimension",
+            "name": "timestamp",
+            "key": "timestamp"
+          },
+          "browser": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "browser",
+            "key": "browser"
+          },
+          "engine": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "engine",
+            "key": "engine"
+          },
+          "os": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "os",
+            "key": "os"
+          },
+          "userid": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "userid",
+            "key": "userid"
+          },
+          "ip": {
+            "datatype": "ip",
+            "type": "dimension",
+            "name": "ip",
+            "key": "ip"
+          },
+          "referrer": {
+            "datatype": "string",
+            "type": "dimension",
+            "name": "referrer",
+            "key": "referrer"
+          },
+          "mousemoves": {
+            "datatype": "number",
+            "type": "metric",
+            "name": "mousemoves",
+            "key": "mousemoves",
+            "min": 0,
+            "max": 1000
+          }
+        }]
+
+### Create a Collection [POST]
++ Request (application/json)
+
+        { "key": "workspace-name", "name": "Workspace Name" }
+
++ Response 200 (application/json)
+
+        { "key": "workspace-name", "name": "Workspace Name" }
+
++ Response 500 (application/json)
+
+        { "message": "workspace already exists", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+## Collection [/collections/{key}]
+A single Collection object with all its details
+
++ Parameters
+    + key (required, string, `demo-collection`) ... String `key` of the Workspace to perform action with. Has example value.
+
+### Retrieve a Note [GET]
++ Response 200 (application/json)
+
+    + Header
+
+            X-My-Header: The Value
+
+    + Body
+
+            { "id": 2, "title": "Pick-up posters from post-office" }
+
+### Remove a Note [DELETE]
++ Response 204
+
+
+
+
+# Group Roles
+joola.io uses `Roles` to assign `Permissions` to `Users`.
+
+### Role Structure
+| Field        | Type   | Description                             |
+|--------------|--------|-----------------------------------------|
+| key          | string | Role unique key.                        |
+| _permissions | array  | Permissions associated with this Role.  |
+| _filter      | array  | Filters to apply on users of this Role. |
+
+## Roles [/roles/{workspace}{?APIToken}]
+
++ Parameters
+    + workspace (required, string, `workspace-demo`) ... String `workspace` of the Workspace containing the Role.
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+    
+### List all Roles [GET]
++ Response 200 (application/json)
+
+        {
+          "root": {
+            "key": "root",
+            "_permissions": ["access_system", "manage_system", "manage_users", "beacon_insert", "query_fetch"],
+            "_filter": []
+          },
+          "user": {
+            "key": "user",
+            "_permissions": ["access_system"],
+            "_filter": []
+          },
+          "beacon": {
+            "key": "user",
+            "_permissions": ["beacon_insert"],
+            "_filter": []
+          },
+          "reader": {
+            "key": "user",
+            "_permissions": ["access_system"],
+            "_filter": []
+          }
+        }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+### Create a Role [POST]
++ Request 
+
+    + Headers
+        
+            Content-Type: application/json
+        
+    + Body 
+        
+            { "key": "role-name", "_permissions": ["access_system"], "_filter": [] }
+
++ Response 200 (application/json)
+
+        { "key": "role-name", "_permissions": ["access_system"], , "_filter": [] }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "role already exists", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+## Role [/roles/{workspace}/{key}{?APIToken}]
+A single Collection object with all its details
+
++ Parameters
+    + workspace (required, string, `workspace-demo`) ... String `workspace` of the Workspace containing the Role.
+    + key (required, string, `role-name`) ... String `key` of the Role.
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### Retrieve a Role [GET]
++ Response 200 (application/json)
+
+        {
+            "key": "root",
+            "_permissions": ["access_system", "manage_system", "manage_users", "beacon_insert", "query_fetch"],
+            "_filter": []
+        }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+### Update a Role [PATCH]
++ Request (application/json)
+
+        { "name": "New Role Name", "_filter": [["dimension", "eq", "value"]] }
+        
++ Response 200
+
+        { "key": "role-name", "name": "New Role Name", "_filter": [["dimension", "eq", "value"]] }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+### Remove a Role [DELETE]
++ Response 200
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+[configuration]: http://github.com/joola/joola.io/wiki/configuration
