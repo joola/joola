@@ -203,6 +203,13 @@ A single Collection object with all its details
 # Group Roles
 joola.io uses `Roles` to assign `Permissions` to `Users`.
 
+### Role Structure
+| Field        | Type   | Description                             |
+|--------------|--------|-----------------------------------------|
+| key          | string | `string` Role unique key.               |
+| _permissions | array  | Permissions associated with this Role.  |
+| _filter      | array  | Filters to apply on users of this Role. |
+
 ## Roles [/roles/{workspace}]
 ### List all Roles [GET]
 + Response 200 (application/json)
