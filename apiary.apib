@@ -357,9 +357,15 @@ joola.io uses `Roles` to assign `Permissions` to `Users`.
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 ### Create a Role [POST]
-+ Request (application/json)
++ Request 
 
-        { "key": "role-name", "_permissions": ["access_system"], "_filter": [] }
+    + Headers
+        
+            Content-Type: application/json
+        
+    + Body 
+        
+            { "key": "role-name", "_permissions": ["access_system"], "_filter": [] }
 
 + Response 200 (application/json)
 
