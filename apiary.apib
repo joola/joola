@@ -49,6 +49,16 @@ All timestamps are returned in ISO 8601 format:
 YYYY-MM-DDTHH:MM:SSZ
 ```
 
+### _private Attributes
+joola.io is a secure, multi-tenant framework written in JavaScript. 
+This means that some users may be privied to some information while others don't, based on their roles and permissions.
+
+Security needs to be extended all the way to the end-user browser, i.e. some users may be able to see what roles are assosciated with an action, while others do not.
+The open nature of JavaScript as a language and our development as a concept, make it tricky to hide certain properties.
+The only way to deal with it is by not sending sensetive information back to the client. In order to indicate to the framework what attributes should be sanitized before reaching the client, we use a `_private` convention.
+
+Any JSON attribute marked as `_private` will be sanitized and not sent to the end-user, unless the user belong to the `root` role.
+
 ## HTTP Verbs
 joola.io API uses the following Verbs.
 
@@ -65,19 +75,19 @@ joola.io API uses the following Verbs.
 There are three ways to authenticate through joola.io API. 
 Requests that require authentication will return 404 Not Found, instead of 403 Forbidden, in some places. This is to prevent the accidental leakage of private information to unauthorized users.
 
-### Basic Authentication
+#### Basic Authentication
 
 ```bash
 $ curl -u "username:password" http://localhost:8080/system/version
 ```
 
-### APIToken (sent in a header)
+#### APIToken (sent in a header)
 
 ```bash
 $ curl -H "Authorization: token my-apitoken" http://localhost:8080/system/version
 ```
 
-### APIToken (sent as a parameter)
+#### APIToken (sent as a parameter)
 ```bash
 $ curl http://localhost:8080/system/version?APIToken=my-apitoken
 ```
@@ -104,17 +114,6 @@ The headers include the information about the current rate limit status:
 | X-RateLimit-Limit     | The maximum number of requests that the consumer is permitted to make per hour. |
 | X-RateLimit-Remaining | The number of requests remaining in the current rate limit window.              |
 | X-RateLimit-Reset     | The time at which the current rate limit window resets in UTC epoch seconds.    |
-
-
-## _private Attributes
-joola.io is a secure, multi-tenant framework written in JavaScript. 
-This means that some users may be privied to some information while others don't, based on their roles and permissions.
-
-Security needs to be extended all the way to the end-user browser, i.e. some users may be able to see what roles are assosciated with an action, while others do not.
-The open nature of JavaScript as a language and our development as a concept, make it tricky to hide certain properties.
-The only way to deal with it is by not sending sensetive information back to the client. In order to indicate to the framework what attributes should be sanitized before reaching the client, we use a `_private` convention.
-
-Any JSON attribute marked as `_private` will be sanitized and not sent to the end-user, unless the user belong to the `root` role.
 
 # Group Workspaces
 Notes related resources of the **Workspaces API**
