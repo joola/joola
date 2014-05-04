@@ -4,6 +4,16 @@ HOST: http://demo.joola.io
 # joola.io
 joola.io is an open-source data analytics and visualization framework.
 
+## `_private` attributes
+joola.io is a secure, multi-tenant framework written in JavaScript. 
+This means that some users may be privied to some information while others don't, based on their roles and permissions.
+
+Security needs to be extended all the way to the end-user browser, i.e. some users may be able to see what roles are assosciated with an action, while others do not.
+The open nature of JavaScript as a language and our development as a concept, make it tricky to hide certain properties.
+The only way to deal with it is by not sending sensetive information back to the client. In order to indicate to the framework what attributes should be sanitized before reaching the client, we use a `_private` convention.
+
+Any JSON attribute marked as `_private` will be sanitized and not sent to the end-user, unless the user belong to the `root` role.
+
 # Group Workspaces
 Notes related resources of the **Workspaces API**
 
@@ -206,7 +216,7 @@ joola.io uses `Roles` to assign `Permissions` to `Users`.
 ### Role Structure
 | Field        | Type   | Description                             |
 |--------------|--------|-----------------------------------------|
-| key          | string | `string` Role unique key.               |
+| key          | string | Role unique key.                        |
 | _permissions | array  | Permissions associated with this Role.  |
 | _filter      | array  | Filters to apply on users of this Role. |
 
