@@ -2,10 +2,17 @@ FORMAT: 1A
 HOST: http://lab01.joo.la:8080
 
 # joola.io
-joola.io is an open-source data analytics and visualization framework.
+[joola.io](http://github.com/joola/joola.io) is an open-source data analytics and visualization framework.
+To learn more about joola.io, installation, configuration and usage, please refer to our [wiki]([joola.io](http://github.com/joola/joola.io/wiki).
 
-This describes the resources that make up the joola.io API. 
+This guide describes the resources that make up the joola.io API. 
 If you have any problems or requests please open an [issue](http://github.com/joola/joola.io/issues).
+
+## Using This Guide 
+
+We will be using `http://localhost:8080` which is the default configuration for a fresh installation of joola.io.
+
+You can use the `Debugging Host` to execute requests against a valid, online joola.io instance we have put up for the purpose of this guide. A valid token for this purpose is `apitoken-demo`.
 
 ## Current Version
 To check what version of joola.io is running, run:
@@ -66,7 +73,7 @@ joola.io API uses the following Verbs.
 |----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `HEAD`   | Can be issued against any resource to get just the HTTP header info.                                                                                                                                |
 | `GET`    | Used for retrieving resources.                                                                                                                                                                      |
-| `POST`   | Used for creating resources, or performing custom actions (such as merging a pull request).                                                                                                         |
+| `POST`   | Used for creating resources, or performing custom actions.                                                                                                         |
 | `PATCH`  | Used for updating resources with partial JSON data. For instance, an Issue resource has title and body attributes. A PATCH request may accept one or more of the attributes to update the resource. |
 | `PUT`    | Used for replacing resources or collections. For PUT requests with no bodyattribute, be sure to set the Content-Length header to zero.                                                              |
 | `DELETE` | Used for deleting resources.                                                                                                                                                                        |
@@ -117,8 +124,8 @@ The headers include the information about the current rate limit status:
 
 
 # Group Configuration
-joola.io uses a central configuration store to support a node based deployment schema. 
-This means that nodes loading will grab their configuration from central store and that any update to it is propogated to all nodes without a need to restart the service.
+joola.io uses a central-configuration store to support a node-based deployment schema. 
+This means that nodes will grab their configuration from central store and that any update to it is propogated to all nodes without a need to restart the service.
 
 Configuration keys are referenced with `:` as a separator, i.e. to change the web server interface port, use `interfaces:webserver:port`.
 
