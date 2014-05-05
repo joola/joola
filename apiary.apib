@@ -603,7 +603,7 @@ Print out the unique identifier of the replying node.
 
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
-### Get Node UIDUser [GET]
+### Get Node UID [GET]
 + Response 200 (application/json)
 
         {
@@ -643,18 +643,126 @@ Print out all known details on the replying node.
 + Response 200 (application/json)
 
         {
-          "username": "root",
-          "_password": "gRoIW28p2$5f4dcc3b5aa765d61d8327deb882cf99",
-          "_roles": [
-            "root"
-          ],
-          "displayName": "Demo Administrator",
-          "_APIToken": "apitoken-demo",
-          "rateLimit": "5000",
-          "workspace": "demo",
-          "_filter": [],
-          "logincount": 123
-        }    
+          "uid": "Wdsz265IH",
+          "state": "online",
+          "uptime": 5.378805379965343,
+          "lastSeen": 1399277245932,
+          "lastSeenNice": "2014-05-05T08:07:25.932Z",
+          "hostname": "joola01",
+          "os": {
+            "type": "Linux",
+            "platform": "linux",
+            "arch": "x64",
+            "release": "2.6.32-431.11.2.el6.x86_64",
+            "uptime": 696896.172012026,
+            "loadavg": [
+              0.0439453125,
+              0.0537109375,
+              0.072265625
+            ],
+            "totalmem": 16610000896,
+            "freemem": 3014160384,
+            "cpus": [
+              {
+                "model": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+                "speed": 3401,
+                "times": {
+                  "user": 226411800,
+                  "nice": 10627400,
+                  "sys": 120201400,
+                  "idle": 6573488900,
+                  "irq": 5200
+                }
+              },
+              {
+                "model": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+                "speed": 800,
+                "times": {
+                  "user": 307745500,
+                  "nice": 11872400,
+                  "sys": 48696800,
+                  "idle": 6565468200,
+                  "irq": 0
+                }
+              },
+              {
+                "model": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+                "speed": 800,
+                "times": {
+                  "user": 124095500,
+                  "nice": 10080100,
+                  "sys": 35291400,
+                  "idle": 6734179700,
+                  "irq": 2200
+                }
+              },
+              {
+                "model": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+                "speed": 800,
+                "times": {
+                  "user": 109732700,
+                  "nice": 8824500,
+                  "sys": 24565500,
+                  "idle": 6792483200,
+                  "irq": 0
+                }
+              },
+              {
+                "model": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+                "speed": 800,
+                "times": {
+                  "user": 170818400,
+                  "nice": 5675300,
+                  "sys": 72066700,
+                  "idle": 6690757600,
+                  "irq": 0
+                }
+              },
+              {
+                "model": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+                "speed": 800,
+                "times": {
+                  "user": 140783900,
+                  "nice": 8544200,
+                  "sys": 34519000,
+                  "idle": 6742696500,
+                  "irq": 0
+                }
+              },
+              {
+                "model": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+                "speed": 800,
+                "times": {
+                  "user": 110794200,
+                  "nice": 8476700,
+                  "sys": 31455900,
+                  "idle": 6773844400,
+                  "irq": 0
+                }
+              },
+              {
+                "model": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+                "speed": 800,
+                "times": {
+                  "user": 101734700,
+                  "nice": 7965100,
+                  "sys": 25291700,
+                  "idle": 6792722900,
+                  "irq": 0
+                }
+              }
+            ]
+          },
+          "usageCPU": 2.9702970296755726,
+          "usageMem": 67366912,
+          "http": true,
+          "https": false,
+          "cluster": false,
+          "clusterID": null,
+          "clusterMaster": null,
+          "clusterSlave": null,
+          "connectedSockets": 1
+        }
 
 + Response 401 (application/json)
 
