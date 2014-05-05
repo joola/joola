@@ -320,6 +320,24 @@ joola.io uses `Roles` to assign `Permissions` to `Users`.
 | _permissions | array  | Permissions associated with this Role.  |
 | _filter      | array  | Filters to apply on users of this Role. |
 
+By assigning permissions to a role, and later assigning users to it, we can create a role-based permissions system.
+Roles also include a Filter, this means that any user assosciated with the Role will automatically be assigned with the Filter.
+
+Scenario:
+We want to create a group of users to be able to view only activity coming from the Europe region:
+
+```js
+var role = {
+    key: 'europe-users',
+    _permissions: ['access_system', 'query'],
+    _filter: [
+        ['Region', 'eq', 'Europe']
+    ]
+};
+```
+
+Users can be assigned to multiple roles and since Filters are aggregative, they will be assigned with all Filters from all Roles.
+
 ## Roles [/roles/{workspace}{?APIToken}]
 
 + Parameters
