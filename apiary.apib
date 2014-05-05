@@ -115,6 +115,66 @@ The headers include the information about the current rate limit status:
 | X-RateLimit-Remaining | The number of requests remaining in the current rate limit window.              |
 | X-RateLimit-Reset     | The time at which the current rate limit window resets in UTC epoch seconds.    |
 
+
+# Group Config
+joola.io uses a central configuration store to support a node based deployment schema. 
+This means that nodes loading will grab their configuration from central store and that any update to it is propogated to all nodes without a need to restart the service.
+
+Configuration keys are referenced with `:` as a separator. To learn more about configuration, please refer to the [wiki](http://github.com/joola/joola.io/wiki/configuration).
+
+## Configuration [/config/{key}{?APIToken}]
+
++ Parameters
+    + key (required, string, `config:key`) ... The `key` of the configuration to get/set.
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### Add a Configuration Key/Value [POST]
++ Request (application/json)
+
+    + Body
+        
+            {value: 'configuration-value'}
+
++ Response 200 (application/json)
+
+        { "version": "joola.io version 0.4.1" }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+### Get Configuration value [GET]
++ Response 200 (application/json)
+
+        { "config:key": "config-value" }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "configuration [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+### Set Configuration Value [PATCH]
++ Request (application/json)
+
+    + Body
+        
+            {value: 'configuration-value'}
+            
++ Response 200 (application/json)
+
+        { "config:key": "config-value" }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "configuration [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
 # Group Workspaces
 Notes related resources of the **Workspaces API**
 
@@ -552,14 +612,6 @@ Print out joola.io version.
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
-+ Response 403 (application/json)
-
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
-        
-+ Response 500 (application/json)
-
-        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
-
 ## Who Am I [/system/whoami{?APIToken}]
 Print out the `User` object taken from the `APIToken` provided.
 
@@ -588,14 +640,6 @@ Print out the `User` object taken from the `APIToken` provided.
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
-+ Response 403 (application/json)
-
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
-        
-+ Response 500 (application/json)
-
-        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
-
 ## Node UID [/system/nodeUID{?APIToken}]
 Print out the unique identifier of the replying node.
 
@@ -613,14 +657,6 @@ Print out the unique identifier of the replying node.
 + Response 401 (application/json)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
-
-+ Response 403 (application/json)
-
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
-        
-+ Response 500 (application/json)
-
-        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 ## Node Details [/system/nodeDetails{?APIToken}]
 Print out all known details on the replying node.
@@ -757,13 +793,3 @@ Print out all known details on the replying node.
 + Response 401 (application/json)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
-
-+ Response 403 (application/json)
-
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
-        
-+ Response 500 (application/json)
-
-        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
-
-
