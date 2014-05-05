@@ -537,12 +537,13 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 # Group System
 This group lists all general system functions available as part of the joola.io framework.
 
-## GET /system/version{?APIToken}
-Print out joola.io version.
+## System Version [/system/version{?APIToken}]
 
 + Parameters
-
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### Get System Version [GET]
+Print out joola.io version.
 
 + Response 200 (application/json)
 
@@ -560,16 +561,30 @@ Print out joola.io version.
 
         { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
-## GET /system/whoami{?APIToken}
-Print out the `User` object taken from the `APIToken` provided.
+## Who Am I [/system/whoami{?APIToken}]
 
 + Parameters
 
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
+### Get Current User [GET]
+Print out the `User` object taken from the `APIToken` provided.
+
 + Response 200 (application/json)
 
-        { "version": "joola.io version 0.4.1" }
+        {
+          "username": "root",
+          "_password": "gRoIW28p2$5f4dcc3b5aa765d61d8327deb882cf99",
+          "_roles": [
+            "root"
+          ],
+          "displayName": "Demo Administrator",
+          "_APIToken": "apitoken-demo",
+          "rateLimit": "5000",
+          "workspace": "demo",
+          "_filter": [],
+          "logincount": 123
+        }    
 
 + Response 401 (application/json)
 
