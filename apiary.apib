@@ -116,7 +116,7 @@ The headers include the information about the current rate limit status:
 | X-RateLimit-Reset     | The time at which the current rate limit window resets in UTC epoch seconds.    |
 
 
-# Group Config
+# Group Configuration
 joola.io uses a central configuration store to support a node based deployment schema. 
 This means that nodes loading will grab their configuration from central store and that any update to it is propogated to all nodes without a need to restart the service.
 
@@ -125,7 +125,7 @@ Configuration keys are referenced with `:` as a separator. To learn more about c
 ## Configuration [/config/{key}{?APIToken}]
 
 + Parameters
-    + key (required, string, `config:key`) ... The `key` of the configuration to get/set.
+    + key (required, string, `interfaces:webserver:port`) ... The `key` of the configuration to get/set.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### Add a Configuration Key/Value [POST]
@@ -146,7 +146,10 @@ Configuration keys are referenced with `:` as a separator. To learn more about c
 ### Get Configuration value [GET]
 + Response 200 (application/json)
 
-        { "config:key": "config-value" }
+        {
+          "key": "interfaces:webserver:port",
+          "value": "8080"
+        }   
 
 + Response 401 (application/json)
 
@@ -161,7 +164,10 @@ Configuration keys are referenced with `:` as a separator. To learn more about c
 
     + Body
         
-            {value: 'configuration-value'}
+            {
+              "key": "interfaces:webserver:port",
+              "value": "8080"
+            }  
             
 + Response 200 (application/json)
 
