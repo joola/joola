@@ -115,20 +115,6 @@ describe("webserver", function () {
     io.socket.emit('/workspaces/list');
   });
 
-  it("should show a custom 404", function (done) {
-    request.get('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/doesnotexist.html', function (err, response, body) {
-      assert(response.statusCode == 404 && body.indexOf('<!--FOR TEST - 404-->') > -1);
-      done();
-    });
-  });
-
-  it("should show a custom 500", function (done) {
-    request.get('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/api/test/createtesterror', function (err, response, body) {
-      assert(response.statusCode == 500);
-      done();
-    });
-  });
-
   it("should show a status page", function (done) {
     request.get('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/status', function (err, response, body) {
       if (err)
@@ -141,7 +127,7 @@ describe("webserver", function () {
   });
 
   it("should serve api endpoints", function (done) {
-    request.get('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/api.js', function (err, response, body) {
+    request.get('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/meta', function (err, response, body) {
       if (err)
         return done(err);
 
