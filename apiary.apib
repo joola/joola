@@ -356,6 +356,10 @@ joola.io uses `Roles` to assign `Permissions` to `Users`.
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
 ### Create a Role [POST]
 + Request 
 
@@ -374,6 +378,10 @@ joola.io uses `Roles` to assign `Permissions` to `Users`.
 + Response 401 (application/json)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 + Response 500 (application/json)
 
@@ -400,6 +408,10 @@ A single Collection object with all its details
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        
 + Response 500 (application/json)
 
         { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
@@ -417,6 +429,10 @@ A single Collection object with all its details
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
 + Response 500 (application/json)
 
         { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
@@ -427,6 +443,10 @@ A single Collection object with all its details
 + Response 401 (application/json)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 + Response 500 (application/json)
 
