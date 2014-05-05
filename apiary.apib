@@ -120,7 +120,9 @@ The headers include the information about the current rate limit status:
 joola.io uses a central configuration store to support a node based deployment schema. 
 This means that nodes loading will grab their configuration from central store and that any update to it is propogated to all nodes without a need to restart the service.
 
-Configuration keys are referenced with `:` as a separator. To learn more about configuration, please refer to the [wiki](http://github.com/joola/joola.io/wiki/configuration).
+Configuration keys are referenced with `:` as a separator, i.e. to change the web server interface port, use `interfaces:webserver:port`.
+
+To learn more about configuration, please refer to the [wiki](http://github.com/joola/joola.io/wiki/configuration).
 
 ## Configuration [/config/{key}{?APIToken}]
 
