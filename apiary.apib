@@ -560,3 +560,26 @@ Print out joola.io version.
 
         { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
+## GET /system/whoami{?APIToken}
+Print out the `User` object taken from the `APIToken` provided.
+
++ Parameters
+
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
++ Response 200 (application/json)
+
+        { "version": "joola.io version 0.4.1" }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        
++ Response 500 (application/json)
+
+        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
