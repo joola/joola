@@ -63,11 +63,11 @@ YYYY-MM-DDTHH:MM:SSZ
 joola.io is a secure, multi-tenant framework written in JavaScript. 
 This means that some users may be privy to some information while others don't, based on their roles and permissions.
 
-Security needs to be extended all the way to the end-user browser, i.e. some users may be able to see what roles are assosciated with an action, while others do not.
+Security needs to be extended all the way to the end-user's browser, i.e. some users may be able to see what roles are assosciated with an action, while others do not.
 The open nature of JavaScript as a language and our development as a concept, make it tricky to hide certain properties.
-The only way to deal with it is by not sending sensetive information back to the client. In order to indicate to the framework what attributes should be sanitized before reaching the client, we use a `_private` convention.
+The only way to deal with it is by not sending sensetive information back to the client at all. In order to indicate to the framework what attributes should be sanitized before reaching the client, we use a `_private` convention.
 
-Any JSON attribute marked as `_private` will be sanitized and not sent to the end-user, unless the user belong to the `root` role.
+Any JSON attribute marked as `_private` will be sanitized and not sent to the end-user, unless the user is mapped to the permission `see_private` via an appropriate role.
 
 ## HTTP Verbs
 joola.io API uses the following Verbs.
