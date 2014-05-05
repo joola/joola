@@ -307,15 +307,54 @@ A single Collection object with all its details
 ### Remove a Note [DELETE]
 + Response 204
 
+# Group Permissions
+Permissions are hard-coded string values assigned to each API endpoint. Permissions work in conjunction with `Users` and `Roles` to form joola.io's role-based permissions system.
+
+### Permission Structure
+| Field        | Type   | Description                             |
+|:-------------|:-------|:----------------------------------------|
+| key          | string | Permission unique key.                  |
+
+## Permissions [/permissions/{?APIToken}]
+
++ Parameters
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+    
+### List all Permissions [GET]
++ Response 200 (application/json)
+
+        ['access_system', 'manage_system', 'beacon_insert', 'query']
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 
+## Permission [/permissions/{key}{?APIToken}]
+
++ Parameters
+    + key (required, string, `permission-name`) ... String `key` of the Permission.
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### Retrieve a Role [GET]
++ Response 200 (application/json)
+
+        ['access_system']
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "permission [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 # Group Roles
 joola.io uses `Roles` to assign `Permissions` to `Users`.
 
 ### Role Structure
 | Field        | Type   | Description                             |
-|--------------|--------|-----------------------------------------|
+|:-------------|:-------|:----------------------------------------|
 | key          | string | Role unique key.                        |
 | _permissions | array  | Permissions associated with this Role.  |
 | _filter      | array  | Filters to apply on users of this Role. |
@@ -445,10 +484,6 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 + Response 403 (application/json)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
-        
-+ Response 415 (application/json)
-
-        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
         
 + Response 500 (application/json)
 
