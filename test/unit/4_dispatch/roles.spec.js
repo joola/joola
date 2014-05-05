@@ -103,14 +103,12 @@ describe("roles", function () {
 
   it("should delete a role", function (done) {
     var self = this;
-    var role = {
-      key: 'test-role-' + this.uid
-    };
+    var role = 'test-role-' + this.uid;
     joola.dispatch.roles.delete(this.context, this.workspace, role, function (err) {
       if (err)
         return done(err);
 
-      joola.dispatch.roles.get(self.context, self.workspace, role.key, function (err, role) {
+      joola.dispatch.roles.get(self.context, self.workspace, role, function (err, role) {
         if (err)
           return done();
 

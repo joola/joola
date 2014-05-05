@@ -99,7 +99,7 @@ describe("webserver", function () {
     });
     var options =
       {
-        APIToken: 'apitoken-root',
+        APIToken: 'apitoken-test',
         _path: '/workspaces/list'
       }
       ;

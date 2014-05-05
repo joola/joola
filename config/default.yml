@@ -77,7 +77,7 @@ authentication:
 #sdk:
   # url: https://raw.githubusercontent.com/joola/joola.io.sdk/feature/%2376/bin/joola.io.js
 workspaces:
-  workspace-demo:
+  _test:
     roles:
       root:
         key: "root"
@@ -88,22 +88,6 @@ workspaces:
           - "beacon_insert"
           - "query_fetch"
         _filter: []
-      user:
-        key: "user"
-        _permissions:
-          - "access_system"
-        _filter: []
-      beacon:
-        key: "user"
-        _permissions:
-          - "beacon_insert"
-        _filter: []
-      reader:
-        key: "user"
-        _permissions:
-          - "access_system"
-          - "beacon_insert"
-        _filter: []
     users:
       root:
         username: "root"
@@ -111,28 +95,26 @@ workspaces:
         _roles:
           - "root"
         displayName: "Administrator"
-        workspace: "workspace-demo"
-        _APIToken: "apitoken-demo"
+        _APIToken: "apitoken-test"
         su: true
         rateLimit: 5000
+  _stats:
+    roles:
       beacon:
-        username: "beacon"
+        key: "beacon"
+        _permissions:
+          - "beacon_insert"
+        _filter: []
+    users:
+      root:
+        username: "stats-beacon"
         _password: "password"
         _roles:
           - "beacon"
-        displayName: "Beacon"
-        workspace: "workspace-demo"
-        _APIToken: "apitoken-beacon"
+        displayName: "Stats Beacon"
+        _APIToken: "apitoken-stats"
         su: true
-      reader:
-        username: "reader"
-        _password: "password"
-        _roles:
-          - "reader"
-        displayName: "Reader"
-        workspace: "workspace-demo"
-        _APIToken: "apitoken-reader"
-        su: true
+        rateLimit: 5000
     collections:
       stats-node-count:
         key: "stats-node-count"
@@ -414,3 +396,56 @@ workspaces:
           key: "mousemoves"
           min: 0
           max: 1000
+  demo:
+    roles:
+      root:
+        key: "root"
+        _permissions:
+          - "access_system"
+          - "manage_system"
+          - "manage_users"
+          - "beacon_insert"
+          - "query_fetch"
+        _filter: []
+      user:
+        key: "user"
+        _permissions:
+          - "access_system"
+        _filter: []
+      beacon:
+        key: "user"
+        _permissions:
+          - "beacon_insert"
+        _filter: []
+      reader:
+        key: "user"
+        _permissions:
+          - "access_system"
+          - "beacon_insert"
+        _filter: []
+    users:
+      root:
+        username: "root"
+        _password: "password"
+        _roles:
+          - "root"
+        displayName: "Administrator"
+        _APIToken: "apitoken-demo"
+        su: true
+        rateLimit: 5000
+      beacon:
+        username: "beacon"
+        _password: "password"
+        _roles:
+          - "beacon"
+        displayName: "Beacon"
+        _APIToken: "apitoken-beacon"
+        su: true
+      reader:
+        username: "reader"
+        _password: "password"
+        _roles:
+          - "reader"
+        displayName: "Reader"
+        _APIToken: "apitoken-reader"
+        su: true

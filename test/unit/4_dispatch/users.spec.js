@@ -283,7 +283,7 @@ describe("users", function () {
   });
 
   it("should verify a valid APIToken", function (done) {
-    joola.dispatch.users.verifyAPIToken(this.context, 'apitoken-root', function (err, user) {
+    joola.dispatch.users.verifyAPIToken(this.context, 'apitoken-test', function (err, user) {
       if (err)
         return done(err);
 
