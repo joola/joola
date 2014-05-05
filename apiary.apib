@@ -596,3 +596,76 @@ Print out the `User` object taken from the `APIToken` provided.
 
         { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
+## Node UID [/system/nodeUID{?APIToken}]
+Print out the unique identifier of the replying node.
+
++ Parameters
+
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### Get Current User [GET]
++ Response 200 (application/json)
+
+        {
+          "username": "root",
+          "_password": "gRoIW28p2$5f4dcc3b5aa765d61d8327deb882cf99",
+          "_roles": [
+            "root"
+          ],
+          "displayName": "Demo Administrator",
+          "_APIToken": "apitoken-demo",
+          "rateLimit": "5000",
+          "workspace": "demo",
+          "_filter": [],
+          "logincount": 123
+        }    
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        
++ Response 500 (application/json)
+
+        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+## Node Details [/system/nodeDetails{?APIToken}]
+Print out all known details on the replying node.
+
++ Parameters
+
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### Get Current User [GET]
++ Response 200 (application/json)
+
+        {
+          "username": "root",
+          "_password": "gRoIW28p2$5f4dcc3b5aa765d61d8327deb882cf99",
+          "_roles": [
+            "root"
+          ],
+          "displayName": "Demo Administrator",
+          "_APIToken": "apitoken-demo",
+          "rateLimit": "5000",
+          "workspace": "demo",
+          "_filter": [],
+          "logincount": 123
+        }    
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        
++ Response 500 (application/json)
+
+        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+
