@@ -63,12 +63,12 @@ describe("roles", function () {
     });
   });
 
-  xit("should update a role", function (done) {
+  it("should update a role", function (done) {
     var role = {
       key: 'test-role-' + this.uid,
       permissions: ['access_system']
     };
-    joola.dispatch.roles.update(this.context, this.workspace, role, function (err, _role) {
+    joola.dispatch.roles.patch(this.context, this.workspace, role.key, role, function (err, _role) {
       if (err)
         return done(err);
       expect(_role.permissions.length).to.equal(1);
@@ -81,19 +81,7 @@ describe("roles", function () {
       key: 'test-role1-' + this.uid,
       permissions: ['access_system']
     };
-    joola.dispatch.roles.update(this.context, this.workspace, role, function (err, _role) {
-      if (err)
-        return done();
-
-      done(new Error('This should have failed'));
-    });
-  });
-
-  it("should fail updating role with incomplete details", function (done) {
-    var role = {
-      key: 'test-role-' + this.uid
-    };
-    joola.dispatch.roles.update(this.context, this.workspace, role, function (err, _role) {
+    joola.dispatch.roles.patch(this.context, this.workspace, role.key, role, function (err, _role) {
       if (err)
         return done();
 

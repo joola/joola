@@ -271,8 +271,8 @@ joola.io uses `Roles` to assign `Permissions` to `Users`.
 | Field        | Type   | Description                             |
 |:-------------|:-------|:----------------------------------------|
 | key          | string | Role unique key.                        |
-| _permissions | array  | Permissions associated with this Role.  |
-| _filter      | array  | Filters to apply on users of this Role. |
+| permissions | array  | Permissions associated with this Role.  |
+| filter      | array  | Filters to apply on users of this Role. |
 
 By assigning permissions to a role, and later assigning users to it, we can create a role-based permissions system.
 Roles also include a Filter, this means that any user assosciated with the Role will automatically be assigned with the Filter.
@@ -283,8 +283,8 @@ We want to create a group of users to be able to view only activity coming from 
 ```js
 var role = {
     key: 'europe-users',
-    _permissions: ['access_system', 'query'],
-    _filter: [
+    permissions: ['access_system', 'query'],
+    filter: [
         ['Region', 'eq', 'Europe']
     ]
 };
@@ -304,36 +304,36 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
         {
           "root": {
             "key": "root",
-            "_permissions": [
+            "permissions": [
               "access_system",
               "manage_system",
               "manage_users",
               "beacon_insert",
               "query_fetch"
             ],
-            "_filter": []
+            "filter": []
           },
           "user": {
             "key": "user",
-            "_permissions": [
+            "permissions": [
               "access_system"
             ],
-            "_filter": []
+            "filter": []
           },
           "beacon": {
             "key": "user",
-            "_permissions": [
+            "permissions": [
               "beacon_insert"
             ],
-            "_filter": []
+            "filter": []
           },
           "reader": {
             "key": "user",
-            "_permissions": [
+            "permissions": [
               "access_system",
               "beacon_insert"
             ],
-            "_filter": []
+            "filter": []
           }
         }
 
@@ -348,16 +348,16 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 ### Create a Role [POST]
 + Request (application/json)
 
-        { "key": "role-name", "_permissions": ["access_system"], "_filter": [] }
+        { "key": "role-name", "permissions": ["access_system"], "filter": [] }
 
 + Response 200 (application/json)
 
         {
           "key": "role-name",
-          "_permissions": [
+          "permissions": [
             "access_system"
           ],
-          "_filter": []
+          "filter": []
         }
 
 + Response 401 (application/json)
@@ -388,10 +388,10 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 
         {
           "key": "role-name",
-          "_permissions": [
+          "permissions": [
             "access_system"
           ],
-          "_filter": []
+          "filter": []
         }
 
 + Response 401 (application/json)
@@ -409,16 +409,16 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 ### Update a Role [PATCH]
 + Request (application/json)
 
-        { "_filter": [["dimension", "eq", "value"]] }
+        { "filter": [["dimension", "eq", "value"]] }
         
 + Response 200 
 
         {
           "key": "role-name",
-          "_permissions": [
+          "permissions": [
             "access_system"
           ],
-          "_filter": []
+          "filter": []
         }
 
 + Response 401 (application/json)
@@ -458,78 +458,51 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 
         { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
-# Group Roles
-joola.io uses `Roles` to assign `Permissions` to `Users`.
+# Group Users
 
-### Role Structure
+### Users Structure
 | Field        | Type   | Description                             |
 |:-------------|:-------|:----------------------------------------|
 | key          | string | Role unique key.                        |
-| _permissions | array  | Permissions associated with this Role.  |
-| _filter      | array  | Filters to apply on users of this Role. |
-
-By assigning permissions to a role, and later assigning users to it, we can create a role-based permissions system.
-Roles also include a Filter, this means that any user assosciated with the Role will automatically be assigned with the Filter.
-
-Scenario:
-We want to create a group of users to be able to view only activity coming from the Europe region:
-
-```js
-var role = {
-    key: 'europe-users',
-    _permissions: ['access_system', 'query'],
-    _filter: [
-        ['Region', 'eq', 'Europe']
-    ]
-};
-```
-
-Users can be assigned to multiple roles and since Filters are aggregative, they will be assigned with all Filters from all Roles.
+| permissions | array  | Permissions associated with this Role.  |
+| filter      | array  | Filters to apply on users of this Role. |
 
 ## Users [/users/{workspace}{?APIToken}]
 
 + Parameters
-    + workspace (required, string, `demo`) ... String `workspace` of the Workspace containing the Role.
+    + workspace (required, string, `demo`) ... String `workspace` of the Workspace containing the User.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### List all Users [GET]
 + Response 200 (application/json)
 
-        {
-          "root": {
-            "key": "root",
-            "_permissions": [
-              "access_system",
-              "manage_system",
-              "manage_users",
-              "beacon_insert",
-              "query_fetch"
+        [
+          {
+            "filter": [],
+            "APIToken": "apitoken-demo",
+            "displayName": "Administrator",
+            "roles": [
+              "root"
             ],
-            "_filter": []
+            "username": "root"
           },
-          "user": {
-            "key": "user",
-            "_permissions": [
-              "access_system"
+          {
+            "APIToken": "apitoken-beacon",
+            "displayName": "Beacon",
+            "roles": [
+              "beacon"
             ],
-            "_filter": []
+            "username": "beacon"
           },
-          "beacon": {
-            "key": "user",
-            "_permissions": [
-              "beacon_insert"
+          {
+            "APIToken": "apitoken-reader",
+            "displayName": "Reader",
+            "roles": [
+              "reader"
             ],
-            "_filter": []
-          },
-          "reader": {
-            "key": "user",
-            "_permissions": [
-              "access_system",
-              "beacon_insert"
-            ],
-            "_filter": []
+            "username": "reader"
           }
-        }
+        ]
 
 + Response 401 (application/json)
 
@@ -542,16 +515,21 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 ### Create a User [POST]
 + Request (application/json)
 
-        { "key": "role-name", "_permissions": ["access_system"], "_filter": [] }
+        {
+          "username": "newuser",
+          "password": "password",
+          "displayName": "new user",
+          "filter": [],
+          "roles": ["user"]
+        }
 
 + Response 200 (application/json)
 
         {
-          "key": "role-name",
-          "_permissions": [
-            "access_system"
-          ],
-          "_filter": []
+          "username": "newuser",
+          "displayName": "new user",
+          "filter": [],
+          "roles": ["user"]
         }
 
 + Response 401 (application/json)
@@ -573,19 +551,21 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 ## Role [/users/{workspace}/{username}{?APIToken}]
 
 + Parameters
-    + workspace (required, string, `demo`) ... String `workspace` of the Workspace containing the Role.
-    + username (required, string, `role-name`) ... String `key` of the Role.
+    + workspace (required, string, `demo`) ... String `workspace` of the Workspace containing the User.
+    + username (required, string, `newuser`) ... String `key` of the User.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### Retrieve a User [GET]
 + Response 200 (application/json)
 
         {
-          "key": "role-name",
-          "_permissions": [
-            "access_system"
+          "username": "newuser",
+          "displayName": "new user",
+          "filter": [],
+          "roles": [
+            "user"
           ],
-          "_filter": []
+          "APIToken": null
         }
 
 + Response 401 (application/json)
@@ -603,16 +583,18 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 ### Update a User [PATCH]
 + Request (application/json)
 
-        { "_filter": [["dimension", "eq", "value"]] }
+        { "APIToken": "apitoken-newuser" }
 
 + Response 200
 
         {
-          "key": "role-name",
-          "_permissions": [
-            "access_system"
+          "username": "newuser",
+          "displayName": "new user",
+          "filter": [],
+          "roles": [
+            "user"
           ],
-          "_filter": []
+          "APIToken": "apitoken-newuser"
         }
 
 + Response 401 (application/json)
@@ -805,17 +787,13 @@ Print out the `User` object taken from the `APIToken` provided.
 
         {
           "username": "root",
-          "_password": "gRoIW28p2$5f4dcc3b5aa765d61d8327deb882cf99",
-          "_roles": [
+          "roles": [
             "root"
           ],
-          "displayName": "Demo Administrator",
-          "_APIToken": "apitoken-demo",
-          "rateLimit": "5000",
-          "workspace": "demo",
-          "_filter": [],
-          "logincount": 123
-        }    
+          "displayName": "Administrator",
+          "APIToken": "apitoken-demo",
+          "filter": []
+        }
 
 + Response 401 (application/json)
 

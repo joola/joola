@@ -20,7 +20,7 @@ describe("beacon-route", function () {
     var options =
     {
       APIToken: 'apitoken-test',
-      _path: 'beacon/insert',
+      _path: '/beacon/insert',
       workspace: this.context.user.workspace,
       collection: 'test-beacon-route-' + this.uid,
       document: {

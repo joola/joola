@@ -105,7 +105,7 @@ describe("workspaces", function () {
       name: 'test-workspace-' + this.uid,
       filter: 'test=test'
     };
-    joolaio.workspaces.patch(workspace.key, workspace, function (err, _workspace) {
+    joolaio.workspaces.patch(workspace.key,workspace, function (err, _workspace) {
       if (err)
         return done();
 

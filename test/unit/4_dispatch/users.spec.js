@@ -93,11 +93,11 @@ describe("users", function () {
       workspace: this.workspace
     };
     user.displayName = 'testing user with change';
-    joola.dispatch.users.update(self.context, self.workspace, user, function (err) {
+    joola.users.patch(self.context, self.workspace, user.username, user, function (err) {
       if (err)
         return done(err);
 
-      joola.dispatch.users.get(self.context, self.workspace, user.username, function (err, _user) {
+      joola.users.get(self.context, self.workspace, user.username, function (err, _user) {
         if (err)
           return done(err);
         expect(_user).to.be.ok;
@@ -110,18 +110,22 @@ describe("users", function () {
   });
 
   it("should apply filter on user level", function (done) {
+    var filter = [
+      ['test1', 'eq', 'test2']
+    ];
     var user = {
       username: 'tester-' + this.uid,
       displayName: 'tester user',
       password: '1234',
       roles: ['user'],
-      filter: 'test1=test2',
+      filter: filter,
       workspace: this.workspace
     };
-    joola.dispatch.users.update(this.context, this.workspace, user, function (err, user) {
+    joola.dispatch.users.patch(this.context, this.workspace, user.username, user, function (err, user) {
       if (err)
         return done(err);
-      expect(user.filter).to.equal('test1=test2');
+      console.log(user);
+      expect(user.filter).to.equal(filter);
       return done(err);
     });
   });
@@ -135,7 +139,7 @@ describe("users", function () {
       filter: '',
       workspace: 'test-org'
     };
-    joola.dispatch.users.update(this.context, this.workspace, user, function (err, user) {
+    joola.dispatch.users.patch(this.context, this.workspace, user.username, user, function (err, user) {
       if (err)
         return done();
 
@@ -240,7 +244,7 @@ describe("users", function () {
       workspace: this.workspace
     };
     user.displayName = 'testing user with change';
-    joola.dispatch.users.update(self.context, self.workspace, user, function (err) {
+    joola.dispatch.users.patch(self.context, self.workspace, user.username, user, function (err) {
       if (err)
         return done(err);
       joola.dispatch.users.authenticate(self.context, self.workspace, 'tester-' + self.uid, '12345', function (err, user) {
@@ -258,7 +262,7 @@ describe("users", function () {
     var user = {
       username: 'tester-' + this.uid
     };
-    joola.dispatch.users.delete(this.context, this.workspace, user, function (err) {
+    joola.dispatch.users.delete(this.context, this.workspace, user.username, function (err) {
       if (err)
         return done(err);
       joola.dispatch.users.get(self.context, self.workspace, user.username, function (err, user) {
