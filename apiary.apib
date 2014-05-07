@@ -145,11 +145,14 @@ To learn more about configuration, please refer to the [wiki](http://github.com/
 
     + Body
         
-            {"value": "8181"}
+            {"value": "8080"}
 
 + Response 200 (application/json)
 
-        { "version": "joola.io version 0.4.1" }
+      {
+        "key": "interfaces:webserver:port",
+        "value": "8080"
+      }
 
 + Response 401 (application/json)
 
@@ -183,7 +186,10 @@ To learn more about configuration, please refer to the [wiki](http://github.com/
             
 + Response 200 (application/json)
 
-        { "config:key": "config-value" }
+        {
+          "key": "interfaces:webserver:port",
+          "value": "8080"
+        }
 
 + Response 401 (application/json)
 
@@ -197,56 +203,52 @@ To learn more about configuration, please refer to the [wiki](http://github.com/
 Notes related resources of the **Workspaces API**
 
 ## Workspaces [/workspaces{?APIToken}]
+### List all Workspaces [GET]
 
 + Parameters
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
-### List all Workspaces [GET]
 + Response 200 (application/json)
 
-        {
-          "_test": {
-            "key": "_test",
+        [
+          {
             "name": "joola.io Framework Tests",
-            "description": "Workspace for internal joola.io tests"
+            "description": "Workspace for internal joola.io tests",
+            "key": "_test"
           },
-          "_stats": {
-            "key": "_stats",
+          {
             "name": "Internal Stats",
-            "description": "Stores internal statistics of joola.io"
+            "description": "Stores internal statistics of joola.io",
+            "key": "_stats"
           },
-          "demo": {
-            "key": "demo",
+          {
             "name": "Demo Workspace",
-            "description": "A starter/playground workpsace"
+            "description": "A starter/playground workpsace",
+            "key": "demo"
           }
-        } 
+        ]    
 
 ### Create a Workspace [POST]
 + Request (application/json)
 
-        { "key": "workspace-name", "name": "Workspace Name", "description": "Workspace Description" }
+        { "key": "workspace-name", "name": "Workspace Name" }
 
 + Response 200 (application/json)
 
-        { "key": "workspace-name", "name": "Workspace Name", "description": "Workspace Description" }
+        { "key": "workspace-name", "name": "Workspace Name" }
 
 + Response 500 (application/json)
 
         { "message": "workspace already exists", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
-## Workspace [/workspaces/{key}]
-A single Workspace object with all its details
+## Workspace [/workspaces/{key}{?APIToken}]
 
 + Parameters
     + key (required, string, `demo-collection`) ... String `key` of the Workspace to perform action with. Has example value.
-
-### Retrieve a Note [GET]
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+    
+### Retrieve a Workspace [GET]
 + Response 200 (application/json)
-
-    + Header
-
-            X-My-Header: The Value
 
     + Body
 
@@ -367,23 +369,29 @@ Permissions are hard-coded string values assigned to each API endpoint. Permissi
 ### List all Permissions [GET]
 + Response 200 (application/json)
 
-        ['access_system', 'manage_system', 'beacon_insert', 'query']
+        [
+          "access_system",
+          "manage_system",
+          "beacon_insert",
+          "query"
+        ]
 
 + Response 401 (application/json)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
-
 ## Permission [/permissions/{key}{?APIToken}]
 
 + Parameters
-    + key (required, string, `permission-name`) ... String `key` of the Permission.
+    + key (required, string, `access_system`) ... String `key` of the Permission.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### Retrieve a Permission [GET]
 + Response 200 (application/json)
 
-        ['access_system']
+        [
+          "access_system"
+        ]
 
 + Response 401 (application/json)
 
@@ -487,7 +495,13 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 
 + Response 200 (application/json)
 
-        { "key": "role-name", "_permissions": ["access_system"], , "_filter": [] }
+        {
+          "key": "role-name",
+          "_permissions": [
+            "access_system"
+          ],
+          "_filter": []
+        }
 
 + Response 401 (application/json)
 
@@ -516,9 +530,11 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 + Response 200 (application/json)
 
         {
-            "key": "root",
-            "_permissions": ["access_system", "manage_system", "manage_users", "beacon_insert", "query_fetch"],
-            "_filter": []
+          "key": "role-name",
+          "_permissions": [
+            "access_system"
+          ],
+          "_filter": []
         }
 
 + Response 401 (application/json)
@@ -536,11 +552,17 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 ### Update a Role [PATCH]
 + Request (application/json)
 
-        { "name": "New Role Name", "_filter": [["dimension", "eq", "value"]] }
+        { "_filter": [["dimension", "eq", "value"]] }
         
 + Response 200 
 
-        { "key": "role-name", "name": "New Role Name", "_filter": [["dimension", "eq", "value"]] }
+        {
+          "key": "role-name",
+          "_permissions": [
+            "access_system"
+          ],
+          "_filter": []
+        }
 
 + Response 401 (application/json)
 
@@ -561,6 +583,8 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 ### Remove a Role [DELETE]
 + Response 200
 
+        {}
+        
 + Response 401 (application/json)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
