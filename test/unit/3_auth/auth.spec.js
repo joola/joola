@@ -41,8 +41,8 @@ describe("auth", function () {
   it("should generate a valid security token", function (done) {
     var user = {
       username: 'test',
-      _password: 'password',
-      _roles: [],
+      password: 'password',
+      roles: [],
       workspace: this.workspace
     };
     joola.auth.generateToken(user, function (err, token) {
@@ -59,8 +59,8 @@ describe("auth", function () {
   xit("token should expire after 2 seconds", function (done) {
     var user = {
       username: 'test',
-      _password: 'password',
-      _roles: [],
+      password: 'password',
+      roles: [],
       workspace: this.workspace
     };
     var _expireAfter = joola.config.authentication.tokens.expireAfter;
@@ -88,8 +88,8 @@ describe("auth", function () {
   it("should expire a token", function (done) {
     var user = {
       username: 'test',
-      _password: 'password',
-      _roles: [],
+      password: 'password',
+      roles: [],
       workspace: this.workspace
     };
     joola.auth.generateToken(user, function (err, token) {
@@ -136,7 +136,7 @@ describe("auth", function () {
 
     var user = {
       username: 'tester',
-      _roles: ['root'],
+      roles: ['root'],
       workspace: '_test'
     };
     var req = {
@@ -196,7 +196,7 @@ describe("auth", function () {
 
     var user = {
       username: 'tester',
-      _roles: ['user'],
+      roles: ['user'],
       workspace: '_test'
     };
     var req = {
@@ -229,7 +229,7 @@ describe("auth", function () {
 
     var user = {
       username: 'tester',
-      _roles: ['root'],
+      roles: ['root'],
       workspace: '_test'
     };
     var req = {
@@ -283,8 +283,8 @@ describe("auth", function () {
   it("should get a user by token", function (done) {
     var user = {
       username: 'test-' + joola.common.uuid(),
-      _password: '1234',
-      _roles: ['user'],
+      password: '1234',
+      roles: ['user'],
       workspace: 'test-org'
     };
     joola.dispatch.users.add(this.context, this.workspace, user, function (err, _user) {

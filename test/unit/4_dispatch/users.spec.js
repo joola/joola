@@ -32,9 +32,9 @@ describe("users", function () {
     var user = {
       username: 'tester-' + this.uid,
       displayName: 'tester user',
-      _password: '1234',
-      _roles: ['user'],
-      _filter: '',
+      password: '1234',
+      roles: ['user'],
+      filter: '',
       workspace: this.workspace
     };
     joola.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
@@ -70,9 +70,9 @@ describe("users", function () {
     var user = {
       username: 'tester-' + this.uid,
       displayName: 'tester user',
-      _password: '1234',
-      _roles: ['user'],
-      _filter: '',
+      password: '1234',
+      roles: ['user'],
+      filter: '',
       workspace: this.workspace
     };
     joola.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
@@ -87,9 +87,9 @@ describe("users", function () {
     var user = {
       username: 'tester-' + this.uid,
       displayName: 'testing user',
-      _password: '1234',
-      _roles: ['user'],
-      _filter: '',
+      password: '1234',
+      roles: ['user'],
+      filter: '',
       workspace: this.workspace
     };
     user.displayName = 'testing user with change';
@@ -113,15 +113,15 @@ describe("users", function () {
     var user = {
       username: 'tester-' + this.uid,
       displayName: 'tester user',
-      _password: '1234',
-      _roles: ['user'],
-      _filter: 'test1=test2',
+      password: '1234',
+      roles: ['user'],
+      filter: 'test1=test2',
       workspace: this.workspace
     };
     joola.dispatch.users.update(this.context, this.workspace, user, function (err, user) {
       if (err)
         return done(err);
-      expect(user._filter).to.equal('test1=test2');
+      expect(user.filter).to.equal('test1=test2');
       return done(err);
     });
   });
@@ -130,9 +130,9 @@ describe("users", function () {
     var user = {
       username: 'tester-' + joola.common.uuid(),
       displayName: 'tester user',
-      _password: '1234',
-      _roles: ['user'],
-      _filter: '',
+      password: '1234',
+      roles: ['user'],
+      filter: '',
       workspace: 'test-org'
     };
     joola.dispatch.users.update(this.context, this.workspace, user, function (err, user) {
@@ -148,9 +148,9 @@ describe("users", function () {
     var user = {
       username: 'tester-password-' + this.uid,
       displayName: 'tester user',
-      _password: 'password',
-      _roles: ['user'],
-      _filter: '',
+      password: 'password',
+      roles: ['user'],
+      filter: '',
       workspace: this.workspace
     };
     joola.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
@@ -180,9 +180,9 @@ describe("users", function () {
     var user = {
       username: 'tester-api-by-token-' + this.uid,
       displayName: 'tester user',
-      _password: '1234',
-      _roles: ['user'],
-      _filter: '',
+      password: '1234',
+      roles: ['user'],
+      filter: '',
       workspace: this.workspace
     };
     joola.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
@@ -234,9 +234,9 @@ describe("users", function () {
     var user = {
       username: 'tester-' + this.uid,
       displayName: 'testing user',
-      _password: '12345',
-      _roles: ['user'],
-      _filter: '',
+      password: '12345',
+      roles: ['user'],
+      filter: '',
       workspace: this.workspace
     };
     user.displayName = 'testing user with change';

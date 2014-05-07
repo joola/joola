@@ -83,7 +83,7 @@ workspaces:
     roles:
       root:
         key: "root"
-        _permissions:
+        permissions:
           - "access_system"
           - "manage_system"
           - "manage_users"
@@ -94,15 +94,15 @@ workspaces:
           - "workspaces:add"
           - "workspaces:patch"
           - "workspaces:delete"
-        _filter: []
+        filter: []
     users:
       root:
         username: "root"
-        _password: "password"
-        _roles:
+        password: "password"
+        roles:
           - "root"
         displayName: "Administrator"
-        _APIToken: "apitoken-test"
+        APIToken: "apitoken-test"
         rateLimit: 5000
   _stats:
     name: Internal Stats
@@ -110,17 +110,17 @@ workspaces:
     roles:
       beacon:
         key: "beacon"
-        _permissions:
+        permissions:
           - "beacon_insert"
-        _filter: []
+        filter: []
     users:
       root:
         username: "stats-beacon"
-        _password: "password"
-        _roles:
+        password: "password"
+        roles:
           - "beacon"
         displayName: "Stats Beacon"
-        _APIToken: "apitoken-stats"
+        APIToken: "apitoken-stats"
         rateLimit: 5000
     collections:
       stats-node-count:
@@ -409,7 +409,7 @@ workspaces:
     roles:
       root:
         key: "root"
-        _permissions:
+        permissions:
           - "access_system"
           - "manage_system"
           - "manage_users"
@@ -420,45 +420,55 @@ workspaces:
           - "workspaces:add"
           - "workspaces:patch"
           - "workspaces:delete"
-        _filter: []
+          - "roles:list"
+          - "roles:get"
+          - "roles:add"
+          - "roles:patch"
+          - "roles:delete"
+          - "users:list"
+          - "users:get"
+          - "users:add"
+          - "users:patch"
+          - "users:delete"
+          - "misc:see_private"
+        filter: []
       user:
         key: "user"
-        _permissions:
+        permissions:
           - "access_system"
-        _filter: []
+        filter: []
       beacon:
         key: "user"
-        _permissions:
+        permissions:
           - "beacon_insert"
-        _filter: []
+        filter: []
       reader:
         key: "user"
-        _permissions:
+        permissions:
           - "access_system"
           - "beacon_insert"
-        _filter: []
+        filter: []
     users:
       root:
         username: "root"
-        _password: "password"
-        _roles:
+        password: "password"
+        roles:
           - "root"
         displayName: "Administrator"
-        _APIToken: "apitoken-demo"
+        APIToken: "apitoken-demo"
         rateLimit: 5000
-        su: true
-        _filter: []
+        filter: []
       beacon:
         username: "beacon"
-        _password: "password"
-        _roles:
+        password: "password"
+        roles:
           - "beacon"
         displayName: "Beacon"
-        _APIToken: "apitoken-beacon"
+        APIToken: "apitoken-beacon"
       reader:
         username: "reader"
-        _password: "password"
-        _roles:
+        password: "password"
+        roles:
           - "reader"
         displayName: "Reader"
-        _APIToken: "apitoken-reader"
+        APIToken: "apitoken-reader"

@@ -124,7 +124,7 @@ The headers include the information about the current rate limit status:
 | X-RateLimit-Limit     | The maximum number of requests that the consumer is permitted to make per hour. |
 | X-RateLimit-Remaining | The number of requests remaining in the current rate limit window.              |
 | X-RateLimit-Reset     | The time at which the current rate limit window resets in UTC epoch seconds.    |
-| Retry-After     			| The number of seconds before the current rate limit resets.									    |
+| Retry-After           | The number of seconds before the current rate limit resets.                     |
 
 ## Response Headers
 Each API request fulfilled by joola.io contains some useful response headers:
@@ -141,6 +141,17 @@ Each API request fulfilled by joola.io contains some useful response headers:
 Notes related resources of the **Workspaces API**
 
 ## Workspaces [/workspaces{?APIToken}]
+Workspaces are a high-level logical containers.
+Each workspace is a separate logical and (sometimes) phyisical container, it has its own roles, users, collections and other meta data information describing the container.
+
+Having multiple workspaces is the corner-stone for joola.io's multi-tenancy.
+
+### Workspace Structure
+| Field        | Type   | Description                             |
+|:-------------|:-------|:----------------------------------------|
+| key          | string | Workspace unique key.                   |
+| name         | string | A nice display name for the Workspace.  |
+| description  | string | Workspace description.                  |
 
 + Parameters
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
@@ -150,21 +161,21 @@ Notes related resources of the **Workspaces API**
 
         [
           {
-            "name": "joola.io Framework Tests",
+            "key": "_test",
             "description": "Workspace for internal joola.io tests",
-            "key": "_test"
+            "name": "joola.io Framework Tests"
           },
           {
-            "name": "Internal Stats",
+            "key": "_stats",
             "description": "Stores internal statistics of joola.io",
-            "key": "_stats"
+            "name": "Internal Stats"
           },
           {
-            "name": "Demo Workspace",
+            "key": "demo",
             "description": "A starter/playground workpsace",
-            "key": "demo"
+            "name": "Demo Workspace"
           }
-        ]    
+        ]
 
 ### Create a Workspace [POST]
 + Request (application/json)
@@ -446,6 +457,201 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 + Response 500 (application/json)
 
         { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+# Group Roles
+joola.io uses `Roles` to assign `Permissions` to `Users`.
+
+### Role Structure
+| Field        | Type   | Description                             |
+|:-------------|:-------|:----------------------------------------|
+| key          | string | Role unique key.                        |
+| _permissions | array  | Permissions associated with this Role.  |
+| _filter      | array  | Filters to apply on users of this Role. |
+
+By assigning permissions to a role, and later assigning users to it, we can create a role-based permissions system.
+Roles also include a Filter, this means that any user assosciated with the Role will automatically be assigned with the Filter.
+
+Scenario:
+We want to create a group of users to be able to view only activity coming from the Europe region:
+
+```js
+var role = {
+    key: 'europe-users',
+    _permissions: ['access_system', 'query'],
+    _filter: [
+        ['Region', 'eq', 'Europe']
+    ]
+};
+```
+
+Users can be assigned to multiple roles and since Filters are aggregative, they will be assigned with all Filters from all Roles.
+
+## Users [/users/{workspace}{?APIToken}]
+
++ Parameters
+    + workspace (required, string, `demo`) ... String `workspace` of the Workspace containing the Role.
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### List all Users [GET]
++ Response 200 (application/json)
+
+        {
+          "root": {
+            "key": "root",
+            "_permissions": [
+              "access_system",
+              "manage_system",
+              "manage_users",
+              "beacon_insert",
+              "query_fetch"
+            ],
+            "_filter": []
+          },
+          "user": {
+            "key": "user",
+            "_permissions": [
+              "access_system"
+            ],
+            "_filter": []
+          },
+          "beacon": {
+            "key": "user",
+            "_permissions": [
+              "beacon_insert"
+            ],
+            "_filter": []
+          },
+          "reader": {
+            "key": "user",
+            "_permissions": [
+              "access_system",
+              "beacon_insert"
+            ],
+            "_filter": []
+          }
+        }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+### Create a User [POST]
++ Request (application/json)
+
+        { "key": "role-name", "_permissions": ["access_system"], "_filter": [] }
+
++ Response 200 (application/json)
+
+        {
+          "key": "role-name",
+          "_permissions": [
+            "access_system"
+          ],
+          "_filter": []
+        }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 415 (application/json)
+
+        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "user already exists", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+## Role [/users/{workspace}/{username}{?APIToken}]
+
++ Parameters
+    + workspace (required, string, `demo`) ... String `workspace` of the Workspace containing the Role.
+    + username (required, string, `role-name`) ... String `key` of the Role.
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### Retrieve a User [GET]
++ Response 200 (application/json)
+
+        {
+          "key": "role-name",
+          "_permissions": [
+            "access_system"
+          ],
+          "_filter": []
+        }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "user [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+### Update a User [PATCH]
++ Request (application/json)
+
+        { "_filter": [["dimension", "eq", "value"]] }
+
++ Response 200
+
+        {
+          "key": "role-name",
+          "_permissions": [
+            "access_system"
+          ],
+          "_filter": []
+        }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 415 (application/json)
+
+        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "user [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+### Remove a User [DELETE]
++ Response 200
+
+        {}
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 415 (application/json)
+
+        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "user [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
 
 # Group Permissions
 Permissions are hard-coded string values assigned to each API endpoint. Permissions work in conjunction with `Users` and `Roles` to form joola.io's role-based permissions system.

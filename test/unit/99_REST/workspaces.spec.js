@@ -20,7 +20,7 @@ describe("workspaces", function () {
   });
 
   after(function (done) {
-    joolaio.set('APIToken', 'apitoken-test', done);
+    joolaio.set('APIToken', 'apitoken-demo', done);
   });
   /*
    before(function (done) {
@@ -42,7 +42,7 @@ describe("workspaces", function () {
     var workspace = {
       key: 'test-workspace-' + this.uid,
       name: 'test-workspace-' + this.uid,
-      _filter: []
+      filter: []
     };
     joolaio.workspaces.add(workspace, function (err, _workspace) {
       if (err)
@@ -63,7 +63,7 @@ describe("workspaces", function () {
     var workspace = {
       key: 'test-workspace-' + this.uid,
       name: 'test-workspace-' + this.uid,
-      _filter: ''
+      filter: ''
     };
     joolaio.workspaces.add(workspace, function (err, _workspace) {
       if (err)
@@ -89,12 +89,12 @@ describe("workspaces", function () {
     var workspace = {
       key: 'test-workspace-' + this.uid,
       name: 'test-workspace-' + this.uid,
-      _filter: 'test=test'
+      filter: 'test=test'
     };
     joolaio.workspaces.patch(workspace.key, workspace, function (err, _workspace) {
       if (err)
         return done(err);
-      expect(_workspace._filter).to.equal('test=test');
+      expect(_workspace.filter).to.equal('test=test');
       done();
     });
   });
@@ -103,7 +103,7 @@ describe("workspaces", function () {
     var workspace = {
       key: 'test-workspace1-' + this.uid,
       name: 'test-workspace-' + this.uid,
-      _filter: 'test=test'
+      filter: 'test=test'
     };
     joolaio.workspaces.patch(workspace.key, workspace, function (err, _workspace) {
       if (err)
@@ -117,15 +117,15 @@ describe("workspaces", function () {
     var user = {
       username: 'tester-workspace-filter',
       displayName: 'tester user',
-      _password: '1234',
-      _roles: ['user'],
-      _filter: '',
+      password: '1234',
+      roles: ['user'],
+      filter: '',
       workspace: 'test-workspace-' + this.uid
     };
     joolaio.users.add('test-workspace-' + this.uid, user, function (err, user) {
       if (err)
         return done(err);
-      expect(user._filter).to.equal('test=test');
+      expect(user.filter).to.equal('test=test');
       return done(err);
     });
   });

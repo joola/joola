@@ -14,14 +14,14 @@ describe("security-apitokens", function () {
       };
       self.role = {
         key: 'test-user-role-' + self.uid,
-        _permissions: ['access_system']
+        permissions: ['access_system']
       };
       self.user = {
         username: 'test-user-' + self.uid,
-        _password: 'password',
+        password: 'password',
         workspace: self.workspace.key,
-        _roles: ['test-user-role-' + self.uid],
-        _APIToken: 'user-' + self.uid
+        roles: ['test-user-role-' + self.uid],
+        APIToken: 'user-' + self.uid
       };
       var calls = [];
 
@@ -36,6 +36,10 @@ describe("security-apitokens", function () {
       });
       async.series(calls, done);
     });
+  });
+
+  after(function (done) {
+    joolaio.set('APIToken', 'apitoken-demo', done);
   });
 
   it("should be able to use a newly created APIToken", function (done) {
