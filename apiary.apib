@@ -204,70 +204,32 @@ Notes related resources of the **Workspaces API**
 ### List all Workspaces [GET]
 + Response 200 (application/json)
 
-        [{
-          "key": "demo-mousemoves",
-          "name": "demo-mousemoves",
-          "strongTyped": true,
-          "timestamp": {
-            "datatype": "date",
-            "type": "dimension",
-            "name": "timestamp",
-            "key": "timestamp"
+        {
+          "_test": {
+            "key": "_test",
+            "name": "joola.io Framework Tests",
+            "description": "Workspace for internal joola.io tests"
           },
-          "browser": {
-            "datatype": "string",
-            "type": "dimension",
-            "name": "browser",
-            "key": "browser"
+          "_stats": {
+            "key": "_stats",
+            "name": "Internal Stats",
+            "description": "Stores internal statistics of joola.io"
           },
-          "engine": {
-            "datatype": "string",
-            "type": "dimension",
-            "name": "engine",
-            "key": "engine"
-          },
-          "os": {
-            "datatype": "string",
-            "type": "dimension",
-            "name": "os",
-            "key": "os"
-          },
-          "userid": {
-            "datatype": "string",
-            "type": "dimension",
-            "name": "userid",
-            "key": "userid"
-          },
-          "ip": {
-            "datatype": "ip",
-            "type": "dimension",
-            "name": "ip",
-            "key": "ip"
-          },
-          "referrer": {
-            "datatype": "string",
-            "type": "dimension",
-            "name": "referrer",
-            "key": "referrer"
-          },
-          "mousemoves": {
-            "datatype": "number",
-            "type": "metric",
-            "name": "mousemoves",
-            "key": "mousemoves",
-            "min": 0,
-            "max": 1000
+          "demo": {
+            "key": "demo",
+            "name": "Demo Workspace",
+            "description": "A starter/playground workpsace"
           }
-        }]
+        } 
 
 ### Create a Workspace [POST]
 + Request (application/json)
 
-        { "key": "workspace-name", "name": "Workspace Name" }
+        { "key": "workspace-name", "name": "Workspace Name", "description": "Workspace Description" }
 
 + Response 200 (application/json)
 
-        { "key": "workspace-name", "name": "Workspace Name" }
+        { "key": "workspace-name", "name": "Workspace Name", "description": "Workspace Description" }
 
 + Response 500 (application/json)
 
