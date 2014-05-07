@@ -203,11 +203,11 @@ To learn more about configuration, please refer to the [wiki](http://github.com/
 Notes related resources of the **Workspaces API**
 
 ## Workspaces [/workspaces{?APIToken}]
-### List all Workspaces [GET]
 
 + Parameters
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
+### List all Workspaces [GET]
 + Response 200 (application/json)
 
         [
@@ -262,8 +262,27 @@ Notes related resources of the **Workspaces API**
               "description": null
             } 
 
-### Remove a Note [DELETE]
-+ Response 204
+### Remove a Workspace [DELETE]
++ Response 200
+
+        {}
+        
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 415 (application/json)
+
+        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "workspace [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
 
 # Group Collections
 Notes related resources of the **Collections API**
@@ -491,15 +510,9 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 ### Create a Role [POST]
-+ Request 
++ Request (application/json)
 
-    + Headers
-        
-            Content-Type: application/json
-        
-    + Body 
-        
-            { "key": "role-name", "_permissions": ["access_system"], "_filter": [] }
+        { "key": "role-name", "_permissions": ["access_system"], "_filter": [] }
 
 + Response 200 (application/json)
 
