@@ -203,11 +203,10 @@ To learn more about configuration, please refer to the [wiki](http://github.com/
 Notes related resources of the **Workspaces API**
 
 ## Workspaces [/workspaces{?APIToken}]
+### List all Workspaces [GET]
 
 + Parameters
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
-
-### List all Workspaces [GET]
 
 + Response 200 (application/json)
 
@@ -236,7 +235,11 @@ Notes related resources of the **Workspaces API**
 
 + Response 200 (application/json)
 
-        { "key": "workspace-name", "name": "Workspace Name" }
+        {
+          "key": "workspace-name",
+          "name": "Workspace Name",
+          "description": null
+        } 
 
 + Response 500 (application/json)
 
@@ -245,15 +248,19 @@ Notes related resources of the **Workspaces API**
 ## Workspace [/workspaces/{key}{?APIToken}]
 
 + Parameters
-    + key (required, string, `demo-collection`) ... String `key` of the Workspace to perform action with. Has example value.
+    + key (required, string, `workspace-name`) ... String `key` of the Workspace to perform action with. Has example value.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
     
 ### Retrieve a Workspace [GET]
 + Response 200 (application/json)
 
     + Body
-
-            { "id": 2, "title": "Pick-up posters from post-office" }
+            
+            {
+              "key": "workspace-name",
+              "name": "Workspace Name",
+              "description": null
+            } 
 
 ### Remove a Note [DELETE]
 + Response 204
