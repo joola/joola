@@ -40,7 +40,7 @@ coveralls:
 test-api:
 		redis-cli flushall
 		node joola.io.js &
-		sleep 5
+		sleep 2
 		-dredd apiary.apib http://localhost:8080
 		killall -9 node
 

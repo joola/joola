@@ -78,6 +78,8 @@ authentication:
   # url: https://raw.githubusercontent.com/joola/joola.io.sdk/feature/%2376/bin/joola.io.js
 workspaces:
   _test:
+    name: joola.io Framework Tests
+    description: Workspace for internal joola.io tests
     roles:
       root:
         key: "root"
@@ -98,6 +100,8 @@ workspaces:
         _APIToken: "apitoken-test"
         rateLimit: 5000
   _stats:
+    name: Internal Stats
+    description: Stores internal statistics of joola.io
     roles:
       beacon:
         key: "beacon"
@@ -395,6 +399,8 @@ workspaces:
           min: 0
           max: 1000
   demo:
+    name: Demo Workspace
+    description: A starter/playground workpsace 
     roles:
       root:
         key: "root"
@@ -430,6 +436,7 @@ workspaces:
         displayName: "Administrator"
         _APIToken: "apitoken-demo"
         rateLimit: 5000
+        su: true
         _filter: []
       beacon:
         username: "beacon"
