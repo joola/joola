@@ -124,6 +124,18 @@ The headers include the information about the current rate limit status:
 | X-RateLimit-Limit     | The maximum number of requests that the consumer is permitted to make per hour. |
 | X-RateLimit-Remaining | The number of requests remaining in the current rate limit window.              |
 | X-RateLimit-Reset     | The time at which the current rate limit window resets in UTC epoch seconds.    |
+| Retry-After     			| The number of seconds before the current rate limit resets.									    |
+
+## Response Headers
+Each API request fulfilled by joola.io contains some useful response headers:
+
+| Header                       |                                                                                       |
+|------------------------------|---------------------------------------------------------------------------------------|
+| X-JoolaIO-Request-Id         | Unique request id assigned by joola.io server. Format: {NODE_UUID}:{TIMESTAMP}:{UUID} |
+| X-JoolaIO-Duration           | Total duration of request from route in to out.                                       |
+| X-JoolaIO-Duration-Fulfilled | Total duration of request from dispatch in/out.                                       |
+| X-JoolaIO-Requested-By       | Node UUID of the requester.                                                           |
+| X-JoolaIO-Fulfilled-By       | Node UUID of the fulfiller.                                                           |
 
 # Group Workspaces
 Notes related resources of the **Workspaces API**
