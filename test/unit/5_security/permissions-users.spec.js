@@ -6,7 +6,7 @@ describe("security-permissions-users", function () {
     var self = this;
     this.uid = joola.common.uuid();
 
-    joolaio.set('APIToken', 'apitoken-test', function () {
+    joolaio.set('APIToken', 'apitoken-demo', function () {
       self.workspace = {
         key: 'test-org-permissions-' + self.uid,
         name: 'test-org-permissions-' + self.uid

@@ -89,6 +89,11 @@ workspaces:
           - "manage_users"
           - "beacon_insert"
           - "query_fetch"
+          - "workspaces:list"
+          - "workspaces:get"
+          - "workspaces:add"
+          - "workspaces:patch"
+          - "workspaces:delete"
         _filter: []
     users:
       root:
@@ -410,6 +415,11 @@ workspaces:
           - "manage_users"
           - "beacon_insert"
           - "query_fetch"
+          - "workspaces:list"
+          - "workspaces:get"
+          - "workspaces:add"
+          - "workspaces:patch"
+          - "workspaces:delete"
         _filter: []
       user:
         key: "user"

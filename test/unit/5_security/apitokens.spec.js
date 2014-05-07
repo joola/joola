@@ -6,7 +6,7 @@ describe("security-apitokens", function () {
     var self = this;
     this.uid = joola.common.uuid();
 
-    joolaio.set('APIToken', 'apitoken-test', function () {
+    joolaio.set('APIToken', 'apitoken-demo', function () {
 
       self.workspace = {
         key: 'test-org-apitoken-' + self.uid,

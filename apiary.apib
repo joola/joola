@@ -125,80 +125,6 @@ The headers include the information about the current rate limit status:
 | X-RateLimit-Remaining | The number of requests remaining in the current rate limit window.              |
 | X-RateLimit-Reset     | The time at which the current rate limit window resets in UTC epoch seconds.    |
 
-
-# Group Configuration
-joola.io uses a central-configuration store to support a node-based deployment schema. 
-This means that nodes will grab their configuration from central store and that any update to it is propogated to all nodes without a need to restart the service.
-
-Configuration keys are referenced with `:` as a separator, i.e. to change the web server interface port, use `interfaces:webserver:port`.
-
-To learn more about configuration, please refer to the [wiki](http://github.com/joola/joola.io/wiki/configuration).
-
-## Configuration [/config/{key}{?APIToken}]
-
-+ Parameters
-    + key (required, string, `interfaces:webserver:port`) ... The `key` of the configuration to get/set.
-    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
-
-### Add a Configuration Key/Value [POST]
-+ Request (application/json)
-
-    + Body
-        
-            {"value": "8080"}
-
-+ Response 200 (application/json)
-
-          {
-            "key": "interfaces:webserver:port",
-            "value": "8080"
-          }
-
-+ Response 401 (application/json)
-
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
-
-### Get Configuration value [GET]
-+ Response 200 (application/json)
-
-        {
-          "key": "interfaces:webserver:port",
-          "value": "8080"
-        }   
-
-+ Response 401 (application/json)
-
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
-
-+ Response 500 (application/json)
-
-        { "message": "configuration [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
-
-### Set Configuration Value [PATCH]
-+ Request (application/json)
-
-    + Body
-        
-            {
-              "key": "interfaces:webserver:port",
-              "value": "8080"
-            }  
-            
-+ Response 200 (application/json)
-
-        {
-          "key": "interfaces:webserver:port",
-          "value": "8080"
-        }
-
-+ Response 401 (application/json)
-
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
-
-+ Response 500 (application/json)
-
-        { "message": "configuration [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
-
 # Group Workspaces
 Notes related resources of the **Workspaces API**
 
@@ -314,151 +240,6 @@ Notes related resources of the **Workspaces API**
 + Response 500 (application/json)
 
         { "message": "workspace [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
-
-
-# Group Collections
-Notes related resources of the **Collections API**
-
-## Collections [/collections]
-### List all Collections [GET]
-+ Response 200 (application/json)
-
-        [{
-          "key": "demo-mousemoves",
-          "name": "demo-mousemoves",
-          "strongTyped": true,
-          "timestamp": {
-            "datatype": "date",
-            "type": "dimension",
-            "name": "timestamp",
-            "key": "timestamp"
-          },
-          "browser": {
-            "datatype": "string",
-            "type": "dimension",
-            "name": "browser",
-            "key": "browser"
-          },
-          "engine": {
-            "datatype": "string",
-            "type": "dimension",
-            "name": "engine",
-            "key": "engine"
-          },
-          "os": {
-            "datatype": "string",
-            "type": "dimension",
-            "name": "os",
-            "key": "os"
-          },
-          "userid": {
-            "datatype": "string",
-            "type": "dimension",
-            "name": "userid",
-            "key": "userid"
-          },
-          "ip": {
-            "datatype": "ip",
-            "type": "dimension",
-            "name": "ip",
-            "key": "ip"
-          },
-          "referrer": {
-            "datatype": "string",
-            "type": "dimension",
-            "name": "referrer",
-            "key": "referrer"
-          },
-          "mousemoves": {
-            "datatype": "number",
-            "type": "metric",
-            "name": "mousemoves",
-            "key": "mousemoves",
-            "min": 0,
-            "max": 1000
-          }
-        }]
-
-### Create a Collection [POST]
-+ Request (application/json)
-
-        { "key": "workspace-name", "name": "Workspace Name" }
-
-+ Response 200 (application/json)
-
-        { "key": "workspace-name", "name": "Workspace Name" }
-
-+ Response 500 (application/json)
-
-        { "message": "workspace already exists", "documentation_url": "http://github.com/joola/joola.io/wiki" }
-
-## Collection [/collections/{key}]
-A single Collection object with all its details
-
-+ Parameters
-    + key (required, string, `demo-collection`) ... String `key` of the Workspace to perform action with. Has example value.
-
-### Retrieve a Note [GET]
-+ Response 200 (application/json)
-
-    + Headers
-
-            X-My-Header: The Value
-
-    + Body
-
-            { "id": 2, "title": "Pick-up posters from post-office" }
-
-### Remove a Note [DELETE]
-+ Response 204
-
-# Group Permissions
-Permissions are hard-coded string values assigned to each API endpoint. Permissions work in conjunction with `Users` and `Roles` to form joola.io's role-based permissions system.
-
-### Permission Structure
-| Field        | Type   | Description                             |
-|:-------------|:-------|:----------------------------------------|
-| key          | string | Permission unique key.                  |
-
-## Permissions [/permissions/{?APIToken}]
-
-+ Parameters
-    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
-    
-### List all Permissions [GET]
-+ Response 200 (application/json)
-
-        [
-          "access_system",
-          "manage_system",
-          "beacon_insert",
-          "query"
-        ]
-
-+ Response 401 (application/json)
-
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
-
-## Permission [/permissions/{key}{?APIToken}]
-
-+ Parameters
-    + key (required, string, `access_system`) ... String `key` of the Permission.
-    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
-
-### Retrieve a Permission [GET]
-+ Response 200 (application/json)
-
-        [
-          "access_system"
-        ]
-
-+ Response 401 (application/json)
-
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
-
-+ Response 500 (application/json)
-
-        { "message": "permission [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 # Group Roles
 joola.io uses `Roles` to assign `Permissions` to `Users`.
@@ -654,6 +435,127 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 
         { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
+# Group Permissions
+Permissions are hard-coded string values assigned to each API endpoint. Permissions work in conjunction with `Users` and `Roles` to form joola.io's role-based permissions system.
+
+### Permission Structure
+| Field        | Type   | Description                             |
+|:-------------|:-------|:----------------------------------------|
+| key          | string | Permission unique key.                  |
+
+## Permissions [/permissions/{?APIToken}]
+
++ Parameters
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+    
+### List all Permissions [GET]
++ Response 200 (application/json)
+
+        [
+          "access_system",
+          "manage_system",
+          "beacon_insert",
+          "query"
+        ]
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+## Permission [/permissions/{key}{?APIToken}]
+
++ Parameters
+    + key (required, string, `access_system`) ... String `key` of the Permission.
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### Retrieve a Permission [GET]
++ Response 200 (application/json)
+
+        [
+          "access_system"
+        ]
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "permission [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+
+# Group Configuration
+joola.io uses a central-configuration store to support a node-based deployment schema. 
+This means that nodes will grab their configuration from central store and that any update to it is propogated to all nodes without a need to restart the service.
+
+Configuration keys are referenced with `:` as a separator, i.e. to change the web server interface port, use `interfaces:webserver:port`.
+
+To learn more about configuration, please refer to the [wiki](http://github.com/joola/joola.io/wiki/configuration).
+
+## Configuration [/config/{key}{?APIToken}]
+
++ Parameters
+    + key (required, string, `interfaces:webserver:port`) ... The `key` of the configuration to get/set.
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### Add a Configuration Key/Value [POST]
++ Request (application/json)
+
+    + Body
+        
+            {"value": "8080"}
+
++ Response 200 (application/json)
+
+          {
+            "key": "interfaces:webserver:port",
+            "value": "8080"
+          }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+### Get Configuration value [GET]
++ Response 200 (application/json)
+
+        {
+          "key": "interfaces:webserver:port",
+          "value": "8080"
+        }   
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "configuration [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+### Set Configuration Value [PATCH]
++ Request (application/json)
+
+    + Body
+        
+            {
+              "key": "interfaces:webserver:port",
+              "value": "8080"
+            }  
+            
++ Response 200 (application/json)
+
+        {
+          "key": "interfaces:webserver:port",
+          "value": "8080"
+        }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "configuration [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 # Group System
 This group lists all general system functions available as part of the joola.io framework.
