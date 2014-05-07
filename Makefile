@@ -37,5 +37,12 @@ istanbul:
 coveralls:
 		cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 
+test-api:
+		redis-cli flushall
+		node joola.io.js &
+		sleep 5
+		-dredd apiary.apib http://localhost:8080
+		killall -9 node
+
 .PHONY: test
 

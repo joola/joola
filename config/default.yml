@@ -96,7 +96,6 @@ workspaces:
           - "root"
         displayName: "Administrator"
         _APIToken: "apitoken-test"
-        su: true
         rateLimit: 5000
   _stats:
     roles:
@@ -113,7 +112,6 @@ workspaces:
           - "beacon"
         displayName: "Stats Beacon"
         _APIToken: "apitoken-stats"
-        su: true
         rateLimit: 5000
     collections:
       stats-node-count:
@@ -431,8 +429,8 @@ workspaces:
           - "root"
         displayName: "Administrator"
         _APIToken: "apitoken-demo"
-        su: true
         rateLimit: 5000
+        _filter: []
       beacon:
         username: "beacon"
         _password: "password"
@@ -440,7 +438,6 @@ workspaces:
           - "beacon"
         displayName: "Beacon"
         _APIToken: "apitoken-beacon"
-        su: true
       reader:
         username: "reader"
         _password: "password"
@@ -448,4 +445,3 @@ workspaces:
           - "reader"
         displayName: "Reader"
         _APIToken: "apitoken-reader"
-        su: true
