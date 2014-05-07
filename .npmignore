@@ -7,3 +7,5 @@ coverage
 .*
 
 config/runtime.json
+
+apiary.html
