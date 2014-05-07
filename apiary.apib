@@ -2,10 +2,20 @@ FORMAT: 1A
 HOST: http://lab01.joo.la:8080
 
 # joola.io
-joola.io is an open-source data analytics and visualization framework.
+[joola.io](http://github.com/joola/joola.io) is an open-source data analytics and visualization framework.
+To learn more about joola.io, installation, configuration and usage, please refer to our [wiki]([joola.io](http://github.com/joola/joola.io/wiki).
 
-This describes the resources that make up the joola.io API. 
+This guide describes the resources that make up the joola.io API. 
 If you have any problems or requests please open an [issue](http://github.com/joola/joola.io/issues).
+
+## Using This Guide 
+
+We will be using `http://localhost:8080` which is the default configuration for a fresh installation of joola.io.
+
+You can use the `Debugging Host` to execute requests against a valid, online joola.io instance we have put up for the purpose of this guide. A valid token for this purpose is `apitoken-demo`. 
+Some actions will not be available in order to maintain system integrity.
+
+While we understand how naive we are with this request, please apply Fair Usage and avoid vandalism of the system as much as possible. The node serving this guide will recycle every hour.
 
 ## Current Version
 To check what version of joola.io is running, run:
@@ -51,13 +61,13 @@ YYYY-MM-DDTHH:MM:SSZ
 
 ### _private Attributes
 joola.io is a secure, multi-tenant framework written in JavaScript. 
-This means that some users may be privied to some information while others don't, based on their roles and permissions.
+This means that some users may be privy to some information while others don't, based on their roles and permissions.
 
-Security needs to be extended all the way to the end-user browser, i.e. some users may be able to see what roles are assosciated with an action, while others do not.
+Security needs to be extended all the way to the end-user's browser, i.e. some users may be able to see what roles are assosciated with an action, while others do not.
 The open nature of JavaScript as a language and our development as a concept, make it tricky to hide certain properties.
-The only way to deal with it is by not sending sensetive information back to the client. In order to indicate to the framework what attributes should be sanitized before reaching the client, we use a `_private` convention.
+The only way to deal with it is by not sending sensetive information back to the client at all. In order to indicate to the framework what attributes should be sanitized before reaching the client, we use a `_private` convention.
 
-Any JSON attribute marked as `_private` will be sanitized and not sent to the end-user, unless the user belong to the `root` role.
+Any JSON attribute marked as `_private` will be sanitized and not sent to the end-user, unless the user is mapped to the permission `see_private` via an appropriate role.
 
 ## HTTP Verbs
 joola.io API uses the following Verbs.
@@ -66,9 +76,9 @@ joola.io API uses the following Verbs.
 |----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `HEAD`   | Can be issued against any resource to get just the HTTP header info.                                                                                                                                |
 | `GET`    | Used for retrieving resources.                                                                                                                                                                      |
-| `POST`   | Used for creating resources, or performing custom actions (such as merging a pull request).                                                                                                         |
+| `POST`   | Used for creating resources, or performing custom actions.                                                                                                         |
 | `PATCH`  | Used for updating resources with partial JSON data. For instance, an Issue resource has title and body attributes. A PATCH request may accept one or more of the attributes to update the resource. |
-| `PUT`    | Used for replacing resources or collections. For PUT requests with no bodyattribute, be sure to set the Content-Length header to zero.                                                              |
+| `PUT`    | Used for replacing resources or collections. For PUT requests with no body attribute, be sure to set the Content-Length header to zero. Rarely used as part of the framework.                       |
 | `DELETE` | Used for deleting resources.                                                                                                                                                                        |
 
 ## Authentication
@@ -114,6 +124,74 @@ The headers include the information about the current rate limit status:
 | X-RateLimit-Limit     | The maximum number of requests that the consumer is permitted to make per hour. |
 | X-RateLimit-Remaining | The number of requests remaining in the current rate limit window.              |
 | X-RateLimit-Reset     | The time at which the current rate limit window resets in UTC epoch seconds.    |
+
+
+# Group Configuration
+joola.io uses a central-configuration store to support a node-based deployment schema. 
+This means that nodes will grab their configuration from central store and that any update to it is propogated to all nodes without a need to restart the service.
+
+Configuration keys are referenced with `:` as a separator, i.e. to change the web server interface port, use `interfaces:webserver:port`.
+
+To learn more about configuration, please refer to the [wiki](http://github.com/joola/joola.io/wiki/configuration).
+
+## Configuration [/config/{key}{?APIToken}]
+
++ Parameters
+    + key (required, string, `interfaces:webserver:port`) ... The `key` of the configuration to get/set.
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### Add a Configuration Key/Value [POST]
++ Request (application/json)
+
+    + Body
+        
+            {"value": "8181"}
+
++ Response 200 (application/json)
+
+        { "version": "joola.io version 0.4.1" }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+### Get Configuration value [GET]
++ Response 200 (application/json)
+
+        {
+          "key": "interfaces:webserver:port",
+          "value": "8080"
+        }   
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "configuration [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+### Set Configuration Value [PATCH]
++ Request (application/json)
+
+    + Body
+        
+            {
+              "key": "interfaces:webserver:port",
+              "value": "8080"
+            }  
+            
++ Response 200 (application/json)
+
+        { "config:key": "config-value" }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "configuration [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 # Group Workspaces
 Notes related resources of the **Workspaces API**
@@ -296,7 +374,7 @@ A single Collection object with all its details
 ### Retrieve a Note [GET]
 + Response 200 (application/json)
 
-    + Header
+    + Headers
 
             X-My-Header: The Value
 
@@ -307,23 +385,80 @@ A single Collection object with all its details
 ### Remove a Note [DELETE]
 + Response 204
 
+# Group Permissions
+Permissions are hard-coded string values assigned to each API endpoint. Permissions work in conjunction with `Users` and `Roles` to form joola.io's role-based permissions system.
+
+### Permission Structure
+| Field        | Type   | Description                             |
+|:-------------|:-------|:----------------------------------------|
+| key          | string | Permission unique key.                  |
+
+## Permissions [/permissions/{?APIToken}]
+
++ Parameters
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+    
+### List all Permissions [GET]
++ Response 200 (application/json)
+
+        ['access_system', 'manage_system', 'beacon_insert', 'query']
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 
+## Permission [/permissions/{key}{?APIToken}]
+
++ Parameters
+    + key (required, string, `permission-name`) ... String `key` of the Permission.
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### Retrieve a Permission [GET]
++ Response 200 (application/json)
+
+        ['access_system']
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "permission [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 # Group Roles
 joola.io uses `Roles` to assign `Permissions` to `Users`.
 
 ### Role Structure
 | Field        | Type   | Description                             |
-|--------------|--------|-----------------------------------------|
+|:-------------|:-------|:----------------------------------------|
 | key          | string | Role unique key.                        |
 | _permissions | array  | Permissions associated with this Role.  |
 | _filter      | array  | Filters to apply on users of this Role. |
 
+By assigning permissions to a role, and later assigning users to it, we can create a role-based permissions system.
+Roles also include a Filter, this means that any user assosciated with the Role will automatically be assigned with the Filter.
+
+Scenario:
+We want to create a group of users to be able to view only activity coming from the Europe region:
+
+```js
+var role = {
+    key: 'europe-users',
+    _permissions: ['access_system', 'query'],
+    _filter: [
+        ['Region', 'eq', 'Europe']
+    ]
+};
+```
+
+Users can be assigned to multiple roles and since Filters are aggregative, they will be assigned with all Filters from all Roles.
+
 ## Roles [/roles/{workspace}{?APIToken}]
 
 + Parameters
-    + workspace (required, string, `workspace-demo`) ... String `workspace` of the Workspace containing the Role.
+    + workspace (required, string, `demo`) ... String `workspace` of the Workspace containing the Role.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
     
 ### List all Roles [GET]
@@ -332,22 +467,35 @@ joola.io uses `Roles` to assign `Permissions` to `Users`.
         {
           "root": {
             "key": "root",
-            "_permissions": ["access_system", "manage_system", "manage_users", "beacon_insert", "query_fetch"],
+            "_permissions": [
+              "access_system",
+              "manage_system",
+              "manage_users",
+              "beacon_insert",
+              "query_fetch"
+            ],
             "_filter": []
           },
           "user": {
             "key": "user",
-            "_permissions": ["access_system"],
+            "_permissions": [
+              "access_system"
+            ],
             "_filter": []
           },
           "beacon": {
             "key": "user",
-            "_permissions": ["beacon_insert"],
+            "_permissions": [
+              "beacon_insert"
+            ],
             "_filter": []
           },
           "reader": {
             "key": "user",
-            "_permissions": ["access_system"],
+            "_permissions": [
+              "access_system",
+              "beacon_insert"
+            ],
             "_filter": []
           }
         }
@@ -355,6 +503,10 @@ joola.io uses `Roles` to assign `Permissions` to `Users`.
 + Response 401 (application/json)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 ### Create a Role [POST]
 + Request 
@@ -375,15 +527,22 @@ joola.io uses `Roles` to assign `Permissions` to `Users`.
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        
++ Response 415 (application/json)
+
+        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        
 + Response 500 (application/json)
 
         { "message": "role already exists", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 ## Role [/roles/{workspace}/{key}{?APIToken}]
-A single Collection object with all its details
 
 + Parameters
-    + workspace (required, string, `workspace-demo`) ... String `workspace` of the Workspace containing the Role.
+    + workspace (required, string, `demo`) ... String `workspace` of the Workspace containing the Role.
     + key (required, string, `role-name`) ... String `key` of the Role.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
@@ -400,6 +559,10 @@ A single Collection object with all its details
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        
 + Response 500 (application/json)
 
         { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
@@ -409,7 +572,7 @@ A single Collection object with all its details
 
         { "name": "New Role Name", "_filter": [["dimension", "eq", "value"]] }
         
-+ Response 200
++ Response 200 
 
         { "key": "role-name", "name": "New Role Name", "_filter": [["dimension", "eq", "value"]] }
 
@@ -417,6 +580,14 @@ A single Collection object with all its details
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        
++ Response 415 (application/json)
+
+        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        
 + Response 500 (application/json)
 
         { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
@@ -428,8 +599,215 @@ A single Collection object with all its details
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 415 (application/json)
+
+        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
 + Response 500 (application/json)
 
         { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
-[configuration]: http://github.com/joola/joola.io/wiki/configuration
+
+# Group System
+This group lists all general system functions available as part of the joola.io framework.
+
+## System Version [/system/version{?APIToken}]
+Print out joola.io version.
+
++ Parameters
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### Get System Version [GET]
++ Response 200 (application/json)
+
+        { "version": "joola.io version 0.4.1" }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+## Who Am I [/system/whoami{?APIToken}]
+Print out the `User` object taken from the `APIToken` provided.
+
++ Parameters
+
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### Get Current User [GET]
++ Response 200 (application/json)
+
+        {
+          "username": "root",
+          "_password": "gRoIW28p2$5f4dcc3b5aa765d61d8327deb882cf99",
+          "_roles": [
+            "root"
+          ],
+          "displayName": "Demo Administrator",
+          "_APIToken": "apitoken-demo",
+          "rateLimit": "5000",
+          "workspace": "demo",
+          "_filter": [],
+          "logincount": 123
+        }    
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+## Node UID [/system/nodeUID{?APIToken}]
+Print out the unique identifier of the replying node.
+
++ Parameters
+
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### Get Node UID [GET]
++ Response 200 (application/json)
+
+        {
+          "UID": "By8zwB85V"
+        }   
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+## Node Details [/system/nodeDetails{?APIToken}]
+Print out all known details on the replying node.
+
++ Parameters
+
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### Get Node Details [GET]
++ Response 200 (application/json)
+
+        {
+          "uid": "Wdsz265IH",
+          "state": "online",
+          "uptime": 5.378805379965343,
+          "lastSeen": 1399277245932,
+          "lastSeenNice": "2014-05-05T08:07:25.932Z",
+          "hostname": "joola01",
+          "os": {
+            "type": "Linux",
+            "platform": "linux",
+            "arch": "x64",
+            "release": "2.6.32-431.11.2.el6.x86_64",
+            "uptime": 696896.172012026,
+            "loadavg": [
+              0.0439453125,
+              0.0537109375,
+              0.072265625
+            ],
+            "totalmem": 16610000896,
+            "freemem": 3014160384,
+            "cpus": [
+              {
+                "model": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+                "speed": 3401,
+                "times": {
+                  "user": 226411800,
+                  "nice": 10627400,
+                  "sys": 120201400,
+                  "idle": 6573488900,
+                  "irq": 5200
+                }
+              },
+              {
+                "model": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+                "speed": 800,
+                "times": {
+                  "user": 307745500,
+                  "nice": 11872400,
+                  "sys": 48696800,
+                  "idle": 6565468200,
+                  "irq": 0
+                }
+              },
+              {
+                "model": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+                "speed": 800,
+                "times": {
+                  "user": 124095500,
+                  "nice": 10080100,
+                  "sys": 35291400,
+                  "idle": 6734179700,
+                  "irq": 2200
+                }
+              },
+              {
+                "model": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+                "speed": 800,
+                "times": {
+                  "user": 109732700,
+                  "nice": 8824500,
+                  "sys": 24565500,
+                  "idle": 6792483200,
+                  "irq": 0
+                }
+              },
+              {
+                "model": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+                "speed": 800,
+                "times": {
+                  "user": 170818400,
+                  "nice": 5675300,
+                  "sys": 72066700,
+                  "idle": 6690757600,
+                  "irq": 0
+                }
+              },
+              {
+                "model": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+                "speed": 800,
+                "times": {
+                  "user": 140783900,
+                  "nice": 8544200,
+                  "sys": 34519000,
+                  "idle": 6742696500,
+                  "irq": 0
+                }
+              },
+              {
+                "model": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+                "speed": 800,
+                "times": {
+                  "user": 110794200,
+                  "nice": 8476700,
+                  "sys": 31455900,
+                  "idle": 6773844400,
+                  "irq": 0
+                }
+              },
+              {
+                "model": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+                "speed": 800,
+                "times": {
+                  "user": 101734700,
+                  "nice": 7965100,
+                  "sys": 25291700,
+                  "idle": 6792722900,
+                  "irq": 0
+                }
+              }
+            ]
+          },
+          "usageCPU": 2.9702970296755726,
+          "usageMem": 67366912,
+          "http": true,
+          "https": false,
+          "cluster": false,
+          "clusterID": null,
+          "clusterMaster": null,
+          "clusterSlave": null,
+          "connectedSockets": 1
+        }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
