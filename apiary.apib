@@ -262,6 +262,35 @@ Notes related resources of the **Workspaces API**
               "description": null
             } 
 
+### Update a Workspace [PATCH]
++ Request (application/json)
+
+        { "description": "workspace description" }
+        
++ Response 200 
+
+        {
+          "key": "workspace-name",
+          "name": "Workspace Name",
+          "description": "workspace description"
+        }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        
++ Response 415 (application/json)
+
+        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        
++ Response 500 (application/json)
+
+        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
 ### Remove a Workspace [DELETE]
 + Response 200
 
