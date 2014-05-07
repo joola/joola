@@ -8,4 +8,4 @@ coverage
 
 config/runtime.json
 
-apiary.html
+apiary.out.html
