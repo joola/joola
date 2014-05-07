@@ -135,4 +135,14 @@ describe("webserver", function () {
       done();
     });
   });
+
+  xit("should serve api endpoints [system version]", function (done) {
+    request.get('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/system/version?APIToken=apitoken-demo', function (err, response, body) {
+      if (err)
+        return done(err);
+
+      expect(response.statusCode).to.equal(200);
+      done();
+    });
+  });
 });
