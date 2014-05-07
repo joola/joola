@@ -38,8 +38,6 @@ script: 'make test-cov'
 after_success: 'make coveralls'
  
 notifications:
-  email:
-    - 'updates@joo.la'
   webhooks:
     urls:
       - https://webhooks.gitter.im/e/c4aa904abf1dabb42f95
