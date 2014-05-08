@@ -90,7 +90,7 @@ call = function (callback) {
   });
 };
 calls.push(call);
-
+/*
 var call = function (callback) {
   var files = wrench.readdirSyncRecursive(libPath);
   var counter = 0;
@@ -133,11 +133,13 @@ var call = function (callback) {
 };
 
 calls.push(call);
+*/
 async.series(calls, function (err) {
   if (err) {
     throw err;
   }
 
+  /*
   var output = '';
   var common = '';
   var dirs = fs.readdirSync(libPath);
@@ -179,6 +181,6 @@ async.series(calls, function (err) {
   var data = fs.readFileSync(path.join(wikiCodePath, '/../architecture/The-Common-Subsystem.md')).toString();
   data = data.replace('[##INSERTSTRUCTURE_COMMON##]', common);
   fs.writeFileSync(path.join(wikiCodePath, '/../architecture/The-Common-Subsystem.md'), data);
-
+*/
 });
 
