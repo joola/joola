@@ -642,10 +642,9 @@ joola.io uses two types of security contexts, `token` and `APIToken`:
 - `token` is a short-lived (configurable) security token holding the user context and can be used to consume API endpoints on behalf of the user.
 - `APIToken` is a long-lived security token which is configured as part of the user account. Using an APIToken assumes that the token is secret and is used by the correct priviliged user.
 
-## Tokens [/tokens/{workspace}{?APIToken}]
+## Tokens [/tokens/{?APIToken}]
 
 + Parameters
-    + workspace (required, string, `demo`) ... String `workspace` of the Workspace containing the User.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### Generate Token [POST]
@@ -695,10 +694,9 @@ joola.io uses two types of security contexts, `token` and `APIToken`:
 
         { "message": "unknown error", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
-## Token [/tokens/{workspace}/{token}{?APIToken}]
+## Token [/tokens/{token}{?APIToken}]
 
 + Parameters
-    + workspace (required, string, `demo`) ... String `workspace` of the Workspace containing the User.
     + token (required, string, `0NSGRgfxJ`) ... String `token` of the token to verify.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
