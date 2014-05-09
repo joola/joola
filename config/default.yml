@@ -70,8 +70,6 @@ store:
 dispatch:
     expires: 60
 authentication:
-  store: internal
-  bypassToken: null
   tokens:
     expireAfter: 1200000
 #sdk:
@@ -430,6 +428,9 @@ workspaces:
           - "users:add"
           - "users:patch"
           - "users:delete"
+          - "users:generateToken"
+          - "users:validateToken"
+          - "users:expireToken"
           - "misc:see_private"
         filter: []
       user:
