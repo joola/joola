@@ -480,7 +480,8 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
             "roles": [
               "root"
             ],
-            "username": "root"
+            "username": "root",
+            "workspace": "demo"
           },
           {
             "APIToken": "apitoken-beacon",
@@ -488,7 +489,8 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
             "roles": [
               "beacon"
             ],
-            "username": "beacon"
+            "username": "beacon",
+            "workspace": "demo"
           },
           {
             "APIToken": "apitoken-reader",
@@ -496,7 +498,8 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
             "roles": [
               "reader"
             ],
-            "username": "reader"
+            "username": "reader",
+            "workspace": "demo"
           }
         ]
 
@@ -525,6 +528,7 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
           "username": "newuser",
           "displayName": "new user",
           "filter": [],
+          "workspace": "demo",
           "roles": ["user"]
         }
 
@@ -544,7 +548,7 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
 
         { "message": "user already exists", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
-## Role [/users/{workspace}/{username}{?APIToken}]
+## User [/users/{workspace}/{username}{?APIToken}]
 
 + Parameters
     + workspace (required, string, `demo`) ... String `workspace` of the Workspace containing the User.
@@ -561,6 +565,7 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
           "roles": [
             "user"
           ],
+          "workspace": "demo",
           "APIToken": null
         }
 
@@ -590,6 +595,7 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
           "roles": [
             "user"
           ],
+          "workspace": "demo",
           "APIToken": "apitoken-newuser"
         }
 
@@ -630,6 +636,172 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
 
         { "message": "user [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
+# Group Authentication
+
+## Tokens [/tokens/{workspace}{?APIToken}]
+
++ Parameters
+    + workspace (required, string, `demo`) ... String `workspace` of the Workspace containing the User.
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### Generate Token [POST]
++ Request (application/json)
+
+        {
+          "username": "newuser",
+          "password": "password",
+          "displayName": "new user",
+          "filter": [],
+          "roles": ["user"]
+        }
+
++ Response 200 (application/json)
+
+        {
+          "user": {
+            "username": "newuser",
+            "password": "password",
+            "displayName": "new user",
+            "filter": [],
+            "roles": [
+              "user"
+            ],
+            "workspace": "demo",
+            "APIToken": null
+          },
+          "_": "0ektI1zId",
+          "timestamp": 1399620503649,
+          "last": 1399620503651,
+          "expires": 1406131703000
+        }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 415 (application/json)
+
+        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "unknown error", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+## Token [/tokens/{workspace}/{token}{?APIToken}]
+
++ Parameters
+    + workspace (required, string, `demo`) ... String `workspace` of the Workspace containing the User.
+    + token (required, string, `0NSGRgfxJ`) ... String `token` of the token to verify.
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### Validate a Token [GET]
+
++ Response 401 (application/json)
+
+        { "message": "Failed to validate token [1] [0NSGRgfxJ]", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 200 (application/json)
+
+        {
+          "user": {
+            "username": "newuser",
+            "password": "password",
+            "displayName": "new user",
+            "filter": [],
+            "roles": [
+              "user"
+            ],
+            "workspace": "demo",
+            "APIToken": null
+          },
+          "_": "0NSGRgfxJ",
+          "timestamp": 1399620503649,
+          "last": 1399620503651,
+          "expires": 1406131703000
+        }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "unknown error", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+### Delete a Token [DELETE]
+
++ Response 200 (application/json)
+
+        {}
+
++ Response 401 (application/json)
+
+        { "message": "Failed to validate token [1] [0NSGRgfxJ]", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "unknown error", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+## API Token [/apitokens/{token}{?APIToken}]
+
++ Parameters
+    + token (required, string, `apitoken-demo`) ... The `APIToken` of to verify.
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### Validate an APIToken [GET]
+
++ Response 200 (application/json)
+
+        {
+          "username": "root",
+          "password": "waFvtJXEx$5f4dcc3b5aa765d61d8327deb882cf99",
+          "roles": [
+            "root"
+          ],
+          "displayName": "Administrator",
+          "APIToken": "apitoken-demo",
+          "rateLimit": "5000",
+          "filter": [],
+          "workspace": "demo",
+          "token": {
+            "user": {
+              "username": "root",
+              "password": "waFvtJXEx$5f4dcc3b5aa765d61d8327deb882cf99",
+              "roles": [
+                "root"
+              ],
+              "displayName": "Administrator",
+              "APIToken": "apitoken-demo",
+              "rateLimit": "5000",
+              "filter": [],
+              "workspace": "demo"
+            },
+            "_": "lMEfswnXO",
+            "timestamp": 1399622668856,
+            "last": 1399622668857,
+            "expires": 1408193868000
+          }
+        }
+
++ Response 401 (application/json)
+
+        { "message": "Failed to validate api token [apitoken-demo]", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "unknown error", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 # Group Permissions
 Permissions are hard-coded string values assigned to each API endpoint. Permissions work in conjunction with `Users` and `Roles` to form joola.io's role-based permissions system.
