@@ -25,15 +25,13 @@ before(function (done) {
       joolaio.init({host: 'http://127.0.0.1:8080', APIToken: 'apitoken-test', debug: {enabled: true}}, function (err) {
         if (err)
           return done(err);
-        //joolaio.events.on('ready', function () {
-        joola.auth.generateToken(joolaio.USER, function (err, token) {
-          if (err)
-            return done(err);
-          global._token = token;
-          global._token.user.su = true;
-          return done();
-        });
-        //});
+      });
+      joolaio.events.on('ready', function () {
+        global.user = joolaio.USER;
+        global._token = {
+          user: global.user
+        };
+        return done();
       });
     });
   });

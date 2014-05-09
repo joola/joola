@@ -291,6 +291,7 @@ describe("auth", function () {
       joola.auth.generateToken(user, function (err, token) {
         if (err)
           return done(err);
+
         joola.auth.getUserByToken(token._, function (err, _user) {
           if (err)
             return done(err);

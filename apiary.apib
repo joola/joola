@@ -637,6 +637,10 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
         { "message": "user [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 # Group Authentication
+joola.io uses two types of security contexts, `token` and `APIToken`:
+
+- `token` is a short-lived (configurable) security token holding the user context and can be used to consume API endpoints on behalf of the user.
+- `APIToken` is a long-lived security token which is configured as part of the user account. Using an APIToken assumes that the token is secret and is used by the correct priviliged user.
 
 ## Tokens [/tokens/{workspace}{?APIToken}]
 
@@ -762,33 +766,13 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
 
         {
           "username": "root",
-          "password": "waFvtJXEx$5f4dcc3b5aa765d61d8327deb882cf99",
           "roles": [
             "root"
           ],
           "displayName": "Administrator",
           "APIToken": "apitoken-demo",
-          "rateLimit": "5000",
           "filter": [],
-          "workspace": "demo",
-          "token": {
-            "user": {
-              "username": "root",
-              "password": "waFvtJXEx$5f4dcc3b5aa765d61d8327deb882cf99",
-              "roles": [
-                "root"
-              ],
-              "displayName": "Administrator",
-              "APIToken": "apitoken-demo",
-              "rateLimit": "5000",
-              "filter": [],
-              "workspace": "demo"
-            },
-            "_": "lMEfswnXO",
-            "timestamp": 1399622668856,
-            "last": 1399622668857,
-            "expires": 1408193868000
-          }
+          "workspace": "demo"
         }
 
 + Response 401 (application/json)
