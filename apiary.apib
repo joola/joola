@@ -254,6 +254,43 @@ Having multiple workspaces is the corner-stone for joola.io's multi-tenancy.
 
         { "message": "workspace [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
+# Group Collections
+Notes related resources of the **Collections API**
+
+## Collections [/collections/{workspace}{?APIToken}]
+
+### Collection Structure
+| Field        | Type   | Description                             |
+|:-------------|:-------|:----------------------------------------|
+| key          | string | Collection unique key.                  |
+| name         | string | A nice display name for the Collection. |
+| description  | string | Collection description.                 |
+
++ Parameters
+    + workspace (optional, string, `demo`) ... The `Workspace` of the collection performing the action.
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### List all Collections [GET]
++ Response 200 (application/json)
+
+        [
+          {
+            "key": "_test",
+            "description": "Workspace for internal joola.io tests",
+            "name": "joola.io Framework Tests"
+          },
+          {
+            "key": "_stats",
+            "description": "Stores internal statistics of joola.io",
+            "name": "Internal Stats"
+          },
+          {
+            "key": "demo",
+            "description": "A starter/playground workpsace",
+            "name": "Demo Workspace"
+          }
+        ]
+
 # Group Roles
 joola.io uses `Roles` to assign `Permissions` to `Users`.
 
@@ -291,41 +328,60 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 ### List all Roles [GET]
 + Response 200 (application/json)
 
-        {
-          "root": {
+        [
+          {
             "key": "root",
+            "filter": [],
             "permissions": [
               "access_system",
               "manage_system",
               "manage_users",
               "beacon_insert",
-              "query_fetch"
-            ],
-            "filter": []
+              "query_fetch",
+              "workspaces:list",
+              "workspaces:get",
+              "workspaces:add",
+              "workspaces:patch",
+              "workspaces:delete",
+              "roles:list",
+              "roles:get",
+              "roles:add",
+              "roles:patch",
+              "roles:delete",
+              "users:list",
+              "users:get",
+              "users:add",
+              "users:patch",
+              "users:delete",
+              "users:generateToken",
+              "users:validateToken",
+              "users:expireToken",
+              "misc:see_private"
+            ]
           },
-          "user": {
+          {
             "key": "user",
+            "filter": [],
             "permissions": [
               "access_system"
-            ],
-            "filter": []
+            ]
           },
-          "beacon": {
+          {
             "key": "user",
+            "filter": [],
             "permissions": [
               "beacon_insert"
-            ],
-            "filter": []
+            ]
           },
-          "reader": {
+          {
             "key": "user",
+            "filter": [],
             "permissions": [
               "access_system",
               "beacon_insert"
-            ],
-            "filter": []
+            ]
           }
-        }
+        ]
 
 + Response 401 (application/json)
 
@@ -637,11 +693,14 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
         { "message": "user [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 # Group Authentication
+joola.io uses two types of security contexts, `token` and `APIToken`:
 
-## Tokens [/tokens/{workspace}{?APIToken}]
+- `token` is a short-lived (configurable) security token holding the user context and can be used to consume API endpoints on behalf of the user.
+- `APIToken` is a long-lived security token which is configured as part of the user account. Using an APIToken assumes that the token is secret and is used by the correct priviliged user.
+
+## Tokens [/tokens/{?APIToken}]
 
 + Parameters
-    + workspace (required, string, `demo`) ... String `workspace` of the Workspace containing the User.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### Generate Token [POST]
@@ -691,10 +750,9 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
 
         { "message": "unknown error", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
-## Token [/tokens/{workspace}/{token}{?APIToken}]
+## Token [/tokens/{token}{?APIToken}]
 
 + Parameters
-    + workspace (required, string, `demo`) ... String `workspace` of the Workspace containing the User.
     + token (required, string, `0NSGRgfxJ`) ... String `token` of the token to verify.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
@@ -762,33 +820,13 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
 
         {
           "username": "root",
-          "password": "waFvtJXEx$5f4dcc3b5aa765d61d8327deb882cf99",
           "roles": [
             "root"
           ],
           "displayName": "Administrator",
           "APIToken": "apitoken-demo",
-          "rateLimit": "5000",
           "filter": [],
-          "workspace": "demo",
-          "token": {
-            "user": {
-              "username": "root",
-              "password": "waFvtJXEx$5f4dcc3b5aa765d61d8327deb882cf99",
-              "roles": [
-                "root"
-              ],
-              "displayName": "Administrator",
-              "APIToken": "apitoken-demo",
-              "rateLimit": "5000",
-              "filter": [],
-              "workspace": "demo"
-            },
-            "_": "lMEfswnXO",
-            "timestamp": 1399622668856,
-            "last": 1399622668857,
-            "expires": 1408193868000
-          }
+          "workspace": "demo"
         }
 
 + Response 401 (application/json)
