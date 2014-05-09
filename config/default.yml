@@ -76,6 +76,7 @@ authentication:
   # url: https://raw.githubusercontent.com/joola/joola.io.sdk/feature/%2376/bin/joola.io.js
 workspaces:
   _test:
+    key: _test
     name: joola.io Framework Tests
     description: Workspace for internal joola.io tests
     roles:
@@ -103,6 +104,7 @@ workspaces:
         APIToken: "apitoken-test"
         rateLimit: 5000
   _stats:
+    key: _stats
     name: Internal Stats
     description: Stores internal statistics of joola.io
     roles:
@@ -256,6 +258,80 @@ workspaces:
           type: "metric"
           name: "fulfilledtime"
           key: "fulfilledtime"
+  demo:
+    key: demo
+    name: Demo Workspace
+    description: A starter/playground workpsace 
+    roles:
+      root:
+        key: "root"
+        permissions:
+          - "access_system"
+          - "manage_system"
+          - "manage_users"
+          - "beacon_insert"
+          - "query_fetch"
+          - "workspaces:list"
+          - "workspaces:get"
+          - "workspaces:add"
+          - "workspaces:patch"
+          - "workspaces:delete"
+          - "roles:list"
+          - "roles:get"
+          - "roles:add"
+          - "roles:patch"
+          - "roles:delete"
+          - "users:list"
+          - "users:get"
+          - "users:add"
+          - "users:patch"
+          - "users:delete"
+          - "users:generateToken"
+          - "users:validateToken"
+          - "users:expireToken"
+          - "misc:see_private"
+        filter: []
+      user:
+        key: "user"
+        permissions:
+          - "access_system"
+        filter: []
+      beacon:
+        key: "user"
+        permissions:
+          - "beacon_insert"
+        filter: []
+      reader:
+        key: "user"
+        permissions:
+          - "access_system"
+          - "beacon_insert"
+        filter: []
+    users:
+      root:
+        username: "root"
+        password: "password"
+        roles:
+          - "root"
+        displayName: "Administrator"
+        APIToken: "apitoken-demo"
+        rateLimit: 5000
+        filter: []
+      beacon:
+        username: "beacon"
+        password: "password"
+        roles:
+          - "beacon"
+        displayName: "Beacon"
+        APIToken: "apitoken-beacon"
+      reader:
+        username: "reader"
+        password: "password"
+        roles:
+          - "reader"
+        displayName: "Reader"
+        APIToken: "apitoken-reader"
+    collections:
       demo-visits:
         key: "demo-visits"
         name: "demo-visits"
@@ -401,75 +477,3 @@ workspaces:
           key: "mousemoves"
           min: 0
           max: 1000
-  demo:
-    name: Demo Workspace
-    description: A starter/playground workpsace 
-    roles:
-      root:
-        key: "root"
-        permissions:
-          - "access_system"
-          - "manage_system"
-          - "manage_users"
-          - "beacon_insert"
-          - "query_fetch"
-          - "workspaces:list"
-          - "workspaces:get"
-          - "workspaces:add"
-          - "workspaces:patch"
-          - "workspaces:delete"
-          - "roles:list"
-          - "roles:get"
-          - "roles:add"
-          - "roles:patch"
-          - "roles:delete"
-          - "users:list"
-          - "users:get"
-          - "users:add"
-          - "users:patch"
-          - "users:delete"
-          - "users:generateToken"
-          - "users:validateToken"
-          - "users:expireToken"
-          - "misc:see_private"
-        filter: []
-      user:
-        key: "user"
-        permissions:
-          - "access_system"
-        filter: []
-      beacon:
-        key: "user"
-        permissions:
-          - "beacon_insert"
-        filter: []
-      reader:
-        key: "user"
-        permissions:
-          - "access_system"
-          - "beacon_insert"
-        filter: []
-    users:
-      root:
-        username: "root"
-        password: "password"
-        roles:
-          - "root"
-        displayName: "Administrator"
-        APIToken: "apitoken-demo"
-        rateLimit: 5000
-        filter: []
-      beacon:
-        username: "beacon"
-        password: "password"
-        roles:
-          - "beacon"
-        displayName: "Beacon"
-        APIToken: "apitoken-beacon"
-      reader:
-        username: "reader"
-        password: "password"
-        roles:
-          - "reader"
-        displayName: "Reader"
-        APIToken: "apitoken-reader"

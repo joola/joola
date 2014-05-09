@@ -254,6 +254,43 @@ Having multiple workspaces is the corner-stone for joola.io's multi-tenancy.
 
         { "message": "workspace [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
+# Group Collections
+Notes related resources of the **Collections API**
+
+## Collections [/collections/{workspace}{?APIToken}]
+
+### Collection Structure
+| Field        | Type   | Description                             |
+|:-------------|:-------|:----------------------------------------|
+| key          | string | Collection unique key.                  |
+| name         | string | A nice display name for the Collection. |
+| description  | string | Collection description.                 |
+
++ Parameters
+    + workspace (optional, string, `demo`) ... The `Workspace` of the collection performing the action.
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### List all Workspaces [GET]
++ Response 200 (application/json)
+
+        [
+          {
+            "key": "_test",
+            "description": "Workspace for internal joola.io tests",
+            "name": "joola.io Framework Tests"
+          },
+          {
+            "key": "_stats",
+            "description": "Stores internal statistics of joola.io",
+            "name": "Internal Stats"
+          },
+          {
+            "key": "demo",
+            "description": "A starter/playground workpsace",
+            "name": "Demo Workspace"
+          }
+        ]
+
 # Group Roles
 joola.io uses `Roles` to assign `Permissions` to `Users`.
 
@@ -291,41 +328,60 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 ### List all Roles [GET]
 + Response 200 (application/json)
 
-        {
-          "root": {
+        [
+          {
             "key": "root",
+            "filter": [],
             "permissions": [
               "access_system",
               "manage_system",
               "manage_users",
               "beacon_insert",
-              "query_fetch"
-            ],
-            "filter": []
+              "query_fetch",
+              "workspaces:list",
+              "workspaces:get",
+              "workspaces:add",
+              "workspaces:patch",
+              "workspaces:delete",
+              "roles:list",
+              "roles:get",
+              "roles:add",
+              "roles:patch",
+              "roles:delete",
+              "users:list",
+              "users:get",
+              "users:add",
+              "users:patch",
+              "users:delete",
+              "users:generateToken",
+              "users:validateToken",
+              "users:expireToken",
+              "misc:see_private"
+            ]
           },
-          "user": {
+          {
             "key": "user",
+            "filter": [],
             "permissions": [
               "access_system"
-            ],
-            "filter": []
+            ]
           },
-          "beacon": {
+          {
             "key": "user",
+            "filter": [],
             "permissions": [
               "beacon_insert"
-            ],
-            "filter": []
+            ]
           },
-          "reader": {
+          {
             "key": "user",
+            "filter": [],
             "permissions": [
               "access_system",
               "beacon_insert"
-            ],
-            "filter": []
+            ]
           }
-        }
+        ]
 
 + Response 401 (application/json)
 
