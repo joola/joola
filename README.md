@@ -1,8 +1,8 @@
 # joola.io [![Build Status][3]][4] [![Coverage Status][1]][2] [![Gitter chat](https://badges.gitter.im/joola/joola.io.png)](https://gitter.im/joola/joola.io)
 
-| **[Technical Docs] [techdocs]**     | **[Setup Guide] [setup]**     | **[SDK] [sdk-docs]**           | **[Contributing] [contributing]**           | **[About joola.io] [about]**     |
+| **[Technical Docs] [techdocs]**     | **[Setup Guide] [setup]**     | **[API Docs] [api-docs]**           | **[Contributing] [contributing]**           | **[About joola.io] [about]**     |
 |-------------------------------------|-------------------------------|-----------------------------------|---------------------------------------------|-------------------------------------|
-| [![i1] [techdocs-image]] [techdocs] | [![i2] [setup-image]] [setup] | [![i3] [sdk-docs-image]] [sdk-docs] | [![i4] [contributing-image]] [contributing] | [![i5] [about-image]] [about] |
+| [![i1] [techdocs-image]] [techdocs] | [![i2] [setup-image]] [setup] | [![i3] [api-docs-image]] [api-docs] | [![i4] [contributing-image]] [contributing] | [![i5] [about-image]] [about] |
 
 <img src="http://i.imgur.com/Kx6l8s3.png" alt="joola.io logo" title="joola.io" align="right" />
 
@@ -31,13 +31,40 @@ For the example below to work out-of-the-box, it's required to have both joola.i
  For more details on the installation process, please refer to [this guide](http://github.com/joola/joola.io/wiki/install-joola.io).
 
 ```bash
-$ npm install joola.io -g 
-$ joola.io
-# To connect using CLI
-$ jio --host=http://localhost:8080 --apitoken=apitoken-root
+$ mkdir /opt/joola.io
+$ cd /opt/joola.io
+$ npm install joola.io
+$ node ./node_modules/joola.io/joola.io.js
+
+# Access REST API using cURL (-k switch due to default localhost SSL certificate)
+$ curl -i -k  https://localhost:8081/system/version?APIToken=apitoken-demo
+
+HTTP/1.1 200 OK
+Server: joola.io
+Access-Control-Allow-Credentials: true
+Access-Control-Expose-Headers: ETag, X-RateLimit-Limit, X-RateLimit-Remaining,
+  X-RateLimit-Reset
+X-JoolaIO-Request-Id: 87IpUGxDQ:1399738779977:0xOC0CqXB
+X-Powered-By: joola.io
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4973
+X-RateLimit-Reset: 1399741710
+Retry-After: 2930
+X-JoolaIO-Duration: 5
+X-JoolaIO-Requested-By: 87IpUGxDQ
+X-JoolaIO-Fulfilled-By: 87IpUGxDQ
+X-JoolaIO-Duration-Fulfilled: 2
+Content-Type: application/json
+Content-Length: 36
+ETag: "867689076"
+Vary: Accept-Encoding
+Date: Sat, 10 May 2014 16:19:39 GMT
+Connection: keep-alive
+
+{ "version": "joola.io version 0.4.1" }
 ```
 
-Following the installation, point your browser to `http://localhost:8080` and you'll be able to use the framework.
+Following the installation, point your browser to `https://localhost:8081` and you'll be able to use the framework.
 
 [**Learn more about getting started with joola.io**](http://github.com/joola/joola.io/wiki/technical-documentation)
 
@@ -45,7 +72,7 @@ Following the installation, point your browser to `http://localhost:8080` and yo
 ```js
 var joolaio = require('joola.io.sdk');
 
-joolaio.init({host: 'http://localhost:8080', APIToken: 'apitoken-beacon'}, function(err) {
+joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-beacon'}, function(err) {
   var doc = {
     timestamp: new Date(),
     attribute: 'I\'m an attribute',
@@ -61,26 +88,22 @@ joolaio.init({host: 'http://localhost:8080', APIToken: 'apitoken-beacon'}, funct
 
 ##### Your first visualization
 ```html
-<html>
-  <body>
-    <div id="drawhere">
+<div id="drawhere">
 
-    <script src="http://localhost:8080/joola.io.js">
-    <script>
-    var joolaio = require('joola.io.sdk');
+<script src="https://localhost:8081/joola.io.js">
+<script>
+var joolaio = require('joola.io.sdk');
 
-    joolaio.init({host: 'http://localhost:8080', APIToken: 'apitoken-beacon'}, function(err) {
-      joolaio.viz.timeline({
-      	container: document.getElementById('drawhere'),
-      	query: {
-      		dimensions:['timestamp'],
-      		metrics: ['value']
-      	}
-      }
-    });
-    </script>
-  </body>
-</html>
+joolaio.init({host: 'http://localhost:8080', APIToken: 'apitoken-beacon'}, function(err) {
+  joolaio.viz.timeline({
+    container: document.getElementById('drawhere'),
+    query: {
+      dimensions:['timestamp'],
+      metrics: ['value']
+    }
+  }
+});
+</script>
 ```
 
 [**Learn more about analytics and visualizations**](http://github.com/joola/joola.io/wiki/analytics-and-visualization)
@@ -140,11 +163,11 @@ Copyright (c) 2012-2014 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24]
 [about-image]: https://raw.github.com/joola/joola.io/develop/docs/images/about.png
 [techdocs-image]: https://raw.github.com/joola/joola.io/develop/docs/images/techdocs.png
 [setup-image]: https://raw.github.com/joola/joola.io/develop/docs/images/setup.png
-[sdk-docs-image]: https://raw.github.com/joola/joola.io/develop/docs/images/roadmap.png
+[api-docs-image]: https://raw.github.com/joola/joola.io/develop/docs/images/roadmap.png
 [contributing-image]: https://raw.github.com/joola/joola.io/develop/docs/images/contributing.png
 
 [about]: https://github.com/joola/joola.io/wiki/joola.io-overview
 [techdocs]: https://github.com/joola/joola.io/wiki/Technical-documentation
 [setup]: https://github.com/joola/joola.io/wiki/Setting-up-joola.io
-[sdk-docs]: https://github.com/joola/joola.io/wiki/sdk
+[api-docs]: http://docs.joolaio.apiary.io/
 [contributing]: https://github.com/joola/joola.io/wiki/Contributing

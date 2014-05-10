@@ -2,7 +2,7 @@
 
 This is the complete installation guide for joola.io.
 
-## Step 1: Pre-requisites
+## Pre-requisites
 Before installing joola.io we need to complete the installation of a few pre-requisites, 
 these are required for the normal operation of joola.io.
 
@@ -11,6 +11,10 @@ Node.js is a platform built on Chrome's JavaScript runtime for easily building f
 scalable network applications.  Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and 
 efficient, perfect for data-intensive real-time applications that run across distributed devices.
 
+###### Additional requirements for NodeJS
+- [Git](http://git-scm.com) version **1.8** or above `$ yum install git`
+- C++ compiler (like gcc) to be available on the machine `$ yum install gcc make`
+
 [Learn more about installing NodeJS](http://nodejs.org/download/)
 
 #### Redis
@@ -18,6 +22,8 @@ Redis is an open source, BSD licensed, advanced key-value store. It is often ref
 
 joola.io uses redis to store many different key-value pairs needed for its operation. We've chosen redis because of 
 its performance, scalability, redundancy and other capabilities.
+
+joola.io uses `node_redis` as the package responsible for Redis communication. `node_redis` supports the usage of `hiredis` which is a C++ library to support faster operations and communications between NodeJS packages and the Redis server.
 
 >
 **Note:** joola.io is designed to support more than a single key-value store type for its operation. In the future, 
@@ -42,13 +48,21 @@ we will offer support for additional store types.
 RabbitMQ is a messaging broker - an intermediary for messaging. It gives your applications a common platform to send and receive messages, and your messages a safe place to live until received.
 joola.io uses RabbitMQ to manage its message dispatch and routing and it is the basis of joola.io high performance.
 
+You will need to activate the STOMP protocol and make it available for joola.io:
+```bash
+$ [sudo] rabbitmq-plugins enable rabbitmq_stomp
+$ [sudo] service rabbitmq-server restart
+$ [sudo] rabbitmqctl status
+$ [sudo] rabbitmq-plugins list
+```
+
 >
 **Note:** joola.io is designed to support more than a single store type for its messaging layer. In the future, 
 we will offer support for additional store types.
 
 [Learn more about installing RabbitMQ](http://www.rabbitmq.org/download.html)
 
-## Step 2: Install joola.io
+## Install joola.io
 joola.io is an [npm](http://npmjs.org) package and installing it is as simple as running:
 ```bash
 $ mkdir /opt/joola.io
@@ -58,7 +72,7 @@ $ npm install joola.io
 
 This will download and install joola.io on your computer alongside all required dependencies.
  
-## Step 3: Tests (optional)
+## Tests (optional)
 In order to make sure the installation process completed successfully and that joola.io is installed properly on your
  system, you can run its tests.
  
@@ -67,20 +81,14 @@ $ cd /opt/joola.io
 $ npm test
 ```
 
-## Step 4: Configure joola.io
-Configuring the system can be done in several ways, by editing the configuration files, by using the API/SDK, or by using the management interface, choose your flavor.
-
-[**Learn more about configuration**](Configuration)
-
-
-## Step 5: First run
+## First run
 Now that you have joola.io installed, you can run it by simply doing:
 
 ```bash
 $ cd /opt/joola.io
-$ npm start
+$ node ./node_modules/joola.io/joola.io.js
 ```
 
-Once the system is online, navigate your browser to `http://localhost:8080`.
+Once the system is online, navigate your browser to `https://localhost:8081`.
 
 If you encounter any failing tests or joola.io reports and issue, please refer to the [[Troubleshooting] guide.
