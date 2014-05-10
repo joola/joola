@@ -94,7 +94,6 @@ describe("routes", function () {
       });
 
       response.on('error', function (err) {
-        console.log('err');
         return done(err);
       });
     };
@@ -210,7 +209,7 @@ describe("routes", function () {
     http.request(options, callback).end();
   });
 
-  it("should create a test error", function (done) {
+  xit("should create a test error", function (done) {
     var options = {
       host: 'localhost',
       port: '8080',

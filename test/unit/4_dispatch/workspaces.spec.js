@@ -15,31 +15,26 @@ describe("workspaces", function () {
   before(function (done) {
     this.context = {user: _token.user};
     this.uid = joola.common.uuid();
-    done();
+
+    joolaio.set('APIToken', 'apitoken-demo', done);
   });
-  /*
-   before(function (done) {
-   var calls = [];
 
-   var call = function (callback) {
-   joola.config.clear('authentication:users:tester-workspace-filter', callback);
-   };
-   calls.push(call);
-   call = function (callback) {
-   joola.config.clear('authentication:workspaces:test-workspace', callback);
-   };
-   calls.push(call);
+  after(function (done) {
+    var self = this;
+    joola.dispatch.workspaces.delete(this.context, 'test-workspace-' + this.uid, function () {
+      joola.dispatch.workspaces.delete(self.context, 'test-workspace1-' + this.uid, function () {
+        joolaio.set('APIToken', 'apitoken-test', done);
+      });
+    });
+  });
 
-   async.parallel(calls, done);
-   });*/
-
-  it("should add an workspace", function (done) {
+  it("should add a workspace", function (done) {
     var workspace = {
       key: 'test-workspace-' + this.uid,
       name: 'test-workspace-' + this.uid,
-      _filter: ''
+      filter: []
     };
-    joola.dispatch.workspaces.add(this.context, workspace, function (err, _workspace) {
+    joola.workspaces.add(this.context, workspace, function (err, _workspace) {
       if (err)
         return done(err);
 
@@ -58,7 +53,7 @@ describe("workspaces", function () {
     var workspace = {
       key: 'test-workspace-' + this.uid,
       name: 'test-workspace-' + this.uid,
-      _filter: ''
+      filter: []
     };
     joola.dispatch.workspaces.add(this.context, workspace, function (err, _workspace) {
       if (err)
@@ -80,16 +75,16 @@ describe("workspaces", function () {
     });
   });
 
-  it("should update an workspace", function (done) {
+  it("should update a workspace", function (done) {
     var workspace = {
       key: 'test-workspace-' + this.uid,
       name: 'test-workspace-' + this.uid,
-      _filter: 'test=test'
+      filter: 'test=test'
     };
-    joola.dispatch.workspaces.update(this.context, workspace, function (err, _workspace) {
+    joola.dispatch.workspaces.patch(this.context, workspace.key, workspace, function (err, _workspace) {
       if (err)
         return done(err);
-      expect(_workspace._filter).to.equal('test=test');
+      expect(_workspace.filter).to.equal('test=test');
       done();
     });
   });
@@ -98,9 +93,9 @@ describe("workspaces", function () {
     var workspace = {
       key: 'test-workspace1-' + this.uid,
       name: 'test-workspace-' + this.uid,
-      _filter: 'test=test'
+      filter: 'test=test'
     };
-    joola.dispatch.workspaces.update(this.context, workspace, function (err, _workspace) {
+    joola.dispatch.workspaces.patch(this.context, workspace.key, workspace, function (err, _workspace) {
       if (err)
         return done();
 
@@ -108,51 +103,39 @@ describe("workspaces", function () {
     });
   });
 
-  it("should fail updating workspace with incomplete details", function (done) {
-    var workspace = {
-      key: 'test-workspace1-' + this.uid
-    };
-    joola.dispatch.workspaces.update(this.context, workspace, function (err, _workspace) {
-      if (err)
-        return done();
-
-      done(new Error('This should have failed'));
-    });
-  });
-  
-  it("should apply filter on workspace members", function (done) {
+  xit("should apply filter on workspace members", function (done) {
     var user = {
       username: 'tester-workspace-filter',
       displayName: 'tester user',
-      _password: '1234',
-      _roles: ['user'],
-      _filter: '',
+      password: '1234',
+      roles: ['user'],
+      filter: '',
       workspace: 'test-workspace-' + this.uid
     };
     joola.dispatch.users.add(this.context, 'test-workspace-' + this.uid, user, function (err, user) {
       if (err)
         return done(err);
-      expect(user._filter).to.equal('test=test');
+      expect(user.filter).to.equal('test=test');
       return done(err);
     });
   });
 
-  it("should delete an workspace", function (done) {
+  it("should delete a workspace", function (done) {
     var self = this;
     var workspace = {
       key: 'test-workspace-' + this.uid,
       name: 'test-workspace-' + this.uid
     };
-    joola.dispatch.workspaces.delete(this.context, workspace, function (err) {
+    joola.dispatch.workspaces.delete(this.context, workspace.key, function (err) {
       if (err)
         return done(err);
 
       joola.dispatch.workspaces.list(self.context, function (err, workspaces) {
         if (err)
           return done(err);
-
+        
         var exist = _.filter(workspaces, function (item) {
-          return item.name == 'test-workspace-' + self.uid;
+          return item.key == 'test-workspace-' + self.uid;
         });
         try {
           expect(exist.length).to.equal(0);
@@ -169,11 +152,11 @@ describe("workspaces", function () {
     var workspace = {
       key: 'test-workspace-' + this.uid
     };
-    joola.dispatch.workspaces.delete(this.context, workspace, function (err) {
+    joola.dispatch.workspaces.delete(this.context, workspace.key, function (err) {
       if (err)
         return done();
 
-      return done(new Error('This should fail'));
+      return done(new Error('This shouldn\'t fail'));
     });
   });
 });

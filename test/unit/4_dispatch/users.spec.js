@@ -32,9 +32,9 @@ describe("users", function () {
     var user = {
       username: 'tester-' + this.uid,
       displayName: 'tester user',
-      _password: '1234',
-      _roles: ['user'],
-      _filter: '',
+      password: '1234',
+      roles: ['user'],
+      filter: '',
       workspace: this.workspace
     };
     joola.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
@@ -70,9 +70,9 @@ describe("users", function () {
     var user = {
       username: 'tester-' + this.uid,
       displayName: 'tester user',
-      _password: '1234',
-      _roles: ['user'],
-      _filter: '',
+      password: '1234',
+      roles: ['user'],
+      filter: '',
       workspace: this.workspace
     };
     joola.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
@@ -87,40 +87,45 @@ describe("users", function () {
     var user = {
       username: 'tester-' + this.uid,
       displayName: 'testing user',
-      _password: '1234',
-      _roles: ['user'],
-      _filter: '',
+      password: '1234',
+      roles: ['user'],
+      filter: '',
       workspace: this.workspace
     };
     user.displayName = 'testing user with change';
-    joola.dispatch.users.update(self.context, self.workspace, user, function (err) {
+    joola.users.patch(self.context, self.workspace, user.username, user, function (err) {
       if (err)
         return done(err);
 
-      joola.dispatch.users.get(self.context, self.workspace, user.username, function (err, _user) {
+      joola.users.get(self.context, self.workspace, user.username, function (err, _user) {
         if (err)
           return done(err);
         expect(_user).to.be.ok;
         if (_user.displayName === 'testing user with change')
           return done();
+
         return done(new Error('Failed to update user'));
       });
     });
   });
 
   it("should apply filter on user level", function (done) {
+    var filter = [
+      ['test1', 'eq', 'test2']
+    ];
     var user = {
       username: 'tester-' + this.uid,
       displayName: 'tester user',
-      _password: '1234',
-      _roles: ['user'],
-      _filter: 'test1=test2',
+      password: '1234',
+      roles: ['user'],
+      filter: filter,
       workspace: this.workspace
     };
-    joola.dispatch.users.update(this.context, this.workspace, user, function (err, user) {
+    joola.dispatch.users.patch(this.context, this.workspace, user.username, user, function (err, user) {
       if (err)
         return done(err);
-      expect(user._filter).to.equal('test1=test2');
+      console.log(user);
+      expect(user.filter).to.equal(filter);
       return done(err);
     });
   });
@@ -129,12 +134,12 @@ describe("users", function () {
     var user = {
       username: 'tester-' + joola.common.uuid(),
       displayName: 'tester user',
-      _password: '1234',
-      _roles: ['user'],
-      _filter: '',
+      password: '1234',
+      roles: ['user'],
+      filter: '',
       workspace: 'test-org'
     };
-    joola.dispatch.users.update(this.context, this.workspace, user, function (err, user) {
+    joola.dispatch.users.patch(this.context, this.workspace, user.username, user, function (err, user) {
       if (err)
         return done();
 
@@ -147,9 +152,9 @@ describe("users", function () {
     var user = {
       username: 'tester-password-' + this.uid,
       displayName: 'tester user',
-      _password: 'password',
-      _roles: ['user'],
-      _filter: '',
+      password: 'password',
+      roles: ['user'],
+      filter: '',
       workspace: this.workspace
     };
     joola.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
@@ -179,9 +184,9 @@ describe("users", function () {
     var user = {
       username: 'tester-api-by-token-' + this.uid,
       displayName: 'tester user',
-      _password: '1234',
-      _roles: ['user'],
-      _filter: '',
+      password: '1234',
+      roles: ['user'],
+      filter: '',
       workspace: this.workspace
     };
     joola.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
@@ -233,13 +238,13 @@ describe("users", function () {
     var user = {
       username: 'tester-' + this.uid,
       displayName: 'testing user',
-      _password: '12345',
-      _roles: ['user'],
-      _filter: '',
+      password: '12345',
+      roles: ['user'],
+      filter: '',
       workspace: this.workspace
     };
     user.displayName = 'testing user with change';
-    joola.dispatch.users.update(self.context, self.workspace, user, function (err) {
+    joola.dispatch.users.patch(self.context, self.workspace, user.username, user, function (err) {
       if (err)
         return done(err);
       joola.dispatch.users.authenticate(self.context, self.workspace, 'tester-' + self.uid, '12345', function (err, user) {
@@ -257,7 +262,7 @@ describe("users", function () {
     var user = {
       username: 'tester-' + this.uid
     };
-    joola.dispatch.users.delete(this.context, this.workspace, user, function (err) {
+    joola.dispatch.users.delete(this.context, this.workspace, user.username, function (err) {
       if (err)
         return done(err);
       joola.dispatch.users.get(self.context, self.workspace, user.username, function (err, user) {
@@ -282,7 +287,7 @@ describe("users", function () {
   });
 
   it("should verify a valid APIToken", function (done) {
-    joola.dispatch.users.verifyAPIToken(this.context, 'apitoken-root', function (err, user) {
+    joola.dispatch.users.verifyAPIToken(this.context, 'apitoken-test', function (err, user) {
       if (err)
         return done(err);
 

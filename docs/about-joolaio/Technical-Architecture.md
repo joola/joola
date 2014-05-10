@@ -20,7 +20,7 @@ Each of the sub-systems listed in the figure shown above has a dedicated topic i
 
 You can access the framework's stack in several ways, be it directly on the server console or via the Javascript SDK's. For specific details and tutorials, please refer to the [[Technical-Documentation]] where these are covered. 
 
-[**Learn more about the stack**](subsystems)
+[**Learn more about the stack**](architecture)
 
 ## Cache Stores
 joola.io uses 3rd party, reliable software to act as its cache store. We aim to support multiple, different store types to allow developers and users more flexibility, but for now our main and only cache store is [MongoDB][mongodb].
