@@ -318,18 +318,19 @@ workspaces:
       user:
         key: "user"
         permissions:
-          - "access_system"
+          - "guest"
         filter: []
       beacon:
         key: "user"
         permissions:
-          - "beacon_insert"
+          - "beacon:insert"
+          - "query:fetch"
         filter: []
       reader:
         key: "user"
         permissions:
-          - "access_system"
-          - "beacon_insert"
+          - "beacon:insert"
+          - "query:fetch"
         filter: []
     users:
       root:
