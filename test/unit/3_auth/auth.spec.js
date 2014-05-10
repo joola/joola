@@ -28,16 +28,6 @@ describe("auth", function () {
     });
   });
 
-  it("should return 401 error if no token and content-type application/json", function (done) {
-    var options = {};
-    options.headers = {'content-type': 'application/json'};
-    browser.visit('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/api/test/action', options, function () {
-      expect(browser.statusCode).to.equal(401);
-      browser = new Browser({silent: true});
-      return done();
-    });
-  });
-
   it("should generate a valid security token", function (done) {
     var user = {
       username: 'test',

@@ -115,17 +115,6 @@ describe("webserver", function () {
     io.socket.emit('/workspaces/list');
   });
 
-  it("should show a status page", function (done) {
-    request.get('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/status', function (err, response, body) {
-      if (err)
-        return done(err);
-
-      expect(response.statusCode).to.equal(200);
-      expect(body.indexOf('joola.io | Status Page'));
-      done();
-    });
-  });
-
   it("should serve api endpoints", function (done) {
     request.get('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/meta', function (err, response, body) {
       if (err)
