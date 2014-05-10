@@ -36,9 +36,31 @@ $ cd /opt/joola.io
 $ npm install joola.io
 $ node ./node_modules/joola.io/joola.io.js
 
-# To connect using CLI
-$ npm install joola.io.cli -g
-$ jio --host=https://localhost:8081 --apitoken=apitoken-demo
+# Access REST API using cURL (-k switch due to default localhost SSL certificate)
+$ curl -i -k  https://localhost:8081/system/version?APIToken=apitoken-demo
+
+HTTP/1.1 200 OK
+Server: joola.io
+Access-Control-Allow-Credentials: true
+Access-Control-Expose-Headers: ETag, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+X-JoolaIO-Request-Id: 87IpUGxDQ:1399738779977:0xOC0CqXB
+X-Powered-By: joola.io
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4973
+X-RateLimit-Reset: 1399741710
+Retry-After: 2930
+X-JoolaIO-Duration: 5
+X-JoolaIO-Requested-By: 87IpUGxDQ
+X-JoolaIO-Fulfilled-By: 87IpUGxDQ
+X-JoolaIO-Duration-Fulfilled: 2
+Content-Type: application/json
+Content-Length: 36
+ETag: "867689076"
+Vary: Accept-Encoding
+Date: Sat, 10 May 2014 16:19:39 GMT
+Connection: keep-alive
+
+{ "version": "joola.io version 0.4.1" }
 ```
 
 Following the installation, point your browser to `https://localhost:8081` and you'll be able to use the framework.
