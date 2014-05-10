@@ -1,4 +1,36 @@
 
+### v0.5.0
+
+[#450](https://github.com/joola/joola.io/issues/450) Align README with 0.5 [core, docs]  
+[#426](https://github.com/joola/joola.io/issues/426) Document hi-redis and C++ compiler for bson. [docs]  
+[#436](https://github.com/joola/joola.io/issues/436) Document requirement for RabbitMQ STOMP plugin [docs]  
+[#453](https://github.com/joola/joola.io/issues/453) Release version 0.5 [expedite]  
+[#449](https://github.com/joola/joola.io/issues/449) Permission/Action assignments [core]  
+[#423](https://github.com/joola/joola.io/issues/423) Review the JSON structure of collections as received from collections.list [bug, enhancement, expedite, sdk]  
+[#422](https://github.com/joola/joola.io/issues/422) Roles listed in the config file are not reflected to Redis correctly [blocker, bug, expedite]  
+[#442](https://github.com/joola/joola.io/issues/442) Complete all REST API endpoints [core, expedite]  
+[#452](https://github.com/joola/joola.io/issues/452) joola.io demo not loading correctly post installation [blocker, bug, expedite]  
+[#448](https://github.com/joola/joola.io/issues/448) Add Travis-CI deployment to Heroku  
+[#428](https://github.com/joola/joola.io/issues/428) Fix update method to PATCH [bug, core, expedite]  
+[#443](https://github.com/joola/joola.io/issues/443) Add support for Basic Authentication [core, expedite]  
+[#425](https://github.com/joola/joola.io/issues/425) Review use of _ for parameter name [core, expedite]  
+[#437](https://github.com/joola/joola.io/issues/437) SSL should be optional [bug, expedite]  
+[#438](https://github.com/joola/joola.io/issues/438) Redis config store variables not over-written by env vars [bug, expedite]  
+[#439](https://github.com/joola/joola.io/issues/439) Add vhost support to STOMP [bug, core, expedite]  
+[#429](https://github.com/joola/joola.io/issues/429) Support for custom SDK source [core, expedite, sdk]  
+[#430](https://github.com/joola/joola.io/issues/430) Environment variables do not over-ride local config [bug, core, expedite]  
+[#431](https://github.com/joola/joola.io/issues/431) Logger not available for config [bug, core, expedite]  
+[#432](https://github.com/joola/joola.io/issues/432) Configuration stores arrays incorrectly.  
+[#398](https://github.com/joola/joola.io/issues/398) [EPIC] API should be RESTful [core, enhancement, epic, expedite]  
+[#419](https://github.com/joola/joola.io/issues/419) APIToken validation error [blocker, bug, sdk]  
+[#418](https://github.com/joola/joola.io/issues/418) Cannot load joola.io SDK on client side due to access control limitations [bug, sdk]  
+[#412](https://github.com/joola/joola.io/issues/412) Logger levels by switch/configuration [bug, core, expedite]  
+[#409](https://github.com/joola/joola.io/issues/409) SSL certs are not taken from configuration [bug, core]  
+[#402](https://github.com/joola/joola.io/issues/402) Beacon insert flow review [beacon, expedite, task]  
+[#396](https://github.com/joola/joola.io/issues/396) Beacon fails on large inserts > 1mb [beacon, bug, expedite]  
+[#392](https://github.com/joola/joola.io/issues/392) Timeframe to allow `last_n_items` [enhancement, query]  
+[#393](https://github.com/joola/joola.io/issues/393) Routes should employ domain error management [core, task]  
+
 ### v0.4.1
 
 [#367](https://github.com/joola/joola.io/issues/367) Version bump to 0.4.1  
