@@ -1012,7 +1012,6 @@ Optional body will compose a joint metadata of collection and document.
 
         { "message": "collection [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
-
 # Group Roles
 joola.io uses `Roles` to assign `Permissions` to `Users`.
 
@@ -1661,6 +1660,130 @@ Permissions are hard-coded string values assigned to each API endpoint. Permissi
 
         { "message": "permission [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
+# Group Beacon
+Notes related resources of the **Beacon API**
+
+## Beacon [/beacon/{workspace}/{collection}{?APIToken}]
+
++ Parameters
+    + workspace (required, string, `demo`) ... The `key` of the Workspace performing the action.
+    + collection (required, string, `demo-example`) ... The `key` of the Collection performing the action.
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### Insert Documents [POST]
++ Request (application/json)
+
+    + Body
+
+            [{
+              "timestamp": null,
+              "article": "Sample Analytics",
+              "browser": "Chrome",
+              "device": "Desktop",
+              "engine": "Webkit",
+              "os": "Linux",
+              "userid": "demo@joo.la",
+              "ip": "127.0.0.1",
+              "referrer": "http://joo.la",
+              "visits": 1,
+              "loadtime": 123
+            }]
+
++ Response 200 (application/json)
+
+            [
+              {
+                "timestamp": "2014-05-10T15:49:49.575Z",
+                "article": "Sample Analytics",
+                "browser": "Chrome",
+                "device": "Desktop",
+                "engine": "Webkit",
+                "os": "Linux",
+                "userid": "demo@joo.la",
+                "ip": "127.0.0.1",
+                "referrer": "http://joo.la",
+                "visits": 1,
+                "loadtime": 123,
+                "timestamp_timebucket": {
+                  "dow": 6,
+                  "hod": 18,
+                  "second": "2014-05-10T15:49:49.000Z",
+                  "minute": "2014-05-10T15:49:00.000Z",
+                  "hour": "2014-05-10T15:00:00.000Z",
+                  "ddate": "2014-05-10T00:00:00.000Z",
+                  "month": "2014-05-01T00:00:00.000Z",
+                  "year": "2014-01-01T01:00:00.000Z"
+                },
+                "ourTimestamp": "2014-05-10T15:49:49.575Z",
+                "saved": true
+              }
+            ]
+
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "permission [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+# Group Query
+Notes related resources of the **Query API**
+
+## Query [/query{?APIToken}]
+
++ Parameters
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### Fetch [POST]
++ Request (application/json)
+
+    + Body
+
+            {
+              "timeframe": "last_hour",
+              "interval": "minute",
+              "dimensions": ["timestamp"],
+              "metrics": ["visits"]
+            }
+
++ Response 200 (application/json)
+
+            {
+              "dimensions": [],
+              "metrics": [],
+              "documents": [],
+              "uid": "kUTTRqspS",
+              "resultCount": 0,
+              "query": {
+                "dontcache": true,
+                "filter": null,
+                "realtime": false,
+                "interval": "timebucket.minute",
+                "timeframe": {
+                  "start": "2014-05-10T14:35:28.000Z",
+                  "end": "2014-05-10T15:35:28.999Z"
+                },
+                "metrics": [],
+                "dimensions": [],
+                "uid": "kUTTRqspS",
+                "ts": {
+                  "start": "2014-05-10T15:35:28.114Z",
+                  "end": "2014-05-10T15:35:28.117Z",
+                  "duration": 3
+                }
+              }
+            }
+
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "permission [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 # Group Configuration
 joola.io uses a central-configuration store to support a node-based deployment schema.
