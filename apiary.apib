@@ -423,7 +423,7 @@ Optional body will compose a joint metadata of collection and document.
 
 + Response 500 (application/json)
 
-        { "message": "collection [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "dimension [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 ### Create a Dimension [POST]
 + Request (application/json)
@@ -444,7 +444,7 @@ Optional body will compose a joint metadata of collection and document.
 
 + Response 500 (application/json)
 
-        { "message": "workspace already exists", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "dimension already exists", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 ## Dimension [/collections/{workspace}/{collection}/dimensions/{key}{?APIToken}]
 Optional body will compose a joint metadata of collection and document.
@@ -477,7 +477,7 @@ Optional body will compose a joint metadata of collection and document.
 
 + Response 500 (application/json)
 
-        { "message": "collection [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "dimension [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 ### Update a Dimension [PATCH]
 + Request (application/json)
@@ -507,7 +507,7 @@ Optional body will compose a joint metadata of collection and document.
 
 + Response 500 (application/json)
 
-        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "dimension [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 ### Remove a Dimension [DELETE]
 + Response 200
@@ -526,7 +526,158 @@ Optional body will compose a joint metadata of collection and document.
 
         { "message": "dimension [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
+## Metrics [/collections/{workspace}/{collection}/metrics{?APIToken}]
 
++ Parameters
+    + workspace (required, string, `demo`) ... The `Workspace` of the collection performing the action.
+    + collection (required, string, `demo-clicks`) ... String `Collection` of the Collection to perform action with.
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### Retrieve all Metrics [GET]
++ Request (application/json)
+
+          {}
+
++ Response 200 (application/json)
+
+    + Body
+
+              [
+                {
+                  "datatype": "number",
+                  "name": "clicks",
+                  "key": "clicks"
+                }
+              ]
+
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "metric [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+### Create a Metric [POST]
++ Request (application/json)
+
+        {
+          "key": "metric-key",
+          "name": "metric key",
+          "datatype": "int",
+          "aggregation": "sum",
+          "prefix": null,
+          "suffix": null,
+          "formula": null,
+          "decimals": 0,
+          "description": ""
+        }
+
++ Response 200 (application/json)
+
+        {
+          "key": "dimension-key",
+          "name": "dimension key",
+          "datatype": "string"
+        }
+
++ Response 500 (application/json)
+
+        { "message": "metric already exists", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+## Metric [/collections/{workspace}/{collection}/metrics/{key}{?APIToken}]
+
++ Parameters
+    + workspace (required, string, `demo`) ... The `Workspace` of the collection performing the action.
+    + collection (required, string, `demo-clicks`) ... String `Collection` of the Collection to perform action with.
+    + key (required, string, `metric-key`) ... String `key` of the Metric to perform action with.
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### Retrieve a Metric [GET]
++ Response 200 (application/json)
+
+    + Body
+    
+              {
+                "key": "metric-key",
+                "name": "metric key",
+                "datatype": "int",
+                "aggregation": "sum",
+                "prefix": null,
+                "suffix": null,
+                "formula": null,
+                "decimals": 0,
+                "description": ""
+              }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "metric [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+### Update a Metric [PATCH]
++ Request (application/json)
+
+        { "description": "a sample description for metric-key" }
+
++ Response 200
+
+        {
+          "key": "metric-key",
+          "name": "metric key",
+          "datatype": "int",
+          "aggregation": "sum",
+          "prefix": null,
+          "suffix": null,
+          "formula": null,
+          "decimals": 0,
+          "description": "a sample description for metric-key"
+        }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 415 (application/json)
+
+        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "metric [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+### Remove a Metric [DELETE]
++ Response 200
+
+        {}
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "metric [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 ## Metadata [/collections/{workspace}/{key}/metadata{?APIToken}]
 Optional body will compose a joint metadata of collection and document.
