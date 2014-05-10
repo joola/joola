@@ -278,9 +278,10 @@ Notes related resources of the **Collections API**
 | key          | string | Collection unique key.                  |
 | name         | string | A nice display name for the Collection. |
 | description  | string | Collection description.                 |
+| strongTyped  | bool   | Is the collection strong typed?         |
 
 + Parameters
-    + workspace (optional, string, `demo`) ... The `Workspace` of the collection performing the action.
+    + workspace (required, string, `demo`) ... The `Workspace` of the collection performing the action.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### List all Collections [GET]
@@ -320,12 +321,12 @@ Notes related resources of the **Collections API**
 
     + Body
 
-          {
-            "key": "demo-visits",
-            "name": "demo-visits",
-            "strongTyped": "true",
-            "description": ""
-          }
+              {
+                "key": "demo-visits",
+                "name": "demo-visits",
+                "strongTyped": "true",
+                "description": ""
+              }
 
 + Response 401 (application/json)
 
@@ -339,12 +340,200 @@ Notes related resources of the **Collections API**
 
         { "message": "collection [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
+### Remove a Collection [DELETE]
++ Response 200
+
+        {}
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "collection [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+## Dimensions [/collections/{workspace}/{collection}/dimensions{?APIToken}]
+Optional body will compose a joint metadata of collection and document.
+
++ Parameters
+    + workspace (required, string, `demo`) ... The `Workspace` of the collection performing the action.
+    + collection (required, string, `demo-clicks`) ... String `Collection` of the Collection to perform action with.
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### Retrieve all Dimensions [GET]
++ Request (application/json)
+
+          {}
+
++ Response 200 (application/json)
+
+    + Body
+
+              [
+                {
+                  "datatype": "date",
+                  "name": "timestamp",
+                  "key": "timestamp"
+                },
+                {
+                  "datatype": "string",
+                  "name": "browser",
+                  "key": "browser"
+                },
+                {
+                  "datatype": "string",
+                  "name": "engine",
+                  "key": "engine"
+                },
+                {
+                  "datatype": "string",
+                  "name": "os",
+                  "key": "os"
+                },
+                {
+                  "datatype": "string",
+                  "name": "userid",
+                  "key": "userid"
+                },
+                {
+                  "datatype": "ip",
+                  "name": "ip",
+                  "key": "ip"
+                },
+                {
+                  "datatype": "string",
+                  "name": "referrer",
+                  "key": "referrer"
+                }
+              ]
+
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "collection [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+### Create a Dimension [POST]
++ Request (application/json)
+
+        {
+          "key": "dimension-key",
+          "name": "dimension key",
+          "datatype": "string"
+        }
+
++ Response 200 (application/json)
+
+        {
+          "key": "dimension-key",
+          "name": "dimension key",
+          "datatype": "string"
+        }
+
++ Response 500 (application/json)
+
+        { "message": "workspace already exists", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+## Dimension [/collections/{workspace}/{collection}/dimensions/{key}{?APIToken}]
+Optional body will compose a joint metadata of collection and document.
+
++ Parameters
+    + workspace (required, string, `demo`) ... The `Workspace` of the collection performing the action.
+    + collection (required, string, `demo-clicks`) ... String `Collection` of the Collection to perform action with.
+    + key (required, string, `dimension-key`) ... String `key` of the Dimension to perform action with.
+    + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
+
+### Retrieve a Dimension [GET]
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+              "key": "dimension-key",
+              "name": "dimension key",
+              "datatype": "string",
+              "description": ""
+            }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "collection [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+### Update a Dimension [PATCH]
++ Request (application/json)
+
+        { "description": "a sample description for dimension-key" }
+
++ Response 200
+
+        {
+          "key": "dimension-key",
+          "name": "dimension key",
+          "datatype": "string",
+          "description": "a sample description for dimension-key"
+        }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 415 (application/json)
+
+        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+### Remove a Dimension [DELETE]
++ Response 200
+
+        {}
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "dimension [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+
+
 ## Metadata [/collections/{workspace}/{key}/metadata{?APIToken}]
 Optional body will compose a joint metadata of collection and document.
 
 + Parameters
-    + workspace (optional, string, `demo`) ... The `Workspace` of the collection performing the action.
-    + key (required, string, `demo-visits`) ... String `key` of the Collection to perform action with.
+    + workspace (required, string, `demo`) ... The `Workspace` of the collection performing the action.
+    + key (required, string, `demo-clicks`) ... String `key` of the Collection to perform action with.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### Retrieve a Collection Metadata [POST]
@@ -356,63 +545,57 @@ Optional body will compose a joint metadata of collection and document.
 
     + Body
 
-          {
-            "timestamp": {
-              "datatype": "date",
-              "type": "dimension",
-              "name": "timestamp",
-              "key": "timestamp"
-            },
-            "browser": {
-              "datatype": "string",
-              "type": "dimension",
-              "name": "browser",
-              "key": "browser"
-            },
-            "engine": {
-              "datatype": "string",
-              "type": "dimension",
-              "name": "engine",
-              "key": "engine"
-            },
-            "os": {
-              "datatype": "string",
-              "type": "dimension",
-              "name": "os",
-              "key": "os"
-            },
-            "userid": {
-              "datatype": "string",
-              "type": "dimension",
-              "name": "userid",
-              "key": "userid"
-            },
-            "ip": {
-              "datatype": "ip",
-              "type": "dimension",
-              "name": "ip",
-              "key": "ip"
-            },
-            "referrer": {
-              "datatype": "string",
-              "type": "dimension",
-              "name": "referrer",
-              "key": "referrer"
-            },
-            "visits": {
-              "datatype": "number",
-              "type": "metric",
-              "name": "visits",
-              "key": "visits"
-            },
-            "loadtime": {
-              "datatype": "number",
-              "type": "metric",
-              "name": "loadtime",
-              "key": "loadtime"
-            },
-            "description": ""
-          }
+              {
+                "timestamp": {
+                  "datatype": "date",
+                  "type": "dimension",
+                  "name": "timestamp",
+                  "key": "timestamp"
+                },
+                "browser": {
+                  "datatype": "string",
+                  "type": "dimension",
+                  "name": "browser",
+                  "key": "browser"
+                },
+                "engine": {
+                  "datatype": "string",
+                  "type": "dimension",
+                  "name": "engine",
+                  "key": "engine"
+                },
+                "os": {
+                  "datatype": "string",
+                  "type": "dimension",
+                  "name": "os",
+                  "key": "os"
+                },
+                "userid": {
+                  "datatype": "string",
+                  "type": "dimension",
+                  "name": "userid",
+                  "key": "userid"
+                },
+                "ip": {
+                  "datatype": "ip",
+                  "type": "dimension",
+                  "name": "ip",
+                  "key": "ip"
+                },
+                "referrer": {
+                  "datatype": "string",
+                  "type": "dimension",
+                  "name": "referrer",
+                  "key": "referrer"
+                },
+                "clicks": {
+                  "datatype": "number",
+                  "type": "metric",
+                  "name": "clicks",
+                  "key": "clicks"
+                },
+                "description": ""
+              }
 
 
 + Response 401 (application/json)
