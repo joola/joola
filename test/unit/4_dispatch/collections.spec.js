@@ -61,7 +61,7 @@ describe("collections", function () {
       name: this.collection,
       test: 1
     };
-    joola_proxy.dispatch.collections.update(this.context, this.context.user.workspace, collection, function (err, _collection) {
+    joola_proxy.dispatch.collections.patch(this.context, this.context.user.workspace, collection.key, collection, function (err, _collection) {
       if (err)
         return done(err);
 
@@ -70,24 +70,12 @@ describe("collections", function () {
     });
   });
 
-  it("should fail updating a collection with incomplete details", function (done) {
-    var collection = {
-      key: this.collection
-    };
-    joola_proxy.dispatch.collections.update(this.context, this.context.user.workspace, collection, function (err, _collection) {
-      if (err)
-        return done();
-
-      return done(new Error('This should fail'));
-    });
-  });
-
   it("should fail updating non existing collection", function (done) {
     var collection = {
       key: this.collection + '1',
       name: this.collection
     };
-    joola_proxy.dispatch.collections.update(this.context, this.context.user.workspace, collection, function (err, _collection) {
+    joola_proxy.dispatch.collections.patch(this.context, this.context.user.workspace, collection.key, collection, function (err, _collection) {
       if (err)
         return done();
 
@@ -176,7 +164,7 @@ describe("collections", function () {
   it("should get a collection meta data", function (done) {
     var self = this;
     var document = require('../../fixtures/basic.json')[0];
-    joola_proxy.dispatch.collections.metadata(self.context, self.context.user.workspace, document, self.collection, function (err, meta) {
+    joola_proxy.dispatch.collections.metadata(self.context, self.context.user.workspace, self.collection, document, function (err, meta) {
       if (err)
         return done(err);
 

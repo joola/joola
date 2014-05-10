@@ -1,4 +1,4 @@
-version: 0.0.9
+version: 0.0.10
 interfaces:
   webserver:
     enabled: true
@@ -70,69 +70,58 @@ store:
 dispatch:
     expires: 60
 authentication:
-  store: internal
-  bypassToken: null
   tokens:
     expireAfter: 1200000
 #sdk:
   # url: https://raw.githubusercontent.com/joola/joola.io.sdk/feature/%2376/bin/joola.io.js
 workspaces:
-  root:
+  _test:
+    key: _test
+    name: joola.io Framework Tests
+    description: Workspace for internal joola.io tests
     roles:
       root:
         key: "root"
-        _permissions:
+        permissions:
           - "access_system"
           - "manage_system"
           - "manage_users"
           - "beacon_insert"
           - "query_fetch"
-        _filter: ""
-      user:
-        key: "user"
-        _permissions:
-          - "access_system"
-        _filter: ""
-      beacon:
-        key: "user"
-        _permissions:
-          - "beacon_insert"
-        _filter: ""
-      reader:
-        key: "user"
-        _permissions:
-          - "access_system"
-          - "beacon_insert"
-        _filter: ""
+          - "workspaces:list"
+          - "workspaces:get"
+          - "workspaces:add"
+          - "workspaces:patch"
+          - "workspaces:delete"
+        filter: []
     users:
       root:
         username: "root"
-        _password: "password"
-        _roles:
+        password: "password"
+        roles:
           - "root"
         displayName: "Administrator"
-        workspace: "root"
-        _APIToken: "apitoken-root"
-        su: true
+        APIToken: "apitoken-test"
         rateLimit: 5000
+  _stats:
+    key: _stats
+    name: Internal Stats
+    description: Stores internal statistics of joola.io
+    roles:
       beacon:
-        username: "beacon"
-        _password: "password"
-        _roles:
+        key: "beacon"
+        permissions:
+          - "beacon_insert"
+        filter: []
+    users:
+      root:
+        username: "stats-beacon"
+        password: "password"
+        roles:
           - "beacon"
-        displayName: "Beacon"
-        workspace: "root"
-        _APIToken: "apitoken-beacon"
-        su: true
-      reader:
-        username: "reader"
-        _password: "password"
-        _roles:
-          - "reader"
-        displayName: "Reader"
-        workspace: "root"
-        _APIToken: "apitoken-reader"
-        su: true
+        displayName: "Stats Beacon"
+        APIToken: "apitoken-stats"
+        rateLimit: 5000
     collections:
       stats-node-count:
         key: "stats-node-count"
@@ -269,6 +258,97 @@ workspaces:
           type: "metric"
           name: "fulfilledtime"
           key: "fulfilledtime"
+  demo:
+    key: demo
+    name: Demo Workspace
+    description: A starter/playground workpsace 
+    roles:
+      root:
+        key: "root"
+        permissions:
+          - "access_system"
+          - "manage_system"
+          - "manage_users"
+          - "beacon_insert"
+          - "query_fetch"
+          - "workspaces:list"
+          - "workspaces:get"
+          - "workspaces:add"
+          - "workspaces:patch"
+          - "workspaces:delete"
+          - "collections:list"
+          - "collections:get"
+          - "collections:add"
+          - "collections:patch"
+          - "collections:delete"
+          - "collections:metadata"
+          - "dimensions:list"
+          - "dimensions:add"
+          - "dimensions:get"
+          - "dimensions:patch"
+          - "dimensions:delete"
+          - "metrics:list"
+          - "metrics:add"
+          - "metrics:get"
+          - "metrics:patch"
+          - "metrics:delete"
+          - "roles:list"
+          - "roles:get"
+          - "roles:add"
+          - "roles:patch"
+          - "roles:delete"
+          - "users:list"
+          - "users:get"
+          - "users:add"
+          - "users:patch"
+          - "users:delete"
+          - "users:generateToken"
+          - "users:validateToken"
+          - "users:expireToken"
+          - "users:permissions"
+          - "misc:see_private"
+        filter: []
+      user:
+        key: "user"
+        permissions:
+          - "access_system"
+        filter: []
+      beacon:
+        key: "user"
+        permissions:
+          - "beacon_insert"
+        filter: []
+      reader:
+        key: "user"
+        permissions:
+          - "access_system"
+          - "beacon_insert"
+        filter: []
+    users:
+      root:
+        username: "root"
+        password: "password"
+        roles:
+          - "root"
+        displayName: "Administrator"
+        APIToken: "apitoken-demo"
+        rateLimit: 5000
+        filter: []
+      beacon:
+        username: "beacon"
+        password: "password"
+        roles:
+          - "beacon"
+        displayName: "Beacon"
+        APIToken: "apitoken-beacon"
+      reader:
+        username: "reader"
+        password: "password"
+        roles:
+          - "reader"
+        displayName: "Reader"
+        APIToken: "apitoken-reader"
+    collections:
       demo-visits:
         key: "demo-visits"
         name: "demo-visits"

@@ -6,7 +6,7 @@ describe("security-apitokens", function () {
     var self = this;
     this.uid = joola.common.uuid();
 
-    joolaio.set('APIToken', 'apitoken-root', function () {
+    joolaio.set('APIToken', 'apitoken-demo', function () {
 
       self.workspace = {
         key: 'test-org-apitoken-' + self.uid,
@@ -14,14 +14,14 @@ describe("security-apitokens", function () {
       };
       self.role = {
         key: 'test-user-role-' + self.uid,
-        _permissions: ['access_system']
+        permissions: ['access_system']
       };
       self.user = {
         username: 'test-user-' + self.uid,
-        _password: 'password',
+        password: 'password',
         workspace: self.workspace.key,
-        _roles: ['test-user-role-' + self.uid],
-        _APIToken: 'user-' + self.uid
+        roles: ['test-user-role-' + self.uid],
+        APIToken: 'user-' + self.uid
       };
       var calls = [];
 
@@ -38,7 +38,11 @@ describe("security-apitokens", function () {
     });
   });
 
-  it("should be able to use a newly created APIToken", function (done) {
+  after(function (done) {
+    joolaio.set('APIToken', 'apitoken-demo', done);
+  });
+
+  xit("should be able to use a newly created APIToken", function (done) {
     var self = this;
 
     joolaio.set('APIToken', 'user-' + self.uid, function () {

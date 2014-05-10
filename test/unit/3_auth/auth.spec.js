@@ -28,35 +28,6 @@ describe("auth", function () {
     });
   });
 
-  xit("should return login page with no issues", function (done) {
-    browser.visit('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/login', function () {
-      expect(browser.text("title")).to.equal('joola.io');
-      return done();
-    });
-  });
-
-  xit("should validate a token presented in querystring", function (done) {
-    browser.visit('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/api/test/action?token=1234', function () {
-      var result = browser.text();
-      result = JSON.parse(result);
-
-      expect(result.debug.query_token).to.equal('1234');
-      return done();
-    });
-  });
-
-  xit("should validate a token presented in headers", function (done) {
-    var options = {};
-    options.headers = {'joolaio-token': 'apitoken-root'};
-    browser.visit('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/api/test/action', options, function () {
-      var result = browser.text();
-      result = JSON.parse(result);
-
-      expect(result.debug.header_token).to.equal('apitoken-root');
-      return done();
-    });
-  });
-
   it("should return 401 error if no token and content-type application/json", function (done) {
     var options = {};
     options.headers = {'content-type': 'application/json'};
@@ -67,49 +38,11 @@ describe("auth", function () {
     });
   });
 
-  xit("should return 200 and login page if no token", function (done) {
-    browser.visit('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/api/test/action', function () {
-      expect(browser.text("title")).to.equal('joola.io - Login');
-      expect(browser.statusCode).to.equal(200);
-      return done();
-    });
-  });
-
-  xit("should allow anonymous access", function (done) {
-    var token = '123';
-    var _store = joola.config.authentication.store;
-    joola.config.authentication.store = 'anonymous';
-    joola.auth.validateToken(token, function (err, token) {
-      if (err)
-        return done(err);
-
-      joola.config.authentication.store = _store;
-      expect(token.user.username).to.equal('anonymous');
-      return done();
-    });
-  });
-
-  xit("should allow bypass access", function (done) {
-    var token = '123';
-    var _bypassToken = joola.config.authentication.bypassToken;
-    var _store = joola.config.authentication.store;
-    joola.config.authentication.store = 'internal';
-    joola.config.authentication.bypassToken = '123';
-    joola.auth.validateToken(token, function (err, token) {
-      if (err)
-        return done(err);
-      joola.config.authentication.store = _store;
-      joola.config.authentication.bypassToken = _bypassToken;
-      expect(token.user.username).to.equal('bypass');
-      return done();
-    });
-  });
-
   it("should generate a valid security token", function (done) {
     var user = {
       username: 'test',
-      _password: 'password',
-      _roles: [],
+      password: 'password',
+      roles: [],
       workspace: this.workspace
     };
     joola.auth.generateToken(user, function (err, token) {
@@ -126,8 +59,8 @@ describe("auth", function () {
   xit("token should expire after 2 seconds", function (done) {
     var user = {
       username: 'test',
-      _password: 'password',
-      _roles: [],
+      password: 'password',
+      roles: [],
       workspace: this.workspace
     };
     var _expireAfter = joola.config.authentication.tokens.expireAfter;
@@ -155,8 +88,8 @@ describe("auth", function () {
   it("should expire a token", function (done) {
     var user = {
       username: 'test',
-      _password: 'password',
-      _roles: [],
+      password: 'password',
+      roles: [],
       workspace: this.workspace
     };
     joola.auth.generateToken(user, function (err, token) {
@@ -170,24 +103,6 @@ describe("auth", function () {
             return done();
 
           return done(new Error('Expected this to fail'));
-        });
-      });
-    });
-  });
-
-  xit("should prevent a expiration tempering", function (done) {
-    var user = {
-      username: 'test',
-      _password: null,
-      _roles: [],
-      workspace: this.workspace
-    };
-    joola.auth.generateToken(user, function (err, token) {
-      token.expires = new Date().getTime();
-      joola.redis.hmset('auth:tokens:' + token._, token, function (err) {
-        joola.auth.validateToken(token, function (err, valid) {
-          expect(err).to.be.ok;
-          done();
         });
       });
     });
@@ -221,12 +136,12 @@ describe("auth", function () {
 
     var user = {
       username: 'tester',
-      _roles: ['root'],
-      workspace: 'root'
+      roles: ['root'],
+      workspace: '_test'
     };
     var req = {
       params: {
-        workspace: 'root'
+        workspace: '_test'
       },
       user: user
     };
@@ -253,7 +168,7 @@ describe("auth", function () {
 
     var req = {
       params: {
-        workspace: 'root'
+        workspace: '_test'
       }
     };
     var res = {};
@@ -281,8 +196,8 @@ describe("auth", function () {
 
     var user = {
       username: 'tester',
-      _roles: ['user'],
-      workspace: 'root'
+      roles: ['user'],
+      workspace: '_test'
     };
     var req = {
       params: {
@@ -314,8 +229,8 @@ describe("auth", function () {
 
     var user = {
       username: 'tester',
-      _roles: ['user'],
-      workspace: 'root'
+      roles: ['root'],
+      workspace: '_test'
     };
     var req = {
       params: {
@@ -368,14 +283,15 @@ describe("auth", function () {
   it("should get a user by token", function (done) {
     var user = {
       username: 'test-' + joola.common.uuid(),
-      _password: '1234',
-      _roles: ['user'],
+      password: '1234',
+      roles: ['user'],
       workspace: 'test-org'
     };
     joola.dispatch.users.add(this.context, this.workspace, user, function (err, _user) {
       joola.auth.generateToken(user, function (err, token) {
         if (err)
           return done(err);
+
         joola.auth.getUserByToken(token._, function (err, _user) {
           if (err)
             return done(err);

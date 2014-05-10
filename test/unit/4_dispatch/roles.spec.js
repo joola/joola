@@ -14,14 +14,14 @@ describe("roles", function () {
   before(function (done) {
     this.context = {user: _token.user};
     this.uid = joola.common.uuid();
-    this.workspace = 'test-org-' + joola.common.uuid();
+    this.workspace = global.workspace;
     done();
   });
 
   it("should add a role", function (done) {
     var role = {
       key: 'test-role-' + this.uid,
-      _permissions: []
+      permissions: []
     };
     joola.dispatch.roles.add(this.context, this.workspace, role, function (err, _role) {
       if (err)
@@ -41,7 +41,7 @@ describe("roles", function () {
   it("should fail adding an existing role", function (done) {
     var role = {
       key: 'test-role-' + this.uid,
-      _permissions: []
+      permissions: []
     };
     joola.dispatch.roles.add(this.context, this.workspace, role, function (err, _role) {
       if (err)
@@ -63,12 +63,12 @@ describe("roles", function () {
     });
   });
 
-  xit("should update a role", function (done) {
+  it("should update a role", function (done) {
     var role = {
       key: 'test-role-' + this.uid,
-      _permissions: ['access_system']
+      permissions: ['access_system']
     };
-    joola.dispatch.roles.update(this.context, this.workspace, role, function (err, _role) {
+    joola.dispatch.roles.patch(this.context, this.workspace, role.key, role, function (err, _role) {
       if (err)
         return done(err);
       expect(_role.permissions.length).to.equal(1);
@@ -79,21 +79,9 @@ describe("roles", function () {
   it("should fail updating unknown role", function (done) {
     var role = {
       key: 'test-role1-' + this.uid,
-      _permissions: ['access_system']
+      permissions: ['access_system']
     };
-    joola.dispatch.roles.update(this.context, this.workspace, role, function (err, _role) {
-      if (err)
-        return done();
-
-      done(new Error('This should have failed'));
-    });
-  });
-
-  it("should fail updating role with incomplete details", function (done) {
-    var role = {
-      key: 'test-role-' + this.uid
-    };
-    joola.dispatch.roles.update(this.context, this.workspace, role, function (err, _role) {
+    joola.dispatch.roles.patch(this.context, this.workspace, role.key, role, function (err, _role) {
       if (err)
         return done();
 
@@ -103,14 +91,12 @@ describe("roles", function () {
 
   it("should delete a role", function (done) {
     var self = this;
-    var role = {
-      key: 'test-role-' + this.uid
-    };
+    var role = 'test-role-' + this.uid;
     joola.dispatch.roles.delete(this.context, this.workspace, role, function (err) {
       if (err)
         return done(err);
 
-      joola.dispatch.roles.get(self.context, self.workspace, role.key, function (err, role) {
+      joola.dispatch.roles.get(self.context, self.workspace, role, function (err, role) {
         if (err)
           return done();
 
