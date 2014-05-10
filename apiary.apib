@@ -216,7 +216,6 @@ Having multiple workspaces is the corner-stone for joola.io's multi-tenancy.
 
         { "message": "workspace [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
-
 ### Update a Workspace [PATCH]
 + Request (application/json)
 
@@ -279,6 +278,8 @@ Notes related resources of the **Collections API**
 | name         | string | A nice display name for the Collection. |
 | description  | string | Collection description.                 |
 | strongTyped  | bool   | Is the collection strong typed?         |
+| dimensions  | array   | Array of dimensions part of the collection         |
+| metrics  | array   | Array of Metrics part of the collection         |
 
 + Parameters
     + workspace (required, string, `demo`) ... The `Workspace` of the collection performing the action.
@@ -287,26 +288,158 @@ Notes related resources of the **Collections API**
 ### List all Collections [GET]
 + Response 200 (application/json)
 
-        [
-          {
-            "key": "demo-visits",
-            "strongTyped": "true",
-            "name": "demo-visits",
-            "description": null
-          },
-          {
-            "key": "demo-clicks",
-            "strongTyped": "true",
-            "name": "demo-clicks",
-            "description": null
-          },
-          {
-            "key": "demo-mousemoves",
-            "strongTyped": "true",
-            "name": "demo-mousemoves",
-            "description": null
-          }
-        ]
+            [
+              {
+                "key": "demo-visits",
+                "strongTyped": "true",
+                "name": "demo-visits",
+                "dimensions": [
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "referrer",
+                    "key": "referrer"
+                  },
+                  {
+                    "datatype": "ip",
+                    "type": "dimension",
+                    "name": "ip",
+                    "key": "ip"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "userid",
+                    "key": "userid"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "os",
+                    "key": "os"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "engine",
+                    "key": "engine"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "browser",
+                    "key": "browser"
+                  },
+                  {
+                    "datatype": "date",
+                    "type": "dimension",
+                    "name": "timestamp",
+                    "key": "timestamp"
+                  }
+                ],
+                "description": ""
+              },
+              {
+                "key": "demo-clicks",
+                "strongTyped": "true",
+                "name": "demo-clicks",
+                "dimensions": [
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "referrer",
+                    "key": "referrer"
+                  },
+                  {
+                    "datatype": "ip",
+                    "type": "dimension",
+                    "name": "ip",
+                    "key": "ip"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "userid",
+                    "key": "userid"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "os",
+                    "key": "os"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "engine",
+                    "key": "engine"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "browser",
+                    "key": "browser"
+                  },
+                  {
+                    "datatype": "date",
+                    "type": "dimension",
+                    "name": "timestamp",
+                    "key": "timestamp"
+                  }
+                ],
+                "description": ""
+              },
+              {
+                "key": "demo-mousemoves",
+                "strongTyped": "true",
+                "name": "demo-mousemoves",
+                "dimensions": [
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "referrer",
+                    "key": "referrer"
+                  },
+                  {
+                    "datatype": "ip",
+                    "type": "dimension",
+                    "name": "ip",
+                    "key": "ip"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "userid",
+                    "key": "userid"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "os",
+                    "key": "os"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "engine",
+                    "key": "engine"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "browser",
+                    "key": "browser"
+                  },
+                  {
+                    "datatype": "date",
+                    "type": "dimension",
+                    "name": "timestamp",
+                    "key": "timestamp"
+                  }
+                ],
+                "description": ""
+              }
+            ]
 
 
 ## Collection [/collections/{workspace}/{key}{?APIToken}]
@@ -321,12 +454,56 @@ Notes related resources of the **Collections API**
 
     + Body
 
-              {
-                "key": "demo-visits",
-                "name": "demo-visits",
-                "strongTyped": "true",
-                "description": ""
-              }
+            {
+              "key": "demo-visits",
+              "name": "demo-visits",
+              "strongTyped": "true",
+              "dimensions": [
+                {
+                  "datatype": "date",
+                  "type": "dimension",
+                  "name": "timestamp",
+                  "key": "timestamp"
+                },
+                {
+                  "datatype": "string",
+                  "type": "dimension",
+                  "name": "browser",
+                  "key": "browser"
+                },
+                {
+                  "datatype": "string",
+                  "type": "dimension",
+                  "name": "engine",
+                  "key": "engine"
+                },
+                {
+                  "datatype": "string",
+                  "type": "dimension",
+                  "name": "os",
+                  "key": "os"
+                },
+                {
+                  "datatype": "string",
+                  "type": "dimension",
+                  "name": "userid",
+                  "key": "userid"
+                },
+                {
+                  "datatype": "ip",
+                  "type": "dimension",
+                  "name": "ip",
+                  "key": "ip"
+                },
+                {
+                  "datatype": "string",
+                  "type": "dimension",
+                  "name": "referrer",
+                  "key": "referrer"
+                }
+              ],
+              "description": ""
+            }
 
 + Response 401 (application/json)
 
@@ -339,6 +516,80 @@ Notes related resources of the **Collections API**
 + Response 500 (application/json)
 
         { "message": "collection [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
+### Update a Collection [PATCH]
++ Request (application/json)
+
+        { "description": "collection description" }
+
++ Response 200
+
+          {
+            "key": "demo-visits",
+            "name": "demo-visits",
+            "strongTyped": "true",
+            "dimensions": [
+              {
+                "datatype": "date",
+                "type": "dimension",
+                "name": "timestamp",
+                "key": "timestamp"
+              },
+              {
+                "datatype": "string",
+                "type": "dimension",
+                "name": "browser",
+                "key": "browser"
+              },
+              {
+                "datatype": "string",
+                "type": "dimension",
+                "name": "engine",
+                "key": "engine"
+              },
+              {
+                "datatype": "string",
+                "type": "dimension",
+                "name": "os",
+                "key": "os"
+              },
+              {
+                "datatype": "string",
+                "type": "dimension",
+                "name": "userid",
+                "key": "userid"
+              },
+              {
+                "datatype": "ip",
+                "type": "dimension",
+                "name": "ip",
+                "key": "ip"
+              },
+              {
+                "datatype": "string",
+                "type": "dimension",
+                "name": "referrer",
+                "key": "referrer"
+              }
+            ],
+            "description": "collection description"
+          }
+
++ Response 401 (application/json)
+
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 403 (application/json)
+
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 415 (application/json)
+
+        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+
++ Response 500 (application/json)
+
+        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
 
 ### Remove a Collection [DELETE]
 + Response 200
@@ -459,7 +710,7 @@ Optional body will compose a joint metadata of collection and document.
 + Response 200 (application/json)
 
     + Body
-    
+
             {
               "key": "dimension-key",
               "name": "dimension key",
@@ -602,7 +853,7 @@ Optional body will compose a joint metadata of collection and document.
 + Response 200 (application/json)
 
     + Body
-    
+
               {
                 "key": "metric-key",
                 "name": "metric key",
@@ -795,7 +1046,7 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 + Parameters
     + workspace (required, string, `demo`) ... String `workspace` of the Workspace containing the Role.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
-    
+
 ### List all Roles [GET]
 + Response 200 (application/json)
 
@@ -884,11 +1135,11 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 + Response 403 (application/json)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
-        
+
 + Response 415 (application/json)
 
         { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
-        
+
 + Response 500 (application/json)
 
         { "message": "role already exists", "documentation_url": "http://github.com/joola/joola.io/wiki" }
@@ -918,7 +1169,7 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 + Response 403 (application/json)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
-        
+
 + Response 500 (application/json)
 
         { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
@@ -927,8 +1178,8 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 + Request (application/json)
 
         { "filter": [["dimension", "eq", "value"]] }
-        
-+ Response 200 
+
++ Response 200
 
         {
           "key": "role-name",
@@ -945,11 +1196,11 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 + Response 403 (application/json)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
-        
+
 + Response 415 (application/json)
 
         { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
-        
+
 + Response 500 (application/json)
 
         { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
@@ -958,7 +1209,7 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 + Response 200
 
         {}
-        
+
 + Response 401 (application/json)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
@@ -1374,7 +1625,7 @@ Permissions are hard-coded string values assigned to each API endpoint. Permissi
 
 + Parameters
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
-    
+
 ### List all Permissions [GET]
 + Response 200 (application/json)
 
@@ -1412,7 +1663,7 @@ Permissions are hard-coded string values assigned to each API endpoint. Permissi
 
 
 # Group Configuration
-joola.io uses a central-configuration store to support a node-based deployment schema. 
+joola.io uses a central-configuration store to support a node-based deployment schema.
 This means that nodes will grab their configuration from central store and that any update to it is propogated to all nodes without a need to restart the service.
 
 Configuration keys are referenced with `:` as a separator, i.e. to change the web server interface port, use `interfaces:webserver:port`.
@@ -1429,7 +1680,7 @@ To learn more about configuration, please refer to the [wiki](http://github.com/
 + Request (application/json)
 
     + Body
-        
+
             {"value": "8080"}
 
 + Response 200 (application/json)
@@ -1449,7 +1700,7 @@ To learn more about configuration, please refer to the [wiki](http://github.com/
         {
           "key": "interfaces:webserver:port",
           "value": "8080"
-        }   
+        }
 
 + Response 401 (application/json)
 
@@ -1463,12 +1714,12 @@ To learn more about configuration, please refer to the [wiki](http://github.com/
 + Request (application/json)
 
     + Body
-        
+
             {
               "key": "interfaces:webserver:port",
               "value": "8080"
-            }  
-            
+            }
+
 + Response 200 (application/json)
 
         {
@@ -1538,7 +1789,7 @@ Print out the unique identifier of the replying node.
 
         {
           "UID": "By8zwB85V"
-        }   
+        }
 
 + Response 401 (application/json)
 
