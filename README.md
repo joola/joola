@@ -38,7 +38,7 @@ $ node ./node_modules/joola.io/joola.io.js
 
 # To connect using CLI
 $ npm install joola.io.cli -g
-$ jio --host=http://localhost:8080 --apitoken=apitoken-root
+$ jio --host=https://localhost:8081 --apitoken=apitoken-demo
 ```
 
 Following the installation, point your browser to `https://localhost:8081` and you'll be able to use the framework.
@@ -49,7 +49,7 @@ Following the installation, point your browser to `https://localhost:8081` and y
 ```js
 var joolaio = require('joola.io.sdk');
 
-joolaio.init({host: 'http://localhost:8080', APIToken: 'apitoken-beacon'}, function(err) {
+joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-beacon'}, function(err) {
   var doc = {
     timestamp: new Date(),
     attribute: 'I\'m an attribute',
@@ -67,7 +67,7 @@ joolaio.init({host: 'http://localhost:8080', APIToken: 'apitoken-beacon'}, funct
 ```html
 <div id="drawhere">
 
-<script src="http://localhost:8080/joola.io.js">
+<script src="https://localhost:8081/joola.io.js">
 <script>
 var joolaio = require('joola.io.sdk');
 
