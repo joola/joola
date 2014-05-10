@@ -6,7 +6,7 @@ Before diving deep into the system, it's best to become familiar with some basic
 joola.io's development process is geared toward a community driven project, so we "broke" the framework into several components that work together.
 Each subsystem is responsible for a different aspect of the framework and it's not a real cut-off project, rather than a logical/semantic distinction.
 
-[Learn more about subsystems](subsystems)
+[Learn more about subsystems](architecture)
 
 ### Collections
 A collection is a data store where documents (the actual bits of data) are persisted into joola.io cache. Collections also contain metadata that

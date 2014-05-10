@@ -10,6 +10,11 @@ services:
   - mongodb
   - rabbitmq
 
+#branches:
+#  only:
+#    - master
+#    - develop
+
 #matrix:
 #  fast_finish: true
 #  allow_failures:
@@ -21,13 +26,21 @@ before_script:
   - sudo service rabbitmq-server restart
   - sudo rabbitmqctl status
   - sudo rabbitmq-plugins list
-  
-script: 'make test-cov'
-after_success: 'make coveralls'
+  - npm install -g dredd
+
+deploy:
+  provider: heroku
+  on: develop
+  app: joola-io-example
+  api_key:
+    secure: u2sgcDddY6is6ZB1q1YsFQwlld0cvsSbfH6UtEVP7QvOeITriv2fauXnt+WTSzLqcLphzFPviUceMP9Qm4FcbKd1+qHHCAtpmZMTx7MXoFjJJXDVYwbL9iQURi5IS6lja8eLSJZk8yonDuWZ6f3babr/iW4o//CalslW5WDwHMs=
+
+script: make test-cov
+after_success:
+  make coveralls
+  make -k test-api
  
 notifications:
-  email:
-    - 'updates@joo.la'
   webhooks:
     urls:
       - https://webhooks.gitter.im/e/c4aa904abf1dabb42f95

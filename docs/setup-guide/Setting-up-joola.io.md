@@ -10,18 +10,11 @@ Setting up joola.io is a five step process:
 
 <a name="step1" />
 ## Step 1: Install joola.io
-
 joola.io is developed using [NodeJS][NodeJS], therefore, before starting you'll need to install node as part of your environment.
 Moving on, you'll need to install [MongoDB][Mongo], [Redis][Redis] and [RabbitMQ][RabbitMQ], these are used by the caching layer.
+We have compiled a more detailed set of instructions that you can find [here](install-joola.io). This might come in handy if you experience issues during the installation process.
 
 Now that we have the pre-requisits done, let's get to the real deal:
-```bash
-$ [sudo] npm install joola.io -g
-$ joola.io --demo
-``` 
-
-This will install joola.io as a global package on the machine. While this is a good solution for most developers, some wish to have side-by-side installations of joola.io running on the same box.
-So, another option is to install a local copy of joola.io.
 ```bash
 $ [sudo] mkdir /opt/joola.io
 $ [sudo] chown $USER /opt/joola.io
@@ -41,62 +34,50 @@ Running joola.io for the first time with default configuration or by specifying 
 with our demo. The demo highlights the different aspects of joola.io and is a great asset as building blocks to your 
 custom joola.io implementation.
 
-Navigate your browser to `http://localhost:8080`. We have a welcome page made up especially for you and it will help you getting around.
+>
+**Note:** Default configuration assumes `localhost` for your pre-requisits, this means that you have Redis, MongoDB, etc... installed on `localhost` using the default configuration.
+If this is not the case, please refer to the [next step](#step-2-setup-system-configuration) of system configuration.
 
-[Learn more about the demo and how to use it](The-Demo)
+Navigate your browser to `https://localhost:8081`. We have a welcome page made up especially for you and it will help you getting around.
 
 <a name="step2" />
 ## Step 2: Setup system configuration
-By now you have joola.io installed and running. Make sure you take a look at the Demo Welcome Page, it should offer a good place to start.
-Configuring the system can be done in two ways, directly editing the JSON configuration file, or by using the management interface, choose your flavor.
+By now you have joola.io installed and running (if you have pre-requisits installed on localhost).
+Make sure you take a look at the Demo Welcome Page, it should offer a good place to start.
+Configuring the system can be done in several ways, by editing the configuration files, by using the API/SDK, or by using cURL, choose your flavor.
 
-#### Interfaces
-joola.io exposes several public interfaces which may be accessible by the developer and/or users.
+#### Configuration Sections
+The configuration file contains several sections needed for the operation of the framework. We've tried to keep it both simple and clear.
 
-The **Web Server** interface provides the system's UI and API endpoints for managing the system on all of 
-its aspects.  
-The **Beacon** interface exposes a set of API endpoints for storing and managing data within joola.io.    
-Lastly, the **REPL** interface provides a `read–eval–print loop` that allows developers to debug joola.io in realtime
- in case needed. 
+##### Interfaces
+The interfaces section covers all required settings for joola.io's public/internal interfaces, for example its webserver.
 
-#### Stores
-joola.io needs uses different stores for its operation, these range from a redis store for configuration to a mongodb
- database used by the caching layer.
+##### Store
+The store section include all configuration needed for the different stores used by the framework, for example Redis.
+You'll notice that each store is named, for example the `config` store and it has a redis configuration section.
+Other stores can point to the same redis, but we wanted to enable developers to customize their deployments by scale and allow different stores to be used.
 
-As you can see from the default configuration shown below, all settings assume `localhost` is running mongodb and 
-redis.
+##### Authentication
+The authentication section contains all relevant configuration for the framework's security and authentication.
 
-```js
-  {
-    "config": {"redis": {"host": "localhost", "port": 6379, "db": 0, "pass": null }},
-    "dispatch": {
-      "redis": {"host": "localhost", "port": 6379, "db": 1, "pass": null},
-      "stomp": {"host": "localhost", "port": 61613, "user": "guest", "pass": "guest"}
-    },
-    "socketio": {"redis": {"host": "localhost", "port": 6379, "db": 2, "pass": null}},
-    "runtime": {"redis": {"host": "localhost", "port": 6379, "db": 3, "pass": null}},
-    "stats": {"mongo": {"host": "localhost", "port": 27017, "user": null, "password": null, "db": "stats"}},
-    "logger": {
-      "mongo": {"level": "trace", "host": "localhost", "port": 27017, "user": null, "password": null, "db": "logger"},
-      "file": {"level": "trace", "path": "/tmp/joola.io/"}
-    },
-    "beacon": {"mongo": {"host": "localhost", "port": 27017, "user": null, "password": null, "db": "beacon"}},
-    "cache": {"mongo": {"host": "localhost", "port": 27017, "user": null, "password": null, "db": "cache"}}
-  }
-```
+##### Dispatch
+The dispatch section contains configuration relevant to the internal messaging system of joola.io ([Dispatch](the-dispatch-subsystem)). You can control timeouts, logic and more.
+
+##### Workspaces
+[Workspaces](Workspaces) contain many artificats used by the system, collections, users, roles and much more.
 
 #### Authentication
 joola.io is a secure framework. Accessing the framework can only be done by pre-defined and allowed users and every action 
 carried out by the system must have a security context associated with it, i.e. which user has asked for the action.
 It is possible to allow `anonymous` access, but this is turned off by default.
 
-The framework ships with a pre-configured user `admin` and the default password of `admin`. We recommend changing the
- default password after the first login. 
+The framework ships with a pre-configured user `demo` and the default password of `password`, it uses the APIToken `apitoken-demo`. We recommend changing the
+ default password and APIToken after the first login.
  
-[Setup your System now!](setting-up-the-system)
+[Configure your System now!](Configuration)
 
 <a name="step3" />
-## Step 3: Define your collections
+## Step 3 (optional): Define your collections
 joola.io is all about providing insight based on your data, but in order to do so it needs to know a few things about 
 your data, you need to describe it for joola.io.
 During this process we'll define collections, dimensions and metrics. Having these defintions allows us to categorize, correlate and map your data into meaningful insight.
@@ -111,7 +92,22 @@ var newCollection = {
   id: 'collection',
   name: 'My First Collection',
   description: 'This is my attempt with creating a collection',
-  type: 'data', dimensions:{"timestamp":{"id":"timestamp","type":"timestamp","mapto":"timestamp"}}, metrics:{"test":{"id":"test","name":"test","type":"int","aggregation":"sum"}}
+  type: 'data',
+    dimensions:{
+      "timestamp":{
+      "id":"timestamp",
+      "type":"timestamp",
+      "mapto":"timestamp"
+    }
+  },
+  metrics:{
+    "test":{
+      "id":"test",
+      "name":"test",
+      "type":"int",
+      "aggregation":"sum"
+    }
+  }
 }
 
 //The actual instruction to add the new collection
@@ -124,7 +120,7 @@ joolaio.dispatch.collections.add(newCollection, function(err, collection) {
 });
 ```
 
-[Setup Collections now!](setting-up-collections)
+[Learn more about Collections](collections)
 
 <a name="step4" />
 ## Step 4: Send your data
@@ -146,36 +142,35 @@ That's it, your data is in joola.io, that's all it takes.
 Now comes the cool part, taking the data we gathered and drawing it on a canvas in different shapes and forms.
 Let's start with a simple query:
 ```js
-	var joolaio = require('joola.io');
+var joolaio = require('joola.io');
 
-	joolaio.dispatch.query.fetch({
-			timeframe:'last_30_minutes',
-			interval: 'second',
-			realtime: true,
-			dimensions: ['timestamp'],
-			metrics: ['x', 'y'],
-			filter: null
-		}, function (err, message) {
-			console.log(err,message);
-		});
+joolaio.dispatch.query.fetch({
+    timeframe:'last_30_minutes',
+    interval: 'second',
+    realtime: true,
+    dimensions: ['timestamp'],
+    metrics: ['x', 'y'],
+    filter: null
+  }, function (err, message) {
+    console.log(err,message);
+  });
 ```
 This will print out a JSON structure full with documents meeting the criteria.
 
 We can also use the above query to draw a timeline visualization of data.
 
 ```js
-	var joolaio = require('joola.io');
-  var query = {
-                timeframe:'last_30_minutes',
-                interval: 'second',
-                realtime: true,
-                dimensions: ['timestamp'],
-                metrics: ['x', 'y'],
-                filter: null
-              };
-              
-	$('<div></div>').Timeline({query: query}).appendTo('body');
-		});
+var joolaio = require('joola.io');
+var query = {
+    timeframe:'last_30_minutes',
+    interval: 'second',
+    realtime: true,
+    dimensions: ['timestamp'],
+    metrics: ['x', 'y'],
+    filter: null
+  };
+
+$('<div></div>').Timeline({query: query}).appendTo('body');
 ```
 
 

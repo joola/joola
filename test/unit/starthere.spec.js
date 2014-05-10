@@ -21,15 +21,17 @@ before(function (done) {
       global.joolaio = joola.sdk;
       global.joola_proxy = joola;
       global.uid = joola.common.uuid();
-      joolaio.init({host: 'http://127.0.0.1:8080', APIToken: 'apitoken-root', debug: {enabled: true}}, function (err) {
+      global.workspace = '_test';
+      joolaio.init({host: 'http://127.0.0.1:8080', APIToken: 'apitoken-test', debug: {enabled: true}}, function (err) {
         if (err)
           return done(err);
-        //joolaio.events.on('ready', function () {
-        joola.auth.generateToken(joolaio.USER, function (err, token) {
-          global._token = token;
-          return done();
-        });
-        //});
+      });
+      joolaio.events.on('ready', function () {
+        global.user = joolaio.USER;
+        global._token = {
+          user: global.user
+        };
+        return done();
       });
     });
   });

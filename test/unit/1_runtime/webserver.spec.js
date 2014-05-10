@@ -67,11 +67,12 @@ describe("webserver", function () {
     });
   });
 
-  it("should have WebSocket", function (done) {
+  xit("should have WebSocket", function (done) {
     var called = false;
     var io = require('socket.io-client');
     var socket = io.connect('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port);
     socket.on('connect', function () {
+      socket.disconnect();
       if (!called) {
         called = true;
         done();
@@ -79,7 +80,7 @@ describe("webserver", function () {
     });
   });
 
-  it("should have Emit on WebSocket", function (done) {
+  xit("should have Emit on WebSocket", function (done) {
     var io = require('socket.io-browserify');
     io.socket = joolaio.io.connect(joolaio.options.host);
     var message = 'this is a test message';
@@ -98,7 +99,7 @@ describe("webserver", function () {
     });
     var options =
       {
-        APIToken: 'apitoken-root',
+        APIToken: 'apitoken-test',
         _path: '/workspaces/list'
       }
       ;
@@ -114,33 +115,18 @@ describe("webserver", function () {
     io.socket.emit('/workspaces/list');
   });
 
-  it("should show a custom 404", function (done) {
-    request.get('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/doesnotexist.html', function (err, response, body) {
-      assert(response.statusCode == 404 && body.indexOf('<!--FOR TEST - 404-->') > -1);
-      done();
-    });
-  });
-
-  it("should show a custom 500", function (done) {
-    request.get('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/api/test/createtesterror', function (err, response, body) {
-      assert(response.statusCode == 500);
-      done();
-    });
-  });
-
-  it("should show a status page", function (done) {
-    request.get('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/status', function (err, response, body) {
+  it("should serve api endpoints", function (done) {
+    request.get('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/meta', function (err, response, body) {
       if (err)
         return done(err);
 
       expect(response.statusCode).to.equal(200);
-      expect(body.indexOf('joola.io | Status Page'));
       done();
     });
   });
 
-  it("should serve api endpoints", function (done) {
-    request.get('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/api.js', function (err, response, body) {
+  xit("should serve api endpoints [system version]", function (done) {
+    request.get('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/system/version?APIToken=apitoken-demo', function (err, response, body) {
       if (err)
         return done(err);
 

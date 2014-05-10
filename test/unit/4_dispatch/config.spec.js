@@ -18,12 +18,12 @@ describe("config", function () {
       if (err)
         return done(err);
 
-      expect(value).to.equal('test');
+      expect(value.value).to.equal('test');
       return done();
     });
   });
 
-  xit("should get all config", function (done) {
+  it("should get all config", function (done) {
     joola.dispatch.config.get(this.context, '*', function (err, config) {
       if (err)
         return done(err);
