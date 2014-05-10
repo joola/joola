@@ -42,7 +42,8 @@ $ curl -i -k  https://localhost:8081/system/version?APIToken=apitoken-demo
 HTTP/1.1 200 OK
 Server: joola.io
 Access-Control-Allow-Credentials: true
-Access-Control-Expose-Headers: ETag, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+Access-Control-Expose-Headers: ETag, X-RateLimit-Limit, X-RateLimit-Remaining,
+  X-RateLimit-Reset
 X-JoolaIO-Request-Id: 87IpUGxDQ:1399738779977:0xOC0CqXB
 X-Powered-By: joola.io
 X-RateLimit-Limit: 5000
