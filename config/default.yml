@@ -93,6 +93,7 @@ workspaces:
           - "workspaces:add"
           - "workspaces:patch"
           - "workspaces:delete"
+          - "collections:list"
         filter: []
     users:
       root:
@@ -267,21 +268,23 @@ workspaces:
         key: "root"
         permissions:
           - "access_system"
-          - "manage_system"
-          - "manage_users"
-          - "beacon_insert"
-          - "query_fetch"
           - "workspaces:list"
           - "workspaces:get"
           - "workspaces:add"
           - "workspaces:patch"
           - "workspaces:delete"
+          - "config:get"
+          - "config:set"
+          - "permissions:list"
+          - "permissions:get"
           - "collections:list"
           - "collections:get"
           - "collections:add"
           - "collections:patch"
           - "collections:delete"
           - "collections:metadata"
+          - "collections:mindate"
+          - "collections:maxdate"
           - "dimensions:list"
           - "dimensions:add"
           - "dimensions:get"
@@ -306,6 +309,11 @@ workspaces:
           - "users:validateToken"
           - "users:expireToken"
           - "users:permissions"
+          - "system:nodeuid"
+          - "system:nodedetails"
+          - "system:terminate"
+          - "system:purgeCache"
+          - "system:roundtrip"
           - "misc:see_private"
         filter: []
       user:
