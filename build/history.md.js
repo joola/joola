@@ -13,14 +13,14 @@ var github = new GitHubApi({
 
 var REPO = 'joola.io';
 var USER = 'joola';
+var TAG = ['v0.5.0', 'v0.4.1', 'v0.4.0'];
 
 /*
---optional
-github.authenticate({
-  type: 'oauth',
-  token: 'yourtoken'
-});
-*/
+ github.authenticate({
+ type: 'oauth',
+ token: 'token'
+ });
+ */
 
 var MDContent = '';
 var calls = [];
@@ -28,14 +28,19 @@ github.repos.getTags({user: USER, repo: REPO}, function (err, tags) {
   if (err)
     throw err;
 
+  if (TAG)
+    tags = TAG;
+
   github.issues.getAllMilestones({user: USER, repo: REPO, state: 'closed'}, function (err, milestones) {
     if (err)
       throw err;
     tags.forEach(function (tag) {
       var milestone = _.find(milestones, function (m) {
-        return m.title === tag.name;
+        console.log(m.title, tag, (typeof tag === 'object' ? tag.name : tag));
+        return m.title === (typeof tag === 'object' ? tag.name : tag);
       });
       if (milestone) {
+        console.log(milestone);
         var call = function (callback) {
           github.issues.repoIssues({user: USER, repo: REPO, state: 'closed', milestone: milestone.number}, function (err, issues) {
             if (err)
