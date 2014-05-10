@@ -176,7 +176,7 @@ describe("collections", function () {
   it("should get a collection meta data", function (done) {
     var self = this;
     var document = require('../../fixtures/basic.json')[0];
-    joola_proxy.dispatch.collections.metadata(self.context, self.context.user.workspace, document, self.collection, function (err, meta) {
+    joola_proxy.dispatch.collections.metadata(self.context, self.context.user.workspace, self.collection, document, function (err, meta) {
       if (err)
         return done(err);
 

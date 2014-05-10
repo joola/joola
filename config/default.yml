@@ -289,6 +289,7 @@ workspaces:
           - "users:generateToken"
           - "users:validateToken"
           - "users:expireToken"
+          - "users:permissions"
           - "misc:see_private"
         filter: []
       user:
