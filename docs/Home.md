@@ -11,9 +11,9 @@ If this is your first time hearing about joola.io, we recommend starting with th
 
 ###Quick navigation
 
-| **[Technical Docs] [techdocs]**     | **[Setup Guide] [setup]**     | **[SDK] [sdk-docs]**           | **[Contributing] [contributing]**           | **[About joola.io] [about]**     |
+| **[Tech Docs] [techdocs]**     | **[Setup Guide] [setup]**     | **[API Docs] [api-docs]**           | **[Contributing] [contributing]**           | **[About] [about]**     |
 |-------------------------------------|-------------------------------|-----------------------------------|---------------------------------------------|-------------------------------------|
-| [![i1] [techdocs-image]] [techdocs] | [![i2] [setup-image]] [setup] | [![i3] [sdk-docs-image]] [sdk-docs] | [![i4] [contributing-image]] [contributing] | [![i5] [about-image]] [about] |
+| [![i1] [techdocs-image]] [techdocs] | [![i2] [setup-image]] [setup] | [![i3] [api-docs-image]] [api-docs] | [![i4] [contributing-image]] [contributing] | [![i5] [about-image]] [about] |
 
 
 [website]: http://joola.io
@@ -24,14 +24,14 @@ If this is your first time hearing about joola.io, we recommend starting with th
 [about-image]: https://raw.github.com/joola/joola.io/develop/docs/images/about.png
 [techdocs-image]: https://raw.github.com/joola/joola.io/develop/docs/images/techdocs.png
 [setup-image]: https://raw.github.com/joola/joola.io/develop/docs/images/setup.png
-[sdk-docs-image]: https://raw.github.com/joola/joola.io/develop/docs/images/roadmap.png
+[api-docs-image]: https://raw.github.com/joola/joola.io/develop/docs/images/roadmap.png
 [contributing-image]: https://raw.github.com/joola/joola.io/develop/docs/images/contributing.png
 [issues-image]: https://raw.github.com/joola/joola.io/develop/docs/images/issues.png
 
 [about]: https://github.com/joola/joola.io/wiki/joola.io-overview
 [techdocs]: https://github.com/joola/joola.io/wiki/Technical-documentation
 [setup]: https://github.com/joola/joola.io/wiki/Setting-up-joola.io
-[sdk-docs]: https://github.com/joola/joola.io/wiki/sdk
+[api-docs]: http://docs.joolaio.apiary.io/
 [contributing]: https://github.com/joola/joola.io/wiki/Contributing
 [issues]: https://github.com/joola/joola.io/issues
 

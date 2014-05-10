@@ -12,15 +12,9 @@ Setting up joola.io is a five step process:
 ## Step 1: Install joola.io
 joola.io is developed using [NodeJS][NodeJS], therefore, before starting you'll need to install node as part of your environment.
 Moving on, you'll need to install [MongoDB][Mongo], [Redis][Redis] and [RabbitMQ][RabbitMQ], these are used by the caching layer.
+We have compiled a more detailed set of instructions that you can find [here](install-joola.io). This might come in handy if you experience issues during the installation process.
 
 Now that we have the pre-requisits done, let's get to the real deal:
-```bash
-$ [sudo] npm install joola.io -g
-$ joola.io --demo
-``` 
-
-This will install joola.io as a global package on the machine. While this is a good solution for most developers, some wish to have side-by-side installations of joola.io running on the same box.
-So, another option is to install a local copy of joola.io.
 ```bash
 $ [sudo] mkdir /opt/joola.io
 $ [sudo] chown $USER /opt/joola.io
@@ -44,15 +38,13 @@ custom joola.io implementation.
 **Note:** Default configuration assumes `localhost` for your pre-requisits, this means that you have Redis, MongoDB, etc... installed on `localhost` using the default configuration.
 If this is not the case, please refer to the [next step](#step-2-setup-system-configuration) of system configuration.
 
-Navigate your browser to `http://localhost:8080`. We have a welcome page made up especially for you and it will help you getting around.
-
-[Learn more about the demo and how to use it](The-Demo)
+Navigate your browser to `https://localhost:8081`. We have a welcome page made up especially for you and it will help you getting around.
 
 <a name="step2" />
 ## Step 2: Setup system configuration
 By now you have joola.io installed and running (if you have pre-requisits installed on localhost).
 Make sure you take a look at the Demo Welcome Page, it should offer a good place to start.
-Configuring the system can be done in several ways, by editing the configuration files, by using the API/SDK, or by using the management interface, choose your flavor.
+Configuring the system can be done in several ways, by editing the configuration files, by using the API/SDK, or by using cURL, choose your flavor.
 
 #### Configuration Sections
 The configuration file contains several sections needed for the operation of the framework. We've tried to keep it both simple and clear.
@@ -79,13 +71,13 @@ joola.io is a secure framework. Accessing the framework can only be done by pre-
 carried out by the system must have a security context associated with it, i.e. which user has asked for the action.
 It is possible to allow `anonymous` access, but this is turned off by default.
 
-The framework ships with a pre-configured user `root` and the default password of `password`. We recommend changing the
- default password after the first login. 
+The framework ships with a pre-configured user `demo` and the default password of `password`, it uses the APIToken `apitoken-demo`. We recommend changing the
+ default password and APIToken after the first login.
  
 [Configure your System now!](Configuration)
 
 <a name="step3" />
-## Step 3: Define your collections
+## Step 3 (optional): Define your collections
 joola.io is all about providing insight based on your data, but in order to do so it needs to know a few things about 
 your data, you need to describe it for joola.io.
 During this process we'll define collections, dimensions and metrics. Having these defintions allows us to categorize, correlate and map your data into meaningful insight.
@@ -100,7 +92,22 @@ var newCollection = {
   id: 'collection',
   name: 'My First Collection',
   description: 'This is my attempt with creating a collection',
-  type: 'data', dimensions:{"timestamp":{"id":"timestamp","type":"timestamp","mapto":"timestamp"}}, metrics:{"test":{"id":"test","name":"test","type":"int","aggregation":"sum"}}
+  type: 'data',
+    dimensions:{
+      "timestamp":{
+      "id":"timestamp",
+      "type":"timestamp",
+      "mapto":"timestamp"
+    }
+  },
+  metrics:{
+    "test":{
+      "id":"test",
+      "name":"test",
+      "type":"int",
+      "aggregation":"sum"
+    }
+  }
 }
 
 //The actual instruction to add the new collection
@@ -113,7 +120,7 @@ joolaio.dispatch.collections.add(newCollection, function(err, collection) {
 });
 ```
 
-[Setup Collections now!](setting-up-collections)
+[Learn more about Collections](collections)
 
 <a name="step4" />
 ## Step 4: Send your data
@@ -135,36 +142,35 @@ That's it, your data is in joola.io, that's all it takes.
 Now comes the cool part, taking the data we gathered and drawing it on a canvas in different shapes and forms.
 Let's start with a simple query:
 ```js
-	var joolaio = require('joola.io');
+var joolaio = require('joola.io');
 
-	joolaio.dispatch.query.fetch({
-			timeframe:'last_30_minutes',
-			interval: 'second',
-			realtime: true,
-			dimensions: ['timestamp'],
-			metrics: ['x', 'y'],
-			filter: null
-		}, function (err, message) {
-			console.log(err,message);
-		});
+joolaio.dispatch.query.fetch({
+    timeframe:'last_30_minutes',
+    interval: 'second',
+    realtime: true,
+    dimensions: ['timestamp'],
+    metrics: ['x', 'y'],
+    filter: null
+  }, function (err, message) {
+    console.log(err,message);
+  });
 ```
 This will print out a JSON structure full with documents meeting the criteria.
 
 We can also use the above query to draw a timeline visualization of data.
 
 ```js
-	var joolaio = require('joola.io');
-  var query = {
-                timeframe:'last_30_minutes',
-                interval: 'second',
-                realtime: true,
-                dimensions: ['timestamp'],
-                metrics: ['x', 'y'],
-                filter: null
-              };
-              
-	$('<div></div>').Timeline({query: query}).appendTo('body');
-		});
+var joolaio = require('joola.io');
+var query = {
+    timeframe:'last_30_minutes',
+    interval: 'second',
+    realtime: true,
+    dimensions: ['timestamp'],
+    metrics: ['x', 'y'],
+    filter: null
+  };
+
+$('<div></div>').Timeline({query: query}).appendTo('body');
 ```
 
 

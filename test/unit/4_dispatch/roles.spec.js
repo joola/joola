@@ -21,8 +21,9 @@ describe("roles", function () {
   it("should add a role", function (done) {
     var role = {
       key: 'test-role-' + this.uid,
-      permissions: []
+      permissions: ['guest']
     };
+
     joola.dispatch.roles.add(this.context, this.workspace, role, function (err, _role) {
       if (err)
         return done(err);
@@ -41,7 +42,7 @@ describe("roles", function () {
   it("should fail adding an existing role", function (done) {
     var role = {
       key: 'test-role-' + this.uid,
-      permissions: []
+      permissions: ['guest']
     };
     joola.dispatch.roles.add(this.context, this.workspace, role, function (err, _role) {
       if (err)
@@ -66,7 +67,7 @@ describe("roles", function () {
   it("should update a role", function (done) {
     var role = {
       key: 'test-role-' + this.uid,
-      permissions: ['access_system']
+      permissions: ['guest']
     };
     joola.dispatch.roles.patch(this.context, this.workspace, role.key, role, function (err, _role) {
       if (err)
@@ -79,7 +80,7 @@ describe("roles", function () {
   it("should fail updating unknown role", function (done) {
     var role = {
       key: 'test-role1-' + this.uid,
-      permissions: ['access_system']
+      permissions: ['guest']
     };
     joola.dispatch.roles.patch(this.context, this.workspace, role.key, role, function (err, _role) {
       if (err)

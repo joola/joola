@@ -2,9 +2,23 @@
 
 The technical documentation review the joola.io architecture, know-how and details breakdown of internal processes.
 
+## Getting Started
+- [Setup joola.io](setting-up-joola.io)
+- [Push Data](pushing-data)
+- [Query, Analyze and Visualize](analytics-and-visualization)
+
+#### Useful Resources
+- [[Basic Concepts]]
+- [API Documentation](api-documentation)
+- [[Using the SDK]]
+- [[Examples]]
+- [[Workshops]]
+- [[Labs]]
+
 ## Architecture
 We've tried to keep things simple and divided the framework into the listed logical entities, each is aimed at serving a different aspect of the framework.
 
+- [Overview](architecture) - Internal processes
 - [Core](The-Core-Subsystem) - Internal processes
 - [Common](The-Common-Subsystem) - Shared modules and code
 - [Dispatch](The-Dispatch-Subsystem) - The grid messaging system
@@ -13,21 +27,6 @@ We've tried to keep things simple and divided the framework into the listed logi
 - [Authentication](The-Authentication-Subsystem) - All authentication aspects of the framework
 - [Web Server](The-Webserver-Subsystem) - Serves web content to end users
 - [SDK](The-SDK-Subsystem) - Used to communicate with joola.io framework and manage it
-
-## Getting Started
-- [Step 1. Setup joola.io](setting-up-joola.io)
-- [Step 2. Push Your Data](pushing-data)
-- [Step 3. Query, Analyze and Visualize](analytics-and-visualization)
-- [Step 4. Even more...](using-joola.io)
-
-#### Useful Resources
-- [[Using the SDK]]
-- [[Basic Concepts]]
-- [[Examples]]
-- [[Workshops]]
-- [[Labs]]
-- [[Troubleshooting]]
-- [[FAQ]]
 
 ## The Development Process
 We aim to create the world's best mass-scale data analytics framework and for that, we need to have a solid and robust development process.
@@ -42,4 +41,4 @@ This section describes the process and protocols we use throughout the developme
 - [Roadmap](product-roadmap)
 
 ## Code documentation
-This wiki also includes a [_jsdoc_ section](code-documentation), in which code comments are taken directly from the source and published to the wiki in a formatted manner.
+This wiki also includes [REST API documentation](api-documentation).
