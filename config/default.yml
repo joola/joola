@@ -1,8 +1,8 @@
-version: 0.0.11
+version: 0.0.13
 interfaces:
   webserver:
     enabled: true
-    host: joola.io #used for response-header [Server]
+    host: localhost #used for response-header [Server]
     bind: 0.0.0.0
     port: 8080
     securePort: 8081
