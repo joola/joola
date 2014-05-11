@@ -4,10 +4,10 @@ interfaces:
     enabled: true
     host: joola.io #used for response-header [Server]
     bind: 0.0.0.0
-    port: 8081
-    securePort: 8080
+    port: 8080
+    securePort: 8081
     secure: true
-    secureOnly: true
+    secureOnly: false
     keyFile: ./config/certs/localhost.key
     certFile: ./config/certs/localhost.csr
     websocket:
