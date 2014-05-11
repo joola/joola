@@ -1,12 +1,13 @@
-version: 0.0.10
+version: 0.0.11
 interfaces:
   webserver:
     enabled: true
     host: joola.io #used for response-header [Server]
     bind: 0.0.0.0
-    port: 8080
-    securePort: 8081
+    port: 8081
+    securePort: 8080
     secure: true
+    secureOnly: true
     keyFile: ./config/certs/localhost.key
     certFile: ./config/certs/localhost.csr
     websocket:
