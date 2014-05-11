@@ -16,13 +16,13 @@ const VERSION = '0.0.1';
 var results = {};
 results.benchmarkID = common.uuid();
 results.timestamp = new Date();
-results.flows =[];
+results.flows = [];
 results.flowCount = flows.length;
 
 var actual = 0;
 
 var joolaio = require('joola.io.sdk');
-joolaio.init({host: JOOLA_ADDRESS, APIToken: 'apitoken-root', ajax: true}, function (err) {
+joolaio.init({host: JOOLA_ADDRESS, APIToken: 'apitoken-demo'}, function (err) {
   if (err)
     throw err;
 
@@ -60,7 +60,7 @@ joolaio.init({host: JOOLA_ADDRESS, APIToken: 'apitoken-root', ajax: true}, funct
 
   function alldone() {
     console.log(util.inspect(results, {depth: null, colors: true}));
-    joolaio.beacon.insert('benchmark', results, function (err) {
+    joolaio.beacon.insert('benchmark', results, {}, function (err) {
       if (err)
         throw err;
       process.exit(0);

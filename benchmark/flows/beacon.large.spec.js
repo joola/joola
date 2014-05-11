@@ -10,7 +10,7 @@ module.exports = {
     before: [],      // operations to do before anything
     beforeMain: [],  // operations to do before each iteration
     main: [  // the main flow for each iteration, #{INDEX} is unique iteration counter token
-      { post: JOOLA_ADDRESS + '/api/beacon/insert?APIToken=apitoken-root', json: require('../../test/fixtures/benchmark.json')}
+      { post: JOOLA_ADDRESS + '/beacon/demo/benchmark?APIToken=apitoken-demo', json: require('../../test/fixtures/benchmark.json')}
     ],
     afterMain: [],   // operations to do after each iteration
     after: []        // operations to do after everything is done

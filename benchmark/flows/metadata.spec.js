@@ -10,7 +10,7 @@ module.exports = {
     before: [],      // operations to do before anything
     beforeMain: [],  // operations to do before each iteration
     main: [  // the main flow for each iteration, #{INDEX} is unique iteration counter token
-      { get: JOOLA_ADDRESS + '/api/system/nodeDetails?APIToken=apitoken-root' }
+      { get: JOOLA_ADDRESS + '/system/nodeDetails?APIToken=apitoken-demo' }
     ],
     afterMain: [],   // operations to do after each iteration
     after: []        // operations to do after everything is done
