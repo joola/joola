@@ -5,3 +5,7 @@ lib-cov
 coverage
 
 .*
+
+config/runtime.json
+
+apiary.out.html

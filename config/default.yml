@@ -1,0 +1,504 @@
+version: 0.0.10
+interfaces:
+  webserver:
+    enabled: true
+    host: joola.io #used for response-header [Server]
+    bind: 0.0.0.0
+    port: 8080
+    securePort: 8081
+    secure: true
+    keyFile: ./config/certs/localhost.key
+    certFile: ./config/certs/localhost.csr
+    websocket:
+      enabled: true
+    sessionDurtaion: 1200000
+    timeout: 60000
+    blacklist: null
+    allowOrigin: null
+    headers:
+      X-Powered-By: joola.io
+  repl:
+    enabled: true
+    port: 1337
+store:
+  config:
+    redis:
+      dsn: redis://127.0.0.1
+      ## if dsn not specific then these are required
+      # host: 127.0.0.1
+      # port: 6379
+      # db: 0
+      # auth: null
+  dispatch:
+    redis:
+      dsn: redis://127.0.0.1
+    stomp:
+      dsn: stomp://guest:guest@127.0.0.1:61613
+      # if dsn not specific then these are required
+      # host: 127.0.0.1
+      # port: 61613
+      # user: guest
+      # pass: guest
+  logger:
+    console:
+      level: trace
+    # loggly:
+      # level: trace
+      # token: your-api-token
+      # domain: loggly-subdomain
+    mongo:
+      level: trace
+      dsn: mongodb://localhost:27017/logger
+      # if dsn not specific then these are required
+      host: 127.0.0.1
+      port: 27017
+      user: null
+      password: null
+      db: logger
+      options:
+        capped: true
+        size: 10240000
+      unique: false
+      expireAfterSeconds: 3600
+    file:
+      level: trace
+      path: /tmp/joola.io/
+  cache:
+    mongo:
+      dsn: mongodb://localhost:27017/cache
+      expireAfterSeconds: 0
+dispatch:
+    expires: 60
+authentication:
+  tokens:
+    expireAfter: 1200000
+#sdk:
+  # url: https://raw.githubusercontent.com/joola/joola.io.sdk/feature/%2376/bin/joola.io.js
+workspaces:
+  _test:
+    key: _test
+    name: joola.io Framework Tests
+    description: Workspace for internal joola.io tests
+    roles:
+      root:
+        key: "root"
+        permissions:
+          - "beacon:insert"
+          - "query:fetch"
+          - "workspaces:list"
+          - "workspaces:get"
+          - "workspaces:add"
+          - "workspaces:patch"
+          - "workspaces:delete"
+          - "collections:list"
+        filter: []
+    users:
+      root:
+        username: "root"
+        password: "password"
+        roles:
+          - "root"
+        displayName: "Administrator"
+        APIToken: "apitoken-test"
+        rateLimit: 5000
+  _stats:
+    key: _stats
+    name: Internal Stats
+    description: Stores internal statistics of joola.io
+    roles:
+      beacon:
+        key: "beacon"
+        permissions:
+          - "beacon_insert"
+        filter: []
+    users:
+      root:
+        username: "stats-beacon"
+        password: "password"
+        roles:
+          - "beacon"
+        displayName: "Stats Beacon"
+        APIToken: "apitoken-stats"
+        rateLimit: 5000
+    collections:
+      stats-node-count:
+        key: "stats-node-count"
+        name: "stats-node-count"
+        strongTyped: true
+        expireAfterSeconds: 3600
+        timestamp:
+          datatype: "date"
+          type: "dimension"
+          name: "timestamp"
+          key: "timestamp"
+        node:
+          datatype: "string"
+          type: "dimension"
+          name: "node"
+          key: "node"
+        event:
+          datatype: "string"
+          type: "dimension"
+          name: "event"
+          key: "event"
+        nodes:
+          datatype: "number"
+          type: "metric"
+          name: "nodes"
+          key: "nodes"
+      stats-token-count:
+        key: "stats-token-count"
+        name: "stats-token-count"
+        strongTyped: true
+        expireAfterSeconds: 3600
+        timestamp:
+          datatype: "date"
+          type: "dimension"
+          name: "timestamp"
+          key: "timestamp"
+        node:
+          datatype: "string"
+          type: "dimension"
+          name: "node"
+          key: "node"
+        event:
+          datatype: "string"
+          type: "dimension"
+          name: "event"
+          key: "event"
+        tokens:
+          datatype: "number"
+          type: "metric"
+          name: "tokens"
+          key: "tokens"
+      stats-usage:
+        key: "stats-usage"
+        name: "stats-usage"
+        strongTyped: true
+        expireAfterSeconds: 3600
+        timestamp:
+          datatype: "date"
+          type: "dimension"
+          name: "timestamp"
+          key: "timestamp"
+        node:
+          datatype: "string"
+          type: "dimension"
+          name: "node"
+          key: "node"
+        event:
+          datatype: "string"
+          type: "dimension"
+          name: "event"
+          key: "event"
+        cpu:
+          datatype: "number"
+          type: "metric"
+          name: "cpu"
+          key: "cpu"
+        mem:
+          datatype: "number"
+          type: "metric"
+          name: "mem"
+          key: "mem"
+      stats-events-request:
+        key: "stats-events-request"
+        name: "stats-events-request"
+        strongTyped: true
+        expireAfterSeconds: 3600
+        timestamp:
+          datatype: "date"
+          type: "dimension"
+          name: "timestamp"
+          key: "timestamp"
+        node:
+          datatype: "string"
+          type: "dimension"
+          name: "node"
+          key: "node"
+        event:
+          datatype: "string"
+          type: "dimension"
+          name: "event"
+          key: "event"
+        events:
+          datatype: "number"
+          type: "metric"
+          name: "events"
+          key: "events"
+      stats-events-fulfilled:
+        key: "stats-events-fulfilled"
+        name: "stats-events-fulfilled"
+        strongTyped: true
+        expireAfterSeconds: 3600
+        timestamp:
+          datatype: "date"
+          type: "dimension"
+          name: "timestamp"
+          key: "timestamp"
+        node:
+          datatype: "string"
+          type: "dimension"
+          name: "node"
+          key: "node"
+        event:
+          datatype: "string"
+          type: "dimension"
+          name: "event"
+          key: "event"
+        fulfilled:
+          datatype: "number"
+          type: "metric"
+          name: "fulfilled"
+          key: "fulfilled"
+        fulfilledtime:
+          datatype: "number"
+          type: "metric"
+          name: "fulfilledtime"
+          key: "fulfilledtime"
+  demo:
+    key: demo
+    name: Demo Workspace
+    description: A starter/playground workpsace 
+    roles:
+      root:
+        key: "root"
+        permissions:
+          - "access_system"
+          - "workspaces:list"
+          - "workspaces:get"
+          - "workspaces:add"
+          - "workspaces:patch"
+          - "workspaces:delete"
+          - "config:get"
+          - "config:set"
+          - "permissions:list"
+          - "permissions:get"
+          - "collections:list"
+          - "collections:get"
+          - "collections:add"
+          - "collections:patch"
+          - "collections:delete"
+          - "collections:metadata"
+          - "collections:mindate"
+          - "collections:maxdate"
+          - "dimensions:list"
+          - "dimensions:add"
+          - "dimensions:get"
+          - "dimensions:patch"
+          - "dimensions:delete"
+          - "metrics:list"
+          - "metrics:add"
+          - "metrics:get"
+          - "metrics:patch"
+          - "metrics:delete"
+          - "roles:list"
+          - "roles:get"
+          - "roles:add"
+          - "roles:patch"
+          - "roles:delete"
+          - "users:list"
+          - "users:get"
+          - "users:add"
+          - "users:patch"
+          - "users:delete"
+          - "users:generateToken"
+          - "users:validateToken"
+          - "users:expireToken"
+          - "users:permissions"
+          - "beacon:insert"
+          - "query:fetch"
+          - "system:nodeuid"
+          - "system:nodedetails"
+          - "system:terminate"
+          - "system:purgeCache"
+          - "system:roundtrip"
+          - "misc:see_private"
+        filter: []
+      user:
+        key: "user"
+        permissions:
+          - "guest"
+        filter: []
+      beacon:
+        key: "user"
+        permissions:
+          - "beacon:insert"
+          - "query:fetch"
+        filter: []
+      reader:
+        key: "user"
+        permissions:
+          - "beacon:insert"
+          - "query:fetch"
+        filter: []
+    users:
+      root:
+        username: "root"
+        password: "password"
+        roles:
+          - "root"
+        displayName: "Administrator"
+        APIToken: "apitoken-demo"
+        rateLimit: 5000
+        filter: []
+      beacon:
+        username: "beacon"
+        password: "password"
+        roles:
+          - "beacon"
+        displayName: "Beacon"
+        APIToken: "apitoken-beacon"
+      reader:
+        username: "reader"
+        password: "password"
+        roles:
+          - "reader"
+        displayName: "Reader"
+        APIToken: "apitoken-reader"
+    collections:
+      demo-visits:
+        key: "demo-visits"
+        name: "demo-visits"
+        strongTyped: true
+        timestamp:
+          datatype: "date"
+          type: "dimension"
+          name: "timestamp"
+          key: "timestamp"
+        browser:
+          datatype: "string"
+          type: "dimension"
+          name: "browser"
+          key: "browser"
+        engine:
+          datatype: "string"
+          type: "dimension"
+          name: "engine"
+          key: "engine"
+        os:
+          datatype: "string"
+          type: "dimension"
+          name: "os"
+          key: "os"
+        userid:
+          datatype: "string"
+          type: "dimension"
+          name: "userid"
+          key: "userid"
+        ip:
+          datatype: "ip"
+          type: "dimension"
+          name: "ip"
+          key: "ip"
+        referrer:
+          datatype: "string"
+          type: "dimension"
+          name: "referrer"
+          key: "referrer"
+        visits:
+          datatype: "number"
+          type: "metric"
+          name: "visits"
+          key: "visits"
+          min: 0
+          max: 1
+        loadtime:
+          datatype: "number"
+          type: "metric"
+          name: "loadtime"
+          key: "loadtime"
+          min: 0
+          max: 10000
+      demo-clicks:
+        key: "demo-clicks"
+        name: "demo-clicks"
+        strongTyped: true
+        timestamp:
+          datatype: "date"
+          type: "dimension"
+          name: "timestamp"
+          key: "timestamp"
+        browser:
+          datatype: "string"
+          type: "dimension"
+          name: "browser"
+          key: "browser"
+        engine:
+          datatype: "string"
+          type: "dimension"
+          name: "engine"
+          key: "engine"
+        os:
+          datatype: "string"
+          type: "dimension"
+          name: "os"
+          key: "os"
+        userid:
+          datatype: "string"
+          type: "dimension"
+          name: "userid"
+          key: "userid"
+        ip:
+          datatype: "ip"
+          type: "dimension"
+          name: "ip"
+          key: "ip"
+        referrer:
+          datatype: "string"
+          type: "dimension"
+          name: "referrer"
+          key: "referrer"
+        clicks:
+          datatype: "number"
+          type: "metric"
+          name: "clicks"
+          key: "clicks"
+          min: 0
+          max: 1
+      demo-mousemoves:
+        key: "demo-mousemoves"
+        name: "demo-mousemoves"
+        strongTyped: true
+        timestamp:
+          datatype: "date"
+          type: "dimension"
+          name: "timestamp"
+          key: "timestamp"
+        browser:
+          datatype: "string"
+          type: "dimension"
+          name: "browser"
+          key: "browser"
+        engine:
+          datatype: "string"
+          type: "dimension"
+          name: "engine"
+          key: "engine"
+        os:
+          datatype: "string"
+          type: "dimension"
+          name: "os"
+          key: "os"
+        userid:
+          datatype: "string"
+          type: "dimension"
+          name: "userid"
+          key: "userid"
+        ip:
+          datatype: "ip"
+          type: "dimension"
+          name: "ip"
+          key: "ip"
+        referrer:
+          datatype: "string"
+          type: "dimension"
+          name: "referrer"
+          key: "referrer"
+        mousemoves:
+          datatype: "number"
+          type: "metric"
+          name: "mousemoves"
+          key: "mousemoves"
+          min: 0
+          max: 1000

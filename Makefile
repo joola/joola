@@ -23,6 +23,8 @@ lint:
 doc:
 		find ./wiki/* ! -iregex '(.git|.npm)' | xargs rm -fr
 		node build/docs.js
+		tail -n +4 ./apiary.apib > ./wiki/technical-documentation/code/API-Documentation.md
+		sed -i '1i**View a live version of this page @ [http://docs.joolaio.apiary.io](http://docs.joolaio.apiary.io)**\n' ./wiki/technical-documentation/code/API-Documentation.md
 
 test-cov:
 		$(MAKE) lint
@@ -36,6 +38,13 @@ istanbul:
 
 coveralls:
 		cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+
+test-api:
+		redis-cli flushall
+		node joola.io.js &
+		sleep 2
+		-dredd -d -r html -o apiary.out.html apiary.apib http://localhost:8080
+		killall -9 node
 
 .PHONY: test
 
