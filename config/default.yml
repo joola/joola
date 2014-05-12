@@ -1,4 +1,4 @@
-version: 0.0.11
+version: 0.0.16
 interfaces:
   webserver:
     enabled: true
@@ -40,6 +40,15 @@ store:
       # port: 61613
       # user: guest
       # pass: guest
+  websocket:
+    http:
+      redis:
+        dsn: redis://127.0.0.1
+        db: 0
+    https:
+      redis:
+        dsn: redis://127.0.0.1
+        db: 1       
   logger:
     console:
       level: trace
