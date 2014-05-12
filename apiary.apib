@@ -1031,7 +1031,7 @@ We want to create a group of users to be able to view only activity coming from 
 ```js
 var role = {
     key: 'europe-users',
-    permissions: ['access_system', 'query'],
+    permissions: ['query:fetch'],
     filter: [
         ['Region', 'eq', 'Europe']
     ]
@@ -1743,9 +1743,8 @@ Notes related resources of the **Query API**
 
             {
               "timeframe": "last_hour",
-              "interval": "minute",
-              "dimensions": ["timestamp"],
-              "metrics": ["visits"]
+              "metrics": ["visits"].
+              "collection": "demo-example"
             }
 
 + Response 200 (application/json)
