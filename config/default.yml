@@ -86,6 +86,7 @@ workspaces:
         permissions:
           - "beacon:insert"
           - "query:fetch"
+          - "query:stop"
           - "workspaces:list"
           - "workspaces:get"
           - "workspaces:add"
@@ -311,11 +312,14 @@ workspaces:
           - "users:permissions"
           - "beacon:insert"
           - "query:fetch"
+          - "query:stop"
           - "system:nodeuid"
           - "system:nodedetails"
           - "system:terminate"
           - "system:purgeCache"
           - "system:roundtrip"
+          - "system:whoami"
+          - "system:version"
           - "misc:see_private"
         filter: []
       user:
@@ -328,12 +332,14 @@ workspaces:
         permissions:
           - "beacon:insert"
           - "query:fetch"
+          - "query:stop"
         filter: []
       reader:
         key: "user"
         permissions:
           - "beacon:insert"
           - "query:fetch"
+          - "query:stop"
         filter: []
     users:
       root:
