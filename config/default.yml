@@ -95,6 +95,9 @@ workspaces:
           - "collections:list"
           - "collections:get"
         filter: []
+      user:
+        key: "users"
+        permissions: []
     users:
       root:
         username: "root"
