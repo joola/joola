@@ -92,6 +92,7 @@ workspaces:
           - "workspaces:patch"
           - "workspaces:delete"
           - "collections:list"
+          - "collections:get"
         filter: []
     users:
       root:
@@ -111,6 +112,7 @@ workspaces:
         key: "beacon"
         permissions:
           - "beacon_insert"
+          - "collections:get"
         filter: []
     users:
       root:
