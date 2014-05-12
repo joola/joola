@@ -87,11 +87,6 @@ workspaces:
           - "beacon:insert"
           - "query:fetch"
           - "query:stop"
-          - "workspaces:list"
-          - "workspaces:get"
-          - "workspaces:add"
-          - "workspaces:patch"
-          - "workspaces:delete"
           - "collections:list"
           - "collections:get"
         filter: []
