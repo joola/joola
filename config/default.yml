@@ -86,12 +86,14 @@ workspaces:
         permissions:
           - "beacon:insert"
           - "query:fetch"
+          - "query:stop"
           - "workspaces:list"
           - "workspaces:get"
           - "workspaces:add"
           - "workspaces:patch"
           - "workspaces:delete"
           - "collections:list"
+          - "collections:get"
         filter: []
     users:
       root:
@@ -111,6 +113,7 @@ workspaces:
         key: "beacon"
         permissions:
           - "beacon_insert"
+          - "collections:get"
         filter: []
     users:
       root:
@@ -265,7 +268,7 @@ workspaces:
       root:
         key: "root"
         permissions:
-          - "access_system"
+          - "superuser"
           - "workspaces:list"
           - "workspaces:get"
           - "workspaces:add"
@@ -309,11 +312,14 @@ workspaces:
           - "users:permissions"
           - "beacon:insert"
           - "query:fetch"
+          - "query:stop"
           - "system:nodeuid"
           - "system:nodedetails"
           - "system:terminate"
           - "system:purgeCache"
           - "system:roundtrip"
+          - "system:whoami"
+          - "system:version"
           - "misc:see_private"
         filter: []
       user:
@@ -326,12 +332,14 @@ workspaces:
         permissions:
           - "beacon:insert"
           - "query:fetch"
+          - "query:stop"
         filter: []
       reader:
         key: "user"
         permissions:
           - "beacon:insert"
           - "query:fetch"
+          - "query:stop"
         filter: []
     users:
       root:
