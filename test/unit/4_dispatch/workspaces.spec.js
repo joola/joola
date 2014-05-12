@@ -10,20 +10,19 @@
 
 var async = require('async');
 
-
 describe("workspaces", function () {
   before(function (done) {
     this.context = {user: _token.user};
     this.uid = joola.common.uuid();
 
-    joolaio.set('APIToken', 'apitoken-demo', done);
+    done();
   });
 
   after(function (done) {
     var self = this;
     joola.dispatch.workspaces.delete(this.context, 'test-workspace-' + this.uid, function () {
       joola.dispatch.workspaces.delete(self.context, 'test-workspace1-' + this.uid, function () {
-        joolaio.set('APIToken', 'apitoken-test', done);
+        done();
       });
     });
   });
@@ -133,7 +132,7 @@ describe("workspaces", function () {
       joola.dispatch.workspaces.list(self.context, function (err, workspaces) {
         if (err)
           return done(err);
-        
+
         var exist = _.filter(workspaces, function (item) {
           return item.key == 'test-workspace-' + self.uid;
         });
