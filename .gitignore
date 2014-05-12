@@ -23,3 +23,5 @@ coverage
 config/runtime.json
 
 apiary.out.html
+
+config/oo.yml
