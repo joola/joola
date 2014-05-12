@@ -267,7 +267,7 @@ workspaces:
       root:
         key: "root"
         permissions:
-          - "access_system"
+          - "superuser"
           - "workspaces:list"
           - "workspaces:get"
           - "workspaces:add"
