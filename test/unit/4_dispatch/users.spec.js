@@ -54,6 +54,73 @@ describe("users", function () {
     });
   });
 
+  it("should fail adding a user with no roles", function (done) {
+    var user = {
+      username: 'tester-noroles-' + this.uid,
+      displayName: 'tester user',
+      password: '1234',
+      filter: '',
+      workspace: this.workspace
+    };
+    joola.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
+      if (err)
+        return done();
+
+      return done(new Error('This should fail'));
+    });
+  });
+
+  it("should fail adding a user with empty roles", function (done) {
+    var user = {
+      username: 'tester-noroles-' + this.uid,
+      displayName: 'tester user',
+      password: '1234',
+      roles: [],
+      filter: '',
+      workspace: this.workspace
+    };
+    joola.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
+      if (err)
+        return done();
+
+      return done(new Error('This should fail'));
+    });
+  });
+
+  it("should fail adding a user with non-array roles", function (done) {
+    var user = {
+      username: 'tester-noroles-' + this.uid,
+      displayName: 'tester user',
+      password: '1234',
+      roles: 'user',
+      filter: '',
+      workspace: this.workspace
+    };
+    joola.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
+      if (err)
+        return done();
+
+      return done(new Error('This should fail'));
+    });
+  });
+
+  it("should fail adding a user with non-existant roles", function (done) {
+    var user = {
+      username: 'tester-noroles-' + this.uid,
+      displayName: 'tester user',
+      password: '1234',
+      roles: ['user2'],
+      filter: '',
+      workspace: this.workspace
+    };
+    joola.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
+      if (err)
+        return done();
+
+      return done(new Error('This should fail'));
+    });
+  });
+
   it("should get a user by username", function (done) {
     var username = 'tester-' + this.uid;
     var self = this;

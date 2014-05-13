@@ -1,4 +1,4 @@
-version: 0.0.10
+version: 0.0.11
 interfaces:
   webserver:
     enabled: true
@@ -7,6 +7,7 @@ interfaces:
     port: 8080
     securePort: 8081
     secure: true
+    secureOnly: false
     keyFile: ./config/certs/localhost.key
     certFile: ./config/certs/localhost.csr
     websocket:
@@ -46,20 +47,6 @@ store:
       # level: trace
       # token: your-api-token
       # domain: loggly-subdomain
-    mongo:
-      level: trace
-      dsn: mongodb://localhost:27017/logger
-      # if dsn not specific then these are required
-      host: 127.0.0.1
-      port: 27017
-      user: null
-      password: null
-      db: logger
-      options:
-        capped: true
-        size: 10240000
-      unique: false
-      expireAfterSeconds: 3600
     file:
       level: trace
       path: /tmp/joola.io/
@@ -85,13 +72,13 @@ workspaces:
         permissions:
           - "beacon:insert"
           - "query:fetch"
-          - "workspaces:list"
-          - "workspaces:get"
-          - "workspaces:add"
-          - "workspaces:patch"
-          - "workspaces:delete"
+          - "query:stop"
           - "collections:list"
+          - "collections:get"
         filter: []
+      user:
+        key: "users"
+        permissions: []
     users:
       root:
         username: "root"
@@ -110,6 +97,7 @@ workspaces:
         key: "beacon"
         permissions:
           - "beacon_insert"
+          - "collections:get"
         filter: []
     users:
       root:
@@ -264,7 +252,7 @@ workspaces:
       root:
         key: "root"
         permissions:
-          - "access_system"
+          - "superuser"
           - "workspaces:list"
           - "workspaces:get"
           - "workspaces:add"
@@ -308,11 +296,14 @@ workspaces:
           - "users:permissions"
           - "beacon:insert"
           - "query:fetch"
+          - "query:stop"
           - "system:nodeuid"
           - "system:nodedetails"
           - "system:terminate"
           - "system:purgeCache"
           - "system:roundtrip"
+          - "system:whoami"
+          - "system:version"
           - "misc:see_private"
         filter: []
       user:
@@ -325,12 +316,14 @@ workspaces:
         permissions:
           - "beacon:insert"
           - "query:fetch"
+          - "query:stop"
         filter: []
       reader:
         key: "user"
         permissions:
           - "beacon:insert"
           - "query:fetch"
+          - "query:stop"
         filter: []
     users:
       root:
