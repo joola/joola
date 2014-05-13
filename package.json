@@ -26,7 +26,8 @@
   "scripts": {
     "test": "make test",
     "start": "node ./joola.io.js",
-    "coveralls": "make test-coveralls"
+    "coveralls": "make test-coveralls",
+    "prepublish": "npm shrinkwrap"
   },
   "bin": {
     "joola.io": "./joola.io.js",
