@@ -52,8 +52,6 @@
     "jade": "*",
     "bunyan": "http://github.com/itayw/node-bunyan/tarball/master",
     "bunyan-format": "*",
-    "mongo-col": "http://github.com/Raynos/mongo-col/tarball/master",
-    "mongo-stream": "*",
     "mongodb": "^1.4.0",
     "htpasswd": "*",
     "moment": "~2.5.1",
