@@ -42,14 +42,13 @@
   ],
   "dependencies": {
     "joola.io.sdk": "^0.5.0",
-    "joola.io.cli": "http://github.com/joola/joola.io.cli/tarball/develop",
+    "joola.io.cli": "^0.5.0",
     "eventemitter2": "*",
     "redis": "*",
     "hiredis": "*",
     "async": "*",
     "socket.io": "~0.9.14",
     "socket.io-wildcard": "*",
-    "socket.io-browserify": "*",
     "jade": "*",
     "bunyan": "http://github.com/itayw/node-bunyan/tarball/master",
     "bunyan-format": "*",
@@ -84,7 +83,7 @@
     "config": "^0.4.35",
     "semver": "~2.2.1",
     "kindof": "~1.0.0",
-    "describe-json": "0.0.6",
+    "describe-json": "^0.0.6",
     "coffee-script": "~1.7.1",
     "js-yaml": "~3.0.2",
     "socket.io-client": "~0.9.16",
@@ -95,7 +94,7 @@
     "bunyan-loggly": "0.0.5"
   },
   "devDependencies": {
-    "jsdox": "http://github.com/itayw/jsdox/tarball/master",
+    "socket.io-browserify": "*",
     "mocha-lcov-reporter": "*",
     "coveralls": "*",
     "should": "*",
