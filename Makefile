@@ -46,5 +46,9 @@ test-api:
 		-dredd -r html apiary.apib http://localhost:8080
 		killall -9 node
 
+publish:
+		npm shrinkwrap
+		npm publish
+		
 .PHONY: test
 
