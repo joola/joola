@@ -1,4 +1,4 @@
-version: 0.0.14
+version: 0.0.15
 interfaces:
   webserver:
     enabled: true
@@ -273,6 +273,7 @@ workspaces:
           - "collections:metadata"
           - "collections:mindate"
           - "collections:maxdate"
+          - "collections:stats"
           - "dimensions:list"
           - "dimensions:add"
           - "dimensions:get"

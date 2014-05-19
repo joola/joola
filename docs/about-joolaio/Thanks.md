@@ -18,6 +18,10 @@ Their technical implementation of an end-to-end consumer analytics system has be
 - [NodeJS][node] It's been almost a year now since we've started using Node and never looked back!
 - [Snowplow][snowplow] For their wonderful documentation site we used as inspiration.
 
+### Bug and issue identification
+joola.io uses several external means of gathering reports of issues and defects, for example: [Hacker1](http://hackerone.com).
+ 
+
 [magic]: http://www.magicholdem.com
 [we]: http://www.we-can.co.il
 [ga]: http://www.google.com/analytics
