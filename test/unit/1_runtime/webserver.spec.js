@@ -48,7 +48,7 @@ describe("webserver", function () {
   });
 
   xit("should have HTTP port open", function (done) {
-    request.get('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.securePort+ '', function (err, response, body) {
+    request.get('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.secureport+ '', function (err, response, body) {
       if (err)
         return done(err);
 
@@ -58,7 +58,7 @@ describe("webserver", function () {
   });
 
   it("should have HTTPS port open", function (done) {
-    request.get('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.securePort + '', function (err, response, body) {
+    request.get('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.secureport + '', function (err, response, body) {
       if (err)
         return done(err);
 
@@ -70,7 +70,7 @@ describe("webserver", function () {
   xit("should have WebSocket", function (done) {
     var called = false;
     var io = require('socket.io-client');
-    var socket = io.connect('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.securePort);
+    var socket = io.connect('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.secureport);
     socket.on('connect', function () {
       socket.disconnect();
       if (!called) {
@@ -116,7 +116,7 @@ describe("webserver", function () {
   });
 
   it("should serve api endpoints", function (done) {
-    request.get('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.securePort + '/meta', function (err, response, body) {
+    request.get('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.secureport + '/meta', function (err, response, body) {
       if (err)
         return done(err);
 
@@ -126,7 +126,7 @@ describe("webserver", function () {
   });
 
   xit("should serve api endpoints [system version]", function (done) {
-    request.get('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.securePort + '/system/version?APIToken=apitoken-demo', function (err, response, body) {
+    request.get('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.secureport + '/system/version?APIToken=apitoken-demo', function (err, response, body) {
       if (err)
         return done(err);
 

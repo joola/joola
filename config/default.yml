@@ -5,17 +5,17 @@ interfaces:
     host: joola.io #used for response-header [Server]
     bind: 0.0.0.0
     port: 8080
-    securePort: 8081
+    secureport: 8081
     secure: true
-    secureOnly: true
-    keyFile: ./config/certs/localhost.key
-    certFile: ./config/certs/localhost.csr
+    secureonly: true
+    keyfile: ./config/certs/localhost.key
+    certfile: ./config/certs/localhost.csr
     websocket:
       enabled: true
-    sessionDurtaion: 1200000
+    sessiondurtaion: 1200000
     timeout: 60000
     blacklist: null
-    allowOrigin: null
+    alloworigin: null
     headers:
       X-Powered-By: joola.io
   repl:
@@ -53,12 +53,12 @@ store:
   cache:
     mongo:
       dsn: mongodb://localhost:27017/cache
-      expireAfterSeconds: 0
+      expireafterseconds: 0
 dispatch:
     expires: 60
 authentication:
   tokens:
-    expireAfter: 1200000
+    expireafter: 1200000
   ratelimits:
     guest: 60
     user: 5000
@@ -116,7 +116,7 @@ workspaces:
         key: "stats-node-count"
         name: "stats-node-count"
         strongTyped: true
-        expireAfterSeconds: 3600
+        expireafterseconds: 3600
         timestamp:
           datatype: "date"
           type: "dimension"
@@ -141,7 +141,7 @@ workspaces:
         key: "stats-token-count"
         name: "stats-token-count"
         strongTyped: true
-        expireAfterSeconds: 3600
+        expireafterseconds: 3600
         timestamp:
           datatype: "date"
           type: "dimension"
@@ -166,7 +166,7 @@ workspaces:
         key: "stats-usage"
         name: "stats-usage"
         strongTyped: true
-        expireAfterSeconds: 3600
+        expireafterseconds: 3600
         timestamp:
           datatype: "date"
           type: "dimension"
@@ -196,7 +196,7 @@ workspaces:
         key: "stats-events-request"
         name: "stats-events-request"
         strongTyped: true
-        expireAfterSeconds: 3600
+        expireafterseconds: 3600
         timestamp:
           datatype: "date"
           type: "dimension"
@@ -221,7 +221,7 @@ workspaces:
         key: "stats-events-fulfilled"
         name: "stats-events-fulfilled"
         strongTyped: true
-        expireAfterSeconds: 3600
+        expireafterseconds: 3600
         timestamp:
           datatype: "date"
           type: "dimension"
