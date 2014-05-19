@@ -7,7 +7,7 @@ interfaces:
     port: 8080
     securePort: 8081
     secure: true
-    secureOnly: false
+    secureOnly: true
     keyFile: ./config/certs/localhost.key
     certFile: ./config/certs/localhost.csr
     websocket:
@@ -19,7 +19,7 @@ interfaces:
     headers:
       X-Powered-By: joola.io
   repl:
-    enabled: true
+    enabled: false
     port: 1337
 store:
   config:

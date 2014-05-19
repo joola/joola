@@ -22,7 +22,7 @@ describe("auth", function () {
   });
 
   it("should return static content with no login issues", function (done) {
-    browser.visit('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/ico/favicon.ico', function () {
+    browser.visit('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.securePort + '/ico/favicon.ico', function () {
       expect(browser.success).to.equal(true);
       return done();
     });
