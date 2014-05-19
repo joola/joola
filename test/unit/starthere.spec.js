@@ -28,6 +28,7 @@ before(function (done) {
       });
       joolaio.events.on('ready', function () {
         global.user = joolaio.USER;
+        global.user.permissions = [''];
         global._token = {
           user: global.user
         };

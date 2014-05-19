@@ -10,6 +10,7 @@
 - [Overview](Contributing)
 - [Development](Contributing-to-development)
 - [Documentation](Contributing-to-documentation)
+- [Security Vulnerabilities](Responsible-Disclosure)
 
 **Legal**
 - [Copyright & license](Copyright-and-license)  

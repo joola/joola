@@ -32,7 +32,7 @@ describe("auth", function () {
     var user = {
       username: 'test',
       password: 'password',
-      roles: [],
+      roles: ['user'],
       workspace: this.workspace
     };
     joola.auth.generateToken(user, function (err, token) {
@@ -50,7 +50,7 @@ describe("auth", function () {
     var user = {
       username: 'test',
       password: 'password',
-      roles: [],
+      roles: ['user'],
       workspace: this.workspace
     };
     var _expireAfter = joola.config.authentication.tokens.expireAfter;
@@ -79,7 +79,7 @@ describe("auth", function () {
     var user = {
       username: 'test',
       password: 'password',
-      roles: [],
+      roles: ['user'],
       workspace: this.workspace
     };
     joola.auth.generateToken(user, function (err, token) {
