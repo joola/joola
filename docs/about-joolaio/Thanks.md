@@ -21,7 +21,7 @@ Their technical implementation of an end-to-end consumer analytics system has be
 ### Bug and issue identification
 joola.io uses several external means of gathering reports of issues and defects, for example: [Hacker1](http://hackerone.com).
  
-- [Shahmeer Amir](shahmeerbond@gmail.com), Danish iqbal and Zeeshan Sultan via [Hacker1](https://hackerone.com/reports/12042).
+- Maads Security - [Shahmeer Amir](shahmeerbond@gmail.com), Danish iqbal and Zeeshan Sultan via [Hacker1](https://hackerone.com/reports/12042).
 
 [magic]: http://www.magicholdem.com
 [we]: http://www.we-can.co.il
