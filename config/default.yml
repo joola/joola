@@ -1,4 +1,4 @@
-version: 0.0.11
+version: 0.0.13
 interfaces:
   webserver:
     enabled: true
@@ -7,7 +7,7 @@ interfaces:
     port: 8080
     securePort: 8081
     secure: true
-    secureOnly: false
+    secureOnly: true
     keyFile: ./config/certs/localhost.key
     certFile: ./config/certs/localhost.csr
     websocket:
@@ -19,7 +19,7 @@ interfaces:
     headers:
       X-Powered-By: joola.io
   repl:
-    enabled: true
+    enabled: false
     port: 1337
 store:
   config:
@@ -59,6 +59,9 @@ dispatch:
 authentication:
   tokens:
     expireAfter: 1200000
+  ratelimits:
+    guest: 60
+    user: 5000
 #sdk:
   # url: https://raw.githubusercontent.com/joola/joola.io.sdk/feature/%2376/bin/joola.io.js
 workspaces:
@@ -87,7 +90,7 @@ workspaces:
           - "root"
         displayName: "Administrator"
         APIToken: "apitoken-test"
-        rateLimit: 5000
+        ratelimit: 5000
   _stats:
     key: _stats
     name: Internal Stats
@@ -107,7 +110,7 @@ workspaces:
           - "beacon"
         displayName: "Stats Beacon"
         APIToken: "apitoken-stats"
-        rateLimit: 5000
+        ratelimit: 5000
     collections:
       stats-node-count:
         key: "stats-node-count"
@@ -333,7 +336,7 @@ workspaces:
           - "root"
         displayName: "Administrator"
         APIToken: "apitoken-demo"
-        rateLimit: 5000
+        ratelimit: 5000
         filter: []
       beacon:
         username: "beacon"
