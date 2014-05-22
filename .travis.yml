@@ -37,8 +37,8 @@ deploy:
 
 script: make test-cov
 after_success:
-  make coveralls
-  make -k test-api
+  - make coveralls
+  - make -k test-api
  
 notifications:
   webhooks:
