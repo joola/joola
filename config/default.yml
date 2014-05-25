@@ -1,4 +1,4 @@
-version: 0.0.20
+version: 0.0.21
 interfaces:
   webserver:
     enabled: true
@@ -9,7 +9,7 @@ interfaces:
     secure: true
     secureonly: true
     keyfile: ./config/certs/localhost.key
-    certfile: ./config/certs/localhost.csr
+    certfile: ./config/certs/localhost.crt
     websocket:
       enabled: true
     sessiondurtaion: 1200000
