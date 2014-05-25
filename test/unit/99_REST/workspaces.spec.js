@@ -130,7 +130,7 @@ describe("workspaces", function () {
     });
   });
 
-  it("should delete an workspace", function (done) {
+  it("should delete a workspace", function (done) {
     var self = this;
     var workspace = {
       key: 'test-workspace-' + this.uid,

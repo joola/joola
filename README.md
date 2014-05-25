@@ -112,6 +112,8 @@ joolaio.init({host: 'http://localhost:8080', APIToken: 'apitoken-beacon'}, funct
 We would love to get your help! We have outlined a simple [Contribution Policy][18] to support a transparent and easy merging
 of ideas, code, bug fixes and features.
 
+If you've discovered a security vulnerability in joola.io, we appreciate your help in disclosing it to us in a responsible manner via our [Bounty Program](https://hackerone.com/joola-io).
+
 If you're looking for a place to start, you can always go over the list of [open issues][17], pick one and get started.
 If you're feeling lost or unsure, [just let us know](#Contact).
 
