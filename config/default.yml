@@ -1,4 +1,4 @@
-version: 0.0.21
+version: 0.0.29
 interfaces:
   webserver:
     enabled: true
@@ -7,9 +7,10 @@ interfaces:
     port: 8080
     secureport: 8081
     secure: true
-    secureonly: true
-    keyfile: ./config/certs/localhost.key
-    certfile: ./config/certs/localhost.crt
+    secureonly: false
+    keyfile: ./config/certs/server.key
+    certfile: ./config/certs/server.crt
+    ca: ./config/certs/ca.crt
     websocket:
       enabled: true
     sessiondurtaion: 1200000
@@ -48,7 +49,7 @@ store:
     https:
       redis:
         dsn: redis://127.0.0.1
-        db: 1       
+        db: 10
   logger:
     console:
       level: trace
