@@ -158,4 +158,26 @@ describe("workspaces", function () {
       return done(new Error('This shouldn\'t fail'));
     });
   });
+
+  it("should add a workspace with dot `.` in name", function (done) {
+    var self = this;
+    var workspace = {
+      key: 'test.workspace-' + this.uid,
+      name: 'test.workspace-' + this.uid,
+      filter: []
+    };
+    joola.workspaces.add(this.context, workspace, function (err, _workspace) {
+      if (err)
+        return done(err);
+
+      expect(_workspace).to.be.ok;
+
+      joola.workspaces.get(self.context, workspace.key, function (err, __workspace) {
+        console.log(err, __workspace);
+        expect(__workspace).to.be.ok;
+        done();
+      });
+    });
+  });
+
 });
