@@ -89,7 +89,8 @@
     "static-favicon": "^1.0.2",
     "body-parser": "^1.0.2",
     "compression": "^1.0.1",
-    "bunyan-loggly": "0.0.5"
+    "bunyan-loggly": "0.0.5",
+    "ws": "~0.4.31"
   },
   "devDependencies": {
     "socket.io-browserify": "*",
