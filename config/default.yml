@@ -82,7 +82,8 @@ workspaces:
         filter: []
       user:
         key: "users"
-        permissions: []
+        permissions:
+          - "query:fetch"
     users:
       root:
         username: "root"
