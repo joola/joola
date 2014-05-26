@@ -69,11 +69,16 @@ describe("webserver", function () {
 
   it("should have WebSocket", function (done) {
     var WebSocket = require('ws');
-    var ws;
+    var wsPath = '';
     if (joolaio.options.host.indexOf('https://') > -1)
-      ws = new WebSocket('wss://' + joolaio.options.host.replace('https://', ''));
+      wsPath = 'wss://' + joolaio.options.host.replace('https://', '');
     else
-      ws = new WebSocket('ws://' + joolaio.options.host.replace('http://', ''));
+      wsPath = 'ws://' + joolaio.options.host.replace('http://', '');
+
+    console.log(wsPath);
+    var ws = new WebSocket(wsPath);
+    
+
     ws.on('open', function () {
       ws.send('something');
       console.log('optn');
@@ -96,7 +101,7 @@ describe("webserver", function () {
     io.socket.emit('testmessage', message);
   });
 
-  it("should have valid route on WebSocket", function (done) {
+  xit("should have valid route on WebSocket", function (done) {
     var io = require('socket.io-browserify');
     console.log(joolaio.options.host);
     io.socket = joolaio.io.connect(joolaio.options.host);
@@ -111,7 +116,7 @@ describe("webserver", function () {
     io.socket.emit('/workspaces/list', options);
   });
 
-  it("should return on WebSocket route with no details", function (done) {
+  xit("should return on WebSocket route with no details", function (done) {
     var io = require('socket.io-browserify');
     io.socket = joolaio.io.connect(joolaio.options.host);
     io.socket.once('/workspaces/list:done', function (_message) {
