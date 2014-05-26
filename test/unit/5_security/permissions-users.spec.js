@@ -3,6 +3,7 @@ var
 
 describe("security-permissions-users", function () {
   before(function (done) {
+    /*
     var self = this;
     this.uid = joola.common.uuid();
 
@@ -80,7 +81,8 @@ describe("security-permissions-users", function () {
         joolaio.users.add(self.workspace.key, self.user_fordelete, callback);
       });
       async.series(calls, done);
-    });
+    });*/
+    done();
   });
 
   xit("su should be able to list users", function (done) {
