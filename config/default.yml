@@ -1,4 +1,4 @@
-version: 0.0.50
+version: 0.0.51
 interfaces:
   webserver:
     enabled: true
@@ -310,6 +310,7 @@ workspaces:
           - "system:roundtrip"
           - "system:whoami"
           - "system:version"
+          - "system:usage"
           - "misc:see_private"
         filter: []
       user:
