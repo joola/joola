@@ -17,18 +17,18 @@ describe("users", function () {
     return done();
   });
 
-  it("should have a valid users dispatch", function (done) {
+  xit("should have a valid users dispatch", function (done) {
     expect(joola.dispatch.users).to.be.ok;
     return done();
   });
 
-  it("should list all available users", function (done) {
+  xit("should list all available users", function (done) {
     joola.dispatch.users.list(this.context, this.workspace, function (err, users) {
       return done(err);
     });
   });
 
-  it("should add a user", function (done) {
+  xit("should add a user", function (done) {
     var user = {
       username: 'tester-' + this.uid,
       displayName: 'tester user',
@@ -42,7 +42,7 @@ describe("users", function () {
     });
   });
 
-  it("should fail adding a user with incomplete details", function (done) {
+  xit("should fail adding a user with incomplete details", function (done) {
     var user = {
       username: 'tester2'
     };
@@ -54,7 +54,24 @@ describe("users", function () {
     });
   });
 
-  it("should fail adding a user with no roles", function (done) {
+  it("should fail adding a user with permission it does not have", function (done) {
+    var user = {
+      username: 'tester-' + this.uid,
+      displayName: 'tester user',
+      password: '1234',
+      roles: ['root'],
+      filter: '',
+      workspace: this.workspace
+    };
+    joola.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
+      if (err)
+        return done();
+
+      return done(new Error('This should fail'));
+    });
+  });
+
+  xit("should fail adding a user with no roles", function (done) {
     var user = {
       username: 'tester-noroles-' + this.uid,
       displayName: 'tester user',
@@ -70,7 +87,7 @@ describe("users", function () {
     });
   });
 
-  it("should fail adding a user with empty roles", function (done) {
+  xit("should fail adding a user with empty roles", function (done) {
     var user = {
       username: 'tester-noroles-' + this.uid,
       displayName: 'tester user',
@@ -87,7 +104,7 @@ describe("users", function () {
     });
   });
 
-  it("should fail adding a user with non-existant roles", function (done) {
+  xit("should fail adding a user with non-existant roles", function (done) {
     var user = {
       username: 'tester-noroles-' + this.uid,
       displayName: 'tester user',
@@ -104,7 +121,7 @@ describe("users", function () {
     });
   });
 
-  it("should get a user by username", function (done) {
+  xit("should get a user by username", function (done) {
     var username = 'tester-' + this.uid;
     var self = this;
     joola.dispatch.users.get(this.context, this.workspace, username, function (err, user) {
@@ -116,7 +133,7 @@ describe("users", function () {
     });
   });
 
-  it("should fail adding a user with an already existing username", function (done) {
+  xit("should fail adding a user with an already existing username", function (done) {
     var user = {
       username: 'tester-' + this.uid,
       displayName: 'tester user',
@@ -132,7 +149,7 @@ describe("users", function () {
     });
   });
 
-  it("should update a user", function (done) {
+  xit("should update a user", function (done) {
     var self = this;
     var user = {
       username: 'tester-' + this.uid,
@@ -159,7 +176,7 @@ describe("users", function () {
     });
   });
 
-  it("should apply filter on user level", function (done) {
+  xit("should apply filter on user level", function (done) {
     var filter = [
       ['test1', 'eq', 'test2']
     ];
@@ -180,7 +197,7 @@ describe("users", function () {
     });
   });
 
-  it("should fail updating a non existing user", function (done) {
+  xit("should fail updating a non existing user", function (done) {
     var user = {
       username: 'tester-' + joola.common.uuid(),
       displayName: 'tester user',
@@ -197,7 +214,7 @@ describe("users", function () {
     });
   });
 
-  it("should authenticate users with correct credentials", function (done) {
+  xit("should authenticate users with correct credentials", function (done) {
     var self = this;
     var user = {
       username: 'tester-password-' + this.uid,
@@ -219,7 +236,7 @@ describe("users", function () {
     });
   });
 
-  it("should not authenticate users with incorrect credentials", function (done) {
+  xit("should not authenticate users with incorrect credentials", function (done) {
     joola.dispatch.users.authenticate(this.context, this.workspace, 'test', 'incorrect.password', function (err, user) {
       if (err)
         return done();
@@ -229,7 +246,7 @@ describe("users", function () {
     });
   });
 
-  it("should get a userby token", function (done) {
+  xit("should get a userby token", function (done) {
     var self = this;
     var user = {
       username: 'tester-api-by-token-' + this.uid,
@@ -255,7 +272,7 @@ describe("users", function () {
     });
   });
 
-  it("should validate a correct username/password", function (done) {
+  xit("should validate a correct username/password", function (done) {
     joola.dispatch.users.authenticate(this.context, this.workspace, 'tester-api-by-token-' + this.uid, '1234', function (err, user) {
       if (err)
         return done(err);
@@ -265,7 +282,7 @@ describe("users", function () {
     });
   });
 
-  it("should fail validating incorrect username/password [missing user]", function (done) {
+  xit("should fail validating incorrect username/password [missing user]", function (done) {
     joola.dispatch.users.authenticate(this.context, this.workspace, '1tester-api-by-token-' + this.uid, '1234', function (err, user) {
       if (err)
         return done();
@@ -274,7 +291,7 @@ describe("users", function () {
     });
   });
 
-  it("should fail validating incorrect username/password [password mismatch]", function (done) {
+  xit("should fail validating incorrect username/password [password mismatch]", function (done) {
     joola.dispatch.users.authenticate(this.context, this.workspace, 'tester-api-by-token-' + this.uid, '12345', function (err, user) {
       if (err)
         return done();
@@ -283,7 +300,7 @@ describe("users", function () {
     });
   });
 
-  it("should validate a changed password", function (done) {
+  xit("should validate a changed password", function (done) {
     var self = this;
     var user = {
       username: 'tester-' + this.uid,
@@ -307,7 +324,7 @@ describe("users", function () {
     });
   });
 
-  it("should delete a user", function (done) {
+  xit("should delete a user", function (done) {
     var self = this;
     var user = {
       username: 'tester-' + this.uid
@@ -324,7 +341,7 @@ describe("users", function () {
     });
   });
 
-  it("should fail deleting a non existing user", function (done) {
+  xit("should fail deleting a non existing user", function (done) {
     var self = this;
     var user = {
       username: 'tester1-' + this.uid
@@ -336,7 +353,7 @@ describe("users", function () {
     });
   });
 
-  it("should verify a valid APIToken", function (done) {
+  xit("should verify a valid APIToken", function (done) {
     joola.dispatch.users.verifyAPIToken(this.context, 'apitoken-test', function (err, user) {
       if (err)
         return done(err);
@@ -346,7 +363,7 @@ describe("users", function () {
     });
   });
 
-  it("should fail verifying a non-existing APIToken", function (done) {
+  xit("should fail verifying a non-existing APIToken", function (done) {
     joola.dispatch.users.verifyAPIToken(this.context, '000012345', function (err, user) {
       if (err)
         return done();
