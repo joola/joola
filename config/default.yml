@@ -1,4 +1,4 @@
-version: 0.0.60
+version: 0.0.62
 interfaces:
   webserver:
     enabled: true
@@ -45,15 +45,9 @@ store:
     http:
       redis:
         dsn: redis://127.0.0.1
-        host: 127.0.0.1
-        port: 6379
-        db: 9
     https:
       redis:
         dsn: redis://127.0.0.1
-        host: 127.0.0.1
-        port: 6379
-        db: 10
   logger:
     console:
       level: trace
