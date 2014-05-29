@@ -47,16 +47,6 @@ describe("webserver", function () {
     });
   });
 
-  xit("should have HTTP port open", function (done) {
-    request.get('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.secureport + '', function (err, response, body) {
-      if (err)
-        return done(err);
-
-      expect(response.statusCode).to.equal(200);
-      done();
-    });
-  });
-
   it("should have HTTPS port open", function (done) {
     request.get('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.secureport + '', function (err, response, body) {
       if (err)
@@ -68,61 +58,62 @@ describe("webserver", function () {
   });
 
   it("should have WebSocket", function (done) {
-    var WebSocket = require('ws');
-    var wsPath = '';
-    if (joolaio.options.host.indexOf('https://') > -1)
-      wsPath = 'wss://' + joolaio.options.host.replace('https://', '');
-    else
-      wsPath = 'ws://' + joolaio.options.host.replace('http://', '');
-
-    console.log(wsPath);
-    var ws = new WebSocket(wsPath);
-    
-
-    ws.on('open', function () {
-      ws.send('something');
-      console.log('optn');
+    var io = require('socket.io-client').connect(joolaio.options.host);
+    io.on('connect', function () {
+      console.log('connected');
+      return done();
     });
-    ws.on('message', function (data, flags) {
-      console.log('message');
-      // flags.binary will be set if a binary data is received
-      // flags.masked will be set if the data was masked
-    });
+
   });
 
-  xit("should have Emit on WebSocket", function (done) {
-    var io = require('socket.io-browserify');
-    io.socket = joolaio.io.connect(joolaio.options.host);
-    var message = 'this is a test message';
-    io.socket.on('testmessage', function (_message) {
-      expect(_message).to.equal(message);
-      done();
+  it("should have Emit on WebSocket", function (done) {
+    var io = require('socket.io-client').connect(joolaio.options.host);
+    io.on('connect', function () {
+
     });
-    io.socket.emit('testmessage', message);
+
+    io.on('echo', function () {
+      return done();
+    });
+    io.emit('echo');
   });
 
-  xit("should have valid route on WebSocket", function (done) {
-    var io = require('socket.io-browserify');
-    console.log(joolaio.options.host);
-    io.socket = joolaio.io.connect(joolaio.options.host);
-    io.socket.once('/workspaces/list:done', function (_message) {
-      done();
+  it("should have valid route on WebSocket", function (done) {
+    var io = require('socket.io-client').connect(joolaio.options.host);
+    io.on('connect', function () {
+
+    });
+    io.on('system/version:done', function (_message) {
+      expect(_message).to.be.ok;
+      expect(_message.headers).to.be.ok;
+      expect(_message.headers.StatusCode).to.equal(200);
+      return done();
     });
     var options =
     {
-      APIToken: 'apitoken-test',
-      _path: '/workspaces/list'
+      APIToken: 'apitoken-demo',
+      _path: 'system/version'
     };
-    io.socket.emit('/workspaces/list', options);
+    io.emit('system/version', options);
   });
 
-  xit("should return on WebSocket route with no details", function (done) {
-    var io = require('socket.io-browserify');
-    io.socket = joolaio.io.connect(joolaio.options.host);
-    io.socket.once('/workspaces/list:done', function (_message) {
-      done();
+  it("should fail on invalid route", function (done) {
+    var io = require('socket.io-client').connect(joolaio.options.host);
+    io.on('connect', function () {
+
     });
-    io.socket.emit('/workspaces/list');
+    io.on('/system/version:done', function (_message) {
+      expect(_message).to.be.ok;
+      expect(_message.headers).to.be.ok;
+      expect(_message.headers.StatusCode).to.equal(401);
+      return done();
+    });
+    var options =
+    {
+      APIToken: 'apitoken-demo',
+      _path: '/system/version'
+    };
+    io.emit('/system/version', options);
   });
 
   it("should serve api endpoints", function (done) {
@@ -135,7 +126,7 @@ describe("webserver", function () {
     });
   });
 
-  xit("should serve api endpoints [system version]", function (done) {
+  it("should serve api endpoints [system version]", function (done) {
     request.get('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.secureport + '/system/version?APIToken=apitoken-demo', function (err, response, body) {
       if (err)
         return done(err);
