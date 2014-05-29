@@ -1,4 +1,4 @@
-version: 0.0.50
+version: 0.0.56
 interfaces:
   webserver:
     enabled: true
