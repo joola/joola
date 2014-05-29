@@ -83,6 +83,7 @@
     "semver": "~2.2.1",
     "socket.io": "^1.0.2",
     "socket.io-client": "^1.0.2",
+    "socket.io-redis": "^0.1.2",
     "static-favicon": "^1.0.2",
     "stomp": "https://github.com/joola/stomp-js/tarball/master",
     "traverse": "^0.6.6",
