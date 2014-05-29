@@ -47,16 +47,6 @@ describe("webserver", function () {
     });
   });
 
-  xit("should have HTTP port open", function (done) {
-    request.get('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.secureport+ '', function (err, response, body) {
-      if (err)
-        return done(err);
-
-      expect(response.statusCode).to.equal(200);
-      done();
-    });
-  });
-
   it("should have HTTPS port open", function (done) {
     request.get('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.secureport + '', function (err, response, body) {
       if (err)
@@ -68,51 +58,61 @@ describe("webserver", function () {
   });
 
   xit("should have WebSocket", function (done) {
-    var called = false;
-    var io = require('socket.io-client');
-    var socket = io.connect('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.secureport);
-    socket.on('connect', function () {
-      socket.disconnect();
-      if (!called) {
-        called = true;
-        done();
-      }
+    var io = require('socket.io-client').connect(joolaio.options.host);
+    io.on('connect', function () {
+      return done();
     });
+
   });
 
   xit("should have Emit on WebSocket", function (done) {
-    var io = require('socket.io-browserify');
-    io.socket = joolaio.io.connect(joolaio.options.host);
-    var message = 'this is a test message';
-    io.socket.on('testmessage', function (_message) {
-      expect(_message).to.equal(message);
-      done();
+    var io = require('socket.io-client').connect(joolaio.options.host);
+    io.on('connect', function () {
+
     });
-    io.socket.emit('testmessage', message);
+
+    io.on('echo', function () {
+      return done();
+    });
+    io.emit('echo');
   });
 
-  it("should have valid route on WebSocket", function (done) {
-    var io = require('socket.io-browserify');
-    io.socket = joolaio.io.connect(joolaio.options.host);
-    io.socket.once('/workspaces/list:done', function (_message) {
-      done();
+  xit("should have valid route on WebSocket", function (done) {
+    var io = require('socket.io-client').connect(joolaio.options.host);
+    io.on('connect', function () {
+
+    });
+    io.on('system/version:done', function (_message) {
+      expect(_message).to.be.ok;
+      expect(_message.headers).to.be.ok;
+      expect(_message.headers.StatusCode).to.equal(200);
+      return done();
     });
     var options =
-      {
-        APIToken: 'apitoken-test',
-        _path: '/workspaces/list'
-      }
-      ;
-    io.socket.emit('/workspaces/list', options);
+    {
+      APIToken: 'apitoken-demo',
+      _path: 'system/version'
+    };
+    io.emit('system/version', options);
   });
 
-  it("should return on WebSocket route with no details", function (done) {
-    var io = require('socket.io-browserify');
-    io.socket = joolaio.io.connect(joolaio.options.host);
-    io.socket.once('/workspaces/list:done', function (_message) {
-      done();
+  xit("should fail on invalid route", function (done) {
+    var io = require('socket.io-client').connect(joolaio.options.host);
+    io.on('connect', function () {
+
     });
-    io.socket.emit('/workspaces/list');
+    io.on('/system/version:done', function (_message) {
+      expect(_message).to.be.ok;
+      expect(_message.headers).to.be.ok;
+      expect(_message.headers.StatusCode).to.equal(401);
+      return done();
+    });
+    var options =
+    {
+      APIToken: 'apitoken-demo',
+      _path: '/system/version'
+    };
+    io.emit('/system/version', options);
   });
 
   it("should serve api endpoints", function (done) {
@@ -125,7 +125,7 @@ describe("webserver", function () {
     });
   });
 
-  xit("should serve api endpoints [system version]", function (done) {
+  it("should serve api endpoints [system version]", function (done) {
     request.get('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.secureport + '/system/version?APIToken=apitoken-demo', function (err, response, body) {
       if (err)
         return done(err);

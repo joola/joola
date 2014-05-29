@@ -45,7 +45,7 @@ describe("system", function () {
     });
   });
 
-  it("should list the connected clients", function (done) {
+  xit("should list the connected clients", function (done) {
     joola.system.connectedClients(this.context, function (err, clients) {
       if (err)
         return done(err);
