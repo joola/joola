@@ -57,16 +57,15 @@ describe("webserver", function () {
     });
   });
 
-  it("should have WebSocket", function (done) {
+  xit("should have WebSocket", function (done) {
     var io = require('socket.io-client').connect(joolaio.options.host);
     io.on('connect', function () {
-      console.log('connected');
       return done();
     });
 
   });
 
-  it("should have Emit on WebSocket", function (done) {
+  xit("should have Emit on WebSocket", function (done) {
     var io = require('socket.io-client').connect(joolaio.options.host);
     io.on('connect', function () {
 
@@ -78,7 +77,7 @@ describe("webserver", function () {
     io.emit('echo');
   });
 
-  it("should have valid route on WebSocket", function (done) {
+  xit("should have valid route on WebSocket", function (done) {
     var io = require('socket.io-client').connect(joolaio.options.host);
     io.on('connect', function () {
 
@@ -97,7 +96,7 @@ describe("webserver", function () {
     io.emit('system/version', options);
   });
 
-  it("should fail on invalid route", function (done) {
+  xit("should fail on invalid route", function (done) {
     var io = require('socket.io-client').connect(joolaio.options.host);
     io.on('connect', function () {
 
