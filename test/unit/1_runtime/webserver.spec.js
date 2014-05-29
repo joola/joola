@@ -48,7 +48,7 @@ describe("webserver", function () {
   });
 
   xit("should have HTTP port open", function (done) {
-    request.get('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.secureport+ '', function (err, response, body) {
+    request.get('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.secureport + '', function (err, response, body) {
       if (err)
         return done(err);
 
@@ -67,16 +67,26 @@ describe("webserver", function () {
     });
   });
 
-  xit("should have WebSocket", function (done) {
-    var called = false;
-    var io = require('socket.io-client');
-    var socket = io.connect('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.secureport);
-    socket.on('connect', function () {
-      socket.disconnect();
-      if (!called) {
-        called = true;
-        done();
-      }
+  it("should have WebSocket", function (done) {
+    var WebSocket = require('ws');
+    var wsPath = '';
+    if (joolaio.options.host.indexOf('https://') > -1)
+      wsPath = 'wss://' + joolaio.options.host.replace('https://', '');
+    else
+      wsPath = 'ws://' + joolaio.options.host.replace('http://', '');
+
+    console.log(wsPath);
+    var ws = new WebSocket(wsPath);
+    
+
+    ws.on('open', function () {
+      ws.send('something');
+      console.log('optn');
+    });
+    ws.on('message', function (data, flags) {
+      console.log('message');
+      // flags.binary will be set if a binary data is received
+      // flags.masked will be set if the data was masked
     });
   });
 
@@ -91,22 +101,22 @@ describe("webserver", function () {
     io.socket.emit('testmessage', message);
   });
 
-  it("should have valid route on WebSocket", function (done) {
+  xit("should have valid route on WebSocket", function (done) {
     var io = require('socket.io-browserify');
+    console.log(joolaio.options.host);
     io.socket = joolaio.io.connect(joolaio.options.host);
     io.socket.once('/workspaces/list:done', function (_message) {
       done();
     });
     var options =
-      {
-        APIToken: 'apitoken-test',
-        _path: '/workspaces/list'
-      }
-      ;
+    {
+      APIToken: 'apitoken-test',
+      _path: '/workspaces/list'
+    };
     io.socket.emit('/workspaces/list', options);
   });
 
-  it("should return on WebSocket route with no details", function (done) {
+  xit("should return on WebSocket route with no details", function (done) {
     var io = require('socket.io-browserify');
     io.socket = joolaio.io.connect(joolaio.options.host);
     io.socket.once('/workspaces/list:done', function (_message) {
