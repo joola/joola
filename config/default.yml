@@ -1,4 +1,4 @@
-version: 0.0.62
+version: 0.0.64
 interfaces:
   webserver:
     enabled: true
@@ -58,7 +58,7 @@ store:
     file:
       level: trace
       path: /tmp/joola.io/
-  cache:
+  datastore:
     mongodb:
       dsn: mongodb://localhost:27017/cache
       expireafterseconds: 0
