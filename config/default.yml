@@ -59,7 +59,7 @@ store:
       level: trace
       path: /tmp/joola.io/
   cache:
-    mongo:
+    mongodb:
       dsn: mongodb://localhost:27017/cache
       expireafterseconds: 0
 dispatch:

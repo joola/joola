@@ -41,6 +41,8 @@
     "noSQL"
   ],
   "dependencies": {
+    "joola.io.datastore-mongodb": "*",
+
     "JSONStream": "*",
     "async": "*",
     "benchmark": "^1.0.0",
