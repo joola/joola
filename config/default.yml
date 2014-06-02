@@ -1,4 +1,4 @@
-version: 0.0.90
+version: 0.0.95
 interfaces:
   webserver:
     enabled: true
@@ -65,6 +65,8 @@ store:
 dispatch:
     expires: 60
 authentication:
+  basicauth:
+    enabled: false
   tokens:
     expireafter: 1200000
   ratelimits:
