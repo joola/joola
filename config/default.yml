@@ -1,4 +1,4 @@
-version: 0.0.64
+version: 0.0.95
 interfaces:
   webserver:
     enabled: true
@@ -65,6 +65,8 @@ store:
 dispatch:
     expires: 60
 authentication:
+  basicauth:
+    enabled: false
   tokens:
     expireafter: 1200000
   ratelimits:
@@ -112,6 +114,11 @@ workspaces:
           - "beacon_insert"
           - "collections:get"
         filter: []
+      reader:
+        key: "reader"
+        permissions:
+          - "query:fetch"
+        filter: []        
     users:
       root:
         username: "stats-beacon"
@@ -121,7 +128,131 @@ workspaces:
         displayName: "Stats Beacon"
         APIToken: "apitoken-stats"
         ratelimit: 5000
+      reader:
+        username: "stats-reader"
+        password: "password"
+        roles:
+          - "reader"
+        displayName: "Stats Reader"
+        ratelimit: 5000        
     collections:
+      stats-reads:
+        key: "stats-reads"
+        name: "stats-reads"
+        strongTyped: true
+        timestamp:
+          datatype: "date"
+          type: "dimension"
+          name: "timestamp"
+          key: "timestamp"
+        node:
+          datatype: "string"
+          type: "dimension"
+          name: "node"
+          key: "node"
+        event:
+          datatype: "string"
+          type: "dimension"
+          name: "event"
+          key: "event"
+        workspace:
+          datatype: "string"
+          type: "dimension"
+          name: "workspace"
+          key: "workspace"          
+        collection:
+          datatype: "string"
+          type: "dimension"
+          name: "collection"
+          key: "collection"
+        username:
+          datatype: "string"
+          type: "dimension"
+          name: "username"
+          key: "username"
+        readCount:
+          datatype: "number"
+          type: "metric"
+          name: "readCount"
+          key: "readCount"
+      stats-writes:
+        key: "stats-writes"
+        name: "stats-writes"
+        strongTyped: true
+        timestamp:
+          datatype: "date"
+          type: "dimension"
+          name: "timestamp"
+          key: "timestamp"
+        node:
+          datatype: "string"
+          type: "dimension"
+          name: "node"
+          key: "node"
+        event:
+          datatype: "string"
+          type: "dimension"
+          name: "event"
+          key: "event"
+        workspace:
+          datatype: "string"
+          type: "dimension"
+          name: "workspace"
+          key: "workspace"          
+        collection:
+          datatype: "string"
+          type: "dimension"
+          name: "collection"
+          key: "collection"
+        username:
+          datatype: "string"
+          type: "dimension"
+          name: "username"
+          key: "username"
+        writeCount:
+          datatype: "number"
+          type: "metric"
+          name: "writeCount"
+          key: "writeCount"
+      stats-simple:
+        key: "stats-simple"
+        name: "stats-simple"
+        strongTyped: true
+        timestamp:
+          datatype: "date"
+          type: "dimension"
+          name: "timestamp"
+          key: "timestamp"
+        node:
+          datatype: "string"
+          type: "dimension"
+          name: "node"
+          key: "node"
+        event:
+          datatype: "string"
+          type: "dimension"
+          name: "event"
+          key: "event"
+        workspace:
+          datatype: "string"
+          type: "dimension"
+          name: "workspace"
+          key: "workspace"          
+        collection:
+          datatype: "string"
+          type: "dimension"
+          name: "collection"
+          key: "collection"
+        username:
+          datatype: "string"
+          type: "dimension"
+          name: "username"
+          key: "username"
+        simpleCount:
+          datatype: "number"
+          type: "metric"
+          name: "simpleCount"
+          key: "simpleCount"                            
       stats-node-count:
         key: "stats-node-count"
         name: "stats-node-count"
@@ -318,6 +449,7 @@ workspaces:
           - "system:roundtrip"
           - "system:whoami"
           - "system:version"
+          - "system:usage"
           - "misc:see_private"
         filter: []
       user:

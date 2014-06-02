@@ -179,6 +179,18 @@ describe("collections", function () {
     });
   });
 
+  it("should get a collection meta data with no document", function (done) {
+    var self = this;
+    var document = require('../../fixtures/basic.json')[0];
+    joolaio.dispatch.collections.metadata(self.context.user.workspace, self.collection, {}, function (err, meta) {
+      if (err)
+        return done(err);
+
+      expect(meta).to.be.ok;
+      done();
+    });
+  });
+
   it("should delete a collection", function (done) {
     var self = this;
     joolaio.dispatch.collections.delete(this.context.user.workspace, this.collection, function (err) {
