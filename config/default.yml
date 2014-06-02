@@ -1,4 +1,4 @@
-version: 0.0.75
+version: 0.0.90
 interfaces:
   webserver:
     enabled: true
@@ -112,6 +112,11 @@ workspaces:
           - "beacon_insert"
           - "collections:get"
         filter: []
+      reader:
+        key: "reader"
+        permissions:
+          - "query:fetch"
+        filter: []        
     users:
       root:
         username: "stats-beacon"
@@ -121,6 +126,13 @@ workspaces:
         displayName: "Stats Beacon"
         APIToken: "apitoken-stats"
         ratelimit: 5000
+      reader:
+        username: "stats-reader"
+        password: "password"
+        roles:
+          - "reader"
+        displayName: "Stats Reader"
+        ratelimit: 5000        
     collections:
       stats-node-count:
         key: "stats-node-count"
