@@ -72,23 +72,24 @@ Following the installation, point your browser to `https://localhost:8081` and y
 
 Using cURL:
 ```bash
-$ curl --include \
+$ curl \
+     --include \
      --request POST \
      --header "Content-Type: application/json" \
      --data-binary "[{
-  \"timestamp\": null,
-  \"article\": \"Sample Analytics\",
-  \"browser\": \"Chrome\",
-  \"device\": \"Desktop\",
-  \"engine\": \"Webkit\",
-  \"os\": \"Linux\",
-  \"userid\": \"demo@joo.la\",
-  \"ip\": \"127.0.0.1\",
-  \"referrer\": \"http://joo.la\",
-  \"visits\": 1,
-  \"loadtime\": 123
-}]" \
-https://joolaio.apiary-mock.com/beacon/{workspace}/{collection}{?APIToken}
+       \"timestamp\": null,
+       \"article\": \"Sample Analytics\",
+       \"browser\": \"Chrome\",
+       \"device\": \"Desktop\",
+       \"engine\": \"Webkit\",
+       \"os\": \"Linux\",
+       \"userid\": \"demo@joo.la\",
+       \"ip\": \"127.0.0.1\",
+       \"referrer\": \"http://joo.la\",
+       \"visits\": 1,
+       \"loadtime\": 123
+     }]" \
+     https://joolaio.apiary-mock.com/beacon/{workspace}/{collection}{?APIToken}
 ```
 
 Using the SDK:
