@@ -69,14 +69,45 @@ Following the installation, point your browser to `https://localhost:8081` and y
 [**Learn more about getting started with joola.io**](http://github.com/joola/joola.io/wiki/technical-documentation)
 
 ##### To push your first event
+
+Using cURL:
+```bash
+$ curl --include \
+     --request POST \
+     --header "Content-Type: application/json" \
+     --data-binary "[{
+  \"timestamp\": null,
+  \"article\": \"Sample Analytics\",
+  \"browser\": \"Chrome\",
+  \"device\": \"Desktop\",
+  \"engine\": \"Webkit\",
+  \"os\": \"Linux\",
+  \"userid\": \"demo@joo.la\",
+  \"ip\": \"127.0.0.1\",
+  \"referrer\": \"http://joo.la\",
+  \"visits\": 1,
+  \"loadtime\": 123
+}]" \
+https://joolaio.apiary-mock.com/beacon/{workspace}/{collection}{?APIToken}
+```
+
+Using the SDK:
 ```js
 var joolaio = require('joola.io.sdk');
 
 joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-beacon'}, function(err) {
   var doc = {
-    timestamp: new Date(),
-    attribute: 'I\'m an attribute',
-    value: 123
+    "timestamp": null,
+    "article": "Sample Analytics",
+    "browser": "Chrome",
+    "device": "Desktop",
+    "engine": "Webkit",
+    "os": "Linux",
+    "userid": "demo@joo.la",
+    "ip": "127.0.0.1",
+    "referrer": "http://joo.la",
+    "visits": 1,
+    "loadtime": 123
   };
   joolaio.beacon.insert('collection-name', doc, function(err) { 
     console.log('Document saved');
