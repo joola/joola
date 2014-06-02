@@ -9,10 +9,9 @@
 [joola.io][22] is a real-time data analytics and visualization framework allowing you to quickly save, query and visualize your data. 
 Some of the main benefits of using joola.io include:
 
-1. Use simple, flexible and powerful JSON to describe your data and push to joola.io.
-2. Use intuitive JSON to describe the data you wish to analyze or visualize and get it in blazing speed. 
-3. Seamlessly embeddable into existing sites, including single-sign-on and advanced features.
-4. Agnostic datastore allows connections to different data sources and choosing one which is best fitting your data needs.
+- **Simple**, flexible and powerful JSON to describe your data and push to joola.io.
+- Our **intuitive query** JSON syntax makes it easy to analyze or visualize your data in blazing speed. 
+- Seamlessly **embeddable** into existing sites, including single-sign-on and advanced features.
 
 ### Main Features
 
