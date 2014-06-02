@@ -10,6 +10,9 @@ services:
   - mongodb
   - rabbitmq
 
+env:
+  JOOLAIO_CONFIG_AUTHENTICATION_BASICAUTH_ENABLED=TRUE
+  
 #branches:
 #  only:
 #    - master
