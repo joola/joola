@@ -27,6 +27,7 @@ before_script:
   - sudo rabbitmqctl status
   - sudo rabbitmq-plugins list
   - npm install -g dredd
+  - redis-cli flushall
 
 deploy:
   provider: heroku
