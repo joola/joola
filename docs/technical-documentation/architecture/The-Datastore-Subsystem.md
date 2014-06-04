@@ -5,6 +5,7 @@ We've designed joola.io so it is agnostic to the datastore provider, it uses a l
 
 These are the current datastore providers joola.io supports:
 - [MongoDB](http://github.com/joola/joola.io.datastore-mongodb)
+- [influxDB](http://github.com/joola/joola.io.datastore-influxdb)
 
 There's a wealth of datastore providers, ranging from Google Datastore to influxdb. We invite the community to contribute plugins to extend the support of joola.io.
 
