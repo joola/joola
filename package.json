@@ -88,8 +88,7 @@
     "stomp": "https://github.com/joola/stomp-js/tarball/master",
     "traverse": "^0.6.6",
     "twix": "~0.4.0",
-    "underscore": "*",
-    "usage": "*"
+    "underscore": "*"
   },
   "devDependencies": {
     "socket.io-browserify": "*",
