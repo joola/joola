@@ -4,19 +4,72 @@ include layout_head
   .row
     .col-md-12
       .bs-docs-section(id="demo")
-        h1.page-header Playground
-        p.lead Use this playground to explore your data.
+        h1.page-header Playground 
+          small on-the-spot realtime analytics.
+        p.
+          This playground allows you to compose reports on-the-spot from the different collections available.
+          Choose a collection from the drop-down, the page will show all relevant dimensions and metrics for it. 
+          Mix and match the different dimensions and metrics to compose a report.
 
+  .row
     .col-md-12
-      .row
-        .col-md-4
-          #metricbox-1.metric.active
-        .col-md-4
-          #metricbox-3.metric
-        .col-md-4
-          #metricbox-2.metric
-      .row
-        .col-md-12
-          #chart-1.chart
+      //.col-md-3
+        .row
+          .col-md-12
+            h3 Collection
+            .dropdown
+              button.btn.dropdown-toggle(type="button",id="dropdownCollections",data-toggle="dropdown") Please select 
+                span.caret
+              ul#collectionPicker.dropdown-menu(role="menu",aria-labelledby="dropdownCollections")
+                li(role="presentation")
+                  a(role="menuitem", tabindex="-1", href="#") Please select
+                li.divider(role="presentation")
+                li(role="presentation")
+                  a(role="menuitem", tabindex="-1", href="#") Another action
+            //select#collectionPicker
+              option Choose a collection
+
+        .row
+          .col-md-12
+            h3 Dimensions
+            #dimensionsList.sortable
+          .col-md-12
+            h3 Metrics
+            #metricsList.sortable
+      .col-md-12
+        //.row
+          .dropdown
+            button.btn.dropdown-toggle(type="button",id="dropdownCollections",data-toggle="dropdown") Please select 
+              span.caret
+            ul#collectionPicker.dropdown-menu(role="menu",aria-labelledby="dropdownCollections")
+              li(role="presentation")
+                a(role="menuitem", tabindex="-1", href="#") Please select
+              li.divider(role="presentation")
+              li(role="presentation")
+                a(role="menuitem", tabindex="-1", href="#") Another action
+        .row.dimensionpickers
+          #dplaceholder-1.dimensionpicker.target + add dimension
+        .row.metricpickers
+          #mplaceholder-1.metricpicker + add metric
+        hr
+        .row.metrics
+          .col-md-2
+            #metricbox-1.metric.active
+          .col-md-2
+            #metricbox-2.metric
+          .col-md-2
+            #metricbox-3.metric
+          .col-md-2
+            #metricbox-4.metric
+          .col-md-2
+            #metricbox-5.metric
+          .col-md-2
+            #metricbox-6.metric
+        .row
+          .col-md-12
+            #chart-1.chart
+
+.pickerPopup.dimensionsPopup
+.pickerPopup.metricsPopup
 
 include layout_footer
