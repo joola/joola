@@ -153,7 +153,33 @@ stores:
 ```
 Following the update, all nodes will be connecting to `lab02`.
 
+## SSL Certificates for Public/Production
+You will need to obtain a valid SSL certificate and place it somewhere on the filesystem for joola.io to find. 
+ 
+In the configuration file, please set the following values:
+```
+interfaces:webserver:keyfile = <path-to-your-keyfile>
+interfaces:webserver:certfile = <path-to-your-certificate>
+```
 
+## SSL Certificates for Local Development
+The default installation includes SSL certificates to support `localhost` development. These certificates were produced in our labs and you'd probably need to change them to yours to enable easy development.
+It's important to note that the default certificates should not and cannot be used in production to protect your servers, their only purpose is to allow easy development by the community.
+
+To generate your own `localhost` certificates, please follow these guidelines:
+```bash
+$ penssl genrsa -des3 -out server.key 1024
+$ openssl req -new -key server.key -out server.csr
+
+# Then, remove the passphrase from the server certificate for avoiding Apache asking you the password everytime you restart it:
+$ cp server.key server.key.org
+$ openssl rsa -in server.key.org -out server.key
+
+# And then, generate your self-signed certificate
+$ openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+```
+
+Edit your configuration file to point at these files, same as explained in the topic above.
 
 >
 Parts of the above documentation have been copied from the [`config`][node-config] module documentation.

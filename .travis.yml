@@ -10,6 +10,9 @@ services:
   - mongodb
   - rabbitmq
 
+env:
+  JOOLAIO_CONFIG_AUTHENTICATION_BASICAUTH_ENABLED=TRUE
+  
 #branches:
 #  only:
 #    - master
@@ -27,6 +30,7 @@ before_script:
   - sudo rabbitmqctl status
   - sudo rabbitmq-plugins list
   - npm install -g dredd
+  - redis-cli flushall
 
 deploy:
   provider: heroku
@@ -37,8 +41,8 @@ deploy:
 
 script: make test-cov
 after_success:
-  make coveralls
-  make -k test-api
+  - make coveralls
+  - make -k test-api 
  
 notifications:
   webhooks:

@@ -22,7 +22,7 @@ describe("auth", function () {
   });
 
   it("should return static content with no login issues", function (done) {
-    browser.visit('http://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.port + '/ico/favicon.ico', function () {
+    browser.visit('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.secureport + '/ico/favicon.ico', function () {
       expect(browser.success).to.equal(true);
       return done();
     });
@@ -32,7 +32,7 @@ describe("auth", function () {
     var user = {
       username: 'test',
       password: 'password',
-      roles: [],
+      roles: ['user'],
       workspace: this.workspace
     };
     joola.auth.generateToken(user, function (err, token) {
@@ -50,14 +50,14 @@ describe("auth", function () {
     var user = {
       username: 'test',
       password: 'password',
-      roles: [],
+      roles: ['user'],
       workspace: this.workspace
     };
-    var _expireAfter = joola.config.authentication.tokens.expireAfter;
-    joola.config.authentication.tokens.expireAfter = 2000;
+    var _expireafter = joola.config.authentication.tokens.expireafter;
+    joola.config.authentication.tokens.expireafter = 2000;
 
     joola.auth.generateToken(user, function (err, token) {
-      joola.config.authentication.tokens.expireAfter = _expireAfter;
+      joola.config.authentication.tokens.expireafter = _expireafter;
 
       joola.auth.validateToken(token._, null, function (err, valid) {
         if (err)
@@ -79,7 +79,7 @@ describe("auth", function () {
     var user = {
       username: 'test',
       password: 'password',
-      roles: [],
+      roles: ['user'],
       workspace: this.workspace
     };
     joola.auth.generateToken(user, function (err, token) {

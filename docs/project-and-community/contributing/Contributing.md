@@ -7,6 +7,7 @@ joola.io is open source software - we welcome contributors! Some things you migh
 * Documentation
 * New features
 * Bugfixes
+* [Security Vulnerabilities](responsible-disclosure)
 
 If you would like to contribute, we ask you to:
 

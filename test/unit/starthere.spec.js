@@ -22,12 +22,13 @@ before(function (done) {
       global.joola_proxy = joola;
       global.uid = joola.common.uuid();
       global.workspace = '_test';
-      joolaio.init({host: 'http://127.0.0.1:8080', APIToken: 'apitoken-test', debug: {enabled: true}}, function (err) {
+      joolaio.init({host: 'https://127.0.0.1:8081', APIToken: 'apitoken-test', debug: {enabled: true}}, function (err) {
         if (err)
           return done(err);
       });
       joolaio.events.on('ready', function () {
         global.user = joolaio.USER;
+        global.user.permissions = [''];
         global._token = {
           user: global.user
         };

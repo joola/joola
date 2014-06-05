@@ -6,11 +6,12 @@
 
 <img src="http://i.imgur.com/Kx6l8s3.png" alt="joola.io logo" title="joola.io" align="right" />
 
-[joola.io][22] is a real-time data analytics and visualization framework. Some of the main benefits of using joola.io include:
+[joola.io][22] is a real-time data analytics and visualization framework allowing you to quickly save, query and visualize your data. 
+Some of the main benefits of using joola.io include:
 
-1. Integrate existing data-sources to correlate, analyze and visualize data.
-2. Stores relevant data in a unique caching layer enabling scalable, rapid response times to queries and requests.
-3. Seamlessly embeddable into existing sites, including single-sign-on and advanced features.
+- **Simple**, flexible and powerful JSON to describe your data and push to joola.io.
+- Our **intuitive query** JSON syntax makes it easy to analyze or visualize your data in blazing speed. 
+- Seamlessly **embeddable** into existing sites, including single-sign-on and advanced features.
 
 ### Main Features
 
@@ -69,14 +70,46 @@ Following the installation, point your browser to `https://localhost:8081` and y
 [**Learn more about getting started with joola.io**](http://github.com/joola/joola.io/wiki/technical-documentation)
 
 ##### To push your first event
+
+Using cURL:
+```bash
+$ curl \
+     --include \
+     --request POST \
+     --header "Content-Type: application/json" \
+     --data-binary "[{
+       \"timestamp\": null,
+       \"article\": \"Sample Analytics\",
+       \"browser\": \"Chrome\",
+       \"device\": \"Desktop\",
+       \"engine\": \"Webkit\",
+       \"os\": \"Linux\",
+       \"userid\": \"demo@joo.la\",
+       \"ip\": \"127.0.0.1\",
+       \"referrer\": \"http://joo.la\",
+       \"visits\": 1,
+       \"loadtime\": 123
+     }]" \
+     https://joolaio.apiary-mock.com/beacon/{workspace}/{collection}{?APIToken}
+```
+
+Using the SDK:
 ```js
 var joolaio = require('joola.io.sdk');
 
 joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-beacon'}, function(err) {
   var doc = {
-    timestamp: new Date(),
-    attribute: 'I\'m an attribute',
-    value: 123
+    "timestamp": null,
+    "article": "Sample Analytics",
+    "browser": "Chrome",
+    "device": "Desktop",
+    "engine": "Webkit",
+    "os": "Linux",
+    "userid": "demo@joo.la",
+    "ip": "127.0.0.1",
+    "referrer": "http://joo.la",
+    "visits": 1,
+    "loadtime": 123
   };
   joolaio.beacon.insert('collection-name', doc, function(err) { 
     console.log('Document saved');
@@ -111,6 +144,8 @@ joolaio.init({host: 'http://localhost:8080', APIToken: 'apitoken-beacon'}, funct
 ### Contributing
 We would love to get your help! We have outlined a simple [Contribution Policy][18] to support a transparent and easy merging
 of ideas, code, bug fixes and features.
+
+If you've discovered a security vulnerability in joola.io, we appreciate your help in disclosing it to us in a responsible manner via our [Bounty Program](https://hackerone.com/joola-io).
 
 If you're looking for a place to start, you can always go over the list of [open issues][17], pick one and get started.
 If you're feeling lost or unsure, [just let us know](#Contact).

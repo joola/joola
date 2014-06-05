@@ -43,8 +43,12 @@ test-api:
 		redis-cli flushall
 		node joola.io.js &
 		sleep 2
-		-dredd -d -r html -o apiary.out.html apiary.apib http://localhost:8080
+		-dredd -r html apiary.apib http://localhost:8080
 		killall -9 node
 
+publish:
+		npm shrinkwrap
+		npm publish
+		
 .PHONY: test
 
