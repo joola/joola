@@ -6,70 +6,69 @@ include layout_head
       .bs-docs-section(id="demo")
         h1.page-header Playground 
           small on-the-spot realtime analytics.
-        p.
-          This playground allows you to compose reports on-the-spot from the different collections available.
-          Choose a collection from the drop-down, the page will show all relevant dimensions and metrics for it. 
-          Mix and match the different dimensions and metrics to compose a report.
+        p.lead This playground allows you to compose reports on-the-spot from the different collections available.
+        p Use the dimension and metric pickers to choose what data is analyzed. The timeframe and interval buttons will control the report's period.
 
   .row
     .col-md-12
-      //.col-md-3
-        .row
-          .col-md-12
-            h3 Collection
-            .dropdown
-              button.btn.dropdown-toggle(type="button",id="dropdownCollections",data-toggle="dropdown") Please select 
-                span.caret
-              ul#collectionPicker.dropdown-menu(role="menu",aria-labelledby="dropdownCollections")
-                li(role="presentation")
-                  a(role="menuitem", tabindex="-1", href="#") Please select
-                li.divider(role="presentation")
-                li(role="presentation")
-                  a(role="menuitem", tabindex="-1", href="#") Another action
-            //select#collectionPicker
-              option Choose a collection
-
-        .row
-          .col-md-12
-            h3 Dimensions
-            #dimensionsList.sortable
-          .col-md-12
-            h3 Metrics
-            #metricsList.sortable
       .col-md-12
-        //.row
-          .dropdown
-            button.btn.dropdown-toggle(type="button",id="dropdownCollections",data-toggle="dropdown") Please select 
-              span.caret
-            ul#collectionPicker.dropdown-menu(role="menu",aria-labelledby="dropdownCollections")
-              li(role="presentation")
-                a(role="menuitem", tabindex="-1", href="#") Please select
-              li.divider(role="presentation")
-              li(role="presentation")
-                a(role="menuitem", tabindex="-1", href="#") Another action
+        //span.pickersettings.glyphicon.glyphicon-cog
         .row.dimensionpickers
           #dplaceholder-1.dimensionpicker.target + add dimension
+          //#placeholder-3.dimensionpicker + Add dimension
         .row.metricpickers
           #mplaceholder-1.metricpicker + add metric
-        hr
-        .row.metrics
-          .col-md-2
-            #metricbox-1.metric.active
-          .col-md-2
-            #metricbox-2.metric
-          .col-md-2
-            #metricbox-3.metric
-          .col-md-2
-            #metricbox-4.metric
-          .col-md-2
-            #metricbox-5.metric
-          .col-md-2
-            #metricbox-6.metric
-        .row
-          .col-md-12
-            #chart-1.chart
+
+  hr
+
+  .row.metrics
+    .col-md-2
+      #metricbox-1.metric.active
+    .col-md-2
+      #metricbox-2.metric
+    .col-md-2
+      #metricbox-3.metric
+    .col-md-2
+      #metricbox-4.metric
+    .col-md-2
+      #metricbox-5.metric
+    .col-md-2
+      #metricbox-6.metric
+  .row
+    .col-md-12
+      #chart-1.chart
 
 .pickerPopup.dimensionsPopup
 .pickerPopup.metricsPopup
+
+#metricModal.modal.fade(role="dialog")
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        button.close(type="button", data-dismiss="modal" aria-hidden="true") &times;
+        h4.modal-title Metric Properties
+      .modal-body
+        form(role="form")
+          .form-group
+            label(for="inputKey") Key
+            input.form-control(type="text", id="inputKey" value="collection.key" disabled="true")
+          .form-group
+            label(for="inputDisplayName") Display Name
+            input.form-control(type="text", id="inputDisplayName", placeholder="Enter display name for the metric")
+          .form-group
+            label(for="inputAggregation") Aggregation
+            select.form-control(id="inputAggregation")
+              option(value="SUM") SUM
+              option(value="AVG") AVG
+              option(value="MAX") MAX
+              option(value="MIN") MIN
+          .form-group
+            label(for="inputPrefix") Prefix
+            input.form-control(type="text", id="inputPrefix", placeholder="Enter metric's prefix, i.e. '$'")
+          .form-group
+            label(for="inputSuffix") Suffix
+            input.form-control(type="text", id="inputSuffix", placeholder="Enter metric's suffix, i.e. 'ms'")
+          
+          button.btnSubmit.btn.btn-default Submit
 
 include layout_footer

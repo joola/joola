@@ -424,6 +424,8 @@ p.download-intro {
   padding-bottom: 10px;
 
   display: none;
+
+  background: #efefef;
 }
 
 .pickerPopup.active {
@@ -431,21 +433,20 @@ p.download-intro {
 }
 
 .metricsPopup {
-  background-color: #f2f6ff;
+
   border-color: #7b98e8;
-  color: #7b98e8;
+  color: #2f67b4;
 
   cursor: default;
 }
 
 .dimensionsPopup {
-  background: #f4ffe6;
+
   border-color: #9db675;
-  color: #93ac6b;
+  color: #738d68;
 
   cursor: default;
 }
-
 
 ul.collectionOption .caret {
   border-bottom: 4px solid transparent;
@@ -488,7 +489,6 @@ ul.collectionOption.active li.dimensionOption {
   display: block;
 }
 
-
 li.dimensionOption {
   cursor: pointer;
   width: 155px;
@@ -496,7 +496,7 @@ li.dimensionOption {
   border: 1px solid #738d68;
   background-color: #dae2cb;
   color: #738d68;
-  
+
   border-radius: 3px 3px 3px 3px;
   -moz-border-radius: 3px 3px 3px 3px;
   -webkit-border-top-left-radius: 3px;
@@ -578,4 +578,45 @@ li.metricOption:hover {
 li.metricOption.active {
   background-color: #6faefd;
   color: white;
+}
+
+.pickersettings {
+  float: right;
+  font-size: 18px;
+  cursor: pointer;
+  opacity:0.5
+}
+
+.cog {
+  float: left;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: .2;
+  filter: alpha(opacity=20);
+}
+
+button.cog {
+  padding: 0;
+  cursor: pointer;
+  background: 0 0;
+  border: 0;
+  -webkit-appearance: none;
+
+  padding-top: 1px;
+  padding-right: 3px;
+}
+
+.cog:hover, .cog:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: .5;
+  filter: alpha(opacity=50);
+}
+
+#metricModal{
+  top:250px;
 }
