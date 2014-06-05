@@ -21,25 +21,37 @@ include layout_head
 
   hr
 
-  .row.metrics
-    .col-md-2
-      #metricbox-1.metric.active
-    .col-md-2
-      #metricbox-2.metric
-    .col-md-2
-      #metricbox-3.metric
-    .col-md-2
-      #metricbox-4.metric
-    .col-md-2
-      #metricbox-5.metric
-    .col-md-2
-      #metricbox-6.metric
-  .row
+  .row.issue
     .col-md-12
-      #chart-1.chart
-
+      p.lead Please select at least one metric and dimension from the drop-downs above.
+  .visualization
+    .col-md-12
+      .row.metricsRow
+        //#metricbox-1.metric.active
+      .row.chartRow
+        .col-md-12
+          #chart-1.chart
+      .row.tableRow
+        .col-md-12
+          #table-1.table
 .pickerPopup.dimensionsPopup
 .pickerPopup.metricsPopup
+
+#dimensionModal.modal.fade(role="dialog")
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        button.close(type="button", data-dismiss="modal" aria-hidden="true") &times;
+        h4.modal-title Dimension Properties
+      .modal-body
+        form(role="form")
+          .form-group
+            label(for="inputKey") Key
+            input.form-control(type="text", id="inputKey" value="collection.key" disabled="true")
+          .form-group
+            label(for="inputDisplayName") Display Name
+            input.form-control(type="text", id="inputDisplayName", placeholder="Enter display name for the dimension")
+          button.btnSubmit.btn.btn-default Submit
 
 #metricModal.modal.fade(role="dialog")
   .modal-dialog.modal-sm
@@ -68,7 +80,7 @@ include layout_head
           .form-group
             label(for="inputSuffix") Suffix
             input.form-control(type="text", id="inputSuffix", placeholder="Enter metric's suffix, i.e. 'ms'")
-          
+
           button.btnSubmit.btn.btn-default Submit
 
 include layout_footer

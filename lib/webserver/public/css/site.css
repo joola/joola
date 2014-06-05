@@ -584,7 +584,7 @@ li.metricOption.active {
   float: right;
   font-size: 18px;
   cursor: pointer;
-  opacity:0.5
+  opacity: 0.5
 }
 
 .cog {
@@ -617,6 +617,16 @@ button.cog {
   filter: alpha(opacity=50);
 }
 
-#metricModal{
-  top:250px;
+#metricModal {
+  margin-top: 250px;
+}
+
+div[jio-type="metric"] {
+  float: left;
+  min-width: 220px;
+  max-width: 250px;
+  overflow: hidden;
+
+  padding-left: 20px;
+  padding-right: 20px;
 }
