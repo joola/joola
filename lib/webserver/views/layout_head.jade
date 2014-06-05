@@ -12,7 +12,7 @@ html(lang='en')
     link(rel="stylesheet", href="css/pretty.css")
     link(rel="stylesheet", href="css/site.css")
   body
-    nav.navbar.navbar-default(role="navigation")
+    nav.navbar(role="navigation", class=!playground ? "navbar-default" : "navbar-inverse")
       .container
         .navbar-header
           button.navbar-toggle(type="button", data-toggle="collapse", data-target="#main-nav")
@@ -20,7 +20,7 @@ html(lang='en')
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand(href="/#") joola.io
+          a.navbar-brand(href="/") joola.io
         .collapse.navbar-collapse(id="main-nav")
           ul.nav.navbar-nav
             li
@@ -28,11 +28,13 @@ html(lang='en')
             li
               a(href="/#gettingstarted") Getting started
             li
-              a(href="/benchmark") Benchmark
+              a.active(href="/playground") Playground
             li
-              a(href="http://github.com/joola/joola.io/wiki") Documentation
+              a(href="/benchmark") Benchmark              
           ul.nav.navbar-nav.navbar-right
-            li
+            //li
               a(href="http://blog.joola.io") Blog
             li
-              a(href="http://github.com/joola/joola.io") joola.io
+              a(href="http://github.com/joola/joola.io/wiki") Documentation
+            li
+              a(href="http://github.com/joola/joola.io") joola.io site
