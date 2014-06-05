@@ -376,6 +376,7 @@ p.download-intro {
 .dimensionpicker.active {
   background-color: #9db675;
   color: white;
+  border: 1px solid;
 }
 
 .metricpicker {
