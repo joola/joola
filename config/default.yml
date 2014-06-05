@@ -1,24 +1,26 @@
-version: 0.0.10
+version: 0.0.95
 interfaces:
   webserver:
     enabled: true
     host: joola.io #used for response-header [Server]
     bind: 0.0.0.0
     port: 8080
-    securePort: 8081
+    secureport: 8081
     secure: true
-    keyFile: ./config/certs/localhost.key
-    certFile: ./config/certs/localhost.csr
+    secureonly: true
+    keyfile: ./config/certs/server.key
+    certfile: ./config/certs/server.crt
+    ca: ./config/certs/ca.crt
     websocket:
       enabled: true
-    sessionDurtaion: 1200000
+    sessiondurtaion: 1200000
     timeout: 60000
     blacklist: null
-    allowOrigin: null
+    alloworigin: null
     headers:
       X-Powered-By: joola.io
   repl:
-    enabled: true
+    enabled: false
     port: 1337
 store:
   config:
@@ -39,6 +41,13 @@ store:
       # port: 61613
       # user: guest
       # pass: guest
+  websocket:
+    http:
+      redis:
+        dsn: redis://127.0.0.1
+    https:
+      redis:
+        dsn: redis://127.0.0.1
   logger:
     console:
       level: trace
@@ -46,32 +55,24 @@ store:
       # level: trace
       # token: your-api-token
       # domain: loggly-subdomain
-    mongo:
-      level: trace
-      dsn: mongodb://localhost:27017/logger
-      # if dsn not specific then these are required
-      host: 127.0.0.1
-      port: 27017
-      user: null
-      password: null
-      db: logger
-      options:
-        capped: true
-        size: 10240000
-      unique: false
-      expireAfterSeconds: 3600
     file:
       level: trace
       path: /tmp/joola.io/
   cache:
     mongo:
       dsn: mongodb://localhost:27017/cache
-      expireAfterSeconds: 0
+      expireafterseconds: 0
 dispatch:
     expires: 60
 authentication:
+  basicauth:
+    enabled: false
   tokens:
-    expireAfter: 1200000
+    expireafter: 1200000
+  ratelimits:
+    guest: 60
+    user: 5000
+  force404: false
 #sdk:
   # url: https://raw.githubusercontent.com/joola/joola.io.sdk/feature/%2376/bin/joola.io.js
 workspaces:
@@ -85,13 +86,14 @@ workspaces:
         permissions:
           - "beacon:insert"
           - "query:fetch"
-          - "workspaces:list"
-          - "workspaces:get"
-          - "workspaces:add"
-          - "workspaces:patch"
-          - "workspaces:delete"
+          - "query:stop"
           - "collections:list"
+          - "collections:get"
         filter: []
+      user:
+        key: "users"
+        permissions:
+          - "query:fetch"
     users:
       root:
         username: "root"
@@ -100,7 +102,7 @@ workspaces:
           - "root"
         displayName: "Administrator"
         APIToken: "apitoken-test"
-        rateLimit: 5000
+        ratelimit: 5000
   _stats:
     key: _stats
     name: Internal Stats
@@ -110,7 +112,13 @@ workspaces:
         key: "beacon"
         permissions:
           - "beacon_insert"
+          - "collections:get"
         filter: []
+      reader:
+        key: "reader"
+        permissions:
+          - "query:fetch"
+        filter: []        
     users:
       root:
         username: "stats-beacon"
@@ -119,13 +127,137 @@ workspaces:
           - "beacon"
         displayName: "Stats Beacon"
         APIToken: "apitoken-stats"
-        rateLimit: 5000
+        ratelimit: 5000
+      reader:
+        username: "stats-reader"
+        password: "password"
+        roles:
+          - "reader"
+        displayName: "Stats Reader"
+        ratelimit: 5000        
     collections:
+      stats-reads:
+        key: "stats-reads"
+        name: "stats-reads"
+        strongTyped: true
+        timestamp:
+          datatype: "date"
+          type: "dimension"
+          name: "timestamp"
+          key: "timestamp"
+        node:
+          datatype: "string"
+          type: "dimension"
+          name: "node"
+          key: "node"
+        event:
+          datatype: "string"
+          type: "dimension"
+          name: "event"
+          key: "event"
+        workspace:
+          datatype: "string"
+          type: "dimension"
+          name: "workspace"
+          key: "workspace"          
+        collection:
+          datatype: "string"
+          type: "dimension"
+          name: "collection"
+          key: "collection"
+        username:
+          datatype: "string"
+          type: "dimension"
+          name: "username"
+          key: "username"
+        readCount:
+          datatype: "number"
+          type: "metric"
+          name: "readCount"
+          key: "readCount"
+      stats-writes:
+        key: "stats-writes"
+        name: "stats-writes"
+        strongTyped: true
+        timestamp:
+          datatype: "date"
+          type: "dimension"
+          name: "timestamp"
+          key: "timestamp"
+        node:
+          datatype: "string"
+          type: "dimension"
+          name: "node"
+          key: "node"
+        event:
+          datatype: "string"
+          type: "dimension"
+          name: "event"
+          key: "event"
+        workspace:
+          datatype: "string"
+          type: "dimension"
+          name: "workspace"
+          key: "workspace"          
+        collection:
+          datatype: "string"
+          type: "dimension"
+          name: "collection"
+          key: "collection"
+        username:
+          datatype: "string"
+          type: "dimension"
+          name: "username"
+          key: "username"
+        writeCount:
+          datatype: "number"
+          type: "metric"
+          name: "writeCount"
+          key: "writeCount"
+      stats-simple:
+        key: "stats-simple"
+        name: "stats-simple"
+        strongTyped: true
+        timestamp:
+          datatype: "date"
+          type: "dimension"
+          name: "timestamp"
+          key: "timestamp"
+        node:
+          datatype: "string"
+          type: "dimension"
+          name: "node"
+          key: "node"
+        event:
+          datatype: "string"
+          type: "dimension"
+          name: "event"
+          key: "event"
+        workspace:
+          datatype: "string"
+          type: "dimension"
+          name: "workspace"
+          key: "workspace"          
+        collection:
+          datatype: "string"
+          type: "dimension"
+          name: "collection"
+          key: "collection"
+        username:
+          datatype: "string"
+          type: "dimension"
+          name: "username"
+          key: "username"
+        simpleCount:
+          datatype: "number"
+          type: "metric"
+          name: "simpleCount"
+          key: "simpleCount"                            
       stats-node-count:
         key: "stats-node-count"
         name: "stats-node-count"
         strongTyped: true
-        expireAfterSeconds: 3600
+        expireafterseconds: 3600
         timestamp:
           datatype: "date"
           type: "dimension"
@@ -150,7 +282,7 @@ workspaces:
         key: "stats-token-count"
         name: "stats-token-count"
         strongTyped: true
-        expireAfterSeconds: 3600
+        expireafterseconds: 3600
         timestamp:
           datatype: "date"
           type: "dimension"
@@ -175,7 +307,7 @@ workspaces:
         key: "stats-usage"
         name: "stats-usage"
         strongTyped: true
-        expireAfterSeconds: 3600
+        expireafterseconds: 3600
         timestamp:
           datatype: "date"
           type: "dimension"
@@ -205,7 +337,7 @@ workspaces:
         key: "stats-events-request"
         name: "stats-events-request"
         strongTyped: true
-        expireAfterSeconds: 3600
+        expireafterseconds: 3600
         timestamp:
           datatype: "date"
           type: "dimension"
@@ -230,7 +362,7 @@ workspaces:
         key: "stats-events-fulfilled"
         name: "stats-events-fulfilled"
         strongTyped: true
-        expireAfterSeconds: 3600
+        expireafterseconds: 3600
         timestamp:
           datatype: "date"
           type: "dimension"
@@ -264,7 +396,7 @@ workspaces:
       root:
         key: "root"
         permissions:
-          - "access_system"
+          - "superuser"
           - "workspaces:list"
           - "workspaces:get"
           - "workspaces:add"
@@ -282,6 +414,7 @@ workspaces:
           - "collections:metadata"
           - "collections:mindate"
           - "collections:maxdate"
+          - "collections:stats"
           - "dimensions:list"
           - "dimensions:add"
           - "dimensions:get"
@@ -308,11 +441,15 @@ workspaces:
           - "users:permissions"
           - "beacon:insert"
           - "query:fetch"
+          - "query:stop"
           - "system:nodeuid"
           - "system:nodedetails"
           - "system:terminate"
           - "system:purgeCache"
           - "system:roundtrip"
+          - "system:whoami"
+          - "system:version"
+          - "system:usage"
           - "misc:see_private"
         filter: []
       user:
@@ -325,12 +462,14 @@ workspaces:
         permissions:
           - "beacon:insert"
           - "query:fetch"
+          - "query:stop"
         filter: []
       reader:
         key: "user"
         permissions:
           - "beacon:insert"
           - "query:fetch"
+          - "query:stop"
         filter: []
     users:
       root:
@@ -340,7 +479,7 @@ workspaces:
           - "root"
         displayName: "Administrator"
         APIToken: "apitoken-demo"
-        rateLimit: 5000
+        ratelimit: 5000
         filter: []
       beacon:
         username: "beacon"
