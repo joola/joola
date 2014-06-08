@@ -18,16 +18,16 @@ footer.bs-docs-footer
     ul.bs-docs-footer-links.muted
       li Currently v#{version}
       li ·
-      li 
+      li
         a(href="https://github.com/joola/joola.io") GitHub
       li ·
-      li 
+      li
         a(href="#examples") Examples
       li ·
       li
         a(href="http://github.com/joola/joola.io/wiki") v#{version} docs
       li ·
-      li 
+      li
         a(href="http://joo.la") About joo.la
       li ·
       li
@@ -47,12 +47,18 @@ script(src="/js/ace-builds/src-noconflict/ace.js",type="text/javascript",charset
 script(src="/ip")
 script(src="/js/ua-parser.min.js")
 script(src="/js/tablesort.min.js")
-- if (!playground)
-  script(src="/joola.io.js?APIToken=apitoken-reader")
-  script(src="/js/site.js")
-- else
+- if (playground === true)
   script(src="/joola.io.js?APIToken=apitoken-demo")
   script(src="/js/playground.js")
+- else if (benchmark === true)
+  script(src="//cdnjs.cloudflare.com/ajax/libs/flot/0.8.2/jquery.flot.min.js")
+  script(src="/3rd/flot/jquery.flot.axislabels.js")
+  script(src="/joola.io.js?APIToken=apitoken-reader")
+  script(src="js/benchmark.js")
+- else
+  script(src="/joola.io.js?APIToken=apitoken-reader")
+  script(src="/js/site.js")
+
 script(src="/js/recordEvents.js")
 
 script.
@@ -60,5 +66,4 @@ script.
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', '#{GA_UA}', '#{GA_SITE}');
-  ga('send', 'pageview');
+    ga('create', '#{GA_UA}', '#{GA_SITE}');ga('send', 'pageview');

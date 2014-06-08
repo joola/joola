@@ -1,4 +1,4 @@
-version: 0.0.110
+version: 0.0.200
 interfaces:
   webserver:
     enabled: true
@@ -463,6 +463,7 @@ workspaces:
           - "beacon:insert"
           - "query:fetch"
           - "query:stop"
+          - "system:version"
         filter: []
       reader:
         key: "user"
@@ -470,6 +471,7 @@ workspaces:
           - "beacon:insert"
           - "query:fetch"
           - "query:stop"
+          - "system:version"
         filter: []
     users:
       root:
