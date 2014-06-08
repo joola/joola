@@ -4,7 +4,64 @@ include layout_head
   h1.page-header Benchmark 
     small an interactive benchmarking tool
 
-  .container
+  .row.tests
+    .col-md-4
+      h3 Load Test
+        button.btn.btn-default.btnStartLoad.pull-right Start
+      p.
+        This test will make 1,000 API calls of <code>/system/version</code> to determine a baseline performance of the framework.
+      div.percentage
+      table.table.table-condensed      
+        tr
+          td Last
+          td#counterLoadLast.text-right 0
+        tr
+          td Average
+          td.text-right 0
+        tr
+          td Peak
+          td#counterLoadPeak.text-right 0
+        tr
+          td Min
+          td#counterLoadMin.text-right 0         
+    .col-md-4
+      h3 Push Test
+        button.btn.btn-default.btnStartPush.pull-right Start
+      p.
+        This test will push 1,000 documents, <code>/beacon/insert</code>, of 1KB each to determine the push processing time.
+      div.percentage
+      table.table.table-condensed
+        tr
+          td Last
+          td#counterPushLast.text-right 0
+        tr
+          td Average
+          td.text-right 0
+        tr
+          td Peak
+          td#counterPushPeak.text-right 0
+        tr
+          td Min
+          td#counterPushMin.text-right 0
+    .col-md-4
+      h3 Query Test
+        button.btn.btn-default.btnStartQuery.pull-right Start
+      p.
+        This test will fetch 1,000 queries, <code>/query/fetch</code>, with no cache enabled to determine the query processing time.
+      div.percentage
+      table.table.table-condensed
+        tr
+          td Last
+          td#counterQueryLast.text-right 0
+        tr
+          td Average
+          td.text-right 0
+        tr
+          td Peak
+          td#counterQueryPeak.text-right 0
+        tr
+          td Min
+          td#counterQueryMin.text-right 0  
   .row
     .col-md-12
       .usage-container
@@ -13,36 +70,54 @@ include layout_head
     .col-md-3
       h4 EPS
       p How many API calls per second are processed.
-      button.btn.btnStop Stop
+      table.table.table-condensed
+        tr
+          td Current
+          td#counterEPSCurrent.text-right 0
+        tr
+          td Average
+          td#counterEPSAvg.text-right 0
+        tr
+          td Peak
+          td#counterEPSPeak.text-right 0
+        tr
+          td Total
+          td#counterEPSTotal.text-right 0 
+      
     .col-md-3
       h4 BPS
       p How many Bytes are communicated back and forth.
+      table.table.table-condensed
+        tr
+          td Current
+          td#counterBPSCurrent.text-right 0
+        tr
+          td Average
+          td#counterBPSAvg.text-right 0
+        tr
+          td Peak
+          td#counterBPSPeak.text-right 0
+        tr
+          td Total
+          td#counterBPSTotal.text-right 0
+
     .col-md-3
       h4 Wait Time
       p How long it takes for API calls to fully complete.
     .col-md-3
       h4 API Latency
       p How much time of each call is spent server-side, on the joola.io framework.
-      button.btn.btnStart Start
+      
 
-.container
   .row
     .col-md-12
-      .bs-docs-section(id="gettingstarted")
-        h1.page-header What is this benchmark?
-        p.lead An overview of joola.io, how to setup, configure and use.
-        p.
-          joola.io was designed by developers for developers. We did the heavy-lifting with all that is data and framework related,
-          this is what makes joola.io so easy and fun to play with.<br/>
-          The project is rich with <a href="http://github.com/joola/joola.io">documentation</a>, <a href="#examples">examples</a> and <a href="http:github.com/joola/joola.io/wiki/workshops">workshops</a>.
-        p.
-          Below is a quick guide for getting started with your first visualization and some basic concepts used throughout.
-        .bs-callout.bs-callout-warning
-          h4 Assumptions
-          p.
-            Please note that for this getting started guide we'll be assuming <code>localhost</code> as your server and <code>apitoken-root</code> as your APIToken (default).
-            <br/>Also, when referring to dependencies such as <a href="http://mongodb.org">MongoDB</a>, <a href="http://redis.io">Redis</a>, etc... we assume that these are installed on your <code>localhost</code>.
-          p.
-            For a complete setup and configuration guide, please refer to our <a href="http://github.com/joola/joola.io/wiki">wiki</a>.
-        
+      h3 A few additional words about this benchmark 
+       small benchmarks are bullshit.
+      p.
+        joola.io was designed by developers for developers. We did the heavy-lifting with all that is data and framework related,
+        this is what makes joola.io so easy and fun to play with.<br/>
+        The project is rich with <a href="http://github.com/joola/joola.io">documentation</a>, <a href="#examples">examples</a> and <a href="http:github.com/joola/joola.io/wiki/workshops">workshops</a>.
+      p.
+        Below is a quick guide for getting started with your first visualization and some basic concepts used throughout.
+     
 include layout_footer
