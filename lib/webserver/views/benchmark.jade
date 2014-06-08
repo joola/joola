@@ -4,6 +4,10 @@ include layout_head
   h1.page-header Benchmark 
     small an interactive benchmarking tool
 
+  .row
+    .col-md-12
+      .usage-container
+        #usage.usage
   .row.tests
     .col-md-4
       h3 Load Test
@@ -11,11 +15,11 @@ include layout_head
       p.
         This test will make 1,000 API calls of <code>/system/version</code> to determine a baseline performance of the framework.
       div.percentage
-      table.table.table-condensed      
+      table.table.table-condensed
         tr
           td Last
           td#counterLoadLast.text-right 0
-        tr
+        //tr
           td Average
           td.text-right 0
         tr
@@ -34,7 +38,7 @@ include layout_head
         tr
           td Last
           td#counterPushLast.text-right 0
-        tr
+        //tr
           td Average
           td.text-right 0
         tr
@@ -53,7 +57,7 @@ include layout_head
         tr
           td Last
           td#counterQueryLast.text-right 0
-        tr
+        //tr
           td Average
           td.text-right 0
         tr
@@ -62,17 +66,18 @@ include layout_head
         tr
           td Min
           td#counterQueryMin.text-right 0  
-  .row
-    .col-md-12
-      .usage-container
-        #usage.usage
+
+  div.header.bg-primary.well.well-sm.summaryrow
+    h3.text-center
+      em.summary Click the Start buttons of each test to start. 
+
   .row
     .col-md-3
       h4 EPS
       p How many API calls per second are processed.
       table.table.table-condensed
         tr
-          td Current
+          td Last
           td#counterEPSCurrent.text-right 0
         tr
           td Average
@@ -81,15 +86,15 @@ include layout_head
           td Peak
           td#counterEPSPeak.text-right 0
         tr
-          td Total
+          td Total Events
           td#counterEPSTotal.text-right 0 
-      
+
     .col-md-3
       h4 BPS
       p How many Bytes are communicated back and forth.
       table.table.table-condensed
         tr
-          td Current
+          td Last
           td#counterBPSCurrent.text-right 0
         tr
           td Average
@@ -98,26 +103,57 @@ include layout_head
           td Peak
           td#counterBPSPeak.text-right 0
         tr
-          td Total
+          td Total Bandwidth
           td#counterBPSTotal.text-right 0
 
     .col-md-3
       h4 Wait Time
-      p How long it takes for API calls to fully complete.
-    .col-md-3
-      h4 API Latency
       p How much time of each call is spent server-side, on the joola.io framework.
-      
+      table.table.table-condensed
+        tr
+          td Last
+          td#counterWaitLast.text-right 0
+        tr
+          td Average
+          td#counterWaitAvg.text-right 0
+        tr
+          td Peak
+          td#counterWaitPeak.text-right 0
+        tr
+          td Min
+          td#counterWaitMin.text-right 0
+    .col-md-3
+      h4 Queue Latency
+      p How much time of each call is spent in queue waiting for dispatch.
+      table.table.table-condensed
+        tr
+          td Last
+          td#counterQLast.text-right 0
+        tr
+          td Average
+          td#counterQAvg.text-right 0
+        tr
+          td Peak
+          td#counterQPeak.text-right 0
+        tr
+          td Min
+          td#counterQMin.text-right 0
 
   .row
     .col-md-12
       h3 A few additional words about this benchmark 
-       small benchmarks are bullshit.
+        small benchmarks are bullshit.
       p.
-        joola.io was designed by developers for developers. We did the heavy-lifting with all that is data and framework related,
-        this is what makes joola.io so easy and fun to play with.<br/>
-        The project is rich with <a href="http://github.com/joola/joola.io">documentation</a>, <a href="#examples">examples</a> and <a href="http:github.com/joola/joola.io/wiki/workshops">workshops</a>.
+        We've been reading a lot on benchmarking over the last few months and here's our take on benchmarking:
+      ul
+        li Compare apples and apples, when running tests, make sure you repeat the same test with the same conditions of previous ones. 
+        li Tests should be metric oriented and measure specific performance indicators, rather than overall performance. 
+        li Nothing should change but code. This should ensure you're actually testing the improvement of code, rather than infrastructure.
+        li Benchmark user experience, not only the server performance, think about the end-user's experience.
+        li Design your out-of-the-box code for real-life usage, rather than benchmarks.
       p.
-        Below is a quick guide for getting started with your first visualization and some basic concepts used throughout.
-     
+        This tool <strong>DOES NOTHING OF THE ABOVE</strong>, it's an hands-on developer tool aiming to assist implementers in scaling their environment and measuring its performance.
+      p.
+        We are working on a "proper" benchmarking environment to accomplish all of the above points. Join the conversation at <a href="http://github.com/joola/joola.io/issues/118">GitHub</a>. 
+
 include layout_footer
