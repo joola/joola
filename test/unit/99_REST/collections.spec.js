@@ -1,13 +1,19 @@
 describe("collections", function () {
   before(function (done) {
-    this.context = {user: _token.user};
-    this.collection = 'test-collection-collectionstest-' + global.uid;
+    this.context = {user: joolaio.USER};
+    this.collection = 'test-collection-dispatch-' + global.uid;
 
-    return done();
+    joolaio.set('APIToken', 'apitoken-demo', done);
+  });
+
+  after(function (done) {
+    joolaio.set('APIToken', 'apitoken-demo', done);
   });
 
   it("should return a valid list of collections", function (done) {
-    joola_proxy.dispatch.collections.list(this.context, this.context.user.workspace, function (err, collections) {
+    console.log(joolaio.USER);
+
+    joolaio.collections.list(this.context.user.workspace, function (err, collections) {
       if (err)
         return done(err);
 
@@ -21,7 +27,7 @@ describe("collections", function () {
       key: this.collection,
       name: this.collection
     };
-    joola_proxy.dispatch.collections.add(this.context, this.context.user.workspace, collection, function (err, collection) {
+    joolaio.dispatch.collections.add(this.context.user.workspace, collection, function (err, collection) {
       if (err)
         return done(err);
 
@@ -35,7 +41,7 @@ describe("collections", function () {
       key: this.collection,
       name: this.collection
     };
-    joola_proxy.dispatch.collections.add(this.context, this.context.user.workspace, collection, function (err) {
+    joolaio.dispatch.collections.add(this.context.user.workspace, collection, function (err) {
       if (err)
         return done();
 
@@ -47,7 +53,7 @@ describe("collections", function () {
     var collection = {
       key: this.collection + '1'
     };
-    joola_proxy.dispatch.collections.add(this.context, this.context.user.workspace, collection, function (err) {
+    joolaio.dispatch.collections.add(this.context.user.workspace, collection, function (err) {
       if (err)
         return done();
 
@@ -61,7 +67,7 @@ describe("collections", function () {
       name: this.collection,
       test: 1
     };
-    joola_proxy.dispatch.collections.patch(this.context, this.context.user.workspace, collection.key, collection, function (err, _collection) {
+    joolaio.dispatch.collections.patch(this.context.user.workspace, collection.key, collection, function (err, _collection) {
       if (err)
         return done(err);
 
@@ -75,7 +81,7 @@ describe("collections", function () {
       key: this.collection + '1',
       name: this.collection
     };
-    joola_proxy.dispatch.collections.patch(this.context, this.context.user.workspace, collection.key, collection, function (err, _collection) {
+    joolaio.dispatch.collections.patch(this.context.user.workspace, collection.key, collection, function (err, _collection) {
       if (err)
         return done();
 
@@ -85,7 +91,7 @@ describe("collections", function () {
 
   it("should get a collection", function (done) {
     var self = this;
-    joola_proxy.dispatch.collections.get(this.context, this.context.user.workspace, this.collection, function (err, collection) {
+    joolaio.dispatch.collections.get(this.context.user.workspace, this.collection, function (err, collection) {
       if (err)
         return done(err);
 
@@ -95,13 +101,13 @@ describe("collections", function () {
     });
   });
 
-  it("should get collection stats", function (done) {
-    var self=this;
-    joola_proxy.beacon.insert(this.context, this.context.user.workspace, this.collection, {timestamp: null, test: 1}, function (err) {
+  xit("should get collection stats", function (done) {
+    var self = this;
+
+    joolaio.beacon.insert(this.context.user.workspace, this.collection, {timestamp: null, test: 1}, function (err) {
       if (err)
         return done(err);
-
-      joola_proxy.dispatch.collections.stats(self.context, self.context.user.workspace, self.collection, function (err, stats) {
+      joolaio.dispatch.collections.stats(self.context.user.workspace, self.collection, function (err, stats) {
         if (err)
           return done(err);
         expect(stats).to.be.ok;
@@ -111,7 +117,7 @@ describe("collections", function () {
   });
 
   it("should fail getting stats for non-existing collection", function (done) {
-    joola_proxy.dispatch.collections.stats(this.context, this.context.user.workspace, this.collection + '1', function (err) {
+    joolaio.dispatch.collections.stats(this.context.user.workspace, this.collection + '1', function (err) {
       if (err)
         return done();
 
@@ -121,10 +127,10 @@ describe("collections", function () {
 
   xit("should get collection min date", function (done) {
     var self = this;
-    joola.beacon.insert(this.context, this.context.user.workspace, this.collection, {timestamp: null}, function (err) {
+    joola.beacon.insert(this.context.user.workspace, this.collection, {timestamp: null}, function (err) {
       if (err)
         return done(err);
-      joola_proxy.dispatch.collections.mindate(self.context, self.context.user.workspace, self.collection, null, function (err, mindate) {
+      joolaio.dispatch.collections.mindate(self.context.user.workspace, self.collection, null, function (err, mindate) {
         if (err)
           return done(err);
 
@@ -135,7 +141,7 @@ describe("collections", function () {
   });
 
   xit("should fail getting non-existing collection min date", function (done) {
-    joola_proxy.dispatch.collections.mindate(this.context, this.context.user.workspace, this.collection + '3', null, function (err) {
+    joolaio.dispatch.collections.mindate(this.context.user.workspace, this.collection + '3', null, function (err) {
       if (err)
         return done();
 
@@ -145,10 +151,10 @@ describe("collections", function () {
 
   xit("should get collection max date", function (done) {
     var self = this;
-    joola.beacon.insert(this.context, this.context.user.workspace, this.collection, {timestamp: null}, function (err) {
+    joola.beacon.insert(this.context.user.workspace, this.collection, {timestamp: null}, function (err) {
       if (err)
         return done(err);
-      joola_proxy.dispatch.collections.maxdate(self.context, self.context.user.workspace, self.collection, null, function (err, maxdate) {
+      joolaio.dispatch.collections.maxdate(self.context.user.workspace, self.collection, null, function (err, maxdate) {
         if (err)
           return done(err);
 
@@ -159,7 +165,7 @@ describe("collections", function () {
   });
 
   xit("should fail getting non-existing collection max date", function (done) {
-    joola_proxy.dispatch.collections.maxdate(this.context, this.context.user.workspace, this.collection + '3', null, function (err) {
+    joolaio.dispatch.collections.maxdate(this.context.user.workspace, this.collection + '3', null, function (err) {
       if (err)
         return done();
 
@@ -170,7 +176,7 @@ describe("collections", function () {
   it("should get a collection meta data", function (done) {
     var self = this;
     var document = require('../../fixtures/basic.json')[0];
-    joola_proxy.dispatch.collections.metadata(self.context, self.context.user.workspace, self.collection, document, function (err, meta) {
+    joolaio.dispatch.collections.metadata(self.context.user.workspace, self.collection, document, function (err, meta) {
       if (err)
         return done(err);
 
@@ -179,13 +185,25 @@ describe("collections", function () {
     });
   });
 
-  it("should delete a collection", function (done) {
+  it("should get a collection meta data with no document", function (done) {
     var self = this;
-    joola_proxy.dispatch.collections.delete(this.context, this.context.user.workspace, this.collection, function (err) {
+    var document = require('../../fixtures/basic.json')[0];
+    joolaio.dispatch.collections.metadata(self.context.user.workspace, self.collection, {}, function (err, meta) {
       if (err)
         return done(err);
 
-      joola_proxy.dispatch.collections.get(self.context, self.context.user.workspace, self.collection, function (err, collections) {
+      expect(meta).to.be.ok;
+      done();
+    });
+  });
+
+  xit("should delete a collection", function (done) {
+    var self = this;
+    joolaio.dispatch.collections.delete(this.context.user.workspace, this.collection, function (err) {
+      if (err)
+        return done(err);
+
+      joolaio.dispatch.collections.get(self.context.user.workspace, self.collection, function (err, collections) {
         if (err)
           return done();
 
@@ -195,7 +213,7 @@ describe("collections", function () {
   });
 
   it("should fail deleting a non-existing collection", function (done) {
-    joola_proxy.dispatch.collections.delete(this.context, this.context.user.workspace, this.collection, function (err) {
+    joolaio.dispatch.collections.delete(this.context.user.workspace, this.collection, function (err) {
       if (err)
         return done();
 
