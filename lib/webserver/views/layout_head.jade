@@ -12,7 +12,7 @@ html(lang='en')
     link(rel="stylesheet", href="css/pretty.css")
     link(rel="stylesheet", href="css/site.css")
   body
-    nav.navbar(role="navigation", class=!playground ? "navbar-default" : "navbar-inverse")
+    nav.navbar(role="navigation", class=!playground && !benchmark ? "navbar-default" : "navbar-inverse")
       .container
         .navbar-header
           button.navbar-toggle(type="button", data-toggle="collapse", data-target="#main-nav")
