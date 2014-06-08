@@ -1,6 +1,5 @@
 [**HOME**](Home) > **TECHNICAL DOCUMENTATION**
 
-**Using joola.io**
 - [Setup Guide](setting-up-joola.io)
 - [Configuration](Configuration)
 - [The joola.io SDK](using-the-sdk)

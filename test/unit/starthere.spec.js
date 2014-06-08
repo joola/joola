@@ -18,6 +18,8 @@ before(function (done) {
       if (state !== 'online')
         return done(new Error('Failed to initialize engine, check logs.'));
 
+      joola.config.set('authentication:basicauth:enabled', true);
+
       global.joolaio = joola.sdk;
       global.joola_proxy = joola;
       global.uid = joola.common.uuid();
