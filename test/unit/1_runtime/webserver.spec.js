@@ -48,7 +48,7 @@ describe("webserver", function () {
   });
 
   it("should have HTTPS port open", function (done) {
-    request.get('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.secureport + '', function (err, response, body) {
+    request.get('https://localhost:' + joola.config.interfaces.webserver.secureport + '', function (err, response, body) {
       if (err)
         return done(err);
 
@@ -116,7 +116,7 @@ describe("webserver", function () {
   });
 
   it("should serve api endpoints", function (done) {
-    request.get('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.secureport + '/meta', function (err, response, body) {
+    request.get('https://localhost:' + joola.config.interfaces.webserver.secureport + '/meta', function (err, response, body) {
       if (err)
         return done(err);
 
@@ -126,7 +126,7 @@ describe("webserver", function () {
   });
 
   it("should serve api endpoints [system version]", function (done) {
-    request.get('https://' + joola.config.interfaces.webserver.host + ':' + joola.config.interfaces.webserver.secureport + '/system/version?APIToken=apitoken-demo', function (err, response, body) {
+    request.get('https://localhost:' + joola.config.interfaces.webserver.secureport + '/system/version?APIToken=apitoken-demo', function (err, response, body) {
       if (err)
         return done(err);
 
