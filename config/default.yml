@@ -1,4 +1,4 @@
-version: 0.0.200
+version: 0.0.310
 interfaces:
   webserver:
     enabled: true
@@ -63,7 +63,8 @@ store:
       dsn: mongodb://localhost:27017/cache
       expireafterseconds: 0
 dispatch:
-    expires: 60
+  enabled: true
+  expires: 60
 authentication:
   basicauth:
     enabled: false
