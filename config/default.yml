@@ -57,7 +57,7 @@ store:
       # domain: loggly-subdomain
     file:
       level: trace
-      path: /tmp/joola.io/
+      path: /var/log/joola.io
   datastore:
     mongodb:
       dsn: mongodb://localhost:27017/cache
