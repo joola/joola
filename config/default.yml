@@ -1,8 +1,9 @@
-version: 0.0.310
+version: 0.0.450
 interfaces:
   webserver:
     enabled: true
-    host: joola.io #used for response-header [Server]
+    welcome: true
+    # host: joola.io #used for response-header [Server]
     bind: 0.0.0.0
     port: 8080
     secureport: 8081
@@ -18,7 +19,7 @@ interfaces:
     blacklist: null
     alloworigin: null
     headers:
-      X-Powered-By: joola.io
+      # X-Powered-By: joola.io
   repl:
     enabled: false
     port: 1337
