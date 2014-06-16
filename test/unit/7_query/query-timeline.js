@@ -18,7 +18,7 @@ describe("query-timeline", function () {
    });
    });
    */
-  it("should perform a timeline query [this_second/second]", function (done) {
+  xit("should perform a timeline query [this_second/second]", function (done) {
     var expected = 1;
     var query = {
       timeframe: 'this_second',
@@ -63,7 +63,7 @@ describe("query-timeline", function () {
     });
   });
 
-  it("should perform a timeline query [this_second/minute]", function (done) {
+  xit("should perform a timeline query [this_second/minute]", function (done) {
     var expected = 1;
     var query = {
       timeframe: 'this_second',
@@ -510,8 +510,10 @@ describe("query-timeline", function () {
   it("should perform a timeline query with start and end", function (done) {
     var expected = 31;
 
-    var _startdate = new Date(2014, 0, 1);
-    var _enddate = new Date(2014, 0, 31, 23, 59, 59, 999);
+    var _startdate = new Date();
+    var _enddate = new Date();
+
+    _startdate.setDate(_startdate.getDate() - 30);
 
     var query = {
       timeframe: {
@@ -528,6 +530,7 @@ describe("query-timeline", function () {
       if (err)
         return done(err);
       var actual = result.documents.length;
+
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
