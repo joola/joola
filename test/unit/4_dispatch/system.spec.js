@@ -83,7 +83,7 @@ describe("system", function () {
     });
   });
   
-  it("should purge the cache", function (done) {
+  xit("should purge the cache", function (done) {
     joola.system.purgeCache(this.context, function (err) {
       if (err)
         return done(err);
