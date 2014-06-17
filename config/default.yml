@@ -427,6 +427,11 @@ workspaces:
           - "metrics:get"
           - "metrics:patch"
           - "metrics:delete"
+          - canvases:list
+          - canvases:add
+          - canvases:get
+          - canvases:patch
+          - canvases:delete
           - "roles:list"
           - "roles:get"
           - "roles:add"
