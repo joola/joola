@@ -1,7 +1,7 @@
 {
   "name": "joola.io",
   "preferGlobal": false,
-  "version": "0.6.3-develop",
+  "version": "0.6.3",
   "author": "Joola <info@joo.la>",
   "description": "The open-source data visualization framework",
   "engine": "node >= 0.10.x",
@@ -41,7 +41,6 @@
     "noSQL"
   ],
   "dependencies": {
-    "JSONStream": "*",
     "async": "*",
     "benchmark": "^1.0.0",
     "body-parser": "^1.0.2",
@@ -69,7 +68,7 @@
     "humanize-number": "0.0.2",
     "jade": "*",
     "joola.io.cli": "^0.0.3",
-    "joola.io.datastore-mongodb": "^0.0.3",
+    "joola.io.datastore-mongodb": "^0.0.5",
     "joola.io.sdk": "^0.6.0",
     "js-yaml": "~3.0.2",
     "json-stringify-safe": "^5.0.0",
@@ -105,13 +104,12 @@
     "request": "*",
     "zombie": "*",
     "mkdirp": "*",
-    "sinon": "*",
-    "chai": "*",
-    "sinon-chai": "*",
     "wrench": "~1.5.6",
-    "socket.io-client": "~0.9.16",
     "commander": "~2.2.0",
-    "humanize-number": "0.0.2"
+    "humanize-number": "0.0.2",
+    "chai": "^1.9.1",
+    "sinon": "^1.10.2",
+    "sinon-chai": "2.3.1"
   },
   "engines": {
     "node": "0.10.*",
