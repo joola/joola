@@ -30,3 +30,5 @@ config/development.json
 config/certs/goo.pem
 
 npm-shrinkwrap.json
+
+.vagrant
