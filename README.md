@@ -31,13 +31,37 @@ joola.io uses several leading open-source software for its operation. Before get
 For the example below to work out-of-the-box, it's required to have both joola.io and its dependencies installed on localhost.
  For more details on the installation process, please refer to [this guide](http://github.com/joola/joola.io/wiki/install-joola.io).
 
+#### Using Vagrant
+We have included a [Vagrant](http://www.vagrantup.com) file to support easy playing around and testing. Running `vagrant up` will install all needed dependencies and run joola.io for you in a sand boxed virtual environment. 
+
+```bash
+# Clone this repository
+$ git clone https://github.com/joola/joola.io
+$ cd joola.io
+
+$ vagrant up
+# wait for the box to come online
+$ vagrant ssh 
+
+# once in the box
+$ cd /opt/joola/node_modules/joola.io
+$ node joola.io.js
+```
+
+We have configured the VM to use 2 CPUs with 2048MB of memory, but these can be configured from `Vagrantfile` if you prefer different settings.  
+
+#### Install via NPM
+
 ```bash
 $ mkdir /opt/joola.io
 $ cd /opt/joola.io
 $ npm install joola.io
 $ node ./node_modules/joola.io/joola.io.js
+```
 
-# Access REST API using cURL (-k switch due to default localhost SSL certificate)
+Access REST API using cURL (-k switch due to default localhost SSL certificate)
+
+```bash
 $ curl -i -k  https://localhost:8081/system/version?APIToken=apitoken-demo
 
 HTTP/1.1 200 OK

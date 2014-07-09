@@ -7,7 +7,7 @@ describe("beacon-nested", function () {
     done();
   });
 
-  it("should load a single document", function (done) {
+  xit("should load a single document", function (done) {
     var self = this;
     var documents = ce.clone(this.documents)[0];
     joola.beacon.insert(this.context, this.context.user.workspace, this.collection, documents, function (err, doc) {

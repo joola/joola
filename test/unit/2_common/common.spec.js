@@ -168,4 +168,50 @@ describe("common-utils", function () {
   it("should typeof(obj)", function () {
     expect(joola.common.typeof({a: 1})).to.equal('object');
   });
+
+  it("should flatten an object", function () {
+    var obj = {
+      a: 1,
+      b: 'b',
+      c: true,
+      d: {
+        da: 1,
+        db: 'db',
+        c: true
+      }
+    };
+    var expected = [
+      [ 'a', 1 ],
+      [ 'b', 'b' ],
+      [ 'c', true ],
+      [ 'd.da', 1 ],
+      [ 'd.db', 'db' ],
+      [ 'd.c', true ]
+    ];
+    var flat = joola.common.flatten(obj);
+    expect(expected).to.deep.equal(flat);
+  });
+
+  it("should nest an array", function () {
+    var array = [
+      [ 'a', 1 ],
+      [ 'b', 'b' ],
+      [ 'c', true ],
+      [ 'd.da', 1 ],
+      [ 'd.db', 'db' ],
+      [ 'd.c', true ]
+    ];
+    var expected = {
+      a: 1,
+      b: 'b',
+      c: true,
+      d: {
+        da: 1,
+        db: 'db',
+        c: true
+      }
+    };
+    var nested = joola.common.nest(array);
+    expect(expected).to.deep.equal(nested);
+  });
 });

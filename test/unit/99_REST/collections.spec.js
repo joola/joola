@@ -212,7 +212,7 @@ describe("collections", function () {
     });
   });
 
-  it("should fail deleting a non-existing collection", function (done) {
+  xit("should fail deleting a non-existing collection", function (done) {
     joolaio.dispatch.collections.delete(this.context.user.workspace, this.collection, function (err) {
       if (err)
         return done();

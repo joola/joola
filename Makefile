@@ -49,6 +49,7 @@ test-api:
 publish:
 		npm shrinkwrap
 		npm publish
+		rm npm-shrinkwrap.json
 		
 .PHONY: test
 
