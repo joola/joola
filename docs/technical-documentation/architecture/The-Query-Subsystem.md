@@ -9,7 +9,8 @@ joolaio.query.fetch({
   interval: 'second',
   dimensions: ['timestamp'],
   metrics: ['moves'],
-  filter: null
+  filter: null,
+  collection: 'mousemoves'
 }, function(err, results) {
   if (err)
     throw err;

@@ -4,7 +4,7 @@ It's very easy to get data into joola.io. The technique to do so vary on the spe
 Before we start, we'll assume that you've already [installed your joola.io](setting-up-joola.io) and that you've read the [Using the SDK guide](using-the-sdk).
 
 >
-**NOTE:** We will be using APIToken 12345 and host http://localhost:8080 for our examples.
+**NOTE:** We will be using APIToken `apitoken-demo` and host `https://localhost:8081` for our examples.
 
 ### Basic Example
 ```js
@@ -86,9 +86,8 @@ The metric `value2` is described with specific requirements for average and pref
 - [Getting and using the SDK](using-the-sdk)
 - [Security and authentication](security-and-authentication)
 - **Pushing data**
-- [Query, analytics and visualization](analytics-and-visualization)
+- [Query, analytics and visualization](https://github.com/joola/joola.io/wiki/sdk-api-documentation#joolaioviz)
 - [Collections and meta data](collections)
-- [Workspaces, users and roles](user-management)
-- [System health and stats](system-health)
+- [Workspaces, users and roles](basic-concepts)
 - [Complete API documentation](sdk-api-documentation)
 

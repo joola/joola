@@ -39,33 +39,3 @@ In order to allow communication between joola.io and the plugin it's required fo
  The template implements all required exports for communication back and forth between joola.io and your plugin.
 
  A working example is the [joola.io.datastore-mongodb](http://github.com/joola/joola.io.datastore-mongodb) provider plugin.
-
- The template is rich with comments to support your development, please feel free to submit pull-request to the template repository with additional know-how, examples and comments to support the community development.
-
-#### Exports
-
-The following exports are needed from each plugin. The template includes more in-depth comments relevant to each export.
-
-###### `init`
-
-###### `destroy`
-
-###### `openConnection`
-
-###### `closeConnection`
-
-###### `checkConnection`
-
-###### `insert`
-
-###### `find`
-
-###### `delete`
-
-###### `update`
-
-###### `query`
-
-###### `drop`
-
-###### `purge`

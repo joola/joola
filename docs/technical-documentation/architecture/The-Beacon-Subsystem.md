@@ -1,7 +1,7 @@
 [HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [ARCHITECTURE](architecture) > **BEACON**
 
 Beacon is the framework's data collector. 
-When we wish to store new data in joola.io's cache, then we use `beacon` for storing it.
+When we wish to store new data in joola.io's [Datastore](the-datastore-subsystem), then we use `beacon` for storing it.
 
 A basic example looks something like this:
 ```js
@@ -27,6 +27,7 @@ joolaio.query.fetch({
   interval: 'second',
   dimensions: ['timestamp'],
   metrics: ['moves'],
+  collection: 'mousemoves',
   filter: null
 }, function(err, results) {
   if (err)
@@ -35,3 +36,6 @@ joolaio.query.fetch({
   console.log(results);
 });
 ```
+
+## High-Availability
+Beacon is designed to provide high-availability for incoming data and supports processing of document arrays. 

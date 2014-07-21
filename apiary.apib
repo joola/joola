@@ -10,7 +10,7 @@ If you have any problems or requests please open an [issue](http://github.com/jo
 
 ## Using This Guide 
 
-We will be using `http://localhost:8080` which is the default configuration for a fresh installation of joola.io.
+We will be using `https://localhost:8081` which is the default configuration for a fresh installation of joola.io.
 
 You can use the `Debugging Host` to execute requests against a valid, online joola.io instance we have put up for the purpose of this guide. A valid token for this purpose is `apitoken-demo`. 
 Some actions will not be available in order to maintain system integrity.
@@ -21,7 +21,7 @@ While we understand how naive we are with this request, please apply Fair Usage 
 To check what version of joola.io is running, run:
 
 ```bash
-$ curl http://localhost:8080/system/version?APIToken=apitoken
+$ curl https://localhost:8081/system/version?APIToken=apitoken-demo
 
 {"version": "joola.io version 0.4.1"}
 ```
@@ -30,7 +30,7 @@ $ curl http://localhost:8080/system/version?APIToken=apitoken
 All data is sent and received as JSON.
 
 ```bash
-$ curl -i http://127.0.0.1:8080/system/version?APIToken=apitoken-root
+$ curl -i http://127.0.0.1:8080/system/version?APIToken=apitoken-demo
 
 HTTP/1.1 200 OK
 Server: joola.io
@@ -78,18 +78,18 @@ Requests that require authentication will return 404 Not Found, instead of 403 F
 #### Basic Authentication
 
 ```bash
-$ curl -u "workspace/username:password" http://localhost:8080/system/version
+$ curl -u "workspace/username:password" https://localhost:8081/system/version
 ```
 
 #### APIToken (sent in a header)
 
 ```bash
-$ curl -H "Authorization: token my-apitoken" http://localhost:8080/system/version
+$ curl -H "Authorization: token my-apitoken" https://localhost:8081/system/version
 ```
 
 #### APIToken (sent as a parameter)
 ```bash
-$ curl http://localhost:8080/system/version?APIToken=my-apitoken
+$ curl https://localhost:8081/system/version?APIToken=my-apitoken
 ```
 
 ## Rate Limits
@@ -98,7 +98,7 @@ joola.io support rate limits. The default rate is `5000` requests per hour, but 
 You can check the returned HTTP headers of any API request to see your current rate limit:
 
 ```bash
-$ curl -i http://127.0.0.1:8080/system/version?APIToken=apitoken-root
+$ curl -i http://127.0.0.1:8080/system/version?APIToken=apitoken-demo
 
 HTTP/1.1 200 OK
 Date: Sun, 04 May 2014 07:39:52 GMT

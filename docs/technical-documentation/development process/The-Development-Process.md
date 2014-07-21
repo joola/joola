@@ -5,6 +5,13 @@ the life-cycle we have here at joo.la labs. This is an internal process and desc
 On top of the process described we have our community contributions that act as a key part of the software development path. 
 We believe that sharing information about our internal processes with the community will not only make our process better, but also allow the community to benefit from it.
 
+- [Testing](code-testing)
+- [Code Style](code-style-guidelines)
+- [Versioning](versioning)
+- [Release and publish](software-release-process)
+- [[Contributing]]
+- [Roadmap](product-roadmap)
+
 ## Assess Needs
 The first step in the process is to assess the needs of this iteration. What tasks, defects, milestones, etc... we have to cover during the iteration. 
 This process is key to the success of the iteration, getting a full understanding of a requirement ensures a proper execution during the iteration with a very clear set of expectations. 

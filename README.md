@@ -114,7 +114,7 @@ $ curl \
        \"visits\": 1,
        \"loadtime\": 123
      }]" \
-     https://joolaio.apiary-mock.com/beacon/{workspace}/{collection}{?APIToken}
+     https://localhost:8081/beacon/{workspace}/{collection}{?APIToken}
 ```
 
 Using the SDK:
@@ -145,20 +145,23 @@ joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-beacon'}, func
 
 ##### Your first visualization
 ```html
-<div id="drawhere">
-
-<script src="https://localhost:8081/joola.io.js">
+<script src="https://localhost:8081/joola.io.js?APIToken=apitoken-demo"></script>
 <script>
-var joolaio = require('joola.io.sdk');
-
-joolaio.init({host: 'http://localhost:8080', APIToken: 'apitoken-beacon'}, function(err) {
-  joolaio.viz.timeline({
-    container: document.getElementById('drawhere'),
+joolaio.events.on('ready', function(err) {
+  if (err)
+    throw err;
+    
+  var options = {
+    caption: 'Visits over Time',
     query: {
-      dimensions:['timestamp'],
-      metrics: ['value']
+      timeframe: 'last_hour',
+      interval: 'minute',
+      dimensions: ['timestamp'],
+      metrics: ['visits'],
+      collection: 'collection-demo'
     }
   }
+  $('<div></div>').Timeline(options).appendTo('body');
 });
 </script>
 ```

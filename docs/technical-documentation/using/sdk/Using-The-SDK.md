@@ -4,7 +4,7 @@
 In order to use the SDK, you will first need to include it in either a webpage or a NodeJS package.  
 
 Since the SDK connects to a joola.io node, we need to have a running node of joola.io, for this walkthrough, 
-we're going to assume you will be using your localhost for running the node, i.e. `http://localhost:8080`. 
+we're going to assume you will be using your localhost for running the node, i.e. `https://localhost:8081`. 
 
 For installation instructions, please refer to [Installing joola.io](install-joola.io).
 
@@ -13,7 +13,7 @@ For installation instructions, please refer to [Installing joola.io](install-joo
 Create a webpage anywhere you wish and edit it to look something like below.
 
 ```html
-<script src="http://localhost:8080/joola.io.js"></script>
+<script src="https://localhost:8081/joola.io.js"></script>
 
 <script>
   console.log('joola.io object is:', joolaio);
@@ -49,7 +49,7 @@ $ node /tmp/joola.io-sdk-examples
 ## Step 2: Initialize and Authenticate
 From this point onward, usage is the same regardless of the manner you included/required the SDK.
 
-Before we can execute commands against the SDK, we need to initialize it.
+Before we can execute commands using the SDK, we need to initialize it.
 During this process we will instruct the SDK what [Security token](security-and-authentication) it should use. If 
 authentication completes successfully, then the SDK will be immediately ready for use.
 
@@ -73,8 +73,8 @@ joolaio.init(options, function (err, result) {
 In this example, the page/module receives the token in advance.
 ```js
 var options = {
-  host: 'http://localhost:8080',
-  token: 'token-1234'
+  host: 'https://localhost:8081',
+  token: '123456abcdef'
 }
 joolaio.init(options, function(err){
   if (err)
@@ -87,8 +87,8 @@ joolaio.init(options, function(err){
 In this example, the page/module will be using an APIToken.
 ```js
 var options = {
-  host: 'http://localhost:8080',
-  APIToken: '12345'
+  host: 'https://localhost:8081',
+  APIToken: 'apitoken-demo'
 }
 joolaio.init(options, function(err){
   if (err)
@@ -98,21 +98,8 @@ joolaio.init(options, function(err){
 });
 ```
 
-If you prefer, you can employ another possible approach for initializing joola.io and wait on [event](the-sdk-subsystem#event-driven) stating the system is ready 
-for operation.
-```js
-joolaio.events.on('core.ready', function(){
-  console.log('joola.io is ready for work');
-});
-
-var options = {
-  host: 'http://localhost:8080',
-  token: 'token-1234'
-}
-joolaio.init(options);
-```
-
 [Learn more about using Security Tokens](security-and-authentication)
+
 ## Step 3: Using the SDK
 The SDK allows you to control all aspects of the framework, so you'll find an API call for everything you need. 
 These include the management aspects of the framework, such as adding organizations, users and assigning roles and permissions.
@@ -122,18 +109,6 @@ Here's a short list of different examples relevant to the SDK. If you wish to le
 
 - [Security and Authentication](security-and-authentication)
 - [Pushing data](pushing-data)
-- [Query, analytics and visualization](analytics-and-visualization)
+- [Query, analytics and visualization](https://github.com/joola/joola.io/wiki/sdk-api-documentation#joolaioviz)
 - [Collections and meta data](collections)
-- [Manage Organizations, users and roles](user-management)
-- [System health and stats](system-health)
-
-### What's next?
-
-- **Getting and using the SDK**
-- [Security and authentication](security-and-authentication)
-- [Pushing data](pushing-data)
-- [Query, analytics and visualization](analytics-and-visualization)
-- [Collections and meta data](collections)
-- [Workspaces, users and roles](user-management)
-- [System health and stats](system-health)
-- [Complete API documentation](sdk-api-documentation)
+- [Manage Organizations, users and roles](basic-concepts)

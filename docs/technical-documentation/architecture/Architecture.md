@@ -1,5 +1,7 @@
 [HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > **ARCHITECTURE**
 
+joola.io uses several internal sub-systems to manage its operation, below you'll find a list of available sub-system and a summary for each.
+
 - [Core](The-Core-Subsystem) - Internal processes
 - [Common](The-Common-Subsystem) - Shared modules and code
 - [Dispatch](The-Dispatch-Subsystem) - The grid messaging system
@@ -7,4 +9,4 @@
 - [Beacon](The-Beacon-Subsystem) - Handles the framework's internal cache
 - [Authentication](The-Authentication-Subsystem) - All authentication aspects of the framework
 - [Web Server](The-Webserver-Subsystem) - Serves web content to end users
-- [SDK](The-SDK-Subsystem) - Used to communicate with joola.io framework and manage it
+- [SDK](sdk) - Used to communicate with joola.io framework and manage it
