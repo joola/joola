@@ -8,6 +8,15 @@ Each subsystem is responsible for a different aspect of the framework and it's n
 
 [Learn more about subsystems](architecture)
 
+### Workspaces
+A workspace is the outer most logical container available. Within workspaces reside collections, users, roles and all other metadata.
+We use workspaces in order to separate between metadata and allow secure store and delivery of data based on the workspace configuration.
+
+A common use case for workspaces is to support different environments. Using workspaces we can create for example a separate container for development, QA, staging, demo and production.
+ They all share the same joola.io framework, however each contains its own configuration.
+
+[Learn more about workspaces](workspaces)
+
 ### Collections
 A collection is a data store where documents (the actual bits of data) are persisted into joola.io cache. Collections also contain metadata that
 describe the stored data, for example, what dimensions and metrics the document contains.
@@ -17,6 +26,21 @@ Collection metadate is represented in JSON and includes all required details on 
 Data is introduced into the collection by [Beacon](the-beacon-subsystem) and later [queried](the-query-subsystem) and visualized.
 
 [Learn more about collections](collections)
+
+### Permissions
+Each API endpoint has a permission assigned to it. Only users who are authorized with the required permission can access the endpoint.
+
+The list of permissions is system owned and cannot be changed by the user/operator.
+
+### Roles
+A role is a logical entity which holds several permissions and may have a filter associated with it.
+
+[Learn more about roles](roles)
+
+### Users
+A user is a simple metadata collection describing a user that will access and use the system.
+
+[Learn more about users](users)
 
 ### Dimensions: Describe data
 A dimension is an descriptive attribute or characteristic of an object that can be given different values.

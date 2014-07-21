@@ -39,7 +39,7 @@ After you [setup the server](setup-joola.io) and everything checks out fine.
 ```js
 var joolaio = require('joola.io.sdk');
 
-joolaio.init({host: 'http://localhost:8080', APIToken: '12345'}, function(err) {
+joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-demo'}, function(err) {
   if (err)
     throw err;
   
@@ -65,7 +65,7 @@ We now have a new collection defined with the name `collection-name` and it cont
 ```js
 var joolaio = require('joola.io.sdk');
 
-joolaio.init({host: 'http://localhost:8080', APIToken: '12345'}, function(err) {
+joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-demo'}, function(err) {
   if (err)
     throw err;
 
@@ -87,7 +87,7 @@ joolaio.init({host: 'http://localhost:8080', APIToken: '12345'}, function(err) {
 
 At the end of the script execution we'll have a document collection (of a single document) with the sum of `123`.
 
-[**Learn more about data analytics and visualizations**](analytics-and-visualizations)
+[**Learn more about data analytics and visualizations**](https://github.com/joola/joola.io/wiki/sdk-api-documentation#joolaioviz)
 
 
 [nodejs]: http://nodejs.org

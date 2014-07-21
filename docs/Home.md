@@ -5,9 +5,6 @@ Welcome to **joola.io** - the open-source data analytics framework.
 This wiki is the main source of documentation for **developers** working with (or contributing to) the joola.io project.
 If this is your first time hearing about joola.io, we recommend starting with the [joola.io website][website].
 
->
-**NOTE**: The project is undergoing a refactoring process, this means that some of the code and wiki content may change over the course of the next few weeks. We recommend you keep updated via one of our [channels](talk-to-us).
-
 
 ###Quick navigation
 

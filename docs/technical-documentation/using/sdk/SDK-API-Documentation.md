@@ -49,7 +49,7 @@ Connects to a joola.io server with the following arguments:
 
 ```js
 var joolaio = require('joola.io.sdk');
-joolaio.init({host: 'http://localhost:8080', APIToken: '12345'}, function(err) {
+joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-demo function(err) {
   if (err)
     throw err;
   console.log('joola.io initialized', joolaio.VERSION);
@@ -441,8 +441,7 @@ We are in the process of adding additional documentation, examples and walk-thro
 - [Getting and using the SDK](using-the-sdk)
 - [Security and authentication](security-and-authentication)
 - [Pushing data](pushing-data)
-- [Query, analytics and visualization](analytics-and-visualization)
+- [Query, analytics and visualization](https://github.com/joola/joola.io/wiki/sdk-api-documentation#joolaioviz)
 - [Collections and meta data](collections)
-- [Workspaces, users and roles](user-management)
-- [System health and stats](system-health)
+- [Workspaces, users and roles](basic-concepts)
 - **Complete API documentation**
