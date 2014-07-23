@@ -15,7 +15,7 @@ authors:
 
 compile:
 		@NODE_ENV=test
-		browserify ./lib/sdk/index.js -i ./lib/sdk/bin/joola.io.js -o ./lib/sdk/bin/joola.io.js --debug
+		browserify ./lib/sdk/index.js -i ./lib/sdk/bin/joola.js -o ./lib/sdk/bin/joola.js --debug
     
 lint:
 		@./node_modules/.bin/jshint ./lib ./test
@@ -41,7 +41,7 @@ coveralls:
 
 test-api:
 		redis-cli flushall
-		node joola.io.js &
+		node joola.js &
 		sleep 2
 		-dredd -r html apiary.apib http://localhost:8080
 		killall -9 node
