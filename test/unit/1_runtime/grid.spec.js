@@ -14,7 +14,7 @@ describe("grid", function () {
   it("should start an additional node", function (done) {
     var doneCalled = false;
     var spawn = require('child_process').spawn;
-    var binPath = path.join(__dirname, '../../../', 'joola.io.js');
+    var binPath = path.join(__dirname, '../../../', 'joola.js');
     app = spawn('node', [binPath, '--nolog', '--node']);
 
     joola.dispatch.on('nodes:state:change', function (channel, message) {

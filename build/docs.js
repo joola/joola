@@ -1,14 +1,3 @@
-/**
- *  joola.io
- *
- *  Copyright Joola Smart Solutions, Ltd. <info@joo.la>
- *
- *  Licensed under GNU General Public License 3.0 or later.
- *  Some rights reserved. See LICENSE, AUTHORS.
- *
- *  @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
- */
-
 var
   wrench = require('wrench'),
   path = require('path'),
@@ -23,7 +12,7 @@ var wikiPath = path.join(__dirname, '../wiki');
 var wikiCodePath = path.join(wikiPath, '/technical-documentation/code/');
 
 var exclusions = [
-  'sdk/bin/joola.io.js',
+  'sdk/bin/joola.js',
   'README.md'
 ];
 

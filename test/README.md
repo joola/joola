@@ -1,6 +1,6 @@
 ### Automated Testing
 
-Automated testing is an important and integral part of joola.io and are divided into three main parts:
+Automated testing is an important and integral part of joola and are divided into three main parts:
 ##### Functional
 
 Series of tests aimed to evaulate the system's functionality and behavior, this are the common tests that most projects
