@@ -61,7 +61,7 @@ describe("common-config", function () {
   });
 
   it("should overwrite a config value with env var", function (done) {
-    process.env.joola_CONFIG_TEST_TEST1 = 'test1234';
+    process.env.JOOLA_CONFIG_TEST_TEST1 = 'test1234';
     engine.config.overrideWithEnvironment();
     engine.config.get('test:test1', function (err, value) {
       if (err)

@@ -34,8 +34,8 @@ After you've installed the Redis Cloud add-on, you'll need to set joola relevant
 $ heroku config:get REDISCLOUD_URL
 # redis://rediscloud:******************@pub-redis-*******.us-east-*-*.*.ec2.garantiadata.com:******
 
-$ heroku config:set joola_CONFIG_STORE_CONFIG_REDIS_DSN=<REDISCLOUD_URL>
-$ heroku config:set joola_CONFIG_STORE_DISPATCH_REDIS_DSN=<REDISCLOUD_URL>
+$ heroku config:set JOOLA_CONFIG_STORE_CONFIG_REDIS_DSN=<REDISCLOUD_URL>
+$ heroku config:set JOOLA_CONFIG_STORE_DISPATCH_REDIS_DSN=<REDISCLOUD_URL>
 ```
 
 To locate your Cloud Redis DSN, simply navigate to your dashboard and under the application we created (joola-io-example) goto settings.
@@ -53,7 +53,7 @@ After you've installed the Redis Cloud add-on, you'll need to set joola relevant
 $ heroku config:get MONGOHQ_URL
 # mongodb://heroku:*************************************@oceanic.mongohq.com:*********/app**********
 
-$ heroku config:set joola_CONFIG_STORE_CACHE_MONGO_DSN=<MONGOHQ_URL>
+$ heroku config:set JOOLA_CONFIG_STORE_CACHE_MONGO_DSN=<MONGOHQ_URL>
 ```
 
 ##### MQ (STOMP)
@@ -71,7 +71,7 @@ $ heroku config:get CLOUDAMQP_URL
 # You need to change the connection string to be stomp://
 # stomp://********:****************@turtle.rmq.cloudamqp.com/**************
 
-$ heroku config:set joola_CONFIG_STORE_DISPATCH_STOMP_DSN=<CLOUDAMQP_URL>
+$ heroku config:set JOOLA_CONFIG_STORE_DISPATCH_STOMP_DSN=<CLOUDAMQP_URL>
 ```
 
 ### Step 4: Publish your app

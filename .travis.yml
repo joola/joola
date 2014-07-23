@@ -11,7 +11,7 @@ services:
   - rabbitmq
 
 env:
-  joola_CONFIG_AUTHENTICATION_BASICAUTH_ENABLED=TRUE
+  JOOLA_CONFIG_AUTHENTICATION_BASICAUTH_ENABLED=TRUE
   
 #branches:
 #  only:
