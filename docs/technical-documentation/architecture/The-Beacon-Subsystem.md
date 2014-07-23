@@ -1,7 +1,7 @@
 [HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [ARCHITECTURE](architecture) > **BEACON**
 
 Beacon is the framework's data collector. 
-When we wish to store new data in joola.io's [Datastore](the-datastore-subsystem), then we use `beacon` for storing it.
+When we wish to store new data in joola's [Datastore](the-datastore-subsystem), then we use `beacon` for storing it.
 
 A basic example looks something like this:
 ```js

@@ -1,9 +1,9 @@
-**ABOUT JOOLA.IO**
+**ABOUT joola**
 
 **Introduction**
-- [joola.io Overview](joola.io-overview)
+- [joola Overview](joola-overview)
 - [Technical Architecture](technical-architecture)
-- [Sponsor joola.io](sponsor-joola.io)
+- [Sponsor joola](sponsor-joola)
 
 **Thanks**
 - [[Sponsors]]
@@ -16,5 +16,5 @@
 - [[Contributing]]
 
 **External resources**
-- [joola.io Website](http://joola.io)
-- [Joola Smart Solutions Ltd.](http://joola.io)
+- [joola Website](http://joola)
+- [Joola Smart Solutions Ltd.](http://joola)

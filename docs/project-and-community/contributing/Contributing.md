@@ -2,7 +2,7 @@
 
 [HOME](Home) > [PROJECT & COMMUNITY](project-and-community) > **CONTRIBUTING**
 
-joola.io is open source software - we welcome contributors! Some things you might like to help out with:
+joola is open source software - we welcome contributors! Some things you might like to help out with:
 
 * Documentation
 * New features
@@ -22,14 +22,14 @@ Please complete and sign the most appropriate CLA for you. For more information,
 
 ## 2. Join the conversation
 
-Have an idea for joola.io? Found a bug? We encourage you to start a conversation on the [joola.io Google Group] [joolaio-user] or to file a [new issue on GitHub] [new-issue] before writing code.
+Have an idea for joola? Found a bug? We encourage you to start a conversation on the [joola Google Group] [joolaio-user] or to file a [new issue on GitHub] [new-issue] before writing code.
 Announcing what you're working on (or even just your need or pain points) starts a collaborative process to identify general solutions and helps us all avoid duplicating effort.
 
-Let's build joola.io and grow our community, together. You can find other ways of joining the conversation on our [[Talk to us]] page.
+Let's build joola and grow our community, together. You can find other ways of joining the conversation on our [[Talk to us]] page.
 
 ## 3. Browse our Contributor Guides
 
-We are working on a set of Contributor Guides to make contributing to every aspect of joola.io as painfree as possible:
+We are working on a set of Contributor Guides to make contributing to every aspect of joola as painfree as possible:
 
 1. [[Contributing to development]]
 2. [[Contributing to documentation]]
@@ -38,4 +38,4 @@ We are working on a set of Contributor Guides to make contributing to every aspe
 [corp-cla]: https://docs.google.com/forms/d/1pN2CWuN18yKCOwtv0hKY54LOJb3b2ua9qTlWH5MDrnM/viewform
 
 [joolaio-user]: https://groups.google.com/forum/#!forum/joolaio-user
-[new-issue]: https://github.com/joola/joola.io/issues/new
+[new-issue]: https://github.com/joola/joola/issues/new

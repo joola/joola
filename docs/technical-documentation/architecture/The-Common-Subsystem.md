@@ -1,6 +1,6 @@
 [HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [ARCHITECTURE](architecture) > **COMMON**
 
-As a framework, joola.io addresses many runtime issues, some are common and shared between the different framework sub-systems.
+As a framework, joola addresses many runtime issues, some are common and shared between the different framework sub-systems.
 For example, several systems need to access redis, so we have a common module to deal with redis connections and actions.
 
 All of these `common` modules can be found under `lib/common` with `index.js` acting as the main common library loader.

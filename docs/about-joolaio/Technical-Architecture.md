@@ -1,10 +1,10 @@
 <a name="top" />
 
-[HOME](Home) > [ABOUT JOOLA.IO](joola.io-overview) > **TECHNICAL ARCHITECTURE**
+[HOME](Home) > [ABOUT joola](joola-overview) > **TECHNICAL ARCHITECTURE**
 
-joola.io is a scalable data framework written using [NodeJS][nodejs]. It's designed to provide highly-performing data-in ([beacon](the-beacon-subsystem))/data-out ([query](the-query-subsystem) and [visualiztion](the-sdk-subsystem)) service with advanced caching and analytics functionality.
+joola is a scalable data framework written using [NodeJS][nodejs]. It's designed to provide highly-performing data-in ([beacon](the-beacon-subsystem))/data-out ([query](the-query-subsystem) and [visualiztion](the-sdk-subsystem)) service with advanced caching and analytics functionality.
 
-During the development of joola.io, we've placed emphasis on the following topics:
+During the development of joola, we've placed emphasis on the following topics:
 - Must work out of the box with zero configuration.
 - Minimal dependencies.
 - Speed is a must, we aim to serve all queries in under 1 second. 
@@ -23,21 +23,21 @@ You can access the framework's stack in several ways, be it directly on the serv
 [**Learn more about the stack**](architecture)
 
 ## Cache Stores
-joola.io uses 3rd party, reliable software to act as its cache store. We aim to support multiple, different store types to allow developers and users more flexibility, but for now our main and only cache store is [MongoDB][mongodb].
+joola uses 3rd party, reliable software to act as its cache store. We aim to support multiple, different store types to allow developers and users more flexibility, but for now our main and only cache store is [MongoDB][mongodb].
 The NoSQL data architecture that we've chosen for our cache stores allows not only a flexible store, but also scalability currently not supported (out-of-the-box) with traditional RDBMs systems.
 
-In addition to MongoDB, joola.io also uses [Redis][redis] for both configuration storage and providing the pub/sub mechanism that our [Dispatch Subsystem](the-dispatch-subsystem) relies on.  
+In addition to MongoDB, joola also uses [Redis][redis] for both configuration storage and providing the pub/sub mechanism that our [Dispatch Subsystem](the-dispatch-subsystem) relies on.  
 
-joola.io provides a wrapper to the cache stores and no direct work or knowledge is required. We just need to have MongoDB and Redis installed for the framework's use.
+joola provides a wrapper to the cache stores and no direct work or knowledge is required. We just need to have MongoDB and Redis installed for the framework's use.
 
-[**Learn more about cache stores**](install-joola.io)
+[**Learn more about cache stores**](install-joola)
 
 ## Pushing Data
 Pushing data is easy, very easy. There are almost no restrictions or preparations you need to do.  
-After you [setup the server](setup-joola.io) and everything checks out fine.
+After you [setup the server](setup-joola) and everything checks out fine.
 
 ```js
-var joolaio = require('joola.io.sdk');
+var joolaio = require('joola.sdk');
 
 joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-demo'}, function(err) {
   if (err)
@@ -63,7 +63,7 @@ We now have a new collection defined with the name `collection-name` and it cont
 
 ## Consuming Analytics and Visualization
 ```js
-var joolaio = require('joola.io.sdk');
+var joolaio = require('joola.sdk');
 
 joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-demo'}, function(err) {
   if (err)
@@ -87,7 +87,7 @@ joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-demo'}, functi
 
 At the end of the script execution we'll have a document collection (of a single document) with the sum of `123`.
 
-[**Learn more about data analytics and visualizations**](https://github.com/joola/joola.io/wiki/sdk-api-documentation#joolaioviz)
+[**Learn more about data analytics and visualizations**](https://github.com/joola/joola/wiki/sdk-api-documentation#joolaioviz)
 
 
 [nodejs]: http://nodejs.org

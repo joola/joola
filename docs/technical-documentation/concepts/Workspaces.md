@@ -4,18 +4,18 @@ A workspace is the outer most logical container available. Within workspaces res
 We use workspaces in order to separate between metadata and allow secure store and delivery of data based on the workspace configuration.
 
 A common use case for workspaces is to support different environments. Using workspaces we can create for example a separate container for development, QA, staging, demo and production.
- They all share the same joola.io framework, however each contains its own configuration.
+ They all share the same joola framework, however each contains its own configuration.
  
 ```js
 [
   {
     "key": "_test",
-    "description": "Workspace for internal joola.io tests",
-    "name": "joola.io Framework Tests"
+    "description": "Workspace for internal joola tests",
+    "name": "joola Framework Tests"
   },
   {
     "key": "_stats",
-    "description": "Stores internal statistics of joola.io",
+    "description": "Stores internal statistics of joola",
     "name": "Internal Stats"
   },
   {
@@ -26,5 +26,5 @@ A common use case for workspaces is to support different environments. Using wor
 ]
 ```
  
-[API documentation on managing Workspaces](https://github.com/joola/joola.io/wiki/api-documentation#group-workspaces)
+[API documentation on managing Workspaces](https://github.com/joola/joola/wiki/api-documentation#group-workspaces)
  

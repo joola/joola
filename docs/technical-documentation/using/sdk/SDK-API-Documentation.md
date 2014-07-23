@@ -32,33 +32,33 @@
 
 #### `joolaio` properties
 
-joola.io has the following properties:
+joola has the following properties:
 - `options` object containing all options used by the SDK for its operation.
 - `VERSION` holds the current SDK version.
 - `USER` holds the currently connected `user` object.
 
 #### `init(options, [callback])`
 
-Connects to a joola.io server with the following arguments:
+Connects to a joola server with the following arguments:
 
 - `options` - An object with the host configuration:
-  - `host` - the hostname or IP address of the joola.io server. Set to `127.0.0.1` or `localhost` if you're running on the same host as your joola.io server.
-  - `token` - A token generated via [`joola.auth.generateToken`](https://github.com/joola/joola.io/wiki/lib%5Cauth%5Cindex%20(jsdoc)).
+  - `host` - the hostname or IP address of the joola server. Set to `127.0.0.1` or `localhost` if you're running on the same host as your joola server.
+  - `token` - A token generated via [`joola.auth.generateToken`](https://github.com/joola/joola/wiki/lib%5Cauth%5Cindex%20(jsdoc)).
   - `APIToken` - the API Token to use when exchanging data with the server.
 - `callback` - If provided, `callback(err)` is called once the SDK is ready. If an error as occurred then `err` will contain the details.
 
 ```js
-var joolaio = require('joola.io.sdk');
+var joolaio = require('joola.sdk');
 joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-demo function(err) {
   if (err)
     throw err;
-  console.log('joola.io initialized', joolaio.VERSION);
+  console.log('joola initialized', joolaio.VERSION);
 });
 ```
 
 ### `joolaio.beacon`
 
-Used to store, retrieve, update and delete documents within a [collection](http://github.com/joola/joola.io/wiki/Collections).
+Used to store, retrieve, update and delete documents within a [collection](http://github.com/joola/joola/wiki/Collections).
 A valid document is any JSON valid document. 
 
 #### `joolaio.beacon.insert(collection, documents, [callback])`
@@ -80,13 +80,13 @@ It's not required for a collection to be pre-defined before pushing the first do
 In such a case, the meta of the document, or the top document in case of an array is used to build the collection's meta.
 
 When pushing a document with a new meta, the collection meta will get updated accordingly, however, the collection meta can only be expanded, i.e. more attributes added.
-In case that a document with fewer attributes is pushed, no meta change will occur. In order to modify or delete attributes from a collection, please refer to [Collection Management](http://github.com/joola/joola.io/wiki/Collections).
+In case that a document with fewer attributes is pushed, no meta change will occur. In order to modify or delete attributes from a collection, please refer to [Collection Management](http://github.com/joola/joola/wiki/Collections).
 
 ##### Document processing
 Documents are processed in the order they are sent, it is highly recommended that whenever possible documents are batched into an array, rather than sent one-by-one.
 Each document is assigned with a unique key based on its attributes (not metrics) and this key is checked when inserting new documents to prevent duplicates. Duplicate documents are not allowed and an error will be returned if a duplicate is found.
 
-When joola.io returns the saved document collection via the `callback` of the `joolaio.beacon.insert` call, each document in the array has two additional attributes:
+When joola returns the saved document collection via the `callback` of the `joolaio.beacon.insert` call, each document in the array has two additional attributes:
  
  - `saved` bool indicating if the save completed.
  - `error` string containing any error message from the underlying caching database.
@@ -97,7 +97,7 @@ Used to query and analyze stored documents.
 
 #### `joolaio.query.fetch(query, [callback])`
 
-Query joola.io for a set of documents based on criteria passed in `query`. Upon completion, `callback(err, results)` is called.
+Query joola for a set of documents based on criteria passed in `query`. Upon completion, `callback(err, results)` is called.
 
 <a name="query"></a>
 `query` holds the following options:
@@ -441,7 +441,7 @@ We are in the process of adding additional documentation, examples and walk-thro
 - [Getting and using the SDK](using-the-sdk)
 - [Security and authentication](security-and-authentication)
 - [Pushing data](pushing-data)
-- [Query, analytics and visualization](https://github.com/joola/joola.io/wiki/sdk-api-documentation#joolaioviz)
+- [Query, analytics and visualization](https://github.com/joola/joola/wiki/sdk-api-documentation#joolaioviz)
 - [Collections and meta data](collections)
 - [Workspaces, users and roles](basic-concepts)
 - **Complete API documentation**

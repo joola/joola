@@ -15,7 +15,7 @@ joolaio.init(options, function (err, result) {
     joolaio.users.authenticate('organization', 'user', 'password', function (err, token) {
         joolaio.TOKEN = token._;
         
-        //joola.io is now ready for work, event `core.ready` is emitted
+        //joola is now ready for work, event `core.ready` is emitted
     });
 });
 ```
@@ -30,7 +30,7 @@ joolaio.init(options, function(err){
   if (err)
     throw err;
     
-  console.log('joola.io is ready for work');
+  console.log('joola is ready for work');
 });
 ```
 
@@ -44,7 +44,7 @@ joolaio.init(options, function(err){
   if (err)
     throw err;
     
-  console.log('joola.io is ready for work');
+  console.log('joola is ready for work');
 });
 ```
 
@@ -52,14 +52,14 @@ joolaio.init(options, function(err){
 
 For your app to be secure, you must ensure that sensitive tokens are never generated client-side. For this purpose, using the REST API, you can create a token on behalf of a user and communicate the secure token to the webpage for usage.
 
-[Learn more about SSO and Token Generation](https://github.com/joola/joola.io/wiki/api-documentation#generate-token-post)
+[Learn more about SSO and Token Generation](https://github.com/joola/joola/wiki/api-documentation#generate-token-post)
 
 ### What's next?
 
 - [Getting and using the SDK](using-the-sdk)
 - **Security and authentication**
 - [Pushing data](pushing-data)
-- [Query, analytics and visualization](https://github.com/joola/joola.io/wiki/sdk-api-documentation#joolaioviz)
+- [Query, analytics and visualization](https://github.com/joola/joola/wiki/sdk-api-documentation#joolaioviz)
 - [Collections and meta data](collections)
 - [Workspaces, users and roles](basic-concepts)
 - [Complete API documentation](sdk-api-documentation)

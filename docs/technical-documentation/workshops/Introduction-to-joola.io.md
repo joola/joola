@@ -1,12 +1,12 @@
 [HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [WORKSHOPS](workshops) > **INTRODUCTION**
 
 ### Goal
-Offer a basic understanding of joola.io to a mixed audience compiled of developers, DBAs, QA engineers and Product/Project Managers.
+Offer a basic understanding of joola to a mixed audience compiled of developers, DBAs, QA engineers and Product/Project Managers.
 The workshop covers the following topics:
-- What is joola.io?
+- What is joola?
 - How does it work?
-- Using joola.io
-- joola.io within your organization
+- Using joola
+- joola within your organization
 Each of these topics is covered in high-level, for more detailed discussions, we have [specific workshops](workshops).
 
 ### Audience
@@ -22,35 +22,35 @@ Each of these topics is covered in high-level, for more detailed discussions, we
 
 ### Schedule
 - 09:00-09:15 - Gathering
-- 09:15-09:30 - What is joola.io?
-- 09:30-09:45 - How does joola.io work?
-- 09:45-10:00 - joola.io within your organization
+- 09:15-09:30 - What is joola?
+- 09:30-09:45 - How does joola work?
+- 09:45-10:00 - joola within your organization
 
 ## The Workshop
 
 #### 09:00 - Gathering
 The instructor will have a welcome slide on screen as guests arriving (Slide #2).
  
-#### 09:15 - Understanding joola.io
+#### 09:15 - Understanding joola
 During this section the audience will go over the following points:
-- What problem does joola.io solves
+- What problem does joola solves
 - Big-data in-practice today
 - Main means to deal with big-data
 - Scalability and Performance
 - Security and multi-tenancy
 
-#### 09:30 - How does joola.io work
-- The joola.io framework
+#### 09:30 - How does joola work
+- The joola framework
 - Pushing data using Beacon
-- Querying joola.io
+- Querying joola
 - Analyzing and Visualizing data
 
-#### 09:45 - joola.io within your organization
-- Specific implementation of joola.io
+#### 09:45 - joola within your organization
+- Specific implementation of joola
 - Authentication and security
 - Data Mappings
 - Integration with Website and internal processes
 
 ## What's next?
-Following this workshop the audience will have a solid understanding of joola.io and its internal workings.
+Following this workshop the audience will have a solid understanding of joola and its internal workings.
  For those wishing to learn more about specific aspects of the framework and its uses, there are [specific workshops](workshops).

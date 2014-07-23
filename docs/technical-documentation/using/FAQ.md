@@ -1,1 +1,1 @@
-[HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [USING](using-joola.io) > **FAQ**
+[HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [USING](using-joola) > **FAQ**

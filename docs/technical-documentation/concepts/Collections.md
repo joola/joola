@@ -82,7 +82,7 @@ joolaio.collections.add(collection);
 ### Ad-hoc collections
 An ad-hoc collection is a collection that was created as a result of a [Beacon](the-beacon-subsystem) push, this means that the metadata
 was gathered from the document and was **assumption based**. For example, if we don't have a collection named `dummy-adhoc-collection` and we push a document into
- a collection with that name, on the first push, a new collection will be created. joola.io will scan the document and based on a pre-defined logic it will try to
+ a collection with that name, on the first push, a new collection will be created. joola will scan the document and based on a pre-defined logic it will try to
  determine which document attributes are dimensions and which are metrics. Based on this logic, it will store the collection metadata and it will be used later when queried and visualizations are
  rendered.
 
@@ -139,16 +139,16 @@ joolaio.beacon.insert('dummy-adhoc-collection', doc, function(err) {
 }
 ```
 
-Notice how joola.io transformed the undescriptive pushed document into a full metadata set. It used a few assumptions, for example:
+Notice how joola transformed the undescriptive pushed document into a full metadata set. It used a few assumptions, for example:
 
-- **timestamp** is marked as `type=timestamp` because it was of type Date. joola.io checks for the data type of the value and if it's a date, it marks type timestamp.
+- **timestamp** is marked as `type=timestamp` because it was of type Date. joola checks for the data type of the value and if it's a date, it marks type timestamp.
 - **ip** is now marked as `type=ip`, this is because of the name of the field.
 - **visits** is marked as a `type=metric` because it was a number and not a string. any numeric values are treated as metrics.
 - **user_id** is marked as a dimension with `type=string`, this is because it was a string input, if we would have used an int, it would have resulted with it being marked as a metric.
 
 
 #### Specifying Metadata on Push
-If you wish, you can specify metadata when you push a document, this can come in handy when you wish for example to use a key of ipaddress for a dimension instead of ip, but still wish joola.io
+If you wish, you can specify metadata when you push a document, this can come in handy when you wish for example to use a key of ipaddress for a dimension instead of ip, but still wish joola
  to treat the value as an IP when querying and visualizing it.
 
 ```js

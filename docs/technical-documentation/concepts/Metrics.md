@@ -3,7 +3,7 @@
 ### Metrics: Measure data
 Metrics are individual elements of a dimension that can be measured as a sum or a ratio. 
 For example, the dimension City can be associated with a metric like Population, which would have a sum value of all the residents of the specific city.
-Visits, Page per Visit, and Average Visit Duration are examples of metrics that may be part of joola.io.
+Visits, Page per Visit, and Average Visit Duration are examples of metrics that may be part of joola.
 
 [Learn more about adding metrics](Setting-up-collections)
 

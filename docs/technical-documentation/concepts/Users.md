@@ -5,7 +5,7 @@ Users have the following basic attributes:
 - `username` which is a unique identifier of the user.
 - `password` if plain-text login is allowed via [configuration](configuration).
 - `displayName` is used by the UI to show a human-friendly username.
-- `roles` is an array of strings, each is a defined role. A user may have more than one role and joola.io will aggregate the overall permissions and filters.
+- `roles` is an array of strings, each is a defined role. A user may have more than one role and joola will aggregate the overall permissions and filters.
 - `filter` is an array of filters, each restricting which data should be displayed for the user.
 
 ```js
@@ -35,4 +35,4 @@ joolaio.users.add(user, function(err, result) {
 });
 ```
 
-[API documentation on managing Users](https://github.com/joola/joola.io/wiki/api-documentation#users-usersworkspaceapitoken)
+[API documentation on managing Users](https://github.com/joola/joola/wiki/api-documentation#users-usersworkspaceapitoken)
