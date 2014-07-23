@@ -17,7 +17,7 @@ describe("grid", function () {
     var binPath = path.join(__dirname, '../../../', 'joola.js');
     app = spawn('node', [binPath, '--nolog', '--node']);
 
-    joola.dispatch.on('nodes:state:change', function (channel, message) {
+    engine.dispatch.on('nodes:state:change', function (channel, message) {
       if (!doneCalled && message[1].status === 'online') {
         doneCalled = true;
         setTimeout(done,1000);
@@ -26,7 +26,7 @@ describe("grid", function () {
   });
 
   xit("should handle dispatch messages on a secondary node", function (done) {
-    joola.dispatch.request(_token._, 'workspaces:list', {}, function (err, result, message) {
+    engine.dispatch.request(_token._, 'workspaces:list', {}, function (err, result, message) {
       if (message.from !== message['fulfilled-by'])
         done();
       else

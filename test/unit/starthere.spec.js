@@ -10,19 +10,19 @@
 
 before(function (done) {
   var self = this;
-  require('../../joola.js').init({}, function (err, joola) {
-    global.joola = joola;
+  require('../../joola.js').init({}, function (err, engine) {
     if (err)
       return done(err);
-    joola.state.once('state:change', function (state) {
+    engine.state.once('state:change', function (state) {
       if (state !== 'online')
         return done(new Error('Failed to initialize engine, check logs.'));
 
-      joola.config.set('authentication:basicauth:enabled', true);
+      engine.config.set('authentication:basicauth:enabled', true);
 
-      global.joola = joola.sdk;
-      global.joola_proxy = joola;
-      global.uid = joola.common.uuid();
+      global.engine = engine;
+      global.joola = engine.sdk;
+      global.joola_proxy = engine;
+      global.uid = engine.common.uuid();
       global.workspace = '_test';
       joola.init({host: 'https://127.0.0.1:8081', APIToken: 'apitoken-test', debug: {enabled: true}}, function (err) {
         if (err)
@@ -41,8 +41,8 @@ before(function (done) {
 });
 
 after(function (done) {
-  if (joola.shutdown) {
-    joola.shutdown(0, function () {
+  if (engine.shutdown) {
+    engine.shutdown(0, function () {
       return done();
     });
   }

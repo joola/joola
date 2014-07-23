@@ -10,7 +10,7 @@ describe("beacon-basic", function () {
 
   it("should load a single document", function (done) {
     var self = this;
-    joola.beacon.insert(this.context, this.context.user.workspace, this.collection, ce.clone(this.documents[0]), function (err, doc) {
+    engine.beacon.insert(this.context, this.context.user.workspace, this.collection, ce.clone(this.documents[0]), function (err, doc) {
       if (err)
         return done(err);
 
@@ -25,7 +25,7 @@ describe("beacon-basic", function () {
     var doc = ce.clone(this.documents[0]);
     doc.timestamp = this.dup;
 
-    joola.beacon.insert(this.context, this.context.user.workspace, this.collection, doc, function (err, doc) {
+    engine.beacon.insert(this.context, this.context.user.workspace, this.collection, doc, function (err, doc) {
       console.log(err, doc);
       doc = doc[0];
       expect(doc.saved).to.equal(false);
@@ -37,7 +37,7 @@ describe("beacon-basic", function () {
     var doc = ce.clone(this.documents[0]);
     doc.timestamp = this.dup;
 
-    joola.beacon.insert(this.context, this.context.user.workspace, this.collection, [doc, doc], function (err, doc) {
+    engine.beacon.insert(this.context, this.context.user.workspace, this.collection, [doc, doc], function (err, doc) {
       expect(doc.length).to.equal(2);
       doc.forEach(function (d) {
         expect(d.saved).to.equal(false);
@@ -55,7 +55,7 @@ describe("beacon-basic", function () {
       d.timestamp.setMilliseconds(d.timestamp.getMilliseconds() - counter);
       counter++;
     });
-    joola.beacon.insert(self.context, self.context.user.workspace, self.collection, docs, function (err, docs) {
+    engine.beacon.insert(self.context, self.context.user.workspace, self.collection, docs, function (err, docs) {
       if (err)
         return done(err);
 
@@ -72,7 +72,7 @@ describe("beacon-basic", function () {
       {"visitors": 3},
       {"visitors": 4}
     ];
-    joola.beacon.insert(this.context, this.context.user.workspace, this.collection + '-nots', documents, function (err, docs) {
+    engine.beacon.insert(this.context, this.context.user.workspace, this.collection + '-nots', documents, function (err, docs) {
       if (err)
         return done(err);
 
@@ -91,7 +91,7 @@ describe("beacon-basic", function () {
       {"visitors": 3},
       {"visitors": 4}
     ];
-    joola.beacon.insert(this.context, this.context.user.workspace, this.collection + '-nots', documents, function (err, docs) {
+    engine.beacon.insert(this.context, this.context.user.workspace, this.collection + '-nots', documents, function (err, docs) {
       if (err)
         return done(err);
 

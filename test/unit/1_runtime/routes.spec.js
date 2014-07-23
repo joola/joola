@@ -3,8 +3,8 @@ var https = require('https');
 describe("routes", function () {
   before(function (done) {
     this.context = {user: _token.user};
-    this.uid = joola.common.uuid();
-    this.workspace = 'test-org-' + joola.common.uuid();
+    this.uid = engine.common.uuid();
+    this.workspace = 'test-org-' + engine.common.uuid();
     done();
   });
 

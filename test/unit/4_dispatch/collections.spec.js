@@ -121,14 +121,14 @@ describe("collections", function () {
 
   xit("should get collection min date", function (done) {
     var self = this;
-    joola.beacon.insert(this.context, this.context.user.workspace, this.collection, {timestamp: null}, function (err) {
+    engine.beacon.insert(this.context, this.context.user.workspace, this.collection, {timestamp: null}, function (err) {
       if (err)
         return done(err);
       joola_proxy.dispatch.collections.mindate(self.context, self.context.user.workspace, self.collection, null, function (err, mindate) {
         if (err)
           return done(err);
 
-        expect(joola.common.typeof(mindate)).to.equal('date');
+        expect(engine.common.typeof(mindate)).to.equal('date');
         done();
       });
     });
@@ -145,14 +145,14 @@ describe("collections", function () {
 
   xit("should get collection max date", function (done) {
     var self = this;
-    joola.beacon.insert(this.context, this.context.user.workspace, this.collection, {timestamp: null}, function (err) {
+    engine.beacon.insert(this.context, this.context.user.workspace, this.collection, {timestamp: null}, function (err) {
       if (err)
         return done(err);
       joola_proxy.dispatch.collections.maxdate(self.context, self.context.user.workspace, self.collection, null, function (err, maxdate) {
         if (err)
           return done(err);
 
-        expect(joola.common.typeof(maxdate)).to.equal('date');
+        expect(engine.common.typeof(maxdate)).to.equal('date');
         done();
       });
     });

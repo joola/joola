@@ -13,25 +13,25 @@ var async = require('async');
 describe("permissions", function () {
   before(function (done) {
     this.context = {user: _token.user};
-    this.uid = joola.common.uuid();
-    this.workspace = 'test-org-' + joola.common.uuid();
+    this.uid = engine.common.uuid();
+    this.workspace = 'test-org-' + engine.common.uuid();
     done();
   });
 
   it("should return a valid list of permissions", function (done) {
-    joola.dispatch.permissions.list(this.context, function (err, permissions) {
+    engine.dispatch.permissions.list(this.context, function (err, permissions) {
       return done(err);
     });
   });
 
   it("should get a permission", function (done) {
-    joola.dispatch.permissions.get(this.context, 'access_system', function (err, permissions) {
+    engine.dispatch.permissions.get(this.context, 'access_system', function (err, permissions) {
       return done(err);
     });
   });
 
   it("should not get a not existing permission", function (done) {
-    joola.dispatch.permissions.get(this.context, 'access_system2', function (err, permissions) {
+    engine.dispatch.permissions.get(this.context, 'access_system2', function (err, permissions) {
       if (err)
         return done();
       return done(new Error('This should not fail'));

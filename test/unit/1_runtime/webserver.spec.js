@@ -4,13 +4,13 @@ var
 
 describe("webserver", function () {
   it("should verify server is online", function (done) {
-    joola.webserver.verify(function (err) {
+    engine.webserver.verify(function (err) {
       done(err);
     });
   });
 
   it("should stop web server", function (done) {
-    joola.webserver.stop(function (err) {
+    engine.webserver.stop(function (err) {
       if (err)
         return done(err);
       setTimeout(done, 2000);
@@ -18,7 +18,7 @@ describe("webserver", function () {
   });
 
   it("should verify server is offline", function (done) {
-    joola.webserver.verify(function (err) {
+    engine.webserver.verify(function (err) {
       if (err)
         return done();
 
@@ -27,19 +27,19 @@ describe("webserver", function () {
   });
 
   it("should start web server", function (done) {
-    joola.webserver.start({}, function (err) {
+    engine.webserver.start({}, function (err) {
       done(err);
     });
   });
 
   it("should not fail if no --webserver switch", function (done) {
-    joola.webserver.start({}, function (err) {
+    engine.webserver.start({}, function (err) {
       return done(err);
     });
   });
 
   it("should fail if --webserver switch", function (done) {
-    joola.webserver.start({webserver: true}, function (err) {
+    engine.webserver.start({webserver: true}, function (err) {
       if (err)
         return done();
 
@@ -48,7 +48,7 @@ describe("webserver", function () {
   });
 
   it("should have HTTPS port open", function (done) {
-    request.get('https://localhost:' + joola.config.interfaces.webserver.secureport + '', function (err, response, body) {
+    request.get('https://localhost:' + engine.config.interfaces.webserver.secureport + '', function (err, response, body) {
       if (err)
         return done(err);
 
@@ -116,7 +116,7 @@ describe("webserver", function () {
   });
 
   it("should serve api endpoints", function (done) {
-    request.get('https://localhost:' + joola.config.interfaces.webserver.secureport + '/meta', function (err, response, body) {
+    request.get('https://localhost:' + engine.config.interfaces.webserver.secureport + '/meta', function (err, response, body) {
       if (err)
         return done(err);
 
@@ -126,7 +126,7 @@ describe("webserver", function () {
   });
 
   it("should serve api endpoints [system version]", function (done) {
-    request.get('https://localhost:' + joola.config.interfaces.webserver.secureport + '/system/version?APIToken=apitoken-demo', function (err, response, body) {
+    request.get('https://localhost:' + engine.config.interfaces.webserver.secureport + '/system/version?APIToken=apitoken-demo', function (err, response, body) {
       if (err)
         return done(err);
 

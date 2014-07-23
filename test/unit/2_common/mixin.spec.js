@@ -15,7 +15,7 @@ describe("common-mixin", function () {
 			test1: 1,
 			test2: 2
 		};
-		var actual = joola.common.mixin({}, expected);
+		var actual = engine.common.mixin({}, expected);
 		assert(actual.test1 && actual.test2);
 	});
 
@@ -24,7 +24,7 @@ describe("common-mixin", function () {
 			test1: 3,
 			test2: 2
 		};
-		var actual = joola.common.mixin({test1: 1}, expected);
+		var actual = engine.common.mixin({test1: 1}, expected);
 		expect(actual.test1).to.equal(1);
 	});
 
@@ -33,7 +33,7 @@ describe("common-mixin", function () {
 			test1: 3,
 			test2: 2
 		};
-		var actual = joola.common.mixin({test1: 1}, expected, true);
+		var actual = engine.common.mixin({test1: 1}, expected, true);
 		expect(actual.test1).to.equal(3);
 	});
 
@@ -42,7 +42,7 @@ describe("common-mixin", function () {
 			test1: 3,
 			test2: 2
 		};
-		var actual = joola.common.mixin(expected);
+		var actual = engine.common.mixin(expected);
 		expect(actual).to.equal(expected);
 	});
 });
