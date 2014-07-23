@@ -10,14 +10,14 @@ bash "install joola" do
   user "root"
   code <<-EOH
     mkdir /opt/joola
-    mkdir /var/log/joola.io
+    mkdir /var/log/joola
     cd /opt/joola
     
     sudo chown -R root /root/.npm
     
     npm install /vagrant --production
     chown -R vagrant /opt/joola
-    chown -R vagrant /var/log/joola.io
+    chown -R vagrant /var/log/joola
   EOH
 end
 
@@ -32,8 +32,8 @@ end
 #bash "run joola (using pm2)" do
 #  user "vagrant"
 #  code <<-EOH
-#    cd /opt/joola/node_modules/joola.io
+#    cd /opt/joola/node_modules/joola
 #    
-#    pm2 start joola.io.js
+#    pm2 start joola.js
 #  EOH
 #end

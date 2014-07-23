@@ -1,6 +1,6 @@
 [HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [ARCHITECTURE](architecture) > **AUTHENTICATION**
 
-joola.io is a secure system, meaning that any request must have a secure context with a valid authentication token.
+joola is a secure system, meaning that any request must have a secure context with a valid authentication token.
 
 The topic of Authentication is broad and contains several sub-topics:
 - [Configuration](#configuration)
@@ -30,8 +30,8 @@ In addition, each workspace contains roles and users relevant.
 workspaces:
   _test:
     key: _test
-    name: joola.io Framework Tests
-    description: Workspace for internal joola.io tests
+    name: joola Framework Tests
+    description: Workspace for internal joola tests
     roles:
       root:
         key: "root"
@@ -70,10 +70,10 @@ This filter on the request is then used throughout the user's usage of the frame
 
 <a name="sso"/>
 #### Single-Sign-On (SSO)
-joola.io exposes a dedicated endpoint [`/tokens/`](https://github.com/joola/joola.io/wiki/api-documentation#tokens-tokensapitoken) for the purpose of token generation.
+joola exposes a dedicated endpoint [`/tokens/`](https://github.com/joola/joola/wiki/api-documentation#tokens-tokensapitoken) for the purpose of token generation.
 
 When generating tokens the system requesting the new token defined the role and filter to apply as part of the token, this enables Single-Sign-On. An external system can 
-call the [`/tokens/`](https://github.com/joola/joola.io/wiki/api-documentation#tokens-tokensapitoken) API endpoint to generate a token for a known user (server-side).
+call the [`/tokens/`](https://github.com/joola/joola/wiki/api-documentation#tokens-tokensapitoken) API endpoint to generate a token for a known user (server-side).
 This token is than passed to the Webpage which consumes data and visualizations using the token.
 
 

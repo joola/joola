@@ -1,5 +1,5 @@
 /**
- *  @title joola.io
+ *  @title joola
  *  @overview the open-source data analytics framework
  *  @copyright Joola Smart Solutions, Ltd. <info@joo.la>
  *  @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
@@ -10,7 +10,7 @@
 
 before(function (done) {
   var self = this;
-  require('../../joola.io.js').init({}, function (err, joola) {
+  require('../../joola.js').init({}, function (err, joola) {
     global.joola = joola;
     if (err)
       return done(err);

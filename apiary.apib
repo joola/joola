@@ -1,29 +1,29 @@
 FORMAT: 1A
 HOST: https://joola-io-example.herokuapp.com
 
-# joola.io
-[joola.io](http://github.com/joola/joola.io) is an open-source data analytics and visualization framework.
-To learn more about joola.io, installation, configuration and usage, please refer to our [wiki](http://github.com/joola/joola.io/wiki).
+# joola
+[joola](http://github.com/joola/joola) is an open-source data analytics and visualization framework.
+To learn more about joola, installation, configuration and usage, please refer to our [wiki](http://github.com/joola/joola/wiki).
 
-This guide describes the resources that make up the joola.io API. 
-If you have any problems or requests please open an [issue](http://github.com/joola/joola.io/issues).
+This guide describes the resources that make up the joola API. 
+If you have any problems or requests please open an [issue](http://github.com/joola/joola/issues).
 
 ## Using This Guide 
 
-We will be using `https://localhost:8081` which is the default configuration for a fresh installation of joola.io.
+We will be using `https://localhost:8081` which is the default configuration for a fresh installation of joola.
 
-You can use the `Debugging Host` to execute requests against a valid, online joola.io instance we have put up for the purpose of this guide. A valid token for this purpose is `apitoken-demo`. 
+You can use the `Debugging Host` to execute requests against a valid, online joola instance we have put up for the purpose of this guide. A valid token for this purpose is `apitoken-demo`. 
 Some actions will not be available in order to maintain system integrity.
 
 While we understand how naive we are with this request, please apply Fair Usage and avoid vandalism of the system as much as possible. The node serving this guide will recycle every hour.
 
 ## Current Version
-To check what version of joola.io is running, run:
+To check what version of joola is running, run:
 
 ```bash
 $ curl https://localhost:8081/system/version?APIToken=apitoken-demo
 
-{"version": "joola.io version 0.4.1"}
+{"version": "joola version 0.6.4"}
 ```
 
 ## Schema
@@ -33,7 +33,7 @@ All data is sent and received as JSON.
 $ curl -i http://127.0.0.1:8080/system/version?APIToken=apitoken-demo
 
 HTTP/1.1 200 OK
-Server: joola.io
+Server: joola
 Access-Control-Allow-Credentials: true
 Access-Control-Expose-Headers: ETag, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
 X-JoolaIO-Request-Id: HpEO6kDLn:1399190956781:Uj184Jhop
@@ -60,7 +60,7 @@ YYYY-MM-DDTHH:MM:SSZ
 ```
 
 ## HTTP Verbs
-joola.io API uses the following Verbs.
+joola API uses the following Verbs.
 
 | Header   | Description                                                                                                                                                                                         |
 |----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -72,7 +72,7 @@ joola.io API uses the following Verbs.
 | `DELETE` | Used for deleting resources.                                                                                                                                                                        |
 
 ## Authentication
-There are three ways to authenticate through joola.io API. 
+There are three ways to authenticate through joola API. 
 Requests that require authentication will return 404 Not Found, instead of 403 Forbidden, in some places. This is to prevent the accidental leakage of private information to unauthorized users.
 
 #### Basic Authentication
@@ -93,7 +93,7 @@ $ curl https://localhost:8081/system/version?APIToken=my-apitoken
 ```
 
 ## Rate Limits
-joola.io support rate limits. The default rate is `5000` requests per hour, but can be changed as part of the [configuration](http://github.com/joola/joola.io/wiki/configuration).
+joola support rate limits. The default rate is `5000` requests per hour, but can be changed as part of the [configuration](http://github.com/joola/joola/wiki/configuration).
 
 You can check the returned HTTP headers of any API request to see your current rate limit:
 
@@ -117,11 +117,11 @@ The headers include the information about the current rate limit status:
 | Retry-After           | The number of seconds before the current rate limit resets.                     |
 
 ## Response Headers
-Each API request fulfilled by joola.io contains some useful response headers:
+Each API request fulfilled by joola contains some useful response headers:
 
 | Header                       |                                                                                       |
 |------------------------------|---------------------------------------------------------------------------------------|
-| X-JoolaIO-Request-Id         | Unique request id assigned by joola.io server. Format: {NODE_UUID}:{TIMESTAMP}:{UUID} |
+| X-JoolaIO-Request-Id         | Unique request id assigned by joola server. Format: {NODE_UUID}:{TIMESTAMP}:{UUID} |
 | X-JoolaIO-Duration           | Total duration of request from route in to out.                                       |
 | X-JoolaIO-Duration-Fulfilled | Total duration of request from dispatch in/out.                                       |
 | X-JoolaIO-Requested-By       | Node UUID of the requester.                                                           |
@@ -134,7 +134,7 @@ Notes related resources of the **Workspaces API**
 Workspaces are a high-level logical containers.
 Each workspace is a separate logical and (sometimes) phyisical container, it has its own roles, users, collections and other meta data information describing the container.
 
-Having multiple workspaces is the corner-stone for joola.io's multi-tenancy.
+Having multiple workspaces is the corner-stone for joola's multi-tenancy.
 
 ### Workspace Structure
 | Field        | Type   | Description                             |
@@ -152,12 +152,12 @@ Having multiple workspaces is the corner-stone for joola.io's multi-tenancy.
         [
           {
             "key": "_test",
-            "description": "Workspace for internal joola.io tests",
-            "name": "joola.io Framework Tests"
+            "description": "Workspace for internal joola tests",
+            "name": "joola Framework Tests"
           },
           {
             "key": "_stats",
-            "description": "Stores internal statistics of joola.io",
+            "description": "Stores internal statistics of joola",
             "name": "Internal Stats"
           },
           {
@@ -185,7 +185,7 @@ Having multiple workspaces is the corner-stone for joola.io's multi-tenancy.
 
 + Response 500 (application/json)
 
-        { "message": "workspace already exists", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "workspace already exists", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ## Workspace [/workspaces/{key}{?APIToken}]
 
@@ -206,15 +206,15 @@ Having multiple workspaces is the corner-stone for joola.io's multi-tenancy.
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "workspace [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "workspace [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Update a Workspace [PATCH]
 + Request (application/json)
@@ -231,19 +231,19 @@ Having multiple workspaces is the corner-stone for joola.io's multi-tenancy.
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
         
 + Response 415 (application/json)
 
-        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola/wiki" }
         
 + Response 500 (application/json)
 
-        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Remove a Workspace [DELETE]
 + Response 200
@@ -252,19 +252,19 @@ Having multiple workspaces is the corner-stone for joola.io's multi-tenancy.
         
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 415 (application/json)
 
-        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "workspace [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "workspace [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 # Group Collections
 Notes related resources of the **Collections API**
@@ -507,15 +507,15 @@ Notes related resources of the **Collections API**
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "collection [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "collection [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Update a Collection [PATCH]
 + Request (application/json)
@@ -577,19 +577,19 @@ Notes related resources of the **Collections API**
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 415 (application/json)
 
-        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Remove a Collection [DELETE]
 + Response 200
@@ -598,15 +598,15 @@ Notes related resources of the **Collections API**
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "collection [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "collection [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ## Dimensions [/collections/{workspace}/{collection}/dimensions{?APIToken}]
 Optional body will compose a joint metadata of collection and document.
@@ -666,15 +666,15 @@ Optional body will compose a joint metadata of collection and document.
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "dimension [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "dimension [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Create a Dimension [POST]
 + Request (application/json)
@@ -695,7 +695,7 @@ Optional body will compose a joint metadata of collection and document.
 
 + Response 500 (application/json)
 
-        { "message": "dimension already exists", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "dimension already exists", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ## Dimension [/collections/{workspace}/{collection}/dimensions/{key}{?APIToken}]
 Optional body will compose a joint metadata of collection and document.
@@ -720,15 +720,15 @@ Optional body will compose a joint metadata of collection and document.
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "dimension [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "dimension [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Update a Dimension [PATCH]
 + Request (application/json)
@@ -746,19 +746,19 @@ Optional body will compose a joint metadata of collection and document.
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 415 (application/json)
 
-        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "dimension [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "dimension [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Remove a Dimension [DELETE]
 + Response 200
@@ -767,15 +767,15 @@ Optional body will compose a joint metadata of collection and document.
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "dimension [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "dimension [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ## Metrics [/collections/{workspace}/{collection}/metrics{?APIToken}]
 
@@ -804,15 +804,15 @@ Optional body will compose a joint metadata of collection and document.
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "metric [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "metric [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Create a Metric [POST]
 + Request (application/json)
@@ -839,7 +839,7 @@ Optional body will compose a joint metadata of collection and document.
 
 + Response 500 (application/json)
 
-        { "message": "metric already exists", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "metric already exists", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ## Metric [/collections/{workspace}/{collection}/metrics/{key}{?APIToken}]
 
@@ -868,15 +868,15 @@ Optional body will compose a joint metadata of collection and document.
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "metric [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "metric [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Update a Metric [PATCH]
 + Request (application/json)
@@ -899,19 +899,19 @@ Optional body will compose a joint metadata of collection and document.
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 415 (application/json)
 
-        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "metric [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "metric [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Remove a Metric [DELETE]
 + Response 200
@@ -920,15 +920,15 @@ Optional body will compose a joint metadata of collection and document.
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "metric [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "metric [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ## Metadata [/collections/{workspace}/{key}/metadata{?APIToken}]
 Optional body will compose a joint metadata of collection and document.
@@ -1002,18 +1002,18 @@ Optional body will compose a joint metadata of collection and document.
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "collection [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "collection [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 # Group Roles
-joola.io uses `Roles` to assign `Permissions` to `Users`.
+joola uses `Roles` to assign `Permissions` to `Users`.
 
 ### Role Structure
 | Field        | Type   | Description                             |
@@ -1106,11 +1106,11 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Create a Role [POST]
 + Request (application/json)
@@ -1129,19 +1129,19 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 415 (application/json)
 
-        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "role already exists", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "role already exists", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ## Role [/roles/{workspace}/{key}{?APIToken}]
 
@@ -1163,15 +1163,15 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Update a Role [PATCH]
 + Request (application/json)
@@ -1190,19 +1190,19 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 415 (application/json)
 
-        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Remove a Role [DELETE]
 + Response 200
@@ -1211,19 +1211,19 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 415 (application/json)
 
-        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 # Group Users
 
@@ -1282,11 +1282,11 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Create a User [POST]
 + Request (application/json)
@@ -1311,19 +1311,19 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 415 (application/json)
 
-        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "user already exists", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "user already exists", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ## User [/users/{workspace}/{username}{?APIToken}]
 
@@ -1348,15 +1348,15 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "user [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "user [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Update a User [PATCH]
 + Request (application/json)
@@ -1378,19 +1378,19 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 415 (application/json)
 
-        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "user [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "user [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Remove a User [DELETE]
 + Response 200
@@ -1399,19 +1399,19 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 415 (application/json)
 
-        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "user [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "user [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ## User Permissions [/users/{workspace}/{username}/permissions{?APIToken}]
 
@@ -1453,18 +1453,18 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "user [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "user [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 # Group Authentication
-joola.io uses two types of security contexts, `token` and `APIToken`:
+joola uses two types of security contexts, `token` and `APIToken`:
 
 - `token` is a short-lived (configurable) security token holding the user context and can be used to consume API endpoints on behalf of the user.
 - `APIToken` is a long-lived security token which is configured as part of the user account. Using an APIToken assumes that the token is secret and is used by the correct priviliged user.
@@ -1507,19 +1507,19 @@ joola.io uses two types of security contexts, `token` and `APIToken`:
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 415 (application/json)
 
-        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "unknown error", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "unknown error", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ## Token [/tokens/{token}{?APIToken}]
 
@@ -1531,7 +1531,7 @@ joola.io uses two types of security contexts, `token` and `APIToken`:
 
 + Response 401 (application/json)
 
-        { "message": "Failed to validate token [1] [0NSGRgfxJ]", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "Failed to validate token [1] [0NSGRgfxJ]", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 200 (application/json)
 
@@ -1555,11 +1555,11 @@ joola.io uses two types of security contexts, `token` and `APIToken`:
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "unknown error", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "unknown error", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Delete a Token [DELETE]
 
@@ -1569,15 +1569,15 @@ joola.io uses two types of security contexts, `token` and `APIToken`:
 
 + Response 401 (application/json)
 
-        { "message": "Failed to validate token [1] [0NSGRgfxJ]", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "Failed to validate token [1] [0NSGRgfxJ]", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "unknown error", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "unknown error", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ## API Token [/apitokens/{token}{?APIToken}]
 
@@ -1602,18 +1602,18 @@ joola.io uses two types of security contexts, `token` and `APIToken`:
 
 + Response 401 (application/json)
 
-        { "message": "Failed to validate api token [apitoken-demo]", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "Failed to validate api token [apitoken-demo]", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 403 (application/json)
 
-        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "unknown error", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "unknown error", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 # Group Permissions
-Permissions are hard-coded string values assigned to each API endpoint. Permissions work in conjunction with `Users` and `Roles` to form joola.io's role-based permissions system.
+Permissions are hard-coded string values assigned to each API endpoint. Permissions work in conjunction with `Users` and `Roles` to form joola's role-based permissions system.
 
 ### Permission Structure
 | Field        | Type   | Description                             |
@@ -1637,7 +1637,7 @@ Permissions are hard-coded string values assigned to each API endpoint. Permissi
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ## Permission [/permissions/{key}{?APIToken}]
 
@@ -1654,11 +1654,11 @@ Permissions are hard-coded string values assigned to each API endpoint. Permissi
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "permission [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "permission [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 # Group Beacon
 Notes related resources of the **Beacon API**
@@ -1722,11 +1722,11 @@ Notes related resources of the **Beacon API**
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "permission [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "permission [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 # Group Query
 Notes related resources of the **Query API**
@@ -1778,19 +1778,19 @@ Notes related resources of the **Query API**
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "permission [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "permission [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 # Group Configuration
-joola.io uses a central-configuration store to support a node-based deployment schema.
+joola uses a central-configuration store to support a node-based deployment schema.
 This means that nodes will grab their configuration from central store and that any update to it is propogated to all nodes without a need to restart the service.
 
 Configuration keys are referenced with `:` as a separator, i.e. to change the web server interface port, use `interfaces:webserver:port`.
 
-To learn more about configuration, please refer to the [wiki](http://github.com/joola/joola.io/wiki/configuration).
+To learn more about configuration, please refer to the [wiki](http://github.com/joola/joola/wiki/configuration).
 
 ## Configuration [/config/{key}{?APIToken}]
 
@@ -1814,7 +1814,7 @@ To learn more about configuration, please refer to the [wiki](http://github.com/
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Get Configuration value [GET]
 + Response 200 (application/json)
@@ -1826,11 +1826,11 @@ To learn more about configuration, please refer to the [wiki](http://github.com/
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "configuration [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "configuration [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Set Configuration Value [PATCH]
 + Request (application/json)
@@ -1851,17 +1851,17 @@ To learn more about configuration, please refer to the [wiki](http://github.com/
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 + Response 500 (application/json)
 
-        { "message": "configuration [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "configuration [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 # Group System
-This group lists all general system functions available as part of the joola.io framework.
+This group lists all general system functions available as part of the joola framework.
 
 ## System Version [/system/version{?APIToken}]
-Print out joola.io version.
+Print out joola version.
 
 + Parameters
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
@@ -1869,11 +1869,11 @@ Print out joola.io version.
 ### Get System Version [GET]
 + Response 200 (application/json)
 
-        { "version": "joola.io version 0.4.1" }
+        { "version": "joola version 0.4.1" }
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ## Who Am I [/system/whoami{?APIToken}]
 Print out the `User` object taken from the `APIToken` provided.
@@ -1897,7 +1897,7 @@ Print out the `User` object taken from the `APIToken` provided.
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ## Node UID [/system/nodeUID{?APIToken}]
 Print out the unique identifier of the replying node.
@@ -1915,7 +1915,7 @@ Print out the unique identifier of the replying node.
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ## Node Details [/system/nodeDetails{?APIToken}]
 Print out all known details on the replying node.
@@ -2051,4 +2051,4 @@ Print out all known details on the replying node.
 
 + Response 401 (application/json)
 
-        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola.io/wiki" }
+        { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }

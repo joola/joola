@@ -3,47 +3,47 @@
 ## Step 1: Include/require the SDK
 In order to use the SDK, you will first need to include it in either a webpage or a NodeJS package.  
 
-Since the SDK connects to a joola.io node, we need to have a running node of joola.io, for this walkthrough, 
+Since the SDK connects to a joola node, we need to have a running node of joola, for this walkthrough, 
 we're going to assume you will be using your localhost for running the node, i.e. `https://localhost:8081`. 
 
-For installation instructions, please refer to [Installing joola.io](install-joola.io).
+For installation instructions, please refer to [Installing joola](install-joola).
 
-#### Including joola.io SDK in a Webpage
+#### Including joola SDK in a Webpage
 
 Create a webpage anywhere you wish and edit it to look something like below.
 
 ```html
-<script src="https://localhost:8081/joola.io.js"></script>
+<script src="https://localhost:8081/joola.js"></script>
 
 <script>
-  console.log('joola.io object is:', joolaio);
+  console.log('joola object is:', joolaio);
 </script>
 ```
 
 Open the html page we just created in your webbrowser and check out the console, 
 you'll notice the console.log containing the `joolaio` object.
 
-#### Using joola.io SDK from NodeJS
+#### Using joola SDK from NodeJS
 For this walkthrough, we'll be using a standalone version of the SDK as in most cases dictate. 
 
 First, we install the library.
 ```bash
-$ mkdir /tmp/joola.io-sdk-example
-$ cd /tmp/joola.io-sdk-example
-$ npm install http://github.com/joola/joola.io.sdk/tarball/develop
-$ nano joola.io-sdk-example.js
+$ mkdir /tmp/joola-sdk-example
+$ cd /tmp/joola-sdk-example
+$ npm install http://github.com/joola/joola.sdk/tarball/develop
+$ nano joola-sdk-example.js
 ```
 
 We proceed to require it.
 ```js
-var joolaio = require('joola.io.sdk');
+var joolaio = require('joola.sdk');
 
-console.log('joola.io object is:', joolaio);
+console.log('joola object is:', joolaio);
 ```
 
 Lastly we execute our simple js file.
 ```bash
-$ node /tmp/joola.io-sdk-examples
+$ node /tmp/joola-sdk-examples
 ```
 
 ## Step 2: Initialize and Authenticate
@@ -65,7 +65,7 @@ joolaio.init(options, function (err, result) {
     joolaio.users.authenticate('organization', 'user', 'password', function (err, token) {
         joolaio.TOKEN = token._;
         
-        //joola.io is now ready for work, event `core.ready` is emitted
+        //joola is now ready for work, event `core.ready` is emitted
     });
 });
 ```
@@ -80,7 +80,7 @@ joolaio.init(options, function(err){
   if (err)
     throw err;
     
-  console.log('joola.io is ready for work');
+  console.log('joola is ready for work');
 });
 ```
 
@@ -94,7 +94,7 @@ joolaio.init(options, function(err){
   if (err)
     throw err;
     
-  console.log('joola.io is ready for work');
+  console.log('joola is ready for work');
 });
 ```
 
@@ -103,12 +103,12 @@ joolaio.init(options, function(err){
 ## Step 3: Using the SDK
 The SDK allows you to control all aspects of the framework, so you'll find an API call for everything you need. 
 These include the management aspects of the framework, such as adding organizations, users and assigning roles and permissions.
-  The SDK is used to push data in and query data out of joola.io, the flexibility of the SDK coupled with its developer oriented design make it an easy-to-use tool. 
+  The SDK is used to push data in and query data out of joola, the flexibility of the SDK coupled with its developer oriented design make it an easy-to-use tool. 
 
 Here's a short list of different examples relevant to the SDK. If you wish to learn more about the SDK and its functionality, please refer to its docs.
 
 - [Security and Authentication](security-and-authentication)
 - [Pushing data](pushing-data)
-- [Query, analytics and visualization](https://github.com/joola/joola.io/wiki/sdk-api-documentation#joolaioviz)
+- [Query, analytics and visualization](https://github.com/joola/joola/wiki/sdk-api-documentation#joolaioviz)
 - [Collections and meta data](collections)
 - [Manage Organizations, users and roles](basic-concepts)

@@ -51,7 +51,7 @@ describe("routes", function () {
     var options = {
       host: 'localhost',
       port: '8081',
-      path: '/joola.io.js'
+      path: '/joola.js'
     };
 
     callback = function (response) {
@@ -78,7 +78,7 @@ describe("routes", function () {
     var options = {
       host: 'localhost',
       port: '8081',
-      path: '/joola.io.js?token=12345'
+      path: '/joola.js?token=12345'
     };
 
     callback = function (response) {
@@ -105,7 +105,7 @@ describe("routes", function () {
     var options = {
       host: 'localhost',
       port: '8081',
-      path: '/joola.io.min.js'
+      path: '/joola.min.js'
     };
 
     callback = function (response) {
@@ -132,7 +132,7 @@ describe("routes", function () {
     var options = {
       host: 'localhost',
       port: '8081',
-      path: '/joola.io.min.js?token=12345'
+      path: '/joola.min.js?token=12345'
     };
 
     callback = function (response) {
@@ -159,7 +159,7 @@ describe("routes", function () {
     var options = {
       host: 'localhost',
       port: '8081',
-      path: '/joola.io.css'
+      path: '/joola.css'
     };
 
     callback = function (response) {

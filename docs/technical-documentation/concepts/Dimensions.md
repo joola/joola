@@ -4,7 +4,7 @@
 A dimension is an descriptive attribute or characteristic of an object that can be given different values. 
 For example, a geographic location could have dimensions called Latitude, Longitude, or City Name. 
 Values for the City Name dimension could be San Francisco, Berlin, or Singapore.
-Browser, Device, Date are all examples of dimensions that may appear as part of joola.io.
+Browser, Device, Date are all examples of dimensions that may appear as part of joola.
  
 Dimensions are system wide (based on the system/user permissions) and may appear in all of your reports, 
 though you might see different ones depending on the specific report. 

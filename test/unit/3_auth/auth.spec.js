@@ -1,5 +1,5 @@
 /**
- *  joola.io
+ *  joola
  *
  *  Copyright Joola Smart Solutions, Ltd. <info@joo.la>
  *

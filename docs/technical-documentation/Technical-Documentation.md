@@ -1,8 +1,8 @@
 [**HOME**](Home) > **TECHNICAL DOCUMENTATION**
 
-Review of joola.io architecture, know-how and detailed breakdown of internal processes.
+Review of joola architecture, know-how and detailed breakdown of internal processes.
 
-- [Setup joola.io](setting-up-joola.io)
+- [Setup joola](setting-up-joola)
 - [Architecture](architecture)
 - [[Basic concepts]]
 - [API Documentation](api-documentation)
@@ -13,7 +13,7 @@ Following installation, point your browser to `https://localhost:8081` to view t
 
 ## Getting Started
 
-Here's a quick guide on getting started with joola.io post installation.
+Here's a quick guide on getting started with joola post installation.
 
 ##### Pushing your first event
 
@@ -41,7 +41,7 @@ $ curl \
 
 Using the SDK:
 ```js
-var joolaio = require('joola.io.sdk');
+var joolaio = require('joola.sdk');
 
 joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-beacon'}, function(err) {
   var doc = {
@@ -63,11 +63,11 @@ joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-beacon'}, func
 });
 ```
 
-[**Learn more about pushing data**](http://github.com/joola/joola.io/wiki/pushing-data)
+[**Learn more about pushing data**](http://github.com/joola/joola/wiki/pushing-data)
 
 ##### Your first visualization
 ```html
-<script src="https://localhost:8081/joola.io.js?APIToken=apitoken-demo"></script>
+<script src="https://localhost:8081/joola.js?APIToken=apitoken-demo"></script>
 <script>
 joolaio.events.on('ready', function(err) {
   if (err)
@@ -88,4 +88,4 @@ joolaio.events.on('ready', function(err) {
 </script>
 ```
 
-[**Learn more about analytics and visualizations**](https://github.com/joola/joola.io/wiki/sdk-api-documentation#joolaioviz)
+[**Learn more about analytics and visualizations**](https://github.com/joola/joola/wiki/sdk-api-documentation#joolaioviz)

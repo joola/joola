@@ -6,7 +6,7 @@ main.bs-docs-masthead(id="content", role="main")
     //p.lead Liberating data analytics.
     p.lead Liberating data analytics
     p.lead
-      a.btn.btn-outline-inverse.btn-lg(href="http://github.com/joola/joola.io") View the GitHub project
+      a.btn.btn-outline-inverse.btn-lg(href="http://github.com/joola/joola") View the GitHub project
     p.version Currently v#{version}
 
 .container
@@ -15,7 +15,7 @@ main.bs-docs-masthead(id="content", role="main")
       .bs-docs-section(id="demo")
         h1.page-header Demo 
           small (site usage over last hour) 
-        p.lead A Demo of joola.io basic functionality and a great way to check system health.
+        p.lead A Demo of joola basic functionality and a great way to check system health.
 
     .col-md-12
       .row
@@ -31,9 +31,9 @@ main.bs-docs-masthead(id="content", role="main")
   p
   .row
     .col-md-12
-      p The demo responds to actions and events on this page. Everytime you move your mouse, visit the page or click on it, an event is pushed into joola.io and then visualized.
+      p The demo responds to actions and events on this page. Everytime you move your mouse, visit the page or click on it, an event is pushed into joola and then visualized.
     .col-md-6
-      p When you move your mouse the following document is compiled and pushed to joola.io:
+      p When you move your mouse the following document is compiled and pushed to joola:
       pre.prettyprint(lang="javascript").
         var doc = {
           timestamp: null,
@@ -45,7 +45,7 @@ main.bs-docs-masthead(id="content", role="main")
 
         joolaio.beacon.insert('demo-mousemoves', doc);
       p.center-block.text-center
-        a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io/pushing-data", role="button") Learn more about pushing data
+        a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola/pushing-data", role="button") Learn more about pushing data
     .col-md-6
       p Drawing visualizations is as easy as describing what you would like to see.
       pre.prettyprint(lang="javascript").
@@ -59,16 +59,16 @@ main.bs-docs-masthead(id="content", role="main")
 
         $('#container').Timeline({query: query});
       p.center-block.text-center
-        a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io/wiki/analytics-and-visualization", role="button") Learn more about visualization
+        a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola/wiki/analytics-and-visualization", role="button") Learn more about visualization
   .row
     .col-md-12
       .bs-docs-section(id="gettingstarted")
         h1.page-header Getting Started
-        p.lead An overview of joola.io, how to setup, configure and use.
+        p.lead An overview of joola, how to setup, configure and use.
         p.
-          joola.io was designed by developers for developers. We did the heavy-lifting with all that is data and framework related,
-          this is what makes joola.io so easy and fun to play with.<br/>
-          The project is rich with <a href="http://github.com/joola/joola.io">documentation</a>, <a href="#examples">examples</a> and <a href="http:github.com/joola/joola.io/wiki/workshops">workshops</a>.
+          joola was designed by developers for developers. We did the heavy-lifting with all that is data and framework related,
+          this is what makes joola so easy and fun to play with.<br/>
+          The project is rich with <a href="http://github.com/joola/joola">documentation</a>, <a href="#examples">examples</a> and <a href="http:github.com/joola/joola/wiki/workshops">workshops</a>.
         p.
           Below is a quick guide for getting started with your first visualization and some basic concepts used throughout.
         .bs-callout.bs-callout-warning
@@ -77,21 +77,21 @@ main.bs-docs-masthead(id="content", role="main")
             Please note that for this getting started guide we'll be assuming <code>localhost</code> as your server and <code>apitoken-root</code> as your APIToken (default).
             <br/>Also, when referring to dependencies such as <a href="http://mongodb.org">MongoDB</a>, <a href="http://redis.io">Redis</a>, etc... we assume that these are installed on your <code>localhost</code>.
           p.
-            For a complete setup and configuration guide, please refer to our <a href="http://github.com/joola/joola.io/wiki">wiki</a>.
+            For a complete setup and configuration guide, please refer to our <a href="http://github.com/joola/joola/wiki">wiki</a>.
         h2 Installation
         p.
-          joola.io is written in JavaScript and runs using <a href="http://nodejs.org">Node.JS</a>, an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
-          In addition we use additional components as part of the stack, all required to be installed prior to installing joola.io. 
+          joola is written in JavaScript and runs using <a href="http://nodejs.org">Node.JS</a>, an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
+          In addition we use additional components as part of the stack, all required to be installed prior to installing joola. 
           <br/><strong>Remember:</strong> we'll assume <code>localhost</code> is used throughout this page. If you wish to use another machine, please refer to the configuration section on the <a href="http://github.com/joola/joola/io/wiki">wiki</a>.
         .row
           .col-md-12
-            h3 Before installing joola.io
+            h3 Before installing joola
           .col-md-3
             .logo3rd
               a(href="http://nodejs.org")
                 img(src="img/nodejs-logo.png")
             p.download-intro.
-              joola.io is written in JavaScript and runs using <a href="http://nodejs.org">Node.JS</a>, an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
+              joola is written in JavaScript and runs using <a href="http://nodejs.org">Node.JS</a>, an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
             p.center-block.text-center
               a.btn.btn-lg.btn-outline(href="http://nodejs.org/download/", role="button") Install Node.JS
           .col-md-3
@@ -100,7 +100,7 @@ main.bs-docs-masthead(id="content", role="main")
                 img(src="img/redis-logo.png")
             p.download-intro.
               Redis is an open source, BSD licensed, advanced key-value store. It is often referred to as a data structure server since keys can contain strings, hashes, lists, sets and sorted sets.
-              joola.io uses Redis to store its configuration and metadata.
+              joola uses Redis to store its configuration and metadata.
             p.center-block.text-center
               a.btn.btn-lg.btn-outline(href="http://redis.io/download", role="button") Install Redis
           .col-md-3
@@ -108,7 +108,7 @@ main.bs-docs-masthead(id="content", role="main")
               a(href="http://mongodb.org")
                 img(src="img/mongodb-logo.png")
             p.download-intro.
-              Documents pushed into joola.io are stored in a cache layer which is currently based on MongoDB, an open-source document database, and the leading NoSQL database. In the future, we'll support additional providers such as Cassandra, RethinkDB and more.
+              Documents pushed into joola are stored in a cache layer which is currently based on MongoDB, an open-source document database, and the leading NoSQL database. In the future, we'll support additional providers such as Cassandra, RethinkDB and more.
             p.center-block.text-center
               a.btn.btn-lg.btn-outline(href="http://www.mongodb.org/downloads", role="button") Install MongoDB          
           .col-md-3
@@ -116,83 +116,83 @@ main.bs-docs-masthead(id="content", role="main")
               a(href="http://www.rabbitmq.com")
                 img(src="img/rabbitmq-logo.png")
             p.download-intro.
-              In order to provide a scalabale framework that can handle very high loads of data consumption, joola.io uses STOMP to communicate with leading Message Queues. 
+              In order to provide a scalabale framework that can handle very high loads of data consumption, joola uses STOMP to communicate with leading Message Queues. 
               We have chosen RabbitMQ as the default MQ provider due to its simplicity and power.
             p.center-block.text-center
               a.btn.btn-lg.btn-outline(href="http://www.rabbitmq.com/download.html", role="button") Install RabbitMQ        
         .row
           .col-md-12
-            h3 Installing joola.io
-            p. joola.io can be installed from either the NPM registry or directly from the GitHub repository.
+            h3 Installing joola
+            p. joola can be installed from either the NPM registry or directly from the GitHub repository.
         .row
           .col-md-6
             h4 Installing from NPM registry
             pre.prettyprint(lang="bash").
-              $ npm install -g joola.io #for global install
+              $ npm install -g joola #for global install
               # OR 
-              $ npm install joola.io              
+              $ npm install joola              
           .col-md-6
             h4 Installing from GitHub repository
             pre.prettyprint(lang="bash").
-              $ git clone http://github.com/joola/joola.io .
+              $ git clone http://github.com/joola/joola .
               # OR
-              $ npm install http://github.com/joola/joola.io/tarball/master
+              $ npm install http://github.com/joola/joola/tarball/master
         .row
           .col-md-12
             h4 First time run
             pre.prettyprint(lang="bash").
               # for global installations
-              $ joola.io
+              $ joola
               # for local installations
-              $ node node_modules/joola.io/joola.io.js
+              $ node node_modules/joola/joola.js
 
-              08:50:44.179Z WARN joola.io: Found an empty configuration store, building initial...
-              08:50:44.360Z INFO joola.io: joola.io version 0.4.0 started [CH3mIJWhy].
-        h2 Connecting to joola.io
+              08:50:44.179Z WARN joola: Found an empty configuration store, building initial...
+              08:50:44.360Z INFO joola: joola version 0.4.0 started [CH3mIJWhy].
+        h2 Connecting to joola
         p.
-          There are several ways to communicate with your joola.io node and they all eventually (bar the REPL) use joola.io's API endpoints to pass instructions and data.<br/>
-          Our main method of communication is using the SDK, it exposes a standard method to consume joola.io's API endpoints.
+          There are several ways to communicate with your joola node and they all eventually (bar the REPL) use joola's API endpoints to pass instructions and data.<br/>
+          Our main method of communication is using the SDK, it exposes a standard method to consume joola's API endpoints.
         .row
           .col-md-6
             h3 Using the SDK
             p.
-              The SDK is a single Javascript file containing all that is needed to operate ALL aspects of joola.io. The SDK is not only used to control joola.io, but also responsible for visualizing data on screen.
+              The SDK is a single Javascript file containing all that is needed to operate ALL aspects of joola. The SDK is not only used to control joola, but also responsible for visualizing data on screen.
             pre.prettyprint(lang="javascript").
-              var joolaio = require('joola.io.sdk');
+              var joolaio = require('joola.sdk');
               joolaio.init({
                   host:'http://localhost:8080', APIToken: 'apitoken-root'
                 }, function(err){
                 if (err) throw err;
-                console.log('joola.io ready, version', joolaio.VERSION);
-                //joola.io ready, version 0.4.0
+                console.log('joola ready, version', joolaio.VERSION);
+                //joola ready, version 0.4.0
               });
           .col-md-6
             h3 Using the CLI (Command Line Interface)
             p.
-              The CLI is based on the SDK and offers an easy manner for communication with joola.io without needing to write lines of code.
-              In addition, the CLI offers a shorthand call of built-in joola.io functions, it will automatically add callback and print out to your calls.
+              The CLI is based on the SDK and offers an easy manner for communication with joola without needing to write lines of code.
+              In addition, the CLI offers a shorthand call of built-in joola functions, it will automatically add callback and print out to your calls.
             pre.prettyprint(lang="bash").
-              $ joola.io.cli -h host -u username -p password
+              $ joola.cli -h host -u username -p password
 
-              joola.io.cli (0.0.1) starting...
-              Connecting to joola.io @ http://localhost:8080...
+              joola.cli (0.0.1) starting...
+              Connecting to joola @ http://localhost:8080...
 
-              joola.io root@localhost:8080> joolaio.VERSION
+              joola root@localhost:8080> joolaio.VERSION
               '0.4.0'
-              joola.io root@localhost:8080>
+              joola root@localhost:8080>
         .row
           p.center-block.text-center
-            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io/sdk", role="button") Learn more about the SDK
+            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola/sdk", role="button") Learn more about the SDK
         h2 Configuration
         p.
-          joola.io has a wide range of configurable settings. Setting these options can be done manually with joola.io launch or during runtime.
+          joola has a wide range of configurable settings. Setting these options can be done manually with joola launch or during runtime.
           Runtime configuration effect all nodes on the grid immediately and allows in-place scalability and security changes to be put in place.
         .row
           .col-md-6
             h3 Baseconfig.json
             p.
-              joola.io's initial configuration is loaded from <code>config/baseconfig.json</code>.
-              By changing these values and calling <code>$ joola.io --baseconfig</code>, you can apply an initial configuration to your joola.io node.
+              joola's initial configuration is loaded from <code>config/baseconfig.json</code>.
+              By changing these values and calling <code>$ joola --baseconfig</code>, you can apply an initial configuration to your joola node.
             pre.prettyprint(lang="bash").
               configuration/
                 ├── interfaces/
@@ -213,11 +213,11 @@ main.bs-docs-masthead(id="content", role="main")
               Runtime configuration allows for nodes to be updated without a service restart. By connecting to a single node, you are connected to the grid, so
               issuing a config change will effect all at once.
             pre.prettyprint(lang="bash").
-              $ joola.io.cli -h host -u username -p password
+              $ joola.cli -h host -u username -p password
 
-              joola.io.cli (0.0.1) starting...
-              Connecting to joola.io @ http://localhost:8080...
-              joola.io> joolaio.config.get('store:logger:mongo')
+              joola.cli (0.0.1) starting...
+              Connecting to joola @ http://localhost:8080...
+              joola> joolaio.config.get('store:logger:mongo')
               { host: 'localhost',
                 password: null,
                 level: 'trace',
@@ -228,10 +228,10 @@ main.bs-docs-masthead(id="content", role="main")
                 options: { capped: true, size: 10240000 } }
         .row
           p.center-block.text-center
-            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io/wiki/configuration", role="button") Learn more about configuration
+            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola/wiki/configuration", role="button") Learn more about configuration
         h2 Authentication
         p.
-          joola.io is a secure, multi-tenant framework. This means that any action carried out requires a security context and users must authenticate before they
+          joola is a secure, multi-tenant framework. This means that any action carried out requires a security context and users must authenticate before they
           can communicate with the system. There are several authentication methods available.
         .bs-callout.bs-callout-warning
           h4 Security Note
@@ -240,18 +240,18 @@ main.bs-docs-masthead(id="content", role="main")
           p To change the default root password:
           pre.prettyprint(lang="javascript").
             joolaio.users.update('root', {username: 'root', password: 'newpassword'}));
-          p Read more about security and authentication in our <a href="http://github.com/joola/joola.io/wiki">wiki</a>.
+          p Read more about security and authentication in our <a href="http://github.com/joola/joola/wiki">wiki</a>.
         .row
           .col-md-12
             h3 API Tokens
             p.
-              An API token is a simple string that is assosiciated with a user account. Accessing joola.io with this API token will create a security context for the user and allow them to access the system according to their permissions and filters.
+              An API token is a simple string that is assosiciated with a user account. Accessing joola with this API token will create a security context for the user and allow them to access the system according to their permissions and filters.
             strong HTML
             pre.prettyprint(lang="html").
-              &lt;script src="http://localhost:8080/joola.io.min.js?APIToken=apitoken-root"></script>
+              &lt;script src="http://localhost:8080/joola.min.js?APIToken=apitoken-root"></script>
             strong Node.JS
             pre.prettyprint(lang="javascript").
-              var joolaio = require('joola.io.sdk');
+              var joolaio = require('joola.sdk');
               joolaio.init({
                 host: 'http://localhost:8080',
                 APIToken: 'apitoken-root'
@@ -260,9 +260,9 @@ main.bs-docs-masthead(id="content", role="main")
           .col-md-12
             h3 Server-side authentication
             p.
-              API tokens are useful, but not very every scenario. On some, the admin wish to avoid users holding long-term tokens and instead wishes to issue a short-term, "single-use" token for accessing joola.io.
+              API tokens are useful, but not very every scenario. On some, the admin wish to avoid users holding long-term tokens and instead wishes to issue a short-term, "single-use" token for accessing joola.
             pre.prettyprint(lang="javascript").
-              var joolaio = require('joola.io.sdk');
+              var joolaio = require('joola.sdk');
               joolaio.authenticate('workspace', 'username', 'password', function(err, token) {
                 //we're now logged in as root
                 console.log('we now have a token for the user', token);
@@ -271,18 +271,18 @@ main.bs-docs-masthead(id="content", role="main")
           .col-md-12
             h3 Command Line Interface (CLI)
             p.
-              The CLI uses the SDK for communicating with a joola.io node, so you can apply the same authentication methods as used throughout the SDK.
+              The CLI uses the SDK for communicating with a joola node, so you can apply the same authentication methods as used throughout the SDK.
               <br/>However, it does support a few switches that make it easier to use.
             pre.prettyprint(lang="bash").
-              $ joola.io.cli --help
+              $ joola.cli --help
               # Shows a list of all possible commands and options
-              $ joola.io.cli -h "http://localhost:8080" -u root -p password
+              $ joola.cli -h "http://localhost:8080" -u root -p password
               # Logged in as root on localhost:8080
         .row
           .col-md-12
             h3 Single Sign On (SSO)
             p.
-              Often admins already have their own userbase and would like to display data to signed users. In such cases, joola.io's internal user management is redundant and we should avoid duplicating user details.
+              Often admins already have their own userbase and would like to display data to signed users. In such cases, joola's internal user management is redundant and we should avoid duplicating user details.
               <br/>Therefore, when we want to apply SSO we impersonate the user by creating a token for it. The example below shows generating a token for a user, which will be allowed to see only items where the <code>browser='Chrome'</code>.
             pre.prettyprint(lang="javascript").
               var user = {
@@ -297,19 +297,19 @@ main.bs-docs-masthead(id="content", role="main")
               });
         .row
           p.center-block.text-center
-            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io/wiki/security-and-authentication", role="button") Learn more about authentication
+            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola/wiki/security-and-authentication", role="button") Learn more about authentication
         .row
         h2 Pushing data
         p.
-          After the framework is setup (if you see the demo above, then it's fine), we can move on to push data into joola.io.
+          After the framework is setup (if you see the demo above, then it's fine), we can move on to push data into joola.
           Data to be pushed is described as an array of JSON documents, where each document describes all details needed for later retrieval.
-          <a href="http://github.com/joola/joola.io/wiki/collections">Collections</a> are used to batch data into logical containers, they store valualble metadata needed when <a href="https://github.com/joola/joola.io/wiki/analytics-and-visualization">querying</a> information.
+          <a href="http://github.com/joola/joola/wiki/collections">Collections</a> are used to batch data into logical containers, they store valualble metadata needed when <a href="https://github.com/joola/joola/wiki/analytics-and-visualization">querying</a> information.
           Once data is pushed it's immediately available for query and visualization and pushing it cannot get easier.
         h3 A quick demo
         .row
           .col-md-6
             p.
-             Describe your data as a JSON document and choose a <a href="http://github.com/joola/joola.io/wiki/collections">collection</a> to push to.
+             Describe your data as a JSON document and choose a <a href="http://github.com/joola/joola/wiki/collections">collection</a> to push to.
              <br/>When you're done click on the 'Push' button to see results on the right pane.
             form(role="form")
               .form-group
@@ -342,10 +342,10 @@ main.bs-docs-masthead(id="content", role="main")
               Results will show up here.
         .row(style="margin-top:15px;")
           p.center-block.text-center
-            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io/wiki/pushing-data", role="button") Learn more about pushing data
+            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola/wiki/pushing-data", role="button") Learn more about pushing data
         h2 Visualization
         p.
-          Now we get to the real deal, visualizing your data. It's simple and fun! We create a simple JSON to describe the <a href="https://github.com/joola/joola.io/wiki/analytics-and-visualization">query</a> and choose a visualization type to plot it.
+          Now we get to the real deal, visualizing your data. It's simple and fun! We create a simple JSON to describe the <a href="https://github.com/joola/joola/wiki/analytics-and-visualization">query</a> and choose a visualization type to plot it.
           <br/>There are several different visualization types to play with and the open nature of the framework makes it easy to write your own and add more visualizations.
         h3 A quick demo
         .row
@@ -353,7 +353,7 @@ main.bs-docs-masthead(id="content", role="main")
             p.
              Describe the data you would like to visualize. Specify the timeframe, interval, dimensions and metrics participating.
              You can also ask for realtime updates of the visualization.
-             <br/>When you're done describing, don't forget to specify which <a href="http://github.com/joola/joola.io/wiki/collections">collection</a> to <a href="https://github.com/joola/joola.io/wiki/SDK-API-Documentation#joolaioquery">query</a> and choose a visualization type.
+             <br/>When you're done describing, don't forget to specify which <a href="http://github.com/joola/joola/wiki/collections">collection</a> to <a href="https://github.com/joola/joola/wiki/SDK-API-Documentation#joolaioquery">query</a> and choose a visualization type.
              Results will be shown on the right pane.
             form(role="form")
               .form-group
@@ -392,7 +392,7 @@ main.bs-docs-masthead(id="content", role="main")
             #vizcontainer.active
         .row(style="margin-top:15px;")
           p.center-block.text-center
-            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io/wiki/analytics-and-visualization", role="button") Learn more about visualizations
+            a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola/wiki/analytics-and-visualization", role="button") Learn more about visualizations
   //.row
     .col-md-12
       .bs-docs-section(id="examples")
@@ -411,7 +411,7 @@ main.bs-docs-masthead(id="content", role="main")
 
   //.row(style="margin-top:15px;")
     p.center-block.text-center
-      a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola.io/wiki/examples", role="button") Browse all examples
+      a.btn.btn-lg.btn-outline(href="http://github.com/joola/joola/wiki/examples", role="button") Browse all examples
 
 
 script(async, src="//codepen.io/assets/embed/ei.js")

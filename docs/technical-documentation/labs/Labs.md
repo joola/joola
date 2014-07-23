@@ -1,6 +1,6 @@
 [HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > **LABS**
 
-joola.io is an extensive framework with many facets and capabilities. 
+joola is an extensive framework with many facets and capabilities. 
 To highlight all of these capabilities and as part of the Professional Services carried by [joo.la][joo.la] we have compiled the following publicly available labs.
 
 Each lab has the following structure:

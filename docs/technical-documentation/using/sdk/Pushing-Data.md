@@ -1,7 +1,7 @@
 [HOME](Home) > [SDK](sdk) > **PUSHING DATA**
 
-It's very easy to get data into joola.io. The technique to do so vary on the specific implementation and feature set required.  
-Before we start, we'll assume that you've already [installed your joola.io](setting-up-joola.io) and that you've read the [Using the SDK guide](using-the-sdk).
+It's very easy to get data into joola. The technique to do so vary on the specific implementation and feature set required.  
+Before we start, we'll assume that you've already [installed your joola](setting-up-joola) and that you've read the [Using the SDK guide](using-the-sdk).
 
 >
 **NOTE:** We will be using APIToken `apitoken-demo` and host `https://localhost:8081` for our examples.
@@ -86,7 +86,7 @@ The metric `value2` is described with specific requirements for average and pref
 - [Getting and using the SDK](using-the-sdk)
 - [Security and authentication](security-and-authentication)
 - **Pushing data**
-- [Query, analytics and visualization](https://github.com/joola/joola.io/wiki/sdk-api-documentation#joolaioviz)
+- [Query, analytics and visualization](https://github.com/joola/joola/wiki/sdk-api-documentation#joolaioviz)
 - [Collections and meta data](collections)
 - [Workspaces, users and roles](basic-concepts)
 - [Complete API documentation](sdk-api-documentation)

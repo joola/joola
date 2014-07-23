@@ -33,4 +33,4 @@ joolaio.roles.add(role, function(err, result) {
 });
 ```
 
-[API documentation on managing Roles](https://github.com/joola/joola.io/wiki/api-documentation#roles-rolesworkspaceapitoken)
+[API documentation on managing Roles](https://github.com/joola/joola/wiki/api-documentation#roles-rolesworkspaceapitoken)

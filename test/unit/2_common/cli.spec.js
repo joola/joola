@@ -7,7 +7,7 @@ describe("common-cli-arguments", function () {
 
   it("should printout version number [" + version + "]", function (done) {
     var spawn = require('child_process').spawn;
-    var binPath = path.join(__dirname, '../../../', 'joola.io.js');
+    var binPath = path.join(__dirname, '../../../', 'joola.js');
     var app = spawn('node', [binPath, '--version', '--nolog']);
 
     var buffer = '';
@@ -30,7 +30,7 @@ describe("common-cli-arguments", function () {
 
   it("should print out usage correctly", function (done) {
     var spawn = require('child_process').spawn;
-    var binPath = path.join(__dirname, '../../../', 'joola.io.js');
+    var binPath = path.join(__dirname, '../../../', 'joola.js');
     var app = spawn('node', [binPath, '--help', '--nolog']);
 
     var buffer = '';
@@ -56,7 +56,7 @@ describe("common-cli-arguments", function () {
     this.timeout(15000);
     try {
       var spawn = require('child_process').spawn;
-      var binPath = path.join(__dirname, '../../../', 'joola.io.js');
+      var binPath = path.join(__dirname, '../../../', 'joola.js');
       var app = spawn('node', [binPath, '--repl', '--nolog']);
 
       var buffer = '';
