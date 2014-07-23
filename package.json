@@ -1,7 +1,7 @@
 {
   "name": "joola",
   "preferGlobal": false,
-  "version": "0.7.0",
+  "version": "0.7.1",
   "author": "Joola <info@joo.la>",
   "description": "The open-source data visualization framework",
   "engine": "node >= 0.10.x",
@@ -69,6 +69,7 @@
     "jade": "*",
     "joola.cli": "^0.1.0",
     "joola.datastore-mongodb": "^0.0.5",
+    "joola.datastore-influxdb": "^0.0.5",
     "joola.sdk": "^0.7.0",
     "js-yaml": "~3.0.2",
     "json-stringify-safe": "^5.0.0",
