@@ -20,7 +20,7 @@ before(function (done) {
       engine.config.set('authentication:basicauth:enabled', true);
 
       global.engine = engine;
-      global.joola = engine.sdk;
+      global.joola = require('joola.sdk');
       global.joola_proxy = engine;
       global.uid = engine.common.uuid();
       global.workspace = '_test';
