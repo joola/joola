@@ -1,5 +1,5 @@
 describe("common-utils", function () {
-  it("should hook events", function (done) {
+  xit("should hook events", function (done) {
     var obj = {
       id: 'test',
       _id: 'test2',
@@ -22,13 +22,13 @@ describe("common-utils", function () {
     done();
   });
 
-  it("should return hook events on null", function (done) {
+  xit("should return hook events on null", function (done) {
     //as long as not throws ok
     engine.common.hookEvents(null);
     done();
   });
 
-  it("should return hook events on non-object", function (done) {
+  xit("should return hook events on non-object", function (done) {
     var obj = 'test';
 
     engine.common.hookEvents(obj);
