@@ -1,36 +1,36 @@
 [HOME](Home) > [SDK](sdk) > **API Documentation**
 
 ### SDK API Documentation
-- [`joolaio`](#joolaio)
-    - [`joolaio` properties](#joola-properties)
+- [`joola`](#joola)
+    - [`joola` properties](#joola-properties)
     - [`init(options, [callback])`](#initoptions-callback)
-    - [`beacon`](#joolaiobeacon)
-        - [`insert(collection, documents, [callback])`](#joolaiobeaconinsertcollection-documents-callback)
+    - [`beacon`](#joolabeacon)
+        - [`insert(collection, documents, [callback])`](#joolabeaconinsertcollection-documents-callback)
             - [Collection processing](#collection-processing)
             - [Document processing](#document-processing)
-    - [`query`](#joolaioquery)
-        - [`fetch(query, [callback])`](#joolaioqueryfetchquery-callback)
+    - [`query`](#joolaquery)
+        - [`fetch(query, [callback])`](#joolaqueryfetchquery-callback)
             - [Query Result Structure](#query-result-structure)
             - [Timeframes](#timeframes)
             - [Intervals](#intervals)
             - [Filters](#filters)
             - [Calculated Metrics](#calculated-metrics)
             - [Dimension/Metric Transformations](#intervals)
-    - [`viz`](#joolaioviz)
-        - [`new Canvas(options, [callback])`](#new-joolaiovizcanvasoptions-callback)
-        - [`new DatePicker(options, [callback])`](#new-joolaiovizdatepickeroptions-callback)
-        - [`new Metric(options, [callback])`](#new-joolaiovizmetricoptions-callback)
-        - [`new MiniTable(options, [callback])`](#new-joolaiovizminitableoptions-callback)
-        - [`new Pie(options, [callback])`](#new-joolaiovizpieoptions-callback)
-        - [`new Sparkline(options, [callback])`](#new-joolaiovizsparklineoptions-callback)
-        - [`new Geo(options, [callback])`](#new-joolaiovizgeooptions-callback)
-        - [`new PunchCard(options, [callback])`](#new-joolaiovizpunchcardoptions-callback)
+    - [`viz`](#joolaviz)
+        - [`new Canvas(options, [callback])`](#new-joolavizcanvasoptions-callback)
+        - [`new DatePicker(options, [callback])`](#new-joolavizdatepickeroptions-callback)
+        - [`new Metric(options, [callback])`](#new-joolavizmetricoptions-callback)
+        - [`new MiniTable(options, [callback])`](#new-joolavizminitableoptions-callback)
+        - [`new Pie(options, [callback])`](#new-joolavizpieoptions-callback)
+        - [`new Sparkline(options, [callback])`](#new-joolavizsparklineoptions-callback)
+        - [`new Geo(options, [callback])`](#new-joolavizgeooptions-callback)
+        - [`new PunchCard(options, [callback])`](#new-joolavizpunchcardoptions-callback)
     - [Timezones](#timezones)
     - [Additional Resources](#additional-resources)
         
-## `joolaio`
+## `joola`
 
-#### `joolaio` properties
+#### `joola` properties
 
 joola has the following properties:
 - `options` object containing all options used by the SDK for its operation.
@@ -48,20 +48,20 @@ Connects to a joola server with the following arguments:
 - `callback` - If provided, `callback(err)` is called once the SDK is ready. If an error as occurred then `err` will contain the details.
 
 ```js
-var joolaio = require('joola.sdk');
-joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-demo function(err) {
+var joola = require('joola.sdk');
+joola.init({host: 'https://localhost:8081', APIToken: 'apitoken-demo function(err) {
   if (err)
     throw err;
-  console.log('joola initialized', joolaio.VERSION);
+  console.log('joola initialized', joola.VERSION);
 });
 ```
 
-### `joolaio.beacon`
+### `joola.beacon`
 
 Used to store, retrieve, update and delete documents within a [collection](http://github.com/joola/joola/wiki/Collections).
 A valid document is any JSON valid document. 
 
-#### `joolaio.beacon.insert(collection, documents, [callback])`
+#### `joola.beacon.insert(collection, documents, [callback])`
 
 Insert a document or an array of documents into the provided `collection`. Upon completion, `callback(err, documents)` is called.
 
@@ -70,7 +70,7 @@ Insert a document or an array of documents into the provided `collection`. Upon 
 - `callback(err, documents)` - called on completion with `err` containing any errors raised or null. `documents` contain an array of JSON objects, one for every sent document, however they now contain additional flags relating to the save process.
 
 ```js
-joolaio.beacon.insert('visits', {username: 'thisisme', visits: 1}, function(err, saved){
+joola.beacon.insert('visits', {username: 'thisisme', visits: 1}, function(err, saved){
   console.log('Saved document with key: ', saved._key);
 });
 ```
@@ -86,16 +86,16 @@ In case that a document with fewer attributes is pushed, no meta change will occ
 Documents are processed in the order they are sent, it is highly recommended that whenever possible documents are batched into an array, rather than sent one-by-one.
 Each document is assigned with a unique key based on its attributes (not metrics) and this key is checked when inserting new documents to prevent duplicates. Duplicate documents are not allowed and an error will be returned if a duplicate is found.
 
-When joola returns the saved document collection via the `callback` of the `joolaio.beacon.insert` call, each document in the array has two additional attributes:
+When joola returns the saved document collection via the `callback` of the `joola.beacon.insert` call, each document in the array has two additional attributes:
  
  - `saved` bool indicating if the save completed.
  - `error` string containing any error message from the underlying caching database.
 
-### `joolaio.query`
+### `joola.query`
 
 Used to query and analyze stored documents.
 
-#### `joolaio.query.fetch(query, [callback])`
+#### `joola.query.fetch(query, [callback])`
 
 Query joola for a set of documents based on criteria passed in `query`. Upon completion, `callback(err, results)` is called.
 
@@ -138,7 +138,7 @@ var query = {
   metrics: ['visits']
 };
 
-joolaio.query.fetch(query, function(err, results) {
+joola.query.fetch(query, function(err, results) {
   console.log('We have results, count: ', results.documents.length);
 });
 ```
@@ -250,7 +250,7 @@ Intervals are based on the document's [timebucket](#), and the following are ava
 Also, there are two additional special attributes: 
 - `timebucket.dow` stores the day of week
 - `timebucket.hod` stored the hour the day
-This two can be used when looking to compose visualizations or results based on day of week/hour of day, such as the [PunchCard](#joolaio-viz-punchcardoptions-callback) visualization.
+This two can be used when looking to compose visualizations or results based on day of week/hour of day, such as the [PunchCard](#joola-viz-punchcardoptions-callback) visualization.
 
 ##### Filters
 
@@ -282,7 +282,7 @@ var query = {
   ]
 };
 
-joolaio.query.fetch(query, function(err, results) {
+joola.query.fetch(query, function(err, results) {
   console.log('We have results, count: ', results.documents.length);
 });
 ```
@@ -310,7 +310,7 @@ var query = {
   }]
 };
 
-joolaio.query.fetch(query, function(err, results) {
+joola.query.fetch(query, function(err, results) {
   console.log('We have results, count: ', results.documents.length);
 });
 ```
@@ -331,12 +331,12 @@ var query = {
     }]
 };
 
-joolaio.query.fetch(query, function(err, results) {
+joola.query.fetch(query, function(err, results) {
   console.log('We have results, count: ', results.documents.length);
 });
 ```
 
-### `joolaio.viz`
+### `joola.viz`
 
 Used to transform queries into meaningful insights and visualizations.
 
@@ -366,7 +366,7 @@ $('#metric').Metric(options);
 
 Using Pure Javascript:
 ```js
-new joolaio.viz.Metric({
+new joola.viz.Metric({
   container: '#metric',
   query: {
     timeframe: 'last_hour',
@@ -377,11 +377,11 @@ new joolaio.viz.Metric({
 });
 ```
 
-#### `new joolaio.viz.Canvas(options, [callback])`
+#### `new joola.viz.Canvas(options, [callback])`
 
-#### `new joolaio.viz.DatePicker(options, [callback])`
+#### `new joola.viz.DatePicker(options, [callback])`
 
-#### `new joolaio.viz.Metric(options, [callback])`
+#### `new joola.viz.Metric(options, [callback])`
 
 Provides a Metric Visualization, a textual value with a caption.
 
@@ -394,7 +394,7 @@ Provides a Metric Visualization, a textual value with a caption.
 
 ###### Expanded DOM
 ```html
-<div id="metric" jio-domain="joolaio" jio-type="metric" jio-uuid="dPtcAHNEH">
+<div id="metric" jio-domain="joola" jio-type="metric" jio-uuid="dPtcAHNEH">
   <div class="jio metricbox caption">Clicks</div>
   <div class="jio metricbox value">3</div>
 </div>
@@ -404,7 +404,7 @@ Participating CSS tags: `.jio.metricbox.caption`, `.jio.metricbox.value`
 
 ###### Example
 ```js
-new joolaio.viz.Metric({
+new joola.viz.Metric({
   container: '#metric',
   caption: 'Clicks',
   query: {
@@ -416,22 +416,22 @@ new joolaio.viz.Metric({
 });
 ```
 
-#### `new joolaio.viz.MiniTable(options, [callback])`
+#### `new joola.viz.MiniTable(options, [callback])`
 
-#### `new joolaio.viz.Pie(options, [callback])`
+#### `new joola.viz.Pie(options, [callback])`
 
-#### `new joolaio.viz.Sparkline(options, [callback])`
+#### `new joola.viz.Sparkline(options, [callback])`
 
-#### `new joolaio.viz.Geo(options, [callback])`
+#### `new joola.viz.Geo(options, [callback])`
 
-#### `new joolaio.viz.PunchCard(options, [callback])`
+#### `new joola.viz.PunchCard(options, [callback])`
 
 
 
 
 ## Timezones
 All documents are stored with their timestamp and timezone.
-Pushing a new document via `joolaio.beacon.insert` with `timestamp=null` will result in the server generating a `new Date()` timestamp and allocating it for you.
+Pushing a new document via `joola.beacon.insert` with `timestamp=null` will result in the server generating a `new Date()` timestamp and allocating it for you.
 
 ## Additional Resources
 We are in the process of adding additional documentation, examples and walk-throughs, but in the meantime, if you have any question, make sure you [drop us a line](#contact).
@@ -441,7 +441,7 @@ We are in the process of adding additional documentation, examples and walk-thro
 - [Getting and using the SDK](using-the-sdk)
 - [Security and authentication](security-and-authentication)
 - [Pushing data](pushing-data)
-- [Query, analytics and visualization](https://github.com/joola/joola/wiki/sdk-api-documentation#joolaioviz)
+- [Query, analytics and visualization](https://github.com/joola/joola/wiki/sdk-api-documentation#joolaviz)
 - [Collections and meta data](collections)
 - [Workspaces, users and roles](basic-concepts)
 - **Complete API documentation**

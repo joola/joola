@@ -41,9 +41,9 @@ $ curl \
 
 Using the SDK:
 ```js
-var joolaio = require('joola.sdk');
+var joola = require('joola.sdk');
 
-joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-beacon'}, function(err) {
+joola.init({host: 'https://localhost:8081', APIToken: 'apitoken-beacon'}, function(err) {
   var doc = {
     "timestamp": null,
     "article": "Sample Analytics",
@@ -57,7 +57,7 @@ joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-beacon'}, func
     "visits": 1,
     "loadtime": 123
   };
-  joolaio.beacon.insert('collection-name', doc, function(err) { 
+  joola.beacon.insert('collection-name', doc, function(err) { 
     console.log('Document saved');
   });
 });
@@ -69,7 +69,7 @@ joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-beacon'}, func
 ```html
 <script src="https://localhost:8081/joola.js?APIToken=apitoken-demo"></script>
 <script>
-joolaio.events.on('ready', function(err) {
+joola.events.on('ready', function(err) {
   if (err)
     throw err;
     
@@ -88,4 +88,4 @@ joolaio.events.on('ready', function(err) {
 </script>
 ```
 
-[**Learn more about analytics and visualizations**](https://github.com/joola/joola/wiki/sdk-api-documentation#joolaioviz)
+[**Learn more about analytics and visualizations**](https://github.com/joola/joola/wiki/sdk-api-documentation#joolaviz)

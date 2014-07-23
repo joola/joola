@@ -69,16 +69,16 @@ Server: joola
 Access-Control-Allow-Credentials: true
 Access-Control-Expose-Headers: ETag, X-RateLimit-Limit, X-RateLimit-Remaining,
   X-RateLimit-Reset
-X-JoolaIO-Request-Id: 87IpUGxDQ:1399738779977:0xOC0CqXB
+X-joola-Request-Id: 87IpUGxDQ:1399738779977:0xOC0CqXB
 X-Powered-By: joola
 X-RateLimit-Limit: 5000
 X-RateLimit-Remaining: 4973
 X-RateLimit-Reset: 1399741710
 Retry-After: 2930
-X-JoolaIO-Duration: 5
-X-JoolaIO-Requested-By: 87IpUGxDQ
-X-JoolaIO-Fulfilled-By: 87IpUGxDQ
-X-JoolaIO-Duration-Fulfilled: 2
+X-joola-Duration: 5
+X-joola-Requested-By: 87IpUGxDQ
+X-joola-Fulfilled-By: 87IpUGxDQ
+X-joola-Duration-Fulfilled: 2
 Content-Type: application/json
 Content-Length: 36
 ETag: "867689076"
@@ -119,9 +119,9 @@ $ curl \
 
 Using the SDK:
 ```js
-var joolaio = require('joola.sdk');
+var joola = require('joola.sdk');
 
-joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-beacon'}, function(err) {
+joola.init({host: 'https://localhost:8081', APIToken: 'apitoken-beacon'}, function(err) {
   var doc = {
     "timestamp": null,
     "article": "Sample Analytics",
@@ -135,7 +135,7 @@ joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-beacon'}, func
     "visits": 1,
     "loadtime": 123
   };
-  joolaio.beacon.insert('collection-name', doc, function(err) { 
+  joola.beacon.insert('collection-name', doc, function(err) { 
     console.log('Document saved');
   });
 });
@@ -147,7 +147,7 @@ joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-beacon'}, func
 ```html
 <script src="https://localhost:8081/joola.js?APIToken=apitoken-demo"></script>
 <script>
-joolaio.events.on('ready', function(err) {
+joola.events.on('ready', function(err) {
   if (err)
     throw err;
     
@@ -181,7 +181,7 @@ If you're feeling lost or unsure, [just let us know](#Contact).
 Contacting us is easy, ping us on one of these:
 
 - [![Gitter chat](https://badges.gitter.im/joola/joola.png)](https://gitter.im/joola/joola)
-- [@joolaio][19]
+- [@joola][19]
 - [info@joo.la][20]
 - You can even fill out a [form][21].
 
@@ -207,7 +207,7 @@ Copyright (c) 2012-2014 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24]
 [16]: http://serverfault.com/
 [17]: http://https://joolatech.atlassian.net/browse/JARVIS
 [18]: https://github.com/joola/joola/blob/master/CONTRIBUTING.md
-[19]: http://twitter.com/joolaio
+[19]: http://twitter.com/joola
 [20]: mailto://info@joo.la
 [21]: http://joo.la/#contact
 [22]: http://joola/
@@ -231,5 +231,5 @@ Copyright (c) 2012-2014 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24]
 [about]: https://github.com/joola/joola/wiki/joola-overview
 [techdocs]: https://github.com/joola/joola/wiki/Technical-documentation
 [setup]: https://github.com/joola/joola/wiki/Setting-up-joola
-[api-docs]: http://docs.joolaio.apiary.io/
+[api-docs]: http://docs.joola.apiary.io/
 [contributing]: https://github.com/joola/joola/wiki/Contributing

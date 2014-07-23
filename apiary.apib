@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: https://joola-io-example.herokuapp.com
+HOST: https://joola-example.herokuapp.com
 
 # joola
 [joola](http://github.com/joola/joola) is an open-source data analytics and visualization framework.
@@ -36,15 +36,15 @@ HTTP/1.1 200 OK
 Server: joola
 Access-Control-Allow-Credentials: true
 Access-Control-Expose-Headers: ETag, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
-X-JoolaIO-Request-Id: HpEO6kDLn:1399190956781:Uj184Jhop
+X-joola-Request-Id: HpEO6kDLn:1399190956781:Uj184Jhop
 X-RateLimit-Limit: 5000
 X-RateLimit-Remaining: 4987
 X-RateLimit-Reset: 1399192026
 Retry-After: 1069
-X-JoolaIO-Duration: 14
-X-JoolaIO-Requested-By: HpEO6kDLn
-X-JoolaIO-Fulfilled-By: HpEO6kDLn
-X-JoolaIO-Duration-Fulfilled: 2
+X-joola-Duration: 14
+X-joola-Requested-By: HpEO6kDLn
+X-joola-Fulfilled-By: HpEO6kDLn
+X-joola-Duration-Fulfilled: 2
 Content-Type: application/json
 Content-Length: 36
 ETag: "867689076"
@@ -121,11 +121,11 @@ Each API request fulfilled by joola contains some useful response headers:
 
 | Header                       |                                                                                       |
 |------------------------------|---------------------------------------------------------------------------------------|
-| X-JoolaIO-Request-Id         | Unique request id assigned by joola server. Format: {NODE_UUID}:{TIMESTAMP}:{UUID} |
-| X-JoolaIO-Duration           | Total duration of request from route in to out.                                       |
-| X-JoolaIO-Duration-Fulfilled | Total duration of request from dispatch in/out.                                       |
-| X-JoolaIO-Requested-By       | Node UUID of the requester.                                                           |
-| X-JoolaIO-Fulfilled-By       | Node UUID of the fulfiller.                                                           |
+| X-joola-Request-Id         | Unique request id assigned by joola server. Format: {NODE_UUID}:{TIMESTAMP}:{UUID} |
+| X-joola-Duration           | Total duration of request from route in to out.                                       |
+| X-joola-Duration-Fulfilled | Total duration of request from dispatch in/out.                                       |
+| X-joola-Requested-By       | Node UUID of the requester.                                                           |
+| X-joola-Fulfilled-By       | Node UUID of the fulfiller.                                                           |
 
 # Group Workspaces
 Notes related resources of the **Workspaces API**

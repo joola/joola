@@ -7,7 +7,7 @@ A basic example looks something like this:
 ```js
 //this example will push a new event whenever a mouse moves on a web page.
 $(document).mousemove(function (event) {
-  joolaio.beacon.insert('mousemove', {
+  joola.beacon.insert('mousemove', {
     timestamp: new Date(),
     x: event.pageX,
     y: event.pageY,
@@ -22,7 +22,7 @@ it's available for queries immediately.
 
 ```js
 //basic query for getting a sum of moves over the last 30 minutes 
-joolaio.query.fetch({
+joola.query.fetch({
   timeframe:'last_30_minutes',
   interval: 'second',
   dimensions: ['timestamp'],

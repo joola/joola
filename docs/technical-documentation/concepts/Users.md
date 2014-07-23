@@ -28,7 +28,7 @@ var user = {
   "filter": []
 };
 
-joolaio.users.add(user, function(err, result) {
+joola.users.add(user, function(err, result) {
   if (err)
     throw err;
   console.log('new user details:', result);

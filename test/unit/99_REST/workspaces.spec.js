@@ -16,11 +16,11 @@ describe("workspaces", function () {
     this.context = {user: _token.user};
     this.uid = joola.common.uuid();
 
-    joolaio.set('APIToken', 'apitoken-demo', done);
+    joola.set('APIToken', 'apitoken-demo', done);
   });
 
   after(function (done) {
-    joolaio.set('APIToken', 'apitoken-demo', done);
+    joola.set('APIToken', 'apitoken-demo', done);
   });
   /*
    before(function (done) {
@@ -44,7 +44,7 @@ describe("workspaces", function () {
       name: 'test-workspace-' + this.uid,
       filter: []
     };
-    joolaio.workspaces.add(workspace, function (err, _workspace) {
+    joola.workspaces.add(workspace, function (err, _workspace) {
       if (err)
         return done(err);
 
@@ -54,7 +54,7 @@ describe("workspaces", function () {
   });
 
   it("should return a valid list of workspaces", function (done) {
-    joolaio.workspaces.list(function (err, workspaces) {
+    joola.workspaces.list(function (err, workspaces) {
       return done(err);
     });
   });
@@ -65,7 +65,7 @@ describe("workspaces", function () {
       name: 'test-workspace-' + this.uid,
       filter: ''
     };
-    joolaio.workspaces.add(workspace, function (err, _workspace) {
+    joola.workspaces.add(workspace, function (err, _workspace) {
       if (err)
         return done();
 
@@ -77,7 +77,7 @@ describe("workspaces", function () {
     var workspace = {
 
     };
-    joolaio.workspaces.add(workspace, function (err, _workspace) {
+    joola.workspaces.add(workspace, function (err, _workspace) {
       if (err)
         return done();
 
@@ -91,7 +91,7 @@ describe("workspaces", function () {
       name: 'test-workspace-' + this.uid,
       filter: 'test=test'
     };
-    joolaio.workspaces.patch(workspace.key, workspace, function (err, _workspace) {
+    joola.workspaces.patch(workspace.key, workspace, function (err, _workspace) {
       if (err)
         return done(err);
       expect(_workspace.filter).to.equal('test=test');
@@ -105,7 +105,7 @@ describe("workspaces", function () {
       name: 'test-workspace-' + this.uid,
       filter: 'test=test'
     };
-    joolaio.workspaces.patch(workspace.key,workspace, function (err, _workspace) {
+    joola.workspaces.patch(workspace.key,workspace, function (err, _workspace) {
       if (err)
         return done();
 
@@ -122,7 +122,7 @@ describe("workspaces", function () {
       filter: '',
       workspace: 'test-workspace-' + this.uid
     };
-    joolaio.users.add('test-workspace-' + this.uid, user, function (err, user) {
+    joola.users.add('test-workspace-' + this.uid, user, function (err, user) {
       if (err)
         return done(err);
       expect(user.filter).to.equal('test=test');
@@ -136,11 +136,11 @@ describe("workspaces", function () {
       key: 'test-workspace-' + this.uid,
       name: 'test-workspace-' + this.uid
     };
-    joolaio.workspaces.delete(workspace.key, function (err) {
+    joola.workspaces.delete(workspace.key, function (err) {
       if (err)
         return done(err);
 
-      joolaio.workspaces.list(self.context, function (err, workspaces) {
+      joola.workspaces.list(self.context, function (err, workspaces) {
         if (err)
           return done(err);
 
@@ -162,7 +162,7 @@ describe("workspaces", function () {
     var workspace = {
       key: 'test-workspace-' + this.uid
     };
-    joolaio.workspaces.delete(workspace.key, function (err) {
+    joola.workspaces.delete(workspace.key, function (err) {
       if (err)
         return done();
 

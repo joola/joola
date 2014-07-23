@@ -9,11 +9,11 @@ var options = {
   host: 'https://localhost:8081'
 };
 
-joolaio.init(options, function (err, result) {
+joola.init(options, function (err, result) {
     if (err)
         throw err;
-    joolaio.users.authenticate('organization', 'user', 'password', function (err, token) {
-        joolaio.TOKEN = token._;
+    joola.users.authenticate('organization', 'user', 'password', function (err, token) {
+        joola.TOKEN = token._;
         
         //joola is now ready for work, event `core.ready` is emitted
     });
@@ -26,7 +26,7 @@ var options = {
   host: 'https://localhost:8081',
   token: '123456abcdef'
 }
-joolaio.init(options, function(err){
+joola.init(options, function(err){
   if (err)
     throw err;
     
@@ -40,7 +40,7 @@ var options = {
   host: 'https://localhost:8081',
   APIToken: 'apitoken-demo'
 }
-joolaio.init(options, function(err){
+joola.init(options, function(err){
   if (err)
     throw err;
     
@@ -59,7 +59,7 @@ For your app to be secure, you must ensure that sensitive tokens are never gener
 - [Getting and using the SDK](using-the-sdk)
 - **Security and authentication**
 - [Pushing data](pushing-data)
-- [Query, analytics and visualization](https://github.com/joola/joola/wiki/sdk-api-documentation#joolaioviz)
+- [Query, analytics and visualization](https://github.com/joola/joola/wiki/sdk-api-documentation#joolaviz)
 - [Collections and meta data](collections)
 - [Workspaces, users and roles](basic-concepts)
 - [Complete API documentation](sdk-api-documentation)

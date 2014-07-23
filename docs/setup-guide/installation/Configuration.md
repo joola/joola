@@ -109,12 +109,12 @@ $ node joola --store:cache:mongodb:host=lab05
 The best way to apply configuration changes is via the SDK.
 
 ```js
-joolaio.config.set('config:key', 'value', function(err) {
+joola.config.set('config:key', 'value', function(err) {
   if (err)
     throw err; //or something else
 });
 
-joolaio.config.get('config:key', function(err, value) {
+joola.config.get('config:key', function(err, value) {
   if (err)
     throw err; //or something else
   console.log('config value', value);
@@ -123,7 +123,7 @@ joolaio.config.get('config:key', function(err, value) {
 
 Configuration keys are accessed by replacing the nested `.` with `:`. So, for example, changing the webserver port:
 ```
-joolaio.config.set('interfaces:webserver:port', 8585, function(err) {
+joola.config.set('interfaces:webserver:port', 8585, function(err) {
   if (err)
     throw err; //or something else
 });

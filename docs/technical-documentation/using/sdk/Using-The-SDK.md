@@ -16,12 +16,12 @@ Create a webpage anywhere you wish and edit it to look something like below.
 <script src="https://localhost:8081/joola.js"></script>
 
 <script>
-  console.log('joola object is:', joolaio);
+  console.log('joola object is:', joola);
 </script>
 ```
 
 Open the html page we just created in your webbrowser and check out the console, 
-you'll notice the console.log containing the `joolaio` object.
+you'll notice the console.log containing the `joola` object.
 
 #### Using joola SDK from NodeJS
 For this walkthrough, we'll be using a standalone version of the SDK as in most cases dictate. 
@@ -36,9 +36,9 @@ $ nano joola-sdk-example.js
 
 We proceed to require it.
 ```js
-var joolaio = require('joola.sdk');
+var joola = require('joola.sdk');
 
-console.log('joola object is:', joolaio);
+console.log('joola object is:', joola);
 ```
 
 Lastly we execute our simple js file.
@@ -59,11 +59,11 @@ var options = {
   host: 'https://localhost:8081'
 };
 
-joolaio.init(options, function (err, result) {
+joola.init(options, function (err, result) {
     if (err)
         throw err;
-    joolaio.users.authenticate('organization', 'user', 'password', function (err, token) {
-        joolaio.TOKEN = token._;
+    joola.users.authenticate('organization', 'user', 'password', function (err, token) {
+        joola.TOKEN = token._;
         
         //joola is now ready for work, event `core.ready` is emitted
     });
@@ -76,7 +76,7 @@ var options = {
   host: 'https://localhost:8081',
   token: '123456abcdef'
 }
-joolaio.init(options, function(err){
+joola.init(options, function(err){
   if (err)
     throw err;
     
@@ -90,7 +90,7 @@ var options = {
   host: 'https://localhost:8081',
   APIToken: 'apitoken-demo'
 }
-joolaio.init(options, function(err){
+joola.init(options, function(err){
   if (err)
     throw err;
     
@@ -109,6 +109,6 @@ Here's a short list of different examples relevant to the SDK. If you wish to le
 
 - [Security and Authentication](security-and-authentication)
 - [Pushing data](pushing-data)
-- [Query, analytics and visualization](https://github.com/joola/joola/wiki/sdk-api-documentation#joolaioviz)
+- [Query, analytics and visualization](https://github.com/joola/joola/wiki/sdk-api-documentation#joolaviz)
 - [Collections and meta data](collections)
 - [Manage Organizations, users and roles](basic-concepts)

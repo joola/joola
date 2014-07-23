@@ -28,7 +28,7 @@ If this is your first time hearing about joola, we recommend starting with the [
 [about]: https://github.com/joola/joola/wiki/joola-overview
 [techdocs]: https://github.com/joola/joola/wiki/Technical-documentation
 [setup]: https://github.com/joola/joola/wiki/Setting-up-joola
-[api-docs]: http://docs.joolaio.apiary.io/
+[api-docs]: http://docs.joola.apiary.io/
 [contributing]: https://github.com/joola/joola/wiki/Contributing
 [issues]: https://github.com/joola/joola/issues
 

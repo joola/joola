@@ -16,6 +16,6 @@ describe("common-globals", function () {
 	});
 
 	it("should have joola defined", function () {
-		expect(joolaio).to.be.ok;
+		expect(joola).to.be.ok;
 	});
 });

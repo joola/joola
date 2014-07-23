@@ -14,7 +14,7 @@ We're big fans of Gitter here at joola. We have a `#joola/joola` channel - stop 
 
 ## Twitter
 
-[@joolaio] [joolaio-twitter]
+[@joola] [joola-twitter]
 
 Follow and chat to us on Twitter.
 
@@ -33,7 +33,7 @@ If you want to brainstorm a potential new feature, then the joola Google Group (
 If you want to talk directly to us (e.g. about a commercially sensitive issue), email is the easiest way.
 
 [google-group]: https://groups.google.com/
-[joolaio-twitter]: https://twitter.com/joolaio
+[joola-twitter]: https://twitter.com/joola
 [new-issue]: https://github.com/joola/joola/issues/new
 [issues]: https://github.com/joola/joola/issues?direction=desc&sort=created&state=open
 [community-email]: mailto:community@joo.la

@@ -22,7 +22,7 @@ Please complete and sign the most appropriate CLA for you. For more information,
 
 ## 2. Join the conversation
 
-Have an idea for joola? Found a bug? We encourage you to start a conversation on the [joola Google Group] [joolaio-user] or to file a [new issue on GitHub] [new-issue] before writing code.
+Have an idea for joola? Found a bug? We encourage you to start a conversation on the [joola Google Group] [joola-user] or to file a [new issue on GitHub] [new-issue] before writing code.
 Announcing what you're working on (or even just your need or pain points) starts a collaborative process to identify general solutions and helps us all avoid duplicating effort.
 
 Let's build joola and grow our community, together. You can find other ways of joining the conversation on our [[Talk to us]] page.
@@ -37,5 +37,5 @@ We are working on a set of Contributor Guides to make contributing to every aspe
 [indiv-cla]: https://docs.google.com/forms/d/19gSbpRlV0HqdmkMmUCbZ18uDbAlSvvdGegtbNwqh0J0/viewform
 [corp-cla]: https://docs.google.com/forms/d/1pN2CWuN18yKCOwtv0hKY54LOJb3b2ua9qTlWH5MDrnM/viewform
 
-[joolaio-user]: https://groups.google.com/forum/#!forum/joolaio-user
+[joola-user]: https://groups.google.com/forum/#!forum/joola-user
 [new-issue]: https://github.com/joola/joola/issues/new

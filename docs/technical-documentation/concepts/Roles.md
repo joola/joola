@@ -26,7 +26,7 @@ var role = {
   "filter": []
 };
 
-joolaio.roles.add(role, function(err, result) {
+joola.roles.add(role, function(err, result) {
   if (err)
     throw err;
   console.log('new role details:', result);

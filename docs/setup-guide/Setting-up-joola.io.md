@@ -104,9 +104,9 @@ $ curl \
 
 Using the SDK:
 ```js
-var joolaio = require('joola.sdk');
+var joola = require('joola.sdk');
 
-joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-beacon'}, function(err) {
+joola.init({host: 'https://localhost:8081', APIToken: 'apitoken-beacon'}, function(err) {
   var doc = {
     "timestamp": null,
     "article": "Sample Analytics",
@@ -120,7 +120,7 @@ joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-beacon'}, func
     "visits": 1,
     "loadtime": 123
   };
-  joolaio.beacon.insert('collection-demo', doc, function(err) { 
+  joola.beacon.insert('collection-demo', doc, function(err) { 
     console.log('Document saved');
   });
 });
@@ -128,16 +128,16 @@ joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-beacon'}, func
 
 That's it, your data is in joola, that's all it takes.
 
-[Setup Your First Event now!](https://github.com/joola/joola/wiki/sdk-api-documentation#joolaiobeacon)
+[Setup Your First Event now!](https://github.com/joola/joola/wiki/sdk-api-documentation#joolabeacon)
 
 <a name="step4" />
 ## Step 4: Visualize your data!
 Now comes the cool part, taking the data we gathered and drawing it on a canvas in different shapes and forms.
 Let's start with a simple query:
 ```js
-var joolaio = require('joola.sdk');
+var joola = require('joola.sdk');
 
-joolaio.query.fetch({
+joola.query.fetch({
     timeframe:'last_30_minutes',
     interval: 'second',
     dimensions: ['timestamp'],
@@ -155,7 +155,7 @@ We can also use the above query to draw a timeline visualization of data.
 ```html
 <script src="https://localhost:8081/joola.js?APIToken=apitoken-demo"></script>
 <script>
-joolaio.events.on('ready', function(err) {
+joola.events.on('ready', function(err) {
   if (err)
     throw err;
     

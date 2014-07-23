@@ -37,9 +37,9 @@ Pushing data is easy, very easy. There are almost no restrictions or preparation
 After you [setup the server](setup-joola) and everything checks out fine.
 
 ```js
-var joolaio = require('joola.sdk');
+var joola = require('joola.sdk');
 
-joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-demo'}, function(err) {
+joola.init({host: 'https://localhost:8081', APIToken: 'apitoken-demo'}, function(err) {
   if (err)
     throw err;
   
@@ -48,7 +48,7 @@ joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-demo'}, functi
     attribute: 'I\'m an attribute',
     value: 123
   };
-  joolaio.beacon.insert('collection-name', document, function(err) { 
+  joola.beacon.insert('collection-name', document, function(err) { 
     if (err)
       throw err;
       
@@ -63,20 +63,20 @@ We now have a new collection defined with the name `collection-name` and it cont
 
 ## Consuming Analytics and Visualization
 ```js
-var joolaio = require('joola.sdk');
+var joola = require('joola.sdk');
 
-joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-demo'}, function(err) {
+joola.init({host: 'https://localhost:8081', APIToken: 'apitoken-demo'}, function(err) {
   if (err)
     throw err;
 
-  joolaio.query.fetch({metrics: ['value']}, function(err, result){
+  joola.query.fetch({metrics: ['value']}, function(err, result){
     if (err)
       throw err;
       
     console.log('We have some results', result);
   });
   
-  joolaio.viz.timeline({container: $('#drawhere'), query: {dimensions:['timestamp'], metrics: ['value']}}, function(err, result){
+  joola.viz.timeline({container: $('#drawhere'), query: {dimensions:['timestamp'], metrics: ['value']}}, function(err, result){
     if (err)
       throw err;
       
@@ -87,7 +87,7 @@ joolaio.init({host: 'https://localhost:8081', APIToken: 'apitoken-demo'}, functi
 
 At the end of the script execution we'll have a document collection (of a single document) with the sum of `123`.
 
-[**Learn more about data analytics and visualizations**](https://github.com/joola/joola/wiki/sdk-api-documentation#joolaioviz)
+[**Learn more about data analytics and visualizations**](https://github.com/joola/joola/wiki/sdk-api-documentation#joolaviz)
 
 
 [nodejs]: http://nodejs.org

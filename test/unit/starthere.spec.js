@@ -20,16 +20,16 @@ before(function (done) {
 
       joola.config.set('authentication:basicauth:enabled', true);
 
-      global.joolaio = joola.sdk;
+      global.joola = joola.sdk;
       global.joola_proxy = joola;
       global.uid = joola.common.uuid();
       global.workspace = '_test';
-      joolaio.init({host: 'https://127.0.0.1:8081', APIToken: 'apitoken-test', debug: {enabled: true}}, function (err) {
+      joola.init({host: 'https://127.0.0.1:8081', APIToken: 'apitoken-test', debug: {enabled: true}}, function (err) {
         if (err)
           return done(err);
       });
-      joolaio.events.on('ready', function () {
-        global.user = joolaio.USER;
+      joola.events.on('ready', function () {
+        global.user = joola.USER;
         global.user.permissions = [''];
         global._token = {
           user: global.user

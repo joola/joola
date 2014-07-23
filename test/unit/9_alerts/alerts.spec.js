@@ -16,7 +16,7 @@ describe("alerts", function () {
     var type = 'webhook';
     var endpoint = '/nowehere';
 
-    joolaio.alerts.set(this.context, id, query, type, endpoint, function (err) {
+    joola.alerts.set(this.context, id, query, type, endpoint, function (err) {
       if (err)
         return done(err);
 

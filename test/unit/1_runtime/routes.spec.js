@@ -9,13 +9,13 @@ describe("routes", function () {
   });
 
   it("should return a 401 route [Websocket]", function (done) {
-    var savedAPIToken = joolaio.get('APIToken');
+    var savedAPIToken = joola.get('APIToken');
     //manual set of token to avoid failure on token invalid check
-    joolaio._apitoken = '1234';
-    joolaio._token = '1234';
-    joolaio.system.nodeDetails(function (err, details) {
+    joola._apitoken = '1234';
+    joola._token = '1234';
+    joola.system.nodeDetails(function (err, details) {
       expect(err).to.be.ok;
-      joolaio.set('APIToken', savedAPIToken);
+      joola.set('APIToken', savedAPIToken);
       done();
     });
   });

@@ -75,7 +75,7 @@ var collection = {
 	}
 }
 
-joolaio.collections.add(collection);
+joola.collections.add(collection);
 ```
 
 
@@ -96,8 +96,8 @@ var doc = {
 	visits: 1
 };
 
-joolaio.beacon.insert('dummy-adhoc-collection', doc, function(err) {
-	joolaio.collections.get('dummy-adhoc-collection', function(err, meta) {
+joola.beacon.insert('dummy-adhoc-collection', doc, function(err) {
+	joola.collections.get('dummy-adhoc-collection', function(err, meta) {
 		console.log(meta);
 	});
 });
@@ -160,8 +160,8 @@ var doc = {
 	visits: 1
 };
 
-joolaio.beacon.insert('dummy-adhoc-meta-collection', doc, function(err) {
-	joolaio.collections.get('dummy-adhoc-meta-collection', function(err, meta) {
+joola.beacon.insert('dummy-adhoc-meta-collection', doc, function(err) {
+	joola.collections.get('dummy-adhoc-meta-collection', function(err, meta) {
 		console.log(meta);
 	});
 });

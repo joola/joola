@@ -15,7 +15,7 @@ var document = {
   value: 123
 };
 
-joolaio.beacon.insert(collection, document, function(err, pushedDocument){
+joola.beacon.insert(collection, document, function(err, pushedDocument){
   if (err)
     throw err;
   
@@ -44,7 +44,7 @@ for (var i = 0 ; i < 100 ; i++){
   };
   documents.push(document);
 }
-joolaio.beacon.insert(collection, documents, function(err, pushedDocument){
+joola.beacon.insert(collection, documents, function(err, pushedDocument){
   if (err)
     throw err;
   
@@ -68,7 +68,7 @@ var document = {
   value2: {key: value2, name: 'Another Value', aggregation: 'avg', value: 123, prefix: 'avg.' decimals: 2}
 };
 
-joolaio.beacon.insert(collection, document, function(err, pushedDocument){
+joola.beacon.insert(collection, document, function(err, pushedDocument){
   if (err)
     throw err;
   
@@ -86,7 +86,7 @@ The metric `value2` is described with specific requirements for average and pref
 - [Getting and using the SDK](using-the-sdk)
 - [Security and authentication](security-and-authentication)
 - **Pushing data**
-- [Query, analytics and visualization](https://github.com/joola/joola/wiki/sdk-api-documentation#joolaioviz)
+- [Query, analytics and visualization](https://github.com/joola/joola/wiki/sdk-api-documentation#joolaviz)
 - [Collections and meta data](collections)
 - [Workspaces, users and roles](basic-concepts)
 - [Complete API documentation](sdk-api-documentation)

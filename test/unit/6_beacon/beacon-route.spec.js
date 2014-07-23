@@ -9,7 +9,7 @@ describe("beacon-route", function () {
 
   it("should have valid route [object]", function (done) {
     var io = require('socket.io-browserify');
-    io.socket = joolaio.io.connect(joolaio.options.host);
+    io.socket = joola.io.connect(joola.options.host);
     io.socket.once('/beacon/insert:done', function (_message) {
       //TODO: confirm document is actually written
       if (_message.headers.StatusCode === 500)
@@ -34,7 +34,7 @@ describe("beacon-route", function () {
 
   it("should have valid route [invalid string] with error", function (done) {
     var io = require('socket.io-browserify');
-    io.socket = joolaio.io.connect(joolaio.options.host);
+    io.socket = joola.io.connect(joola.options.host);
     io.socket.once('/beacon/insert:done', function (_message) {
       if (_message.headers.StatusCode === 400)
         return done();
@@ -53,7 +53,7 @@ describe("beacon-route", function () {
 
   it("should have valid route [string]", function (done) {
     var io = require('socket.io-browserify');
-    io.socket = joolaio.io.connect(joolaio.options.host);
+    io.socket = joola.io.connect(joola.options.host);
     io.socket.once('/beacon/insert:done', function (_message) {
       //TODO: confirm document is actually written
 
