@@ -9,7 +9,7 @@ Thanks to the following people who have contributed patches, new code or given u
 * Shay Kirshenboim
 * Eran Gonen
 
-Original concept for joola.io inspired by [Itay Weinberger](https://github.com/itayw).
+Original concept for joola inspired by [Itay Weinberger](https://github.com/itayw).
 
 ## Documentation
 

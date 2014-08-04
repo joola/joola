@@ -10,8 +10,8 @@ describe("query-nested", function () {
 
   after(function (done) {
     var self = this;
-    joola.collections.delete(this.context, this.workspace, this.collection, function () {
-      joola.collections.delete(self.context, self.workspace, self.collection + '-nots', function () {
+    engine.collections.delete(this.context, this.workspace, this.collection, function () {
+      engine.collections.delete(self.context, self.workspace, self.collection + '-nots', function () {
         done();
       });
     });
@@ -25,14 +25,14 @@ describe("query-nested", function () {
       metrics: ['nvalue.actual'],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
 
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.nvalue_actual).to.equal(9);
+      expect(result.documents[0].values.nvalue_actual).to.equal(8);
       return done(err);
     });
   });
@@ -47,14 +47,14 @@ describe("query-nested", function () {
       ],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
 
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.actual).to.equal(2.25);
+      expect(result.documents[0].values.actual).to.equal(2.67);
       return done();
     });
   });
@@ -65,13 +65,14 @@ describe("query-nested", function () {
       interval: 'minute',
       dimensions: ['user.username', 'nattribute' ],
       metrics: [
-        {key: 'actual', name: 'value', dependsOn: 'nvalue.actual', aggregation: 'avg'}
+        {key: 'actual', name: 'value', dependsOn: 'nvalue.actual', aggregation: 'sum'}
       ],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
+
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
@@ -90,7 +91,7 @@ describe("query-nested", function () {
       ],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -114,7 +115,7 @@ describe("query-nested", function () {
       ],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -138,7 +139,7 @@ describe("query-nested", function () {
       ],
       collection: this.collection
     };
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;

@@ -1,6 +1,6 @@
 <a name="top" />
 
-[HOME](Home) > [ABOUT JOOLA.IO](joola.io-overview) > **THANKS**
+[HOME](Home) > [ABOUT joola](joola-overview) > **THANKS**
 
 Over the past few years we gathered many friends and supporters to the project.
  This page is to thank the companies and open source projects that made this project what it is.
@@ -19,7 +19,7 @@ Their technical implementation of an end-to-end consumer analytics system has be
 - [Snowplow][snowplow] For their wonderful documentation site we used as inspiration.
 
 ### Bug and issue identification
-joola.io uses several external means of gathering reports of issues and defects, for example: [Hacker1](http://hackerone.com).
+joola uses several external means of gathering reports of issues and defects, for example: [Hacker1](http://hackerone.com).
  
 - Maads Security - [Shahmeer Amir](shahmeerbond@gmail.com), Danish iqbal and Zeeshan Sultan via [Hacker1](https://hackerone.com/reports/12042).
 

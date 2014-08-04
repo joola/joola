@@ -25,4 +25,10 @@ config/runtime.json
 apiary.out.html
 
 config/oo.yml
+config/development.yml
+config/development.json
+config/certs/goo.pem
+
 npm-shrinkwrap.json
+
+.vagrant

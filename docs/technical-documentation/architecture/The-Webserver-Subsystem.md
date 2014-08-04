@@ -1,6 +1,6 @@
 [HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [ARCHITECTURE](architecture) > **WEBSERVER**
 
-joola.io's prvoides a RESTful API interface which is based on [[ExpressJS]].
+joola's prvoides a RESTful API interface which is based on [[ExpressJS]].
 
 The webserver supports clustering, meaning that multiple processes can share the HTTP(s) ports. This is managed automatically by NodeJS `cluster`.
 However, there are common situations in which an additional node running on the same machine will not be able to bind on the already open port. This will not throw an
@@ -12,7 +12,7 @@ If you wish to start a node while ensuring that it will have a webserver running
 >
 **This is currently under developers review and subject to change**.
 
-joola.io uses [ExpressJS] as its Web Application Framework, it provides an easy to operate and manage schema.
+joola uses [ExpressJS] as its Web Application Framework, it provides an easy to operate and manage schema.
 This is the logical flow of an API request:
 ```
 - Request hits web server

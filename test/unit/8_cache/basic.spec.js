@@ -39,7 +39,7 @@ describe("cache-basic", function () {
       lastDate = new Date(_date);
     }
 
-    joola.beacon.insert(self.context, this.collection, documents, function (err) {
+    engine.beacon.insert(self.context, this.collection, documents, function (err) {
       var query = {
         timeframe: {
           start: lastDate,
@@ -78,7 +78,7 @@ describe("cache-basic", function () {
           }
         ]
       };
-      joola.query.fetch(self.context, query, function (err, documents) {
+      engine.query.fetch(self.context, query, function (err, documents) {
         done();
       });
     });
@@ -105,7 +105,7 @@ describe("cache-basic", function () {
     _document.user.registrationDate = new Date(endDate);
     _document.visits.lastVisit = new Date(endDate);
     documents.push(_document);
-    joola.beacon.insert(self.context, this.collection, documents, function (err) {
+    engine.beacon.insert(self.context, this.collection, documents, function (err) {
       var query = {
         timeframe: {
           start: startDate,
@@ -144,7 +144,7 @@ describe("cache-basic", function () {
           }
         ]
       };
-      joola.query.fetch(self.context, query, function (err, documents) {
+      engine.query.fetch(self.context, query, function (err, documents) {
         done();
       });
     });

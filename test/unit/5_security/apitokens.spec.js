@@ -6,7 +6,7 @@ describe("security-apitokens", function () {
     var self = this;
     this.uid = joola.common.uuid();
 
-    joolaio.set('APIToken', 'apitoken-demo', function () {
+    joola.set('APIToken', 'apitoken-demo', function () {
 
       self.workspace = {
         key: 'test-org-apitoken-' + self.uid,
@@ -26,27 +26,27 @@ describe("security-apitokens", function () {
       var calls = [];
 
       calls.push(function (callback) {
-        joolaio.workspaces.add(self.workspace, callback);
+        joola.workspaces.add(self.workspace, callback);
       });
       calls.push(function (callback) {
-        joolaio.roles.add(self.workspace.key, self.role, callback);
+        joola.roles.add(self.workspace.key, self.role, callback);
       });
       calls.push(function (callback) {
-        joolaio.users.add(self.workspace.key, self.user, callback);
+        joola.users.add(self.workspace.key, self.user, callback);
       });
       async.series(calls, done);
     });
   });
 
   after(function (done) {
-    joolaio.set('APIToken', 'apitoken-demo', done);
+    joola.set('APIToken', 'apitoken-demo', done);
   });
 
   xit("should be able to use a newly created APIToken", function (done) {
     var self = this;
 
-    joolaio.set('APIToken', 'user-' + self.uid, function () {
-      joolaio.system.version(done);
+    joola.set('APIToken', 'user-' + self.uid, function () {
+      joola.system.version(done);
     });
   });
 });

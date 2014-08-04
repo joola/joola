@@ -1,5 +1,5 @@
 <a name="top" />
 
-[HOME](Home) > [ABOUT JOOLA.IO](joola.io-overview) > **SPONSORS**
+[HOME](Home) > [ABOUT joola](joola-overview) > **SPONSORS**
 
-If you wish to sponsor joola.io, email sponsor@joo.la.
+If you wish to sponsor joola, email sponsor@joo.la.

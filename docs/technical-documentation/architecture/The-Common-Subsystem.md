@@ -1,11 +1,11 @@
 [HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [ARCHITECTURE](architecture) > **COMMON**
 
-As a framework, joola.io addresses many runtime issues, some are common and shared between the different framework sub-systems.
-For example, several systems need to access mongo, so we have a common module to deal with mongo connections and actions.
+As a framework, joola addresses many runtime issues, some are common and shared between the different framework sub-systems.
+For example, several systems need to access redis, so we have a common module to deal with redis connections and actions.
 
-All of these `common` modules can be found under `lib/common` with `index.js` acting as the main common library which can be accessed via <code><a href="lib\common\index (jsdoc)">joola.common</a></code>.
+All of these `common` modules can be found under `lib/common` with `index.js` acting as the main common library loader.
 
-## Frequently Used Functions
+## Example Frequently Used Functions
 
 ##### joola.common.uuid()
 Generates a random unique identifier, used throughout the framework when a new id needs to be generated.
@@ -30,8 +30,4 @@ That said, we still use a few modifiers for several reasons:
 
 In the long run, all of these modifiers will go away and be replaced with task/class specific functions.
 
-## Common Modules
-Below is a complete list of `common` modules:
-
-[##INSERTSTRUCTURE_COMMON##]
 

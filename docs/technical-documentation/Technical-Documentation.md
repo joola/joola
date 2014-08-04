@@ -1,44 +1,91 @@
 [**HOME**](Home) > **TECHNICAL DOCUMENTATION**
 
-The technical documentation review the joola.io architecture, know-how and details breakdown of internal processes.
+Review of joola architecture, know-how and detailed breakdown of internal processes.
+
+- [Setup joola](setting-up-joola)
+- [Architecture](architecture)
+- [[Basic concepts]]
+- [API Documentation](api-documentation)
+- [SDK Documentation](sdk-api-documentation)
+- [The development process](the-development-process)
+
+Following installation, point your browser to `https://localhost:8081` to view the Welcome Page and start using the framework.
 
 ## Getting Started
-- [Setup joola.io](setting-up-joola.io)
-- [Push Data](pushing-data)
-- [Query, Analyze and Visualize](analytics-and-visualization)
 
-#### Useful Resources
-- [[Basic Concepts]]
-- [API Documentation](api-documentation)
-- [[Using the SDK]]
-- [[Examples]]
-- [[Workshops]]
-- [[Labs]]
+Here's a quick guide on getting started with joola post installation.
 
-## Architecture
-We've tried to keep things simple and divided the framework into the listed logical entities, each is aimed at serving a different aspect of the framework.
+##### Pushing your first event
 
-- [Overview](architecture) - Internal processes
-- [Core](The-Core-Subsystem) - Internal processes
-- [Common](The-Common-Subsystem) - Shared modules and code
-- [Dispatch](The-Dispatch-Subsystem) - The grid messaging system
-- [Query](The-Query-Subsystem) - Manages the aspects of querying the system
-- [Beacon](The-Beacon-Subsystem) - Handles the framework's internal cache
-- [Authentication](The-Authentication-Subsystem) - All authentication aspects of the framework
-- [Web Server](The-Webserver-Subsystem) - Serves web content to end users
-- [SDK](The-SDK-Subsystem) - Used to communicate with joola.io framework and manage it
+Using cURL:
+```bash
+$ curl \
+     --include \
+     --request POST \
+     --header "Content-Type: application/json" \
+     --data-binary "[{
+       \"timestamp\": null,
+       \"article\": \"Sample Analytics\",
+       \"browser\": \"Chrome\",
+       \"device\": \"Desktop\",
+       \"engine\": \"Webkit\",
+       \"os\": \"Linux\",
+       \"userid\": \"demo@joo.la\",
+       \"ip\": \"127.0.0.1\",
+       \"referrer\": \"http://joo.la\",
+       \"visits\": 1,
+       \"loadtime\": 123
+     }]" \
+     https://localhost:8081/beacon/{workspace}/{collection}{?APIToken}
+```
 
-## The Development Process
-We aim to create the world's best mass-scale data analytics framework and for that, we need to have a solid and robust development process.
-This section describes the process and protocols we use throughout the development of the framework.
+Using the SDK:
+```js
+var joola = require('joola.sdk');
 
-- [The development process](the-development-process)
-- [Testing](code-testing)
-- [Code Style](code-style-guidelines)
-- [Versioning](versioning)
-- [Release and publish](software-release-process)
-- [[Contributing]]
-- [Roadmap](product-roadmap)
+joola.init({host: 'https://localhost:8081', APIToken: 'apitoken-beacon'}, function(err) {
+  var doc = {
+    "timestamp": null,
+    "article": "Sample Analytics",
+    "browser": "Chrome",
+    "device": "Desktop",
+    "engine": "Webkit",
+    "os": "Linux",
+    "userid": "demo@joo.la",
+    "ip": "127.0.0.1",
+    "referrer": "http://joo.la",
+    "visits": 1,
+    "loadtime": 123
+  };
+  joola.beacon.insert('collection-name', doc, function(err) { 
+    console.log('Document saved');
+  });
+});
+```
 
-## Code documentation
-This wiki also includes [REST API documentation](api-documentation).
+[**Learn more about pushing data**](http://github.com/joola/joola/wiki/pushing-data)
+
+##### Your first visualization
+```html
+<script src="https://localhost:8081/joola.js?APIToken=apitoken-demo"></script>
+<script>
+joola.events.on('ready', function(err) {
+  if (err)
+    throw err;
+    
+  var options = {
+    caption: 'Visits over Time',
+    query: {
+      timeframe: 'last_hour',
+      interval: 'minute',
+      dimensions: ['timestamp'],
+      metrics: ['visits'],
+      collection: 'collection-demo'
+    }
+  }
+  $('<div></div>').Timeline(options).appendTo('body');
+});
+</script>
+```
+
+[**Learn more about analytics and visualizations**](https://github.com/joola/joola/wiki/sdk-api-documentation#joolaviz)

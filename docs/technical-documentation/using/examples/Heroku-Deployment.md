@@ -1,26 +1,26 @@
 [HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [EXAMPLES](examples) > **HEROKU DEPLOYMENT**
 
-This walkthrough will show how you can install joola.io on an [Heroku][heroku] instance.
+This walkthrough will show how you can install joola on an [Heroku][heroku] instance.
 
 ### Before you begin
 - Make sure you have an [Heroku account][heroku].
 
-### Step 1: Clone joola.io repository into a fresh dir
+### Step 1: Clone joola repository into a fresh dir
 ```bash
 $ mkdir joola-io-example
 $ cd joola-io-example
-$ git clone http://github.com/joola/joola.io .
+$ git clone http://github.com/joola/joola .
 ```
 
 ### Step 2: Create your heroku app
-In this example, we'll be creating an app called `joolaio-example`.
+In this example, we'll be creating an app called `joola-example`.
 ```bash
 $ heroku apps:create joola-io-example
 # Git remote heroku added
 ```
 
 ### Step 3: Add required add-ons
-joola.io requires a few dependencies in order to operate correctly.
+joola requires a few dependencies in order to operate correctly.
 
 ##### Redis
 There are a few Redis add-on providers, but make sure you choose those running Redis 2.6 or above. Our preferred provider is `Redis Cloud`.
@@ -29,13 +29,13 @@ There are a few Redis add-on providers, but make sure you choose those running R
 $ heroku addons:add rediscloud
 ````
 
-After you've installed the Redis Cloud add-on, you'll need to set joola.io relevant environment variables.
+After you've installed the Redis Cloud add-on, you'll need to set joola relevant environment variables.
 ```bash
 $ heroku config:get REDISCLOUD_URL
 # redis://rediscloud:******************@pub-redis-*******.us-east-*-*.*.ec2.garantiadata.com:******
 
-$ heroku config:set JOOLAIO_CONFIG_STORE_CONFIG_REDIS_DSN=<REDISCLOUD_URL>
-$ heroku config:set JOOLAIO_CONFIG_STORE_DISPATCH_REDIS_DSN=<REDISCLOUD_URL>
+$ heroku config:set JOOLA_CONFIG_STORE_CONFIG_REDIS_DSN=<REDISCLOUD_URL>
+$ heroku config:set JOOLA_CONFIG_STORE_DISPATCH_REDIS_DSN=<REDISCLOUD_URL>
 ```
 
 To locate your Cloud Redis DSN, simply navigate to your dashboard and under the application we created (joola-io-example) goto settings.
@@ -48,22 +48,22 @@ It's recommended to use MongoDB 2.6 or above. Our preferred add-on provider is `
 $ heroku addons:add mongohq
 ```
 
-After you've installed the Redis Cloud add-on, you'll need to set joola.io relevant environment variables.
+After you've installed the Redis Cloud add-on, you'll need to set joola relevant environment variables.
 ```bash
 $ heroku config:get MONGOHQ_URL
 # mongodb://heroku:*************************************@oceanic.mongohq.com:*********/app**********
 
-$ heroku config:set JOOLAIO_CONFIG_STORE_CACHE_MONGO_DSN=<MONGOHQ_URL>
+$ heroku config:set JOOLA_CONFIG_STORE_CACHE_MONGO_DSN=<MONGOHQ_URL>
 ```
 
 ##### MQ (STOMP)
-joola.io uses STOMP protocol for communicate with a message queue. Our preferred Heroku add-on provider is `CloudAMQP`.
+joola uses STOMP protocol for communicate with a message queue. Our preferred Heroku add-on provider is `CloudAMQP`.
 
 ```bash
 $ heroku addons:add cloudamqp
 ```
 
-After you've installed the CloudAMQP add-on, you'll need to set joola.io relevant environment variables.
+After you've installed the CloudAMQP add-on, you'll need to set joola relevant environment variables.
 ```bash
 $ heroku config:get CLOUDAMQP_URL
 # amqp://********:****************@turtle.rmq.cloudamqp.com/**************
@@ -71,7 +71,7 @@ $ heroku config:get CLOUDAMQP_URL
 # You need to change the connection string to be stomp://
 # stomp://********:****************@turtle.rmq.cloudamqp.com/**************
 
-$ heroku config:set JOOLAIO_CONFIG_STORE_DISPATCH_STOMP_DSN=<CLOUDAMQP_URL>
+$ heroku config:set JOOLA_CONFIG_STORE_DISPATCH_STOMP_DSN=<CLOUDAMQP_URL>
 ```
 
 ### Step 4: Publish your app
