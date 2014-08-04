@@ -1,13 +1,13 @@
 <a name="top" />
 
-[HOME](Home) > [ABOUT JOOLA.IO](joola.io-overview) > **PRODUCT ROADMAP**
+[HOME](Home) > [ABOUT joola](joola-overview) > **PRODUCT ROADMAP**
 
 ## Overview
 
-The current release of joola.io is **0.4.0**. The planned roadmap for joola.io is divided in two:
+The current release of joola is **0.4.0**. The planned roadmap for joola is divided in two:
 
 1. **Short term: a series of planned releases** - adding specific, mostly incremental features, tweaks and bug fixes to the core platform
-2. **Longer term: an approximate schedule for new components and capabilities** - setting out priorities and approximate timings for all-new joola.io components and other ambitious new developments
+2. **Longer term: an approximate schedule for new components and capabilities** - setting out priorities and approximate timings for all-new joola components and other ambitious new developments
 
 We discuss each of these in turn below.
 
@@ -27,7 +27,7 @@ The planned releases are as follows:
 
 ## Longer-term: approximate schedule
 
-In this section we set out an approximate map of the new components and capabilities we want to add to joola.io, segmented by sub-system and by time (aka priority).
+In this section we set out an approximate map of the new components and capabilities we want to add to joola, segmented by sub-system and by time (aka priority).
 
 **Warning:** this schedule is approximate, and the items on it are subject to change. If you are interested in a specific functionality listed here, feel free to [Contact us](Talk-to-us) to find out more about its likely path-to-release.
 
@@ -35,8 +35,8 @@ The longer-term schedule of major developments is approximately as follows:
 
 **TBC**
 
-[milestones]: https://github.com/joola/joola.io/issues/milestones
+[milestones]: https://github.com/joola/joola/issues/milestones
 
-[issues-0812]: https://github.com/joola/joola.io/issues?milestone=2&state=open
-[issues-0813]: https://github.com/joola/joola.io/issues?milestone=3&state=open
-[issues-0814]: https://github.com/joola/joola.io/issues?milestone=4&state=open
+[issues-0812]: https://github.com/joola/joola/issues?milestone=2&state=open
+[issues-0813]: https://github.com/joola/joola/issues?milestone=3&state=open
+[issues-0814]: https://github.com/joola/joola/issues?milestone=4&state=open

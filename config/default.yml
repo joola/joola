@@ -3,7 +3,7 @@ interfaces:
   webserver:
     enabled: true
     welcome: true
-    # host: joola.io #used for response-header [Server]
+    # host: joola #used for response-header [Server]
     bind: 0.0.0.0
     port: 8080
     secureport: 8081
@@ -19,7 +19,7 @@ interfaces:
     blacklist: null
     alloworigin: null
     headers:
-      # X-Powered-By: joola.io
+      # X-Powered-By: joola
   repl:
     enabled: false
     port: 1337
@@ -58,7 +58,7 @@ store:
       # domain: loggly-subdomain
     file:
       level: trace
-      path: /var/log/joola.io
+      path: /var/log/joola
   datastore:
     mongodb:
       dsn: mongodb://localhost:27017/cache
@@ -76,12 +76,12 @@ authentication:
     user: 5000
   force404: false
 #sdk:
-  # url: https://raw.githubusercontent.com/joola/joola.io.sdk/feature/%2376/bin/joola.io.js
+  # url: https://raw.githubusercontent.com/joola/joola.sdk/feature/%2376/bin/joola.js
 workspaces:
   _test:
     key: _test
-    name: joola.io Framework Tests
-    description: Workspace for internal joola.io tests
+    name: joola Framework Tests
+    description: Workspace for internal joola tests
     roles:
       root:
         key: "root"
@@ -108,7 +108,7 @@ workspaces:
   _stats:
     key: _stats
     name: Internal Stats
-    description: Stores internal statistics of joola.io
+    description: Stores internal statistics of joola
     roles:
       beacon:
         key: "beacon"

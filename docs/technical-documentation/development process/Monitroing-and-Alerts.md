@@ -1,12 +1,12 @@
   [HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [DEVELOPMENT](the-development-process) > **MONITORING AND ALERTS**
 
-This section covers the different options available for monitoring the runtime operation of the joola.io framework.
+This section covers the different options available for monitoring the runtime operation of the joola framework.
 
 >
 We are using [nagios](http://nagios.org) for our health monitoring. For this section, all examples will be nagios oriented, but we believe it's clear enough to reflect on any monitoring system.
 
 ## Web Interfaces
-Checking the web interfaces of joola.io are online is easy and straightforward.   
+Checking the web interfaces of joola are online is easy and straightforward.   
 You will need to know which servers are running webservers and on which ports.
 
 Example nagios config:
@@ -43,6 +43,6 @@ Beacon and Query are API endpoints, and as such you can simply call the endpoint
 *TBC: add nagios configuration example*
 
 ## Using REPL
-If you chose to enable REPL on your joola.io, then you can connect to the configured port (default 1337) and issue direct commands against the instance.
+If you chose to enable REPL on your joola, then you can connect to the configured port (default 1337) and issue direct commands against the instance.
 
 *TBC: add REPL check example*

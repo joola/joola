@@ -4,18 +4,18 @@
 
 ## Why we have a CLA
 
-As the project sponsor, Joola Smart Solutions Ltd. would like to ensure the long-term viability of joola.io and its community.
-The Contributor License Agreement helps ensure everyone can enjoy joola.io with confidence that joola.io is here to stay.
+As the project sponsor, Joola Smart Solutions Ltd. would like to ensure the long-term viability of joola and its community.
+The Contributor License Agreement helps ensure everyone can enjoy joola with confidence that joola is here to stay.
 
 Specifically, our Contributor License Agreements (CLAs) grant the contributor and Joola Smart Solutions Ltd. joint copyright interest in contributed code.
 Further, it provides assurance from the contributor that contributions are original work that does not violate any third-party license agreement.
-The agreement between contributors and project is explicit, so joola.io users can be confident in the legal status of the source code and their right to use it.
+The agreement between contributors and project is explicit, so joola users can be confident in the legal status of the source code and their right to use it.
 
 ## Our CLAs
 
-For all contributions to joola.io (be they software, bug fixes, configuration changes, documentation, or any other materials),
+For all contributions to joola (be they software, bug fixes, configuration changes, documentation, or any other materials),
 we ask that contributors complete and sign a Contributor License Agreement.
-We have two different CLAs, depending on whether you are contributing to joola.io in a personal or professional capacity:
+We have two different CLAs, depending on whether you are contributing to joola in a personal or professional capacity:
 
 1. [Individual Contributor License Agreement v1.0] [indiv-cla]
 2. [Software Grant and Corporate Contributor License Agreement v1.0] [corp-cla]

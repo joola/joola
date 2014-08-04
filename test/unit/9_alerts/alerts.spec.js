@@ -1,7 +1,7 @@
 describe("alerts", function () {
   before(function (done) {
     this.context = {user: _token.user};
-    this.uid = joola.common.uuid();
+    this.uid = engine.common.uuid();
     done();
   });
 
@@ -16,7 +16,7 @@ describe("alerts", function () {
     var type = 'webhook';
     var endpoint = '/nowehere';
 
-    joolaio.alerts.set(this.context, id, query, type, endpoint, function (err) {
+    engine.alerts.set(this.context, id, query, type, endpoint, function (err) {
       if (err)
         return done(err);
 
