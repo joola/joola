@@ -1,16 +1,16 @@
 {
-  "name": "joola.io",
+  "name": "joola",
   "preferGlobal": false,
-  "version": "0.6.3-develop",
+  "version": "0.7.3",
   "author": "Joola <info@joo.la>",
   "description": "The open-source data visualization framework",
   "engine": "node >= 0.10.x",
   "private": false,
   "repository": {
     "type": "git",
-    "url": "http://github.com/joola/joola.io.git"
+    "url": "http://github.com/joola/joola.git"
   },
-  "bugs": "http://github.com/joola/joola.io/issues",
+  "bugs": "http://github.com/joola/joola/issues",
   "contributors": [
     {
       "name": "Itay Weinberger",
@@ -25,14 +25,14 @@
   ],
   "scripts": {
     "test": "make test",
-    "start": "node ./joola.io.js",
+    "start": "node ./joola.js",
     "coveralls": "make test-coveralls"
   },
   "bin": {
-    "joola.io": "./joola.io.js",
-    "jio": "./node_modules/joola.io.cli/bin/joola.io.cli"
+    "joola": "./joola.js",
+    "jio": "./node_modules/joola.cli/bin/joola.cli"
   },
-  "main": "./joola.io.js",
+  "main": "./joola.js",
   "keywords": [
     "data",
     "analytics",
@@ -41,7 +41,6 @@
     "noSQL"
   ],
   "dependencies": {
-    "JSONStream": "*",
     "async": "*",
     "benchmark": "^1.0.0",
     "body-parser": "^1.0.2",
@@ -68,9 +67,10 @@
     "htpasswd": "*",
     "humanize-number": "0.0.2",
     "jade": "*",
-    "joola.io.cli": "^0.0.3",
-    "joola.io.datastore-mongodb": "^0.0.3",
-    "joola.io.sdk": "^0.6.0",
+    "joola.cli": "^0.1.0",
+    "joola.datastore-mongodb": "^0.0.5",
+    "joola.datastore-influxdb": "^0.0.5",
+    "joola.sdk": "^0.7.0",
     "js-yaml": "~3.0.2",
     "json-stringify-safe": "^5.0.0",
     "kindof": "~1.0.0",
@@ -105,13 +105,13 @@
     "request": "*",
     "zombie": "*",
     "mkdirp": "*",
-    "sinon": "*",
-    "chai": "*",
-    "sinon-chai": "*",
     "wrench": "~1.5.6",
-    "socket.io-client": "~0.9.16",
     "commander": "~2.2.0",
-    "humanize-number": "0.0.2"
+    "humanize-number": "0.0.2",
+    "chai": "^1.9.1",
+    "sinon": "^1.10.2",
+    "sinon-chai": "2.3.1",
+    "jsdox": "https://github.com/joola/jsdox/tarball/master"
   },
   "engines": {
     "node": "0.10.*",

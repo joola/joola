@@ -15,7 +15,7 @@ describe("common-globals", function () {
 		expect(joola).to.be.ok;
 	});
 
-	it("should have joola.io defined", function () {
-		expect(joolaio).to.be.ok;
+	it("should have joola defined", function () {
+		expect(joola).to.be.ok;
 	});
 });

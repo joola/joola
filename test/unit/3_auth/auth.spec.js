@@ -1,5 +1,5 @@
 /**
- *  joola.io
+ *  joola
  *
  *  Copyright Joola Smart Solutions, Ltd. <info@joo.la>
  *
@@ -22,7 +22,7 @@ describe("auth", function () {
   });
 
   it("should return static content with no login issues", function (done) {
-    browser.visit('https://localhost:' + joola.config.interfaces.webserver.secureport + '/ico/favicon.ico', function () {
+    browser.visit('https://localhost:' + engine.config.interfaces.webserver.secureport + '/ico/favicon.ico', function () {
       expect(browser.success).to.equal(true);
       return done();
     });
@@ -35,7 +35,7 @@ describe("auth", function () {
       roles: ['user'],
       workspace: this.workspace
     };
-    joola.auth.generateToken(user, function (err, token) {
+    engine.auth.generateToken(user, function (err, token) {
       if (err)
         return done(err);
       expect(token._).to.be.ok;
@@ -53,18 +53,18 @@ describe("auth", function () {
       roles: ['user'],
       workspace: this.workspace
     };
-    var _expireafter = joola.config.authentication.tokens.expireafter;
-    joola.config.authentication.tokens.expireafter = 2000;
+    var _expireafter = engine.config.authentication.tokens.expireafter;
+    engine.config.authentication.tokens.expireafter = 2000;
 
-    joola.auth.generateToken(user, function (err, token) {
-      joola.config.authentication.tokens.expireafter = _expireafter;
+    engine.auth.generateToken(user, function (err, token) {
+      engine.config.authentication.tokens.expireafter = _expireafter;
 
-      joola.auth.validateToken(token._, null, function (err, valid) {
+      engine.auth.validateToken(token._, null, function (err, valid) {
         if (err)
           return done(err);
         expect(valid).to.be.ok;
         setTimeout(function () {
-          joola.auth.validateToken(token._, null, function (err, valid) {
+          engine.auth.validateToken(token._, null, function (err, valid) {
             if (err)
               done();
             else
@@ -82,13 +82,13 @@ describe("auth", function () {
       roles: ['user'],
       workspace: this.workspace
     };
-    joola.auth.generateToken(user, function (err, token) {
+    engine.auth.generateToken(user, function (err, token) {
       if (err)
         return done(err);
-      joola.auth.expireToken(token, function (err) {
+      engine.auth.expireToken(token, function (err) {
         if (err)
           return done(err);
-        joola.auth.validateToken(token, null, function (err, valid) {
+        engine.auth.validateToken(token, null, function (err, valid) {
           if (err)
             return done();
 
@@ -102,7 +102,7 @@ describe("auth", function () {
     var modulename = 'collections';
     var action = 'list';
 
-    joola.auth.validateRoute(modulename, action, function (err, action) {
+    engine.auth.validateRoute(modulename, action, function (err, action) {
       expect(action).to.be.ok;
       done(err);
     });
@@ -112,7 +112,7 @@ describe("auth", function () {
     var modulename = 'datasources2';
     var action = 'list';
 
-    joola.auth.validateRoute(modulename, action, function (err, action) {
+    engine.auth.validateRoute(modulename, action, function (err, action) {
       if (!err) {
         return done(new Error('Failed'));
       }
@@ -137,11 +137,11 @@ describe("auth", function () {
     };
     var res = {};
 
-    joola.auth.validateRoute(modulename, action, function (err, action) {
+    engine.auth.validateRoute(modulename, action, function (err, action) {
       if (err)
         return done(err);
       try {
-        joola.auth.validateAction(action, req, res, function (err, valid) {
+        engine.auth.validateAction(action, req, res, function (err, valid) {
           return done(err);
         });
       }
@@ -163,11 +163,11 @@ describe("auth", function () {
     };
     var res = {};
 
-    joola.auth.validateRoute(modulename, action, function (err, action) {
+    engine.auth.validateRoute(modulename, action, function (err, action) {
       if (err)
         return done(err);
       try {
-        joola.auth.validateAction(action, req, res, function (err, valid) {
+        engine.auth.validateAction(action, req, res, function (err, valid) {
           if (err)
             return done();
           return done(new Error('This should have failed'));
@@ -196,11 +196,11 @@ describe("auth", function () {
     };
     var res = {};
 
-    joola.auth.validateRoute(modulename, action, function (err, action) {
+    engine.auth.validateRoute(modulename, action, function (err, action) {
       if (err)
         return done(err);
       try {
-        joola.auth.validateAction(action, req, res, function (err, valid) {
+        engine.auth.validateAction(action, req, res, function (err, valid) {
           if (err)
             return done();
           return done(new Error('This should have failed'));
@@ -229,11 +229,11 @@ describe("auth", function () {
     };
     var res = {};
 
-    joola.auth.validateRoute(modulename, action, function (err, action) {
+    engine.auth.validateRoute(modulename, action, function (err, action) {
       if (err)
         return done(err);
       try {
-        joola.auth.validateAction(action, req, res, function (err, valid) {
+        engine.auth.validateAction(action, req, res, function (err, valid) {
           if (err)
             return done(err);
           return done();
@@ -248,14 +248,14 @@ describe("auth", function () {
 
   it("should encrypt a user password", function (done) {
     var password = '1234';
-    var hash = joola.auth.hashPassword(password);
+    var hash = engine.auth.hashPassword(password);
     expect(hash).to.not.equal('1234');
     done();
   });
 
   it("should store salt with the hash", function (done) {
     var password = '1234';
-    var hash = joola.auth.hashPassword(password);
+    var hash = engine.auth.hashPassword(password);
 
     assert(hash.indexOf('$') > -1);
     done();
@@ -264,7 +264,7 @@ describe("auth", function () {
   it("should validate a password", function (done) {
     var password = '1234';
     var hash = 'nVHqYEJbh$81dc9bdb52d04dc20036dbd8313ed055';
-    var valid = joola.auth.validatePassword(password, hash);
+    var valid = engine.auth.validatePassword(password, hash);
 
     assert(valid);
     done();
@@ -272,17 +272,17 @@ describe("auth", function () {
 
   it("should get a user by token", function (done) {
     var user = {
-      username: 'test-' + joola.common.uuid(),
+      username: 'test-' + engine.common.uuid(),
       password: '1234',
       roles: ['user'],
       workspace: 'test-org'
     };
-    joola.dispatch.users.add(this.context, this.workspace, user, function (err, _user) {
-      joola.auth.generateToken(user, function (err, token) {
+    engine.dispatch.users.add(this.context, this.workspace, user, function (err, _user) {
+      engine.auth.generateToken(user, function (err, token) {
         if (err)
           return done(err);
 
-        joola.auth.getUserByToken(token._, function (err, _user) {
+        engine.auth.getUserByToken(token._, function (err, _user) {
           if (err)
             return done(err);
 

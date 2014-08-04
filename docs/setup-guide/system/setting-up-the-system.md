@@ -1,1 +1,1 @@
-[HOME](Home) > [SETUP GUIDE](setting-up-joola.io) > **STEP 2: SETUP THE SYSTEM**
+[HOME](Home) > [SETUP GUIDE](setting-up-joola) > **STEP 2: SETUP THE SYSTEM**

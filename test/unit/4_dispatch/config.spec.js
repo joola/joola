@@ -1,12 +1,12 @@
 describe("config", function () {
   before(function (done) {
     this.context = {user: _token.user};
-    this.uid = joola.common.uuid();
+    this.uid = engine.common.uuid();
     return done();
   });
 
   it("should set a config value", function (done) {
-    joola.dispatch.config.set(this.context, 'test-config-' + this.uid, 'test', function (err) {
+    engine.dispatch.config.set(this.context, 'test-config-' + this.uid, 'test', function (err) {
       if (err)
         return done(err);
       return done();
@@ -14,7 +14,7 @@ describe("config", function () {
   });
 
   it("should get config value", function (done) {
-    joola.dispatch.config.get(this.context, 'test-config-' + this.uid, function (err, value) {
+    engine.dispatch.config.get(this.context, 'test-config-' + this.uid, function (err, value) {
       if (err)
         return done(err);
 
@@ -24,7 +24,7 @@ describe("config", function () {
   });
 
   it("should get all config", function (done) {
-    joola.dispatch.config.get(this.context, '*', function (err, config) {
+    engine.dispatch.config.get(this.context, '*', function (err, config) {
       if (err)
         return done(err);
 

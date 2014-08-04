@@ -24,5 +24,5 @@ the project's wiki site.
 
 
 
-[wiki]: https://github.com/joola/joola.io/wiki
+[wiki]: https://github.com/joola/joola/wiki
 [jsdox]: http://jsdox.org/

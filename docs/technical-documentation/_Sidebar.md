@@ -1,14 +1,10 @@
-[**HOME**](Home) > **TECHNICAL DOCUMENTATION**
+[HOME](Home) > **TECHNICAL DOCUMENTATION**
 
-- [Setup Guide](setting-up-joola.io)
+- [Setup Guide](setting-up-joola)
 - [Configuration](Configuration)
-- [The joola.io SDK](using-the-sdk)
 - [Pushing Data](pushing-data)
-- [Analytics and Visualization](Analytics-and-Visualization)
+- [SDK](sdk)
+- [Analytics and Visualization](https://github.com/joola/joola/wiki/sdk-api-documentation#joolaviz)
 - [Embedding](using-embedding)
-- [[Examples]]
-- [[Workshops]]
-- [[Labs]]
-- [[Troubleshooting]]
 
 **[API Documentation](api-documentation)**

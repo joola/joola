@@ -21,12 +21,12 @@ results.flowCount = flows.length;
 
 var actual = 0;
 
-var joolaio = require('joola.io.sdk');
-joolaio.init({host: JOOLA_ADDRESS, APIToken: 'apitoken-demo'}, function (err) {
+var joola = require('joola.io.sdk');
+joola.init({host: JOOLA_ADDRESS, APIToken: 'apitoken-demo'}, function (err) {
   if (err)
     throw err;
 
-  joolaio.system.nodeDetails(function (err, details) {
+  joola.system.nodeDetails(function (err, details) {
     if (err)
       throw err;
 
@@ -60,7 +60,7 @@ joolaio.init({host: JOOLA_ADDRESS, APIToken: 'apitoken-demo'}, function (err) {
 
   function alldone() {
     console.log(util.inspect(results, {depth: null, colors: true}));
-    joolaio.beacon.insert('benchmark', results, {}, function (err) {
+    joola.beacon.insert('benchmark', results, {}, function (err) {
       if (err)
         throw err;
       process.exit(0);

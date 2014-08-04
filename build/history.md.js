@@ -11,7 +11,7 @@ var github = new GitHubApi({
   timeout: 5000
 });
 
-var REPO = 'joola.io';
+var REPO = 'joola';
 var USER = 'joola';
 var TAG = ['v0.5.0', 'v0.4.1', 'v0.4.0'];
 

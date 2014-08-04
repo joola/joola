@@ -1,6 +1,6 @@
 # How to contribute
 
-Third-party patches are essential for keeping joola.io great and we want to
+Third-party patches are essential for keeping joola great and we want to
 keep it as easy as possible to contribute changes that get things working in
 your environment. There are a few guidelines that we need contributors to
 follow so that we can have a chance of keeping on top of things.
@@ -8,7 +8,7 @@ follow so that we can have a chance of keeping on top of things.
 ## Getting Started
 
 * Make sure you have a [GitHub account](https://github.com/signup/free)
-* Submit a ticket for your issue (http://github.com/joola/joola.io/issues),
+* Submit a ticket for your issue (http://github.com/joola/joola/issues),
 assuming one does not already exist.
   * Clearly describe the issue including steps to reproduce when it is a bug.
   * Make sure you select the relating components to the issue.
@@ -64,10 +64,10 @@ please contact project admins to ensure you have been granted with an editor rol
 
 # Additional Resources
 
-* [Issues tracker](http://github.com/joola/joola.io/issues)
+* [Issues tracker](http://github.com/joola/joola/issues)
 * [Contributor License Agreement][cla]
 * [General GitHub documentation](http://help.github.com/)
 * [GitHub pull request documentation](http://help.github.com/send-pull-requests/)
-* #joola.io IRC channel on freenode.org
+* #joola IRC channel on freenode.org
 
-[cla]: https://github.com/joola/joola.io/wiki/CLA
+[cla]: https://github.com/joola/joola/wiki/CLA

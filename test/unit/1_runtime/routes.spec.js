@@ -3,19 +3,19 @@ var https = require('https');
 describe("routes", function () {
   before(function (done) {
     this.context = {user: _token.user};
-    this.uid = joola.common.uuid();
-    this.workspace = 'test-org-' + joola.common.uuid();
+    this.uid = engine.common.uuid();
+    this.workspace = 'test-org-' + engine.common.uuid();
     done();
   });
 
   it("should return a 401 route [Websocket]", function (done) {
-    var savedAPIToken = joolaio.get('APIToken');
+    var savedAPIToken = joola.get('APIToken');
     //manual set of token to avoid failure on token invalid check
-    joolaio._apitoken = '1234';
-    joolaio._token = '1234';
-    joolaio.system.nodeDetails(function (err, details) {
+    joola._apitoken = '1234';
+    joola._token = '1234';
+    joola.system.nodeDetails(function (err, details) {
       expect(err).to.be.ok;
-      joolaio.set('APIToken', savedAPIToken);
+      joola.set('APIToken', savedAPIToken);
       done();
     });
   });
@@ -51,7 +51,7 @@ describe("routes", function () {
     var options = {
       host: 'localhost',
       port: '8081',
-      path: '/joola.io.js'
+      path: '/joola.js'
     };
 
     callback = function (response) {
@@ -78,7 +78,7 @@ describe("routes", function () {
     var options = {
       host: 'localhost',
       port: '8081',
-      path: '/joola.io.js?token=12345'
+      path: '/joola.js?token=12345'
     };
 
     callback = function (response) {
@@ -105,7 +105,7 @@ describe("routes", function () {
     var options = {
       host: 'localhost',
       port: '8081',
-      path: '/joola.io.min.js'
+      path: '/joola.min.js'
     };
 
     callback = function (response) {
@@ -132,7 +132,7 @@ describe("routes", function () {
     var options = {
       host: 'localhost',
       port: '8081',
-      path: '/joola.io.min.js?token=12345'
+      path: '/joola.min.js?token=12345'
     };
 
     callback = function (response) {
@@ -159,7 +159,7 @@ describe("routes", function () {
     var options = {
       host: 'localhost',
       port: '8081',
-      path: '/joola.io.css'
+      path: '/joola.css'
     };
 
     callback = function (response) {
