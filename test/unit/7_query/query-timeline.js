@@ -11,14 +11,14 @@ describe("query-timeline", function () {
   /*
    after(function (done) {
    var self = this;
-   joola.collections.delete(this.context, this.workspace, this.collection, function () {
-   joola.collections.delete(self.context, self.workspace, self.collection + '-nots', function () {
+   engine.collections.delete(this.context, this.workspace, this.collection, function () {
+   engine.collections.delete(self.context, self.workspace, self.collection + '-nots', function () {
    done();
    });
    });
    });
    */
-  it("should perform a timeline query [this_second/second]", function (done) {
+  xit("should perform a timeline query [this_second/second]", function (done) {
     var expected = 1;
     var query = {
       timeframe: 'this_second',
@@ -28,7 +28,7 @@ describe("query-timeline", function () {
       collection: this.collection
     };
 
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
@@ -51,7 +51,7 @@ describe("query-timeline", function () {
       collection: this.collection
     };
 
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
@@ -63,7 +63,7 @@ describe("query-timeline", function () {
     });
   });
 
-  it("should perform a timeline query [this_second/minute]", function (done) {
+  xit("should perform a timeline query [this_second/minute]", function (done) {
     var expected = 1;
     var query = {
       timeframe: 'this_second',
@@ -73,7 +73,7 @@ describe("query-timeline", function () {
       collection: this.collection
     };
 
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
@@ -95,7 +95,7 @@ describe("query-timeline", function () {
       collection: this.collection
     };
 
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
@@ -117,7 +117,7 @@ describe("query-timeline", function () {
       collection: this.collection
     };
 
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
@@ -139,7 +139,7 @@ describe("query-timeline", function () {
       collection: this.collection
     };
 
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
@@ -163,7 +163,7 @@ describe("query-timeline", function () {
     };
 
     var _date = new Date();
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
@@ -185,7 +185,7 @@ describe("query-timeline", function () {
       collection: this.collection
     };
 
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
@@ -207,7 +207,7 @@ describe("query-timeline", function () {
       collection: this.collection
     };
 
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
@@ -229,7 +229,7 @@ describe("query-timeline", function () {
       collection: this.collection
     };
 
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
@@ -251,7 +251,7 @@ describe("query-timeline", function () {
       collection: this.collection
     };
 
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
@@ -273,7 +273,7 @@ describe("query-timeline", function () {
       collection: this.collection
     };
 
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
@@ -296,7 +296,7 @@ describe("query-timeline", function () {
     };
 
     var _date = new Date();
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
@@ -318,7 +318,7 @@ describe("query-timeline", function () {
       collection: this.collection
     };
 
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
@@ -341,7 +341,7 @@ describe("query-timeline", function () {
     };
 
     var _date = new Date();
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
@@ -363,7 +363,7 @@ describe("query-timeline", function () {
       collection: this.collection
     };
 
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
@@ -384,7 +384,7 @@ describe("query-timeline", function () {
       collection: this.collection
     };
 
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
@@ -407,7 +407,7 @@ describe("query-timeline", function () {
       collection: this.collection
     };
 
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
@@ -429,7 +429,7 @@ describe("query-timeline", function () {
       collection: this.collection
     };
 
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
@@ -451,7 +451,7 @@ describe("query-timeline", function () {
       collection: this.collection
     };
 
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
@@ -473,7 +473,7 @@ describe("query-timeline", function () {
       collection: this.collection
     };
 
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
@@ -495,7 +495,7 @@ describe("query-timeline", function () {
       collection: this.collection
     };
 
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
@@ -510,8 +510,10 @@ describe("query-timeline", function () {
   it("should perform a timeline query with start and end", function (done) {
     var expected = 31;
 
-    var _startdate = new Date(2014, 0, 1);
-    var _enddate = new Date(2014, 0, 31, 23, 59, 59, 999);
+    var _startdate = new Date();
+    var _enddate = new Date();
+
+    _startdate.setDate(_startdate.getDate() - 30);
 
     var query = {
       timeframe: {
@@ -524,10 +526,11 @@ describe("query-timeline", function () {
       collection: this.collection
     };
 
-    joola.query.fetch(this.context, query, function (err, result) {
+    engine.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
+
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);

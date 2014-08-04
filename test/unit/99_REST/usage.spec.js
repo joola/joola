@@ -1,14 +1,14 @@
 describe("collections", function () {
   before(function (done) {
-    this.context = {user: joolaio.USER};
+    this.context = {user: joola.USER};
     this.collection = 'test-collection-dispatch-' + global.uid;
 
     //done();
-    joolaio.set('APIToken', 'apitoken-demo', done);
+    joola.set('APIToken', 'apitoken-demo', done);
   });
 
   after(function (done) {
-    //joolaio.set('APIToken', 'apitoken-test', done);
+    //joola.set('APIToken', 'apitoken-test', done);
     done();
   });
 
@@ -22,11 +22,11 @@ describe("collections", function () {
         ['workspace', 'eq', 'demo']
       ]
     };
-    joolaio.users.generateToken(user, function (err, token) {
+    joola.users.generateToken(user, function (err, token) {
       if (err)
         return done(err);
 
-      joolaio.set('APIToken', 'apitoken-test', function (err) {
+      joola.set('APIToken', 'apitoken-test', function (err) {
         if (err)
           return done(err);
 
@@ -39,7 +39,7 @@ describe("collections", function () {
           ],
           filter: []
         };
-        joolaio.query.fetch({_: token._}, query, function (err, usage) {
+        joola.query.fetch({_: token._}, query, function (err, usage) {
           if (err)
             return done(err);
 

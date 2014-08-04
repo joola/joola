@@ -2,7 +2,7 @@
 
 ### Pushing a document via Beacon API
 
-The short example below uses a function called `beaconSend` to store documents within joola.io.
+The short example below uses a function called `beaconSend` to store documents within joola.
 
 ```php
 function beaconSend($host, $port, $workspace, $apitoken, $collection, $document) {                                                                              
@@ -19,7 +19,7 @@ function beaconSend($host, $port, $workspace, $apitoken, $collection, $document)
 	curl_close($ch);
 }
 
-beaconSend('http://joola.io', '8080', 'demo', 'apitoken-demo', 'demo', '{"visitor":1, "browser": "Chrome", "os": "Linux"}');
+beaconSend('http://joola', '8080', 'demo', 'apitoken-demo', 'demo', '{"visitor":1, "browser": "Chrome", "os": "Linux"}');
 
 ```
 

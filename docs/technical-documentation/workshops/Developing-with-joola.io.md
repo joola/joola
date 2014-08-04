@@ -1,11 +1,11 @@
 [HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [WORKSHOPS](workshops) > **DEVELOPING**
 
 ### Goal
-Offer a good understanding of joola.io system and security aspects to a mixed audience compiled of IT engineers, developers and DBAs.
+Offer a good understanding of joola system and security aspects to a mixed audience compiled of IT engineers, developers and DBAs.
 The workshop covers the following topics:
-- Understanding joola.io
-- Deploy and configure joola.io
-- Control and monitor joola.io
+- Understanding joola
+- Deploy and configure joola
+- Control and monitor joola
 - Define workspaces, roles and users
 - Monitor for security violations
 Each of these topics is covered in high-level, for more detailed discussions, we have [specific workshops](workshops).
@@ -25,7 +25,7 @@ Each of these topics is covered in high-level, for more detailed discussions, we
 
 ### Schedule
 - 09:00-09:15 - Gathering
-- 09:15-09:30 - Understanding joola.io
+- 09:15-09:30 - Understanding joola
 - 09:30-09:45 - Deploy and Configure
 - 09:45-10:00 - Authentication
 - 09:45-10:00 - Control and Monitor
@@ -37,17 +37,17 @@ Each of these topics is covered in high-level, for more detailed discussions, we
 #### 09:00 - Gathering
 The instructor will have a welcome slide on screen as guests arriving (Slide #2).
  
-#### 09:15 - Understanding joola.io
+#### 09:15 - Understanding joola
 During this section the audience will go over the following points:
-- What problem does joola.io solves
+- What problem does joola solves
 - Big-data in-practice today
 - Main means to deal with big-data
 - Scalability and Performance
 - Security and multi-tenancy
 
 #### 09:30 - Deploy and Configure
-- Install and run joola.io
-- Connect to joola.io
+- Install and run joola
+- Connect to joola
 - The grid
 - Configuration
 
@@ -57,7 +57,7 @@ During this section the audience will go over the following points:
 - Single Sign On
 
 #### 10:30 - Control and Monitor
-- Controlling joola.io
+- Controlling joola
 - Daemonizing
 - Logging
 - Health Monitor
@@ -74,5 +74,5 @@ During this section the audience will go over the following points:
 - Security Alerts
 
 ## What's next?
-Following this workshop the audience will have a solid understanding of joola.io system and security aspects.
+Following this workshop the audience will have a solid understanding of joola system and security aspects.
  For those wishing to learn more about specific aspects of the framework and its uses, there are [specific workshops](workshops).

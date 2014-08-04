@@ -11,7 +11,7 @@
 
 'use strict';
 
-var joola = module.exports = require('./lib/joola.io');
+var joola = module.exports = require('./lib/joola');
 
 /* istanbul ignore if */
 if (require.main === module || require.main.filename.indexOf('ProcessContainer.js') > -1 /*Allow PM2*/)

@@ -7,6 +7,5 @@
 - [Pushing data](pushing-data)
 - **Query, analytics and visualization**
 - [Collections and meta data](collections)
-- [Workspaces, users and roles](user-management)
-- [System health and stats](system-health)
+- [Workspaces, users and roles](basic-concepts)
 - [Complete API documentation](sdk-api-documentation)

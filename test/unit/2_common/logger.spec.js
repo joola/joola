@@ -1,5 +1,5 @@
 /**
- *  joola.io
+ *  joola
  *
  *  Copyright Joola Smart Solutions, Ltd. <info@joo.la>
  *
@@ -11,7 +11,7 @@
 
 describe("common-logger", function () {
   it("should get the ring buffer", function () {
-    var logs = joola.logger.getBuffer();
+    var logs = engine.logger.getBuffer();
     expect(logs).to.be.ok;
   });
 });

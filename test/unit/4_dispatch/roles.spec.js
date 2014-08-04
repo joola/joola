@@ -1,5 +1,5 @@
 /**
- *  @title joola.io
+ *  @title joola
  *  @overview the open-source data analytics framework
  *  @copyright Joola Smart Solutions, Ltd. <info@joo.la>
  *  @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
@@ -13,7 +13,7 @@ var async = require('async');
 describe("roles", function () {
   before(function (done) {
     this.context = {user: _token.user};
-    this.uid = joola.common.uuid();
+    this.uid = engine.common.uuid();
     this.workspace = global.workspace;
     done();
   });
@@ -24,7 +24,7 @@ describe("roles", function () {
       permissions: ['guest']
     };
 
-    joola.dispatch.roles.add(this.context, this.workspace, role, function (err, _role) {
+    engine.dispatch.roles.add(this.context, this.workspace, role, function (err, _role) {
       if (err)
         return done(err);
 
@@ -34,7 +34,7 @@ describe("roles", function () {
   });
 
   it("should return a valid list of roles", function (done) {
-    joola.dispatch.roles.list(this.context, this.workspace, function (err, roles) {
+    engine.dispatch.roles.list(this.context, this.workspace, function (err, roles) {
       return done(err);
     });
   });
@@ -44,7 +44,7 @@ describe("roles", function () {
       key: 'test-role-' + this.uid,
       permissions: ['guest']
     };
-    joola.dispatch.roles.add(this.context, this.workspace, role, function (err, _role) {
+    engine.dispatch.roles.add(this.context, this.workspace, role, function (err, _role) {
       if (err)
         return done();
 
@@ -56,7 +56,7 @@ describe("roles", function () {
     var role = {
       key: 'test-role-missing-details'
     };
-    joola.dispatch.roles.add(this.context, this.workspace, role, function (err, _role) {
+    engine.dispatch.roles.add(this.context, this.workspace, role, function (err, _role) {
       if (err)
         return done();
 
@@ -69,7 +69,7 @@ describe("roles", function () {
       key: 'test-role-' + this.uid,
       permissions: ['guest']
     };
-    joola.dispatch.roles.patch(this.context, this.workspace, role.key, role, function (err, _role) {
+    engine.dispatch.roles.patch(this.context, this.workspace, role.key, role, function (err, _role) {
       if (err)
         return done(err);
       expect(_role.permissions.length).to.equal(1);
@@ -82,7 +82,7 @@ describe("roles", function () {
       key: 'test-role1-' + this.uid,
       permissions: ['guest']
     };
-    joola.dispatch.roles.patch(this.context, this.workspace, role.key, role, function (err, _role) {
+    engine.dispatch.roles.patch(this.context, this.workspace, role.key, role, function (err, _role) {
       if (err)
         return done();
 
@@ -93,11 +93,11 @@ describe("roles", function () {
   it("should delete a role", function (done) {
     var self = this;
     var role = 'test-role-' + this.uid;
-    joola.dispatch.roles.delete(this.context, this.workspace, role, function (err) {
+    engine.dispatch.roles.delete(this.context, this.workspace, role, function (err) {
       if (err)
         return done(err);
 
-      joola.dispatch.roles.get(self.context, self.workspace, role, function (err, role) {
+      engine.dispatch.roles.get(self.context, self.workspace, role, function (err, role) {
         if (err)
           return done();
 
@@ -110,7 +110,7 @@ describe("roles", function () {
     var role = {
       key: 'test-role-notexist'
     };
-    joola.dispatch.roles.delete(this.context, this.workspace, role, function (err) {
+    engine.dispatch.roles.delete(this.context, this.workspace, role, function (err) {
       if (err)
         return done();
 

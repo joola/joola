@@ -1,9 +1,16 @@
 [HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > **DEVELOPMENT OVERVIEW**
 
 Our goal is to create brilliant software and we setup an end-to-end software development life-cycle (SDLC) aiming at that. Therefore, we have created the following manual that describes
-the life-cycle we have here at joo.la labs. This is an internal process and describe steps that are relevant not only to the joola.io framework development, but also to commercial implementations.
+the life-cycle we have here at joo.la labs. This is an internal process and describe steps that are relevant not only to the joola framework development, but also to commercial implementations.
 On top of the process described we have our community contributions that act as a key part of the software development path. 
 We believe that sharing information about our internal processes with the community will not only make our process better, but also allow the community to benefit from it.
+
+- [Testing](code-testing)
+- [Code Style](code-style-guidelines)
+- [Versioning](versioning)
+- [Release and publish](software-release-process)
+- [[Contributing]]
+- [Roadmap](product-roadmap)
 
 ## Assess Needs
 The first step in the process is to assess the needs of this iteration. What tasks, defects, milestones, etc... we have to cover during the iteration. 

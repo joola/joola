@@ -15,7 +15,7 @@ authors:
 
 compile:
 		@NODE_ENV=test
-		browserify ./lib/sdk/index.js -i ./lib/sdk/bin/joola.io.js -o ./lib/sdk/bin/joola.io.js --debug
+		browserify ./lib/sdk/index.js -i ./lib/sdk/bin/joola.js -o ./lib/sdk/bin/joola.js --debug
     
 lint:
 		@./node_modules/.bin/jshint ./lib ./test
@@ -24,7 +24,7 @@ doc:
 		find ./wiki/* ! -iregex '(.git|.npm)' | xargs rm -fr
 		node build/docs.js
 		tail -n +4 ./apiary.apib > ./wiki/technical-documentation/code/API-Documentation.md
-		sed -i '1i**View a live version of this page @ [http://docs.joolaio.apiary.io](http://docs.joolaio.apiary.io)**\n' ./wiki/technical-documentation/code/API-Documentation.md
+		sed -i '1i**View a live version of this page @ [http://docs.joola.apiary.io](http://docs.joola.apiary.io)**\n' ./wiki/technical-documentation/code/API-Documentation.md
 
 test-cov:
 		$(MAKE) lint
@@ -41,7 +41,7 @@ coveralls:
 
 test-api:
 		redis-cli flushall
-		node joola.io.js &
+		node joola.js &
 		sleep 2
 		-dredd -r html apiary.apib http://localhost:8080
 		killall -9 node
@@ -49,6 +49,7 @@ test-api:
 publish:
 		npm shrinkwrap
 		npm publish
+		rm npm-shrinkwrap.json
 		
 .PHONY: test
 
