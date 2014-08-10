@@ -54,6 +54,20 @@ describe("beacon-basic", function () {
         return done(err);
 
       docs.forEach(function (d, index) {
+        expect(d.saved).to.equal(true);
+      });
+      done();
+    });
+  });
+
+  it("should load array of documents and verify timestamp", function (done) {
+    var self = this;
+    var docs = require('../../fixtures/basic-timestamps.json');
+    engine.beacon.insert(self.context, self.context.user.workspace, self.collection, docs, function (err, docs) {
+      if (err)
+        return done(err);
+
+      docs.forEach(function (d, index) {
         expect(d.timestamp === docs[index].timestamp);
         var shorttimestamp = new Date(d.timestamp);
         shorttimestamp.setMilliseconds(0);
