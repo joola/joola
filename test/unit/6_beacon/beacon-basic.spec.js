@@ -49,13 +49,15 @@ describe("beacon-basic", function () {
   it("should load array of documents", function (done) {
     var self = this;
     var docs = ce.clone(self.documents);
-    var counter = 0;
     engine.beacon.insert(self.context, self.context.user.workspace, self.collection, docs, function (err, docs) {
       if (err)
         return done(err);
 
-      docs.forEach(function (d) {
-        console.log(d.timestamp.getTime(),d);
+      docs.forEach(function (d, index) {
+        expect(d.timestamp === docs[index].timestamp);
+        var shorttimestamp = new Date(d.timestamp);
+        shorttimestamp.setMilliseconds(0);
+        expect(d.timestamp_timebucket.second.getTime()).to.equal(shorttimestamp.getTime());
         expect(d.saved).to.equal(true);
       });
       done();
