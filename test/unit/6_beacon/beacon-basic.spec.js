@@ -50,16 +50,12 @@ describe("beacon-basic", function () {
     var self = this;
     var docs = ce.clone(self.documents);
     var counter = 0;
-    docs.forEach(function (d) {
-      d.timestamp = new Date();
-      d.timestamp.setMilliseconds(d.timestamp.getMilliseconds() - counter);
-      counter++;
-    });
     engine.beacon.insert(self.context, self.context.user.workspace, self.collection, docs, function (err, docs) {
       if (err)
         return done(err);
 
       docs.forEach(function (d) {
+        console.log(d.timestamp.getTime(),d);
         expect(d.saved).to.equal(true);
       });
       done();
