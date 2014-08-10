@@ -1,0 +1,38 @@
+[
+  {
+    "bets": 1,
+    "player": "7890",
+    "game": "LOO",
+    "return": 1.1,
+    "currency": 87,
+    "operator": 81,
+    "timestamp": "2013-10-20T09:09:54.827Z",
+    "stake": 123.0,
+    "win": true,
+    "gameround_id": "1234"
+  },
+  {
+    "bets": 1,
+    "player": "7890",
+    "game": "LOO",
+    "return": 1.1,
+    "currency": 87,
+    "operator": 81,
+    "timestamp": "2013-10-20T10:09:54.827Z",
+    "stake": 123.0,
+    "win": true,
+    "gameround_id": "1235"
+  },
+  {
+    "bets": 1,
+    "player": "8384",
+    "game": "LOO",
+    "return": 0.0,
+    "currency": 92,
+    "operator": 81,
+    "timestamp": "2013-10-20T11:09:54.827Z",
+    "stake": 184.0,
+    "win": false,
+    "gameround_id": "1236"
+  }
+]
