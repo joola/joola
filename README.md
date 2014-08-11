@@ -1,4 +1,4 @@
-# joola [![Build Status][3]][4] [![Gitter chat](https://badges.gitter.im/joola/joola.png)](https://gitter.im/joola/joola)
+# joola [![Build Status][3]][4] [![Gitter chat](https://badges.gitter.im/joola/joola.png)](https://gitter.im/joola)
 
 | **[Technical Docs] [techdocs]**     | **[Setup Guide] [setup]**     | **[API Docs] [api-docs]**           | **[Contributing] [contributing]**           | **[About joola] [about]**     |
 |-------------------------------------|-------------------------------|-----------------------------------|---------------------------------------------|-------------------------------------|
@@ -180,7 +180,7 @@ If you're feeling lost or unsure, [just let us know](#Contact).
 ### Contact
 Contacting us is easy, ping us on one of these:
 
-- [![Gitter chat](https://badges.gitter.im/joola/joola.png)](https://gitter.im/joola/joola)
+- [![Gitter chat](https://badges.gitter.im/joola/joola.png)](https://gitter.im/joola)
 - [@joola][19]
 - [info@joo.la][20]
 - You can even fill out a [form][21].
