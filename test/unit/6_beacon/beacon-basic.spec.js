@@ -63,7 +63,7 @@ describe("beacon-basic", function () {
     var self = this;
     var docs = require('../../fixtures/basic-timestamps.json');
 
-    engine.beacon.insert(self.context, self.context.user.workspace, self.collection + '-dups', docs, function (err, docs) {
+    engine.beacon.insert(self.context, self.context.user.workspace, self.collection + '-times', docs, function (err, docs) {
       if (err)
         return done(err);
 

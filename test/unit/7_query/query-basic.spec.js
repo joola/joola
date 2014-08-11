@@ -674,7 +674,7 @@ describe("query-basic", function () {
       metrics: [
 
       ],
-      collection: this.collection
+      collection: this.collection + '-times'
     };
     joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
@@ -684,6 +684,30 @@ describe("query-basic", function () {
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.equal(1);
       //expect(result.documents[0].values.attribute).to.equal('test2');
+      return done();
+    });
+  });
+
+  it("should verify last_n_items by timestamp", function (done) {
+    var query = {
+      timeframe: 'last_1_items',
+      interval: 'second',
+      dimensions: ['timestamp'],
+      metrics: [
+
+      ],
+      collection: this.collection + '-times'
+    };
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      //console.log(require('util').inspect(result, {depth: null, colors: true}));
+
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.equal(1);
+      expect(new Date(result.documents[0].values.timestamp).getTime()).to.equal(new Date("2013-10-20T11:09:54.000Z").getTime());
       return done();
     });
   });
