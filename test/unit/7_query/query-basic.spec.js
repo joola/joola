@@ -8,7 +8,7 @@ describe("query-basic", function () {
     done();
   });
 
-  it("should not fail performing a query with no arguments", function (done) {
+  xit("should not fail performing a query with no arguments", function (done) {
     var query = {};
     var expected = 0;
 
@@ -562,6 +562,82 @@ describe("query-basic", function () {
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents.length).to.equal(1441);
+      return done();
+    });
+  });
+
+  it("should perform a freestyle unique count by attribute", function (done) {
+    var query = {
+      timeframe: 'this_day',
+      interval: 'minute',
+      dimensions: ['attribute'],
+      metrics: [
+        {
+          key: 'uniquevalue',
+          name: 'uniquevalue',
+          aggregation: 'ucount',
+          datatype: 'number',
+          dependsOn: ['attribute']
+        }
+      ],
+      collection: this.collection
+    };
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
+      expect(result.documents[0].values.uniquevalue).to.equal(1);
+      return done();
+    });
+  });
+
+  it("should perform an last_n_items query", function (done) {
+    var query = {
+      timeframe: 'last_1_items',
+      interval: 'minute',
+      dimensions: ['timestamp'],
+      metrics: [
+        {
+          key: 'uniquevalue',
+          name: 'uniquevalue',
+          aggregation: 'ucount',
+          datatype: 'number',
+          dependsOn: ['attribute']
+        }
+      ],
+      collection: this.collection
+    };
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
+      expect(result.documents[0].values.uniquevalue).to.equal(1);
+      return done();
+    });
+  });
+
+  it("should perform an last_n_items query w/o metrics", function (done) {
+    var query = {
+      timeframe: 'last_1_items',
+      interval: 'minute',
+      dimensions: ['attribute'],
+      metrics: [
+
+      ],
+      collection: this.collection
+    };
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
+      expect(result.documents[0].values.attribute).to.equal('test');
       return done();
     });
   });
