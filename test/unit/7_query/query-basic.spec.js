@@ -533,7 +533,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].fvalues.attribute).to.equal('transformed-' + 'test');
+      expect(result.documents[0].fvalues.attribute).to.equal('transformed-' + 'test1');
       return done();
     });
   });
@@ -615,12 +615,12 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.uniquevalue).to.equal(1);
+      expect(result.documents[0].values.uniquevalue).to.equal(2);
       return done();
     });
   });
 
-  it("should perform an last_n_items query w/o metrics", function (done) {
+  it("should perform an last_n_items query w/o metrics [last 1 items]", function (done) {
     var query = {
       timeframe: 'last_1_items',
       interval: 'minute',
@@ -634,10 +634,56 @@ describe("query-basic", function () {
       if (err)
         return done(err);
 
+      console.log(result.documents);
+      
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.attribute).to.equal('test');
+      expect(result.documents[0].values.attribute).to.equal('test3');
+      return done();
+    });
+  });
+
+  it("should perform an last_n_items query w/o metrics [last 2 items]", function (done) {
+    var query = {
+      timeframe: 'last_2_items',
+      interval: 'minute',
+      dimensions: ['attribute'],
+      metrics: [
+
+      ],
+      collection: this.collection
+    };
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.equal(2);
+      //expect(result.documents[0].values.attribute).to.equal('test2');
+      return done();
+    });
+  });
+
+  it("should perform an last_n_items query w/o metrics [timestamp]", function (done) {
+    var query = {
+      timeframe: 'last_1_items',
+      interval: 'second',
+      dimensions: ['timestamp'],
+      metrics: [
+
+      ],
+      collection: this.collection
+    };
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.equal(1);
+      //expect(result.documents[0].values.attribute).to.equal('test2');
       return done();
     });
   });

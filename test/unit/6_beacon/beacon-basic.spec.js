@@ -26,7 +26,6 @@ describe("beacon-basic", function () {
     doc.timestamp = this.dup;
 
     engine.beacon.insert(this.context, this.context.user.workspace, this.collection, doc, function (err, doc) {
-      console.log(err, doc);
       doc = doc[0];
       expect(doc.saved).to.equal(false);
       done();
@@ -60,10 +59,11 @@ describe("beacon-basic", function () {
     });
   });
 
-  xit("should load array of documents and verify timestamp", function (done) {
+  it("should load array of documents and verify timestamp", function (done) {
     var self = this;
     var docs = require('../../fixtures/basic-timestamps.json');
-    engine.beacon.insert(self.context, self.context.user.workspace, self.collection, docs, function (err, docs) {
+
+    engine.beacon.insert(self.context, self.context.user.workspace, self.collection + '-dups', docs, function (err, docs) {
       if (err)
         return done(err);
 
