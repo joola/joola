@@ -620,7 +620,7 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform an last_n_items query w/o metrics", function (done) {
+  it("should perform an last_n_items query w/o metrics [last 1 items]", function (done) {
     var query = {
       timeframe: 'last_1_items',
       interval: 'minute',
@@ -634,6 +634,8 @@ describe("query-basic", function () {
       if (err)
         return done(err);
 
+      console.log(result.documents);
+      
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
@@ -642,7 +644,7 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform an last_n_items query w/o metrics", function (done) {
+  it("should perform an last_n_items query w/o metrics [last 2 items]", function (done) {
     var query = {
       timeframe: 'last_2_items',
       interval: 'minute',
