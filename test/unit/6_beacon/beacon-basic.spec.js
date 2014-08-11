@@ -60,7 +60,7 @@ describe("beacon-basic", function () {
     });
   });
 
-  it("should load array of documents and verify timestamp", function (done) {
+  xit("should load array of documents and verify timestamp", function (done) {
     var self = this;
     var docs = require('../../fixtures/basic-timestamps.json');
     engine.beacon.insert(self.context, self.context.user.workspace, self.collection, docs, function (err, docs) {
@@ -71,6 +71,7 @@ describe("beacon-basic", function () {
         expect(d.timestamp === docs[index].timestamp);
         var shorttimestamp = new Date(d.timestamp);
         shorttimestamp.setMilliseconds(0);
+        //TODO: should be disabled check when using any store other than mongodb.
         expect(d.timestamp_timebucket.second.getTime()).to.equal(shorttimestamp.getTime());
         expect(d.saved).to.equal(true);
       });
