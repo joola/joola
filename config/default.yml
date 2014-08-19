@@ -1,4 +1,4 @@
-version: 0.0.450
+version: 0.1.2
 interfaces:
   webserver:
     enabled: true
@@ -452,6 +452,9 @@ workspaces:
           - "system:whoami"
           - "system:version"
           - "system:usage"
+          - "usage:last_write"
+          - "usage:last_read"
+          - "usage:last_use"
           - "misc:see_private"
         filter: []
       user:
