@@ -1,16 +1,23 @@
 [
   {
     "timestamp": null,
-    "attribute": "test",
+    "attribute": "test1",
     "value": 1,
     "another": 10,
     "third": 100
   },
   {
     "timestamp": null,
-    "attribute": "test",
+    "attribute": "test2",
     "value": 2,
     "another": 20,
     "third": 200
+  },
+  {
+    "timestamp": "2014-01-10T22:04:12.533Z",
+    "attribute": "test3",
+    "value": 3,
+    "another": 30,
+    "third": 300
   }
 ]
