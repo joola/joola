@@ -77,6 +77,8 @@ authentication:
   force404: false
 #sdk:
   # url: https://raw.githubusercontent.com/joola/joola.sdk/feature/%2376/bin/joola.js
+query:
+  fixgmt: false #should be true if server not running in GMT+0
 workspaces:
   _test:
     key: _test
