@@ -1,4 +1,4 @@
-version: 0.1.2
+version: 0.1.4
 interfaces:
   webserver:
     enabled: true
@@ -138,9 +138,9 @@ workspaces:
         displayName: "Stats Reader"
         ratelimit: 5000        
     collections:
-      stats-reads:
-        key: "stats-reads"
-        name: "stats-reads"
+      reads:
+        key: "reads"
+        name: "reads"
         strongTyped: true
         timestamp:
           datatype: "date"
@@ -177,9 +177,9 @@ workspaces:
           type: "metric"
           name: "readCount"
           key: "readCount"
-      stats-writes:
-        key: "stats-writes"
-        name: "stats-writes"
+      writes:
+        key: "writes"
+        name: "writes"
         strongTyped: true
         timestamp:
           datatype: "date"
@@ -216,9 +216,9 @@ workspaces:
           type: "metric"
           name: "writeCount"
           key: "writeCount"
-      stats-simple:
-        key: "stats-simple"
-        name: "stats-simple"
+      simple:
+        key: "simple"
+        name: "simple"
         strongTyped: true
         timestamp:
           datatype: "date"
@@ -255,9 +255,9 @@ workspaces:
           type: "metric"
           name: "simpleCount"
           key: "simpleCount"                            
-      stats-node-count:
-        key: "stats-node-count"
-        name: "stats-node-count"
+      node-count:
+        key: "node-count"
+        name: "node-count"
         strongTyped: true
         expireafterseconds: 3600
         timestamp:
@@ -280,9 +280,9 @@ workspaces:
           type: "metric"
           name: "nodes"
           key: "nodes"
-      stats-token-count:
-        key: "stats-token-count"
-        name: "stats-token-count"
+      token-count:
+        key: "token-count"
+        name: "token-count"
         strongTyped: true
         expireafterseconds: 3600
         timestamp:
@@ -305,9 +305,9 @@ workspaces:
           type: "metric"
           name: "tokens"
           key: "tokens"
-      stats-usage:
-        key: "stats-usage"
-        name: "stats-usage"
+      usage:
+        key: "usage"
+        name: "usage"
         strongTyped: true
         expireafterseconds: 3600
         timestamp:
@@ -335,9 +335,9 @@ workspaces:
           type: "metric"
           name: "mem"
           key: "mem"
-      stats-events-request:
-        key: "stats-events-request"
-        name: "stats-events-request"
+      events-request:
+        key: "events-request"
+        name: "events-request"
         strongTyped: true
         expireafterseconds: 3600
         timestamp:
@@ -360,9 +360,9 @@ workspaces:
           type: "metric"
           name: "events"
           key: "events"
-      stats-events-fulfilled:
-        key: "stats-events-fulfilled"
-        name: "stats-events-fulfilled"
+      events-fulfilled:
+        key: "events-fulfilled"
+        name: "events-fulfilled"
         strongTyped: true
         expireafterseconds: 3600
         timestamp:
