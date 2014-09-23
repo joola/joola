@@ -177,6 +177,11 @@ workspaces:
           type: "metric"
           name: "readCount"
           key: "readCount"
+        duration:
+          datatype: "number"
+          type: "metric"
+          name: "duration"
+          key: "duration"
       writes:
         key: "writes"
         name: "writes"
@@ -216,6 +221,11 @@ workspaces:
           type: "metric"
           name: "writeCount"
           key: "writeCount"
+        duration_per_doc:
+          datatype: "number"
+          type: "metric"
+          name: "duration_per_doc"
+          key: "duration_per_doc"
       simple:
         key: "simple"
         name: "simple"
