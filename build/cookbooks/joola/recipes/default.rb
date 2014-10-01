@@ -6,20 +6,20 @@ rabbitmq_plugin "rabbitmq_stomp" do
   action :enable
 end
 
-bash "install joola" do
-  user "root"
-  code <<-EOH
-    mkdir /opt/joola
-    mkdir /var/log/joola
-    cd /opt/joola
+#bash "install joola" do
+#  user "root"
+#  code <<-EOH
+#    mkdir /opt/joola
+#    mkdir /var/log/joola
+#    cd /opt/joola
     
-    sudo chown -R root /root/.npm
+#    sudo chown -R root /root/.npm
     
-    npm install /vagrant --production
-    chown -R vagrant /opt/joola
-    chown -R vagrant /var/log/joola
-  EOH
-end
+#    npm install /vagrant --production
+#    chown -R vagrant /opt/joola
+#    chown -R vagrant /var/log/joola
+#  EOH
+#end
 
 #bash "install pm2" do
 #  user "root"

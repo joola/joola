@@ -1,4 +1,4 @@
-version: 0.1.4
+version: 0.1.5
 interfaces:
   webserver:
     enabled: true
@@ -8,7 +8,7 @@ interfaces:
     port: 8080
     secureport: 8081
     secure: true
-    secureonly: true
+    secureonly: false
     keyfile: ./config/certs/server.key
     certfile: ./config/certs/server.crt
     ca: ./config/certs/ca.crt

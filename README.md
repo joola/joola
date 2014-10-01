@@ -32,19 +32,23 @@ For the example below to work out-of-the-box, it's required to have both joola a
  For more details on the installation process, please refer to [this guide](http://github.com/joola/joola/wiki/install-joola).
 
 #### Using Vagrant
-We have included a [Vagrant](http://www.vagrantup.com) file to support easy playing around and testing. Running `vagrant up` will install all needed dependencies and run joola for you in a sand boxed virtual environment. 
+We have included a [Vagrant](http://www.vagrantup.com) file to support easy playing around and testing. Running `vagrant up` will install all needed dependencies and allow you to run joola in a sand boxed virtual environment. 
 
 ```bash
 # Clone this repository
 $ git clone https://github.com/joola/joola
 $ cd joola
+# Update submodules containing chef recipes
+$ git submodule init
+$ git submodule update
+$ npm install
 
 $ vagrant up
 # wait for the box to come online
 $ vagrant ssh 
 
 # once in the box
-$ cd /opt/joola/node_modules/joola
+$ cd /vagrant
 $ node joola.js
 ```
 
