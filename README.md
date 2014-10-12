@@ -38,6 +38,9 @@ We have included a [Vagrant](http://www.vagrantup.com) file to support easy play
 # Clone this repository
 $ git clone https://github.com/joola/joola
 $ cd joola
+# Update submodules containing chef recipes
+$ git submodule init
+$ git submodule update
 
 $ vagrant up
 # wait for the box to come online

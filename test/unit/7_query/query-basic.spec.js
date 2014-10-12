@@ -28,7 +28,7 @@ describe("query-basic", function () {
       metrics: ['value', 'another'],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+      joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
 
