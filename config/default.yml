@@ -1,4 +1,4 @@
-version: 0.1.4
+version: 0.1.5
 interfaces:
   webserver:
     enabled: true
@@ -8,7 +8,7 @@ interfaces:
     port: 8080
     secureport: 8081
     secure: true
-    secureonly: true
+    secureonly: false
     keyfile: ./config/certs/server.key
     certfile: ./config/certs/server.crt
     ca: ./config/certs/ca.crt
@@ -77,6 +77,8 @@ authentication:
   force404: false
 #sdk:
   # url: https://raw.githubusercontent.com/joola/joola.sdk/feature/%2376/bin/joola.js
+query:
+  fixgmt: false #should be true if server not running in GMT+0
 workspaces:
   _test:
     key: _test
@@ -177,6 +179,11 @@ workspaces:
           type: "metric"
           name: "readCount"
           key: "readCount"
+        duration:
+          datatype: "number"
+          type: "metric"
+          name: "duration"
+          key: "duration"
       writes:
         key: "writes"
         name: "writes"
@@ -216,6 +223,11 @@ workspaces:
           type: "metric"
           name: "writeCount"
           key: "writeCount"
+        duration_per_doc:
+          datatype: "number"
+          type: "metric"
+          name: "duration_per_doc"
+          key: "duration_per_doc"
       simple:
         key: "simple"
         name: "simple"
@@ -427,6 +439,11 @@ workspaces:
           - "metrics:get"
           - "metrics:patch"
           - "metrics:delete"
+          - canvases:list
+          - canvases:add
+          - canvases:get
+          - canvases:patch
+          - canvases:delete
           - "roles:list"
           - "roles:get"
           - "roles:add"

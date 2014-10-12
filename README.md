@@ -1,4 +1,4 @@
-# joola [![Build Status][3]][4] [![Gitter chat](https://badges.gitter.im/joola/joola.png)](https://gitter.im/joola)
+# joola [![Build Status][3]][4] [![Gitter chat](https://badges.gitter.im/joola/joola.png)](https://gitter.im/joola/joola)
 
 | **[Technical Docs] [techdocs]**     | **[Setup Guide] [setup]**     | **[API Docs] [api-docs]**           | **[Contributing] [contributing]**           | **[About joola] [about]**     |
 |-------------------------------------|-------------------------------|-----------------------------------|---------------------------------------------|-------------------------------------|
@@ -32,19 +32,23 @@ For the example below to work out-of-the-box, it's required to have both joola a
  For more details on the installation process, please refer to [this guide](http://github.com/joola/joola/wiki/install-joola).
 
 #### Using Vagrant
-We have included a [Vagrant](http://www.vagrantup.com) file to support easy playing around and testing. Running `vagrant up` will install all needed dependencies and run joola for you in a sand boxed virtual environment. 
+We have included a [Vagrant](http://www.vagrantup.com) file to support easy playing around and testing. Running `vagrant up` will install all needed dependencies and allow you to run joola in a sand boxed virtual environment. 
 
 ```bash
 # Clone this repository
 $ git clone https://github.com/joola/joola
 $ cd joola
+# Update submodules containing chef recipes
+$ git submodule init
+$ git submodule update
+$ npm install
 
 $ vagrant up
 # wait for the box to come online
 $ vagrant ssh 
 
 # once in the box
-$ cd /opt/joola/node_modules/joola
+$ cd /vagrant
 $ node joola.js
 ```
 
@@ -180,7 +184,7 @@ If you're feeling lost or unsure, [just let us know](#Contact).
 ### Contact
 Contacting us is easy, ping us on one of these:
 
-- [![Gitter chat](https://badges.gitter.im/joola/joola.png)](https://gitter.im/joola)
+- [![Gitter chat](https://badges.gitter.im/joola/joola.png)](https://gitter.im/joola/joola)
 - [@joola][19]
 - [info@joo.la][20]
 - You can even fill out a [form][21].
@@ -209,8 +213,8 @@ Copyright (c) 2012-2014 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24]
 [18]: https://github.com/joola/joola/blob/master/CONTRIBUTING.md
 [19]: http://twitter.com/joola
 [20]: mailto://info@joo.la
-[21]: http://joo.la/#contact
-[22]: http://joola/
+[21]: https://joo.la/contact
+[22]: https://joo.la/
 [23]: http://ci.joo.la
 [24]: https://github.com/joola/joola/blob/master/LICENSE.md
 [25]: https://joolatech.atlassian.net/wiki/display/JAD/Welcome
