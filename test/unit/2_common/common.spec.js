@@ -81,6 +81,12 @@ describe("common-utils", function () {
 
   it("should generate uuid - 9 chars long", function () {
     var expected = 9;
+    var actual = engine.common.uuid(9).length;
+    expect(actual).to.equal(expected);
+  });
+
+  it("should generate uuid - 32 chars long", function () {
+    var expected = 32;
     var actual = engine.common.uuid().length;
     expect(actual).to.equal(expected);
   });
