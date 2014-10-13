@@ -19,19 +19,19 @@ describe("permissions", function () {
   });
 
   it("should return a valid list of permissions", function (done) {
-    engine.dispatch.permissions.list(this.context, function (err, permissions) {
+    engine.permissions.list(this.context, function (err, permissions) {
       return done(err);
     });
   });
 
   it("should get a permission", function (done) {
-    engine.dispatch.permissions.get(this.context, 'access_system', function (err, permissions) {
+    engine.permissions.get(this.context, 'access_system', function (err, permissions) {
       return done(err);
     });
   });
 
   it("should not get a not existing permission", function (done) {
-    engine.dispatch.permissions.get(this.context, 'access_system2', function (err, permissions) {
+    engine.permissions.get(this.context, 'access_system2', function (err, permissions) {
       if (err)
         return done();
       return done(new Error('This should not fail'));

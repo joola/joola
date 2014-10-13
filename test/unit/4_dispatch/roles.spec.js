@@ -24,7 +24,7 @@ describe("roles", function () {
       permissions: ['guest']
     };
 
-    engine.dispatch.roles.add(this.context, this.workspace, role, function (err, _role) {
+    engine.roles.add(this.context, this.workspace, role, function (err, _role) {
       if (err)
         return done(err);
 
@@ -34,7 +34,7 @@ describe("roles", function () {
   });
 
   it("should return a valid list of roles", function (done) {
-    engine.dispatch.roles.list(this.context, this.workspace, function (err, roles) {
+    engine.roles.list(this.context, this.workspace, function (err, roles) {
       return done(err);
     });
   });
@@ -44,7 +44,7 @@ describe("roles", function () {
       key: 'test-role-' + this.uid,
       permissions: ['guest']
     };
-    engine.dispatch.roles.add(this.context, this.workspace, role, function (err, _role) {
+    engine.roles.add(this.context, this.workspace, role, function (err, _role) {
       if (err)
         return done();
 
@@ -56,7 +56,7 @@ describe("roles", function () {
     var role = {
       key: 'test-role-missing-details'
     };
-    engine.dispatch.roles.add(this.context, this.workspace, role, function (err, _role) {
+    engine.roles.add(this.context, this.workspace, role, function (err, _role) {
       if (err)
         return done();
 
@@ -69,7 +69,7 @@ describe("roles", function () {
       key: 'test-role-' + this.uid,
       permissions: ['guest']
     };
-    engine.dispatch.roles.patch(this.context, this.workspace, role.key, role, function (err, _role) {
+    engine.roles.patch(this.context, this.workspace, role.key, role, function (err, _role) {
       if (err)
         return done(err);
       expect(_role.permissions.length).to.equal(1);
@@ -82,7 +82,7 @@ describe("roles", function () {
       key: 'test-role1-' + this.uid,
       permissions: ['guest']
     };
-    engine.dispatch.roles.patch(this.context, this.workspace, role.key, role, function (err, _role) {
+    engine.roles.patch(this.context, this.workspace, role.key, role, function (err, _role) {
       if (err)
         return done();
 
@@ -93,11 +93,11 @@ describe("roles", function () {
   it("should delete a role", function (done) {
     var self = this;
     var role = 'test-role-' + this.uid;
-    engine.dispatch.roles.delete(this.context, this.workspace, role, function (err) {
+    engine.roles.delete(this.context, this.workspace, role, function (err) {
       if (err)
         return done(err);
 
-      engine.dispatch.roles.get(self.context, self.workspace, role, function (err, role) {
+      engine.roles.get(self.context, self.workspace, role, function (err, role) {
         if (err)
           return done();
 
@@ -110,7 +110,7 @@ describe("roles", function () {
     var role = {
       key: 'test-role-notexist'
     };
-    engine.dispatch.roles.delete(this.context, this.workspace, role, function (err) {
+    engine.roles.delete(this.context, this.workspace, role, function (err) {
       if (err)
         return done();
 
