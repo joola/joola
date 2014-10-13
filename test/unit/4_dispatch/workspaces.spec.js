@@ -20,8 +20,8 @@ describe("workspaces", function () {
 
   after(function (done) {
     var self = this;
-    engine.dispatch.workspaces.delete(this.context, 'test-workspace-' + this.uid, function () {
-      engine.dispatch.workspaces.delete(self.context, 'test-workspace1-' + this.uid, function () {
+    engine.workspaces.delete(this.context, 'test-workspace-' + this.uid, function () {
+      engine.workspaces.delete(self.context, 'test-workspace1-' + this.uid, function () {
         done();
       });
     });
@@ -43,7 +43,7 @@ describe("workspaces", function () {
   });
 
   it("should return a valid list of workspaces", function (done) {
-    engine.dispatch.workspaces.list(this.context, function (err, workspaces) {
+    engine.workspaces.list(this.context, function (err, workspaces) {
       return done(err);
     });
   });
