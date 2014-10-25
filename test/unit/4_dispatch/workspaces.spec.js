@@ -21,7 +21,7 @@ describe("workspaces", function () {
   after(function (done) {
     var self = this;
     engine.workspaces.delete(this.context, 'test-workspace-' + this.uid, function () {
-      engine.workspaces.delete(self.context, 'test-workspace1-' + this.uid, function () {
+      engine.workspaces.delete(self.context, 'test-workspace1-' + self.uid, function () {
         done();
       });
     });
@@ -173,9 +173,52 @@ describe("workspaces", function () {
       expect(_workspace).to.be.ok;
 
       engine.workspaces.get(self.context, workspace.key, function (err, __workspace) {
-        console.log(err, __workspace);
         expect(__workspace).to.be.ok;
         done();
+      });
+    });
+  });
+
+  it("should create a new workspace user and push documents (issue #592)", function (done) {
+    var self = this;
+    this.workspace = {
+      key: 'test.workspace-592-' + this.uid,
+      name: 'test.workspace-592-' + this.uid,
+      filter: []
+    };
+    engine.workspaces.add(this.context, self.workspace, function (err, _workspace) {
+      if (err)
+        return done(err);
+
+      expect(_workspace).to.be.ok;
+      engine.workspaces.get(self.context, self.workspace.key, function (err, __workspace) {
+        expect(__workspace).to.be.ok;
+        var role = {
+          key: 'test-role-592-' + self.uid,
+          permissions: ['beacon:insert']
+        };
+        self.context.user.workspace = self.workspace.key;
+        engine.roles.add(self.context, self.workspace.key, role, function (err, _role) {
+          if (err)
+            return done(err);
+
+          expect(_role).to.be.ok;
+          var user = {
+            username: 'tester-592-' + self.uid,
+            displayName: 'tester user',
+            password: '1234',
+            roles: role.key,
+            filter: '',
+            workspace: self.workspace.key
+          };
+          engine.users.add(self.context, self.workspace.key, user, function (err, _user) {
+            expect(_user).to.be.ok;
+            engine.beacon.insert(self.context, self.workspace.key, 'collection-592', {timestamp: null, value: 1}, function (err, result) {
+              self.context.user.workspace = '_test';
+              return done(err);
+            });
+          });
+        });
       });
     });
   });
