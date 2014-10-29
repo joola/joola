@@ -34,3 +34,6 @@ config/certs/goo.pem
 npm-shrinkwrap.json
 
 .vagrant
+
+build/docker/log
+build/docker/data

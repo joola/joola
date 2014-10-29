@@ -18,13 +18,18 @@ RUN apt-get install -y redis-server mongodb rabbitmq-server
 RUN \
     curl -sL https://deb.nodesource.com/setup | sudo bash - && \
     apt-get install -y nodejs 
+RUN \
+    rabbitmq-plugins enable rabbitmq_stomp && \
+    service rabbitmq-server restart
 
 # setup needed settings/configuration for stack
 COPY ./build/docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf 
 RUN mkdir -p /var/run/sshd
-RUN echo "root:password" | chpasswd
+#RUN echo "root:password" | chpasswd
 RUN ulimit -n 1024
 ENV NODE_ENV production
+ENV RABBITMQ_LOG_BASE /opt/joola/data/rabbitmq/log
+ENV RABBITMQ_MNESIA_BASE /opt/joola/data/rabbitmq/mnesia
 
 # setup joola user account/group
 RUN \
@@ -34,13 +39,17 @@ RUN \
     mkdir /home/joola && \
     chown -R joola:joola /home/joola
     
+# setup joola directories
+RUN mkdir -p /opt/joola/bin 
+RUN chown -R joola:joola /opt/joola
+#RUN chown -R rabbitmq /opt/joola/data/rabbitmq
+
 # install joola
-RUN mkdir /opt/joola
-COPY . /opt/joola
+COPY . /opt/joola/bin
 RUN \ 
-    cd /opt/joola && \
+    cd /opt/joola/bin && \
     npm install 
- 
+COPY ./build/docker/run_within_docker.sh /opt/joola/bin/run_within_docker.sh
 
 EXPOSE 8080 8081 22
 ENTRYPOINT ["/usr/bin/supervisord"]
