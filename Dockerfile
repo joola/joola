@@ -37,7 +37,9 @@ RUN ulimit -n 1024
 RUN \
     groupadd joola && \
     useradd -g joola joola && \
-    echo "joola:joola" | chpasswd
+    echo "joola:joola" | chpasswd && \
+    mkdir /home/joola && \
+    chown -R joola:joola /home/joola
     
 # install joola
 #RUN mkdir /opt/joola
@@ -49,4 +51,4 @@ RUN \
 EXPOSE 8080 8081 22
 #WORKDIR /opt/joola
 
-ENTRYPOINT ["/var/cfengine/bin/docker_processes_run.sh"]
+#ENTRYPOINT ["/var/cfengine/bin/docker_processes_run.sh"]
