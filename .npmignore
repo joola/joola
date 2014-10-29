@@ -18,3 +18,13 @@ config/test.json
 config/certs/goo.pem
 
 .vagrant
+Dockerfile
+
+build
+docs
+test
+wiki
+benchmark
+Procfile
+Vagrantfile
+Makefile
