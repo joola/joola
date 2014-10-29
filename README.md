@@ -8,7 +8,7 @@ Some of the main benefits of using joola include:
 - Seamlessly **embeddable** into existing sites, including single-sign-on and advanced features.
 
 ### Getting Started
-Instance may take up to 60 seconds to become available.
+Instance may take up to **60 seconds** to become available.
 
 **Starting a simple instance with terminal:**
 
@@ -22,10 +22,7 @@ This instance includes `EXPOSE 8080 (http) and 8081 (https) and 22 (ssh)`.
 
 We've pre-loaded the package with a fully working sample site, so it's easy to get started.
 
-joola uses several leading open-source software for its operation. Before getting started, please install [MongoDB](http://mongodb.org), [Redis](http://redis.io) and [RabbitMQ](http://www.rabbitmq.com/), for more details on these pre-requisites please refer to the [wiki](http://github.com/joola/joola/wiki/install-joola).  
-
-For the example below to work out-of-the-box, it's required to have both joola and its dependencies installed on localhost.
- For more details on the installation process, please refer to [this guide](http://github.com/joola/joola/wiki/install-joola).
+    $ open https://localhost:8081
 
 ### Contributing
 We would love to get your help! We have outlined a simple [Contribution Policy][18] to support a transparent and easy merging
