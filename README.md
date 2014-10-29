@@ -217,7 +217,7 @@ Copyright (c) 2012-2014 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24]
 [14]: https://github.com/joola/joola
 [15]: http://nodejs.org
 [16]: http://serverfault.com/
-[17]: http://https://joolatech.atlassian.net/browse/JARVIS
+[17]: https://github.com/joola/joola/issues
 [18]: https://github.com/joola/joola/blob/master/CONTRIBUTING.md
 [19]: http://twitter.com/joola
 [20]: mailto://info@joo.la
@@ -225,11 +225,6 @@ Copyright (c) 2012-2014 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24]
 [22]: https://joo.la/
 [23]: http://ci.joo.la
 [24]: https://github.com/joola/joola/blob/master/LICENSE.md
-[25]: https://joolatech.atlassian.net/wiki/display/JAD/Welcome
-[26]: https://joolatech.atlassian.net/wiki/display/JAD/Getting+Started
-[27]: https://joolatech.atlassian.net/wiki/display/JAD/Installing+joola
-[28]: https://joolatech.atlassian.net/wiki/display/JAD/Developers
-[29]: https://joolatech.atlassian.net/wiki/display/JAD/Developers/Coding+Guidelines
 
 [architecture-doc]: https://github.com/joola/joola/wiki/Technical-architecture
 [talk-to-us]: https://github.com/joola/joola/wiki/Talk-to-us
