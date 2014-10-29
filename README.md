@@ -36,7 +36,7 @@ We have included a [Docker](http://www.docker.com) file to support easy playing 
 Using Docker will pull the latest docker image and run joola in a container for you.
 
 ```bash
-$ docker run -p 8081:8081 - it joola/joola
+$ docker run -p 8081:8081 -it joola/joola
 ``` 
 
 #### Using Vagrant
