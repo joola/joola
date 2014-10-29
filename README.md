@@ -32,7 +32,12 @@ For the example below to work out-of-the-box, it's required to have both joola a
  For more details on the installation process, please refer to [this guide](http://github.com/joola/joola/wiki/install-joola).
 
 #### Using Docker
-We have included a [Docker](http://www.docker.com) file to support easy playing around and testing. Running `docker run -p 8081:8081 - it joola/joola` will pull the latest docker image and run joola in a container for you. 
+We have included a [Docker](http://www.docker.com) file to support easy playing around and testing. 
+Using Docker will pull the latest docker image and run joola in a container for you.
+
+```bash
+$ docker run -p 8081:8081 - it joola/joola
+``` 
 
 #### Using Vagrant
 We have included a [Vagrant](http://www.vagrantup.com) file to support easy playing around and testing. Running `vagrant up` will install all needed dependencies and allow you to run joola in a sand boxed virtual environment. 
