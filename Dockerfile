@@ -10,16 +10,8 @@ RUN apt-get update -ym
 RUN apt-get upgrade -ym
 RUN apt-get install -y wget lsb-release unzip ca-certificates curl python build-essential git openssh-server
 
-# install latest CFEngine
-RUN wget -qO- http://cfengine.com/pub/gpg.key | apt-key add -
-RUN echo "deb http://cfengine.com/pub/apt $(lsb_release -cs) main" > /etc/apt/sources.list.d/cfengine-community.list
-RUN apt-get update && apt-get install -y cfengine-community
-
-# install cfe-docker process management policy
-RUN wget https://github.com/estenberg/cfe-docker/archive/master.zip -P /tmp/ && unzip /tmp/master.zip -d /tmp/
-RUN cp /tmp/cfe-docker-master/cfengine/bin/* /var/cfengine/bin/
-RUN cp /tmp/cfe-docker-master/cfengine/inputs/* /var/cfengine/inputs/
-RUN rm -rf /tmp/cfe-docker-master /tmp/master.zip
+# install supervisor
+RUN apt-get install -y supervisor
 
 # install needed stack components
 RUN apt-get install -y redis-server mongodb rabbitmq-server
@@ -28,27 +20,27 @@ RUN \
     apt-get install -y nodejs 
 
 # setup needed settings/configuration for stack
+COPY ./build/docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf 
 RUN mkdir -p /var/run/sshd
 RUN echo "root:password" | chpasswd
 RUN ulimit -n 1024
-#ENV NODE_ENV production
+ENV NODE_ENV production
 
-# Setup joola user account/group
+# setup joola user account/group
 RUN \
     groupadd joola && \
-    useradd -g joola joola && \
+    useradd -g joola -d /home/joola -s /bin/bash joola && \
     echo "joola:joola" | chpasswd && \
     mkdir /home/joola && \
     chown -R joola:joola /home/joola
     
 # install joola
-#RUN mkdir /opt/joola
-#COPY . /opt/joola
-#RUN \ 
-#    cd /opt/joola && \
-#    npm install 
-     
-EXPOSE 8080 8081 22
-#WORKDIR /opt/joola
+RUN mkdir /opt/joola
+COPY . /opt/joola
+RUN \ 
+    cd /opt/joola && \
+    npm install 
+ 
 
-#ENTRYPOINT ["/var/cfengine/bin/docker_processes_run.sh"]
+EXPOSE 8080 8081 22
+ENTRYPOINT ["/usr/bin/supervisord"]
