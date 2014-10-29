@@ -60,7 +60,7 @@ Copyright (c) 2012-2014 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24]
 [14]: https://github.com/joola/joola
 [15]: http://nodejs.org
 [16]: http://serverfault.com/
-[17]: http://https://joolatech.atlassian.net/browse/JARVIS
+[17]: https://github.com/joola/joola/issues
 [18]: https://github.com/joola/joola/blob/master/CONTRIBUTING.md
 [19]: http://twitter.com/joola
 [20]: mailto://info@joo.la
