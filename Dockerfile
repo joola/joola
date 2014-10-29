@@ -25,9 +25,7 @@ RUN \
 # setup needed settings/configuration for stack
 COPY ./build/docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf 
 RUN mkdir -p /var/run/sshd
-#RUN echo "root:password" | chpasswd
 RUN ulimit -n 1024
-ENV NODE_ENV production
 ENV RABBITMQ_LOG_BASE /opt/joola/data/rabbitmq/log
 ENV RABBITMQ_MNESIA_BASE /opt/joola/data/rabbitmq/mnesia
 
@@ -40,9 +38,9 @@ RUN \
     chown -R joola:joola /home/joola
     
 # setup joola directories
-RUN mkdir -p /opt/joola/bin 
+RUN mkdir -p /opt/joola/bin /opt/joola/logs /opt/joola/data/redis /opt/joola/data/mongodb /opt/joola/data/rabbitmq/log /opt/joola/data/rabbitmq/data
 RUN chown -R joola:joola /opt/joola
-#RUN chown -R rabbitmq /opt/joola/data/rabbitmq
+RUN chown -R rabbitmq /opt/joola/data/rabbitmq
 
 # install joola
 COPY . /opt/joola/bin
