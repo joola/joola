@@ -598,15 +598,7 @@ describe("query-basic", function () {
       timeframe: 'last_1_items',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: [
-        {
-          key: 'uniquevalue',
-          name: 'uniquevalue',
-          aggregation: 'ucount',
-          datatype: 'number',
-          dependsOn: ['attribute']
-        }
-      ],
+      metrics: ['value'],
       collection: this.collection
     };
     joola_proxy.query.fetch(this.context, query, function (err, result) {

@@ -72,7 +72,8 @@ describe("beacon-basic", function () {
         var shorttimestamp = new Date(d.timestamp);
         shorttimestamp.setMilliseconds(0);
         //TODO: should be disabled check when using any store other than mongodb.
-        expect(d.timestamp_timebucket.second.getTime()).to.equal(shorttimestamp.getTime());
+        if (engine.datastore.providers.default.name === 'mongodb')
+          expect(d.timestamp_timebucket.second.getTime()).to.equal(shorttimestamp.getTime());
         expect(d.saved).to.equal(true);
       });
       done();
