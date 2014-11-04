@@ -1,4 +1,4 @@
-version: 0.1.5
+version: 0.1.7
 interfaces:
   webserver:
     enabled: true
@@ -25,7 +25,6 @@ interfaces:
     port: 1337
 store:
   config:
-    enabled: true
     redis:
       dsn: redis://127.0.0.1
       ## if dsn not specific then these are required
@@ -34,7 +33,6 @@ store:
       # db: 0
       # auth: null
   dispatch:
-    enabled: false
     redis:
       dsn: redis://127.0.0.1
     stomp:
@@ -70,7 +68,7 @@ store:
       port: 28015
       db: joola
 dispatch:
-  enabled: false
+  enabled: true
   expires: 60
 authentication:
   basicauth:
