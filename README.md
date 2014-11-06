@@ -4,7 +4,7 @@
 |-------------------------------------|-------------------------------|-----------------------------------|---------------------------------------------|-------------------------------------|
 | [![i1] [techdocs-image]] [techdocs] | [![i2] [setup-image]] [setup] | [![i3] [api-docs-image]] [api-docs] | [![i4] [contributing-image]] [contributing] | [![i5] [about-image]] [about] |
 
-<img src="http://i.imgur.com/Kx6l8s3.png" alt="joola logo" title="joola" align="right" />
+<img src="https://joo.la/img/logo-profile.png" alt="joola logo" title="joola" align="right" />
 
 [joola][22] is a real-time data analytics and visualization framework allowing you to quickly save, query and visualize your data. 
 Some of the main benefits of using joola include:
@@ -30,6 +30,14 @@ joola uses several leading open-source software for its operation. Before gettin
 
 For the example below to work out-of-the-box, it's required to have both joola and its dependencies installed on localhost.
  For more details on the installation process, please refer to [this guide](http://github.com/joola/joola/wiki/install-joola).
+
+#### Using Docker
+We have included a [Docker](http://www.docker.com) file to support easy playing around and testing. 
+Using Docker will pull the latest docker image and run joola in a container for you.
+
+```bash
+$ docker run -p 8081:8081 -it joola/joola
+``` 
 
 #### Using Vagrant
 We have included a [Vagrant](http://www.vagrantup.com) file to support easy playing around and testing. Running `vagrant up` will install all needed dependencies and allow you to run joola in a sand boxed virtual environment. 
@@ -209,7 +217,7 @@ Copyright (c) 2012-2014 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24]
 [14]: https://github.com/joola/joola
 [15]: http://nodejs.org
 [16]: http://serverfault.com/
-[17]: http://https://joolatech.atlassian.net/browse/JARVIS
+[17]: https://github.com/joola/joola/issues
 [18]: https://github.com/joola/joola/blob/master/CONTRIBUTING.md
 [19]: http://twitter.com/joola
 [20]: mailto://info@joo.la
@@ -217,11 +225,6 @@ Copyright (c) 2012-2014 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24]
 [22]: https://joo.la/
 [23]: http://ci.joo.la
 [24]: https://github.com/joola/joola/blob/master/LICENSE.md
-[25]: https://joolatech.atlassian.net/wiki/display/JAD/Welcome
-[26]: https://joolatech.atlassian.net/wiki/display/JAD/Getting+Started
-[27]: https://joolatech.atlassian.net/wiki/display/JAD/Installing+joola
-[28]: https://joolatech.atlassian.net/wiki/display/JAD/Developers
-[29]: https://joolatech.atlassian.net/wiki/display/JAD/Developers/Coding+Guidelines
 
 [architecture-doc]: https://github.com/joola/joola/wiki/Technical-architecture
 [talk-to-us]: https://github.com/joola/joola/wiki/Talk-to-us
