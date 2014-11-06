@@ -1,4 +1,4 @@
-version: 0.1.7
+version: 0.1.5
 interfaces:
   webserver:
     enabled: true
@@ -61,12 +61,8 @@ store:
       path: /var/log/joola
   datastore:
     mongodb:
-      enabled: false
-    rethinkdb:
-      enabled: true
-      host: localhost
-      port: 28015
-      db: joola
+      dsn: mongodb://localhost:27017/cache
+      expireafterseconds: 0
 dispatch:
   enabled: true
   expires: 60
@@ -77,12 +73,12 @@ authentication:
     expireafter: 1200000
   ratelimits:
     guest: 60
-    user: 99999999999
+    user: 5000
   force404: false
 #sdk:
   # url: https://raw.githubusercontent.com/joola/joola.sdk/feature/%2376/bin/joola.js
 query:
-  fixgmt: true #should be true if server not running in GMT+0
+  fixgmt: false #should be true if server not running in GMT+0
 workspaces:
   _test:
     key: _test
@@ -110,7 +106,7 @@ workspaces:
           - "root"
         displayName: "Administrator"
         APIToken: "apitoken-test"
-        ratelimit: 0
+        ratelimit: 5000
   _stats:
     key: _stats
     name: Internal Stats
@@ -135,14 +131,14 @@ workspaces:
           - "beacon"
         displayName: "Stats Beacon"
         APIToken: "apitoken-stats"
-        ratelimit: 0
+        ratelimit: 5000
       reader:
         username: "stats-reader"
         password: "password"
         roles:
           - "reader"
         displayName: "Stats Reader"
-        ratelimit: 0
+        ratelimit: 5000        
     collections:
       reads:
         key: "reads"
@@ -507,7 +503,7 @@ workspaces:
           - "root"
         displayName: "Administrator"
         APIToken: "apitoken-demo"
-        ratelimit: 0
+        ratelimit: 5000
         filter: []
       beacon:
         username: "beacon"
