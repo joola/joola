@@ -598,15 +598,7 @@ describe("query-basic", function () {
       timeframe: 'last_1_items',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: [
-        {
-          key: 'uniquevalue',
-          name: 'uniquevalue',
-          aggregation: 'ucount',
-          datatype: 'number',
-          dependsOn: ['attribute']
-        }
-      ],
+      metrics: ['value'],
       collection: this.collection
     };
     joola_proxy.query.fetch(this.context, query, function (err, result) {
@@ -615,7 +607,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.uniquevalue).to.equal(2);
+      expect(result.documents[0].values.value).to.equal(3);
       return done();
     });
   });
@@ -634,8 +626,7 @@ describe("query-basic", function () {
       if (err)
         return done(err);
 
-      console.log(result.documents);
-      
+     
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
@@ -701,8 +692,6 @@ describe("query-basic", function () {
     joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-
-      //console.log(require('util').inspect(result, {depth: null, colors: true}));
 
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
