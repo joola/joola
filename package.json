@@ -68,7 +68,7 @@
     "humanize-number": "0.0.2",
     "jade": "*",
     "joola.cli": "^0.1.0",
-    "joola.datastore-influxdb": "^0.0.9",
+    "joola.datastore-influxdb": "^0.0.10",
     "joola.datastore-mongodb": "^0.0.10",
     "joola.sdk": "^0.7.0",
     "js-yaml": "^3.0.2",
