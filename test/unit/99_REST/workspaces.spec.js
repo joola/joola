@@ -170,7 +170,7 @@ describe("workspaces", function () {
     });
   });
 
-  xit("should create a new workspace user and push documents (issue #592)", function (done) {
+  it("should create a new workspace user and push documents (issue #592)", function (done) {
     var self = this;
     this.workspace = {
       key: 'test.workspace-592-' + this.uid,
