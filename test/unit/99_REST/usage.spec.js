@@ -39,7 +39,7 @@ describe("collections", function () {
           ],
           filter: []
         };
-        joola.query({_: token._}, query, function (err, usage) {
+        joola.query.fetch({_: token._}, query, function (err, usage) {
           if (err)
             return done(err);
 
