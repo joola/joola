@@ -26,17 +26,19 @@ interfaces:
 store:
   config:
     redis:
-      dsn: redis://127.0.0.1
+      enabled: false
+      # dsn: redis://127.0.0.1
       ## if dsn not specific then these are required
       # host: 127.0.0.1
       # port: 6379
       # db: 0
       # auth: null
   dispatch:
-    redis:
-      dsn: redis://127.0.0.1
-    stomp:
-      dsn: stomp://guest:guest@127.0.0.1:61613
+    enabled: false
+    #redis:
+    #  dsn: redis://127.0.0.1
+    #stomp:
+    #  dsn: stomp://guest:guest@127.0.0.1:61613
       # if dsn not specific then these are required
       # host: 127.0.0.1
       # port: 61613
@@ -45,10 +47,12 @@ store:
   websocket:
     http:
       redis:
-        dsn: redis://127.0.0.1
+        enabled: false
+        #dsn: redis://127.0.0.1
     https:
       redis:
-        dsn: redis://127.0.0.1
+        enabled: false
+        # dsn: redis://127.0.0.1
   logger:
     console:
       level: trace
@@ -64,11 +68,12 @@ store:
       dsn: mongodb://localhost:27017/cache
       expireafterseconds: 0
 dispatch:
-  enabled: true
+  enabled: false
   expires: 60
 authentication:
   basicauth:
-    enabled: false
+    enabled: true
+    enable_with_http: true
   tokens:
     expireafter: 1200000
   ratelimits:
