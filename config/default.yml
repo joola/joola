@@ -1,4 +1,4 @@
-version: 0.1.5
+version: 0.1.8
 interfaces:
   webserver:
     enabled: true
@@ -67,6 +67,8 @@ store:
     mongodb:
       dsn: mongodb://localhost:27017/cache
       expireafterseconds: 0
+beacon:
+  wait: true
 dispatch:
   enabled: true
   expires: 60
