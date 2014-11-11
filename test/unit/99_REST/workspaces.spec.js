@@ -204,7 +204,7 @@ describe("workspaces", function () {
           };
           joola.users.add(self.workspace.key, user, function (err, _user) {
             expect(_user).to.be.ok;
-            joola.beacon.insert('collection-592', {timestamp: null, value: 1}, function (err, result) {
+            joola.insert('collection-592', {timestamp: null, value: 1}, function (err, result) {
               return done(err);
             });
           });

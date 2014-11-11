@@ -1,4 +1,4 @@
-version: 0.1.5
+version: 0.1.8
 interfaces:
   webserver:
     enabled: true
@@ -26,6 +26,7 @@ interfaces:
 store:
   config:
     redis:
+      # enabled: true
       dsn: redis://127.0.0.1
       ## if dsn not specific then these are required
       # host: 127.0.0.1
@@ -33,6 +34,7 @@ store:
       # db: 0
       # auth: null
   dispatch:
+    # enabled: true
     redis:
       dsn: redis://127.0.0.1
     stomp:
@@ -45,9 +47,11 @@ store:
   websocket:
     http:
       redis:
+        #enabled: true
         dsn: redis://127.0.0.1
     https:
       redis:
+        #enabled: true
         dsn: redis://127.0.0.1
   logger:
     console:
@@ -63,12 +67,15 @@ store:
     mongodb:
       dsn: mongodb://localhost:27017/cache
       expireafterseconds: 0
+beacon:
+  wait: true
 dispatch:
   enabled: true
   expires: 60
 authentication:
   basicauth:
-    enabled: false
+    enabled: true
+    enable_with_http: true
   tokens:
     expireafter: 1200000
   ratelimits:
