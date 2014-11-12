@@ -28,7 +28,7 @@ describe("query-basic", function () {
       metrics: ['value', 'another'],
       collection: this.collection
     };
-      joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
 
@@ -36,6 +36,7 @@ describe("query-basic", function () {
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents[0].values.value).to.equal(4);
+      expect(result.documents[0].values.another).to.equal(40);
       return done();
     });
   });
@@ -92,7 +93,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents.length).to.equal(1441);
+      expect(result.documents.length).to.equal(1);
       return done();
     });
   });
@@ -367,7 +368,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents.length).to.equal(1441);
+      expect(result.documents.length).to.equal(1);
       return done();
     });
   });
@@ -561,7 +562,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents.length).to.equal(1441);
+      expect(result.documents.length).to.equal(1);
       return done();
     });
   });
@@ -626,7 +627,7 @@ describe("query-basic", function () {
       if (err)
         return done(err);
 
-     
+
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
