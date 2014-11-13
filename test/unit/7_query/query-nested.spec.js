@@ -76,7 +76,7 @@ describe("query-nested", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents.length).to.equal(2);
+      expect(result.documents.length).to.equal(1);
       return done();
     });
   });
@@ -97,7 +97,7 @@ describe("query-nested", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents.length).to.equal(2);
+      expect(result.documents.length).to.equal(1);
       return done();
     });
   });
@@ -121,7 +121,7 @@ describe("query-nested", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents.length).to.equal(2);
+      expect(result.documents.length).to.equal(1);
       return done();
     });
   });
@@ -145,7 +145,7 @@ describe("query-nested", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents.length).to.equal(2);
+      expect(result.documents.length).to.equal(1);
       return done();
     });
   });
