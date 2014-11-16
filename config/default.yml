@@ -5,7 +5,7 @@ interfaces:
     welcome: true
     # host: joola #used for response-header [Server]
     bind: 0.0.0.0
-    port: 8080
+    port: 8082
     secureport: 8081
     secure: true
     secureonly: false
@@ -88,7 +88,7 @@ authentication:
     expireafter: 1200000
   ratelimits:
     guest: 60
-    user: 5000
+    user: 9999999999
   force404: false
 #sdk:
   # url: https://raw.githubusercontent.com/joola/joola.sdk/feature/%2376/bin/joola.js
@@ -121,7 +121,7 @@ workspaces:
           - "root"
         displayName: "Administrator"
         APIToken: "apitoken-test"
-        ratelimit: 5000
+        ratelimit: 9999999999
   _stats:
     key: _stats
     name: Internal Stats
@@ -146,14 +146,14 @@ workspaces:
           - "beacon"
         displayName: "Stats Beacon"
         APIToken: "apitoken-stats"
-        ratelimit: 5000
+        ratelimit: 9999999999
       reader:
         username: "stats-reader"
         password: "password"
         roles:
           - "reader"
         displayName: "Stats Reader"
-        ratelimit: 5000        
+        ratelimit: 9999999999        
     collections:
       reads:
         key: "reads"
@@ -518,7 +518,7 @@ workspaces:
           - "root"
         displayName: "Administrator"
         APIToken: "apitoken-demo"
-        ratelimit: 5000
+        ratelimit: 9999999999
         filter: []
       beacon:
         username: "beacon"
