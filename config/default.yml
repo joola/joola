@@ -1,4 +1,4 @@
-version: 0.1.8
+version: 0.1.10
 interfaces:
   webserver:
     enabled: true
@@ -24,6 +24,9 @@ interfaces:
     enabled: false
     port: 1337
 store:
+  stats:
+    punt:
+      port: 3015
   config:
     redis:
       # enabled: true

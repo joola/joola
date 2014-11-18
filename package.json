@@ -42,6 +42,7 @@
   ],
   "dependencies": {
     "async": "*",
+    "axon": "^2.0.1",
     "benchmark": "^1.0.0",
     "body-parser": "^1.0.2",
     "bunyan": "^1.2.0",
@@ -77,6 +78,7 @@
     "localeval": "~13.12.11",
     "microtime": "^0.5.1",
     "moment": "^2.5.1",
+    "punt": "^2.2.0",
     "querystring": "~0.2.0",
     "redis": "^0.12.0",
     "repl.history": "*",
@@ -88,7 +90,8 @@
     "stomp": "https://github.com/joola/stomp-js/tarball/master",
     "traverse": "http://registry.npmjs.org/traverse/-/traverse-0.6.6.tgz",
     "twix": "^0.5.0",
-    "underscore": "^1.7.0"
+    "underscore": "^1.7.0",
+    "usage": "^0.5.0"
   },
   "devDependencies": {
     "socket.io-browserify": "*",
