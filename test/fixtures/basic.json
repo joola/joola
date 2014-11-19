@@ -19,5 +19,12 @@
     "value": 3,
     "another": 30,
     "third": 300
+  },
+  {
+    "timestamp": "2018-01-10T22:04:12.533Z",
+    "attribute": "test-future",
+    "value": 0,
+    "another": 0,
+    "third": 0
   }
 ]
