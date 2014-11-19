@@ -697,7 +697,9 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.equal(1);
-      expect(new Date(result.documents[0].values.timestamp).getTime()).to.equal(new Date("2013-10-20T11:09:54.827Z").getTime());
+      var _date =new Date(result.documents[0].values.timestamp);
+      _date.setMilliseconds(0);
+      expect(_date.getTime()).to.equal(new Date("2013-10-20T11:09:54.000Z").getTime());
       return done();
     });
   });

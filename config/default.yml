@@ -30,7 +30,6 @@ store:
   config:
     redis:
       # enabled: true
-      # namespace: joola
       dsn: redis://127.0.0.1
       ## if dsn not specific then these are required
       # host: 127.0.0.1
@@ -69,8 +68,14 @@ store:
       path: /var/log/joola
   datastore:
     mongodb:
+      enabled: false
       dsn: mongodb://localhost:27017/cache
       expireafterseconds: 0
+    rethinkdb:
+      enabled: true
+      host: localhost
+      port: 28015
+      db: joola
 beacon:
   wait: true
 dispatch:
