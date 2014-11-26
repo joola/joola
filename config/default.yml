@@ -5,7 +5,7 @@ interfaces:
     welcome: true
     # host: joola #used for response-header [Server]
     bind: 0.0.0.0
-    port: 8082
+    port: 8080
     secureport: 8081
     secure: true
     secureonly: false
