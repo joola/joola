@@ -308,7 +308,7 @@ describe("users", function () {
     });
   });
 
-  it("should delete a user", function (done) {
+  xit("should delete a user", function (done) {
     var self = this;
     var user = {
       username: 'tester-' + this.uid
