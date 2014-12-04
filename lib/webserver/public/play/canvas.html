@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:joola="http://joo.la/ns/1.0">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="/joola.js?APIToken=apitoken-demo"></script>
+</head>
+<body>
+<div id="canvas">
+  <div id="datepicker"></div>
+  <div id="bartable"></div>
+</div>
+<!--
+<joola:bartable query.dimensions="['browser']" query.metrics="['mousemoves']"
+                query.collection="demo-mousemoves"></joola:bartable>
+-->
+<script>
+  joola.on('ready', function () {
+    $('#canvas').Canvas({
+      datepicker: {
+        container: '#datepicker'
+      },
+      visualizations: {
+        bartable: {
+          type: 'bartable',
+          container: '#bartable',
+          query: {
+            dimensions: ['browser'],
+            metrics: ['mousemoves'],
+            collection: 'demo-mousemoves',
+            orderby: [
+              ['mousemoves', 'DESC']
+            ]
+          }
+        }
+      }
+    })
+  });
+</script>
+
+</body>
+</html>
