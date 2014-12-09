@@ -10,10 +10,13 @@
   <div id="datepicker"></div>
   <div id="bartable"></div>
 </div>
-<!--
-<joola:bartable query.dimensions="['browser']" query.metrics="['mousemoves']"
-                query.collection="demo-mousemoves"></joola:bartable>
--->
+
+<joola:bartable caption="Clicks" query.dimensions="['browser']" query.metrics="['clicks']"
+                query.collection="demo-clicks"></joola:bartable>
+
+<joola:bartable caption="Clicks (limit 1)" headers="true" include_not_shown="true" limit="1" query.dimensions="['browser']" query.metrics="['clicks']"
+                query.collection="demo-clicks"></joola:bartable>
+
 <script>
   joola.on('ready', function () {
     $('#canvas').Canvas({
