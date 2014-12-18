@@ -6,7 +6,7 @@
   <script src="/joola.js?APIToken=apitoken-demo"></script>
   <style>
     .clearfix {
-      clear: both
+      clear: both;
     }
   </style>
 </head>
@@ -17,10 +17,6 @@
   <div class="clearfix"></div>
   <div id="bartable1"></div>
   <div id="bartable2"></div>
-</div>
-<div id="canvas2">
-  <div id="datepicker2"></div>
-  <div class="clearfix"></div>
   <div id="bartable3"></div>
   <div id="bartable4"></div>
 </div>
@@ -72,14 +68,7 @@
               ['mousemoves', 'DESC']
             ]
           }
-        }
-      }
-    });
-    $('#canvas2').Canvas({
-      datepicker: {
-        container: '#datepicker2'
-      },
-      visualizations: {
+        },
         bartable3: {
           type: 'bartable',
           caption: 'Limit',
