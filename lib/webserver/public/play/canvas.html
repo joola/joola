@@ -27,7 +27,8 @@
 
 <script>
   joola.on('ready', function () {
-    $('#bartable').BarTable({
+    new joola.viz.BarTable({
+      container: '#bartable',
       caption: 'Default w/o canvas',
       query: {
         timeframe: 'last_90_days',
@@ -40,7 +41,9 @@
         ]
       }
     });
-    $('#canvas').Canvas({
+
+    new joola.viz.Canvas({
+      container: '#canvas',
       datepicker: {
         container: '#datepicker'
       },
@@ -75,7 +78,10 @@
         }
       }
     });
-    $('#canvas2').Canvas({
+
+
+    new joola.viz.Canvas({
+      container: '#canvas2',
       datepicker: {
         container: '#datepicker2'
       },
@@ -116,7 +122,7 @@
           }
         }
       }
-    })
+    });
   });
 </script>
 
