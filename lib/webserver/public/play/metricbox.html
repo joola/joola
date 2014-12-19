@@ -11,11 +11,11 @@
   </style>
 </head>
 <body>
-<div id="bartable"></div>
+<div id="metric"></div>
 <div id="canvas">
   <div id="datepicker"></div>
   <div class="clearfix"></div>
-  <div id="bartable1"></div>
+  <div id="metric1"></div>
   <div id="bartable2"></div>
   <div id="bartable3"></div>
   <div id="bartable4"></div>
@@ -23,13 +23,12 @@
 
 <script>
   joola.on('ready', function () {
-    new joola.viz.BarTable({
-      container: '#bartable',
+    new joola.viz.Metric({
+      container: '#metric',
       caption: 'Default w/o canvas',
       query: {
         timeframe: 'last_90_days',
         interval: 'day',
-        dimensions: ['browser'],
         metrics: ['mousemoves'],
         collection: 'demo-mousemoves',
         orderby: [
@@ -43,12 +42,12 @@
         container: '#datepicker'
       },
       visualizations: {
-        bartable1: {
-          type: 'bartable',
+        metric1: {
+          type: 'metric',
           caption: 'Default w/ canvas',
-          container: '#bartable1',
+          container: '#metric1',
           query: {
-            dimensions: ['browser'],
+            dimensions: [],
             metrics: ['mousemoves'],
             collection: 'demo-mousemoves',
             orderby: [
@@ -107,7 +106,7 @@
           }
         }
       }
-    })
+    });
   });
 </script>
 
