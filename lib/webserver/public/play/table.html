@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:joola="http://joo.la/ns/1.0">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="/joola.js?APIToken=apitoken-demo"></script>
+  <style>
+    .clearfix {
+      clear: both;
+    }
+  </style>
+</head>
+<body>
+<div id="table"></div>
+<div id="canvas">
+  <div id="datepicker"></div>
+  <div class="clearfix"></div>
+  <div id="table1"></div>
+  <div id="table2"></div>
+  <div id="table3"></div>
+  <div id="table4"></div>
+</div>
+
+<script>
+  joola.on('ready', function () {
+    new joola.viz.Table({
+      container: '#table',
+      caption: 'Default w/o canvas',
+      query: {
+        timeframe: 'last_90_days',
+        interval: 'day',
+        dimensions: ['browser'],
+        metrics: [{key: 'mousemoves', name: 'Mouse moves'}, {key: 'clicks', collection: 'demo-clicks'}, {
+          key: 'visits',
+          collection: 'demo-visits'
+        }],
+        collection: 'demo-mousemoves',
+        orderby: [
+          ['mousemoves', 'DESC']
+        ]
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

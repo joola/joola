@@ -26,15 +26,17 @@
     new joola.viz.BarTable({
       container: '#bartable',
       caption: 'Default w/o canvas',
+      limit: 2,
       query: {
-        timeframe: 'last_90_days',
+        timeframe: 'last_10_seconds',
         interval: 'day',
         dimensions: ['browser'],
         metrics: ['mousemoves'],
         collection: 'demo-mousemoves',
         orderby: [
           ['mousemoves', 'DESC']
-        ]
+        ],
+        realtime: true
       }
     });
     new joola.viz.Canvas({
