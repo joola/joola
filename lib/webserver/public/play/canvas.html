@@ -34,6 +34,8 @@
   <div id="bartable2"></div>
   <div id="bartable3"></div>
   <div class="clearfix"></div>
+  <div id="table"></div>
+  <div class="clearfix"></div>
 </div>
 <div id="canvas2">
   <div id="datepicker2"></div>
@@ -58,17 +60,17 @@
           caption: 'Mouse moves',
           container: '#bartable1',
           query: {
-            dimensions: [{key:'browser', name:'Browser'}],
+            dimensions: [{key: 'browser', name: 'Browser'}],
             metrics: ['mousemoves'],
             collection: 'demo-mousemoves',
             orderby: [
               ['mousemoves', 'DESC']
             ],
-            realtime:true
+            realtime: true
           },
           /*select: function (ref) {
-            console.log('select', ref);
-          }*/
+           console.log('select', ref);
+           }*/
         },
         bartable2: {
           type: 'bartable',
@@ -81,7 +83,7 @@
             orderby: [
               ['clicks', 'DESC']
             ],
-            realtime:true
+            realtime: true
           },
           //select: false
         },
@@ -97,7 +99,7 @@
             orderby: [
               ['visits', 'DESC']
             ],
-            realtime:true
+            realtime: true
           }
         },
         metric1: {
@@ -125,6 +127,24 @@
           query: {
             metrics: ['visits'],
             collection: 'demo-visits'
+          }
+        },
+        table: {
+          container: '#table',
+          type: 'table',
+          caption: '',
+          query: {
+            timeframe: 'last_90_days',
+            interval: 'day',
+            dimensions: ['browser', 'engine'],
+            metrics: [{key: 'mousemoves', name: 'Mouse moves'}, {key: 'clicks', collection: 'demo-clicks'}, {
+              key: 'visits',
+              collection: 'demo-visits'
+            }],
+            collection: 'demo-mousemoves',
+            orderby: [
+              ['mousemoves', 'DESC']
+            ]
           }
         }
       }

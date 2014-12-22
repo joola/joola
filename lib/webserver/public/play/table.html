@@ -28,13 +28,14 @@
       caption: 'Default w/o canvas',
       query: {
         timeframe: 'last_90_days',
-        interval: 'day',
-        dimensions: ['browser'],
+        interval: 'minute',
+        dimensions: ['timestamp', 'browser', 'engine'],
         metrics: [{key: 'mousemoves', name: 'Mouse moves'}, {key: 'clicks', collection: 'demo-clicks'}, {
           key: 'visits',
           collection: 'demo-visits'
         }],
         collection: 'demo-mousemoves',
+        filter: [],
         orderby: [
           ['mousemoves', 'DESC']
         ]
