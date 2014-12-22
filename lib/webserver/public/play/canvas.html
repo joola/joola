@@ -8,45 +8,49 @@
     .clearfix {
       clear: both
     }
+
+    #metric1, #metric2, #metric3 {
+      float: left;
+      width: 33%;
+    }
+
+    #bartable1, #bartable2, #bartable3 {
+      float: left;
+      width: 33%;
+    }
   </style>
 </head>
 <body>
-<div id="bartable"></div>
 <div id="canvas">
+  <div id="filters"></div>
+  <div class="clearfix"></div>
   <div id="datepicker"></div>
+  <div class="clearfix"></div>
+  <div id="metric1"></div>
+  <div id="metric2"></div>
+  <div id="metric3"></div>
   <div class="clearfix"></div>
   <div id="bartable1"></div>
   <div id="bartable2"></div>
+  <div id="bartable3"></div>
+  <div class="clearfix"></div>
 </div>
 <div id="canvas2">
   <div id="datepicker2"></div>
   <div class="clearfix"></div>
-  <div id="bartable3"></div>
   <div id="bartable4"></div>
+  <div id="bartable5"></div>
 </div>
 
 <script>
   joola.on('ready', function () {
-    new joola.viz.BarTable({
-      container: '#bartable',
-      caption: 'Default w/o canvas',
-      query: {
-        timeframe: 'last_90_days',
-        interval: 'day',
-        dimensions: ['browser'],
-        metrics: ['mousemoves'],
-        collection: 'demo-mousemoves',
-        orderby: [
-          ['mousemoves', 'DESC']
-        ],
-        realtime: true
-      }
-    });
-
     new joola.viz.Canvas({
       container: '#canvas',
       datepicker: {
         container: '#datepicker'
+      },
+      filters: {
+        container: '#filters'
       },
       visualizations: {
         bartable1: {
@@ -60,7 +64,10 @@
             orderby: [
               ['mousemoves', 'DESC']
             ]
-          }
+          },
+          /*select: function (ref) {
+            console.log('select', ref);
+          }*/
         },
         bartable2: {
           type: 'bartable',
@@ -69,12 +76,54 @@
           colors: ['green'],
           offcolors: ['black'],
           query: {
-            dimensions: ['browser'],
-            metrics: ['mousemoves'],
-            collection: 'demo-mousemoves',
+            dimensions: ['engine'],
+            metrics: ['clicks'],
+            collection: 'demo-clicks',
             orderby: [
-              ['mousemoves', 'DESC']
+              ['clicks', 'DESC']
             ]
+          },
+          //select: false
+        },
+        bartable3: {
+          type: 'bartable',
+          caption: 'Limit',
+          container: '#bartable3',
+
+          query: {
+            dimensions: ['browser'],
+            metrics: ['visits'],
+            collection: 'demo-visits',
+            orderby: [
+              ['visits', 'DESC']
+            ]
+          }
+        },
+        metric1: {
+          type: 'metric',
+          caption: 'Mouse moves',
+          container: '#metric1',
+          query: {
+            metrics: ['mousemoves'],
+            collection: 'demo-mousemoves'
+          }
+        },
+        metric2: {
+          type: 'metric',
+          caption: 'Clicks',
+          container: '#metric2',
+          query: {
+            metrics: ['clicks'],
+            collection: 'demo-clicks'
+          }
+        },
+        metric3: {
+          type: 'metric',
+          caption: 'Visits',
+          container: '#metric3',
+          query: {
+            metrics: ['visits'],
+            collection: 'demo-visits'
           }
         }
       }
@@ -87,10 +136,10 @@
         container: '#datepicker2'
       },
       visualizations: {
-        bartable3: {
+        bartable4: {
           type: 'bartable',
           caption: 'Limit',
-          container: '#bartable3',
+          container: '#bartable4',
           limit: 1,
           strings: {
             not_shown: 'not shown'
@@ -104,10 +153,10 @@
             ]
           }
         },
-        bartable4: {
+        bartable5: {
           type: 'bartable',
           caption: 'Limit w/o "not shown"',
-          container: '#bartable4',
+          container: '#bartable5',
           limit: 1,
           strings: {
             not_shown: 'not shown'

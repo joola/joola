@@ -68,8 +68,13 @@ store:
       path: /var/log/joola
   datastore:
     mongodb:
+      enabled: false
       dsn: mongodb://localhost:27017/cache
       expireafterseconds: 0
+    rethinkdb:
+      host: localhost
+      port: 28015
+      db: joola
 beacon:
   wait: true
 dispatch:
