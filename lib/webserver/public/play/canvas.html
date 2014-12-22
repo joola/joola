@@ -49,21 +49,22 @@
       datepicker: {
         container: '#datepicker'
       },
-      filters: {
+      filterbox: {
         container: '#filters'
       },
       visualizations: {
         bartable1: {
           type: 'bartable',
-          caption: 'Default w/ canvas',
+          caption: 'Mouse moves',
           container: '#bartable1',
           query: {
-            dimensions: ['browser'],
+            dimensions: [{key:'browser', name:'Browser'}],
             metrics: ['mousemoves'],
             collection: 'demo-mousemoves',
             orderby: [
               ['mousemoves', 'DESC']
-            ]
+            ],
+            realtime:true
           },
           /*select: function (ref) {
             console.log('select', ref);
@@ -71,23 +72,22 @@
         },
         bartable2: {
           type: 'bartable',
-          caption: 'Different color',
+          caption: 'Clicks',
           container: '#bartable2',
-          colors: ['green'],
-          offcolors: ['black'],
           query: {
             dimensions: ['engine'],
             metrics: ['clicks'],
             collection: 'demo-clicks',
             orderby: [
               ['clicks', 'DESC']
-            ]
+            ],
+            realtime:true
           },
           //select: false
         },
         bartable3: {
           type: 'bartable',
-          caption: 'Limit',
+          caption: 'Visits',
           container: '#bartable3',
 
           query: {
@@ -96,7 +96,8 @@
             collection: 'demo-visits',
             orderby: [
               ['visits', 'DESC']
-            ]
+            ],
+            realtime:true
           }
         },
         metric1: {
