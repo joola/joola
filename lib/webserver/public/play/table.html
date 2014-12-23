@@ -12,7 +12,10 @@
 </head>
 <body>
 <div id="table"></div>
+<div class="clearfix"></div>
 <div id="canvas">
+  <div id="filters"></div>
+  <div class="clearfix"></div>
   <div id="datepicker"></div>
   <div class="clearfix"></div>
   <div id="table1"></div>
@@ -24,12 +27,12 @@
 <script>
   joola.on('ready', function () {
     new joola.viz.Table({
-      container: '#table',
+      container: '#table0',
       caption: 'Default w/o canvas',
       query: {
         timeframe: 'last_90_days',
         interval: 'second',
-        dimensions: ['timestamp', 'browser', 'engine'],
+        dimensions: ['userid', 'browser', 'engine'],
         metrics: [{key: 'mousemoves', name: 'Mouse moves'}, {key: 'clicks', collection: 'demo-clicks'}, {
           key: 'visits',
           collection: 'demo-visits'
@@ -39,6 +42,42 @@
         orderby: [
           ['mousemoves', 'DESC']
         ]
+      }
+    });
+
+    new joola.viz.Canvas({
+      container: '#canvas',
+      datepicker: {
+        container: '#datepicker',/*
+        fromdate: new Date(2014, 11, 21),
+        todate: new Date(2014, 11, 22, 23, 59, 59, 999),
+        compare_fromdate: new Date(2014, 11, 20),
+        compare_todate: new Date(2014, 11, 21, 23, 59, 59, 999),
+        compare: true*/
+      },
+      filterbox: {
+        container: '#filters'
+      },
+      visualizations: {
+        table: {
+          type: 'table',
+          container: '#table1',
+          //caption: 'Default w/ canvas',
+          query: {
+            timeframe: 'last_90_days',
+            interval: 'second',
+            dimensions: ['browser', 'engine'],
+            metrics: [{key: 'mousemoves', name: 'Mouse moves'}, {key: 'clicks', collection: 'demo-clicks'}, {
+              key: 'visits',
+              collection: 'demo-visits'
+            }],
+            collection: 'demo-mousemoves',
+            filter: [],
+            orderby: [
+              ['mousemoves', 'DESC']
+            ]
+          }
+        }
       }
     });
   });
