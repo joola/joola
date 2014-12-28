@@ -58,7 +58,7 @@ store:
         dsn: redis://127.0.0.1
   logger:
     console:
-      level: trace
+      level: debug
     # loggly:
       # level: trace
       # token: your-api-token
@@ -72,9 +72,17 @@ store:
       dsn: mongodb://localhost:27017/cache
       expireafterseconds: 0
     rethinkdb:
+      enabled: true
       host: localhost
       port: 28015
       db: joola
+    template:
+      enabled: false
+    cassandra:
+      enabled: false
+      contactPoints:
+        - 127.0.0.1
+      keyspace: mykeyspace
 beacon:
   wait: true
 dispatch:
