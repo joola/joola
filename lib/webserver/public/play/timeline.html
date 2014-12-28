@@ -3,6 +3,8 @@
 <head lang="en">
   <meta charset="UTF-8">
   <title></title>
+  <script src="/standalone-framework.src.js"></script>
+  <script src="/highcharts.src.js"></script>
   <script src="/joola.js?APIToken=apitoken-demo"></script>
   <style>
     .clearfix {
@@ -11,7 +13,7 @@
   </style>
 </head>
 <body>
-<div id="timeline"></div>
+<div id="timeline" height="150" style="height:350px;"></div>
 <div class="clearfix"></div>
 <div id="canvas">
   <div id="filters"></div>
@@ -28,15 +30,24 @@
   joola.on('ready', function () {
     new joola.viz.Timeline({
       container: '#timeline',
-      caption: 'Default w/o canvas',
+      //caption: 'Default w/o canvas',
+      pickers: {
+        main: {
+          enabled: true
+        },
+        secondary: {
+          enabled: true
+        }
+      },
       query: {
-        timeframe: 'last_30_seconds',
-        interval: 'second',
+        timeframe: 'last_30_days',
+        interval: 'day',
         dimensions: ['timestamp'],
         metrics: [
-          {key: 'mousemoves', name: 'Mouse moves'}
+          {key: 'mousemoves', name: 'Mouse moves', collection: 'demo-mousemoves'},
+          //{key: 'clicks', name: 'clicks', collection: 'demo-clicks'}
         ],
-        realtime: true,
+        realtime: false,
         collection: 'demo-mousemoves'
       }
     });
