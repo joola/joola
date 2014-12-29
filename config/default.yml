@@ -68,11 +68,11 @@ store:
       path: /var/log/joola
   datastore:
     mongodb:
-      enabled: false
+      enabled: true
       dsn: mongodb://localhost:27017/cache
       expireafterseconds: 0
     rethinkdb:
-      enabled: true
+      enabled: false
       host: localhost
       port: 28015
       db: joola
@@ -101,7 +101,7 @@ authentication:
 #sdk:
   # url: https://raw.githubusercontent.com/joola/joola.sdk/feature/%2376/bin/joola.js
 query:
-  fixgmt: true #should be true if server not running in GMT+0
+  fixgmt: false #should be true if server not running in GMT+0
 workspaces:
   _test:
     key: _test

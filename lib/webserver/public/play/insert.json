@@ -1,0 +1,12 @@
+[
+  {
+    "attribute": "attribute-001",
+    "value": 3
+  },
+  {
+    "attribute": "attribute-002",
+    "attribute2": "attribute-003",
+    "value": 2,
+    "value2": 10
+  }
+]

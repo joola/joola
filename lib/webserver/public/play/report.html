@@ -2,8 +2,8 @@
 <html xmlns:joola="http://joo.la/ns/1.0">
 <head lang="en">
   <meta charset="UTF-8">
-  <title></title>
-  <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>-->
+  <title>Joola :: Report Canvas</title>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
   <script src="/standalone-framework.src.js"></script>
   <script src="/highcharts.src.js"></script>
   <script src="/joola.js?APIToken=apitoken-demo"></script>
@@ -12,44 +12,20 @@
     .clearfix {
       clear: both
     }
-
-    #metric1, #metric2, #metric3 {
-      float: left;
-      width: 33%;
-    }
-
-    #bartable1, #bartable2, #bartable3 {
-      float: left;
-      width: 33%;
-    }
   </style>
 </head>
 <body>
-<div id="canvas">
+<div id="canvas" class="container">
   <div id="filters"></div>
   <div class="clearfix"></div>
   <div id="datepicker"></div>
   <div class="clearfix"></div>
-  <div id="metric1"></div>
-  <div id="metric2"></div>
-  <div id="metric3"></div>
-  <div class="clearfix"></div>
   <div id="timeline"></div>
   <div class="clearfix"></div>
-  <div id="bartable1"></div>
-  <div id="bartable2"></div>
-  <div id="bartable3"></div>
   <div class="clearfix"></div>
   <div id="table"></div>
   <div class="clearfix"></div>
 </div>
-<div id="canvas2">
-  <div id="datepicker2"></div>
-  <div class="clearfix"></div>
-  <div id="bartable4"></div>
-  <div id="bartable5"></div>
-</div>
-
 <script>
 joola.on('ready', function () {
   new joola.viz.Canvas({
@@ -67,52 +43,7 @@ joola.on('ready', function () {
       container: '#filters'
     },
     visualizations: {
-      bartable1: {
-        type: 'bartable',
-        caption: 'Mouse moves',
-        container: '#bartable1',
-        query: {
-          dimensions: [
-            {key: 'browser', name: 'Browser'}
-          ],
-          metrics: ['mousemoves'],
-          collection: 'demo-mousemoves',
-          orderby: [
-            ['mousemoves', 'DESC']
-          ]
-        },
-        /*select: function (ref) {
-         console.log('select', ref);
-         }*/
-      },
-      bartable2: {
-        type: 'bartable',
-        caption: 'Clicks',
-        container: '#bartable2',
-        query: {
-          dimensions: ['engine'],
-          metrics: ['clicks'],
-          collection: 'demo-clicks',
-          orderby: [
-            ['clicks', 'DESC']
-          ]
-        },
-        //select: false
-      },
-      bartable3: {
-        type: 'bartable',
-        caption: 'Visits',
-        container: '#bartable3',
-
-        query: {
-          dimensions: ['browser'],
-          metrics: ['visits'],
-          collection: 'demo-visits',
-          orderby: [
-            ['visits', 'DESC']
-          ]
-        }
-      },
+      
       metric1: {
         type: 'metric',
         caption: 'Mouse moves',
