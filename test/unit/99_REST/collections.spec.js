@@ -51,7 +51,7 @@ describe("collections", function () {
 
   it("should fail adding collection with incomplete details", function (done) {
     var collection = {
-      
+
     };
     joola.dispatch.collections.add(this.context.user.workspace, collection, function (err) {
       if (err)
