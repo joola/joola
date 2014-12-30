@@ -513,7 +513,7 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a freestyle dimension transform", function (done) {
+  xit("should perform a freestyle dimension transform", function (done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
