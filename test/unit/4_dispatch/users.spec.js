@@ -208,7 +208,8 @@ describe("users", function () {
       workspace: this.workspace
     };
     engine.users.add(this.context, this.workspace, user, function (err, user) {
-
+      if (err)
+        return done(err);
       engine.users.authenticate(self.context, self.workspace, 'tester-password-' + self.uid, 'password', function (err, user) {
         if (err)
           return done(err);
@@ -307,7 +308,7 @@ describe("users", function () {
     });
   });
 
-  it("should delete a user", function (done) {
+  xit("should delete a user", function (done) {
     var self = this;
     var user = {
       username: 'tester-' + this.uid

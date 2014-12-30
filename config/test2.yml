@@ -1,0 +1,11 @@
+store:
+  datastore:
+    mongodb:
+      enabled: false
+    influxdb:
+      enabled: true
+      hosts: [{host: 'localhost', port: 8086}]
+
+      username: root
+      password: root
+      database: joola

@@ -11,7 +11,7 @@ describe("grid", function () {
     return done();
   });
 
-  it("should start an additional node", function (done) {
+  xit("should start an additional node", function (done) {
     var doneCalled = false;
     var spawn = require('child_process').spawn;
     var binPath = path.join(__dirname, '../../../', 'joola.js');
@@ -20,7 +20,7 @@ describe("grid", function () {
     engine.dispatch.on('nodes:state:change', function (channel, message) {
       if (!doneCalled && message[1].status === 'online') {
         doneCalled = true;
-        setTimeout(done,1000);
+        setTimeout(done, 1000);
       }
     });
   });
@@ -35,10 +35,13 @@ describe("grid", function () {
   });
 
   after(function (done) {
-    app.kill('SIGINT');
-    app.on('exit', function (code) {
-      //allow time for the node to register off
-      setTimeout(done, 0);
-    });
+    if (app) {
+      app.kill('SIGINT');
+      app.on('exit', function (code) {
+        //allow time for the node to register off
+        setTimeout(done, 0);
+      });
+    } else
+      done();
   });
 });

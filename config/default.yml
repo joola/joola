@@ -1,4 +1,4 @@
-version: 0.1.5
+version: 0.1.10
 interfaces:
   webserver:
     enabled: true
@@ -24,8 +24,12 @@ interfaces:
     enabled: false
     port: 1337
 store:
+  stats:
+    punt:
+      port: 3015
   config:
     redis:
+      # enabled: true
       dsn: redis://127.0.0.1
       ## if dsn not specific then these are required
       # host: 127.0.0.1
@@ -33,6 +37,7 @@ store:
       # db: 0
       # auth: null
   dispatch:
+    # enabled: true
     redis:
       dsn: redis://127.0.0.1
     stomp:
@@ -45,13 +50,15 @@ store:
   websocket:
     http:
       redis:
+        #enabled: true
         dsn: redis://127.0.0.1
     https:
       redis:
+        #enabled: true
         dsn: redis://127.0.0.1
   logger:
     console:
-      level: trace
+      level: debug
     # loggly:
       # level: trace
       # token: your-api-token
@@ -63,17 +70,20 @@ store:
     mongodb:
       dsn: mongodb://localhost:27017/cache
       expireafterseconds: 0
+beacon:
+  wait: true
 dispatch:
   enabled: true
   expires: 60
 authentication:
   basicauth:
-    enabled: false
+    enabled: true
+    enable_with_http: true
   tokens:
     expireafter: 1200000
   ratelimits:
     guest: 60
-    user: 5000
+    user: 9999999999
   force404: false
 #sdk:
   # url: https://raw.githubusercontent.com/joola/joola.sdk/feature/%2376/bin/joola.js
@@ -106,7 +116,7 @@ workspaces:
           - "root"
         displayName: "Administrator"
         APIToken: "apitoken-test"
-        ratelimit: 5000
+        ratelimit: 9999999999
   _stats:
     key: _stats
     name: Internal Stats
@@ -131,14 +141,14 @@ workspaces:
           - "beacon"
         displayName: "Stats Beacon"
         APIToken: "apitoken-stats"
-        ratelimit: 5000
+        ratelimit: 9999999999
       reader:
         username: "stats-reader"
         password: "password"
         roles:
           - "reader"
         displayName: "Stats Reader"
-        ratelimit: 5000        
+        ratelimit: 9999999999        
     collections:
       reads:
         key: "reads"
@@ -503,7 +513,7 @@ workspaces:
           - "root"
         displayName: "Administrator"
         APIToken: "apitoken-demo"
-        ratelimit: 5000
+        ratelimit: 9999999999
         filter: []
       beacon:
         username: "beacon"
@@ -520,148 +530,3 @@ workspaces:
         displayName: "Reader"
         APIToken: "apitoken-reader"
     collections:
-      demo-visits:
-        key: "demo-visits"
-        name: "demo-visits"
-        strongTyped: true
-        timestamp:
-          datatype: "date"
-          type: "dimension"
-          name: "timestamp"
-          key: "timestamp"
-        browser:
-          datatype: "string"
-          type: "dimension"
-          name: "browser"
-          key: "browser"
-        engine:
-          datatype: "string"
-          type: "dimension"
-          name: "engine"
-          key: "engine"
-        os:
-          datatype: "string"
-          type: "dimension"
-          name: "os"
-          key: "os"
-        userid:
-          datatype: "string"
-          type: "dimension"
-          name: "userid"
-          key: "userid"
-        ip:
-          datatype: "ip"
-          type: "dimension"
-          name: "ip"
-          key: "ip"
-        referrer:
-          datatype: "string"
-          type: "dimension"
-          name: "referrer"
-          key: "referrer"
-        visits:
-          datatype: "number"
-          type: "metric"
-          name: "visits"
-          key: "visits"
-          min: 0
-          max: 1
-        loadtime:
-          datatype: "number"
-          type: "metric"
-          name: "loadtime"
-          key: "loadtime"
-          min: 0
-          max: 10000
-      demo-clicks:
-        key: "demo-clicks"
-        name: "demo-clicks"
-        strongTyped: true
-        timestamp:
-          datatype: "date"
-          type: "dimension"
-          name: "timestamp"
-          key: "timestamp"
-        browser:
-          datatype: "string"
-          type: "dimension"
-          name: "browser"
-          key: "browser"
-        engine:
-          datatype: "string"
-          type: "dimension"
-          name: "engine"
-          key: "engine"
-        os:
-          datatype: "string"
-          type: "dimension"
-          name: "os"
-          key: "os"
-        userid:
-          datatype: "string"
-          type: "dimension"
-          name: "userid"
-          key: "userid"
-        ip:
-          datatype: "ip"
-          type: "dimension"
-          name: "ip"
-          key: "ip"
-        referrer:
-          datatype: "string"
-          type: "dimension"
-          name: "referrer"
-          key: "referrer"
-        clicks:
-          datatype: "number"
-          type: "metric"
-          name: "clicks"
-          key: "clicks"
-          min: 0
-          max: 1
-      demo-mousemoves:
-        key: "demo-mousemoves"
-        name: "demo-mousemoves"
-        strongTyped: true
-        timestamp:
-          datatype: "date"
-          type: "dimension"
-          name: "timestamp"
-          key: "timestamp"
-        browser:
-          datatype: "string"
-          type: "dimension"
-          name: "browser"
-          key: "browser"
-        engine:
-          datatype: "string"
-          type: "dimension"
-          name: "engine"
-          key: "engine"
-        os:
-          datatype: "string"
-          type: "dimension"
-          name: "os"
-          key: "os"
-        userid:
-          datatype: "string"
-          type: "dimension"
-          name: "userid"
-          key: "userid"
-        ip:
-          datatype: "ip"
-          type: "dimension"
-          name: "ip"
-          key: "ip"
-        referrer:
-          datatype: "string"
-          type: "dimension"
-          name: "referrer"
-          key: "referrer"
-        mousemoves:
-          datatype: "number"
-          type: "metric"
-          name: "mousemoves"
-          key: "mousemoves"
-          min: 0
-          max: 1000
