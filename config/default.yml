@@ -36,6 +36,10 @@ store:
       # port: 6379
       # db: 0
       # auth: null
+  runtime:
+    redis:
+      # enabled: true
+      dsn: redis://127.0.0.1
   dispatch:
     # enabled: true
     redis:
