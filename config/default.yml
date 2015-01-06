@@ -28,14 +28,8 @@ store:
     punt:
       port: 3015
   config:
-    redis:
-      # enabled: true
-      dsn: redis://127.0.0.1
-      ## if dsn not specific then these are required
-      # host: 127.0.0.1
-      # port: 6379
-      # db: 0
-      # auth: null
+    zookeeper:
+      connectionString: localhost:2181
   dispatch:
     # enabled: true
     redis:
