@@ -79,6 +79,7 @@
     "localeval": "~13.12.11",
     "microtime": "^0.5.1",
     "moment": "^2.5.1",
+    "node-zookeeper-client": "^0.2.1",
     "punt": "^2.2.0",
     "querystring": "~0.2.0",
     "redis": "^0.12.0",
