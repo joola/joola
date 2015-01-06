@@ -76,6 +76,7 @@
     "joola.sdk": "^0.8.1",
     "js-yaml": "^3.0.2",
     "json-stringify-safe": "^5.0.0",
+    "kafka-node": "^0.2.14",
     "kindof": "~1.0.0",
     "localeval": "~13.12.11",
     "microtime": "^0.5.1",

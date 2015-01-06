@@ -1,4 +1,4 @@
-version: 0.1.13
+version: 0.1.20
 interfaces:
   webserver:
     enabled: true
@@ -38,8 +38,8 @@ store:
     # enabled: true
     redis:
       dsn: redis://127.0.0.1
-    stomp:
-      dsn: stomp://guest:guest@127.0.0.1:61613
+    zookeeper:
+      connectionString: localhost:2181/kafka0.8
       # if dsn not specific then these are required
       # host: 127.0.0.1
       # port: 61613
