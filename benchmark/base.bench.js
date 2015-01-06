@@ -5,9 +5,10 @@ var
   common = require('../lib/common/index');
 
 var flows = [
-  './flows/beacon.spec.js',
+  //'./flows/beacon.spec.js',
+  './flows/beacon.small.spec.js',
   //'./flows/beacon.large.spec.js',
-  './flows/metadata.spec.js'
+  //'./flows/metadata.spec.js'
 ];
 
 global.JOOLA_ADDRESS = 'http://127.0.0.1:8080';
@@ -21,49 +22,42 @@ results.flowCount = flows.length;
 
 var actual = 0;
 
-var joola = require('joola.io.sdk');
+var joola = require('joola.sdk');
 joola.init({host: JOOLA_ADDRESS, APIToken: 'apitoken-demo'}, function (err) {
   if (err)
     throw err;
+  results.version = VERSION;
+  flows.forEach(function (flow) {
+    console.log('Running Flow', flow);
+    var flowModule = require(flow);
+    var runOptions = flowModule.runOptions;
+    var flowExeuction = flowModule.flow;
+    var errors = [];
 
-  joola.system.nodeDetails(function (err, details) {
-    if (err)
-      throw err;
+    benchrest(flowExeuction, runOptions)
+      .on('error', function (err, ctxName) {
+        console.error('Failed in %s with err: ', ctxName, err);
+      })
+      .on('progress', function (stats, percent, concurrent, ips) {
+        console.log('Progress: %s complete', percent, concurrent, ips);
+      })
+      .on('end', function (stats, errorCount) {
+        //console.log(stats);
+        stats.name = flowModule.name;
+        results.flows.push(stats);
 
-    results.nodeDetails = details;
-    results.version = VERSION;
-    flows.forEach(function (flow) {
-      console.log('Running Flow', flow);
-      var flowModule = require(flow);
-      var runOptions = flowModule.runOptions;
-      var flowExeuction = flowModule.flow;
-      var errors = [];
-
-      benchrest(flowExeuction, runOptions)
-        .on('error', function (err, ctxName) {
-          console.error('Failed in %s with err: ', ctxName, err);
-        })
-        .on('progress', function (stats, percent, concurrent, ips) {
-          console.log('Progress: %s complete', percent, concurrent, ips);
-        })
-        .on('end', function (stats, errorCount) {
-          //console.log(stats);
-          stats.name = flowModule.name;
-          results.flows.push(stats);
-
-          if (++actual === results.flowCount)
-            return alldone();
-        });
-
-    });
+        if (++actual === results.flowCount)
+          return alldone();
+      });
   });
 
   function alldone() {
     console.log(util.inspect(results, {depth: null, colors: true}));
-    joola.beacon.insert('benchmark', results, {}, function (err) {
-      if (err)
-        throw err;
-      process.exit(0);
-    });
+    /*joola.beacon.insert('benchmark', results, {}, function (err) {
+     if (err)
+     throw err;
+     process.exit(0);
+     });*/
+    process.exit(0);
   }
 });
