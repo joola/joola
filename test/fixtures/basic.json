@@ -2,6 +2,7 @@
   {
     "timestamp": null,
     "attribute": "test1",
+    "attribute2": "test11",
     "value": 1,
     "another": 10,
     "third": 100
@@ -9,6 +10,7 @@
   {
     "timestamp": null,
     "attribute": "test2",
+    "attribute2": "test22",
     "value": 2,
     "another": 20,
     "third": 200
@@ -16,6 +18,7 @@
   {
     "timestamp": "2014-01-10T22:04:12.533Z",
     "attribute": "test3",
+    "attribute2": "test33",
     "value": 3,
     "another": 30,
     "third": 300
@@ -23,6 +26,7 @@
   {
     "timestamp": "2018-01-10T22:04:12.533Z",
     "attribute": "test-future",
+    "attribute2": "test44",
     "value": 0,
     "another": 0,
     "third": 0

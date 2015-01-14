@@ -25,12 +25,8 @@ describe("query-basic", function () {
 
   it("should perform a basic query with minimal arguments", function (done) {
     var query = {
-      dimensions: ['attribute'],
-      metrics: [{key: 'value', aggregation: 'avg'}, 'another', {
-        key: 'temp',
-        aggregation: 'ucount',
-        dependsOn: 'attribute'
-      }],
+      dimensions: ['timestamp', 'attribute'],
+      metrics: ['value'],
       collection: this.collection
     };
     joola_proxy.query.fetch(this.context, query, function (err, result) {
@@ -41,7 +37,7 @@ describe("query-basic", function () {
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents[0].values.value).to.equal(4);
-      expect(result.documents[0].values.another).to.equal(40);
+      //expect(result.documents[0].values.another).to.equal(40);
       return done();
     });
   });
