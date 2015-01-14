@@ -25,7 +25,12 @@ describe("query-basic", function () {
 
   it("should perform a basic query with minimal arguments", function (done) {
     var query = {
-      metrics: ['value', 'another'],
+      dimensions: ['attribute'],
+      metrics: [{key: 'value', aggregation: 'avg'}, 'another', {
+        key: 'temp',
+        aggregation: 'ucount',
+        dependsOn: 'attribute'
+      }],
       collection: this.collection
     };
     joola_proxy.query.fetch(this.context, query, function (err, result) {
@@ -618,9 +623,7 @@ describe("query-basic", function () {
       timeframe: 'last_1_items',
       interval: 'minute',
       dimensions: ['attribute'],
-      metrics: [
-
-      ],
+      metrics: [],
       collection: this.collection
     };
     joola_proxy.query.fetch(this.context, query, function (err, result) {
@@ -641,9 +644,7 @@ describe("query-basic", function () {
       timeframe: 'last_2_items',
       interval: 'minute',
       dimensions: ['attribute'],
-      metrics: [
-
-      ],
+      metrics: [],
       collection: this.collection
     };
     joola_proxy.query.fetch(this.context, query, function (err, result) {
@@ -663,9 +664,7 @@ describe("query-basic", function () {
       timeframe: 'last_1_items',
       interval: 'second',
       dimensions: ['timestamp'],
-      metrics: [
-
-      ],
+      metrics: [],
       collection: this.collection + '-times'
     };
     joola_proxy.query.fetch(this.context, query, function (err, result) {
@@ -685,9 +684,7 @@ describe("query-basic", function () {
       timeframe: 'last_1_items',
       interval: 'second',
       dimensions: ['timestamp'],
-      metrics: [
-
-      ],
+      metrics: [],
       collection: this.collection + '-times'
     };
     joola_proxy.query.fetch(this.context, query, function (err, result) {
@@ -697,7 +694,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.equal(1);
-      var _date =new Date(result.documents[0].values.timestamp);
+      var _date = new Date(result.documents[0].values.timestamp);
       _date.setMilliseconds(0);
       expect(_date.getTime()).to.equal(new Date("2013-10-20T11:09:54.000Z").getTime());
       return done();
