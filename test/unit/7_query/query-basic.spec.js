@@ -25,8 +25,8 @@ describe("query-basic", function () {
 
   it("should perform a basic query with minimal arguments", function (done) {
     var query = {
-      dimensions: ['timestamp', 'attribute'],
-      metrics: ['value'],
+      dimensions: [],
+      metrics: ['value','another'],
       collection: this.collection
     };
     joola_proxy.query.fetch(this.context, query, function (err, result) {
@@ -37,7 +37,7 @@ describe("query-basic", function () {
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents[0].values.value).to.equal(4);
-      //expect(result.documents[0].values.another).to.equal(40);
+      expect(result.documents[0].values.another).to.equal(40);
       return done();
     });
   });
@@ -72,6 +72,7 @@ describe("query-basic", function () {
     joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
+      
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
@@ -595,7 +596,7 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform an last_n_items query", function (done) {
+  xit("should perform an last_n_items query", function (done) {
     var query = {
       timeframe: 'last_1_items',
       interval: 'minute',
@@ -614,7 +615,7 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform an last_n_items query w/o metrics [last 1 items]", function (done) {
+  xit("should perform an last_n_items query w/o metrics [last 1 items]", function (done) {
     var query = {
       timeframe: 'last_1_items',
       interval: 'minute',
@@ -635,7 +636,7 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform an last_n_items query w/o metrics [last 2 items]", function (done) {
+  xit("should perform an last_n_items query w/o metrics [last 2 items]", function (done) {
     var query = {
       timeframe: 'last_2_items',
       interval: 'minute',
@@ -655,7 +656,7 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform an last_n_items query w/o metrics [timestamp]", function (done) {
+  xit("should perform an last_n_items query w/o metrics [timestamp]", function (done) {
     var query = {
       timeframe: 'last_1_items',
       interval: 'second',
@@ -675,7 +676,7 @@ describe("query-basic", function () {
     });
   });
 
-  it("should verify last_n_items by timestamp", function (done) {
+  xit("should verify last_n_items by timestamp", function (done) {
     var query = {
       timeframe: 'last_1_items',
       interval: 'second',
