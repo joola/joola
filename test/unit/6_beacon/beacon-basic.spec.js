@@ -18,6 +18,7 @@ describe("beacon-basic", function () {
       doc = doc[0];
       expect(doc.saved || doc.created).to.equal(true);
       done(err);
+   
     });
   });
 
