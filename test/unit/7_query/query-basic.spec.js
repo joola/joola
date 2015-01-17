@@ -25,14 +25,14 @@ describe("query-basic", function () {
 
   it("should perform a basic query with minimal arguments", function (done) {
     var query = {
-      dimensions: ['attribute'],
+      dimensions: [],
       metrics: ['value','another'],
       collection: this.collection
     };
     joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-      process.exit();
+
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
