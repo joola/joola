@@ -45,7 +45,7 @@ describe("collections", function () {
 
   it("should fail adding collection with incomplete details", function (done) {
     var collection = {
-      key: this.collection + '1'
+
     };
     joola_proxy.dispatch.collections.add(this.context, this.context.user.workspace, collection, function (err) {
       if (err)

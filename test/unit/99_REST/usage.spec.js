@@ -1,4 +1,4 @@
-describe("collections", function () {
+describe("usage", function () {
   before(function (done) {
     this.context = {user: joola.USER};
     this.collection = 'test-collection-dispatch-' + global.uid;
@@ -19,7 +19,7 @@ describe("collections", function () {
       workspace: '_stats',
       roles: ['reader'],
       filter: [
-        ['workspace', 'eq', 'demo']
+        //['workspace', 'eq', 'demo']
       ]
     };
     joola.users.generateToken(user, function (err, token) {
@@ -39,7 +39,8 @@ describe("collections", function () {
           ],
           filter: []
         };
-        joola.query.fetch({_: token._}, query, function (err, usage) {
+        joola.fetch({_: token._}, query, function (err, usage) {
+          console.log(err, usage);
           if (err)
             return done(err);
 

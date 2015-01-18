@@ -26,9 +26,14 @@ apiary.out.html
 
 config/oo.yml
 config/development.yml
+config/test.yml
 config/development.json
+config/test.json
 config/certs/goo.pem
 
 npm-shrinkwrap.json
 
 .vagrant
+
+build/docker/log
+build/docker/data

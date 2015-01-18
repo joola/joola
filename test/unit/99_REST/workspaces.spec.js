@@ -105,7 +105,7 @@ describe("workspaces", function () {
       name: 'test-workspace-' + this.uid,
       filter: 'test=test'
     };
-    joola.workspaces.patch(workspace.key,workspace, function (err, _workspace) {
+    joola.workspaces.patch(workspace.key, workspace, function (err, _workspace) {
       if (err)
         return done();
 
@@ -167,6 +167,49 @@ describe("workspaces", function () {
         return done();
 
       return done(new Error('This should fail'));
+    });
+  });
+
+  it("should create a new workspace user and push documents (issue #592)", function (done) {
+    var self = this;
+    this.workspace = {
+      key: 'test.workspace-592-' + this.uid,
+      name: 'test.workspace-592-' + this.uid,
+      filter: []
+    };
+    joola.workspaces.add(self.workspace, function (err, _workspace) {
+      if (err)
+        return done(err);
+
+      expect(_workspace).to.be.ok;
+      joola.workspaces.get(self.workspace.key, function (err, __workspace) {
+        expect(__workspace).to.be.ok;
+        var role = {
+          key: 'test-role-592-' + self.uid,
+          permissions: ['beacon:insert']
+        };
+
+        joola.roles.add(self.workspace.key, role, function (err, _role) {
+          if (err)
+            return done(err);
+
+          expect(_role).to.be.ok;
+          var user = {
+            username: 'tester-592-' + self.uid,
+            displayName: 'tester user',
+            password: '1234',
+            roles: role.key,
+            filter: '',
+            workspace: self.workspace.key
+          };
+          joola.users.add(self.workspace.key, user, function (err, _user) {
+            expect(_user).to.be.ok;
+            joola.insert('collection-592', {timestamp: null, value: 1}, function (err, result) {
+              return done(err);
+            });
+          });
+        });
+      });
     });
   });
 });

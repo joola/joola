@@ -8,7 +8,7 @@ describe("query-basic", function () {
     done();
   });
 
-  it("should not fail performing a query with no arguments", function (done) {
+  xit("should not fail performing a query with no arguments", function (done) {
     var query = {};
     var expected = 0;
 
@@ -36,6 +36,7 @@ describe("query-basic", function () {
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents[0].values.value).to.equal(4);
+      expect(result.documents[0].values.another).to.equal(40);
       return done();
     });
   });
@@ -92,7 +93,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents.length).to.equal(1441);
+      expect(result.documents.length).to.equal(1);
       return done();
     });
   });
@@ -367,7 +368,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents.length).to.equal(1441);
+      expect(result.documents.length).to.equal(1);
       return done();
     });
   });
@@ -512,7 +513,7 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a freestyle dimension transform", function (done) {
+  xit("should perform a freestyle dimension transform", function (done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
@@ -533,7 +534,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].fvalues.attribute).to.equal('transformed-' + 'test');
+      expect(result.documents[0].fvalues.attribute).to.equal('transformed-' + 'test1');
       return done();
     });
   });
@@ -561,7 +562,144 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents.length).to.equal(1441);
+      expect(result.documents.length).to.equal(1);
+      return done();
+    });
+  });
+
+  it("should perform a freestyle unique count by attribute", function (done) {
+    var query = {
+      timeframe: 'this_day',
+      interval: 'minute',
+      dimensions: ['attribute'],
+      metrics: [
+        {
+          key: 'uniquevalue',
+          name: 'uniquevalue',
+          aggregation: 'ucount',
+          datatype: 'number',
+          dependsOn: ['attribute']
+        }
+      ],
+      collection: this.collection
+    };
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
+      expect(result.documents[0].values.uniquevalue).to.equal(1);
+      return done();
+    });
+  });
+
+  it("should perform an last_n_items query", function (done) {
+    var query = {
+      timeframe: 'last_1_items',
+      interval: 'minute',
+      dimensions: ['timestamp'],
+      metrics: ['value'],
+      collection: this.collection
+    };
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
+      expect(result.documents[0].values.value).to.equal(0);
+      return done();
+    });
+  });
+
+  it("should perform an last_n_items query w/o metrics [last 1 items]", function (done) {
+    var query = {
+      timeframe: 'last_1_items',
+      interval: 'minute',
+      dimensions: ['attribute'],
+      metrics: [
+
+      ],
+      collection: this.collection
+    };
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
+      //expect(result.documents[0].values.attribute).to.equal('test-future');
+      return done();
+    });
+  });
+
+  it("should perform an last_n_items query w/o metrics [last 2 items]", function (done) {
+    var query = {
+      timeframe: 'last_2_items',
+      interval: 'minute',
+      dimensions: ['attribute'],
+      metrics: [
+
+      ],
+      collection: this.collection
+    };
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.equal(2);
+      //expect(result.documents[0].values.attribute).to.equal('test2');
+      return done();
+    });
+  });
+
+  it("should perform an last_n_items query w/o metrics [timestamp]", function (done) {
+    var query = {
+      timeframe: 'last_1_items',
+      interval: 'second',
+      dimensions: ['timestamp'],
+      metrics: [
+
+      ],
+      collection: this.collection + '-times'
+    };
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.equal(1);
+      //expect(result.documents[0].values.attribute).to.equal('test2');
+      return done();
+    });
+  });
+
+  it("should verify last_n_items by timestamp", function (done) {
+    var query = {
+      timeframe: 'last_1_items',
+      interval: 'second',
+      dimensions: ['timestamp'],
+      metrics: [
+
+      ],
+      collection: this.collection + '-times'
+    };
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.equal(1);
+      var _date =new Date(result.documents[0].values.timestamp);
+      _date.setMilliseconds(0);
+      expect(_date.getTime()).to.equal(new Date("2013-10-20T11:09:54.000Z").getTime());
       return done();
     });
   });

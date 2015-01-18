@@ -10,7 +10,7 @@ describe("beacon-basic", function () {
 
   it("should load a single document", function (done) {
     var self = this;
-    engine.beacon.insert(this.context, this.context.user.workspace, this.collection, ce.clone(this.documents[0]), function (err, doc) {
+    engine.beacon.insert(this.context, this.context.user.workspace, this.collection, ce.clone(this.documents[0]), function (err, doc,result) {
       if (err)
         return done(err);
 
@@ -26,7 +26,6 @@ describe("beacon-basic", function () {
     doc.timestamp = this.dup;
 
     engine.beacon.insert(this.context, this.context.user.workspace, this.collection, doc, function (err, doc) {
-      console.log(err, doc);
       doc = doc[0];
       expect(doc.saved).to.equal(false);
       done();
@@ -49,17 +48,32 @@ describe("beacon-basic", function () {
   it("should load array of documents", function (done) {
     var self = this;
     var docs = ce.clone(self.documents);
-    var counter = 0;
-    docs.forEach(function (d) {
-      d.timestamp = new Date();
-      d.timestamp.setMilliseconds(d.timestamp.getMilliseconds() - counter);
-      counter++;
-    });
     engine.beacon.insert(self.context, self.context.user.workspace, self.collection, docs, function (err, docs) {
       if (err)
         return done(err);
 
-      docs.forEach(function (d) {
+      docs.forEach(function (d, index) {
+        expect(d.saved).to.equal(true);
+      });
+      done();
+    });
+  });
+
+  it("should load array of documents and verify timestamp", function (done) {
+    var self = this;
+    var docs = require('../../fixtures/basic-timestamps.json');
+
+    engine.beacon.insert(self.context, self.context.user.workspace, self.collection + '-times', docs, function (err, docs) {
+      if (err)
+        return done(err);
+
+      docs.forEach(function (d, index) {
+        expect(d.timestamp === docs[index].timestamp);
+        var shorttimestamp = new Date(d.timestamp);
+        shorttimestamp.setMilliseconds(0);
+        //TODO: should be disabled check when using any store other than mongodb.
+        if (engine.datastore.providers.default.name === 'mongodb')
+          expect(d.timestamp_timebucket.second.getTime()).to.equal(shorttimestamp.getTime());
         expect(d.saved).to.equal(true);
       });
       done();

@@ -666,3 +666,9 @@ div[jio-type="metric"] {
   margin-bottom:0px;
 }
 
+.hero-wrapper  {
+  height: 145px;
+  width: 410px;
+  margin-left: auto;
+  margin-right: auto;
+}
