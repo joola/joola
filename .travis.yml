@@ -9,7 +9,8 @@ services:
   - redis-server
   - mongodb
   - rabbitmq
-
+  - elasticsearch
+  
 env:
   JOOLA_CONFIG_AUTHENTICATION_BASICAUTH_ENABLED=TRUE
   
