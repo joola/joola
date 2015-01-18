@@ -17,7 +17,7 @@ describe("query-nested", function () {
     });
   });
 
-  xit("should perform a nested query", function (done) {
+  it("should perform a nested query", function (done) {
     var query = {
       timeframe: 'last_day',
       interval: 'minute',
@@ -32,12 +32,12 @@ describe("query-nested", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.nvalue_actual).to.equal(8);
+      expect(result.documents[0].nvalue.actual).to.equal(9);
       return done(err);
     });
   });
 
-  xit("should perform a freestyle query [avg]", function (done) {
+  it("should perform a freestyle query [avg]", function (done) {
     var query = {
       timeframe: 'last_day',
       interval: 'minute',
@@ -54,7 +54,7 @@ describe("query-nested", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.actual).to.equal(2.67);
+      expect(result.documents[0].actual).to.equal(2.25);
       return done();
     });
   });
@@ -81,7 +81,7 @@ describe("query-nested", function () {
     });
   });
 
-  xit("should perform a freestyle query [dimension+adhoc]", function (done) {
+ it("should perform a freestyle query [dimension+adhoc]", function (done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
@@ -97,12 +97,12 @@ describe("query-nested", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents.length).to.equal(1);
+      expect(result.documents.length).to.equal(2);
       return done();
     });
   });
 
-  xit("should perform a freestyle query [adhoc+adhoc]", function (done) {
+  it("should perform a freestyle query [adhoc+adhoc]", function (done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
@@ -121,12 +121,12 @@ describe("query-nested", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents.length).to.equal(1);
+      expect(result.documents.length).to.equal(2);
       return done();
     });
   });
 
-  xit("should perform a freestyle query [adhoc w/ collection]", function (done) {
+  it("should perform a freestyle query [adhoc w/ collection]", function (done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
@@ -145,7 +145,7 @@ describe("query-nested", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents.length).to.equal(1);
+      expect(result.documents.length).to.equal(2);
       return done();
     });
   });
