@@ -1,4 +1,4 @@
-# joola [![Build Status][3]][4] [![Gitter chat](https://badges.gitter.im/joola/joola.png)](https://gitter.im/joola/joola)
+# joola [![Build Status][3]][4] [![Coverage Status](https://coveralls.io/repos/joola/joola/badge.svg)](https://coveralls.io/r/joola/joola) [![Gitter chat](https://badges.gitter.im/joola/joola.png)](https://gitter.im/joola/joola)
 
 | **[Technical Docs] [techdocs]**     | **[Setup Guide] [setup]**     | **[API Docs] [api-docs]**           | **[Contributing] [contributing]**           | **[About joola] [about]**     |
 |-------------------------------------|-------------------------------|-----------------------------------|---------------------------------------------|-------------------------------------|
