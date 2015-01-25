@@ -62,8 +62,12 @@ store:
       path: /var/log/joola
   datastore:
     mongodb:
+      enabled: true
       dsn: mongodb://localhost:27017/cache
       expireafterseconds: 0
+    elasticsearch:
+      enabled: false
+      host: localhost:9200
 beacon:
   wait: true
 dispatch:

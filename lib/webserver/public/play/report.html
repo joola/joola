@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <title>Joola :: Report Canvas</title>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
-  <script src="/standalone-framework.src.js"></script>
-  <script src="/highcharts.src.js"></script>
-  <script src="/joola.js?APIToken=apitoken-demo"></script>
+  
 
   <style>
     .clearfix {
@@ -26,6 +24,8 @@
   <div id="table"></div>
   <div class="clearfix"></div>
 </div>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="/joola.min.js?APIToken=apitoken-demo"></script>
 <script>
 joola.on('ready', function () {
   new joola.viz.Canvas({
