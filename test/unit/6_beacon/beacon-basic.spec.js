@@ -10,10 +10,9 @@ describe("beacon-basic", function () {
 
   it("should load a single document", function (done) {
     var self = this;
-    engine.beacon.insert(this.context, this.context.user.workspace, this.collection, ce.clone(this.documents[0]), function (err, doc,result) {
+    engine.beacon.insert(this.context, this.context.user.workspace, this.collection, ce.clone(this.documents[0]), function (err, doc, result) {
       if (err)
         return done(err);
-
       self.dup = new Date(doc[0].timestamp).toISOString();
       doc = doc[0];
       expect(doc.saved).to.equal(true);
