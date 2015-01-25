@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <title>Joola :: Realtime Canvas</title>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
-  <script src="/standalone-framework.src.js"></script>
-  <script src="/highcharts.src.js"></script>
-  <script src="/joola.js?APIToken=apitoken-demo"></script>
+
 </head>
 <body>
 <div id="canvas" class="container-fluid">
@@ -46,6 +44,12 @@
     <div id="geo"></div>
   </div>
 </div>
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="/js/ua-parser.min.js"></script>
+<script src="/ip"></script>
+<script src="/joola.min.js?APIToken=apitoken-demo"></script>
+
 <script>
   joola.on('ready', function () {
     new joola.viz.Canvas({
@@ -65,8 +69,8 @@
           container: '#metric1',
           query: {
             timeframe: 'last_60_minutes',
-            metrics: ['mousemoves'],
-            collection: 'demo-mousemoves'
+            metrics: ['moves'],
+            collection: 'moves'
           }
         },
         timeline_minutes: {
@@ -87,10 +91,10 @@
             dimensions: ['timestamp'],
             //interval:'second',
             metrics: [
-              {key: 'mousemoves', name: 'Mouse moves'},
+              {key: 'moves', name: 'Mouse moves'},
               //{key: 'clicks', name: 'Clicks', collection: 'demo-clicks'}
             ],
-            collection: 'demo-mousemoves'
+            collection: 'moves'
           }
         },
         timeline_seconds: {
@@ -107,9 +111,9 @@
             timeframe: 'last_minute',
             interval: 'second',
             metrics: [
-              {key: 'mousemoves', name: 'Mouse moves'},
+              {key: 'moves', name: 'Mouse moves'},
             ],
-            collection: 'demo-mousemoves'
+            collection: 'moves'
           }
         },
         bartable1: {
@@ -121,10 +125,10 @@
             dimensions: [
               {key: 'browser', name: 'Browser'}
             ],
-            metrics: ['mousemoves'],
-            collection: 'demo-mousemoves',
+            metrics: ['moves'],
+            collection: 'moves',
             orderby: [
-              ['mousemoves', 'DESC']
+              ['moves', 'DESC']
             ]
           }
         },
@@ -136,7 +140,7 @@
           query: {
             dimensions: ['engine'],
             metrics: ['clicks'],
-            collection: 'demo-clicks',
+            collection: 'clicks',
             orderby: [
               ['clicks', 'DESC']
             ]
@@ -151,7 +155,7 @@
           query: {
             dimensions: ['browser'],
             metrics: ['visits'],
-            collection: 'demo-visits',
+            collection: 'visits',
             orderby: [
               ['visits', 'DESC']
             ]
