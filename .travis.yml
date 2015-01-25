@@ -27,6 +27,7 @@ env:
 before_install:
   - wget http://apache.claz.org/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz
   - tar -zxvf zookeeper*tar.gz
+  - zookeeper-3.4.6/bin/zkServer.sh start
 
 before_script:
   - sudo rabbitmq-plugins enable rabbitmq_stomp
