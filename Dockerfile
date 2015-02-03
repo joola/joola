@@ -50,4 +50,5 @@ RUN \
 COPY ./build/docker/run_within_docker.sh /opt/joola/bin/run_within_docker.sh
 
 EXPOSE 8080 8081 22
+CMD []
 ENTRYPOINT ["/usr/bin/supervisord"]

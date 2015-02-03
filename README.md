@@ -18,11 +18,11 @@ This instance includes `EXPOSE 8080 (http) and 8081 (https) and 22 (ssh)`.
 
 **Starting a simple instance as damon:**
 
-    $ docker run -p 8081:8081 -d joola/joola
+    $ docker run -p 8080:8080 -d joola/joola
 
 We've pre-loaded the package with a fully working sample site, so it's easy to get started.
 
-    $ open https://localhost:8081
+    $ open http://localhost:8080
 
 ### Contributing
 We would love to get your help! We have outlined a simple [Contribution Policy][18] to support a transparent and easy merging
