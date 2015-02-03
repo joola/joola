@@ -12,7 +12,7 @@ Instance may take up to **60 seconds** to become available.
 
 **Starting a simple instance with terminal:**
 
-    $ docker run -p 8081:8081 -it joola/joola
+    $ docker run -p 8080:8080 -it joola/joola
 
 This instance includes `EXPOSE 8080 (http) and 8081 (https) and 22 (ssh)`.
 
