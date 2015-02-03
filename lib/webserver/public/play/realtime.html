@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:joola="http://joo.la/ns/1.0">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Joola :: Realtime Canvas</title>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+
+</head>
+<body>
+<div id="canvas" class="container-fluid">
+  <div class="col-md-12">
+    <div id="filters"></div>
+  </div>
+  <div class="col-md-3">
+    <div id="metric1"></div>
+  </div>
+  <div class="col-md-9">
+    <div class="row">
+      <div class="col-md-8">
+        <div id="timeline-minutes"></div>
+      </div>
+      <div class="col-md-4">
+        <div id="timeline-seconds"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-6">
+        <div id="bartable1"></div>
+      </div>
+      <div class="col-md-6">
+        <div id="bartable2"></div>
+      </div>
+      <div class="col-md-6">
+        <div id="bartable3"></div>
+      </div>
+      <div class="col-md-6">
+        <div id="bartable4"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div id="geo"></div>
+  </div>
+</div>
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="/js/ua-parser.min.js"></script>
+<script src="/ip"></script>
+<script src="/joola.min.js?APIToken=apitoken-demo"></script>
+
+<script>
+  joola.on('ready', function () {
+    new joola.viz.Canvas({
+      container: '#canvas',
+      query: {
+        realtime: true,
+        timeframe: 'last_30_minutes',
+        interval: 'minute'
+      },    
+      filterbox: {
+        container: '#filters'
+      },
+      visualizations: {
+        metric1: {
+          type: 'metric',
+          caption: 'Right NOW',
+          container: '#metric1',
+          query: {
+            timeframe: 'last_60_minutes',
+            metrics: ['moves'],
+            collection: 'moves'
+          }
+        },
+        timeline_minutes: {
+          container: '#timeline-minutes',
+          type: 'timeline',
+          chart: {
+            chart: {
+              height: 250,
+              type: 'column'
+            }
+          },
+          pickers: {
+            main: {
+              enabled: true
+            }
+          },
+          query: {
+            dimensions: ['timestamp'],
+            //interval:'second',
+            metrics: [
+              {key: 'moves', name: 'Mouse moves'},
+              //{key: 'clicks', name: 'Clicks', collection: 'demo-clicks'}
+            ],
+            collection: 'moves'
+          }
+        },
+        timeline_seconds: {
+          container: '#timeline-seconds',
+          type: 'timeline',
+          chart: {
+            chart: {
+              height: 280,
+              type: 'column'
+            }
+          },
+          query: {
+            dimensions: ['timestamp'],
+            timeframe: 'last_minute',
+            interval: 'second',
+            metrics: [
+              {key: 'moves', name: 'Mouse moves'},
+            ],
+            collection: 'moves'
+          }
+        },
+        bartable1: {
+          type: 'bartable',
+          caption: 'Mouse moves',
+          container: '#bartable1',
+          allowSelect: true,
+          query: {
+            dimensions: [
+              {key: 'browser', name: 'Browser'}
+            ],
+            metrics: ['moves'],
+            collection: 'moves',
+            orderby: [
+              ['moves', 'DESC']
+            ]
+          }
+        },
+        bartable2: {
+          type: 'bartable',
+          caption: 'Clicks',
+          container: '#bartable2',
+          allowSelect: true,
+          query: {
+            dimensions: ['engine'],
+            metrics: ['clicks'],
+            collection: 'clicks',
+            orderby: [
+              ['clicks', 'DESC']
+            ]
+          }
+        }
+        ,
+        bartable3: {
+          type: 'bartable',
+          caption: 'Visits',
+          container: '#bartable3',
+          allowSelect: true,
+          query: {
+            dimensions: ['browser'],
+            metrics: ['visits'],
+            collection: 'visits',
+            orderby: [
+              ['visits', 'DESC']
+            ]
+          }
+        }
+      }
+    });
+  })
+  ;
+</script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="/js/ua-parser.min.js"></script>
+<script src="/ip"></script>
+<script src="/js/recordEvents.js"></script>
+
+</body>
+</html>
