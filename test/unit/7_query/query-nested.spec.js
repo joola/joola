@@ -29,10 +29,12 @@ describe("query-nested", function () {
       if (err)
         return done(err);
 
+      console.log(require('util').inspect(result, {depth:null,colors:true}));
+      
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.nvalue_actual).to.equal(8);
+      expect(result.documents[0].nvalue.actual).to.equal(9);
       return done(err);
     });
   });
@@ -54,7 +56,7 @@ describe("query-nested", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.actual).to.equal(2.67);
+      expect(result.documents[0].actual).to.equal(2.25);
       return done();
     });
   });
@@ -81,7 +83,7 @@ describe("query-nested", function () {
     });
   });
 
-  it("should perform a freestyle query [dimension+adhoc]", function (done) {
+ it("should perform a freestyle query [dimension+adhoc]", function (done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',

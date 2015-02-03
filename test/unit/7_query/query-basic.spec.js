@@ -8,7 +8,7 @@ describe("query-basic", function () {
     done();
   });
 
-  xit("should not fail performing a query with no arguments", function (done) {
+  it("should not fail performing a query with no arguments", function (done) {
     var query = {};
     var expected = 0;
 
@@ -19,23 +19,25 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(actual).to.equal(expected);
+
       return done();
     });
   });
 
   it("should perform a basic query with minimal arguments", function (done) {
     var query = {
+      dimensions: [],
       metrics: ['value', 'another'],
       collection: this.collection
     };
-      joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.value).to.equal(4);
+      expect(result.documents[0].value).to.equal(4);
+      expect(result.documents[0].another).to.equal(40);
       return done();
     });
   });
@@ -54,7 +56,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.value).to.equal(4);
+      expect(result.documents[0].value).to.equal(4);
       return done();
     });
   });
@@ -70,10 +72,11 @@ describe("query-basic", function () {
     joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
+
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.value).to.equal(4);
+      expect(result.documents[0].value).to.equal(4);
       return done();
     });
   });
@@ -92,7 +95,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents.length).to.equal(1441);
+      expect(result.documents.length).to.equal(1);
       return done();
     });
   });
@@ -113,7 +116,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.value).to.equal(1.33);
+      expect(result.documents[0].value).to.equal(1.3333333333333333);
       return done();
     });
   });
@@ -134,7 +137,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.value).to.equal(1.33);
+      expect(result.documents[0].value).to.equal(1.3333333333333333);
       return done();
     });
   });
@@ -155,7 +158,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.value).to.equal(1.33);
+      expect(result.documents[0].value).to.equal(1.3333333333333333);
       return done();
     });
   });
@@ -176,7 +179,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.value).to.equal(1);
+      expect(result.documents[0].value).to.equal(1);
       return done();
     });
   });
@@ -197,7 +200,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.value).to.equal(2);
+      expect(result.documents[0].value).to.equal(2);
       return done();
     });
   });
@@ -239,7 +242,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].fvalues.value).to.equal('$4');
+      expect(result.documents[0].value).to.equal('$4');
       return done();
     });
   });
@@ -260,7 +263,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].fvalues.value).to.equal('4ms');
+      expect(result.documents[0].value).to.equal('4ms');
       return done();
     });
   });
@@ -281,7 +284,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].fvalues.value).to.equal('$4ms');
+      expect(result.documents[0].value).to.equal('$4ms');
       return done();
     });
   });
@@ -302,7 +305,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].fvalues.value).to.equal('1.3333');
+      expect(result.documents[0].value.toString()).to.equal('1.3333');
       return done();
     });
   });
@@ -323,7 +326,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].fvalues.value).to.equal('1.33');
+      expect(result.documents[0].value.toString()).to.equal('1.33');
       return done();
     });
   });
@@ -344,7 +347,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].fvalues.value).to.equal('1');
+      expect(result.documents[0].value.toString()).to.equal('1');
       return done();
     });
   });
@@ -367,12 +370,12 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents.length).to.equal(1441);
+      expect(result.documents.length).to.equal(1);
       return done();
     });
   });
 
-  xit("should perform a freestyle formula query [two metrics]", function (done) {
+  it("should perform a freestyle formula query [two metrics]", function (done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
@@ -395,13 +398,13 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.calcvalue).to.equal(250);
+      expect(result.documents[0].calcvalue).to.equal(160);
       return done();
     });
   });
 
 
-  xit("should perform a freestyle formula query [three metrics]", function (done) {
+  it("should perform a freestyle formula query [three metrics]", function (done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
@@ -424,12 +427,12 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.calcvalue).to.equal(125000);
+      expect(result.documents[0].calcvalue).to.equal(64000);
       return done();
     });
   });
 
-  xit("should perform a freestyle formula query [metric and fixed]", function (done) {
+  it("should perform a freestyle formula query [metric and fixed]", function (done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
@@ -452,12 +455,12 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.calcvalue).to.equal(5000);
+      expect(result.documents[0].calcvalue).to.equal(4000);
       return done();
     });
   });
 
-  xit("should perform a freestyle unique count", function (done) {
+  it("should perform a freestyle unique count", function (done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
@@ -479,12 +482,12 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.uniquevalue).to.equal(1);
+      expect(result.documents[0].uniquevalue).to.equal(2);
       return done();
     });
   });
 
-  xit("should perform a freestyle metric transform", function (done) {
+  it("should perform a freestyle metric transform", function (done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
@@ -507,7 +510,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].fvalues.uniquevalue).to.equal(100);
+      expect(result.documents[0].uniquevalue).to.equal(200);
       return done();
     });
   });
@@ -518,22 +521,25 @@ describe("query-basic", function () {
       interval: 'minute',
       dimensions: [
         {
-          key: 'attribute',
-          name: 'attribute',
+          key: 'transform',
+          name: 'transform',
           datatype: 'string',
           transform: 'function(value){return "transformed-" + value;}'
         }
       ],
       metrics: ['value', 'another'],
-      collection: this.collection
+      collection: this.collection,
+      limit: 1,
+      sort: [['timestamp', 'asc']]
     };
     joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
+
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].fvalues.attribute).to.equal('transformed-' + 'test1');
+      expect(result.documents[0].transform).to.equal('transformed-test');
       return done();
     });
   });
@@ -561,7 +567,7 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents.length).to.equal(1441);
+      expect(result.documents.length).to.equal(1);
       return done();
     });
   });
@@ -588,25 +594,17 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.uniquevalue).to.equal(1);
+      expect(result.documents[0].uniquevalue).to.equal(1);
       return done();
     });
   });
 
-  it("should perform an last_n_items query", function (done) {
+  xit("should perform an last_n_items query", function (done) {
     var query = {
       timeframe: 'last_1_items',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: [
-        {
-          key: 'uniquevalue',
-          name: 'uniquevalue',
-          aggregation: 'ucount',
-          datatype: 'number',
-          dependsOn: ['attribute']
-        }
-      ],
+      metrics: ['value'],
       collection: this.collection
     };
     joola_proxy.query.fetch(this.context, query, function (err, result) {
@@ -615,43 +613,38 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.uniquevalue).to.equal(2);
+      expect(result.documents[0].value).to.equal(0);
       return done();
     });
   });
 
-  it("should perform an last_n_items query w/o metrics [last 1 items]", function (done) {
+  xit("should perform an last_n_items query w/o metrics [last 1 items]", function (done) {
     var query = {
       timeframe: 'last_1_items',
       interval: 'minute',
       dimensions: ['attribute'],
-      metrics: [
-
-      ],
+      metrics: [],
       collection: this.collection
     };
     joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
 
-      console.log(result.documents);
-      
+
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].values.attribute).to.equal('test3');
+      //expect(result.documents[0].attribute).to.equal('test-future');
       return done();
     });
   });
 
-  it("should perform an last_n_items query w/o metrics [last 2 items]", function (done) {
+  xit("should perform an last_n_items query w/o metrics [last 2 items]", function (done) {
     var query = {
       timeframe: 'last_2_items',
       interval: 'minute',
       dimensions: ['attribute'],
-      metrics: [
-
-      ],
+      metrics: [],
       collection: this.collection
     };
     joola_proxy.query.fetch(this.context, query, function (err, result) {
@@ -661,19 +654,17 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.equal(2);
-      //expect(result.documents[0].values.attribute).to.equal('test2');
+      //expect(result.documents[0].attribute).to.equal('test2');
       return done();
     });
   });
 
-  it("should perform an last_n_items query w/o metrics [timestamp]", function (done) {
+  xit("should perform an last_n_items query w/o metrics [timestamp]", function (done) {
     var query = {
       timeframe: 'last_1_items',
       interval: 'second',
       dimensions: ['timestamp'],
-      metrics: [
-
-      ],
+      metrics: [],
       collection: this.collection + '-times'
     };
     joola_proxy.query.fetch(this.context, query, function (err, result) {
@@ -683,31 +674,29 @@ describe("query-basic", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.equal(1);
-      //expect(result.documents[0].values.attribute).to.equal('test2');
+      //expect(result.documents[0].attribute).to.equal('test2');
       return done();
     });
   });
 
-  it("should verify last_n_items by timestamp", function (done) {
+  xit("should verify last_n_items by timestamp", function (done) {
     var query = {
       timeframe: 'last_1_items',
       interval: 'second',
       dimensions: ['timestamp'],
-      metrics: [
-
-      ],
+      metrics: [],
       collection: this.collection + '-times'
     };
     joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
 
-      //console.log(require('util').inspect(result, {depth: null, colors: true}));
-
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.equal(1);
-      expect(new Date(result.documents[0].values.timestamp).getTime()).to.equal(new Date("2013-10-20T11:09:54.000Z").getTime());
+      var _date = new Date(result.documents[0].timestamp);
+      _date.setMilliseconds(0);
+      expect(_date.getTime()).to.equal(new Date("2013-10-20T11:09:54.000Z").getTime());
       return done();
     });
   });

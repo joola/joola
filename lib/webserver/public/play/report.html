@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html xmlns:joola="http://joo.la/ns/1.0">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Joola :: Report Canvas</title>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+  
+
+  <style>
+    .clearfix {
+      clear: both
+    }
+  </style>
+</head>
+<body>
+<div id="canvas" class="container">
+  <div id="filters"></div>
+  <div class="clearfix"></div>
+  <div id="datepicker"></div>
+  <div class="clearfix"></div>
+  <div id="timeline"></div>
+  <div class="clearfix"></div>
+  <div class="clearfix"></div>
+  <div id="table"></div>
+  <div class="clearfix"></div>
+</div>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="/joola.min.js?APIToken=apitoken-demo"></script>
+<script>
+joola.on('ready', function () {
+  new joola.viz.Canvas({
+    container: '#canvas',
+    realtime: false,
+    datepicker: {
+      container: '#datepicker',
+      /*fromdate: new Date(2014, 11, 21),
+       todate: new Date(2014, 11, 22, 23, 59, 59, 999),
+       compare_fromdate: new Date(2014, 11, 20),
+       compare_todate: new Date(2014, 11, 21, 23, 59, 59, 999),
+       compare: true*/
+    },
+    filterbox: {
+      container: '#filters'
+    },
+    visualizations: {
+      
+      metric1: {
+        type: 'metric',
+        caption: 'Mouse moves',
+        container: '#metric1',
+        query: {
+          metrics: ['mousemoves'],
+          collection: 'demo-mousemoves'
+        }
+      },
+      metric2: {
+        type: 'metric',
+        caption: 'Clicks',
+        container: '#metric2',
+        query: {
+          metrics: ['clicks'],
+          collection: 'demo-clicks'
+        }
+      },
+      metric3: {
+        type: 'metric',
+        caption: 'Visits',
+        container: '#metric3',
+        query: {
+          metrics: ['visits'],
+          collection: 'demo-visits'
+        }
+      },
+      table: {
+        container: '#table',
+        type: 'table',
+        caption: '',
+        pickers: {
+          primary: {
+            enabled: true,
+            caption: 'Primary dimension...',
+            allowRemove: false
+          },
+          add_dimension: {
+            enabled: true,
+            caption: 'Add dimension...',
+            allowRemove: false,
+            allowSelect: false
+          },
+          add_metric: {
+            enabled: true,
+            caption: 'Add metric...',
+            allowRemove: false,
+            allowSelect: false
+          }
+        },
+        query: {
+          dimensions: [
+            {key: 'browser', description: 'The browser used'},
+            {
+              key: 'engine',
+              description: 'The engine used'
+            }
+          ],
+          metrics: [
+            {key: 'mousemoves', name: 'Mouse moves'},
+            {key: 'clicks', collection: 'demo-clicks'},
+            {
+              key: 'visits',
+              collection: 'demo-visits'
+            }
+          ],
+          collection: 'demo-mousemoves',
+          orderby: [
+            ['mousemoves', 'DESC']
+          ]
+        }
+      },
+      timeline: {
+        container: '#timeline',
+        type: 'timeline',
+        chart: {
+          chart: {
+            height: 250,
+            type: 'line'
+          },
+          yAxis: [
+            {
+              min: 0,
+            },
+            {
+              min: 0,
+            }
+          ]
+        },
+        pickers: {
+          main: {
+            enabled: true
+          },
+          secondary: {
+            enabled: true
+          }
+        },
+        query: {
+          dimensions: ['timestamp'],
+          metrics: [
+            {key: 'mousemoves', name: 'Mouse moves'},
+            //{key: 'clicks', name: 'Clicks', collection: 'demo-clicks'}
+          ],
+          collection: 'demo-mousemoves'
+        }
+      }
+    }
+  });
+
+  /*
+   new joola.viz.Canvas({
+   container: '#canvas2',
+   datepicker: {
+   container: '#datepicker2'
+   },
+   visualizations: {
+   bartable4: {
+   type: 'bartable',
+   caption: 'Limit',
+   container: '#bartable4',
+   limit: 1,
+   strings: {
+   not_shown: 'not shown'
+   },
+   query: {
+   dimensions: ['browser'],
+   metrics: ['mousemoves'],
+   collection: 'demo-mousemoves',
+   orderby: [
+   ['mousemoves', 'DESC']
+   ]
+   }
+   },
+   bartable5: {
+   type: 'bartable',
+   caption: 'Limit w/o "not shown"',
+   container: '#bartable5',
+   limit: 1,
+   strings: {
+   not_shown: 'not shown'
+   },
+   include_not_shown: false,
+   query: {
+   dimensions: ['browser'],
+   metrics: ['mousemoves'],
+   collection: 'demo-mousemoves',
+   orderby: [
+   ['mousemoves', 'DESC']
+   ]
+   }
+   }
+   }
+   });*/
+});
+</script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="/js/ua-parser.min.js"></script>
+<script src="/ip"></script>
+<script src="/js/recordEvents.js"></script>
+
+</body>
+</html>
