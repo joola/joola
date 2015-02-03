@@ -12,7 +12,7 @@ new Config({
   //console.log(ref.get('test'));
   setTimeout(function () {
     ref.set('test', 'test' + process.env.TEST);
-  }, 1000)
+  }, 1000);
   setTimeout(ref.close, 15000);
 }).on('ready', function () {
     console.log('ready');
