@@ -37,3 +37,7 @@ npm-shrinkwrap.json
 
 build/docker/log
 build/docker/data
+
+_data
+_site
+.sass-cache
