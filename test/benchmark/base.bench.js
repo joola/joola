@@ -2,7 +2,7 @@ var
   util = require('util'),
   benchrest = require('bench-rest'),
 
-  common = require('../lib/common/index');
+  common = require('../../lib/common/index');
 
 var flows = [
   './flows/beacon.spec.js',
@@ -11,7 +11,7 @@ var flows = [
 ];
 
 global.JOOLA_ADDRESS = 'http://127.0.0.1:8080';
-const VERSION = '0.0.1';
+var VERSION = '0.0.1';
 
 var results = {};
 results.benchmarkID = common.uuid();
@@ -21,7 +21,11 @@ results.flowCount = flows.length;
 
 var actual = 0;
 
-var joola = require('joola.io.sdk');
+//TODO: change this to be part of general mocha tests.
+if (module.parent) //make sure the script was manually called
+  return;
+
+var joola = require('joola.sdk');
 joola.init({host: JOOLA_ADDRESS, APIToken: 'apitoken-demo'}, function (err) {
   if (err)
     throw err;
