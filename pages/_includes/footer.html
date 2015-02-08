@@ -30,13 +30,11 @@
       <li>·</li>
       <li><a href="https://github.com/joola/joola">GitHub</a></li>
       <li>·</li>
-      <li><a href="#examples">Examples</a></li>
+      <li><a href="{{ "/docs" | prepend: site.baseurl }}">v{{site.version}} docs</a></li>
       <li>·</li>
-      <li><a href="http://github.com/joola/joola/wiki">v{{site.version}} docs</a></li>
+      <li><a href="{{ "/about" | prepend: site.baseurl }}">About joo.la</a></li>
       <li>·</li>
-      <li><a href="http://joo.la">About joo.la</a></li>
-      <li>·</li>
-      <li><a href="http://blog.joola">Blog</a></li>
+      <li><a href="{{ "/blog" | prepend: site.baseurl }}">Blog</a></li>
       <li>·</li>
       <li><a href="https://github.com/joola/joola/issues?state=open">Issues</a></li>
     </ul>
@@ -51,7 +49,6 @@
 </div>
 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="/js/ua-parser.min.js"></script>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="//google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
@@ -68,4 +65,5 @@
 })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 ga('create', '', '');
 ga('send', 'pageview');</script>
+<script src="{{ "/javascripts/ua-parser.min.js" | prepend: site.baseurl }}"></script>
 <script src="{{ "/javascripts/site.js" | prepend: site.baseurl }}"></script>
