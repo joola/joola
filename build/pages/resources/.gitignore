@@ -15,4 +15,6 @@ wiki
 Procfile
 Vagrantfile
 Dockerfile
+Makefile
 
+joola.js

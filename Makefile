@@ -41,6 +41,8 @@ doc:
 		git rm -rf --cached .
 		cp -R ./build/pages/resources/.gitignore ./.gitignore
 		
+		mv ./pages/_site/* .
+		rm -rf ./pages/_site
 test-cov:
 		$(MAKE) lint
 		$(MAKE) istanbul
