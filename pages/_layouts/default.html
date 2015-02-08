@@ -6,7 +6,6 @@
   <body>
 
     {% include header.html %}
-
     <div class="page-content">
       <div class="wrapper">
         {{ content }}
