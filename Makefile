@@ -37,6 +37,10 @@ doc:
 		mkdir -p /usr/share/nginx/html/
 		cp -R ./pages/_site/* /usr/share/nginx/html
 		
+		git checkout --orphan gh-pages
+		git rm -rf .
+		cp -R ./build/pages/resources/.gitignore ./.gitignore
+		
 test-cov:
 		$(MAKE) lint
 		$(MAKE) istanbul
