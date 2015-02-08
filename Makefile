@@ -38,7 +38,7 @@ doc:
 		cp -R ./pages/_site/* /usr/share/nginx/html
 		
 		git checkout --orphan gh-pages
-		git rm -rf .
+		git rm -rf --cached .
 		cp -R ./build/pages/resources/.gitignore ./.gitignore
 		
 test-cov:
