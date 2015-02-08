@@ -39,6 +39,7 @@ doc:
 		rm -rf /tmp/wiki/*
 
 		#build gh-pages site
+		cp ./build/pages/resources/_config.yml ./_config.yml
 		cd pages && jekyll build
 		rm -rf /usr/share/nginx/html/*
 		mkdir -p /usr/share/nginx/html/
