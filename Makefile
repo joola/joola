@@ -23,7 +23,7 @@ compile:
 lint:
 		@./node_modules/.bin/jshint ./lib ./test
 
-doc:
+site:
     #cleanup any leftovers
 		rm -rf ./about ./blog ./css ./docs ./img ./javascripts ./news ./stylesheets ./feed.xml ./index.html ./params.json
 		find ./pages/docs/* ! -iregex '(.git|.npm)' | xargs rm -fr
@@ -58,6 +58,7 @@ doc:
 		#commit to gh-pages
 		git add .
 		git commit -am "updated gh-pages."
+		git push -f origin gh-pages
 		
 		#cleanup
 		git checkout feature/#647
