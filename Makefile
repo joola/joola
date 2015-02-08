@@ -7,6 +7,7 @@ export COVERALLS_GIT_COMMIT
 export COVERALLS_REPO_TOKEN
 
 TOP ?= $(shell pwd)
+BRANCH ?= $(git branch | sed -ne 's/^\* \(.*\/\1/p')
 
 test:
 		$(MAKE) lint
@@ -23,6 +24,7 @@ lint:
 		@./node_modules/.bin/jshint ./lib ./test
 
 doc:
+		rm -rf ./about ./blog ./css ./docs ./img ./javascripts ./news ./stylesheets ./feed.xml ./index.html ./params.json
 		find ./pages/docs/* ! -iregex '(.git|.npm)' | xargs rm -fr
 		tail -n +4 ./apiary.apib > ./wiki/technical-documentation/code/API-Documentation.md
 		rm -rf /tmp/wiki/*
@@ -37,12 +39,21 @@ doc:
 		mkdir -p /usr/share/nginx/html/
 		cp -R ./pages/_site/* /usr/share/nginx/html
 		
+		git branch -qD gh-pages
 		git checkout --orphan gh-pages
 		git rm -rf --cached .
 		cp -R ./build/pages/resources/.gitignore ./.gitignore
 		
 		mv ./pages/_site/* .
 		rm -rf ./pages/_site
+		
+		#commit to gh-pages
+		git add .
+		git commit -am "updated gh-pages."
+		
+		#cleanup
+		git checkout feature/#647
+		rm -rf ./about ./blog ./css ./docs ./img ./javascripts ./news ./stylesheets ./feed.xml ./index.html ./params.json
 test-cov:
 		$(MAKE) lint
 		$(MAKE) istanbul
