@@ -1,6 +1,6 @@
 [submodule "wiki"]
 	path = wiki
-	url = https://github.com/joola/joola.io.wiki.git
+	url = https://github.com/joola/joola.wiki.git
 [submodule "build/cookbooks/nodejs"]
 	path = build/cookbooks/nodejs
 	url = https://github.com/mdxp/nodejs-cookbook.git
