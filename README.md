@@ -229,11 +229,11 @@ Copyright (c) 2012-2015 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24]
 [architecture-doc]: https://github.com/joola/joola/wiki/Technical-architecture
 [talk-to-us]: https://github.com/joola/joola/wiki/Talk-to-us
 
-[about-image]: https://raw.github.com/joola/joola/develop/wiki/images/about.png
-[techdocs-image]: https://raw.github.com/joola/joola/develop/wiki/images/techdocs.png
-[setup-image]: https://raw.github.com/joola/joola/develop/wiki/images/setup.png
-[api-docs-image]: https://raw.github.com/joola/joola/develop/wiki/images/roadmap.png
-[contributing-image]: https://raw.github.com/joola/joola/develop/wiki/images/contributing.png
+[about-image]: https://raw.github.com/joola/joola/wiki/images/about.png
+[techdocs-image]: https://raw.github.com/joola/joola/wiki/images/techdocs.png
+[setup-image]: https://raw.github.com/joola/joola/wiki/images/setup.png
+[api-docs-image]: https://raw.github.com/joola/joola/wiki/images/roadmap.png
+[contributing-image]: https://raw.github.com/joola/joola/wiki/images/contributing.png
 
 [about]: https://github.com/joola/joola/wiki/joola-overview
 [techdocs]: https://github.com/joola/joola/wiki/Technical-documentation
