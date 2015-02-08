@@ -41,3 +41,4 @@ build/docker/data
 _data
 _site
 .sass-cache
+pages/docs

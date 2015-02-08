@@ -6,6 +6,9 @@ COVERALLS_REPO_TOKEN=wARcyyXr287WPS70cpaYzzUPjAyxPZHQH
 export COVERALLS_GIT_COMMIT
 export COVERALLS_REPO_TOKEN
 
+TOP ?= $(shell pwd)
+BRANCH ?= $(git branch | sed -ne 's/^\* \(.*\/\1/p')
+
 test:
 		$(MAKE) lint
 		@NODE_ENV=test ./node_modules/.bin/mocha --reporter $(REPORTER)
@@ -20,12 +23,47 @@ compile:
 lint:
 		@./node_modules/.bin/jshint ./lib ./test
 
-doc:
-		find ./wiki/* ! -iregex '(.git|.npm)' | xargs rm -fr
-		node build/docs.js
+site:
+    #cleanup any leftovers
+		rm -rf ./about ./blog ./css ./docs ./img ./javascripts ./news ./stylesheets ./feed.xml ./index.html ./params.json
+		find ./pages/docs/* ! -iregex '(.git|.npm)' | xargs rm -fr
 		tail -n +4 ./apiary.apib > ./wiki/technical-documentation/code/API-Documentation.md
-		sed -i '1i**View a live version of this page @ [http://docs.joola.apiary.io](http://docs.joola.apiary.io)**\n' ./wiki/technical-documentation/code/API-Documentation.md
+		rm -rf /tmp/wiki/*
+		mkdir -p /tmp/wiki/
 
+		#generate gollum site from wiki
+		cp -R ./wiki/* /tmp/wiki
+		cp -R ./build/pages/resources/gollum-site/* /tmp/wiki
+		cd /tmp/wiki && git init && gollum-site generate --output_path=$(TOP)/pages/docs --base_path /docs/ --working
+		cd $(TOP)
+		rm -rf /tmp/wiki/*
+
+		#build gh-pages site
+		cp ./build/pages/resources/_config.yml ./_config.yml
+		cd pages && jekyll build
+		rm -rf /usr/share/nginx/html/*
+		mkdir -p /usr/share/nginx/html/
+		cp -R ./pages/_site/* /usr/share/nginx/html
+
+		#delete any pre-existing gh-pages and create
+		git branch -qD gh-pages
+		git checkout --orphan gh-pages
+		git rm -rf --cached .
+		cp -R ./build/pages/resources/.gitignore ./.gitignore
+
+		#copy generated site to clean destination
+		mv ./pages/_site/* .
+		rm -rf ./pages/_site
+		
+		#commit to gh-pages
+		git add .
+		git commit -am "updated gh-pages."
+		git push -f origin gh-pages
+		
+		#cleanup
+		git checkout feature/#647
+		rm -rf ./about ./blog ./css ./docs ./img ./javascripts ./news ./stylesheets ./feed.xml ./index.html ./params.json
+		
 test-cov:
 		$(MAKE) lint
 		$(MAKE) istanbul
