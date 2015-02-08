@@ -6,6 +6,8 @@ COVERALLS_REPO_TOKEN=wARcyyXr287WPS70cpaYzzUPjAyxPZHQH
 export COVERALLS_GIT_COMMIT
 export COVERALLS_REPO_TOKEN
 
+TOP ?= $(shell pwd)
+
 test:
 		$(MAKE) lint
 		@NODE_ENV=test ./node_modules/.bin/mocha --reporter $(REPORTER)
@@ -21,11 +23,20 @@ lint:
 		@./node_modules/.bin/jshint ./lib ./test
 
 doc:
-		find ./wiki/* ! -iregex '(.git|.npm)' | xargs rm -fr
-		node build/docs.js
+		find ./pages/docs/* ! -iregex '(.git|.npm)' | xargs rm -fr
 		tail -n +4 ./apiary.apib > ./wiki/technical-documentation/code/API-Documentation.md
-		sed -i '1i**View a live version of this page @ [http://docs.joola.apiary.io](http://docs.joola.apiary.io)**\n' ./wiki/technical-documentation/code/API-Documentation.md
-
+		rm -rf /tmp/wiki/*
+		mkdir -p /tmp/wiki/
+		cp -R ./wiki/* /tmp/wiki
+		cp -R ./build/pages/resources/gollum-site/* /tmp/wiki
+		cd /tmp/wiki && git init && gollum-site generate --output_path=$(TOP)/pages/docs --base_path /docs/ --working
+		cd $(TOP)
+		rm -rf /tmp/wiki/*
+		cd pages && jekyll build
+		rm -rf /usr/share/nginx/html/*
+		mkdir -p /usr/share/nginx/html/
+		cp -R ./pages/_site/* /usr/share/nginx/html
+		
 test-cov:
 		$(MAKE) lint
 		$(MAKE) istanbul
