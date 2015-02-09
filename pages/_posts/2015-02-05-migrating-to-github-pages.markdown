@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: post_no_sidebar
 title:  "Migrating to GitHub pages"
 date:   2015-02-05 11:39:26
 categories: blog news

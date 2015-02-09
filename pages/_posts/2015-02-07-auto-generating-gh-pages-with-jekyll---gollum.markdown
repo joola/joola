@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: post_no_sidebar
 title:  "Auto generating GH pages with Jekyll & Gollum"
 date:   2015-02-07 15:39:26
 categories: blog

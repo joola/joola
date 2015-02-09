@@ -1,26 +1,46 @@
-<header class="site-header">
-
-  <nav role="navigation" class="navbar navbar-default">
-    <div class="container">
+<!--header-->
+<div id="navigation" role="navigation" class="navbar main-nav navbar-static-top">
+  
+  <div class="main-nav">
+    <div class="container header-wrapper">
       <div class="navbar-header">
-        <button type="button" data-toggle="collapse" data-target="#main-nav" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span
-            class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-        <a href="{{ "/" | prepend: site.baseurl }}" class="navbar-brand">Joola</a></div>
-      <div id="main-nav" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="{{ "/#demo" | prepend: site.baseurl }}">Demo</a></li>
-          <li><a href="{{ "/#gettingstarted" | prepend: site.baseurl }}">Getting started</a></li>
-          <li><a href="{{ "/docs" | prepend: site.baseurl }}">Documentation</a></li>
-          <li><a href="{{ "/blog" | prepend: site.baseurl }}">Blog</a></li>
-          <li><a href="{{ "/news" | prepend: site.baseurl }}">News</a></li>
-          <li><a href="{{ "/about" | prepend: site.baseurl }}">About</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right"><!--lia(href="http://blog.joola") Blog-->
-          
-          <li><a href="http://joo.la">Commercial Support</a></li>
+        <button type="button" data-toggle="collapse" data-target="#navbar-collapse" class="navbar-toggle">
+          <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span>
+          <span class="icon-bar"></span><span class="icon-bar"></span></button>
+        <a href="/" class="navbar-brand"><img src="/img/joola_full_blue.png"></a></div>
+      <div id="navbar-collapse" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="home"><a href="/" class="menulink">Home</a></li>
+          <li class="gettingstarted"><a href="/gettingstarted" class="menulink">Getting Started</a></li>
+          <li class="demo"><a href="/demo" class="menulink">Demo</a></li>
+          <li class="blog"><a href="/docs" class="menulink">Documentation</a></li>
+          <li class="blog"><a href="/blog" class="menulink">Blog</a></li>
+          <li class="news"><a href="http://joo.la" class="menulink">Support</a></li>
+          <!--<li class="pricing dropdown">
+            <a data-toggle="dropdown" href="#" role="button" aria-expanded="false" class="menulink dropdown-toggle">Getting started
+              <span class="caret"></span></a>
+            <ul role="menu" class="dropdown-menu">
+              <li><a href="/solutions/custom-analytics/">Business Intelligence & Analytics </a></li>
+              <li><a href="/solutions/realtime/">Realtime Data Delivery</a></li>
+              <li><a href="/solutions/connected-devices/">Mobile & IOT Data Management</a></li>
+              <li><a href="/solutions/big-data/">Big Data Solutions</a></li>
+              <li><a href="/solutions/devops-automation/">DevOps Automation</a></li>
+              <li><a href="/solutions/open-source/">Open Source</a></li>
+            </ul>
+          </li>
+          <li class="pricing dropdown"><a data-toggle="dropdown" href="#" role="button" aria-expanded="false"
+                                          class="menulink dropdown-toggle">Company<span class="caret"></span></a>
+            <ul role="menu" class="dropdown-menu">
+              <li><a href="/company/about/">About Joola</a></li>
+              <li><a href="/company/why-joola/">Why Joola?</a></li>
+              <li><a href="/company/approach/">Our approach</a></li>
+              <li><a href="/company/clients/">Our Clients</a></li>
+            </ul>
+          </li>
+          <li class="pricing"><a href="/contact/" class="menulink">Contact</a></li>-->
         </ul>
       </div>
     </div>
-  </nav>
-
-</header>
+  </div>
+</div>
+<!--end of header-->
