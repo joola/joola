@@ -1,3 +1,7 @@
+---
+# dummy front matter (the dashes are enough)
+---
+
 #hero {
   font-family: 'PT Sans', sans-serif;
   /*background-image: -webkit-radial-gradient(0% bottom, rgba(41, 128, 185, 0.7) 0%, rgba(41, 128, 185, 0) 60%), -webkit-radial-gradient(90% bottom, rgba(41, 128, 185, 0.6) 0%, rgba(41, 128, 185, 0) 40%);
@@ -165,19 +169,6 @@
 
 .pricing .summary-wrapper {
   padding-left: 60px;
-}
-
-.pricing .summary {
-  background-repeat: no-repeat;
-  background-image: url({{ "/img/hero.png" | prepend: site.baseurl }});
-  background-position: 50% 60px;
-  background-color: #e9e9e9;
-  background-size: 56px;
-  border-radius: 0px;
-  padding: 15px 20px;
-  margin-bottom: 15px;
-
-  min-width: 270px;
 }
 
 .pricing .summary .line-items {
@@ -1073,14 +1064,6 @@ section.feature-block {
   margin-bottom: 10px;
 }
 
-#canvas #table {
-  margin: 10px;
-}
-
-#canvas #table .table {
-  margin-bottom: 0;
-}
-
 .canvas-caption {
   margin-left: 50px;
   margin-top: 10px;
@@ -1671,7 +1654,7 @@ section.inner h1 {
 }
 
 .page-wrapper, .post-wrapper {
-  
+
   min-height: 600px;
   padding-bottom: 30px;
 }
@@ -1870,7 +1853,6 @@ body {
   color: #999;
 }
 
-
 .bs-docs-footer-links li {
   display: inline;
   padding: 0 2px;
@@ -1879,7 +1861,6 @@ body {
 .bs-docs-footer-links li:first-child {
   padding-left: 0;
 }
-
 
 .bs-callout {
   margin: 20px 0;
@@ -1909,12 +1890,16 @@ p.download-intro {
   border-color: #333;
 }
 
-.btn-center-block{
+.btn-center-block {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
-.whyjoola p{
+.whyjoola p {
   font-size: 16px;
+}
+
+#canvas {
+  padding: 10px;
 }
