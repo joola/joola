@@ -3,6 +3,9 @@ layout: post_no_sidebar
 title:  "Migrating to GitHub pages"
 date:   2015-02-05 11:39:26
 categories: blog news
+author: Itay Weinberger
+tags: content github
+
 ---
 That's it, I've decided to move to GitHub pages to host JoolaJS' content. Up until now we've had several different outlets, all maintained at different levels: website, documentation site (under readme.io), Wiki, API documentation (under apiary) and more.
 

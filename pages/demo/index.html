@@ -4,34 +4,6 @@ title: Joola in Action
 description: A simple demo showing how we embed a full analytics solution within a website.
 ---
 
-<div class="row">
-  <div class="col-md-12"><p>The demo responds to actions and events on this page. Everytime you move your mouse, visit
-    the page or click on it, an event is pushed into Joola and then visualized.</p></div>
-  <div class="col-md-6"><p>When you move your mouse the following document is pushed to Joola:</p>
-      <pre lang="javascript" class="prettyprint">
-var event = {
-  timestamp: null,
-  browser: 'Chrome',
-  os: 'Linux',
-  userid: 'demo user',
-  moves: 1
-};
-
-joola.insert('mousemoves', event);</pre>
-   
-  </div>
-  <div class="col-md-6"><p>Drawing visualizations is as easy as describing what you would like to see.</p><pre
-      lang="javascript" class="prettyprint">var query = {
-  timeframe: 'last_hour',
-  interval: 'minute',
-  dimensions: ['timestamp'],
-  metrics: ['moves'],
-  collection: 'mousemoves'
-};
-
-new joola.viz.Timeline({container: '#container', query: query});</pre>
-    </div>
-</div>
 
 <div class="terminal flowing">
   <div class="indicators"><span class="circle"></span><span class="circle"></span><span class="circle"></span></div>
@@ -63,18 +35,46 @@ new joola.viz.Timeline({container: '#container', query: query});</pre>
 </div>
 
 
+<div class="row">
+  <div class="col-md-12">
+    <h1 class="page-header">About this demo</h1></div>
+  <div class="col-md-12"><p>The demo responds to actions and events on this page. Everytime you move your mouse, visit
+    the page or click on it, an event is pushed into Joola and then visualized.</p></div>
+  <div class="col-md-6"><p>When you move your mouse the following document is pushed to Joola:</p>
+      <pre lang="javascript" class="prettyprint">
+var event = {
+  timestamp: null,
+  browser: 'Chrome',
+  os: 'Linux',
+  userid: 'demo user',
+  moves: 1
+};
+
+joola.insert('mousemoves', event);</pre>
+
+  </div>
+  <div class="col-md-6"><p>Drawing visualizations is as easy as describing what you would like to see.</p><pre
+      lang="javascript" class="prettyprint">var query = {
+  timeframe: 'last_hour',
+  interval: 'minute',
+  dimensions: ['timestamp'],
+  metrics: ['moves'],
+  collection: 'mousemoves'
+};
+
+new joola.viz.Timeline({container: '#container', query: query});</pre>
+  </div>
+</div>
+
+<p class="btn-center-block text-center"><a href="http://github.com/joola/joola/wiki/security-and-authentication" role="button" class="btn btn-lg btn-outline">Learn more</a></p>
+
 <script>
   joola.on('ready', function () {
     new joola.viz.Canvas({
       container: '#canvas',
       realtime: false,
       datepicker: {
-        container: '#datepicker',
-        /*fromdate: new Date(2014, 11, 21),
-         todate: new Date(2014, 11, 22, 23, 59, 59, 999),
-         compare_fromdate: new Date(2014, 11, 20),
-         compare_todate: new Date(2014, 11, 21, 23, 59, 59, 999),
-         compare: true*/
+        container: '#datepicker'
       },
       filterbox: {
         container: '#filters'
@@ -92,37 +92,6 @@ new joola.viz.Timeline({container: '#container', query: query});</pre>
             collection: 'moves',
             orderby: [
               ['moves', 'DESC']
-            ]
-          },
-          /*select: function (ref) {
-           console.log('select', ref);
-           }*/
-        },
-        bartable2: {
-          type: 'bartable',
-          caption: 'Clicks',
-          container: '#bartable2',
-          query: {
-            dimensions: ['engine'],
-            metrics: ['clicks'],
-            collection: 'clicks',
-            orderby: [
-              ['clicks', 'DESC']
-            ]
-          },
-          //select: false
-        },
-        bartable3: {
-          type: 'bartable',
-          caption: 'Visits',
-          container: '#bartable3',
-
-          query: {
-            dimensions: ['browser'],
-            metrics: ['visits'],
-            collection: 'visits',
-            orderby: [
-              ['visits', 'DESC']
             ]
           }
         },
@@ -181,10 +150,10 @@ new joola.viz.Timeline({container: '#container', query: query});</pre>
             },
             yAxis: [
               {
-                min: 0,
+                min: 0
               },
               {
-                min: 0,
+                min: 0
               }
             ]
           },
@@ -199,7 +168,7 @@ new joola.viz.Timeline({container: '#container', query: query});</pre>
           query: {
             dimensions: ['timestamp'],
             metrics: [
-              {key: 'moves', name: 'Mouse moves'},
+              {key: 'moves', name: 'Mouse moves'}
             ],
             collection: 'moves'
           }

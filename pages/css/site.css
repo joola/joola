@@ -1,6 +1,16 @@
----
-# dummy front matter (the dashes are enough)
----
+-
+-
+-
+#
+dummy front matter
+
+(
+the dashes are enough
+
+)
+-
+-
+-
 
 #hero {
   font-family: 'PT Sans', sans-serif;
@@ -1839,12 +1849,28 @@ body {
 }
 
 .post-content {
-  font-family: serif, sans-serif;
+  font-family: Lato, serif, sans-serif;
   letter-spacing: 0.01rem;
   font-weight: 400;
   font-style: normal;
   font-size: 22px;
   line-height: 1.5;
+}
+
+.post-summary {
+  font-family: Lato, "helvetica neue", helvetica, arial;
+}
+
+.post-summary h2 {
+  margin-top: 0;
+}
+
+.post-excerpt {
+
+  letter-spacing: 0.01rem;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
 }
 
 .bs-docs-footer-links {
@@ -1902,4 +1928,26 @@ p.download-intro {
 
 #canvas {
   padding: 10px;
+}
+
+.post-author {
+  font-size: 18px;
+  color: white;
+}
+
+.post-author .label:first-of-type {
+  margin-left: 15px;
+}
+
+.row.post-summary {
+  margin-bottom: 50px;
+}
+
+.post-meta {
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: normal;
+  color: #999;
+  margin: 0;
+  padding: 10px 0 0 0;
 }
