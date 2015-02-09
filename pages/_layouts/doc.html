@@ -2,13 +2,17 @@
 layout: default
 ---
 
-<div class="container page-wrapper">
-  <div class="post">
-    <header class="post-header">
-      <h1 class="post-title">{{ page.title }}</h1>
-    </header>
-    <article class="post-content">
-      {{ content }}
-    </article>
+<div class="bs-docs-header" id="content">
+  <div class="container">
+    <h1>{{ page.title }}</h1>
+
+    <div class="post-author">
+      {% for path in page.docPath %}
+      <span class="label label-default post-tag">{{ path }}</span>
+      {% endfor %}
+    </div>
   </div>
+</div>
+<div class="container page-wrapper post-content">
+  {{ content }}
 </div>

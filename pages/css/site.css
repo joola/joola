@@ -1,16 +1,6 @@
--
--
--
-#
-dummy front matter
-
-(
-the dashes are enough
-
-)
--
--
--
+---
+#dummy front matter (the dashes are enough)
+---
 
 #hero {
   font-family: 'PT Sans', sans-serif;
@@ -1842,10 +1832,10 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
 }
 
 body {
-  font-family: sans-serif;
+  font-family: Lato, "helvetica neue", helvetica, arial;
   font-weight: 400;
   font-style: normal;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .post-content {
@@ -1855,10 +1845,6 @@ body {
   font-style: normal;
   font-size: 22px;
   line-height: 1.5;
-}
-
-.post-summary {
-  font-family: Lato, "helvetica neue", helvetica, arial;
 }
 
 .post-summary h2 {
@@ -1950,4 +1936,8 @@ p.download-intro {
   color: #999;
   margin: 0;
   padding: 10px 0 0 0;
+}
+
+.btn{
+  font-size:16px;
 }
