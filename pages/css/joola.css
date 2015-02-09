@@ -306,12 +306,12 @@ a:hover {
 
 .row.footer {
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.15) inset;
+  text-align: center;
 
 }
 
 .row.footer img {
-  margin-top: 40px;
-  /*height: 48px;*/
+  height: 48px;
   opacity: 0.5;
 }
 
