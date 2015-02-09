@@ -32,10 +32,9 @@ layout: default
                 </p>
 
                 <div style="text-align:center;">
-                  <a href="/getstarted" class="btn btn-default read-more pull-left">Get Started</a>
-                  <a href="/demo" class="btn btn-default read-more">Demo</a>
-                  
-                  <a href="http://github.com/joola/joola" class="btn btn-default read-more pull-right">GitHub</a>
+                  <a href="{{ "/gettingstarted" | prepend: site.baseurl }}" class="btn btn-default read-more pull-left">Get Started</a>
+                  <a href="{{ "/demo" | prepend: site.baseurl }}" class="btn btn-default read-more">Demo</a>
+                  <a href="{{ "/docs" | prepend: site.baseurl }}" class="btn btn-default read-more pull-right">docs</a>
                 </div>
               </div>
             </div>
@@ -143,13 +142,13 @@ layout: default
           </p><p>Joola connects to your data via an agnostic plugin and with the Javascript SDK you can visualizae it within minutes. 
         </p>
         
-        <a href="/gettingstarted" class="btn btn-default read-more margin-top-20 show-on-mobile">Get started</a>
+        <a href="{{ "/gettingstarted" | prepend: site.baseurl }}" class="btn btn-default read-more margin-top-20 show-on-mobile">Get started</a>
       </div>
-      <div class="col-md-4"><h2>Embed and Extend</h2>
+      <div class="col-md-4"><h2>Visualization</h2>
         <p>Embed data visualizations or a complete analytics system within your existing site or product.
           
         </p><p>Control all aspects of behavior, look & feel using HTML, CSS and JS.</p>
-        <a href="/demo" class="btn btn-default read-more margin-top-20 show-on-mobile">Demo</a>
+        <a href="{{ "/demo" | prepend: site.baseurl }}" class="btn btn-default read-more margin-top-20 show-on-mobile">Demo</a>
       </div>
       <div class="col-md-4"><h2>So much more...</h2>
 
@@ -159,10 +158,10 @@ layout: default
     </div>
     <div class="row hide-on-mobile">
       <div class="col-md-4">
-        <a href="/gettingstarted" class="btn btn-default read-more">Get started</a>
+        <a href="{{ "/gettingstarted" | prepend: site.baseurl }}" class="btn btn-default read-more">Get started</a>
       </div>
       <div class="col-md-4">
-        <a href="/demo" class="btn btn-default read-more">Demo</a>
+        <a href="{{ "/demo" | prepend: site.baseurl }}" class="btn btn-default read-more">Demo</a>
       </div>
       <div class="col-md-4">
         <a href="https://github.com/joola/joola" class="btn btn-default read-more">Docs</a>

@@ -1671,7 +1671,7 @@ section.inner h1 {
 }
 
 .page-wrapper, .post-wrapper {
-  padding-top: 30px;
+  
   min-height: 600px;
   padding-bottom: 30px;
 }
@@ -1852,7 +1852,7 @@ body {
   font-family: sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .post-content {
@@ -1878,4 +1878,43 @@ body {
 
 .bs-docs-footer-links li:first-child {
   padding-left: 0;
+}
+
+
+.bs-callout {
+  margin: 20px 0;
+  padding: 20px;
+  border-left: 3px solid #EEE;
+}
+
+.bs-callout-warning {
+  background-color: #FCF8F2;
+  border-color: #F0AD4E;
+}
+
+.logo3rd {
+  text-align: center;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  height: 70px;
+}
+
+p.download-intro {
+  height: 140px;
+}
+
+.btn-outline {
+  color: #333;
+  background-color: rgba(0, 0, 0, 0);
+  border-color: #333;
+}
+
+.btn-center-block{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.whyjoola p{
+  font-size: 16px;
 }
