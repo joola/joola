@@ -1,9 +1,9 @@
 ---
-layout: post
-title:  "Welcome to Jekyll!"
-date:   2015-02-05 11:39:26
-categories: blog news update
-excerpt: test
+layout: post_no_sidebar
+title:  "Thoughts about content"
+date:   2015-02-08 01:39:26
+categories: blog
+tags: content
 ---
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve --watch`, which launches a web server and auto-regenerates your site when a file is updated.
 
