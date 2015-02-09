@@ -59,7 +59,7 @@ site:
 		#commit to gh-pages
 		git add .
 		git commit -am "updated gh-pages."
-		git push -f origin gh-pages
+		#git push -f origin gh-pages
 		
 		#cleanup
 		git checkout feature/#647
