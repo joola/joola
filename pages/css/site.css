@@ -169,7 +169,7 @@
 
 .pricing .summary {
   background-repeat: no-repeat;
-  background-image: url(/img/hero.png);
+  background-image: url({{ "/img/hero.png" | prepend: site.baseurl }});
   background-position: 50% 60px;
   background-color: #e9e9e9;
   background-size: 56px;
@@ -1041,7 +1041,7 @@ section.feature-block {
   position: absolute;
   top: 15px;
   left: 50px;
-  background-image: url("/img/browser-logo.png");
+  background-image: url({{ "/img/browser-logo.png" | prepend: site.baseurl }});
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
