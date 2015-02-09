@@ -37,7 +37,8 @@ site:
 		cd /tmp/wiki && git init && gollum-site generate --output_path=$(TOP)/pages/docs --base_path /docs/ --working
 		cd $(TOP)
 		rm -rf /tmp/wiki/*
-
+		node build/pages/build_doc_path.js
+		
 		#build gh-pages site
 		cp ./build/pages/resources/_config.yml ./pages/_config.yml
 		cd pages && jekyll build
