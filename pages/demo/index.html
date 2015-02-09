@@ -1,7 +1,7 @@
 ---
 layout: page_no_sidebar
 title: Joola in Action
-description: A simple demo showing how we embed a full analytics solution within a website.
+description: The demo below shows how we embed a full analytics solution within an existing website, a simple drop in place.
 ---
 
 
@@ -43,14 +43,14 @@ description: A simple demo showing how we embed a full analytics solution within
   <div class="col-md-6"><p>When you move your mouse the following document is pushed to Joola:</p>
       <pre lang="javascript" class="prettyprint">
 var event = {
-  timestamp: null,
-  browser: 'Chrome',
+  timestamp: null, //automatically generate for us
+  browser: 'Chrome', //dimensions
   os: 'Linux',
   userid: 'demo user',
-  moves: 1
+  moves: 1 //a metric
 };
 
-joola.insert('mousemoves', event);</pre>
+joola.insert('moves', event);</pre>
 
   </div>
   <div class="col-md-6"><p>Drawing visualizations is as easy as describing what you would like to see.</p><pre
@@ -59,7 +59,7 @@ joola.insert('mousemoves', event);</pre>
   interval: 'minute',
   dimensions: ['timestamp'],
   metrics: ['moves'],
-  collection: 'mousemoves'
+  collection: 'moves'
 };
 
 new joola.viz.Timeline({container: '#container', query: query});</pre>

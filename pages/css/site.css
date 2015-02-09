@@ -1,8 +1,7 @@
 -
 -
 -
-#
-dummy front matter
+#dummy front matter
 
 (
 the dashes are enough
@@ -891,6 +890,7 @@ section.feature-block {
 #timeline {
   margin-bottom: 0;
   margin-right: 10px;
+  margin-top: 20px;
 }
 
 #table {
@@ -1055,7 +1055,6 @@ section.feature-block {
 }
 
 #canvas [jio-type="datepicker"] .jcontainer {
-  border: 0;
   border-radius: 0;
 }
 
@@ -1753,7 +1752,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
 }
 
 .post-content h2 {
-  padding-top: 30px;
+  /*padding-top: 30px;*/
 }
 
 .post-content h5 {
@@ -1842,10 +1841,10 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
 }
 
 body {
-  font-family: sans-serif;
+  font-family: Lato, "helvetica neue", helvetica, arial;
   font-weight: 400;
   font-style: normal;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .post-content {
@@ -1853,12 +1852,8 @@ body {
   letter-spacing: 0.01rem;
   font-weight: 400;
   font-style: normal;
-  font-size: 22px;
+  font-size: 18px;
   line-height: 1.5;
-}
-
-.post-summary {
-  font-family: Lato, "helvetica neue", helvetica, arial;
 }
 
 .post-summary h2 {
@@ -1907,7 +1902,7 @@ body {
 }
 
 p.download-intro {
-  height: 140px;
+  height: 175px;
 }
 
 .btn-outline {
@@ -1950,4 +1945,26 @@ p.download-intro {
   color: #999;
   margin: 0;
   padding: 10px 0 0 0;
+}
+
+.btn {
+  font-size: 16px;
+}
+
+.bread-crumb {
+  color: white;
+  font-size: 18px;
+}
+
+[jio-type=bartable] .bartable-caption {
+  text-align: left !important;
+}
+
+[jio-type=filterbox] .filterbox{
+  padding-top:2px !important;
+}
+
+.read-more.long:hover:after
+{
+  margin-left:10px;
 }
