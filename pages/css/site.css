@@ -1421,8 +1421,8 @@ section:last-of-type {
 #main-content .whyjoola .col-md-4 p, #main-content .solutions .col-md-4 p {
   padding-left: 20px;
   padding-right: 20px;
-  text-align: justify;
-  line-height: 1.7em;
+  text-align: left;
+  line-height: 1.5em;
 }
 
 #main-content section.inverse {
