@@ -82,12 +82,20 @@ walk(path.join(__dirname, '../../pages/docs'), function (err, results) {
       path.pop();
       docPath = JSON.stringify(path);
       contents = contents.replace('%%page.path%%', docPath);
+      contents = contents.replace('%%page.description%%', '');
+      fs.writeFileSync(filename, contents);
+    }
+    else if (filename.indexOf('Home') > -1) {
+      contents = contents.replace('%%page.title%%', 'Documentation');
+      contents = contents.replace('%%page.description%%', 'Learn all about harnessing Joola for your product.');
+      contents = contents.replace('%%page.path%%', '');
       fs.writeFileSync(filename, contents);
     }
     else {
       console.error('Failed to locate path for a documentation file', filename);
       contents = contents.replace('%%page.title%%', '');
       contents = contents.replace('%%page.path%%', '');
+      contents = contents.replace('%%page.description%%', '');
       fs.writeFileSync(filename, contents);
     }
   }, function (err, results) {

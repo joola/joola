@@ -1,6 +1,15 @@
----
-#dummy front matter (the dashes are enough)
----
+-
+-
+-
+#dummy front matter
+
+(
+the dashes are enough
+
+)
+-
+-
+-
 
 #hero {
   font-family: 'PT Sans', sans-serif;
@@ -881,6 +890,7 @@ section.feature-block {
 #timeline {
   margin-bottom: 0;
   margin-right: 10px;
+  margin-top: 20px;
 }
 
 #table {
@@ -1045,7 +1055,6 @@ section.feature-block {
 }
 
 #canvas [jio-type="datepicker"] .jcontainer {
-  border: 0;
   border-radius: 0;
 }
 
@@ -1893,7 +1902,7 @@ body {
 }
 
 p.download-intro {
-  height: 140px;
+  height: 175px;
 }
 
 .btn-outline {
@@ -1938,11 +1947,24 @@ p.download-intro {
   padding: 10px 0 0 0;
 }
 
-.btn{
-  font-size:16px;
+.btn {
+  font-size: 16px;
 }
 
 .bread-crumb {
   color: white;
   font-size: 18px;
+}
+
+[jio-type=bartable] .bartable-caption {
+  text-align: left !important;
+}
+
+[jio-type=filterbox] .filterbox{
+  padding-top:2px !important;
+}
+
+.read-more.long:hover:after
+{
+  margin-left:10px;
 }
