@@ -1263,52 +1263,6 @@ section.feature-block {
   opacity: 0.95;
 }
 
-.navbar-contact {
-  list-style: none;
-  margin-left: -15px;
-
-  background-color: #2C3E50;
-
-  background-image: -webkit-radial-gradient(50% top, rgba(41, 128, 185, 0.6) 0%, rgba(41, 128, 185, 0) 75%), -webkit-radial-gradient(right top, rgba(41, 128, 185, 1) 0%, rgba(41, 128, 185, 0) 57%);
-  background-image: radial-gradient(at 50% top, rgba(41, 128, 185, 0.6) 0%, rgba(41, 128, 185, 0) 75%), radial-gradient(at right top, rgba(41, 128, 185, 1) 0%, rgba(41, 128, 185, 0) 57%);
-
-  background-repeat: no-repeat;
-  background-size: 100% 1000px;
-  color: #AEDFFF;
-
-  padding-top: 8px;
-  padding-bottom: 8px;
-}
-
-.navbar-contact ul {
-
-}
-
-.navbar-contact li {
-  float: left;
-  margin-left: 15px;
-
-  font-weight: bold;
-}
-
-.navbar-contact li a {
-  color: #AEDFFF;
-  cursor: pointer;
-  font-size: 13px;
-}
-
-.navbar-contact li a:hover {
-  text-decoration: none;
-}
-
-.navbar-contact li:first-of-type {
-
-}
-
-.navbar-contact li i {
-  margin-right: 5px;
-}
-
 .navbar {
   padding-top: 0;
   padding-bottom: 0;

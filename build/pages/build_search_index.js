@@ -71,7 +71,6 @@ walk(path.join(__dirname, '../../pages/_site'), function (err, results) {
     }
     return cb(null, page);
   }, function (err, results) {
-    console.log(json);
     fs.writeFileSync(path.join(__dirname, '../../pages/docs/search_index.json'), JSON.stringify(json));
   });
 });

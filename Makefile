@@ -44,6 +44,7 @@ site:
 		cp -R ./build/pages/resources/jekyll/* ./pages
 		cd pages && jekyll build
 		node build/pages/build_search_index.js
+		cp ./pages/docs/search_index.json ./pages/_site/docs/search_index.json
 		rm -rf /usr/share/nginx/html/*
 		mkdir -p /usr/share/nginx/html/
 		cp -R ./pages/_site/* /usr/share/nginx/html
