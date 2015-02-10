@@ -4,7 +4,7 @@ title: Commercial services
 description: Joola provides a full range of commercial support and services.
 ---
 
-Joola offers commercial support agreements for the most recent open source release of its framework.
+[Joola](../about) offers commercial support agreements for the most recent open source release of its framework.
 
 We also produce a **commercially licensed** release of Joola, this includes all of the features of the open source version and contains additional commercially focused components, such as: data connectors, SaaS and PaaS infrastructure and offering, OEM distribution and more. 
 **Support agreements** are also available from Joola for both the open source and commercial licenses.

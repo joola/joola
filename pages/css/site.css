@@ -1,15 +1,6 @@
--
--
--
-#dummy front matter
-
-(
-the dashes are enough
-
-)
--
--
--
+---
+#dummy front matter(the dashes are enough)
+---
 
 #hero {
   font-family: 'PT Sans', sans-serif;
@@ -1051,7 +1042,7 @@ section.feature-block {
 }
 
 #canvas .btn {
-  font-size: 12px !important;
+  /*font-size: 12px !important;*/
 }
 
 #canvas [jio-type="datepicker"] .jcontainer {
@@ -1602,6 +1593,7 @@ section h1 {
   a.read-more {
     margin-left: auto;
     margin-right: auto;
+    float:none !important;
   }
 
   #carousel .item {
@@ -1637,6 +1629,14 @@ section h1 {
 
   #carousel .item .read-more {
     margin-top: 20px;
+  }
+  
+  #carousel .item .pinch-left {
+    margin-left:0 !important;
+  }
+  
+  #carousel .item .col-md-6 {
+    text-align:center !important;
   }
 }
 
@@ -1844,7 +1844,7 @@ body {
   font-family: Lato, "helvetica neue", helvetica, arial;
   font-weight: 400;
   font-style: normal;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .post-content {
@@ -1948,7 +1948,7 @@ p.download-intro {
 }
 
 .btn {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .bread-crumb {
@@ -1967,4 +1967,16 @@ p.download-intro {
 .read-more.long:hover:after
 {
   margin-left:10px;
+}
+
+.btn.jio-metricpicker-button .close{
+  margin-left:5px;
+}
+
+.download-intro{
+  font-size:16px;
+}
+
+.footer {
+  font-size:16px;
 }

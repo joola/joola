@@ -4,11 +4,11 @@ layout: default
 
 <div class="bs-docs-header" id="content">
   <div class="container">
-    <div class="post-author ">
+    <p class="post-author ">
       {% for path in page.docPath %}
       <a class="internal present bread-crumb" href="{{path.link}}">{{ path.text }}</a> >
       {% endfor %}
-    </div>
+    </p>
     
     <h1>{{ page.title }}</h1>
     <p>{{ page.description }}</p>
