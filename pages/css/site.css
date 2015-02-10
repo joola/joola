@@ -1712,9 +1712,14 @@ p.lead-smaller {
 }
 
 aside ul .post-link {
-  color: #999;
   font-size: 16px;
 }
+
+aside ul.post-list li .author {
+  color: #999;
+  font-size: 14px;
+}
+
 
 aside ul .post-link:hover {
   color: #333;
@@ -1979,4 +1984,19 @@ p.download-intro {
 
 .footer {
   font-size:16px;
+}
+
+.post-list{
+  list-style: none;
+  margin-left:0;
+  padding-left:0;
+}
+
+#tipue_search_input
+{
+  width:80%;
+}
+
+.h01 {
+  background-color: #FF0;
 }
