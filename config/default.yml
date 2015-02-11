@@ -111,6 +111,7 @@ workspaces:
           - "query:stop"
           - "collections:list"
           - "collections:get"
+          - "system:version"
         filter: []
       user:
         key: "users"
