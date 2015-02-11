@@ -27,15 +27,4 @@ describe("common-watchers", function () {
       done();
     });
   });
-
-  it("coverage branch no redis store", function (done) {
-    joola_proxy._redis = joola_proxy.redis;
-    delete joola_proxy.redis;
-    sleep.sleep(2);
-    joola.system.version(function (err, version) {
-      joola_proxy.redis = joola_proxy._redis;
-      delete joola_proxy._redis;
-      done();
-    });
-  });
 });
