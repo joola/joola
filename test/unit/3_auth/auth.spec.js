@@ -42,11 +42,49 @@ describe("auth", function () {
       expect(token.user).to.be.ok;
       expect(token.timestamp).to.be.ok;
       expect(token.expires).to.be.ok;
-      done(err);
+      return done();
     });
   });
 
-  xit("token should expire after 2 seconds", function (done) {
+
+  it("should validate a token", function (done) {
+    var user = {
+      username: 'test',
+      password: 'password',
+      roles: ['user'],
+      workspace: this.workspace
+    };
+    engine.auth.generateToken(user, function (err, token) {
+      if (err)
+        return done(err);
+
+      engine.auth.validateToken(token._, null, function (err, valid) {
+        if (err)
+          return done(err);
+        return done();
+      });
+    });
+  });
+
+  it("should fail generating a token on invalid user", function (done) {
+    engine.auth.generateToken(null, function (err, token) {
+      if (err)
+        return done();
+
+      done(new Error('This should fail'));
+    });
+  });
+
+  it("should fail generating a token on invalid user", function (done) {
+    engine.auth.generateToken('test', function (err, token) {
+      if (err)
+        return done();
+
+      done(new Error('This should fail'));
+    });
+  });
+
+  it("token should expire after 2 seconds", function (done) {
     var user = {
       username: 'test',
       password: 'password',
@@ -54,15 +92,13 @@ describe("auth", function () {
       workspace: this.workspace
     };
     var _expireafter = engine.config.authentication.tokens.expireafter;
-    engine.config.authentication.tokens.expireafter = 2000;
-
+    engine.config.authentication.tokens.expireafter = 1000;
     engine.auth.generateToken(user, function (err, token) {
-      engine.config.authentication.tokens.expireafter = _expireafter;
-
       engine.auth.validateToken(token._, null, function (err, valid) {
         if (err)
           return done(err);
         expect(valid).to.be.ok;
+        engine.config.authentication.tokens.expireafter = _expireafter;
         setTimeout(function () {
           engine.auth.validateToken(token._, null, function (err, valid) {
             if (err)
@@ -71,6 +107,34 @@ describe("auth", function () {
               done(new Error('Failed to expire token'));
           });
         }, 2000);
+      });
+    });
+  });
+
+  it("token should not validate an invalid token", function (done) {
+    engine.auth.validateToken(null, null, function (err, valid) {
+      if (err)
+        return done();
+      return  done(new Error('This should fail'));
+    });
+  });
+
+
+  it("should use cached tokens", function (done) {
+    var user = {
+      username: 'test',
+      password: 'password',
+      roles: ['user'],
+      workspace: this.workspace
+    };
+    engine.auth.generateToken(user, function (err, token) {
+      if (err)
+        return done(err);
+      engine.auth.validateToken(token._, null, function (err, valid) {
+        if (err)
+          return done(err);
+        expect(valid.cached).to.be.true;
+        done();
       });
     });
   });
@@ -261,12 +325,37 @@ describe("auth", function () {
     done();
   });
 
+  it("should fail hashing invalid input", function (done) {
+    var hash = engine.auth.hashPassword(null);
+
+    assert(!hash);
+    done();
+  });
+
   it("should validate a password", function (done) {
     var password = '1234';
     var hash = 'nVHqYEJbh$81dc9bdb52d04dc20036dbd8313ed055';
     var valid = engine.auth.validatePassword(password, hash);
 
     assert(valid);
+    done();
+  });
+
+  it("should fail validating an invalid password (no password)", function (done) {
+    var password = null;
+    var hash = 'nVHqYEJbh$81dc9bdb52d04dc20036dbd8313ed055';
+    var valid = engine.auth.validatePassword(password, hash);
+
+    assert(!valid);
+    done();
+  });
+
+  it("should fail validating an invalid password (no password)", function (done) {
+    var password = '1234';
+    var hash = null;
+    var valid = engine.auth.validatePassword(password, hash);
+
+    assert(!valid);
     done();
   });
 
@@ -292,4 +381,29 @@ describe("auth", function () {
       });
     });
   });
+
+  it("should fail get a user by non existing token", function (done) {
+    engine.auth.getUserByToken('no such token', function (err, _user) {
+      if (err)
+        return done();
+
+      done(new Error('This should fail'));
+    });
+  });
+
+  it("should fail get a user by invalid token", function (done) {
+    engine.auth.getUserByToken(null, function (err, _user) {
+      if (err)
+        return done();
+
+      done(new Error('This should fail'));
+    });
+  });
+
+  it("should generate an authentication error object", function (done) {
+    var obj = new joola_proxy.auth.AuthErrorTemplate(new Error('Test'));
+    expect(obj).to.be.ok;
+    done();
+  });
+
 });
