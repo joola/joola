@@ -17,7 +17,7 @@ describe("webserver", function () {
     });
   });
 
-  xit("should verify server is offline", function (done) {
+  it("should verify server is offline", function (done) {
     engine.webserver.verify(function (err) {
       if (err)
         return done();

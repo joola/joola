@@ -60,6 +60,34 @@ describe("common-config", function () {
     });
   });
 
+  it("should delete a config value (via set)", function (done) {
+    engine.config.set('test:test2', 'test123', function (err) {
+      if (err)
+        return done(err);
+
+      engine.config.get('test:test2', function (err, value) {
+        if (value) {
+          engine.config.set('test:test2', null, function (err) {
+            if (err)
+              return done(err);
+            engine.config.get('test:test2', function (_err, _value) {
+              if (_err)
+                return done(_err);
+
+              if (_value) {
+                return done(new Error('Failed to expire value'));
+              }
+              else
+                return done();
+            });
+          });
+        }
+        else
+          return done(new Error('Failed to get value'));
+      });
+    });
+  });
+
   it("should overwrite a config value with env var", function (done) {
     process.env.JOOLA_CONFIG_TEST_TEST1 = 'test1234';
     engine.config.overrideWithEnvironment();
