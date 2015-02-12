@@ -4,16 +4,26 @@ layout: default
 
 <div class="bs-docs-header" id="content">
   <div class="container">
-    <p class="post-author ">
-      {% for path in page.docPath %}
-      <a class="internal present bread-crumb" href="{{path.link}}">{{ path.text }}</a> >
-      {% endfor %}
-    </p>
-    
     <h1>{{ page.title }}</h1>
     <p>{{ page.description }}</p>
   </div>
 </div>
-<div class="container page-wrapper post-content">
-  {{ content }}
+
+<div class="container page-wrapper">
+  <div class="post with-sidebar ">
+    <article class="post-content">
+      <a id="overview"></a>
+      {{ content }}
+    </article>
+  </div>
+  <aside class="sidebar topic-list">
+    <nav id="doc-affix" class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix">
+      <ul id="list-items" class="nav bs-docs-sidenav">
+      </ul>
+      <a class="back-to-top" href="#top">
+        Back to top
+      </a>
+
+    </nav>
+  </aside>
 </div>

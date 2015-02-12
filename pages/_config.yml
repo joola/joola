@@ -28,9 +28,9 @@ whitelist: []
 gems:      []
 
 # Conversion
-markdown:    kramdown
+markdown:    redcarpet
 highlighter: pygments
-lsi:         false
+lsi:         true
 excerpt_separator: "\n\n"
 
 # Serving
@@ -61,7 +61,7 @@ rdiscount:
   extensions: []
 
 redcarpet:
-  extensions: []
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", "with_toc_data"]
 
 kramdown:
   auto_ids:       true

@@ -1525,6 +1525,7 @@ section h1 {
 
   .navbar-nav > li > .dropdown-menu {
     margin-top: 0;
+    border-top: 3px solid #2980B9;
   }
 
   .shrink .navbar-nav > li > .dropdown-menu {
@@ -1555,12 +1556,12 @@ section h1 {
   }
 
   .navbar-nav > li > .dropdown-menu > li:first-of-type {
-    border-top: 3px solid #2980B9;
-    padding-top: 20px;
+
+    margin-top: 10px;
   }
 
   .navbar-nav > li > .dropdown-menu > li:last-of-type {
-    padding-bottom: 20px;
+    margin-bottom: 10px;
   }
 
   .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
@@ -1630,11 +1631,11 @@ section h1 {
   #carousel .item .read-more {
     margin-top: 20px;
   }
-  
+
   #carousel .item .pinch-left {
     margin-left:0 !important;
   }
-  
+
   #carousel .item .col-md-6 {
     text-align:center !important;
   }
@@ -1994,9 +1995,93 @@ p.download-intro {
 
 #tipue_search_input
 {
-  width:80%;
+  width:100%;
+  font-size:18px;
 }
 
 .h01 {
   background-color: #FF0;
+}
+
+#tipue_search_input{
+background-position: 15px 20px;
+}
+
+
+  .bs-docs-sidebar.affix, .bs-docs-sidebar.affix-bottom {
+    width: 263px;
+  }
+
+
+.bs-docs-sidebar .nav>li>a {
+  display: block;
+  padding: 4px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #767676;
+}
+
+
+.bs-docs-sidebar .nav>.active:focus>a, .bs-docs-sidebar .nav>.active:hover>a, .bs-docs-sidebar .nav>.active>a {
+  padding-left: 18px;
+  font-weight: 700;
+  color: #2C3E50;
+  background-color: transparent;
+  border-left: 2px solid #2C3E50;
+}
+
+.bs-docs-sidebar .nav .nav {
+  display: none;
+  padding-bottom: 10px;
+}
+
+.bs-docs-sidebar .nav>.active>ul {
+  display: block;
+}
+
+.bs-docs-sidebar .nav .nav>li>a {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 30px;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.bs-docs-sidebar .nav .nav>.active:focus>a, .bs-docs-sidebar .nav .nav>.active:hover>a, .bs-docs-sidebar .nav .nav>.active>a {
+  padding-left: 28px;
+  font-weight: 500;
+}
+
+.bs-docs-sidenav {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.bs-docs-sidebar.affix .bs-docs-sidenav, .bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.nav.bs-docs-sidenav li {
+  padding-left: 0;
+   padding-right: 0;
+   padding-bottom: 0;
+}
+
+body {
+  position: relative;
+}
+
+.back-to-top, .bs-docs-theme-toggle {
+  padding: 4px 10px;
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #999;
+}
+
+.sidebar-heading{
+  font-size:14px;
+  margin-top:0;
 }
