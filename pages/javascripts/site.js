@@ -1,10 +1,25 @@
 function setupSearch() {
-  $('#tipue_search_input').tipuesearch({
+  var $input = $('#tipue_search_input');
+  $input.tipuesearch({
     'mode': 'json',
     'contentLocation': 'search_index.json',
     showURL: false
   });
-  $('#tipue_search_input').attr('placeholder', 'What are you looking for?');
+  $input.attr('placeholder', 'What are you looking for?');
+}
+
+function setupDocumentationLinks() {
+  ['.markdown-body h1', '.markdown-body h2', '.markdown-body h3'].forEach(function (tag) {
+    $(tag).each(function () {
+      var $this = $(this);
+      if (!$this.attr('id')) {
+        var anchor = $this.text().replace(/\W+/g, '-').replace(/\s/g, '-');
+        $this.attr('id', anchor);
+      }
+      var $a = $('<a class="anchor" href="#' + $this.attr('id') + '" aria-hidden="true"><span class="octicon octicon-link"></span></a>');
+      $this.prepend($a);
+    });
+  });
 }
 
 function setupDocumentation() {
@@ -12,6 +27,8 @@ function setupDocumentation() {
     setupDocumentationREST();
   else
     setupDocumentationNormal();
+
+  setupDocumentationLinks();
 }
 
 function setupDocumentationNormal() {
@@ -44,7 +61,7 @@ function setupDocumentationNormal() {
   };
 
   var list_items = [];
-  $('.page-wrapper h1').each(function (i) {
+  $('.markdown-body h1').each(function (i) {
     var $this = $(this);
 
     var sub_items = trailingHeadings($this);
@@ -110,7 +127,7 @@ function setupDocumentationREST() {
   };
 
   var list_items = [];
-  $('.page-wrapper h1').each(function (i) {
+  $('.markdown-body h1').each(function (i) {
     var $this = $(this);
     var sub_items = null;
     if ($this && $this.text) {
@@ -149,8 +166,8 @@ function setupDocumentationREST() {
     $('#list-items').append($li);
   });
   $('code.language-text').addClass('prettyprint');
-  $('table').addClass('table table-bordered table-striped');
-  $('h1').each(function () {
+  $('.markdown-body table').addClass('table table-bordered table-striped');
+  $('.markdown-body h1').each(function () {
     var $this = $(this);
     var caption = $this.text();
     caption = caption.replace('Group ', '');

@@ -1,7 +1,7 @@
 ---
 layout: doc
 title: Terminology and concepts
-description: Learn about some of the basic concepts used and terms used by Joola.
+description: Learn about the basic concepts and terms used by Joola.
 ---
 
 Before diving deep into the system, it's best to become familiar with some basic concepts used throughout the documentation and by the framework.

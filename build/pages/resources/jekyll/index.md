@@ -6,7 +6,7 @@ description: Learn all about Joola and start visualizing your data.
 
 Joola allows you to focus on developing your product and what you do best while not needing to worry about developing a full scale data analytics solution for your users.
 
-Use Joola to track any event of any type (visits, registrations, purchases, game play and more...) which are pushed into Joola using a simple JSON format. Then, using the SDK or REST API explore and visualize your data.
+Push events of any type (visits, registrations, purchases, game play and more...) to Joola using a simple JSON format and then, using the SDK or REST API, explore and visualize your data.
 
 - [Terminology](Terminology.html)
 - [Download & install](Installing.html)
