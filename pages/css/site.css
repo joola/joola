@@ -1397,7 +1397,7 @@ section:last-of-type {
   color: #2980B9;
 }
 
-#main-content section.inverse h2, #main-content section.inverse h3 {
+section.inverse h2, section.inverse h3 {
   color: #AEDFFF;
 }
 
@@ -1408,7 +1408,7 @@ section:last-of-type {
   line-height: 1.5em;
 }
 
-#main-content section.inverse {
+section.inverse {
   background-color: #2C3E50;
   /*background-image: -webkit-radial-gradient(50% top, rgba(41, 128, 185, 0.6) 0%, rgba(41, 128, 185, 0) 75%), -webkit-radial-gradient(right top, #2980B9 0%, rgba(41, 128, 185, 0) 57%);
   background-image: radial-gradient(at 50% top, rgba(41, 128, 185, 0.6) 0%, rgba(41, 128, 185, 0) 75%), radial-gradient(at right top, #2980B9 0%, rgba(41, 128, 185, 0) 57%);
