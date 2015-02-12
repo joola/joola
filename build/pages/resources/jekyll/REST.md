@@ -1,35 +1,31 @@
 ---
-layout: doc_index
+layout: doc
 title: REST API
 description: All of Joola features and functions are exposed using a standard REST API.
 ---
 
-# joola
-[joola](http://github.com/joola/joola) is an open-source data analytics and visualization framework.
-To learn more about joola, installation, configuration and usage, please refer to our [wiki](http://github.com/joola/joola/wiki).
-
 This guide describes the resources that make up the joola API.
 If you have any problems or requests please open an [issue](http://github.com/joola/joola/issues).
 
-## Using This Guide
+# Using This Guide
 
-We will be using `https://localhost:8081` which is the default configuration for a fresh installation of joola.
+We will be using `http://localhost:8080` which is the default configuration for a fresh installation of joola.
 
 You can use the `Debugging Host` to execute requests against a valid, online joola instance we have put up for the purpose of this guide. A valid token for this purpose is `apitoken-demo`.
 Some actions will not be available in order to maintain system integrity.
 
 While we understand how naive we are with this request, please apply Fair Usage and avoid vandalism of the system as much as possible. The node serving this guide will recycle every hour.
 
-## Current Version
+# Current Version
 To check what version of joola is running, run:
 
 ```bash
-$ curl https://localhost:8081/system/version?APIToken=apitoken-demo
+$ curl http://localhost:8080/system/version?APIToken=apitoken-demo
 
 {"version": "joola version 0.6.4"}
 ```
 
-## Schema
+# Schema
 All data is sent and received as JSON.
 
 ```bash
@@ -74,25 +70,25 @@ joola API uses the following Verbs.
 | `PUT`    | Used for replacing resources or collections. For PUT requests with no body attribute, be sure to set the Content-Length header to zero. Rarely used as part of the framework.                       |
 | `DELETE` | Used for deleting resources.                                                                                                                                                                        |
 
-## Authentication
+# Security & Tokens
 There are three ways to authenticate through joola API.
 Requests that require authentication will return 404 Not Found, instead of 403 Forbidden, in some places. This is to prevent the accidental leakage of private information to unauthorized users.
 
-#### Basic Authentication
+## Basic Authentication
 
 ```bash
-$ curl -u "workspace/username:password" https://localhost:8081/system/version
+$ curl -u "workspace/username:password" http://localhost:8080/system/version
 ```
 
-#### APIToken (sent in a header)
+## APIToken (sent in a header)
 
 ```bash
-$ curl -H "Authorization: token my-apitoken" https://localhost:8081/system/version
+$ curl -H "Authorization: token my-apitoken" http://localhost:8080/system/version
 ```
 
-#### APIToken (sent as a parameter)
+## APIToken (sent as a parameter)
 ```bash
-$ curl https://localhost:8081/system/version?APIToken=my-apitoken
+$ curl http://localhost:8080/system/version?APIToken=my-apitoken
 ```
 
 ## Rate Limits

@@ -30,7 +30,7 @@ gems:      []
 # Conversion
 markdown:    redcarpet
 highlighter: pygments
-lsi:         true
+lsi:         false
 excerpt_separator: "\n\n"
 
 # Serving
@@ -61,7 +61,7 @@ rdiscount:
   extensions: []
 
 redcarpet:
-  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", "with_toc_data"]
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", "tables", "highlight"]
 
 kramdown:
   auto_ids:       true
