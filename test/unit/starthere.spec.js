@@ -24,7 +24,7 @@ before(function (done) {
       global.joola_proxy = engine;
       global.uid = engine.common.uuid();
       global.workspace = '_test';
-      joola.init({host: 'https://127.0.0.1:8081', APIToken: 'apitoken-test', debug: {enabled: true}}, function (err) {
+      joola.init({host: 'https://127.0.0.1:8081', APIToken: 'apitoken-test', debug: {enabled: false}}, function (err) {
         if (err)
           return done(err);
       });

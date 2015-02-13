@@ -174,7 +174,6 @@ describe("users", function () {
     engine.users.patch(this.context, this.workspace, user.username, user, function (err, user) {
       if (err)
         return done(err);
-      console.log(user);
       expect(user.filter).to.equal(filter);
       return done(err);
     });
@@ -317,7 +316,6 @@ describe("users", function () {
       if (err)
         return done(err);
       engine.users.get(self.context, self.workspace, user.username, function (err, user) {
-        console.log(err, user);
         if (user)
           return done('This should fail'+JSON.stringify(user));
         else
