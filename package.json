@@ -1,10 +1,9 @@
 {
   "name": "joola",
   "preferGlobal": false,
-  "version": "0.8.6",
+  "version": "0.8.7",
   "author": "Joola <info@joo.la>",
   "description": "The open-source data visualization framework",
-  "engine": "node >= 0.10.x",
   "private": false,
   "repository": {
     "type": "git",
@@ -24,9 +23,32 @@
     }
   ],
   "scripts": {
-    "test": "make test",
-    "start": "node ./joola.js",
-    "coveralls": "make test-coveralls"
+    "start": "node ./joola.js --debug",
+    "start:detached": "node ./joola.js --debug &",
+    "start:watch": "watch 'node ./joola.js --debug' lib/ --wait=1",
+    "stop": "killall node",
+    "test": "JOOLA_CONFIG_STORE_LOGGER_CONSOLE_LEVEL=info mocha test/ --reporter spec",
+    "test:coverage": "istanbul cover ./node_modules/.bin/_mocha -- -R spec test",
+    "test:quiet": "JOOLA_CONFIG_STORE_LOGGER_CONSOLE_LEVEL=error mocha test/ --reporter dot",
+    "test:md": "JOOLA_CONFIG_STORE_LOGGER_CONSOLE_LEVEL=error mocha test/ --reporter markdown",
+    "test:api": "redis-cli flushall && npm run start:detached && sleep 2 && dredd -r html apiary.apib http://localhost:8080 && npm stop",
+    "build": "",
+    "build:docker": "docker build -t joola/joola .",
+    "publish": "npm run publish:do",
+    "publish:do": "npm shrinkwrap && echo npm publish && rm npm-shrinkwrap.json",
+    "publish:patch": "npm run prepublish && npm version patch --git-tag-version=false --sign-git-tag=true -m \"Version bumped to %s\" && npm run publish:do",
+    "publish:minor": "npm run prepublish && npm version minor --git-tag-version=false --sign-git-tag=true -m \"Version bumped to %s\" && npm run publish:do",
+    "publish:major": "npm run prepublish && npm version major --git-tag-version=false --sign-git-tag=true -m \"Version bumped to %s\" && npm run publish:do",
+    "pretest": "npm run lint",
+    "prebuild": "npm run git:check && npm run test # also runs npm run pretest",
+    "prepublish": "npm run build # also runs npm run prebuild",
+    "git:commit": "git commit",
+    "git:push": "git push",
+    "git:check": "count=$(expr $(git status --porcelain 2>/dev/null | egrep \"^(M| M)\" | wc -l)) && if [ $count -ne 0 ]; then echo Git repository is dirty [$count change\\(s\\) found].; exit 1; fi; exit 0",
+    "changelist": "github-changes -o joola -r joola --token 864b65f829914e80f16c41d3cb70ad0841344329 --only-pulls --use-commit-body --file HISTORY.md",
+    "lint": "jshint ./lib ./test",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "env": "env"
   },
   "bin": {
     "joola": "./node_modules/joola.cli/joola",
@@ -86,22 +108,24 @@
     "bench-rest": "^1.0.2",
     "chai": "^1.9.1",
     "cheerio": "^0.18.0",
-    "coveralls": "*",
-    "istanbul": "*",
+    "coveralls": "latest",
+    "istanbul": "latest",
     "jsdox": "https://github.com/joola/jsdox/tarball/master",
-    "jshint": "*",
+    "jshint": "latest",
     "mkdirp": "*",
-    "mocha": "*",
+    "mocha": "latest",
+    "dredd": "latest",
     "request": "^2.53.0",
     "should": "^5.0.0",
     "sinon": "^1.10.2",
     "sinon-chai": "^2.6.0",
     "socket.io-browserify": "*",
-    "zombie": "*"
+    "zombie": "*",
+    "watch": "^0.13.0",
+    "github-changes": "latest"
   },
   "engines": {
-    "node": "0.10.*",
-    "npm": "1.4.*"
+    "node": "0.10.*"
   },
   "license": "GPL-3.0"
 }
