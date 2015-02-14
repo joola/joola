@@ -9,7 +9,7 @@ pages
 test
 wiki
 
-*.md
+
 *.apib
 *.json
 Procfile

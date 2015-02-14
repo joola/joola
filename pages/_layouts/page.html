@@ -2,36 +2,22 @@
 layout: default
 ---
 
+<div class="bs-docs-header" id="content">
+  <div class="container">
+    <h1>{{ page.title }}</h1>
+
+    <p>{{ page.description }}</p>
+  </div>
+</div>
+
 <div class="container page-wrapper">
   <div class="post with-sidebar ">
-
-    <header class="post-header">
-      <h1 class="post-title">{{ page.title }}</h1>
-    </header>
     <article class="post-content">
+      <input type="text" name="q" id="tipue_search_input" autocomplete="off" required>
+      <div id="tipue_search_content"></div>
+
       {{ content }}
     </article>
-
-    <hr class="margin-top-50">
-    <form class="bottom-contact" action="http://formtoemail.com/user_forms.php" method="post">
-      <input type="hidden" name="user_id" value="C3QTCB2T0FC8NZ4N4AOB">
-      <input type="hidden" name="form_id" value="1">
-      <h2 style="padding-bottom:0;">Contact Us Now!</h2>
-
-      <div class="form-group" style="float:left;width:48%">
-        <input type="text" class="form-control" name="bottom-contact-name" placeholder="Your name">
-      </div>
-      <div class="form-group" style="float:right;width:48%">
-        <input type="email" class="form-control" name="bottom-contact-email" placeholder="Email address">
-      </div>
-      <div class="clear-both"></div>
-      <div class="form-group">
-        <textarea class="form-control" name="bottom-contact-message" rows="5" placeholder="Message"></textarea>
-      </div>
-      <button class="btn btn-primary">Send</button>
-    </form>
-    
-
   </div>
   <aside class="sidebar topic-list">
     <h3 class="page-heading">Get in touch!</h3>
@@ -41,6 +27,7 @@ layout: default
     <form class="bottom-contact" action="http://formtoemail.com/user_forms.php" method="post">
       <input type="hidden" name="user_id" value="C3QTCB2T0FC8NZ4N4AOB">
       <input type="hidden" name="form_id" value="1">
+
       <div class="form-group">
 
         <input type="text" class="form-control" name="contact-name" placeholder="Your name">
@@ -60,7 +47,11 @@ layout: default
     <ul class="post-list">
       {% for post in site.posts limit:5 %}
       <li>
-        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.short_title }}</a>
+        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+
+        <p class="author">{{post.author}}<br/><abbr class="timeago"
+                                                    title="{{post.date}}">{{post.date}}</abbr> <br/>
+        </p>
       </li>
       {% endfor %}
     </ul>

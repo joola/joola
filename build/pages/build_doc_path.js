@@ -30,7 +30,9 @@ var walk = function (dir, done) {
 };
 
 function capitaliseFirstLetter(string) {
-  var exclusions = ['cla'];
+  var exclusions = ['cla','qa','api'];
+  if (string.length <= 3)
+    return string;
   if (exclusions.indexOf(string) > -1)
     return string.toUpperCase();
   return string.charAt(0).toUpperCase() + string.slice(1);

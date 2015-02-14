@@ -444,11 +444,11 @@ a:hover {
 
 /*aside*/
 aside.sidebar {
-  background-image: -webkit-linear-gradient(top, #fff, #ddd 35%, #ddd 65%, #fff);
+  /*background-image: -webkit-linear-gradient(top, #fff, #ddd 35%, #ddd 65%, #fff);
   background-image: linear-gradient(to bottom, #fff, #ddd 35%, #ddd 65%, #fff);
   background-position: 6.03774% center;
   background-repeat: no-repeat;
-  background-size: 1px 100%;
+  background-size: 1px 100%;*/
   display: block;
   float: right;
   margin-bottom: 3.01887%;

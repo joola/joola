@@ -13,18 +13,13 @@ layout: default
 <div class="container page-wrapper">
   <div class="post with-sidebar documentation markdown-body">
     <article class="post-content">
-      <a id="overview"></a>
+      <input type="text" name="q" id="tipue_search_input" autocomplete="off" required>
+
+      <div id="tipue_search_content"></div>
+
       {{ content }}
     </article>
   </div>
-  <aside class="sidebar topic-list">
-    <nav id="doc-affix" class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix">
-      <ul id="list-items" class="nav bs-docs-sidenav">
-      </ul>
-      <a class="back-to-top" href="#top">
-        Back to top
-      </a>
 
-    </nav>
-  </aside>
 </div>
+
