@@ -28,14 +28,14 @@ whitelist: []
 gems:      []
 
 # Conversion
-markdown:    kramdown
+markdown:    redcarpet
 highlighter: pygments
 lsi:         false
 excerpt_separator: "\n\n"
 
 # Serving
 detach:  false
-baseurl: "http://joola.github.io/joola" # does not include hostname
+baseurl: "/joola" # does not include hostname
 
 # Backwards-compatibility
 relative_permalinks: false
@@ -61,7 +61,7 @@ rdiscount:
   extensions: []
 
 redcarpet:
-  extensions: []
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript", "tables", "highlight"]
 
 kramdown:
   auto_ids:       true

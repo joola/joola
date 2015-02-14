@@ -59,7 +59,7 @@ please contact project admins to ensure you have been granted with an editor rol
 * Sign the [Contributor License Agreement][cla].
 * Push your changes to a ticket branch in your fork of the repository.
 * Submit a pull request to the repository in the joola organization.
-* Update your JIRA ticket to mark that you have submitted code and are ready for it to be reviewed.
+* Update your ticket to mark that you have submitted code and are ready for it to be reviewed.
   * Include a link to the pull request in the ticket
 
 # Additional Resources
@@ -68,6 +68,5 @@ please contact project admins to ensure you have been granted with an editor rol
 * [Contributor License Agreement][cla]
 * [General GitHub documentation](http://help.github.com/)
 * [GitHub pull request documentation](http://help.github.com/send-pull-requests/)
-* #joola IRC channel on freenode.org
 
 [cla]: https://github.com/joola/joola/wiki/CLA

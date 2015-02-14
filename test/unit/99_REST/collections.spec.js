@@ -11,8 +11,6 @@ describe("collections", function () {
   });
 
   it("should return a valid list of collections", function (done) {
-    console.log(joola.USER);
-
     joola.collections.list(this.context.user.workspace, function (err, collections) {
       if (err)
         return done(err);
