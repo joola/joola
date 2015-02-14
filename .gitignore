@@ -42,3 +42,6 @@ _data
 _site
 .sass-cache
 pages/docs
+
+params.json
+search_index.json
