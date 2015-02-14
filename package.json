@@ -41,7 +41,6 @@
     "publish:patch": "npm run prepublish && npm version patch --git-tag-version=false --sign-git-tag=true -m \"Version bumped to %s\" && npm run publish:do",
     "publish:minor": "npm run prepublish && npm version minor --git-tag-version=false --sign-git-tag=true -m \"Version bumped to %s\" && npm run publish:do",
     "publish:major": "npm run prepublish && npm version major --git-tag-version=false --sign-git-tag=true -m \"Version bumped to %s\" && npm run publish:do",
-
     "docker:build": "npm run prebuild && git checkout docker/latest && (git merge develop || true) && git checkout --ours -- README.md && git add --force -- README.md && git commit -am \"Merge develop branch on docker/lastest\" && docker build -t joola/joola .",
     "docker:publish": "",
     "vagrant:build": "",
@@ -109,6 +108,7 @@
     "htpasswd": "*",
     "jade": "^1.9.2",
     "joola.cli": "0.0.8",
+    "joola.datastore-lokijs": "^0.0.1",
     "joola.datastore-elasticsearch": "^0.0.2",
     "joola.datastore-mongodb": "^0.0.13",
     "joola.sdk": "^0.8.2",
@@ -121,7 +121,6 @@
     "repl.history": "*",
     "semver": "^4.2.2",
     "serve-favicon": "^2.1.6",
-    "sleep": "^2.0.0",
     "socket.io": "^1.3.3",
     "socket.io-client": "^1.3.3",
     "socket.io-redis": "^0.1.3",
@@ -148,7 +147,8 @@
     "socket.io-browserify": "*",
     "zombie": "*",
     "watch": "^0.13.0",
-    "github-changes": "latest"
+    "github-changes": "latest",
+    "sleep": "^2.0.0"
   },
   "engines": {
     "node": "0.10.*"

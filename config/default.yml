@@ -29,8 +29,8 @@ store:
       port: 3015
   config:
     redis:
-      # enabled: true
-      dsn: redis://127.0.0.1
+      enabled: false
+      #dsn: redis://127.0.0.1
       ## if dsn not specific then these are required
       # host: 127.0.0.1
       # port: 6379
@@ -38,14 +38,14 @@ store:
       # auth: null
   runtime:
     redis:
-      # enabled: true
-      dsn: redis://127.0.0.1
+      enabled: false
+      #dsn: redis://127.0.0.1
   dispatch:
-    # enabled: true
+    enabled: false
     redis:
-      dsn: redis://127.0.0.1
+      #dsn: redis://127.0.0.1
     stomp:
-      dsn: stomp://guest:guest@127.0.0.1:61613
+      #dsn: stomp://guest:guest@127.0.0.1:61613
       # if dsn not specific then these are required
       # host: 127.0.0.1
       # port: 61613
@@ -54,12 +54,12 @@ store:
   websocket:
     http:
       redis:
-        #enabled: true
-        dsn: redis://127.0.0.1
+        enabled: false
+        #dsn: redis://127.0.0.1
     https:
       redis:
-        #enabled: true
-        dsn: redis://127.0.0.1
+        enabled: false
+        #dsn: redis://127.0.0.1
   logger:
     console:
       level: debug
@@ -71,17 +71,12 @@ store:
       level: trace
       path: /var/log/joola
   datastore:
-    mongodb:
+    lokijs:
       enabled: true
-      dsn: mongodb://localhost:27017/cache
-      expireafterseconds: 0
-    elasticsearch:
-      enabled: false
-      host: localhost:9200
 beacon:
   wait: true
 dispatch:
-  enabled: true
+  enabled: false
   expires: 60
 authentication:
   basicauth:
