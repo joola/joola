@@ -30,7 +30,6 @@ before_script:
   - sudo service rabbitmq-server restart
   - sudo rabbitmqctl status
   - sudo rabbitmq-plugins list
-  - npm install -g dredd
   - redis-cli flushall
 
 deploy:
@@ -40,10 +39,10 @@ deploy:
   api_key:
     secure: u2sgcDddY6is6ZB1q1YsFQwlld0cvsSbfH6UtEVP7QvOeITriv2fauXnt+WTSzLqcLphzFPviUceMP9Qm4FcbKd1+qHHCAtpmZMTx7MXoFjJJXDVYwbL9iQURi5IS6lja8eLSJZk8yonDuWZ6f3babr/iW4o//CalslW5WDwHMs=
 
-script: make test-cov
+script: npm test
 after_success:
-  - make coveralls
-  - make -k test-api 
+  - npm run coveralls
+  - npm run test:api
  
 notifications:
   webhooks:
