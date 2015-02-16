@@ -14,20 +14,28 @@ RUN apt-get install -y wget lsb-release unzip ca-certificates curl python build-
 RUN apt-get install -y supervisor
 
 # install needed stack components
-RUN apt-get install -y redis-server mongodb rabbitmq-server
+RUN \ 
+    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
+    echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list && \
+    sudo apt-get update && \
+    sudo apt-get install -y mongodb-org    
+
+#RUN apt-get install -y redis-server rabbitmq-server
 RUN \
     curl -sL https://deb.nodesource.com/setup | sudo bash - && \
     apt-get install -y nodejs 
-RUN \
-    rabbitmq-plugins enable rabbitmq_stomp && \
-    service rabbitmq-server restart
+#RUN \
+#    rabbitmq-plugins enable rabbitmq_stomp && \
+#    service rabbitmq-server restart
 
 # setup needed settings/configuration for stack
 COPY ./build/docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf 
 RUN mkdir -p /var/run/sshd
 RUN ulimit -n 1024
-ENV RABBITMQ_LOG_BASE /opt/joola/data/rabbitmq/log
-ENV RABBITMQ_MNESIA_BASE /opt/joola/data/rabbitmq/mnesia
+RUN echo 'root:password' | chpasswd
+#ENV RABBITMQ_LOG_BASE /opt/joola/data/rabbitmq/log
+#ENV RABBITMQ_MNESIA_BASE /opt/joola/data/rabbitmq/mnesia
+ENV LC_ALL C
 
 # setup joola user account/group
 RUN \
@@ -48,6 +56,8 @@ RUN \
     cd /opt/joola/bin && \
     npm install 
 COPY ./build/docker/run_within_docker.sh /opt/joola/bin/run_within_docker.sh
+COPY ./build/docker/default.yml /opt/joola/bin/config/default.yml
 
 EXPOSE 8080 8081 22
+CMD []
 ENTRYPOINT ["/usr/bin/supervisord"]

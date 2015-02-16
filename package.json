@@ -33,8 +33,7 @@
     "test:quiet": "JOOLA_CONFIG_STORE_LOGGER_CONSOLE_LEVEL=error mocha test/ --reporter dot",
     "test:md": "JOOLA_CONFIG_STORE_LOGGER_CONSOLE_LEVEL=error mocha test/ --reporter markdown",
     "test:api": "redis-cli flushall && npm run start:detached && sleep 2 && dredd -r html apiary.apib http://localhost:8080 && npm stop",
-    "build": "",
-    "prebuild": "npm run git:check && npm run test # also runs npm run pretest",
+
     "publish": "npm run publish:do",
     "prepublish": "npm run build # also runs npm run prebuild",
     "publish:do": "npm shrinkwrap && echo npm publish && rm npm-shrinkwrap.json",
@@ -42,7 +41,7 @@
     "publish:minor": "npm run prepublish && npm version minor --git-tag-version=false --sign-git-tag=true -m \"Version bumped to %s\" && npm run publish:do",
     "publish:major": "npm run prepublish && npm version major --git-tag-version=false --sign-git-tag=true -m \"Version bumped to %s\" && npm run publish:do",
 
-    "docker:build": "npm run prebuild && git checkout docker/latest && (git merge develop || true) && git checkout --ours -- README.md && git add --force -- README.md && git commit -am \"Merge develop branch on docker/lastest\" && docker build -t joola/joola .",
+    "docker:build": "npm run git:check && git checkout docker/latest && (git merge develop || true) && git checkout --ours -- README.md && git add --force -- README.md && (git commit -am \"Merge develop branch on docker/lastest\" || true) && docker build -t joola/joola .",
     "docker:publish": "",
     "vagrant:build": "",
     "vagrant:deploy": "",
