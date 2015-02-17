@@ -33,8 +33,7 @@
     "test:quiet": "JOOLA_CONFIG_STORE_LOGGER_CONSOLE_LEVEL=error mocha test/ --reporter dot",
     "test:md": "JOOLA_CONFIG_STORE_LOGGER_CONSOLE_LEVEL=error mocha test/ --reporter markdown",
     "test:api": "redis-cli flushall && npm run start:detached && sleep 2 && dredd -r html apiary.apib http://localhost:8080 && npm stop",
-    "build": "",
-    "prebuild": "npm run git:check && npm run test # also runs npm run pretest",
+
     "publish": "npm run publish:do",
     "prepublish": "npm run build # also runs npm run prebuild",
     "publish:do": "npm shrinkwrap && echo npm publish && rm npm-shrinkwrap.json",
