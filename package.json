@@ -127,7 +127,7 @@
     "stomp": "https://github.com/joola/stomp-js/tarball/master",
     "traverse": "http://registry.npmjs.org/traverse/-/traverse-0.6.6.tgz",
     "underscore": "^1.7.0",
-    "usage": "^0.5.0"
+    "usage": "^0.6.0"
   },
   "devDependencies": {
     "bench-rest": "^1.0.2",
