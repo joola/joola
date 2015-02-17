@@ -29,6 +29,7 @@ store:
   #  punt:
   #    port: 3015
   config:
+    enabled: false
     redis:
       enabled: false
       # dsn: redis://127.0.0.1
