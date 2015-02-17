@@ -34,6 +34,6 @@
 [submodule "build/cookbooks/yum-erlang_solutions"]
 	path = build/cookbooks/yum-erlang_solutions
 	url = https://github.com/opscode-cookbooks/yum-erlang_solutions.git
-[submodule "build/cookbooks/earlang"]
-	path = build/cookbooks/earlang
+[submodule "build/cookbooks/erlang"]
+	path = build/cookbooks/erlang
 	url = https://github.com/opscode-cookbooks/erlang.git
