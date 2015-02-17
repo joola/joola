@@ -23,7 +23,7 @@ function setupDocumentationLinks() {
 }
 
 function setupDocumentation() {
-  if (location.href.toLowerCase().indexOf('rest.html') > -1)
+  if (location.href.toLowerCase().indexOf('rest-api.html') > -1)
     setupDocumentationREST();
   else
     setupDocumentationNormal();

@@ -7,30 +7,32 @@ interfaces:
     bind: 0.0.0.0
     port: 8080
     secureport: 8081
-    secure: true
-    secureonly: false
-    keyfile: ./config/certs/server.key
-    certfile: ./config/certs/server.crt
-    ca: ./config/certs/ca.crt
-    websocket:
-      enabled: true
+    secure: false
+    #secureonly: false
+    #keyfile: ./config/certs/server.key
+    #certfile: ./config/certs/server.crt
+    #ca: ./config/certs/ca.crt
+    #websocket:
+    #  enabled: true
     sessiondurtaion: 1200000
     timeout: 60000
     blacklist: null
     alloworigin: null
     headers:
-      # X-Powered-By: joola
+      X-Powered-By: joola
+      X-Joola-Name: joola-develop
   repl:
     enabled: false
     port: 1337
 store:
-  stats:
-    punt:
-      port: 3015
+  #stats:
+  #  punt:
+  #    port: 3015
   config:
+    enabled: false
     redis:
-      # enabled: true
-      dsn: redis://127.0.0.1
+      enabled: false
+      # dsn: redis://127.0.0.1
       ## if dsn not specific then these are required
       # host: 127.0.0.1
       # port: 6379
@@ -38,14 +40,16 @@ store:
       # auth: null
   runtime:
     redis:
-      # enabled: true
-      dsn: redis://127.0.0.1
+      enabled: false 
+      # dsn: redis://127.0.0.1
   dispatch:
-    # enabled: true
+    enabled: false
     redis:
-      dsn: redis://127.0.0.1
+      enabled: false
+      #dsn: redis://127.0.0.1
     stomp:
-      dsn: stomp://guest:guest@127.0.0.1:61613
+      enabled: false
+      # dsn: stomp://guest:guest@127.0.0.1:61613
       # if dsn not specific then these are required
       # host: 127.0.0.1
       # port: 61613
@@ -54,12 +58,12 @@ store:
   websocket:
     http:
       redis:
-        #enabled: true
-        dsn: redis://127.0.0.1
+        enabled: false
+        #dsn: redis://127.0.0.1
     https:
       redis:
-        #enabled: true
-        dsn: redis://127.0.0.1
+        enabled: false
+        # dsn: redis://127.0.0.1
   logger:
     console:
       level: debug
@@ -81,7 +85,7 @@ store:
 beacon:
   wait: true
 dispatch:
-  enabled: true
+  enabled: false
   expires: 60
 authentication:
   basicauth:

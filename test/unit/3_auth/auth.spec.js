@@ -22,7 +22,7 @@ describe("auth", function () {
   });
 
   it("should return static content with no login issues", function (done) {
-    browser.visit('https://localhost:' + engine.config.interfaces.webserver.secureport + '/ico/favicon.ico', function () {
+    browser.visit('http://localhost:' + engine.config.interfaces.webserver.port + '/ico/favicon.ico', function () {
       expect(browser.success).to.equal(true);
       return done();
     });
@@ -42,6 +42,7 @@ describe("auth", function () {
       expect(token.user).to.be.ok;
       expect(token.timestamp).to.be.ok;
       expect(token.expires).to.be.ok;
+      
       return done();
     });
   });
