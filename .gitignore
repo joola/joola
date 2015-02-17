@@ -45,3 +45,6 @@ pages/docs
 
 params.json
 search_index.json
+
+build/cookbooks
+build/docker
