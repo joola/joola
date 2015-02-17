@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+
+  <head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="analytics, visualization, json, big-data, data analytics, embedded analytics">
+  <meta property="og:description" content="Joola is the easiet way to create data analytics applications">
+  <meta property="og:image" content="https://joo.la/img/logo_blue_fb.png">
+  <link rel="shortcut icon" href="/joola/img/ico/favicon.ico">
+  <title>Configuration | Joola</title>
+  <!--<link href="/joola/css/reset.css" rel="stylesheet">-->
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css">
+  <link href='//fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+  <link href="/joola/fonts/octicons/octicons.css" rel="stylesheet">
+  <link href="//google-code-prettify.googlecode.com/svn/trunk/src/prettify.css" rel="stylesheet">
+  <link href="/joola/fonts/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="/joola/css/joola.css" rel="stylesheet" type="text/css">
+  <link href="/joola/javascripts/tipuesearch/tipuesearch.css" rel="stylesheet" type="text/css">
+  <link href="/joola/css/pretty.css" rel="stylesheet" type="text/css">
+  <link href="/joola/css/site.css" rel="stylesheet" type="text/css">
+    
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="//google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
+  <script src="/joola/javascripts/jQuery.timeago.js"></script>
+  
+  <script src="http://joola-develop.herokuapp.com/ip"></script>
+  <script src="http://joola-develop.herokuapp.com/js/ua-parser.min.js"></script>
+  <script src="http://joola-develop.herokuapp.com/joola.js?APIToken=apitoken-demo"></script>
+  <script src="http://joola-develop.herokuapp.com/js/recordEvents.js"></script>
+  
+  <script src="/joola/javascripts/site.js"></script>
+  <script src="/joola/javascripts/tipuesearch/tipuesearch_content.js"></script>
+  <script src="/joola/javascripts/tipuesearch/tipuesearch_set.js"></script>
+  <script src="/joola/javascripts/tipuesearch/tipuesearch.js"></script>
+</head>
+
+
+  <body>
+
+    <!--header-->
+<div id="navigation" role="navigation" class="navbar main-nav navbar-static-top">
+
+  <div class="main-nav">
+    <div class="container header-wrapper">
+      <div class="navbar-header">
+        <button type="button" data-toggle="collapse" data-target="#navbar-collapse" class="navbar-toggle">
+          <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span>
+          <span class="icon-bar"></span><span class="icon-bar"></span></button>
+        <a href="/joola/" class="navbar-brand"><img src="/joola/img/joola_full_blue.png"></a></div>
+      <div id="navbar-collapse" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="home"><a href="/joola/" class="menulink">Home</a></li>
+          <li class="demo"><a href="/joola/demo" class="menulink">Demo</a></li>
+          <li class="gettingstarted"><a href="/joola/gettingstarted" class="menulink">Getting
+            Started</a></li>
+          <li class="docs"><a href="/joola/docs" class="menulink">Documentation</a>
+          </li>
+          <!--<li class="dropdown"><a data-toggle="" href="/joola/docs/" role="button" aria-expanded="false"
+                                          class="menulink dropdown-toggle">Documentation<span class="caret"></span></a>
+            <ul role="menu" class="dropdown-menu">
+              <li><a href="/company/about/">Terminology</a></li>
+              <li><a href="/company/why-joola/">Download & install</a></li>
+              <li><a href="/company/approach/">Configure</a></li>
+              <li><a href="/company/clients/">Data integration</a></li>
+              <li><a href="/company/clients/">Website integration</a></li>
+              <li><a href="/company/clients/">REST API</a></li>
+              <li><a href="/company/clients/">SDK</a></li>
+              <li><a href="/company/clients/">About the project</a></li>
+            </ul>
+          </li>-->
+          <li class="blog"><a href="/joola/blog" class="menulink">Blog</a></li>
+          <li class="news"><a href="/joola/services" class="menulink">Services</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end of header-->
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="bs-docs-header" id="content">
+  <div class="container">
+    <h1>Configuration</h1>
+
+    <p>Learn how to configure Joola to your needs and scale.</p>
+  </div>
+</div>
+
+<div class="container page-wrapper">
+  <div class="post with-sidebar documentation markdown-body">
+    <article class="post-content">
+      <a id="overview"></a>
+      <p>Joola uses a node based architecture and all nodes must share the same configuration and respond together to configuration changes. For this purpose, we are using
+ <a href="http://redis.io">Redis</a> as a central configuration store.</p>
+
+<p>When Joola fires up it tries and locate a configuration file (see below for discovery logic) and load it into the central store if it hasn&#39;t been initialized yet.
+If it fails, the application will exit.
+ Additional nodes joining the cluster must have at least the single setting of the central configuration store to use in order to operate correctly, they&#39;ll connect to the central configuration store, load the most current values and respond to any future change.</p>
+
+<p>Configuration parsing and management is done using the <a href="http://lorenwest.github.io/node-config/latest/"><code>config</code></a> module.</p>
+
+<h1>Configuration life-cycle</h1>
+
+<p>To support node based clusters, configuration lives in the central configuration store and it is the only source of &quot;truth&quot;.
+Configuration changes during runtime and these changes are not peristed to local configuration files, but are only kept in the central store.
+The local configuration file is simply an initial bootstrap and therefore, it is very common that local configuration differs from central.</p>
+
+<p>Once bootstrapped, changes to configuration are done using the API or by loading newer versions of the configuration files.
+If a change in central configuration is detected, all connected nodes are informed and update their configuration to reflect the latest from central store.</p>
+
+<h2>Configuration version</h2>
+
+<p>Joola supports an optional <code>version</code> attribute as part of the configuration file. This enable a <code>semver</code> comparison between the central stored configuration and the local configuration file.
+The logic is simple:</p>
+
+<ul>
+<li>localVersion &lt;= centralVersion = use central configuration.</li>
+<li>localVersion &gt; centralVersion = delete and then write local configuration into central store. All nodes are then informed and update their configuration.</li>
+</ul>
+
+<h1>Configuration discovery</h1>
+
+<p>Configuration can be stored/used from either configuration files, environment variables and command line switches.</p>
+
+<h2>Configuration files</h2>
+
+<p>Joola reads configuration files stored in the directory specified by the NODE_CONFIG_DIR environment variable, which defaults to the config directory under the process current working directory, <code>/config</code>.
+Configuration files can be in JavaScript format, JSON format, COFFEE format, or YAML format - whichever you prefer.
+Configuration files in the config directory are loaded in the following order:
+    default.EXT
+    hostname.EXT
+    deployment.EXT
+    hostname-deployment.EXT
+    local.EXT
+    local-deployment.EXT</p>
+
+<p>Where EXT can be .yml, .yaml, .coffee, .json, or .js depending on the format you prefer.
+hostname is the <code>$HOST</code> environment variable if set, otherwise the <code>$HOSTNAME</code> environment variable if set, otherwise the hostname found from require(&#39;os&#39;).hostname().
+Once a hostname is found, everything from the first period (&#39;.&#39;) onwards is removed. For example, abc.example.com becomes abc
+deployment is the deployment type, found in the <code>$NODE_ENV</code> environment variable. Defaults to &#39;development&#39;.</p>
+
+<p><a href="http://lorenwest.github.io/node-config/latest/">To learn more about configuration files</a>.</p>
+
+<h2>Environment variables</h2>
+
+<p>If the <code>$NODE_CONFIG</code> environment variable is set, it must be a valid JSON string containing configuration overrides.
+These are applied after configuration files have been loaded.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># This will set the webserver port to 8585</span>
+<span class="nv">$ </span><span class="nb">export</span> <span class="nv">$NODE_CONFIG</span><span class="o">={</span><span class="s2">&quot;interfaces&quot;</span>:<span class="o">{</span><span class="s2">&quot;webserver&quot;</span>:<span class="o">{</span><span class="s2">&quot;port&quot;</span>:8585<span class="o">}}}</span>
+</code></pre></div>
+<p>Developers can also override specific configuration settings by using the following:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># This will set the webserver port to 8585</span>
+<span class="nv">$ </span><span class="nb">export</span> <span class="nv">$JOOLA_CONFIG_INTERFACES_WEBSERVER_PORT</span><span class="o">=</span>8585
+
+<span class="c"># Set MongoDB DSN</span>
+<span class="nv">$ </span><span class="nb">export </span><span class="nv">JOOLA_STORE_DISPATCH_STOMP_DSN</span><span class="o">=</span>stomp://guest:guest@127.0.0.1:61613
+
+<span class="c"># Set Stomp DSN</span>
+<span class="nv">$ </span><span class="nb">export </span><span class="nv">JOOLA_STORE_CACHE_MONGO_DSN</span><span class="o">=</span>mongodb://localhost:27017/cache
+</code></pre></div>
+<h2>Command line switches</h2>
+
+<p>All environment variables described above may also be supplied on the command line.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>node Joola.js --NODE_ENV<span class="o">=</span>staging --NODE_CONFIG<span class="o">=</span><span class="s1">&#39;{&quot;interfaces&quot;:{&quot;webserver&quot;:{&quot;port&quot;:8585}}}&#39;</span>
+</code></pre></div>
+<h2>Multiple environment configuration</h2>
+
+<p>Joola configuration supports overriding default settings with environment speicifc attributes.
+Combining these methods allows developers to deploy Joola to different envs/setups while still having complete control over the node&#39;s configuration.</p>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># Config file (YAML), stored in config/default.yml</span>
+<span class="l-Scalar-Plain">stores</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">config</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">redis</span><span class="p-Indicator">:</span>
+      <span class="l-Scalar-Plain">host</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">lab01</span>
+  <span class="l-Scalar-Plain">dispatch</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">stomp</span><span class="p-Indicator">:</span>
+      <span class="l-Scalar-Plain">host</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">lab02</span>
+  <span class="l-Scalar-Plain">cache</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">mongodb</span><span class="p-Indicator">:</span>
+      <span class="l-Scalar-Plain">host</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">lab03</span>
+</code></pre></div><div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Environment variable</span>
+<span class="c"># Set Redis host to `lab04`</span>
+<span class="nv">$ </span><span class="nb">export </span><span class="nv">JOOLA_STORE_CONFIG_REDIS_HOST</span><span class="o">=</span>lab04
+
+<span class="c"># Then running with </span>
+<span class="nv">$ </span>node Joola --store:cache:mongodb:host<span class="o">=</span>lab05
+
+<span class="c"># we have the following configuration applied in runtime</span>
+<span class="c"># stores.config.redis.host = lab04</span>
+<span class="c"># stores.config.dispatch.stomp.host = lab02</span>
+<span class="c"># stores.config.mongodb.host = lab05</span>
+</code></pre></div>
+<h1>Changing configuration during runtime</h1>
+
+<p>The best way to apply configuration changes is via the SDK.</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">joola</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;config:key&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span> <span class="c1">//or something else</span>
+<span class="p">});</span>
+
+<span class="nx">joola</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;config:key&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span> <span class="c1">//or something else</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;config value&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>Configuration keys are accessed by replacing the nested <code>.</code> with <code>:</code>. So, for example, changing the webserver port:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">joola</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;interfaces:webserver:port&#39;</span><span class="p">,</span> <span class="mi">8585</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+    <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span> <span class="c1">//or something else</span>
+<span class="p">});</span>
+</code></pre></div>
+<h1>Configuration updates</h1>
+
+<p>Config files may contain an optional attribute of <code>version</code>. While parsing the configuration file, Joola checks if there already a central configuration store setup, if not it will apply the configuration file into it.
+If the store already exists, it will check the store&#39;s version against the file, if the file has a higher version it will delete the current central configuration store and apply the file into it.</p>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># Config file (YAML), stored in config/default.yml</span>
+<span class="l-Scalar-Plain">version</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">0.1</span>
+<span class="l-Scalar-Plain">stores</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">config</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">redis</span><span class="p-Indicator">:</span>
+      <span class="l-Scalar-Plain">host</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">lab01</span>
+</code></pre></div>
+<p>Running Joola for the first time will load the above file into the central configuration store, subsequent runs will not alter the store in any way since the versions match.</p>
+
+<p>If we update the config file and <strong>it&#39;s version</strong>, the next run will load the newer version into the central store and propagate it to all connected nodes. </p>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># Config file (YAML), stored in config/default.yml</span>
+<span class="l-Scalar-Plain">version</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">0.2</span>
+<span class="l-Scalar-Plain">stores</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">config</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">redis</span><span class="p-Indicator">:</span>
+      <span class="l-Scalar-Plain">host</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">lab02</span>
+</code></pre></div>
+<p>Following the update, all nodes will be connecting to <code>lab02</code>.</p>
+
+<h1>SSL</h1>
+
+<h2>SSL Certificates for Public/Production</h2>
+
+<p>You will need to obtain a valid SSL certificate and place it somewhere on the filesystem for Joola to find. </p>
+
+<p>In the configuration file, please set the following values:</p>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">interfaces:webserver:keyfile = &lt;path-to-your-keyfile&gt;</span>
+<span class="l-Scalar-Plain">interfaces:webserver:certfile = &lt;path-to-your-certificate&gt;</span>
+</code></pre></div>
+<h2>SSL Certificates for Local Development</h2>
+
+<p>The default installation includes SSL certificates to support <code>localhost</code> development. These certificates were produced in our labs and you&#39;d probably need to change them to yours to enable easy development.
+It&#39;s important to note that the default certificates should not and cannot be used in production to protect your servers, their only purpose is to allow easy development by the community.</p>
+
+<p>To generate your own <code>localhost</code> certificates, please follow these guidelines:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>penssl genrsa -des3 -out server.key 1024
+<span class="nv">$ </span>openssl req -new -key server.key -out server.csr
+
+<span class="c"># Then, remove the passphrase from the server certificate for avoiding Apache asking you the password everytime you restart it:</span>
+<span class="nv">$ </span>cp server.key server.key.org
+<span class="nv">$ </span>openssl rsa -in server.key.org -out server.key
+
+<span class="c"># And then, generate your self-signed certificate</span>
+<span class="nv">$ </span>openssl x509 -req -days <span class="m">365</span> -in server.csr -signkey server.key -out server.crt
+</code></pre></div>
+<p>Edit your configuration file to point at these files, same as explained in the topic above.</p>
+
+<blockquote>
+<p>Parts of the above documentation have been copied from the <a href="http://lorenwest.github.io/node-config/latest/"><code>config</code></a> module documentation.</p>
+</blockquote>
+
+    </article>
+  </div>
+  <aside class="sidebar topic-list">
+    <nav id="doc-affix" class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix">
+      <ul id="list-items" class="nav bs-docs-sidenav">
+      </ul>
+      <a class="back-to-top" href="#top">
+        Back to top
+      </a>
+
+    </nav>
+  </aside>
+</div>
+
+      </div>
+    </div>
+
+    <div class="row footer">
+  <div class="width_wrapper container">
+    <div class="col-md-12">
+      <p>Designed and built by data lovers for data lovers <a href="http://joo.la" target="_blank">joo.la</a>.</p></p>
+      <p>
+        Code licensed under <a href="https://github.com/joola/joola/blob/develop/LICENSE.md" target="_blank">GPLv3</a>,
+        documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p></p>
+      <ul class="bs-docs-footer-links muted">
+        <li>Currently v0.9.0</li>
+        <li>·</li>
+        <li><a href="https://github.com/joola/joola">GitHub</a></li>
+        <li>·</li>
+        <li><a href="/joola/docs">v0.9.0 docs</a></li>
+        <li>·</li>
+        <li><a href="/joola/about">About joo.la</a></li>
+        <li>·</li>
+        <li><a href="/joola/blog">Blog</a></li>
+        <li>·</li>
+        <li><a href="https://github.com/joola/joola/issues?state=open">Issues</a></li>
+      </ul>
+
+
+      <div class="row tail text-center"><img src="/joola/img/logo_bw_small.png"></div>
+    </div>
+  </div>
+
+
+</div>
+
+  </body>
+
+</html>

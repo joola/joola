@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+  <head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="analytics, visualization, json, big-data, data analytics, embedded analytics">
+  <meta property="og:description" content="Joola is the easiet way to create data analytics applications">
+  <meta property="og:image" content="https://joo.la/img/logo_blue_fb.png">
+  <link rel="shortcut icon" href="/joola/img/ico/favicon.ico">
+  <title>Terminology and concepts | Joola</title>
+  <!--<link href="/joola/css/reset.css" rel="stylesheet">-->
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css">
+  <link href='//fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+  <link href="/joola/fonts/octicons/octicons.css" rel="stylesheet">
+  <link href="//google-code-prettify.googlecode.com/svn/trunk/src/prettify.css" rel="stylesheet">
+  <link href="/joola/fonts/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="/joola/css/joola.css" rel="stylesheet" type="text/css">
+  <link href="/joola/javascripts/tipuesearch/tipuesearch.css" rel="stylesheet" type="text/css">
+  <link href="/joola/css/pretty.css" rel="stylesheet" type="text/css">
+  <link href="/joola/css/site.css" rel="stylesheet" type="text/css">
+    
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="//google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
+  <script src="/joola/javascripts/jQuery.timeago.js"></script>
+  
+  <script src="http://joola-develop.herokuapp.com/ip"></script>
+  <script src="http://joola-develop.herokuapp.com/js/ua-parser.min.js"></script>
+  <script src="http://joola-develop.herokuapp.com/joola.js?APIToken=apitoken-demo"></script>
+  <script src="http://joola-develop.herokuapp.com/js/recordEvents.js"></script>
+  
+  <script src="/joola/javascripts/site.js"></script>
+  <script src="/joola/javascripts/tipuesearch/tipuesearch_content.js"></script>
+  <script src="/joola/javascripts/tipuesearch/tipuesearch_set.js"></script>
+  <script src="/joola/javascripts/tipuesearch/tipuesearch.js"></script>
+</head>
+
+
+  <body>
+
+    <!--header-->
+<div id="navigation" role="navigation" class="navbar main-nav navbar-static-top">
+
+  <div class="main-nav">
+    <div class="container header-wrapper">
+      <div class="navbar-header">
+        <button type="button" data-toggle="collapse" data-target="#navbar-collapse" class="navbar-toggle">
+          <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span>
+          <span class="icon-bar"></span><span class="icon-bar"></span></button>
+        <a href="/joola/" class="navbar-brand"><img src="/joola/img/joola_full_blue.png"></a></div>
+      <div id="navbar-collapse" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="home"><a href="/joola/" class="menulink">Home</a></li>
+          <li class="demo"><a href="/joola/demo" class="menulink">Demo</a></li>
+          <li class="gettingstarted"><a href="/joola/gettingstarted" class="menulink">Getting
+            Started</a></li>
+          <li class="docs"><a href="/joola/docs" class="menulink">Documentation</a>
+          </li>
+          <!--<li class="dropdown"><a data-toggle="" href="/joola/docs/" role="button" aria-expanded="false"
+                                          class="menulink dropdown-toggle">Documentation<span class="caret"></span></a>
+            <ul role="menu" class="dropdown-menu">
+              <li><a href="/company/about/">Terminology</a></li>
+              <li><a href="/company/why-joola/">Download & install</a></li>
+              <li><a href="/company/approach/">Configure</a></li>
+              <li><a href="/company/clients/">Data integration</a></li>
+              <li><a href="/company/clients/">Website integration</a></li>
+              <li><a href="/company/clients/">REST API</a></li>
+              <li><a href="/company/clients/">SDK</a></li>
+              <li><a href="/company/clients/">About the project</a></li>
+            </ul>
+          </li>-->
+          <li class="blog"><a href="/joola/blog" class="menulink">Blog</a></li>
+          <li class="news"><a href="/joola/services" class="menulink">Services</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end of header-->
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="bs-docs-header" id="content">
+  <div class="container">
+    <h1>Terminology and concepts</h1>
+
+    <p>Learn about the basic concepts and terms used by Joola.</p>
+  </div>
+</div>
+
+<div class="container page-wrapper">
+  <div class="post with-sidebar documentation markdown-body">
+    <article class="post-content">
+      <a id="overview"></a>
+      <p>Before diving deep into the system, it&#39;s best to become familiar with some basic concepts used throughout the documentation and by the framework.</p>
+
+<h1>Subsystems</h1>
+
+<p>joola&#39;s development process is geared toward a community driven project, so we &quot;broke&quot; the framework into several components that work together.
+Each subsystem is responsible for a different aspect of the framework and it&#39;s not a real cut-off project, rather than a logical/semantic distinction.</p>
+
+<p><a href="architecture">Learn more about subsystems</a></p>
+
+<h1>Workspaces</h1>
+
+<p>A workspace is the outer most logical container available. Within workspaces reside <a href="collections">collections</a>, <a href="users">users</a>, <a href="roles">roles</a> and all other metadata.
+We use workspaces in order to separate between metadata and allow secure store and delivery of data based on the workspace configuration.</p>
+
+<p>A common use case for workspaces is to support different environments. Using workspaces we can create for example a separate container for development, QA, staging, demo and production.
+ They all share the same joola framework, however each contains its own configuration.</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;key&quot;</span><span class="o">:</span> <span class="s2">&quot;_test&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;Workspace for internal joola tests&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;joola Framework Tests&quot;</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;key&quot;</span><span class="o">:</span> <span class="s2">&quot;_stats&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;Stores internal statistics of joola&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Internal Stats&quot;</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;key&quot;</span><span class="o">:</span> <span class="s2">&quot;demo&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;A starter/playground workpsace&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Demo Workspace&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<p><a href="https://github.com/joola/joola/wiki/api-documentation#group-workspaces">API documentation on managing Workspaces</a></p>
+
+<h1>Collections</h1>
+
+<p>A collection is a data store where documents (the actual bits of data) are persisted into joola cache. Collections also contain metadata that
+describe the stored data, for example, what dimensions and metrics the document contains.
+Collection metadate is represented in JSON and includes all required details on the data stored and its attributes. By referencing this metadata, joola interprets
+ queries into meaningful insights.</p>
+
+<p>Data is introduced into the collection by <a href="the-beacon-subsystem">Beacon</a> and later <a href="the-query-subsystem">queried</a> and visualized.</p>
+
+<p><a href="collections">Learn more about collections</a></p>
+
+<h1>Permissions</h1>
+
+<p>Each API endpoint has a permission assigned to it. Only users who are authorized with the required permission can access the endpoint.</p>
+
+<p>The list of permissions is system owned and cannot be changed by the user/operator.</p>
+
+<h1>Roles</h1>
+
+<p>A role is a logical entity which holds several permissions and may have a filter associated with it.</p>
+
+<p><a href="roles">Learn more about roles</a></p>
+
+<h1>Users</h1>
+
+<p>A user is a simple metadata collection describing a user that will access and use the system.</p>
+
+<p><a href="users">Learn more about users</a></p>
+
+<h1>Dimensions: Describe data</h1>
+
+<p>A dimension is an descriptive attribute or characteristic of an object that can be given different values.
+For example, a geographic location could have dimensions called Latitude, Longitude, or City Name.
+Values for the City Name dimension could be San Francisco, Berlin, or Singapore.
+Browser, Device, Date are all examples of dimensions that may appear as part of joola.</p>
+
+<p><a href="dimensions">Learn more about dimensions</a></p>
+
+<h1>Metrics: Measure data</h1>
+
+<p>Metrics are individual elements of a dimension that can be measured as a sum or a ratio.
+For example, the dimension City can be associated with a metric like Population, which would have a sum value of all the residents of the specific city.
+Visits, Page per Visit, and Average Visit Duration are examples of metrics that may be part of joola.</p>
+
+<p><a href="metrics">Learn more about metrics</a></p>
+
+    </article>
+  </div>
+  <aside class="sidebar topic-list">
+    <nav id="doc-affix" class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix">
+      <ul id="list-items" class="nav bs-docs-sidenav">
+      </ul>
+      <a class="back-to-top" href="#top">
+        Back to top
+      </a>
+
+    </nav>
+  </aside>
+</div>
+
+      </div>
+    </div>
+
+    <div class="row footer">
+  <div class="width_wrapper container">
+    <div class="col-md-12">
+      <p>Designed and built by data lovers for data lovers <a href="http://joo.la" target="_blank">joo.la</a>.</p></p>
+      <p>
+        Code licensed under <a href="https://github.com/joola/joola/blob/develop/LICENSE.md" target="_blank">GPLv3</a>,
+        documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p></p>
+      <ul class="bs-docs-footer-links muted">
+        <li>Currently v0.9.0</li>
+        <li>·</li>
+        <li><a href="https://github.com/joola/joola">GitHub</a></li>
+        <li>·</li>
+        <li><a href="/joola/docs">v0.9.0 docs</a></li>
+        <li>·</li>
+        <li><a href="/joola/about">About joo.la</a></li>
+        <li>·</li>
+        <li><a href="/joola/blog">Blog</a></li>
+        <li>·</li>
+        <li><a href="https://github.com/joola/joola/issues?state=open">Issues</a></li>
+      </ul>
+
+
+      <div class="row tail text-center"><img src="/joola/img/logo_bw_small.png"></div>
+    </div>
+  </div>
+
+
+</div>
+
+  </body>
+
+</html>

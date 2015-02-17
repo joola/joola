@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+  <head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="analytics, visualization, json, big-data, data analytics, embedded analytics">
+  <meta property="og:description" content="Joola is the easiet way to create data analytics applications">
+  <meta property="og:image" content="https://joo.la/img/logo_blue_fb.png">
+  <link rel="shortcut icon" href="/joola/img/ico/favicon.ico">
+  <title>Migrating to GitHub pages | Joola</title>
+  <!--<link href="/joola/css/reset.css" rel="stylesheet">-->
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css">
+  <link href='//fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+  <link href="/joola/fonts/octicons/octicons.css" rel="stylesheet">
+  <link href="//google-code-prettify.googlecode.com/svn/trunk/src/prettify.css" rel="stylesheet">
+  <link href="/joola/fonts/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="/joola/css/joola.css" rel="stylesheet" type="text/css">
+  <link href="/joola/javascripts/tipuesearch/tipuesearch.css" rel="stylesheet" type="text/css">
+  <link href="/joola/css/pretty.css" rel="stylesheet" type="text/css">
+  <link href="/joola/css/site.css" rel="stylesheet" type="text/css">
+    
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="//google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
+  <script src="/joola/javascripts/jQuery.timeago.js"></script>
+  
+  <script src="http://joola-develop.herokuapp.com/ip"></script>
+  <script src="http://joola-develop.herokuapp.com/js/ua-parser.min.js"></script>
+  <script src="http://joola-develop.herokuapp.com/joola.js?APIToken=apitoken-demo"></script>
+  <script src="http://joola-develop.herokuapp.com/js/recordEvents.js"></script>
+  
+  <script src="/joola/javascripts/site.js"></script>
+  <script src="/joola/javascripts/tipuesearch/tipuesearch_content.js"></script>
+  <script src="/joola/javascripts/tipuesearch/tipuesearch_set.js"></script>
+  <script src="/joola/javascripts/tipuesearch/tipuesearch.js"></script>
+</head>
+
+
+  <body>
+
+    <!--header-->
+<div id="navigation" role="navigation" class="navbar main-nav navbar-static-top">
+
+  <div class="main-nav">
+    <div class="container header-wrapper">
+      <div class="navbar-header">
+        <button type="button" data-toggle="collapse" data-target="#navbar-collapse" class="navbar-toggle">
+          <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span>
+          <span class="icon-bar"></span><span class="icon-bar"></span></button>
+        <a href="/joola/" class="navbar-brand"><img src="/joola/img/joola_full_blue.png"></a></div>
+      <div id="navbar-collapse" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="home"><a href="/joola/" class="menulink">Home</a></li>
+          <li class="demo"><a href="/joola/demo" class="menulink">Demo</a></li>
+          <li class="gettingstarted"><a href="/joola/gettingstarted" class="menulink">Getting
+            Started</a></li>
+          <li class="docs"><a href="/joola/docs" class="menulink">Documentation</a>
+          </li>
+          <!--<li class="dropdown"><a data-toggle="" href="/joola/docs/" role="button" aria-expanded="false"
+                                          class="menulink dropdown-toggle">Documentation<span class="caret"></span></a>
+            <ul role="menu" class="dropdown-menu">
+              <li><a href="/company/about/">Terminology</a></li>
+              <li><a href="/company/why-joola/">Download & install</a></li>
+              <li><a href="/company/approach/">Configure</a></li>
+              <li><a href="/company/clients/">Data integration</a></li>
+              <li><a href="/company/clients/">Website integration</a></li>
+              <li><a href="/company/clients/">REST API</a></li>
+              <li><a href="/company/clients/">SDK</a></li>
+              <li><a href="/company/clients/">About the project</a></li>
+            </ul>
+          </li>-->
+          <li class="blog"><a href="/joola/blog" class="menulink">Blog</a></li>
+          <li class="news"><a href="/joola/services" class="menulink">Services</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end of header-->
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="bs-docs-header" id="content">
+  <div class="container">
+    <h1>Migrating to GitHub pages</h1>
+
+    <p class="post-author">
+      Posted <abbr class="timeago"
+                   title="2015-02-05 13:39:26 +0200">2015-02-05 13:39:26 +0200</abbr> by Itay Weinberger
+      
+      <span class="label label-default post-tag">content</span>
+      
+      <span class="label label-default post-tag">github</span>
+      
+    </p>
+  </div>
+</div>
+<div class="container page-wrapper post-content">
+  <p>That&#39;s it, we&#39;ve decided to move to GitHub pages to host Joola&#39;s content. 
+Up until now we&#39;ve had several different outlets, all maintained at different levels: website, documentation site (under readme.io), Wiki, API documentation (under apiary) and more.</p>
+
+<p>Maintaining an open-source project is a difficult task, but maintaining its content can be even more, so we&#39;re simplifying things. 
+We aim to keep things short and to point, I guess both users and us will have a better experience as a result.</p>
+
+<p>We&#39;re now in the process of migration, so things will be a bit &quot;in the air&quot; for a couple of weeks until we finish with the migration. 
+Code and features are not expected to change as part of this move and we&#39;ll keep you updated in this space about our progress. </p>
+
+</div>
+
+      </div>
+    </div>
+
+    <div class="row footer">
+  <div class="width_wrapper container">
+    <div class="col-md-12">
+      <p>Designed and built by data lovers for data lovers <a href="http://joo.la" target="_blank">joo.la</a>.</p></p>
+      <p>
+        Code licensed under <a href="https://github.com/joola/joola/blob/develop/LICENSE.md" target="_blank">GPLv3</a>,
+        documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p></p>
+      <ul class="bs-docs-footer-links muted">
+        <li>Currently v0.9.0</li>
+        <li>·</li>
+        <li><a href="https://github.com/joola/joola">GitHub</a></li>
+        <li>·</li>
+        <li><a href="/joola/docs">v0.9.0 docs</a></li>
+        <li>·</li>
+        <li><a href="/joola/about">About joo.la</a></li>
+        <li>·</li>
+        <li><a href="/joola/blog">Blog</a></li>
+        <li>·</li>
+        <li><a href="https://github.com/joola/joola/issues?state=open">Issues</a></li>
+      </ul>
+
+
+      <div class="row tail text-center"><img src="/joola/img/logo_bw_small.png"></div>
+    </div>
+  </div>
+
+
+</div>
+
+  </body>
+
+</html>
