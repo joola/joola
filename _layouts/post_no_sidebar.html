@@ -1,0 +1,20 @@
+---
+layout: default
+---
+
+<div class="bs-docs-header" id="content">
+  <div class="container">
+    <h1>{{ page.title }}</h1>
+
+    <p class="post-author">
+      Posted <abbr class="timeago"
+                   title="{{page.date}}">{{page.date}}</abbr> by {{page.author}}
+      {% for tag in page.tags %}
+      <span class="label label-default post-tag">{{ tag }}</span>
+      {% endfor %}
+    </p>
+  </div>
+</div>
+<div class="container page-wrapper post-content">
+  {{ content }}
+</div>

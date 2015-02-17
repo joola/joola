@@ -1,102 +1,30 @@
+---
+layout: null
+---
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Joola</title>
-    <description></description>
-    <link>/joola/</link>
-    <atom:link href="/joola/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 17 Feb 2015 13:19:01 +0200</pubDate>
-    <lastBuildDate>Tue, 17 Feb 2015 13:19:01 +0200</lastBuildDate>
-    <generator>Jekyll v2.5.3</generator>
-    
+    <title>{{ site.title | xml_escape }}</title>
+    <description>{{ site.description | xml_escape }}</description>
+    <link>{{ site.url }}{{ site.baseurl }}/</link>
+    <atom:link href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" rel="self" type="application/rss+xml" />
+    <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
+    <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
+    <generator>Jekyll v{{ jekyll.version }}</generator>
+    {% for post in site.posts limit:10 %}
       <item>
-        <title>The 155th star</title>
-        <description>&lt;p&gt;Whoopee, we reached the 155th star on our &lt;a href=&quot;https://github.com/joola/joola&quot;&gt;GitHub repo&lt;/a&gt;.&lt;/p&gt;
-</description>
-        <pubDate>Tue, 10 Feb 2015 04:44:32 +0200</pubDate>
-        <link>/joola/blog/2015/02/10/the-155-star.html</link>
-        <guid isPermaLink="true">/joola/blog/2015/02/10/the-155-star.html</guid>
-        
-        <category>github</category>
-        
-        <category>community</category>
-        
-        
-        <category>blog</category>
-        
+        <title>{{ post.title | xml_escape }}</title>
+        <description>{{ post.content | xml_escape }}</description>
+        <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
+        <link>{{ post.url | prepend: site.baseurl | prepend: site.url }}</link>
+        <guid isPermaLink="true">{{ post.url | prepend: site.baseurl | prepend: site.url }}</guid>
+        {% for tag in post.tags %}
+        <category>{{ tag | xml_escape }}</category>
+        {% endfor %}
+        {% for cat in post.categories %}
+        <category>{{ cat | xml_escape }}</category>
+        {% endfor %}
       </item>
-    
-      <item>
-        <title>Thoughts about content</title>
-        <description>&lt;p&gt;I think this is maybe the 5 time I&amp;#39;m building a site for this project. 
-While the technical aspects of publishing a website gets refined with every iteration, it&amp;#39;s dealing with the actual content that I struggle most with, this part does not get easier.&lt;/p&gt;
-
-&lt;p&gt;With previous times my focus was on getting all the technical details to the reader, for them to be able to use the software as quickly as possible.
-The thing I left out was actually explaining what Joola does and how it can bring value to their specific use case. 
-I think that this iteration will focus more on the &amp;quot;product&amp;quot; than the specific technical aspects needed from the user, the assumption is that if you&amp;#39;ll care to learn more about Joola you&amp;#39;ll simply navigate your way. 
-A safe assumption. It&amp;#39;s sounds like a simple understanding, however for me, as simple as it was, it eludes me.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 08 Feb 2015 03:39:26 +0200</pubDate>
-        <link>/joola/blog/2015/02/08/thoughts-about-content.html</link>
-        <guid isPermaLink="true">/joola/blog/2015/02/08/thoughts-about-content.html</guid>
-        
-        <category>content</category>
-        
-        
-        <category>blog</category>
-        
-      </item>
-    
-      <item>
-        <title>Auto generating GH pages with Jekyll &amp; Gollum</title>
-        <description>&lt;p&gt;You’ll find this post in your &lt;code&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code&gt;jekyll serve --watch&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
-
-&lt;p&gt;To add new posts, simply add a file in the &lt;code&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
-
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Tom&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &amp;#39;Hi, Tom&amp;#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://github.com/jekyll/jekyll-help&quot;&gt;Jekyll’s dedicated Help repository&lt;/a&gt;.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 07 Feb 2015 17:39:26 +0200</pubDate>
-        <link>/joola/blog/2015/02/07/auto-generating-gh-pages-with-jekyll---gollum.html</link>
-        <guid isPermaLink="true">/joola/blog/2015/02/07/auto-generating-gh-pages-with-jekyll---gollum.html</guid>
-        
-        
-        <category>blog</category>
-        
-      </item>
-    
-      <item>
-        <title>Migrating to GitHub pages</title>
-        <description>&lt;p&gt;That&amp;#39;s it, we&amp;#39;ve decided to move to GitHub pages to host Joola&amp;#39;s content. 
-Up until now we&amp;#39;ve had several different outlets, all maintained at different levels: website, documentation site (under readme.io), Wiki, API documentation (under apiary) and more.&lt;/p&gt;
-
-&lt;p&gt;Maintaining an open-source project is a difficult task, but maintaining its content can be even more, so we&amp;#39;re simplifying things. 
-We aim to keep things short and to point, I guess both users and us will have a better experience as a result.&lt;/p&gt;
-
-&lt;p&gt;We&amp;#39;re now in the process of migration, so things will be a bit &amp;quot;in the air&amp;quot; for a couple of weeks until we finish with the migration. 
-Code and features are not expected to change as part of this move and we&amp;#39;ll keep you updated in this space about our progress. &lt;/p&gt;
-</description>
-        <pubDate>Thu, 05 Feb 2015 13:39:26 +0200</pubDate>
-        <link>/joola/blog/news/2015/02/05/migrating-to-github-pages.html</link>
-        <guid isPermaLink="true">/joola/blog/news/2015/02/05/migrating-to-github-pages.html</guid>
-        
-        <category>content</category>
-        
-        <category>github</category>
-        
-        
-        <category>blog</category>
-        
-        <category>news</category>
-        
-      </item>
-    
+    {% endfor %}
   </channel>
 </rss>

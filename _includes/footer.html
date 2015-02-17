@@ -1,0 +1,43 @@
+<div class="row footer">
+  <div class="width_wrapper container">
+    <div class="col-md-12">
+      <p>Designed and built by data lovers for data lovers <a href="http://joo.la" target="_blank">joo.la</a>.</p></p>
+      <p>
+        Code licensed under <a href="https://github.com/joola/joola/blob/develop/LICENSE.md" target="_blank">GPLv3</a>,
+        documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p></p>
+      <ul class="bs-docs-footer-links muted">
+        <li>Currently v{{site.version}}</li>
+        <li>·</li>
+        <li><a href="https://github.com/joola/joola">GitHub</a></li>
+        <li>·</li>
+        <li><a href="{{ "/docs" | prepend: site.baseurl }}">v{{site.version}} docs</a></li>
+        <li>·</li>
+        <li><a href="{{ "/about" | prepend: site.baseurl }}">About joo.la</a></li>
+        <li>·</li>
+        <li><a href="{{ "/blog" | prepend: site.baseurl }}">Blog</a></li>
+        <li>·</li>
+        <li><a href="https://github.com/joola/joola/issues?state=open">Issues</a></li>
+      </ul>
+
+
+      <div class="row tail text-center"><img src="{{ "/img/logo_bw_small.png" | prepend: site.baseurl }}"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })
+  (window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-29020316-1', 'http://joola.github.io/');
+  ga('send', 'pageview');
+</script>

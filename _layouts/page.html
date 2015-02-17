@@ -1,0 +1,60 @@
+---
+layout: default
+---
+
+<div class="bs-docs-header" id="content">
+  <div class="container">
+    <h1>{{ page.title }}</h1>
+
+    <p>{{ page.description }}</p>
+  </div>
+</div>
+
+<div class="container page-wrapper">
+  <div class="post with-sidebar ">
+    <article class="post-content">
+      <input type="text" name="q" id="tipue_search_input" autocomplete="off" required>
+      <div id="tipue_search_content"></div>
+
+      {{ content }}
+    </article>
+  </div>
+  <aside class="sidebar topic-list">
+    <h3 class="page-heading">Get in touch!</h3>
+
+    <p>Let's see how Joola can assist your business, leave us a note and we'll be in touch quickly.</p>
+
+    <form class="bottom-contact" action="http://formtoemail.com/user_forms.php" method="post">
+      <input type="hidden" name="user_id" value="C3QTCB2T0FC8NZ4N4AOB">
+      <input type="hidden" name="form_id" value="1">
+
+      <div class="form-group">
+
+        <input type="text" class="form-control" name="contact-name" placeholder="Your name">
+      </div>
+      <div class="form-group">
+
+        <input type="email" class="form-control" name="contact-email" placeholder="Email address">
+      </div>
+      <div class="form-group">
+
+        <textarea class="form-control" name="contact-message" rows="3" placeholder="Message"></textarea>
+      </div>
+      <button class="btn btn-primary">Send</button>
+    </form>
+    <h3 class="page-heading margin-top-50">Recent Posts</h3>
+
+    <ul class="post-list">
+      {% for post in site.posts limit:5 %}
+      <li>
+        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+
+        <p class="author">{{post.author}}<br/><abbr class="timeago"
+                                                    title="{{post.date}}">{{post.date}}</abbr> <br/>
+        </p>
+      </li>
+      {% endfor %}
+    </ul>
+
+  </aside>
+</div>
