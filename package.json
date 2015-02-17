@@ -27,7 +27,7 @@
     "start:detached": "node ./joola.js --debug &",
     "start:watch": "watch 'node ./joola.js --debug' lib/ --wait=1",
     "stop": "killall node",
-    "test": "JOOLA_CONFIG_STORE_LOGGER_CONSOLE_LEVEL=info mocha test/ --reporter spec",
+    "test": "JOOLA_CONFIG_STORE_LOGGER_CONSOLE_LEVEL=trace mocha test/ --reporter spec",
     "pretest": "npm run lint",
     "test:coverage": "istanbul cover ./node_modules/.bin/_mocha -- -R spec test",
     "test:quiet": "JOOLA_CONFIG_STORE_LOGGER_CONSOLE_LEVEL=error mocha test/ --reporter dot",
