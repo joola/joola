@@ -72,7 +72,7 @@
     "git:push": "git push",
     "git:check": "count=$(expr $(git status --porcelain 2>/dev/null | egrep \"^(M| M)\" | wc -l)) && if [ $count -ne 0 ]; then echo Git repository is dirty [$count change\\(s\\) found].; exit 1; fi; exit 0",
     "changelist": "github-changes -o joola -r joola --token 864b65f829914e80f16c41d3cb70ad0841344329 --only-pulls --use-commit-body --file HISTORY.md",
-    "lint": "jshint ./lib ./test",
+    "lint": "jshint --exclude ./lib/webserver/public ./lib ./test",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "env": "env"
   },

@@ -1,7 +1,0 @@
-lib/sdk/bin/*
-lib/common/index.js
-
-lib/webserver/public/*
-
-lib-cov
-coverage
