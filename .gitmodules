@@ -1,6 +1,3 @@
-[submodule "wiki"]
-	path = wiki
-	url = https://github.com/joola/joola.wiki.git
 [submodule "build/cookbooks/nodejs"]
 	path = build/cookbooks/nodejs
 	url = https://github.com/mdxp/nodejs-cookbook.git
@@ -34,7 +31,6 @@
 [submodule "build/cookbooks/runit"]
 	path = build/cookbooks/runit
 	url = https://github.com/hw-cookbooks/runit.git
-
 [submodule "build/cookbooks/yum-erlang_solutions"]
 	path = build/cookbooks/yum-erlang_solutions
 	url = https://github.com/opscode-cookbooks/yum-erlang_solutions.git
