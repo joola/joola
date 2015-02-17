@@ -7,9 +7,9 @@ node_js:
 
 services:
   - redis-server
-  - mongodb
   - rabbitmq
-  - elasticsearch
+  - mongodb
+  #- elasticsearch
   
 env:
   JOOLA_CONFIG_AUTHENTICATION_BASICAUTH_ENABLED=TRUE

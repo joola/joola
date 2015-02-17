@@ -1,0 +1,57 @@
+store:
+  stats:
+    punt:
+      port: 3015
+  config:
+    enabled: true
+    redis:
+      enabled: true
+      dsn: redis://127.0.0.1
+      ## if dsn not specific then these are required
+      # host: 127.0.0.1
+      # port: 6379
+      # db: 0
+      # auth: null
+  runtime:
+    redis:
+      enabled: true 
+      dsn: redis://127.0.0.1
+  dispatch:
+    enabled: true
+    redis:
+      enabled: true
+      dsn: redis://127.0.0.1
+    stomp:
+      enabled: true
+      dsn: stomp://guest:guest@127.0.0.1:61613
+      # if dsn not specific then these are required
+      # host: 127.0.0.1
+      # port: 61613
+      # user: guest
+      # pass: guest
+  websocket:
+    http:
+      redis:
+        enabled: true
+        dsn: redis://127.0.0.1
+    https:
+      redis:
+        enabled: true
+        dsn: redis://127.0.0.1
+  logger:
+    console:
+      level: debug
+    # loggly:
+      # level: trace
+      # token: your-api-token
+      # domain: loggly-subdomain
+    file:
+      level: trace
+      path: /var/log/joola
+  datastore:
+    mongodb:
+      enabled: true
+      dsn: mongodb://localhost:27017/cache
+      expireafterseconds: 0
+dispatch:
+  enabled: true
