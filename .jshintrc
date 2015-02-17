@@ -1,6 +1,7 @@
 {
   "node": true,
   "evil": true,
+  "expr": true,
   "indent": 2,
   "globals": [
     "require",
