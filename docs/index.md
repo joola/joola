@@ -15,7 +15,7 @@ Push events of any type (visits, registrations, purchases, game play and more...
 - [Configuration](Configuration.html)
 - Data integration
 - Website integration
-- [REST API](REST-API.html)
+- [REST API](http://docs.joola.apiary.io)
 - [SDK](SDK.html)
 - About the project
 
