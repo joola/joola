@@ -1,4 +1,4 @@
-var https = require('https');
+var http = require('http');
 
 describe("routes", function () {
   before(function (done) {
@@ -23,7 +23,7 @@ describe("routes", function () {
   it("should return a 401 route [GET]", function (done) {
     var options = {
       host: 'localhost',
-      port: '8081',
+      port: '8080',
       path: '/api/system/nodeDetails'
     };
 
@@ -44,13 +44,13 @@ describe("routes", function () {
       });
     };
 
-    https.request(options, callback).end();
+    http.request(options, callback).end();
   });
 
   it("should get the SDK", function (done) {
     var options = {
       host: 'localhost',
-      port: '8081',
+      port: '8080',
       path: '/joola.js'
     };
 
@@ -71,13 +71,13 @@ describe("routes", function () {
       });
     };
 
-    https.request(options, callback).end();
+    http.request(options, callback).end();
   });
 
   it("should get the SDK [w/ token]", function (done) {
     var options = {
       host: 'localhost',
-      port: '8081',
+      port: '8080',
       path: '/joola.js?token=12345'
     };
 
@@ -98,13 +98,13 @@ describe("routes", function () {
       });
     };
 
-    https.request(options, callback).end();
+    http.request(options, callback).end();
   });
 
   it("should get the minified SDK", function (done) {
     var options = {
       host: 'localhost',
-      port: '8081',
+      port: '8080',
       path: '/joola.min.js'
     };
 
@@ -125,13 +125,13 @@ describe("routes", function () {
       });
     };
 
-    https.request(options, callback).end();
+    http.request(options, callback).end();
   });
 
   it("should get the minified SDK [w/ token]", function (done) {
     var options = {
       host: 'localhost',
-      port: '8081',
+      port: '8080',
       path: '/joola.min.js?token=12345'
     };
 
@@ -152,13 +152,13 @@ describe("routes", function () {
       });
     };
 
-    https.request(options, callback).end();
+    http.request(options, callback).end();
   });
 
   it("should get the CSS", function (done) {
     var options = {
       host: 'localhost',
-      port: '8081',
+      port: '8080',
       path: '/joola.css'
     };
 
@@ -179,13 +179,13 @@ describe("routes", function () {
       });
     };
 
-    https.request(options, callback).end();
+    http.request(options, callback).end();
   });
 
   it("should get the IP", function (done) {
     var options = {
       host: 'localhost',
-      port: '8081',
+      port: '8080',
       path: '/ip'
     };
 
@@ -206,13 +206,13 @@ describe("routes", function () {
       });
     };
 
-    https.request(options, callback).end();
+    http.request(options, callback).end();
   });
 
   xit("should create a test error", function (done) {
     var options = {
       host: 'localhost',
-      port: '8081',
+      port: '8080',
       path: '/api/test/createtesterror'
     };
 
@@ -233,6 +233,6 @@ describe("routes", function () {
       });
     };
 
-    https.request(options, callback).end();
+    http.request(options, callback).end();
   });
 });

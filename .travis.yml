@@ -2,14 +2,14 @@ language: node_js
 
 node_js:
   - "0.10"
-  - "0.12"
-  - "iojs"
+  #- "0.12"
+  #- "iojs"
 
 services:
   - redis-server
-  - mongodb
   - rabbitmq
-  - elasticsearch
+  - mongodb
+  #- elasticsearch
   
 env:
   JOOLA_CONFIG_AUTHENTICATION_BASICAUTH_ENABLED=TRUE
@@ -21,9 +21,9 @@ branches:
 
 matrix:
   fast_finish: true
-  allow_failures:
-    - node_js: "0.12"
-    - node_js: "iojs"
+  #allow_failures:
+  #  - node_js: "0.12"
+  #  - node_js: "iojs"
 
 before_script:
   - sudo rabbitmq-plugins enable rabbitmq_stomp
@@ -35,7 +35,7 @@ before_script:
 deploy:
   provider: heroku
   on: develop
-  app: joola-example
+  app: joola-develop
   api_key:
     secure: u2sgcDddY6is6ZB1q1YsFQwlld0cvsSbfH6UtEVP7QvOeITriv2fauXnt+WTSzLqcLphzFPviUceMP9Qm4FcbKd1+qHHCAtpmZMTx7MXoFjJJXDVYwbL9iQURi5IS6lja8eLSJZk8yonDuWZ6f3babr/iW4o//CalslW5WDwHMs=
 

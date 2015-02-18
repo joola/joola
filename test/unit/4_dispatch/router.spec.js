@@ -13,8 +13,11 @@ describe("router", function () {
 
   it("should test local route", function (done) {
     var _prev = joola_proxy.config.get('dispatch:enabled');
+    var self = this;
     joola_proxy.config.set('dispatch:enabled', false, function () {
-      joola.system.version( function (err, version) {
+      joola_proxy.system.version(self.context, function (err, version) {
+        if (err)
+          return done(err);
         joola_proxy.config.set('dispatch:enabled', _prev);
         expect(version).to.be.ok;
         done();

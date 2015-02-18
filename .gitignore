@@ -26,7 +26,6 @@ apiary.out.html
 
 config/oo.yml
 config/development.yml
-config/test.yml
 config/development.json
 config/test.json
 config/certs/goo.pem
@@ -45,4 +44,6 @@ pages/docs
 
 params.json
 search_index.json
-joola-data.json
+
+build/cookbooks
+build/docker
