@@ -1,0 +1,53 @@
+version: 0.1.60
+interfaces:
+  webserver:
+    enabled: true
+    welcome: true
+    bind: 0.0.0.0
+    port: 8080
+    secureport: 8081
+    secure: false
+    sessiondurtaion: 1200000
+    timeout: 60000
+    blacklist: null
+    alloworigin: null
+    headers:
+      X-Powered-By: joola
+      X-Joola-Name: joola-test
+  repl:
+    enabled: false
+    port: 1337
+store:
+  config:
+    enabled: true
+    redis:
+      enabled: true
+      dsn: redis://127.0.0.1
+  runtime:
+    redis:
+      enabled: true
+      dsn: redis://127.0.0.1
+  dispatch:
+    enabled: true
+    redis:
+      enabled: true
+      dsn: redis://127.0.0.1
+    stomp:
+      enabled: true
+      dsn: stomp://guest:guest@127.0.0.1:61613
+  websocket:
+    http:
+      redis:
+        enabled: true
+        dsn: redis://127.0.0.1
+    https:
+      redis:
+        enabled: true
+        dsn: redis://127.0.0.1
+  datastore:
+    mongodb:
+      enabled: true
+      dsn: mongodb://localhost:27017/cache
+dispatch:
+  enabled: true
+  expires: 60
