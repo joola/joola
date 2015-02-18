@@ -38,14 +38,12 @@
     "test:quiet": "JOOLA_CONFIG_STORE_LOGGER_CONSOLE_LEVEL=error mocha test/ --reporter dot",
     "test:md": "JOOLA_CONFIG_STORE_LOGGER_CONSOLE_LEVEL=error mocha test/ --reporter markdown",
     "test:api": "(killall node || true) && redis-cli flushall && NODE_CONFIG_DIR=$(pwd)/test/config NODE_ENV=apiary npm run start:detached && sleep 2 && dredd ./apiary.apib http://localhost:8080 && npm stop",
-
     "publish": "npm run publish:do",
     "prepublish": "npm run build # also runs npm run prebuild",
     "publish:do": "npm shrinkwrap && echo npm publish && rm npm-shrinkwrap.json",
     "publish:patch": "npm run prepublish && npm version patch --git-tag-version=false --sign-git-tag=true -m \"Version bumped to %s\" && npm run publish:do",
     "publish:minor": "npm run prepublish && npm version minor --git-tag-version=false --sign-git-tag=true -m \"Version bumped to %s\" && npm run publish:do",
     "publish:major": "npm run prepublish && npm version major --git-tag-version=false --sign-git-tag=true -m \"Version bumped to %s\" && npm run publish:do",
-
     "docker:build": "npm run git:check && git checkout docker/latest && (git merge develop || true) && git checkout --ours -- README.md && git add --force -- README.md && (git commit -am \"Merge develop branch on docker/lastest\" || true) && docker build -t joola/joola .",
     "docker:publish": "",
     "vagrant:build": "",
@@ -79,6 +77,7 @@
     "changelist": "github-changes -o joola -r joola --token 864b65f829914e80f16c41d3cb70ad0841344329 --only-pulls --use-commit-body --file HISTORY.md",
     "lint": "jshint --exclude ./lib/webserver/public ./lib ./test",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "codeclimate": "CODECLIMATE_REPO_TOKEN=b0cf984d93693c3e827901f766ca1f13b6acca03a3786b5e187356e66e8ffbec codeclimate < ./coverage/lcov.info",
     "env": "env"
   },
   "bin": {
@@ -101,6 +100,7 @@
     "bunyan-loggly": "^0.0.5",
     "circular-json": "~0.1.6",
     "cloneextend": "0.0.3",
+    "codeclimate-test-reporter": "0.0.4",
     "coffee-script": "^1.9.0",
     "compression": "^1.4.0",
     "config": "^1.10.0",
@@ -115,8 +115,8 @@
     "jade": "^1.9.2",
     "joola.cli": "0.0.8",
     "joola.datastore-elasticsearch": "^0.0.3",
-    "joola.datastore-mongodb": "^0.0.13",
     "joola.datastore-embedded": "^0.0.2",
+    "joola.datastore-mongodb": "^0.0.13",
     "joola.sdk": "^0.8.2",
     "js-yaml": "^3.2.6",
     "kindof": "~1.0.0",
@@ -141,6 +141,7 @@
     "chai": "^1.9.1",
     "cheerio": "^0.18.0",
     "coveralls": "latest",
+    "codeclimate-test-reporter": "latest",
     "istanbul": "latest",
     "jsdox": "https://github.com/joola/jsdox/tarball/master",
     "jshint": "latest",
