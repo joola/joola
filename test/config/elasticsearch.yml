@@ -1,0 +1,5 @@
+store:
+  datastore:
+    elasticsearch:
+      enabled: true
+      host: localhost:9200

@@ -3,17 +3,10 @@ interfaces:
   webserver:
     enabled: true
     welcome: true
-    # host: joola #used for response-header [Server]
     bind: 0.0.0.0
     port: 8080
     secureport: 8081
     secure: false
-    #secureonly: false
-    #keyfile: ./config/certs/server.key
-    #certfile: ./config/certs/server.crt
-    #ca: ./config/certs/ca.crt
-    #websocket:
-    #  enabled: true
     sessiondurtaion: 1200000
     timeout: 60000
     blacklist: null
@@ -25,52 +18,29 @@ interfaces:
     enabled: false
     port: 1337
 store:
-  #stats:
-  #  punt:
-  #    port: 3015
   config:
     enabled: false
     redis:
       enabled: false
-      # dsn: redis://127.0.0.1
-      ## if dsn not specific then these are required
-      # host: 127.0.0.1
-      # port: 6379
-      # db: 0
-      # auth: null
   runtime:
     redis:
       enabled: false 
-      # dsn: redis://127.0.0.1
   dispatch:
     enabled: false
     redis:
       enabled: false
-      #dsn: redis://127.0.0.1
     stomp:
       enabled: false
-      # dsn: stomp://guest:guest@127.0.0.1:61613
-      # if dsn not specific then these are required
-      # host: 127.0.0.1
-      # port: 61613
-      # user: guest
-      # pass: guest
   websocket:
     http:
       redis:
         enabled: false
-        #dsn: redis://127.0.0.1
     https:
       redis:
         enabled: false
-        # dsn: redis://127.0.0.1
   logger:
     console:
       level: debug
-    # loggly:
-      # level: trace
-      # token: your-api-token
-      # domain: loggly-subdomain
     file:
       level: trace
       path: /var/log/joola
@@ -97,8 +67,6 @@ authentication:
     guest: 60
     user: 9999999999
   force404: false
-#sdk:
-  # url: https://raw.githubusercontent.com/joola/joola.sdk/feature/%2376/bin/joola.js
 query:
   fixgmt: false #should be true if server not running in GMT+0
 workspaces:

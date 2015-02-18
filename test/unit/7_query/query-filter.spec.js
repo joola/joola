@@ -80,7 +80,7 @@ describe("query-filter", function () {
       metrics: ['value', 'another'],
       collection: this.collection,
       filter: [
-        ['attribute', 'regex', /test.*?/]
+        ['attribute', 'regex', 'test.*?']
       ]
     };
     joola_proxy.query.fetch(this.context, query, function (err, result) {

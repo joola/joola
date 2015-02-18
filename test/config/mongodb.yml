@@ -1,0 +1,6 @@
+store:
+  datastore:
+    mongodb:
+      enabled: true
+      dsn: mongodb://localhost:27017/cache
+      expireafterseconds: 0
