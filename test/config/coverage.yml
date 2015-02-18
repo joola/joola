@@ -18,6 +18,9 @@ interfaces:
     enabled: false
     port: 1337
 store:
+  stats:
+    punt:
+      port: 3015
   config:
     enabled: true
     redis:
