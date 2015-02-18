@@ -47,3 +47,5 @@ search_index.json
 
 build/cookbooks
 build/docker
+
+data

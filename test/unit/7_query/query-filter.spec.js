@@ -1,4 +1,4 @@
-describe("query-basic", function () {
+describe("query-filter", function () {
   before(function (done) {
     this.context = {user: _token.user};
     this.workspace = 'root';
@@ -80,7 +80,7 @@ describe("query-basic", function () {
       metrics: ['value', 'another'],
       collection: this.collection,
       filter: [
-        ['attribute', 'regex', 'test.*?']
+        ['attribute', 'regex', /test.*?/]
       ]
     };
     joola_proxy.query.fetch(this.context, query, function (err, result) {
