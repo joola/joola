@@ -25,23 +25,23 @@
   "scripts": {
     "start": "node ./joola.js --debug",
     "start:detached": "node ./joola.js --debug &",
-    "start:watch": "watch 'node ./joola.js --debug' lib/ --wait=1",
+    "start:watch": "watch 'node ./joola.js --trace' --wait=1",
     "stop": "killall node",
-    "test": "JOOLA_CONFIG_STORE_LOGGER_CONSOLE_LEVEL=info mocha test/ --reporter spec",
+    "test": "JOOLA_CONFIG_STORE_LOGGER_CONSOLE_LEVEL=trace mocha test/ --reporter spec",
     "pretest": "npm run lint",
     "test:coverage": "istanbul cover ./node_modules/.bin/_mocha -- -R spec test",
     "test:quiet": "JOOLA_CONFIG_STORE_LOGGER_CONSOLE_LEVEL=error mocha test/ --reporter dot",
     "test:md": "JOOLA_CONFIG_STORE_LOGGER_CONSOLE_LEVEL=error mocha test/ --reporter markdown",
-    "test:api": "redis-cli flushall && npm run start:detached && sleep 2 && dredd -r html apiary.apib http://localhost:8080 && npm stop",
-    "build": "",
-    "prebuild": "npm run git:check && npm run test # also runs npm run pretest",
+    "test:api": "(killall node || true) && redis-cli flushall && NODE_ENV=apiary npm run start:detached && sleep 2 && dredd ./apiary.apib http://localhost:8080 && npm stop",
+
     "publish": "npm run publish:do",
     "prepublish": "npm run build # also runs npm run prebuild",
     "publish:do": "npm shrinkwrap && echo npm publish && rm npm-shrinkwrap.json",
     "publish:patch": "npm run prepublish && npm version patch --git-tag-version=false --sign-git-tag=true -m \"Version bumped to %s\" && npm run publish:do",
     "publish:minor": "npm run prepublish && npm version minor --git-tag-version=false --sign-git-tag=true -m \"Version bumped to %s\" && npm run publish:do",
     "publish:major": "npm run prepublish && npm version major --git-tag-version=false --sign-git-tag=true -m \"Version bumped to %s\" && npm run publish:do",
-    "docker:build": "npm run prebuild && git checkout docker/latest && (git merge develop || true) && git checkout --ours -- README.md && git add --force -- README.md && git commit -am \"Merge develop branch on docker/lastest\" && docker build -t joola/joola .",
+
+    "docker:build": "npm run git:check && git checkout docker/latest && (git merge develop || true) && git checkout --ours -- README.md && git add --force -- README.md && (git commit -am \"Merge develop branch on docker/lastest\" || true) && docker build -t joola/joola .",
     "docker:publish": "",
     "vagrant:build": "",
     "vagrant:deploy": "",
@@ -53,8 +53,9 @@
     "gh-pages:docs:cleanup:after": "rm -rf ./tmp",
     "gh-pages:docs:gollum-site": "npm run gh-pages:docs:gollum-site:init && npm run gh-pages:docs:gollum-site:build && npm run gh-pages:docs:gollum-site:refactor",
     "gh-pages:docs:gollum-site:init": "mkdir -p ./tmp/wiki && cp -R ./wiki/* ./tmp/wiki && cp -R ./build/pages/resources/gollum-site/* ./tmp/wiki",
-    "gh-pages:docs:gollum-site:build": "cd ./tmp/wiki && git init && gollum-site generate --output_path=../../pages/docs --base_path /docs/ --working",
-    "gh-pages:docs:gollum-site:refactor": "mv ./pages/docs/Home.html ./pages/docs/index.html",
+    "gh-pages:docs:gollum-site:build": "cp -R ./wiki/* ./pages/docs",
+    "gh-pages:docs:gollum-site:build.bak": "cd ./tmp/wiki && git init && gollum-site generate --output_path=../../pages/docs --base_path /docs/ --working",
+    "gh-pages:docs:gollum-site:refactor": "mv ./pages/docs/Home.md ./pages/docs/index.md",
     "gh-pages:site": "npm run gh-pages:site:cleanup:before && npm run gh-pages:site:jekyll && npm run gh-pages:site:cleanup:after",
     "gh-pages:site:cleanup:before": "rm -rf ./about ./blog ./css ./docs ./demo ./fonts ./gettingstarted ./services ./img ./javascripts ./news ./stylesheets ./feed.xml ./index.html ./params.json",
     "gh-pages:site:cleanup:after": "npm run gh-pages:site:cleanup:before",
@@ -71,7 +72,7 @@
     "git:push": "git push",
     "git:check": "count=$(expr $(git status --porcelain 2>/dev/null | egrep \"^(M| M)\" | wc -l)) && if [ $count -ne 0 ]; then echo Git repository is dirty [$count change\\(s\\) found].; exit 1; fi; exit 0",
     "changelist": "github-changes -o joola -r joola --token 864b65f829914e80f16c41d3cb70ad0841344329 --only-pulls --use-commit-body --file HISTORY.md",
-    "lint": "jshint ./lib ./test",
+    "lint": "jshint --exclude ./lib/webserver/public ./lib ./test",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "env": "env"
   },
@@ -108,9 +109,9 @@
     "htpasswd": "*",
     "jade": "^1.9.2",
     "joola.cli": "0.0.8",
-    "joola.datastore-lokijs": "^0.0.1",
     "joola.datastore-elasticsearch": "^0.0.2",
     "joola.datastore-mongodb": "^0.0.13",
+    "joola.datastore-embedded": "^0.0.1",
     "joola.sdk": "^0.8.2",
     "js-yaml": "^3.2.6",
     "kindof": "~1.0.0",
@@ -121,13 +122,14 @@
     "repl.history": "*",
     "semver": "^4.2.2",
     "serve-favicon": "^2.1.6",
+    "sleep": "^2.0.0",
     "socket.io": "^1.3.3",
     "socket.io-client": "^1.3.3",
     "socket.io-redis": "^0.1.3",
     "stomp": "https://github.com/joola/stomp-js/tarball/master",
     "traverse": "http://registry.npmjs.org/traverse/-/traverse-0.6.6.tgz",
     "underscore": "^1.7.0",
-    "usage": "^0.5.0"
+    "usage": "^0.6.0"
   },
   "devDependencies": {
     "bench-rest": "^1.0.2",
@@ -147,8 +149,7 @@
     "socket.io-browserify": "*",
     "zombie": "*",
     "watch": "^0.13.0",
-    "github-changes": "latest",
-    "sleep": "^2.0.0"
+    "github-changes": "latest"
   },
   "engines": {
     "node": "0.10.*"
