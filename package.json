@@ -34,7 +34,7 @@
     "test:scenario:elasticsearch": "NODE_CONFIG_DIR=$(pwd)/test/config NODE_ENV=elasticsearch npm run test:quiet",
     "test:scenario:cluster_node": "NODE_CONFIG_DIR=$(pwd)/test/config NODE_ENV=cluster_node npm run test:quiet",
     "pretest": "npm run lint",
-    "test:coverage": "NODE_CONFIG_DIR=$(pwd)/test/config NODE_ENV=coverage istanbul cover ./node_modules/.bin/_mocha -- -R spec dot",
+    "test:coverage": "NODE_CONFIG_DIR=$(pwd)/test/config NODE_ENV=coverage istanbul cover ./node_modules/.bin/_mocha -- -R dot test",
     "test:quiet": "JOOLA_CONFIG_STORE_LOGGER_CONSOLE_LEVEL=error mocha test/ --reporter dot",
     "test:md": "JOOLA_CONFIG_STORE_LOGGER_CONSOLE_LEVEL=error mocha test/ --reporter markdown",
     "test:api": "(killall node || true) && redis-cli flushall && NODE_CONFIG_DIR=$(pwd)/test/config NODE_ENV=apiary npm run start:detached && sleep 2 && dredd ./apiary.apib http://localhost:8080 && npm stop",
