@@ -147,7 +147,7 @@ Having multiple workspaces is the corner-stone for joola's multi-tenancy.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### List all Workspaces [GET]
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         [
           {
@@ -168,14 +168,14 @@ Having multiple workspaces is the corner-stone for joola's multi-tenancy.
         ]
 
 ### Create a Workspace [POST]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
         { 
           "key": "workspace-name", 
           "name": "Workspace Name"
         }
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
           "key": "workspace-name",
@@ -183,7 +183,7 @@ Having multiple workspaces is the corner-stone for joola's multi-tenancy.
           "description": null
         } 
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "workspace already exists", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -194,7 +194,7 @@ Having multiple workspaces is the corner-stone for joola's multi-tenancy.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
     
 ### Retrieve a Workspace [GET]
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
     + Body
             
@@ -204,20 +204,20 @@ Having multiple workspaces is the corner-stone for joola's multi-tenancy.
               "description": null
             }
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "workspace [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Update a Workspace [PATCH]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
         { "description": "workspace description" }
         
@@ -229,19 +229,19 @@ Having multiple workspaces is the corner-stone for joola's multi-tenancy.
           "description": "workspace description"
         }
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
         
-+ Response 415 (application/json)
++ Response 415 (application/json; charset=utf-8)
 
         { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola/wiki" }
         
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -250,19 +250,19 @@ Having multiple workspaces is the corner-stone for joola's multi-tenancy.
 
         {}
         
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 415 (application/json)
++ Response 415 (application/json; charset=utf-8)
 
         { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "workspace [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -286,155 +286,506 @@ Notes related resources of the **Collections API**
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### List all Collections [GET]
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
             [
               {
-                "key": "demo-visits",
-                "strongTyped": "true",
-                "name": "demo-visits",
+                "key": "visits",
+                "strongTyped": true,
                 "dimensions": [
                   {
-                    "datatype": "string",
+                    "datatype": "date",
                     "type": "dimension",
-                    "name": "referrer",
-                    "key": "referrer"
-                  },
-                  {
-                    "datatype": "ip",
-                    "type": "dimension",
-                    "name": "ip",
-                    "key": "ip"
-                  },
-                  {
-                    "datatype": "string",
-                    "type": "dimension",
-                    "name": "userid",
-                    "key": "userid"
-                  },
-                  {
-                    "datatype": "string",
-                    "type": "dimension",
-                    "name": "os",
-                    "key": "os"
-                  },
-                  {
-                    "datatype": "string",
-                    "type": "dimension",
-                    "name": "engine",
-                    "key": "engine"
+                    "name": "timestamp",
+                    "key": "visits.timestamp"
                   },
                   {
                     "datatype": "string",
                     "type": "dimension",
                     "name": "browser",
-                    "key": "browser"
+                    "key": "visits.browser"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "engine",
+                    "key": "visits.engine"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "os",
+                    "key": "visits.os"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "userid",
+                    "key": "visits.userid"
+                  },
+                  {
+                    "datatype": "ip",
+                    "type": "dimension",
+                    "name": "ip",
+                    "key": "visits.ip"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "referrer",
+                    "key": "visits.referrer"
                   },
                   {
                     "datatype": "date",
                     "type": "dimension",
                     "name": "timestamp",
-                    "key": "timestamp"
+                    "key": "clicks.timestamp"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "browser",
+                    "key": "clicks.browser"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "engine",
+                    "key": "clicks.engine"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "os",
+                    "key": "clicks.os"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "userid",
+                    "key": "clicks.userid"
+                  },
+                  {
+                    "datatype": "ip",
+                    "type": "dimension",
+                    "name": "ip",
+                    "key": "clicks.ip"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "referrer",
+                    "key": "clicks.referrer"
+                  },
+                  {
+                    "datatype": "date",
+                    "type": "dimension",
+                    "name": "timestamp",
+                    "key": "mousemoves.timestamp"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "browser",
+                    "key": "mousemoves.browser"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "engine",
+                    "key": "mousemoves.engine"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "os",
+                    "key": "mousemoves.os"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "userid",
+                    "key": "mousemoves.userid"
+                  },
+                  {
+                    "datatype": "ip",
+                    "type": "dimension",
+                    "name": "ip",
+                    "key": "mousemoves.ip"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "referrer",
+                    "key": "mousemoves.referrer"
+                  }
+                ],
+                "metrics": [
+                  {
+                    "datatype": "number",
+                    "type": "metric",
+                    "name": "visits",
+                    "key": "visits.visits",
+                    "min": 0,
+                    "max": 1
+                  },
+                  {
+                    "datatype": "number",
+                    "type": "metric",
+                    "name": "loadtime",
+                    "key": "visits.loadtime",
+                    "min": 0,
+                    "max": 10000
+                  },
+                  {
+                    "datatype": "number",
+                    "type": "metric",
+                    "name": "clicks",
+                    "key": "clicks.clicks",
+                    "min": 0,
+                    "max": 1
+                  },
+                  {
+                    "datatype": "number",
+                    "type": "metric",
+                    "name": "mousemoves",
+                    "key": "mousemoves.mousemoves",
+                    "min": 0,
+                    "max": 1000
                   }
                 ],
                 "description": ""
               },
               {
-                "key": "demo-clicks",
-                "strongTyped": "true",
-                "name": "demo-clicks",
+                "key": "clicks",
+                "strongTyped": true,
                 "dimensions": [
                   {
-                    "datatype": "string",
+                    "datatype": "date",
                     "type": "dimension",
-                    "name": "referrer",
-                    "key": "referrer"
-                  },
-                  {
-                    "datatype": "ip",
-                    "type": "dimension",
-                    "name": "ip",
-                    "key": "ip"
-                  },
-                  {
-                    "datatype": "string",
-                    "type": "dimension",
-                    "name": "userid",
-                    "key": "userid"
-                  },
-                  {
-                    "datatype": "string",
-                    "type": "dimension",
-                    "name": "os",
-                    "key": "os"
-                  },
-                  {
-                    "datatype": "string",
-                    "type": "dimension",
-                    "name": "engine",
-                    "key": "engine"
+                    "name": "timestamp",
+                    "key": "visits.timestamp"
                   },
                   {
                     "datatype": "string",
                     "type": "dimension",
                     "name": "browser",
-                    "key": "browser"
+                    "key": "visits.browser"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "engine",
+                    "key": "visits.engine"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "os",
+                    "key": "visits.os"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "userid",
+                    "key": "visits.userid"
+                  },
+                  {
+                    "datatype": "ip",
+                    "type": "dimension",
+                    "name": "ip",
+                    "key": "visits.ip"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "referrer",
+                    "key": "visits.referrer"
                   },
                   {
                     "datatype": "date",
                     "type": "dimension",
                     "name": "timestamp",
-                    "key": "timestamp"
+                    "key": "clicks.timestamp"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "browser",
+                    "key": "clicks.browser"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "engine",
+                    "key": "clicks.engine"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "os",
+                    "key": "clicks.os"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "userid",
+                    "key": "clicks.userid"
+                  },
+                  {
+                    "datatype": "ip",
+                    "type": "dimension",
+                    "name": "ip",
+                    "key": "clicks.ip"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "referrer",
+                    "key": "clicks.referrer"
+                  },
+                  {
+                    "datatype": "date",
+                    "type": "dimension",
+                    "name": "timestamp",
+                    "key": "mousemoves.timestamp"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "browser",
+                    "key": "mousemoves.browser"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "engine",
+                    "key": "mousemoves.engine"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "os",
+                    "key": "mousemoves.os"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "userid",
+                    "key": "mousemoves.userid"
+                  },
+                  {
+                    "datatype": "ip",
+                    "type": "dimension",
+                    "name": "ip",
+                    "key": "mousemoves.ip"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "referrer",
+                    "key": "mousemoves.referrer"
+                  }
+                ],
+                "metrics": [
+                  {
+                    "datatype": "number",
+                    "type": "metric",
+                    "name": "visits",
+                    "key": "visits.visits",
+                    "min": 0,
+                    "max": 1
+                  },
+                  {
+                    "datatype": "number",
+                    "type": "metric",
+                    "name": "loadtime",
+                    "key": "visits.loadtime",
+                    "min": 0,
+                    "max": 10000
+                  },
+                  {
+                    "datatype": "number",
+                    "type": "metric",
+                    "name": "clicks",
+                    "key": "clicks.clicks",
+                    "min": 0,
+                    "max": 1
+                  },
+                  {
+                    "datatype": "number",
+                    "type": "metric",
+                    "name": "mousemoves",
+                    "key": "mousemoves.mousemoves",
+                    "min": 0,
+                    "max": 1000
                   }
                 ],
                 "description": ""
               },
               {
-                "key": "demo-mousemoves",
-                "strongTyped": "true",
-                "name": "demo-mousemoves",
+                "key": "mousemoves",
+                "strongTyped": true,
                 "dimensions": [
                   {
-                    "datatype": "string",
+                    "datatype": "date",
                     "type": "dimension",
-                    "name": "referrer",
-                    "key": "referrer"
-                  },
-                  {
-                    "datatype": "ip",
-                    "type": "dimension",
-                    "name": "ip",
-                    "key": "ip"
-                  },
-                  {
-                    "datatype": "string",
-                    "type": "dimension",
-                    "name": "userid",
-                    "key": "userid"
-                  },
-                  {
-                    "datatype": "string",
-                    "type": "dimension",
-                    "name": "os",
-                    "key": "os"
-                  },
-                  {
-                    "datatype": "string",
-                    "type": "dimension",
-                    "name": "engine",
-                    "key": "engine"
+                    "name": "timestamp",
+                    "key": "visits.timestamp"
                   },
                   {
                     "datatype": "string",
                     "type": "dimension",
                     "name": "browser",
-                    "key": "browser"
+                    "key": "visits.browser"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "engine",
+                    "key": "visits.engine"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "os",
+                    "key": "visits.os"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "userid",
+                    "key": "visits.userid"
+                  },
+                  {
+                    "datatype": "ip",
+                    "type": "dimension",
+                    "name": "ip",
+                    "key": "visits.ip"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "referrer",
+                    "key": "visits.referrer"
                   },
                   {
                     "datatype": "date",
                     "type": "dimension",
                     "name": "timestamp",
-                    "key": "timestamp"
+                    "key": "clicks.timestamp"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "browser",
+                    "key": "clicks.browser"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "engine",
+                    "key": "clicks.engine"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "os",
+                    "key": "clicks.os"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "userid",
+                    "key": "clicks.userid"
+                  },
+                  {
+                    "datatype": "ip",
+                    "type": "dimension",
+                    "name": "ip",
+                    "key": "clicks.ip"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "referrer",
+                    "key": "clicks.referrer"
+                  },
+                  {
+                    "datatype": "date",
+                    "type": "dimension",
+                    "name": "timestamp",
+                    "key": "mousemoves.timestamp"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "browser",
+                    "key": "mousemoves.browser"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "engine",
+                    "key": "mousemoves.engine"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "os",
+                    "key": "mousemoves.os"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "userid",
+                    "key": "mousemoves.userid"
+                  },
+                  {
+                    "datatype": "ip",
+                    "type": "dimension",
+                    "name": "ip",
+                    "key": "mousemoves.ip"
+                  },
+                  {
+                    "datatype": "string",
+                    "type": "dimension",
+                    "name": "referrer",
+                    "key": "mousemoves.referrer"
+                  }
+                ],
+                "metrics": [
+                  {
+                    "datatype": "number",
+                    "type": "metric",
+                    "name": "visits",
+                    "key": "visits.visits",
+                    "min": 0,
+                    "max": 1
+                  },
+                  {
+                    "datatype": "number",
+                    "type": "metric",
+                    "name": "loadtime",
+                    "key": "visits.loadtime",
+                    "min": 0,
+                    "max": 10000
+                  },
+                  {
+                    "datatype": "number",
+                    "type": "metric",
+                    "name": "clicks",
+                    "key": "clicks.clicks",
+                    "min": 0,
+                    "max": 1
+                  },
+                  {
+                    "datatype": "number",
+                    "type": "metric",
+                    "name": "mousemoves",
+                    "key": "mousemoves.mousemoves",
+                    "min": 0,
+                    "max": 1000
                   }
                 ],
                 "description": ""
@@ -442,21 +793,22 @@ Notes related resources of the **Collections API**
             ]
 
 
+
 ## Collection [/collections/{workspace}/{key}{?APIToken}]
 
 + Parameters
     + workspace (optional, string, `demo`) ... The `Workspace` of the collection performing the action.
-    + key (required, string, `demo-visits`) ... String `key` of the Collection to perform action with.
+    + key (required, string, `clicks`) ... String `key` of the Collection to perform action with.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### Retrieve a Collection [GET]
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
     + Body
 
             {
-              "key": "demo-visits",
-              "name": "demo-visits",
+              "key": "clicks",
+              "name": "clicks",
               "strongTyped": "true",
               "dimensions": [
                 {
@@ -505,20 +857,20 @@ Notes related resources of the **Collections API**
               "description": ""
             }
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "collection [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Update a Collection [PATCH]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
         { "description": "collection description" }
 
@@ -575,19 +927,19 @@ Notes related resources of the **Collections API**
             "description": "collection description"
           }
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 415 (application/json)
++ Response 415 (application/json; charset=utf-8)
 
         { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -596,15 +948,15 @@ Notes related resources of the **Collections API**
 
         {}
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "collection [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -613,15 +965,15 @@ Optional body will compose a joint metadata of collection and document.
 
 + Parameters
     + workspace (required, string, `demo`) ... The `Workspace` of the collection performing the action.
-    + collection (required, string, `demo-clicks`) ... String `Collection` of the Collection to perform action with.
+    + collection (required, string, `visits`) ... String `Collection` of the Collection to perform action with.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### Retrieve all Dimensions [GET]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
           {}
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
     + Body
 
@@ -664,20 +1016,20 @@ Optional body will compose a joint metadata of collection and document.
               ]
 
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "dimension [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Create a Dimension [POST]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
         {
           "key": "dimension-key",
@@ -685,7 +1037,7 @@ Optional body will compose a joint metadata of collection and document.
           "datatype": "string"
         }
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
           "key": "dimension-key",
@@ -693,7 +1045,7 @@ Optional body will compose a joint metadata of collection and document.
           "datatype": "string"
         }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "dimension already exists", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -702,12 +1054,12 @@ Optional body will compose a joint metadata of collection and document.
 
 + Parameters
     + workspace (required, string, `demo`) ... The `Workspace` of the collection performing the action.
-    + collection (required, string, `demo-clicks`) ... String `Collection` of the Collection to perform action with.
+    + collection (required, string, `visits`) ... String `Collection` of the Collection to perform action with.
     + key (required, string, `dimension-key`) ... String `key` of the Dimension to perform action with.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### Retrieve a Dimension [GET]
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
     + Body
 
@@ -718,20 +1070,20 @@ Optional body will compose a joint metadata of collection and document.
               "description": ""
             }
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "dimension [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Update a Dimension [PATCH]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
         { "description": "a sample description for dimension-key" }
 
@@ -744,19 +1096,19 @@ Optional body will compose a joint metadata of collection and document.
           "description": "a sample description for dimension-key"
         }
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 415 (application/json)
++ Response 415 (application/json; charset=utf-8)
 
         { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "dimension [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -765,15 +1117,15 @@ Optional body will compose a joint metadata of collection and document.
 
         {}
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "dimension [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -781,15 +1133,15 @@ Optional body will compose a joint metadata of collection and document.
 
 + Parameters
     + workspace (required, string, `demo`) ... The `Workspace` of the collection performing the action.
-    + collection (required, string, `demo-clicks`) ... String `Collection` of the Collection to perform action with.
+    + collection (required, string, `visits`) ... String `Collection` of the Collection to perform action with.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### Retrieve all Metrics [GET]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
           {}
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
     + Body
 
@@ -802,20 +1154,20 @@ Optional body will compose a joint metadata of collection and document.
               ]
 
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "metric [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Create a Metric [POST]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
         {
           "key": "metric-key",
@@ -829,7 +1181,7 @@ Optional body will compose a joint metadata of collection and document.
           "description": ""
         }
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
           "key": "dimension-key",
@@ -837,7 +1189,7 @@ Optional body will compose a joint metadata of collection and document.
           "datatype": "string"
         }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "metric already exists", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -845,12 +1197,12 @@ Optional body will compose a joint metadata of collection and document.
 
 + Parameters
     + workspace (required, string, `demo`) ... The `Workspace` of the collection performing the action.
-    + collection (required, string, `demo-clicks`) ... String `Collection` of the Collection to perform action with.
+    + collection (required, string, `visits`) ... String `Collection` of the Collection to perform action with.
     + key (required, string, `metric-key`) ... String `key` of the Metric to perform action with.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### Retrieve a Metric [GET]
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
     + Body
 
@@ -866,20 +1218,20 @@ Optional body will compose a joint metadata of collection and document.
                 "description": ""
               }
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "metric [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Update a Metric [PATCH]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
         { "description": "a sample description for metric-key" }
 
@@ -897,19 +1249,19 @@ Optional body will compose a joint metadata of collection and document.
           "description": "a sample description for metric-key"
         }
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 415 (application/json)
++ Response 415 (application/json; charset=utf-8)
 
         { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "metric [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -918,15 +1270,15 @@ Optional body will compose a joint metadata of collection and document.
 
         {}
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "metric [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -935,15 +1287,15 @@ Optional body will compose a joint metadata of collection and document.
 
 + Parameters
     + workspace (required, string, `demo`) ... The `Workspace` of the collection performing the action.
-    + key (required, string, `demo-clicks`) ... String `key` of the Collection to perform action with.
+    + key (required, string, `visits`) ... String `key` of the Collection to perform action with.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### Retrieve a Collection Metadata [POST]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
           {}
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
     + Body
 
@@ -990,25 +1342,25 @@ Optional body will compose a joint metadata of collection and document.
                   "name": "referrer",
                   "key": "referrer"
                 },
-                "clicks": {
+                "visits": {
                   "datatype": "number",
                   "type": "metric",
-                  "name": "clicks",
-                  "key": "clicks"
+                  "name": "visits",
+                  "key": "visits"
                 },
                 "description": ""
               }
 
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "collection [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -1047,7 +1399,7 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### List all Roles [GET]
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         [
           {
@@ -1104,20 +1456,20 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
           }
         ]
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Create a Role [POST]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
         { "key": "role-name", "permissions": ["access_system"], "filter": [] }
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
           "key": "role-name",
@@ -1127,19 +1479,19 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
           "filter": []
         }
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 415 (application/json)
++ Response 415 (application/json; charset=utf-8)
 
         { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "role already exists", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -1151,7 +1503,7 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### Retrieve a Role [GET]
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
           "key": "role-name",
@@ -1161,20 +1513,20 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
           "filter": []
         }
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Update a Role [PATCH]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
         { "filter": [["dimension", "eq", "value"]] }
 
@@ -1188,19 +1540,19 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
           "filter": []
         }
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 415 (application/json)
++ Response 415 (application/json; charset=utf-8)
 
         { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -1209,19 +1561,19 @@ Users can be assigned to multiple roles and since Filters are aggregative, they 
 
         {}
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 415 (application/json)
++ Response 415 (application/json; charset=utf-8)
 
         { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -1247,7 +1599,7 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### List all Users [GET]
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         [
           {
@@ -1280,16 +1632,16 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
           }
         ]
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Create a User [POST]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
         {
           "username": "newuser",
@@ -1299,7 +1651,7 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
           "roles": ["user"]
         }
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
           "username": "newuser",
@@ -1309,19 +1661,19 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
           "roles": ["user"]
         }
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 415 (application/json)
++ Response 415 (application/json; charset=utf-8)
 
         { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "user already exists", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -1333,7 +1685,7 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### Retrieve a User [GET]
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
           "username": "newuser",
@@ -1346,20 +1698,20 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
           "APIToken": null
         }
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "user [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Update a User [PATCH]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
         { "APIToken": "apitoken-newuser" }
 
@@ -1376,19 +1728,19 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
           "APIToken": "apitoken-newuser"
         }
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 415 (application/json)
++ Response 415 (application/json; charset=utf-8)
 
         { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "user [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -1397,19 +1749,19 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
 
         {}
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 415 (application/json)
++ Response 415 (application/json; charset=utf-8)
 
         { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "user [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -1421,7 +1773,7 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### List all User's permissions [GET]
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         [
           "access_system",
@@ -1451,15 +1803,15 @@ Users belong to a Workspace and any operations on a user must be within a Worksp
           "misc:see_private"
         ]
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "user [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -1475,7 +1827,7 @@ joola uses two types of security contexts, `token` and `APIToken`:
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### Generate Token [POST]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
         {
           "username": "newuser",
@@ -1485,7 +1837,7 @@ joola uses two types of security contexts, `token` and `APIToken`:
           "roles": ["user"]
         }
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
           "user": {
@@ -1505,19 +1857,19 @@ joola uses two types of security contexts, `token` and `APIToken`:
           "expires": 1406131703000
         }
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 415 (application/json)
++ Response 415 (application/json; charset=utf-8)
 
         { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "unknown error", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -1529,11 +1881,11 @@ joola uses two types of security contexts, `token` and `APIToken`:
 
 ### Validate a Token [GET]
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "Failed to validate token [1] [0NSGRgfxJ]", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
           "user": {
@@ -1553,29 +1905,29 @@ joola uses two types of security contexts, `token` and `APIToken`:
           "expires": 1406131703000
         }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "unknown error", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Delete a Token [DELETE]
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {}
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "Failed to validate token [1] [0NSGRgfxJ]", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "unknown error", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -1587,7 +1939,7 @@ joola uses two types of security contexts, `token` and `APIToken`:
 
 ### Validate an APIToken [GET]
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
           "username": "root",
@@ -1600,15 +1952,15 @@ joola uses two types of security contexts, `token` and `APIToken`:
           "workspace": "demo"
         }
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "Failed to validate api token [apitoken-demo]", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 403 (application/json)
++ Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "unknown error", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -1626,7 +1978,7 @@ Permissions are hard-coded string values assigned to each API endpoint. Permissi
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### List all Permissions [GET]
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         [
           "access_system",
@@ -1635,7 +1987,7 @@ Permissions are hard-coded string values assigned to each API endpoint. Permissi
           "query"
         ]
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -1646,17 +1998,17 @@ Permissions are hard-coded string values assigned to each API endpoint. Permissi
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### Retrieve a Permission [GET]
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         [
           "access_system"
         ]
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "permission [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -1671,7 +2023,7 @@ Notes related resources of the **Beacon API**
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### Insert Documents [POST]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
     + Body
 
@@ -1689,11 +2041,11 @@ Notes related resources of the **Beacon API**
               "loadtime": 123
             }]
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
             [
               {
-                "timestamp": "2014-05-10T15:49:49.575Z",
+                "timestamp": "2015-02-18T11:58:05.652Z",
                 "article": "Sample Analytics",
                 "browser": "Chrome",
                 "device": "Desktop",
@@ -1704,27 +2056,16 @@ Notes related resources of the **Beacon API**
                 "referrer": "http://joo.la",
                 "visits": 1,
                 "loadtime": 123,
-                "timestamp_timebucket": {
-                  "dow": 6,
-                  "hod": 18,
-                  "second": "2014-05-10T15:49:49.000Z",
-                  "minute": "2014-05-10T15:49:00.000Z",
-                  "hour": "2014-05-10T15:00:00.000Z",
-                  "ddate": "2014-05-10T00:00:00.000Z",
-                  "month": "2014-05-01T00:00:00.000Z",
-                  "year": "2014-01-01T01:00:00.000Z"
-                },
-                "ourTimestamp": "2014-05-10T15:49:49.575Z",
                 "saved": true
               }
             ]
 
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "permission [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -1737,7 +2078,7 @@ Notes related resources of the **Query API**
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### Fetch [POST]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
     + Body
 
@@ -1747,40 +2088,61 @@ Notes related resources of the **Query API**
               "collection": "demo-example"
             }
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
-            {
-              "dimensions": [],
-              "metrics": [],
-              "documents": [],
-              "uid": "kUTTRqspS",
-              "resultCount": 0,
-              "query": {
-                "dontcache": true,
-                "filter": null,
-                "realtime": false,
-                "interval": "timebucket.minute",
-                "timeframe": {
-                  "start": "2014-05-10T14:35:28.000Z",
-                  "end": "2014-05-10T15:35:28.999Z"
-                },
-                "metrics": [],
+            [
+              {
                 "dimensions": [],
-                "uid": "kUTTRqspS",
-                "ts": {
-                  "start": "2014-05-10T15:35:28.114Z",
-                  "end": "2014-05-10T15:35:28.117Z",
-                  "duration": 3
+                "metrics": [
+                  {
+                    "key": "visits",
+                    "dependsOn": "visits",
+                    "datatype": "number",
+                    "type": "metric",
+                    "name": "visits",
+                    "attribute": "visits"
+                  }
+                ],
+                "documents": [{"visits": 25}],
+                "uid": "OL3LUgiMMegNjlqK9uxJ0lwwYKdl65IE",
+                "resultCount": 1,
+                "query": {
+                  "collection": "demo-example",
+                  "dontcache": true,
+                  "filter": [],
+                  "realtime": false,
+                  "interval": "timebucket.minute",
+                  "timeframe": {
+                    "start": "2015-02-18T10:58:57.000Z",
+                    "end": "2015-02-18T11:58:57.518Z"
+                  },
+                  "metrics": [
+                    {
+                      "key": "visits",
+                      "dependsOn": "visits",
+                      "datatype": "number",
+                      "type": "metric",
+                      "name": "visits",
+                      "attribute": "visits"
+                    }
+                  ],
+                  "dimensions": [],
+                  "uid": "OL3LUgiMMegNjlqK9uxJ0lwwYKdl65IE",
+                  "ts": {
+                    "start": "2015-02-18T11:58:57.517Z",
+                    "end": "2015-02-18T11:58:57.526Z",
+                    "duration": 9
+                  }
                 }
               }
-            }
+            ]
 
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "permission [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -1799,41 +2161,41 @@ To learn more about configuration, please refer to the [wiki](http://github.com/
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### Add a Configuration Key/Value [POST]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
     + Body
 
             {"value": "8080"}
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
           {
             "key": "interfaces:webserver:port",
             "value": "8080"
           }
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Get Configuration value [GET]
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
           "key": "interfaces:webserver:port",
           "value": "8080"
         }
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "configuration [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
 ### Set Configuration Value [PATCH]
-+ Request (application/json)
++ Request (application/json; charset=utf-8)
 
     + Body
 
@@ -1842,18 +2204,18 @@ To learn more about configuration, please refer to the [wiki](http://github.com/
               "value": "8080"
             }
 
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
           "key": "interfaces:webserver:port",
           "value": "8080"
         }
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
-+ Response 500 (application/json)
++ Response 500 (application/json; charset=utf-8)
 
         { "message": "configuration [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -1867,11 +2229,11 @@ Print out joola version.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### Get System Version [GET]
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         { "version": "joola version 0.4.1" }
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -1883,7 +2245,7 @@ Print out the `User` object taken from the `APIToken` provided.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### Get Current User [GET]
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
           "username": "root",
@@ -1895,7 +2257,7 @@ Print out the `User` object taken from the `APIToken` provided.
           "filter": []
         }
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -1907,13 +2269,13 @@ Print out the unique identifier of the replying node.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### Get Node UID [GET]
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
           "UID": "By8zwB85V"
         }
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
 
@@ -1925,48 +2287,59 @@ Print out all known details on the replying node.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
 
 ### Get Node Details [GET]
-+ Response 200 (application/json)
++ Response 200 (application/json; charset=utf-8)
 
         {
-          "uid": "Wdsz265IH",
+          "uid": "9QPbU8JDKKC3ye05gN5k65ILil9bNcEX",
           "state": "online",
-          "uptime": 5.378805379965343,
-          "lastSeen": 1399277245932,
-          "lastSeenNice": "2014-05-05T08:07:25.932Z",
+          "uptime": 2,
+          "lastSeen": 1424260785301,
+          "lastSeenNice": "2015-02-18T11:59:45.301Z",
           "hostname": "joola01",
           "os": {
             "type": "Linux",
             "platform": "linux",
             "arch": "x64",
-            "release": "2.6.32-431.11.2.el6.x86_64",
-            "uptime": 696896.172012026,
+            "release": "3.13.0-44-generic",
+            "uptime": 446196.034032348,
             "loadavg": [
-              0.0439453125,
-              0.0537109375,
-              0.072265625
+              0.462890625,
+              0.390625,
+              0.29931640625
             ],
-            "totalmem": 16610000896,
-            "freemem": 3014160384,
+            "totalmem": 16710365184,
+            "freemem": 688521216,
             "cpus": [
               {
                 "model": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
-                "speed": 3401,
+                "speed": 800,
                 "times": {
-                  "user": 226411800,
-                  "nice": 10627400,
-                  "sys": 120201400,
-                  "idle": 6573488900,
-                  "irq": 5200
+                  "user": 98506200,
+                  "nice": 91600,
+                  "sys": 29696400,
+                  "idle": 4309627500,
+                  "irq": 1900
                 }
               },
               {
                 "model": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
-                "speed": 800,
+                "speed": 2800,
                 "times": {
-                  "user": 307745500,
-                  "nice": 11872400,
-                  "sys": 48696800,
-                  "idle": 6565468200,
+                  "user": 95356700,
+                  "nice": 168400,
+                  "sys": 29181300,
+                  "idle": 4315609000,
+                  "irq": 0
+                }
+              },
+              {
+                "model": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+                "speed": 2100,
+                "times": {
+                  "user": 94910500,
+                  "nice": 63600,
+                  "sys": 28698500,
+                  "idle": 4316606000,
                   "irq": 0
                 }
               },
@@ -1974,21 +2347,21 @@ Print out all known details on the replying node.
                 "model": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
                 "speed": 800,
                 "times": {
-                  "user": 124095500,
-                  "nice": 10080100,
-                  "sys": 35291400,
-                  "idle": 6734179700,
-                  "irq": 2200
+                  "user": 95272000,
+                  "nice": 90300,
+                  "sys": 28626600,
+                  "idle": 4316682800,
+                  "irq": 100
                 }
               },
               {
                 "model": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
                 "speed": 800,
                 "times": {
-                  "user": 109732700,
-                  "nice": 8824500,
-                  "sys": 24565500,
-                  "idle": 6792483200,
+                  "user": 51758600,
+                  "nice": 189400,
+                  "sys": 12041700,
+                  "idle": 4393231600,
                   "irq": 0
                 }
               },
@@ -1996,10 +2369,10 @@ Print out all known details on the replying node.
                 "model": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
                 "speed": 800,
                 "times": {
-                  "user": 170818400,
-                  "nice": 5675300,
-                  "sys": 72066700,
-                  "idle": 6690757600,
+                  "user": 54226700,
+                  "nice": 137200,
+                  "sys": 15400400,
+                  "idle": 4386431300,
                   "irq": 0
                 }
               },
@@ -2007,10 +2380,10 @@ Print out all known details on the replying node.
                 "model": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
                 "speed": 800,
                 "times": {
-                  "user": 140783900,
-                  "nice": 8544200,
-                  "sys": 34519000,
-                  "idle": 6742696500,
+                  "user": 56510500,
+                  "nice": 177700,
+                  "sys": 13063400,
+                  "idle": 4388477200,
                   "irq": 0
                 }
               },
@@ -2018,37 +2391,24 @@ Print out all known details on the replying node.
                 "model": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
                 "speed": 800,
                 "times": {
-                  "user": 110794200,
-                  "nice": 8476700,
-                  "sys": 31455900,
-                  "idle": 6773844400,
-                  "irq": 0
-                }
-              },
-              {
-                "model": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
-                "speed": 800,
-                "times": {
-                  "user": 101734700,
-                  "nice": 7965100,
-                  "sys": 25291700,
-                  "idle": 6792722900,
+                  "user": 54672600,
+                  "nice": 32600,
+                  "sys": 14321800,
+                  "idle": 4388833400,
                   "irq": 0
                 }
               }
             ]
           },
-          "usageCPU": 2.9702970296755726,
-          "usageMem": 67366912,
           "http": true,
           "https": false,
           "cluster": false,
           "clusterID": null,
           "clusterMaster": null,
           "clusterSlave": null,
-          "connectedSockets": 1
+          "connectedSockets": 0
         }
 
-+ Response 401 (application/json)
++ Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
