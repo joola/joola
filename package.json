@@ -115,7 +115,7 @@
     "joola.cli": "0.0.8",
     "joola.datastore-elasticsearch": "^0.0.3",
     "joola.datastore-embedded": "^0.0.2",
-    "joola.datastore-mongodb": "^0.0.13",
+    "joola.datastore-mongodb": "^0.0.14",
     "joola.sdk": "^0.8.2",
     "js-yaml": "^3.2.6",
     "kindof": "~1.0.0",
