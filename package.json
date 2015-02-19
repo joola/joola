@@ -37,7 +37,7 @@
     "test:coverage": "redis-cli flushall && JOOLA_CONFIG_STORE_LOGGER_CONSOLE_LEVEL=error NODE_CONFIG_DIR=$(pwd)/test/config NODE_ENV=coverage istanbul cover ./node_modules/.bin/_mocha -- -R dot test",
     "test:quiet": "JOOLA_CONFIG_STORE_LOGGER_CONSOLE_LEVEL=error mocha test/ --reporter dot",
     "test:md": "JOOLA_CONFIG_STORE_LOGGER_CONSOLE_LEVEL=error mocha test/ --reporter markdown",
-    "test:api": "(killall node || true) && redis-cli flushall && NODE_CONFIG_DIR=$(pwd)/test/config NODE_ENV=apiary npm run start:detached && sleep 2 && dredd ./apiary.apib http://localhost:8080 && npm stop",
+    "test:api": "(killall node || true) && redis-cli flushall && NODE_CONFIG_DIR=$(pwd)/test/config NODE_ENV=apiary npm run start:detached && sleep 2 && dredd ./apiary.apib http://localhost:8080",
     "publish": "npm run publish:do",
     "publish:do": "npm shrinkwrap && npm publish && rm npm-shrinkwrap.json",
     "publish:patch": "npm run prepublish && npm version patch --git-tag-version=false --sign-git-tag=true -m \"Version bumped to %s\" && npm run publish:do",
