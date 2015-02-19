@@ -24,27 +24,27 @@ before_script:
   - redis-cli flushall
 deploy:
   - provider: heroku
-  app: joola-develop
-  on:
-    branch: develop
-  api_key:
-    secure: u2sgcDddY6is6ZB1q1YsFQwlld0cvsSbfH6UtEVP7QvOeITriv2fauXnt+WTSzLqcLphzFPviUceMP9Qm4FcbKd1+qHHCAtpmZMTx7MXoFjJJXDVYwbL9iQURi5IS6lja8eLSJZk8yonDuWZ6f3babr/iW4o//CalslW5WDwHMs=
+    app: joola-develop
+    on:
+      branch: develop
+    api_key:
+      secure: u2sgcDddY6is6ZB1q1YsFQwlld0cvsSbfH6UtEVP7QvOeITriv2fauXnt+WTSzLqcLphzFPviUceMP9Qm4FcbKd1+qHHCAtpmZMTx7MXoFjJJXDVYwbL9iQURi5IS6lja8eLSJZk8yonDuWZ6f3babr/iW4o//CalslW5WDwHMs=
 
   - provider: heroku
-  app: joola
-  on:
-    branch: master
-  api_key:
-    tags: true
-    secure: u2sgcDddY6is6ZB1q1YsFQwlld0cvsSbfH6UtEVP7QvOeITriv2fauXnt+WTSzLqcLphzFPviUceMP9Qm4FcbKd1+qHHCAtpmZMTx7MXoFjJJXDVYwbL9iQURi5IS6lja8eLSJZk8yonDuWZ6f3babr/iW4o//CalslW5WDwHMs=
-    
+    app: joola
+    on:
+      tags: true
+      branch: master
+    api_key:
+      secure: u2sgcDddY6is6ZB1q1YsFQwlld0cvsSbfH6UtEVP7QvOeITriv2fauXnt+WTSzLqcLphzFPviUceMP9Qm4FcbKd1+qHHCAtpmZMTx7MXoFjJJXDVYwbL9iQURi5IS6lja8eLSJZk8yonDuWZ6f3babr/iW4o//CalslW5WDwHMs=
+      
   - provider: npm
-  email: info@joo.la
-  api_key:
-    secure: vHRhVNoacEpB9f10rfNP8S6vRO1P8PYQfMVmtXCjBD1gi+4kwXh1JuSqPJxiS0r+pYmNVg130Wo4ed5/VDcCvW8GoBOWvadw5UGILyJ7f09J/z+sNew0kzVGho07oip419ZWcN1cydQl4zwwSnxtYQMlWSQ6mhnzYqYCQ0tGL/s=
-  on:
-    tags: true
-    branch: master
+    email: info@joo.la
+    api_key:
+      secure: vHRhVNoacEpB9f10rfNP8S6vRO1P8PYQfMVmtXCjBD1gi+4kwXh1JuSqPJxiS0r+pYmNVg130Wo4ed5/VDcCvW8GoBOWvadw5UGILyJ7f09J/z+sNew0kzVGho07oip419ZWcN1cydQl4zwwSnxtYQMlWSQ6mhnzYqYCQ0tGL/s=
+    on:
+      tags: true
+      branch: master
 script: npm run test:scenario
 after_success:
   - npm run test:coverage
@@ -57,4 +57,3 @@ notifications:
       - https://webhooks.gitter.im/e/0a43ba3884562555a9c1
     on_success: change
     on_failure: always
-    on_start: true
