@@ -141,7 +141,7 @@ describe("dispatch", function () {
 
   });
 
-  xit("should listen once for emits", function (done) {
+  it("should listen once for emits", function (done) {
     var expected = 1;
     var actual = 0;
     engine.dispatch.once('test-emit-once', function (result) {
@@ -151,15 +151,5 @@ describe("dispatch", function () {
     });
     engine.dispatch.emit('test-emit-once', 'test');
     engine.dispatch.emit('test-emit-once', 'test');
-  });
-
-  xit("should have a short roundtrip with 1.5mb of payload(less < 1000ms)", function (done) {
-    var start = new Date().getTime();
-    engine.dispatch.request(_token._, 'roundtrip', start, function (err, duration) {
-      if (duration > 1000)
-        return done(new Error('Roundtrip is too long'));
-      else
-        return done();
-    });
   });
 });

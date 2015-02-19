@@ -208,31 +208,4 @@ describe("routes", function () {
 
     http.request(options, callback).end();
   });
-
-  xit("should create a test error", function (done) {
-    var options = {
-      host: 'localhost',
-      port: '8080',
-      path: '/api/test/createtesterror'
-    };
-
-    callback = function (response) {
-      var str = '';
-
-      //another chunk of data has been recieved, so append it to `str`
-      response.on('data', function (chunk) {
-        str += chunk;
-      });
-
-      response.on('end', function () {
-        return done();
-      });
-
-      response.on('error', function (err) {
-        return done(err);
-      });
-    };
-
-    http.request(options, callback).end();
-  });
 });

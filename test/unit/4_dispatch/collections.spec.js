@@ -119,54 +119,6 @@ describe("collections", function () {
     });
   });
 
-  xit("should get collection min date", function (done) {
-    var self = this;
-    engine.beacon.insert(this.context, this.context.user.workspace, this.collection, {timestamp: null}, function (err) {
-      if (err)
-        return done(err);
-      joola_proxy.dispatch.collections.mindate(self.context, self.context.user.workspace, self.collection, null, function (err, mindate) {
-        if (err)
-          return done(err);
-
-        expect(engine.common.typeof(mindate)).to.equal('date');
-        done();
-      });
-    });
-  });
-
-  xit("should fail getting non-existing collection min date", function (done) {
-    joola_proxy.dispatch.collections.mindate(this.context, this.context.user.workspace, this.collection + '3', null, function (err) {
-      if (err)
-        return done();
-
-      done(new Error('This should fail'));
-    });
-  });
-
-  xit("should get collection max date", function (done) {
-    var self = this;
-    engine.beacon.insert(this.context, this.context.user.workspace, this.collection, {timestamp: null}, function (err) {
-      if (err)
-        return done(err);
-      joola_proxy.dispatch.collections.maxdate(self.context, self.context.user.workspace, self.collection, null, function (err, maxdate) {
-        if (err)
-          return done(err);
-
-        expect(engine.common.typeof(maxdate)).to.equal('date');
-        done();
-      });
-    });
-  });
-
-  xit("should fail getting non-existing collection max date", function (done) {
-    joola_proxy.dispatch.collections.maxdate(this.context, this.context.user.workspace, this.collection + '3', null, function (err) {
-      if (err)
-        return done();
-
-      done(new Error('This should fail'));
-    });
-  });
-
   it("should get a collection meta data", function (done) {
     var self = this;
     var document = require('../../fixtures/basic.json')[0];
@@ -202,4 +154,4 @@ describe("collections", function () {
       done(new Error('This should fail'));
     });
   });
-}); 
+});
