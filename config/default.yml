@@ -1,4 +1,4 @@
-version: 0.1.60
+version: 0.2.0
 interfaces:
   webserver:
     enabled: true
@@ -29,10 +29,8 @@ store:
   #  punt:
   #    port: 3015
   config:
-    enabled: false
     redis:
-      enabled: false
-      # dsn: redis://127.0.0.1
+      #dsn: redis://127.0.0.1
       ## if dsn not specific then these are required
       # host: 127.0.0.1
       # port: 6379
