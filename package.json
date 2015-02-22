@@ -135,6 +135,7 @@
     "bench-rest": "^1.0.2",
     "chai": "^1.9.1",
     "cheerio": "^0.18.0",
+    "codeclimate-test-reporter": "0.0.4",
     "coveralls": "latest",
     "istanbul": "latest",
     "jsdox": "https://github.com/joola/jsdox/tarball/master",
