@@ -7,11 +7,13 @@ env:
 before:
   - mv ./build/packaging/* .
   - rm -fr build
-  - rm -fr .*
-  - rm -fr *.apib
-  - rm -fr inch.json
-  - rm -fr *.yml
-  - rm -f Vagrantfile || true
-  - rm -f Dockerfile || true
+  - rm -fr test
+  - rm -f .*
+  - rm -f *.apib
+  - rm -f inch.json
+  - rm -f *.yml
+  - rm -f CONTRIBUTING.md
+  - rm -f Vagrantfile
+  - rm -f Dockerfile
 
 after_install: ./postinstall.sh

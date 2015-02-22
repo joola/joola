@@ -4,8 +4,8 @@ set -e
 
 APP_NAME="joola"
 CLI="$APP_NAME"
-APP_USER=$(${CLI} config:get APP_USER)
-APP_GROUP=$(${CLI} config:get APP_GROUP)
+APP_USER="$APP_NAME" #$(${CLI} config:get APP_USER)
+APP_GROUP="$APP_NAME" #$(${CLI} config:get APP_GROUP)
 APP_CONFIG="/etc/${APP_NAME}/default.yml"
 
 [ -f "$APP_CONFIG" ] || cp /opt/${APP_NAME}/config/default.yml $APP_CONFIG
