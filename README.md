@@ -1,4 +1,4 @@
-# joola [![Build Status][3]][4] [![Coverage Status](https://coveralls.io/repos/joola/joola/badge.svg?branch=develop)](https://coveralls.io/r/joola/joola) [![Gitter chat](https://badges.gitter.im/joola/joola.png)](https://gitter.im/joola/joola)
+# joola [![Gitter chat](https://badges.gitter.im/joola/joola.png)](https://gitter.im/joola/joola) [![Build Status][3]][4] [![Coverage Status](https://coveralls.io/repos/joola/joola/badge.svg?branch=develop)](https://coveralls.io/r/joola/joola) [![Code Climate](https://codeclimate.com/github/joola/joola/badges/gpa.svg)](https://codeclimate.com/github/joola/joola) [![Inline docs](http://inch-ci.org/github/joola/joola.svg?branch=develop)](http://inch-ci.org/github/joola/joola)
 
 | **[Technical Docs] [techdocs]**     | **[Setup Guide] [setup]**     | **[API Docs] [api-docs]**           | **[Contributing] [contributing]**           | **[About joola] [about]**     |
 |-------------------------------------|-------------------------------|-----------------------------------|---------------------------------------------|-------------------------------------|
@@ -6,11 +6,11 @@
 
 <img src="https://joo.la/img/logo-profile.png" alt="joola logo" title="joola" align="right" />
 
-[joola][22] is a real-time data analytics and visualization framework allowing you to quickly save, query and visualize your data. 
+[joola][22] is a real-time data analytics and visualization framework allowing you to quickly save, query and visualize your data.
 Some of the main benefits of using joola include:
 
 - **Simple**, flexible and powerful JSON to describe your data and push to joola.
-- Our **intuitive query** JSON syntax makes it easy to analyze or visualize your data in blazing speed. 
+- Our **intuitive query** JSON syntax makes it easy to analyze or visualize your data in blazing speed.
 - Seamlessly **embeddable** into existing sites, including single-sign-on and advanced features.
 
 ### Main Features
@@ -32,15 +32,15 @@ For the example below to work out-of-the-box, it's required to have both joola a
  For more details on the installation process, please refer to [this guide](http://github.com/joola/joola/wiki/install-joola).
 
 #### Using Docker
-We have included a [Docker](http://www.docker.com) file to support easy playing around and testing. 
+We have included a [Docker](http://www.docker.com) file to support easy playing around and testing.
 Using Docker will pull the latest docker image and run joola in a container for you.
 
 ```bash
 $ docker run -p 8080:8080 -it joola/joola
-``` 
+```
 
 #### Using Vagrant
-We have included a [Vagrant](http://www.vagrantup.com) file to support easy playing around and testing. Running `vagrant up` will install all needed dependencies and allow you to run joola in a sand boxed virtual environment. 
+We have included a [Vagrant](http://www.vagrantup.com) file to support easy playing around and testing. Running `vagrant up` will install all needed dependencies and allow you to run joola in a sand boxed virtual environment.
 
 ```bash
 # Clone this repository
@@ -53,7 +53,7 @@ $ npm install
 
 $ vagrant up
 # wait for the box to come online
-$ vagrant ssh 
+$ vagrant ssh
 
 # once in the box
 $ cd /vagrant
@@ -147,7 +147,7 @@ joola.init({host: 'https://localhost:8081', APIToken: 'apitoken-beacon'}, functi
     "visits": 1,
     "loadtime": 123
   };
-  joola.beacon.insert('collection-name', doc, function(err) { 
+  joola.beacon.insert('collection-name', doc, function(err) {
     console.log('Document saved');
   });
 });
@@ -162,7 +162,7 @@ joola.init({host: 'https://localhost:8081', APIToken: 'apitoken-beacon'}, functi
 joola.events.on('ready', function(err) {
   if (err)
     throw err;
-    
+
   var options = {
     caption: 'Visits over Time',
     query: {

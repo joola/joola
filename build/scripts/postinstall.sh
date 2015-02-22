@@ -7,7 +7,7 @@ if [ -z $npm_config_global ];
 
     mkdir /etc/joola
     mkdir /var/log/joola
-    
+
     echo "##### JOOLA INSTALLATION"
     echo "#"
     echo "#"

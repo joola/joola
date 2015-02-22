@@ -1,5 +1,20 @@
 targets:
   ubuntu-14.04:
+  ubuntu-12.04:
   debian-7:
   centos-6:
+env:
+  - JOOLA_PKG=true
+before:
+  - mv ./build/packaging/* .
+  - rm -fr build
+  - rm -fr test
+  - rm -f .*
+  - rm -f *.apib
+  - rm -f inch.json
+  - rm -f *.yml
+  - rm -f CONTRIBUTING.md
+  - rm -f Vagrantfile
+  - rm -f Dockerfile
 
+after_install: ./postinstall.sh
