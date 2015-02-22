@@ -10,10 +10,14 @@ services:
   - rabbitmq
   - mongodb
   #- elasticsearch
-  
+
+addons:
+  code_climate:
+    repo_token: b0cf984d93693c3e827901f766ca1f13b6acca03a3786b5e187356e66e8ffbec
+
 env:
   JOOLA_CONFIG_AUTHENTICATION_BASICAUTH_ENABLED=TRUE
-  
+
 branches:
   only:
     - master
@@ -42,8 +46,9 @@ deploy:
 script: npm run test:coverage
 after_success:
   - npm run coveralls
+  - npm run codeclimate
   - npm run test:api
- 
+
 notifications:
   webhooks:
     urls:

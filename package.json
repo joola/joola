@@ -74,6 +74,7 @@
     "changelist": "github-changes -o joola -r joola --token 864b65f829914e80f16c41d3cb70ad0841344329 --only-pulls --use-commit-body --file HISTORY.md",
     "lint": "jshint --exclude ./lib/webserver/public ./lib ./test",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "codeclimate": "CODECLIMATE_REPO_TOKEN=b0cf984d93693c3e827901f766ca1f13b6acca03a3786b5e187356e66e8ffbec codeclimate < ./coverage/lcov.info",
     "env": "env"
   },
   "bin": {
