@@ -5,6 +5,7 @@ targets:
 env:
   - JOOLA_PKG=true
 before:
+  - mv ./build/packaging/* .
   - rm -fr build
   - rm -fr .*
   - rm -fr *.apib
@@ -13,4 +14,4 @@ before:
   - rm -f Vagrantfile || true
   - rm -f Dockerfile || true
 
-after_install: ./build/packaging/postinstall.sh
+after_install: ./postinstall.sh
