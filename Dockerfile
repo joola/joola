@@ -7,7 +7,7 @@ MAINTAINER Itay Weinberger <itay@joo.la>
 # start of by updating packages and installing base packages
 RUN apt-get update -ym
 RUN apt-get upgrade -ym
-RUN apt-get install -y curl build-essential git
+RUN apt-get install -y curl build-essential python git
 
 RUN \
     curl -sL https://deb.nodesource.com/setup | sudo bash - && \
