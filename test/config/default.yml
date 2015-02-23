@@ -22,40 +22,12 @@ interfaces:
     enabled: false
     port: 1337
 store:
-  config:
-    enabled: false
-    redis:
-      enabled: false
-  runtime:
-    redis:
-      enabled: false 
-  dispatch:
-    enabled: false
-    redis:
-      enabled: false
-    stomp:
-      enabled: false
-  websocket:
-    http:
-      redis:
-        enabled: false
-    https:
-      redis:
-        enabled: false
   logger:
     console:
       level: debug
     file:
       level: trace
       path: /var/log/joola
-  datastore:
-    mongodb:
-      enabled: false
-      dsn: mongodb://localhost:27017/cache
-      expireafterseconds: 0
-    elasticsearch:
-      enabled: false
-      host: localhost:9200
 beacon:
   wait: true
 dispatch:

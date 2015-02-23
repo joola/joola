@@ -42,7 +42,7 @@ describe("auth", function () {
       expect(token.user).to.be.ok;
       expect(token.timestamp).to.be.ok;
       expect(token.expires).to.be.ok;
-      
+
       return done();
     });
   });
@@ -93,13 +93,13 @@ describe("auth", function () {
       workspace: this.workspace
     };
     var _expireafter = engine.config.authentication.tokens.expireafter;
-    engine.config.authentication.tokens.expireafter = 1000;
+    engine.config.set('authentication:tokens:expireafter', 1000);
     engine.auth.generateToken(user, function (err, token) {
       engine.auth.validateToken(token._, null, function (err, valid) {
         if (err)
           return done(err);
         expect(valid).to.be.ok;
-        engine.config.authentication.tokens.expireafter = _expireafter;
+        engine.config.set('authentication:tokens:expireafter', _expireafter);
         setTimeout(function () {
           engine.auth.validateToken(token._, null, function (err, valid) {
             if (err)
@@ -116,7 +116,7 @@ describe("auth", function () {
     engine.auth.validateToken(null, null, function (err, valid) {
       if (err)
         return done();
-      return  done(new Error('This should fail'));
+      return done(new Error('This should fail'));
     });
   });
 
@@ -255,8 +255,7 @@ describe("auth", function () {
       workspace: '_test'
     };
     var req = {
-      params: {
-      },
+      params: {},
       user: user
     };
     var res = {};
@@ -288,8 +287,7 @@ describe("auth", function () {
       workspace: '_test'
     };
     var req = {
-      params: {
-      },
+      params: {},
       user: user
     };
     var res = {};

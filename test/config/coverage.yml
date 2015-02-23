@@ -1,26 +1,3 @@
-version: 0.1.60
-interfaces:
-  webserver:
-    enabled: true
-    welcome: true
-    bind: 0.0.0.0
-    port: 8080
-    secureport: 8081
-    secure: true
-    secureonly: false
-    keyfile: ./test/config/certs/server.key
-    certfile: ./test/config/certs/server.crt
-    ca: ./test/config/certs/ca.crt
-    sessiondurtaion: 1200000
-    timeout: 60000
-    blacklist: null
-    alloworigin: null
-    headers:
-      X-Powered-By: joola
-      X-Joola-Name: joola-test
-  repl:
-    enabled: false
-    port: 1337
 store:
   stats:
     punt:
@@ -46,4 +23,4 @@ store:
       dsn: mongodb://localhost:27017/cache
 dispatch:
   enabled: true
-  expires: 60
+
