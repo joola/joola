@@ -23,6 +23,7 @@ coverage
 
 config/local.json
 config/runtime.json
+test/config/local.json
 
 apiary.out.html
 

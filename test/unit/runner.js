@@ -8,8 +8,19 @@
  *  Some rights reserved. See LICENSE, AUTHORS.
  **/
 
+var
+  path = require('path'),
+  fs = require('fs');
+
 before(function (done) {
   var self = this;
+  try {
+    //make sure we start the test without any residue json configuration
+    fs.unlinkSync(path.join(__dirname, '../', 'config', 'local.json'));
+  }
+  catch (ex) {
+    
+  }
   require('../../joola.js').init({}, function (err, engine) {
     if (err)
       return done(err);
