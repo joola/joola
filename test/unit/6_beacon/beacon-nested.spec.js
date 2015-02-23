@@ -7,13 +7,13 @@ describe("beacon-nested", function () {
     done();
   });
 
-  xit("should load a single document", function (done) {
+  it("should load a single document", function (done) {
     var self = this;
     var documents = ce.clone(this.documents)[0];
     engine.beacon.insert(this.context, this.context.user.workspace, this.collection, documents, function (err, doc) {
-      self.dup = new Date(doc[0].timestamp).toISOString();
+      //self.dup = new Date(doc[0].timestamp).toISOString();
       doc = doc[0];
-      expect(doc.saved).to.equal(true);
+      expect(doc.saved||doc.created).to.equal(true);
       done(err);
     });
   });
@@ -23,7 +23,7 @@ describe("beacon-nested", function () {
     documents.timestamp = this.dup;
     engine.beacon.insert(this.context, this.context.user.workspace, this.collection, documents, function (err, doc) {
       doc = doc[0];
-      expect(doc.saved).to.equal(false);
+      expect(doc.saved||doc.created).to.equal(false);
       done();
     });
   });
@@ -34,7 +34,7 @@ describe("beacon-nested", function () {
       if (err)
         return done(err);
       docs.forEach(function (doc) {
-        expect(doc.saved).to.equal(true);
+        expect(doc.saved||doc.created).to.equal(true);
       });
       done();
     });

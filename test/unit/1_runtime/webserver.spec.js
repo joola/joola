@@ -17,7 +17,7 @@ describe("webserver", function () {
     });
   });
 
-  xit("should verify server is offline", function (done) {
+  it("should verify server is offline", function (done) {
     engine.webserver.verify(function (err) {
       if (err)
         return done();
@@ -47,6 +47,16 @@ describe("webserver", function () {
     });
   });
 
+  it("should have HTTP port open", function (done) {
+    request.get('http://localhost:' + engine.config.interfaces.webserver.port + '', function (err, response, body) {
+      if (err)
+        return done(err);
+
+      expect(response.statusCode).to.equal(200);
+      done();
+    });
+  });
+  
   it("should have HTTPS port open", function (done) {
     request.get('https://localhost:' + engine.config.interfaces.webserver.secureport + '', function (err, response, body) {
       if (err)
@@ -57,7 +67,7 @@ describe("webserver", function () {
     });
   });
 
-  xit("should have WebSocket", function (done) {
+  it("should have WebSocket", function (done) {
     var io = require('socket.io-client').connect(joola.options.host);
     io.on('connect', function () {
       return done();
@@ -65,7 +75,7 @@ describe("webserver", function () {
 
   });
 
-  xit("should have Emit on WebSocket", function (done) {
+  it("should have Emit on WebSocket", function (done) {
     var io = require('socket.io-client').connect(joola.options.host);
     io.on('connect', function () {
 
@@ -77,7 +87,7 @@ describe("webserver", function () {
     io.emit('echo');
   });
 
-  xit("should have valid route on WebSocket", function (done) {
+  it("should have valid route on WebSocket", function (done) {
     var io = require('socket.io-client').connect(joola.options.host);
     io.on('connect', function () {
 
@@ -96,7 +106,7 @@ describe("webserver", function () {
     io.emit('system/version', options);
   });
 
-  xit("should fail on invalid route", function (done) {
+  it("should fail on invalid route", function (done) {
     var io = require('socket.io-client').connect(joola.options.host);
     io.on('connect', function () {
 
@@ -116,7 +126,7 @@ describe("webserver", function () {
   });
 
   it("should serve api endpoints", function (done) {
-    request.get('https://localhost:' + engine.config.interfaces.webserver.secureport + '/meta', function (err, response, body) {
+    request.get('http://localhost:' + engine.config.interfaces.webserver.port + '/meta', function (err, response, body) {
       if (err)
         return done(err);
 
@@ -125,7 +135,27 @@ describe("webserver", function () {
     });
   });
 
+  it("should serve api endpoints [https]", function (done) {
+    request.get('https://localhost:' + engine.config.interfaces.webserver.secureport + '/meta', function (err, response, body) {
+      if (err)
+        return done(err);
+
+      expect(response.statusCode).to.equal(200);
+      done();
+    });
+  });
+  
   it("should serve api endpoints [system version]", function (done) {
+    request.get('http://localhost:' + engine.config.interfaces.webserver.port + '/system/version?APIToken=apitoken-demo', function (err, response, body) {
+      if (err)
+        return done(err);
+
+      expect(response.statusCode).to.equal(200);
+      done();
+    });
+  });
+
+  it("should serve api endpoints [system version] [https]", function (done) {
     request.get('https://localhost:' + engine.config.interfaces.webserver.secureport + '/system/version?APIToken=apitoken-demo', function (err, response, body) {
       if (err)
         return done(err);

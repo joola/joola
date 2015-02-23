@@ -3,12 +3,14 @@ node_modules
 coverage.html
 lib-cov
 coverage
+pages
 
 .*
+CONTRIBUTING.md
 
 config/runtime.json
 
-apiary.out.html
+apiary.*
 
 config/oo.yml
 config/development.yml
@@ -28,3 +30,7 @@ benchmark
 Procfile
 Vagrantfile
 Makefile
+
+joola-data.json
+
+data

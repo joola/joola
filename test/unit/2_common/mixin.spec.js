@@ -19,7 +19,7 @@ describe("common-mixin", function () {
 		assert(actual.test1 && actual.test2);
 	});
 
-	xit("should mixin - no overwrite", function () {
+	it("should mixin - no overwrite", function () {
 		var expected = {
 			test1: 3,
 			test2: 2
