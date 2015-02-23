@@ -12,8 +12,17 @@
 describe("common-redis", function () {
   it("should create a valid redis object", function (done) {
     var Redis = require('../../../lib/common/redis');
+    var redis = new Redis({
+      dsn: 'redis://127.0.0.1'
+    });
+    expect(redis.address).to.equal('127.0.0.1:6379');
+    return done();
+  });
+  
+  it("should fail creating an invalid redis object", function (done) {
+    var Redis = require('../../../lib/common/redis');
     var redis = new Redis();
-    expect(redis).to.be.ok;
+    expect(redis.ready).to.equal(undefined);
     return done();
   });
 });
