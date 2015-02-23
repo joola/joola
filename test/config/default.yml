@@ -22,16 +22,45 @@ interfaces:
     enabled: false
     port: 1337
 store:
+  #stats:
+  #  punt:
+  #    port: 3015
+  config:
+    redis:
+      #dsn: redis://127.0.0.1
+  runtime:
+    redis:
+      #dsn: redis://127.0.0.1
+  dispatch:
+    redis:
+      #dsn: redis://127.0.0.1
+    stomp:
+      #dsn: stomp://guest:guest@127.0.0.1:61613
+  websocket:
+    redis:
+      #dsn: redis://127.0.0.1
   logger:
     console:
       level: debug
+    # loggly:
+      # level: trace
+      # token: your-api-token
+      # domain: loggly-subdomain
     file:
       level: trace
       path: /var/log/joola
+  datastore:
+    mongodb:
+      enabled: true
+      dsn: mongodb://localhost:27017/cache
+      expireafterseconds: 0
+    elasticsearch:
+      enabled: false
+      host: localhost:9200
 beacon:
   wait: true
 dispatch:
-  enabled: false
+  enabled: true
   expires: 60
 authentication:
   basicauth:
@@ -43,6 +72,8 @@ authentication:
     guest: 60
     user: 9999999999
   force404: false
+#sdk:
+  # url: https://raw.githubusercontent.com/joola/joola.sdk/feature/%2376/bin/joola.js
 query:
   fixgmt: false #should be true if server not running in GMT+0
 workspaces:

@@ -47,7 +47,8 @@ deploy:
       branch: master
 script: npm run test:scenario
 after_success:
-  - npm run test:coverage
+  - npm run test:scenario:coverage
+  - node ./build/coverage/aggregate.js
   - npm run coveralls
   - npm run codeclimate
   - npm run test:api
