@@ -6,7 +6,11 @@ interfaces:
     bind: 0.0.0.0
     port: 8080
     secureport: 8081
-    secure: false
+    secure: true
+    secureonly: false
+    keyfile: ./test/config/certs/server.key
+    certfile: ./test/config/certs/server.crt
+    ca: ./test/config/certs/ca.crt
     sessiondurtaion: 1200000
     timeout: 60000
     blacklist: null
@@ -24,29 +28,18 @@ store:
   config:
     enabled: true
     redis:
-      enabled: true
       dsn: redis://127.0.0.1
   runtime:
     redis:
-      enabled: true
       dsn: redis://127.0.0.1
   dispatch:
-    enabled: true
     redis:
-      enabled: true
       dsn: redis://127.0.0.1
     stomp:
-      enabled: true
       dsn: stomp://guest:guest@127.0.0.1:61613
   websocket:
-    http:
-      redis:
-        enabled: true
-        dsn: redis://127.0.0.1
-    https:
-      redis:
-        enabled: true
-        dsn: redis://127.0.0.1
+    redis:
+      dsn: redis://127.0.0.1
   datastore:
     mongodb:
       enabled: true
