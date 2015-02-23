@@ -1,0 +1,26 @@
+store:
+  stats:
+    punt:
+      port: 3015
+  config:
+    enabled: true
+    redis:
+      dsn: redis://127.0.0.1
+  runtime:
+    redis:
+      dsn: redis://127.0.0.1
+  dispatch:
+    redis:
+      dsn: redis://127.0.0.1
+    stomp:
+      dsn: stomp://guest:guest@127.0.0.1:61613
+  websocket:
+    redis:
+      dsn: redis://127.0.0.1
+  datastore:
+    mongodb:
+      enabled: true
+      dsn: mongodb://localhost:27017/cache
+dispatch:
+  enabled: true
+
