@@ -45,7 +45,7 @@ describe("system", function () {
     });
   });
 
-  xit("should list the connected clients", function (done) {
+  it("should list the connected clients", function (done) {
     engine.system.connectedClients(this.context, function (err, clients) {
       if (err)
         return done(err);
@@ -63,7 +63,7 @@ describe("system", function () {
       done();
     });
   });
-  
+
   it("should remove blacklisted ip", function (done) {
     engine.system.blacklist(this.context, '255.255.255.255', false, 0, function (err) {
       if (err)
@@ -82,8 +82,8 @@ describe("system", function () {
       done();
     });
   });
-  
-  xit("should purge the cache", function (done) {
+
+  it("should purge the cache", function (done) {
     engine.system.purgeCache(this.context, function (err) {
       if (err)
         return done(err);

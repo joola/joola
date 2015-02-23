@@ -1,0 +1,20 @@
+store:
+  config:
+    redis:
+  runtime:
+    redis:
+  dispatch:
+    redis:
+    stomp:
+  websocket:
+    redis:
+  logger:
+    console:
+      level: debug
+  datastore:
+    mongodb:
+      enabled: false
+    elasticsearch:
+      enabled: false
+dispatch:
+  enabled: false
