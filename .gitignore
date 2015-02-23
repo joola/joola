@@ -19,16 +19,34 @@ node_modules
 atlassian-ide-plugin.xml
 
 coverage
+!build/coverage
 
+config/local.json
 config/runtime.json
+test/config/local.json
 
 apiary.out.html
 
 config/oo.yml
 config/development.yml
 config/development.json
+config/test.json
 config/certs/goo.pem
 
 npm-shrinkwrap.json
 
 .vagrant
+
+build/docker/log
+build/docker/data
+
+_data
+_site
+.sass-cache
+pages/docs
+
+params.json
+search_index.json
+
+data
+

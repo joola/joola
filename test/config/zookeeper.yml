@@ -1,0 +1,4 @@
+store:
+  config:
+    zookeeper:
+      connectionstring: localhost:2181

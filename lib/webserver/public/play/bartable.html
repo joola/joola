@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:joola="http://joo.la/ns/1.0">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="/joola.js?APIToken=apitoken-demo"></script>
+  <style>
+    .clearfix {
+      clear: both;
+    }
+  </style>
+</head>
+<body>
+<div id="bartable"></div>
+<div id="canvas">
+  <div id="datepicker"></div>
+  <div class="clearfix"></div>
+  <div id="bartable1"></div>
+  <div id="bartable2"></div>
+  <div id="bartable3"></div>
+  <div id="bartable4"></div>
+</div>
+
+<script>
+  joola.on('ready', function () {
+    new joola.viz.BarTable({
+      container: '#bartable',
+      caption: 'Default w/o canvas',
+      limit: 2,
+      query: {
+        timeframe: 'last_10_seconds',
+        interval: 'day',
+        dimensions: ['browser'],
+        metrics: ['mousemoves'],
+        collection: 'demo-mousemoves',
+        orderby: [
+          ['mousemoves', 'DESC']
+        ],
+        realtime: true
+      }
+    });
+    new joola.viz.Canvas({
+      container: '#canvas',
+      datepicker: {
+        container: '#datepicker'
+      },
+      visualizations: {
+        bartable1: {
+          type: 'bartable',
+          caption: 'Default w/ canvas',
+          container: '#bartable1',
+          query: {
+            dimensions: ['browser'],
+            metrics: ['mousemoves'],
+            collection: 'demo-mousemoves',
+            orderby: [
+              ['mousemoves', 'DESC']
+            ]
+          }
+        },
+        bartable2: {
+          type: 'bartable',
+          caption: 'Different color',
+          container: '#bartable2',
+          colors: ['green'],
+          offcolors: ['black'],
+          query: {
+            dimensions: ['browser'],
+            metrics: ['mousemoves'],
+            collection: 'demo-mousemoves',
+            orderby: [
+              ['mousemoves', 'DESC']
+            ]
+          }
+        },
+        bartable3: {
+          type: 'bartable',
+          caption: 'Limit',
+          container: '#bartable3',
+          limit: 1,
+          strings: {
+            not_shown: 'not shown'
+          },
+          query: {
+            dimensions: ['browser'],
+            metrics: ['mousemoves'],
+            collection: 'demo-mousemoves',
+            orderby: [
+              ['mousemoves', 'DESC']
+            ]
+          }
+        },
+        bartable4: {
+          type: 'bartable',
+          caption: 'Limit w/o "not shown"',
+          container: '#bartable4',
+          limit: 1,
+          strings: {
+            not_shown: 'not shown'
+          },
+          include_not_shown: false,
+          query: {
+            dimensions: ['browser'],
+            metrics: ['mousemoves'],
+            collection: 'demo-mousemoves',
+            orderby: [
+              ['mousemoves', 'DESC']
+            ]
+          }
+        }
+      }
+    })
+  });
+</script>
+
+</body>
+</html>

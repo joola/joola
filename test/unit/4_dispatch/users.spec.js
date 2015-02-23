@@ -18,12 +18,12 @@ describe("users", function () {
   });
 
   it("should have a valid users dispatch", function (done) {
-    expect(engine.dispatch.users).to.be.ok;
+    expect(engine.users).to.be.ok;
     return done();
   });
 
   it("should list all available users", function (done) {
-    engine.dispatch.users.list(this.context, this.workspace, function (err, users) {
+    engine.users.list(this.context, this.workspace, function (err, users) {
       return done(err);
     });
   });
@@ -37,7 +37,7 @@ describe("users", function () {
       filter: '',
       workspace: this.workspace
     };
-    engine.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
+    engine.users.add(this.context, this.workspace, user, function (err, user) {
       return done(err);
     });
   });
@@ -46,7 +46,7 @@ describe("users", function () {
     var user = {
       username: 'tester2'
     };
-    engine.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
+    engine.users.add(this.context, this.workspace, user, function (err, user) {
       if (err)
         return done();
 
@@ -62,7 +62,7 @@ describe("users", function () {
       filter: '',
       workspace: this.workspace
     };
-    engine.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
+    engine.users.add(this.context, this.workspace, user, function (err, user) {
       if (err)
         return done();
 
@@ -79,7 +79,7 @@ describe("users", function () {
       filter: '',
       workspace: this.workspace
     };
-    engine.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
+    engine.users.add(this.context, this.workspace, user, function (err, user) {
       if (err)
         return done();
 
@@ -96,7 +96,7 @@ describe("users", function () {
       filter: '',
       workspace: this.workspace
     };
-    engine.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
+    engine.users.add(this.context, this.workspace, user, function (err, user) {
       if (err)
         return done();
 
@@ -107,7 +107,7 @@ describe("users", function () {
   it("should get a user by username", function (done) {
     var username = 'tester-' + this.uid;
     var self = this;
-    engine.dispatch.users.get(this.context, this.workspace, username, function (err, user) {
+    engine.users.get(this.context, this.workspace, username, function (err, user) {
       if (err)
         return done(err);
       expect(user).to.be.ok;
@@ -115,7 +115,7 @@ describe("users", function () {
       return done();
     });
   });
-
+  
   it("should fail adding a user with an already existing username", function (done) {
     var user = {
       username: 'tester-' + this.uid,
@@ -125,7 +125,7 @@ describe("users", function () {
       filter: '',
       workspace: this.workspace
     };
-    engine.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
+    engine.users.add(this.context, this.workspace, user, function (err, user) {
       if (err)
         return done();
       return done(new Error('This should fail.'));
@@ -171,10 +171,9 @@ describe("users", function () {
       filter: filter,
       workspace: this.workspace
     };
-    engine.dispatch.users.patch(this.context, this.workspace, user.username, user, function (err, user) {
+    engine.users.patch(this.context, this.workspace, user.username, user, function (err, user) {
       if (err)
         return done(err);
-      console.log(user);
       expect(user.filter).to.equal(filter);
       return done(err);
     });
@@ -189,7 +188,7 @@ describe("users", function () {
       filter: '',
       workspace: 'test-org'
     };
-    engine.dispatch.users.patch(this.context, this.workspace, user.username, user, function (err, user) {
+    engine.users.patch(this.context, this.workspace, user.username, user, function (err, user) {
       if (err)
         return done();
 
@@ -207,9 +206,10 @@ describe("users", function () {
       filter: '',
       workspace: this.workspace
     };
-    engine.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
-
-      engine.dispatch.users.authenticate(self.context, self.workspace, 'tester-password-' + self.uid, 'password', function (err, user) {
+    engine.users.add(this.context, this.workspace, user, function (err, user) {
+      if (err)
+        return done(err);
+      engine.users.authenticate(self.context, self.workspace, 'tester-password-' + self.uid, 'password', function (err, user) {
         if (err)
           return done(err);
         if (!user)
@@ -220,7 +220,7 @@ describe("users", function () {
   });
 
   it("should not authenticate users with incorrect credentials", function (done) {
-    engine.dispatch.users.authenticate(this.context, this.workspace, 'test', 'incorrect.password', function (err, user) {
+    engine.users.authenticate(this.context, this.workspace, 'test', 'incorrect.password', function (err, user) {
       if (err)
         return done();
       if (!user)
@@ -239,12 +239,12 @@ describe("users", function () {
       filter: '',
       workspace: this.workspace
     };
-    engine.dispatch.users.add(this.context, this.workspace, user, function (err, user) {
+    engine.users.add(this.context, this.workspace, user, function (err, user) {
       engine.auth.generateToken(user, function (err, token) {
         if (err)
           return done(err);
 
-        engine.dispatch.users.getByToken(self.context, token._, function (err, _user) {
+        engine.users.getByToken(self.context, token._, function (err, _user) {
           if (err)
             return done(err);
 
@@ -256,7 +256,7 @@ describe("users", function () {
   });
 
   it("should validate a correct username/password", function (done) {
-    engine.dispatch.users.authenticate(this.context, this.workspace, 'tester-api-by-token-' + this.uid, '1234', function (err, user) {
+    engine.users.authenticate(this.context, this.workspace, 'tester-api-by-token-' + this.uid, '1234', function (err, user) {
       if (err)
         return done(err);
 
@@ -266,7 +266,7 @@ describe("users", function () {
   });
 
   it("should fail validating incorrect username/password [missing user]", function (done) {
-    engine.dispatch.users.authenticate(this.context, this.workspace, '1tester-api-by-token-' + this.uid, '1234', function (err, user) {
+    engine.users.authenticate(this.context, this.workspace, '1tester-api-by-token-' + this.uid, '1234', function (err, user) {
       if (err)
         return done();
 
@@ -275,7 +275,7 @@ describe("users", function () {
   });
 
   it("should fail validating incorrect username/password [password mismatch]", function (done) {
-    engine.dispatch.users.authenticate(this.context, this.workspace, 'tester-api-by-token-' + this.uid, '12345', function (err, user) {
+    engine.users.authenticate(this.context, this.workspace, 'tester-api-by-token-' + this.uid, '12345', function (err, user) {
       if (err)
         return done();
 
@@ -294,10 +294,10 @@ describe("users", function () {
       workspace: this.workspace
     };
     user.displayName = 'testing user with change';
-    engine.dispatch.users.patch(self.context, self.workspace, user.username, user, function (err) {
+    engine.users.patch(self.context, self.workspace, user.username, user, function (err) {
       if (err)
         return done(err);
-      engine.dispatch.users.authenticate(self.context, self.workspace, 'tester-' + self.uid, '12345', function (err, user) {
+      engine.users.authenticate(self.context, self.workspace, 'tester-' + self.uid, '12345', function (err, user) {
         if (err)
           return done(err);
 
@@ -312,12 +312,12 @@ describe("users", function () {
     var user = {
       username: 'tester-' + this.uid
     };
-    engine.dispatch.users.delete(this.context, this.workspace, user.username, function (err) {
+    engine.users.delete(this.context, this.workspace, user.username, function (err) {
       if (err)
         return done(err);
-      engine.dispatch.users.get(self.context, self.workspace, user.username, function (err, user) {
+      engine.users.get(self.context, self.workspace, user.username, function (err, user) {
         if (user)
-          return done('This should fail');
+          return done('This should fail'+JSON.stringify(user));
         else
           return done();
       });
@@ -329,7 +329,7 @@ describe("users", function () {
     var user = {
       username: 'tester1-' + this.uid
     };
-    engine.dispatch.users.delete(this.context, this.workspace, user, function (err) {
+    engine.users.delete(this.context, this.workspace, user, function (err) {
       if (err)
         return done();
       return done('This should fail');
@@ -337,7 +337,7 @@ describe("users", function () {
   });
 
   it("should verify a valid APIToken", function (done) {
-    engine.dispatch.users.verifyAPIToken(this.context, 'apitoken-test', function (err, user) {
+    engine.users.verifyAPIToken(this.context, 'apitoken-test', function (err, user) {
       if (err)
         return done(err);
 
@@ -347,7 +347,7 @@ describe("users", function () {
   });
 
   it("should fail verifying a non-existing APIToken", function (done) {
-    engine.dispatch.users.verifyAPIToken(this.context, '000012345', function (err, user) {
+    engine.users.verifyAPIToken(this.context, '000012345', function (err, user) {
       if (err)
         return done();
 

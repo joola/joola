@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:joola="http://joo.la/ns/1.0">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="/standalone-framework.src.js"></script>
+  <script src="/highcharts.src.js"></script>
+  <script src="/joola.js?APIToken=apitoken-demo"></script>
+  <style>
+    .clearfix {
+      clear: both;
+    }
+  </style>
+</head>
+<body>
+<div id="timeline" height="150" style="height:350px;"></div>
+<div class="clearfix"></div>
+<div id="canvas">
+  <div id="filters"></div>
+  <div class="clearfix"></div>
+  <div id="datepicker"></div>
+  <div class="clearfix"></div>
+  <div id="table1"></div>
+  <div id="table2"></div>
+  <div id="table3"></div>
+  <div id="table4"></div>
+</div>
+
+<script>
+  joola.on('ready', function () {
+    new joola.viz.Timeline({
+      container: '#timeline',
+      //caption: 'Default w/o canvas',
+      pickers: {
+        main: {
+          enabled: true
+        },
+        secondary: {
+          enabled: true
+        }
+      },
+      query: {
+        timeframe: 'last_30_days',
+        interval: 'day',
+        dimensions: ['timestamp'],
+        metrics: [
+          {key: 'mousemoves', name: 'Mouse moves', collection: 'demo-mousemoves'},
+          //{key: 'clicks', name: 'clicks', collection: 'demo-clicks'}
+        ],
+        realtime: false,
+        collection: 'demo-mousemoves'
+      }
+    });
+
+  });
+</script>
+
+</body>
+</html>

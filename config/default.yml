@@ -1,4 +1,4 @@
-version: 0.0.450
+version: 0.2.2
 interfaces:
   webserver:
     enabled: true
@@ -7,51 +7,42 @@ interfaces:
     bind: 0.0.0.0
     port: 8080
     secureport: 8081
-    secure: true
-    secureonly: true
-    keyfile: ./config/certs/server.key
-    certfile: ./config/certs/server.crt
-    ca: ./config/certs/ca.crt
-    websocket:
-      enabled: true
+    secure: false
+    #secureonly: false
+    #keyfile: ./config/certs/server.key
+    #certfile: ./config/certs/server.crt
+    #ca: ./config/certs/ca.crt
     sessiondurtaion: 1200000
     timeout: 60000
     blacklist: null
     alloworigin: null
     headers:
-      # X-Powered-By: joola
+      X-Powered-By: joola
+      X-Joola-Name: joola-develop
   repl:
     enabled: false
     port: 1337
 store:
+  #stats:
+  #  punt:
+  #    port: 3015
   config:
     redis:
-      dsn: redis://127.0.0.1
-      ## if dsn not specific then these are required
-      # host: 127.0.0.1
-      # port: 6379
-      # db: 0
-      # auth: null
+      #dsn: redis://127.0.0.1
+  runtime:
+    redis:
+      #dsn: redis://127.0.0.1
   dispatch:
     redis:
-      dsn: redis://127.0.0.1
+      #dsn: redis://127.0.0.1
     stomp:
-      dsn: stomp://guest:guest@127.0.0.1:61613
-      # if dsn not specific then these are required
-      # host: 127.0.0.1
-      # port: 61613
-      # user: guest
-      # pass: guest
+      #dsn: stomp://guest:guest@127.0.0.1:61613
   websocket:
-    http:
-      redis:
-        dsn: redis://127.0.0.1
-    https:
-      redis:
-        dsn: redis://127.0.0.1
+    redis:
+      #dsn: redis://127.0.0.1
   logger:
     console:
-      level: trace
+      level: debug
     # loggly:
       # level: trace
       # token: your-api-token
@@ -61,22 +52,31 @@ store:
       path: /var/log/joola
   datastore:
     mongodb:
+      enabled: false
       dsn: mongodb://localhost:27017/cache
       expireafterseconds: 0
+    elasticsearch:
+      enabled: false
+      host: localhost:9200
+beacon:
+  wait: true
 dispatch:
   enabled: true
   expires: 60
 authentication:
   basicauth:
-    enabled: false
+    enabled: true
+    enable_with_http: true
   tokens:
     expireafter: 1200000
   ratelimits:
     guest: 60
-    user: 5000
+    user: 9999999999
   force404: false
 #sdk:
   # url: https://raw.githubusercontent.com/joola/joola.sdk/feature/%2376/bin/joola.js
+query:
+  fixgmt: false #should be true if server not running in GMT+0
 workspaces:
   _test:
     key: _test
@@ -91,6 +91,7 @@ workspaces:
           - "query:stop"
           - "collections:list"
           - "collections:get"
+          - "system:version"
         filter: []
       user:
         key: "users"
@@ -104,7 +105,7 @@ workspaces:
           - "root"
         displayName: "Administrator"
         APIToken: "apitoken-test"
-        ratelimit: 5000
+        ratelimit: 9999999999
   _stats:
     key: _stats
     name: Internal Stats
@@ -129,18 +130,18 @@ workspaces:
           - "beacon"
         displayName: "Stats Beacon"
         APIToken: "apitoken-stats"
-        ratelimit: 5000
+        ratelimit: 9999999999
       reader:
         username: "stats-reader"
         password: "password"
         roles:
           - "reader"
         displayName: "Stats Reader"
-        ratelimit: 5000        
+        ratelimit: 9999999999        
     collections:
-      stats-reads:
-        key: "stats-reads"
-        name: "stats-reads"
+      reads:
+        key: "reads"
+        name: "reads"
         strongTyped: true
         timestamp:
           datatype: "date"
@@ -177,9 +178,14 @@ workspaces:
           type: "metric"
           name: "readCount"
           key: "readCount"
-      stats-writes:
-        key: "stats-writes"
-        name: "stats-writes"
+        duration:
+          datatype: "number"
+          type: "metric"
+          name: "duration"
+          key: "duration"
+      writes:
+        key: "writes"
+        name: "writes"
         strongTyped: true
         timestamp:
           datatype: "date"
@@ -216,9 +222,14 @@ workspaces:
           type: "metric"
           name: "writeCount"
           key: "writeCount"
-      stats-simple:
-        key: "stats-simple"
-        name: "stats-simple"
+        duration_per_doc:
+          datatype: "number"
+          type: "metric"
+          name: "duration_per_doc"
+          key: "duration_per_doc"
+      simple:
+        key: "simple"
+        name: "simple"
         strongTyped: true
         timestamp:
           datatype: "date"
@@ -255,9 +266,9 @@ workspaces:
           type: "metric"
           name: "simpleCount"
           key: "simpleCount"                            
-      stats-node-count:
-        key: "stats-node-count"
-        name: "stats-node-count"
+      node-count:
+        key: "node-count"
+        name: "node-count"
         strongTyped: true
         expireafterseconds: 3600
         timestamp:
@@ -280,9 +291,9 @@ workspaces:
           type: "metric"
           name: "nodes"
           key: "nodes"
-      stats-token-count:
-        key: "stats-token-count"
-        name: "stats-token-count"
+      token-count:
+        key: "token-count"
+        name: "token-count"
         strongTyped: true
         expireafterseconds: 3600
         timestamp:
@@ -305,9 +316,9 @@ workspaces:
           type: "metric"
           name: "tokens"
           key: "tokens"
-      stats-usage:
-        key: "stats-usage"
-        name: "stats-usage"
+      usage:
+        key: "usage"
+        name: "usage"
         strongTyped: true
         expireafterseconds: 3600
         timestamp:
@@ -335,9 +346,9 @@ workspaces:
           type: "metric"
           name: "mem"
           key: "mem"
-      stats-events-request:
-        key: "stats-events-request"
-        name: "stats-events-request"
+      events-request:
+        key: "events-request"
+        name: "events-request"
         strongTyped: true
         expireafterseconds: 3600
         timestamp:
@@ -360,9 +371,9 @@ workspaces:
           type: "metric"
           name: "events"
           key: "events"
-      stats-events-fulfilled:
-        key: "stats-events-fulfilled"
-        name: "stats-events-fulfilled"
+      events-fulfilled:
+        key: "events-fulfilled"
+        name: "events-fulfilled"
         strongTyped: true
         expireafterseconds: 3600
         timestamp:
@@ -427,6 +438,11 @@ workspaces:
           - "metrics:get"
           - "metrics:patch"
           - "metrics:delete"
+          - canvases:list
+          - canvases:add
+          - canvases:get
+          - canvases:patch
+          - canvases:delete
           - "roles:list"
           - "roles:get"
           - "roles:add"
@@ -452,6 +468,9 @@ workspaces:
           - "system:whoami"
           - "system:version"
           - "system:usage"
+          - "usage:last_write"
+          - "usage:last_read"
+          - "usage:last_use"
           - "misc:see_private"
         filter: []
       user:
@@ -483,7 +502,7 @@ workspaces:
           - "root"
         displayName: "Administrator"
         APIToken: "apitoken-demo"
-        ratelimit: 5000
+        ratelimit: 9999999999
         filter: []
       beacon:
         username: "beacon"
@@ -500,148 +519,3 @@ workspaces:
         displayName: "Reader"
         APIToken: "apitoken-reader"
     collections:
-      demo-visits:
-        key: "demo-visits"
-        name: "demo-visits"
-        strongTyped: true
-        timestamp:
-          datatype: "date"
-          type: "dimension"
-          name: "timestamp"
-          key: "timestamp"
-        browser:
-          datatype: "string"
-          type: "dimension"
-          name: "browser"
-          key: "browser"
-        engine:
-          datatype: "string"
-          type: "dimension"
-          name: "engine"
-          key: "engine"
-        os:
-          datatype: "string"
-          type: "dimension"
-          name: "os"
-          key: "os"
-        userid:
-          datatype: "string"
-          type: "dimension"
-          name: "userid"
-          key: "userid"
-        ip:
-          datatype: "ip"
-          type: "dimension"
-          name: "ip"
-          key: "ip"
-        referrer:
-          datatype: "string"
-          type: "dimension"
-          name: "referrer"
-          key: "referrer"
-        visits:
-          datatype: "number"
-          type: "metric"
-          name: "visits"
-          key: "visits"
-          min: 0
-          max: 1
-        loadtime:
-          datatype: "number"
-          type: "metric"
-          name: "loadtime"
-          key: "loadtime"
-          min: 0
-          max: 10000
-      demo-clicks:
-        key: "demo-clicks"
-        name: "demo-clicks"
-        strongTyped: true
-        timestamp:
-          datatype: "date"
-          type: "dimension"
-          name: "timestamp"
-          key: "timestamp"
-        browser:
-          datatype: "string"
-          type: "dimension"
-          name: "browser"
-          key: "browser"
-        engine:
-          datatype: "string"
-          type: "dimension"
-          name: "engine"
-          key: "engine"
-        os:
-          datatype: "string"
-          type: "dimension"
-          name: "os"
-          key: "os"
-        userid:
-          datatype: "string"
-          type: "dimension"
-          name: "userid"
-          key: "userid"
-        ip:
-          datatype: "ip"
-          type: "dimension"
-          name: "ip"
-          key: "ip"
-        referrer:
-          datatype: "string"
-          type: "dimension"
-          name: "referrer"
-          key: "referrer"
-        clicks:
-          datatype: "number"
-          type: "metric"
-          name: "clicks"
-          key: "clicks"
-          min: 0
-          max: 1
-      demo-mousemoves:
-        key: "demo-mousemoves"
-        name: "demo-mousemoves"
-        strongTyped: true
-        timestamp:
-          datatype: "date"
-          type: "dimension"
-          name: "timestamp"
-          key: "timestamp"
-        browser:
-          datatype: "string"
-          type: "dimension"
-          name: "browser"
-          key: "browser"
-        engine:
-          datatype: "string"
-          type: "dimension"
-          name: "engine"
-          key: "engine"
-        os:
-          datatype: "string"
-          type: "dimension"
-          name: "os"
-          key: "os"
-        userid:
-          datatype: "string"
-          type: "dimension"
-          name: "userid"
-          key: "userid"
-        ip:
-          datatype: "ip"
-          type: "dimension"
-          name: "ip"
-          key: "ip"
-        referrer:
-          datatype: "string"
-          type: "dimension"
-          name: "referrer"
-          key: "referrer"
-        mousemoves:
-          datatype: "number"
-          type: "metric"
-          name: "mousemoves"
-          key: "mousemoves"
-          min: 0
-          max: 1000

@@ -3,16 +3,34 @@ node_modules
 coverage.html
 lib-cov
 coverage
+pages
 
 .*
+CONTRIBUTING.md
 
 config/runtime.json
 
-apiary.out.html
+apiary.*
 
 config/oo.yml
 config/development.yml
+config/test.yml
 config/development.json
+config/test.json
 config/certs/goo.pem
 
 .vagrant
+Dockerfile
+
+build
+docs
+test
+wiki
+benchmark
+Procfile
+Vagrantfile
+Makefile
+
+joola-data.json
+
+data

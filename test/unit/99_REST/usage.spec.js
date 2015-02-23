@@ -1,4 +1,4 @@
-describe("collections", function () {
+describe("usage", function () {
   before(function (done) {
     this.context = {user: joola.USER};
     this.collection = 'test-collection-dispatch-' + global.uid;
@@ -12,14 +12,14 @@ describe("collections", function () {
     done();
   });
 
-  it("should allow retrieval of stats on behalf of", function (done) {
+  xit("should allow retrieval of stats on behalf of", function (done) {
     var user = {
       username: 'bypass',
       password: 'bypass',
       workspace: '_stats',
       roles: ['reader'],
       filter: [
-        ['workspace', 'eq', 'demo']
+        //['workspace', 'eq', 'demo']
       ]
     };
     joola.users.generateToken(user, function (err, token) {
@@ -34,12 +34,12 @@ describe("collections", function () {
           timeframe: 'last_year',
           metrics: [
             {key: 'readCount', collection: 'reads'},
-            {key: 'writeCount', collection: 'writes'},
-            {key: 'simpleCount', collection: 'simple'}
+            //{key: 'writeCount', collection: 'writes'},
+            //{key: 'simpleCount', collection: 'simple'}
           ],
           filter: []
         };
-        joola.query.fetch({_: token._}, query, function (err, usage) {
+        joola.fetch({_: token._}, query, function (err, usage) {
           if (err)
             return done(err);
 
