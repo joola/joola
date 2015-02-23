@@ -14,7 +14,7 @@
 
     $ docker run -p 8080:8080 -it joola/joola
 
-This instance includes `EXPOSE 8080 (http) and 8081 (https) and 22 (ssh)`.
+This instance includes `EXPOSE 8080 (http)`.
 
 **Starting a simple instance as damon:**
 
