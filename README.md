@@ -74,6 +74,7 @@ $ curl http://localhost:8080/system/version?APIToken=apitoken-demo
 ### Push your first event
 
 Using cURL:
+
 ```bash
 $ curl \
      --include \
@@ -94,6 +95,7 @@ $ curl \
 [**Learn more about pushing data**](http://github.com/joola/joola/wiki/pushing-data)
 
 ### Draw your first visualization
+
 ```html
 <script src="http://localhost:8080/joola.js?APIToken=apitoken-demo"></script>
 <script>
@@ -137,7 +139,6 @@ Contacting us is easy, ping us on one of these:
 
 ### License
 Copyright (c) 2012-2015 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24] for details.
-
 
 [1]: https://coveralls.io/repos/joola/joola/badge.png?branch=develop
 [2]: https://coveralls.io/r/joola/joola?branch=develop
