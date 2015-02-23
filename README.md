@@ -1,17 +1,18 @@
-# joola [![Gitter chat](https://badges.gitter.im/joola/joola.png)](https://gitter.im/joola/joola) [![Build Status][3]][4] [![Coverage Status](https://coveralls.io/repos/joola/joola/badge.svg?branch=develop)](https://coveralls.io/r/joola/joola) [![Code Climate](https://codeclimate.com/github/joola/joola/badges/gpa.svg)](https://codeclimate.com/github/joola/joola) [![Inline docs](http://inch-ci.org/github/joola/joola.svg?branch=develop)](http://inch-ci.org/github/joola/joola)
+<img src="http://i.imgur.com/9wsEolr.png" alt="joola logo" title="joola" align="center" />
+
+[joola][22] is a real-time data analytics and visualization framework allowing you to quickly save, query and visualize your data.
+
+- **Simple**, flexible and powerful JSON to describe your data and push to joola.
+- Our **intuitive query** JSON syntax makes it easy to analyze or visualize your data in blazing speed.
+- Seamlessly **embeddable** into existing sites, including single-sign-on and advanced features.
+
+[![Gitter chat](https://badges.gitter.im/joola/joola.png)](https://gitter.im/joola/joola) [![Build Status][3]][4] [![Coverage Status](https://coveralls.io/repos/joola/joola/badge.svg?branch=develop)](https://coveralls.io/r/joola/joola) [![Code Climate](https://codeclimate.com/github/joola/joola/badges/gpa.svg)](https://codeclimate.com/github/joola/joola) [![Inline docs](http://inch-ci.org/github/joola/joola.svg?branch=develop)](http://inch-ci.org/github/joola/joola)
 
 | **[Technical Docs] [techdocs]**     | **[Setup Guide] [setup]**     | **[API Docs] [api-docs]**           | **[Contributing] [contributing]**           | **[About joola] [about]**     |
 |-------------------------------------|-------------------------------|-----------------------------------|---------------------------------------------|-------------------------------------|
 | [![i1] [techdocs-image]] [techdocs] | [![i2] [setup-image]] [setup] | [![i3] [api-docs-image]] [api-docs] | [![i4] [contributing-image]] [contributing] | [![i5] [about-image]] [about] |
 
 <img src="https://joo.la/img/logo-profile.png" alt="joola logo" title="joola" align="right" />
-
-[joola][22] is a real-time data analytics and visualization framework allowing you to quickly save, query and visualize your data.
-Some of the main benefits of using joola include:
-
-- **Simple**, flexible and powerful JSON to describe your data and push to joola.
-- Our **intuitive query** JSON syntax makes it easy to analyze or visualize your data in blazing speed.
-- Seamlessly **embeddable** into existing sites, including single-sign-on and advanced features.
 
 ### Main Features
 
@@ -161,7 +162,7 @@ Copyright (c) 2012-2015 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24]
 [19]: http://twitter.com/joola
 [20]: mailto://info@joo.la
 [21]: https://joo.la/contact
-[22]: https://joo.la/
+[22]: http://joola.github.io/joola
 [23]: http://ci.joo.la
 [24]: https://github.com/joola/joola/blob/master/LICENSE.md
 
