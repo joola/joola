@@ -1,4 +1,4 @@
-<img src="http://i.imgur.com/9wsEolr.png" alt="joola logo" title="joola" align="center" />
+<img src="http://i.imgur.com/LfREbzY.png" alt="joola logo" title="joola" align="center" />
 
 [joola][22] is a real-time data analytics and visualization framework allowing you to quickly save, query and visualize your data.
 
@@ -11,8 +11,6 @@
 | **[Technical Docs] [techdocs]**     | **[Setup Guide] [setup]**     | **[API Docs] [api-docs]**           | **[Contributing] [contributing]**           | **[About joola] [about]**     |
 |-------------------------------------|-------------------------------|-----------------------------------|---------------------------------------------|-------------------------------------|
 | [![i1] [techdocs-image]] [techdocs] | [![i2] [setup-image]] [setup] | [![i3] [api-docs-image]] [api-docs] | [![i4] [contributing-image]] [contributing] | [![i5] [about-image]] [about] |
-
-<img src="https://joo.la/img/logo-profile.png" alt="joola logo" title="joola" align="right" />
 
 ### Main Features
 
