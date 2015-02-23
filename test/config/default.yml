@@ -6,7 +6,11 @@ interfaces:
     bind: 0.0.0.0
     port: 8080
     secureport: 8081
-    secure: false
+    secure: true
+    secureonly: false
+    keyfile: ./test/config/certs/server.key
+    certfile: ./test/config/certs/server.crt
+    ca: ./test/config/certs/ca.crt
     sessiondurtaion: 1200000
     timeout: 60000
     blacklist: null
