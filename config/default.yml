@@ -1,4 +1,4 @@
-version: 0.1.13
+version: 0.2.2
 interfaces:
   webserver:
     enabled: true
@@ -7,53 +7,39 @@ interfaces:
     bind: 0.0.0.0
     port: 8080
     secureport: 8081
-    secure: true
-    secureonly: false
-    keyfile: ./config/certs/server.key
-    certfile: ./config/certs/server.crt
-    ca: ./config/certs/ca.crt
-    websocket:
-      enabled: true
+    secure: false
+    #secureonly: false
+    #keyfile: ./config/certs/server.key
+    #certfile: ./config/certs/server.crt
+    #ca: ./config/certs/ca.crt
     sessiondurtaion: 1200000
     timeout: 60000
     blacklist: null
     alloworigin: null
     headers:
-      # X-Powered-By: joola
+      X-Powered-By: joola
+      X-Joola-Name: joola-develop
   repl:
     enabled: false
     port: 1337
 store:
-  stats:
-    punt:
-      port: 3015
+  #stats:
+  #  punt:
+  #    port: 3015
   config:
     zookeeper:
       connectionString: localhost:2181
   runtime:
     redis:
-      # enabled: true
-      dsn: redis://127.0.0.1
+      #dsn: redis://127.0.0.1
   dispatch:
-    # enabled: true
     redis:
-      dsn: redis://127.0.0.1
+      #dsn: redis://127.0.0.1
     stomp:
-      dsn: stomp://guest:guest@127.0.0.1:61613
-      # if dsn not specific then these are required
-      # host: 127.0.0.1
-      # port: 61613
-      # user: guest
-      # pass: guest
+      #dsn: stomp://guest:guest@127.0.0.1:61613
   websocket:
-    http:
-      redis:
-        #enabled: true
-        dsn: redis://127.0.0.1
-    https:
-      redis:
-        #enabled: true
-        dsn: redis://127.0.0.1
+    redis:
+      #dsn: redis://127.0.0.1
   logger:
     console:
       level: debug
@@ -66,8 +52,12 @@ store:
       path: /var/log/joola
   datastore:
     mongodb:
+      enabled: false
       dsn: mongodb://localhost:27017/cache
       expireafterseconds: 0
+    elasticsearch:
+      enabled: false
+      host: localhost:9200
 beacon:
   wait: true
 dispatch:
@@ -101,6 +91,7 @@ workspaces:
           - "query:stop"
           - "collections:list"
           - "collections:get"
+          - "system:version"
         filter: []
       user:
         key: "users"

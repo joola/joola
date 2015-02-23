@@ -1,1 +1,0 @@
-[HOME](Home) > [TECHNICAL DOCUMENTATION](technical-documentation) > [USING](using-joola) > **FAQ**

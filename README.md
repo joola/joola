@@ -1,17 +1,16 @@
-# joola [![Build Status][3]][4] [![Gitter chat](https://badges.gitter.im/joola/joola.png)](https://gitter.im/joola/joola)
+<img src="http://i.imgur.com/PrqIYX7.png" alt="joola logo" title="joola" align="center" />
+
+[joola][22] is a real-time data analytics and visualization framework allowing you to quickly save, query and visualize your data.
+
+- **Simple**, flexible and powerful JSON to describe your data and push to joola.
+- Our **intuitive query** JSON syntax makes it easy to analyze or visualize your data in blazing speed.
+- Seamlessly **embeddable** into existing sites, including single-sign-on and advanced features.
+
+[![Gitter chat](https://badges.gitter.im/joola/joola.png)](https://gitter.im/joola/joola) [![Build Status][3]][4] [![Coverage Status](https://coveralls.io/repos/joola/joola/badge.svg?branch=develop)](https://coveralls.io/r/joola/joola) [![Code Climate](https://codeclimate.com/github/joola/joola/badges/gpa.svg)](https://codeclimate.com/github/joola/joola) [![Inline docs](http://inch-ci.org/github/joola/joola.svg?branch=develop)](http://inch-ci.org/github/joola/joola)
 
 | **[Technical Docs] [techdocs]**     | **[Setup Guide] [setup]**     | **[API Docs] [api-docs]**           | **[Contributing] [contributing]**           | **[About joola] [about]**     |
 |-------------------------------------|-------------------------------|-----------------------------------|---------------------------------------------|-------------------------------------|
 | [![i1] [techdocs-image]] [techdocs] | [![i2] [setup-image]] [setup] | [![i3] [api-docs-image]] [api-docs] | [![i4] [contributing-image]] [contributing] | [![i5] [about-image]] [about] |
-
-<img src="https://joo.la/img/logo-profile.png" alt="joola logo" title="joola" align="right" />
-
-[joola][22] is a real-time data analytics and visualization framework allowing you to quickly save, query and visualize your data. 
-Some of the main benefits of using joola include:
-
-- **Simple**, flexible and powerful JSON to describe your data and push to joola.
-- Our **intuitive query** JSON syntax makes it easy to analyze or visualize your data in blazing speed. 
-- Seamlessly **embeddable** into existing sites, including single-sign-on and advanced features.
 
 ### Main Features
 
@@ -24,23 +23,21 @@ Some of the main benefits of using joola include:
 - **Extend**, easy to add more data sources, authentication and cache middleware.
 
 ### Getting Started
-We've pre-loaded the package with a fully working sample site, so it's easy to get started.
-
-joola uses several leading open-source software for its operation. Before getting started, please install [MongoDB](http://mongodb.org), [Redis](http://redis.io) and [RabbitMQ](http://www.rabbitmq.com/), for more details on these pre-requisites please refer to the [wiki](http://github.com/joola/joola/wiki/install-joola).  
-
-For the example below to work out-of-the-box, it's required to have both joola and its dependencies installed on localhost.
- For more details on the installation process, please refer to [this guide](http://github.com/joola/joola/wiki/install-joola).
-
-#### Using Docker
-We have included a [Docker](http://www.docker.com) file to support easy playing around and testing. 
-Using Docker will pull the latest docker image and run joola in a container for you.
 
 ```bash
-$ docker run -p 8081:8081 -it joola/joola
-``` 
+$ npm install -g joola
+```
 
-#### Using Vagrant
-We have included a [Vagrant](http://www.vagrantup.com) file to support easy playing around and testing. Running `vagrant up` will install all needed dependencies and allow you to run joola in a sand boxed virtual environment. 
+#### Docker
+Joola can be used as a [Docker container](https://registry.hub.docker.com/u/joola/joola) file to support easy playing around and testing.
+Docker will pull the latest docker image and run joola in a container for you.
+
+```bash
+$ docker run -p 8080:8080 -it joola/joola
+```
+
+#### Vagrant
+We have included a [Vagrant](http://www.vagrantup.com) file to support easy playing around and testing. Running `vagrant up` will install all needed dependencies and allow you to run joola in a sand boxed virtual environment.
 
 ```bash
 # Clone this repository
@@ -53,7 +50,7 @@ $ npm install
 
 $ vagrant up
 # wait for the box to come online
-$ vagrant ssh 
+$ vagrant ssh
 
 # once in the box
 $ cd /vagrant
@@ -62,50 +59,19 @@ $ node joola.js
 
 We have configured the VM to use 2 CPUs with 2048MB of memory, but these can be configured from `Vagrantfile` if you prefer different settings.  
 
-#### Install via NPM
+#### Verifying installation
+
+Access REST API using cURL:
 
 ```bash
-$ mkdir /opt/joola
-$ cd /opt/joola
-$ npm install joola
-$ node ./node_modules/joola/joola.js
+$ curl http://localhost:8080/system/version?APIToken=apitoken-demo
+
+{ "version": "joola version 0.9.0" }
 ```
-
-Access REST API using cURL (-k switch due to default localhost SSL certificate)
-
-```bash
-$ curl -i -k  https://localhost:8081/system/version?APIToken=apitoken-demo
-
-HTTP/1.1 200 OK
-Server: joola
-Access-Control-Allow-Credentials: true
-Access-Control-Expose-Headers: ETag, X-RateLimit-Limit, X-RateLimit-Remaining,
-  X-RateLimit-Reset
-X-joola-Request-Id: 87IpUGxDQ:1399738779977:0xOC0CqXB
-X-Powered-By: joola
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4973
-X-RateLimit-Reset: 1399741710
-Retry-After: 2930
-X-joola-Duration: 5
-X-joola-Requested-By: 87IpUGxDQ
-X-joola-Fulfilled-By: 87IpUGxDQ
-X-joola-Duration-Fulfilled: 2
-Content-Type: application/json
-Content-Length: 36
-ETag: "867689076"
-Vary: Accept-Encoding
-Date: Sat, 10 May 2014 16:19:39 GMT
-Connection: keep-alive
-
-{ "version": "joola version 0.4.1" }
-```
-
-Following the installation, point your browser to `https://localhost:8081` and you'll be able to use the framework.
 
 [**Learn more about getting started with joola**](http://github.com/joola/joola/wiki/technical-documentation)
 
-##### To push your first event
+### Push your first event
 
 Using cURL:
 ```bash
@@ -114,55 +80,27 @@ $ curl \
      --request POST \
      --header "Content-Type: application/json" \
      --data-binary "[{
-       \"timestamp\": null,
        \"article\": \"Sample Analytics\",
        \"browser\": \"Chrome\",
-       \"device\": \"Desktop\",
-       \"engine\": \"Webkit\",
-       \"os\": \"Linux\",
        \"userid\": \"demo@joo.la\",
        \"ip\": \"127.0.0.1\",
        \"referrer\": \"http://joo.la\",
        \"visits\": 1,
        \"loadtime\": 123
      }]" \
-     https://localhost:8081/beacon/{workspace}/{collection}{?APIToken}
-```
-
-Using the SDK:
-```js
-var joola = require('joola.sdk');
-
-joola.init({host: 'https://localhost:8081', APIToken: 'apitoken-beacon'}, function(err) {
-  var doc = {
-    "timestamp": null,
-    "article": "Sample Analytics",
-    "browser": "Chrome",
-    "device": "Desktop",
-    "engine": "Webkit",
-    "os": "Linux",
-    "userid": "demo@joo.la",
-    "ip": "127.0.0.1",
-    "referrer": "http://joo.la",
-    "visits": 1,
-    "loadtime": 123
-  };
-  joola.beacon.insert('collection-name', doc, function(err) { 
-    console.log('Document saved');
-  });
-});
+     http://localhost:8080/beacon/demo/demo?APIToken=apitoken-demo
 ```
 
 [**Learn more about pushing data**](http://github.com/joola/joola/wiki/pushing-data)
 
-##### Your first visualization
+### Draw your first visualization
 ```html
-<script src="https://localhost:8081/joola.js?APIToken=apitoken-demo"></script>
+<script src="http://localhost:8080/joola.js?APIToken=apitoken-demo"></script>
 <script>
-joola.events.on('ready', function(err) {
+joola.on('ready', function(err) {
   if (err)
     throw err;
-    
+
   var options = {
     caption: 'Visits over Time',
     query: {
@@ -198,7 +136,7 @@ Contacting us is easy, ping us on one of these:
 - You can even fill out a [form][21].
 
 ### License
-Copyright (c) 2012-2014 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24] for details.
+Copyright (c) 2012-2015 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24] for details.
 
 
 [1]: https://coveralls.io/repos/joola/joola/badge.png?branch=develop
@@ -222,18 +160,18 @@ Copyright (c) 2012-2014 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24]
 [19]: http://twitter.com/joola
 [20]: mailto://info@joo.la
 [21]: https://joo.la/contact
-[22]: https://joo.la/
+[22]: http://joola.github.io/joola
 [23]: http://ci.joo.la
 [24]: https://github.com/joola/joola/blob/master/LICENSE.md
 
 [architecture-doc]: https://github.com/joola/joola/wiki/Technical-architecture
 [talk-to-us]: https://github.com/joola/joola/wiki/Talk-to-us
 
-[about-image]: https://raw.github.com/joola/joola/develop/docs/images/about.png
-[techdocs-image]: https://raw.github.com/joola/joola/develop/docs/images/techdocs.png
-[setup-image]: https://raw.github.com/joola/joola/develop/docs/images/setup.png
-[api-docs-image]: https://raw.github.com/joola/joola/develop/docs/images/roadmap.png
-[contributing-image]: https://raw.github.com/joola/joola/develop/docs/images/contributing.png
+[about-image]: https://raw.githubusercontent.com/wiki/joola/joola/images/about.png
+[techdocs-image]: https://raw.githubusercontent.com/wiki/joola/joola/images/techdocs.png
+[setup-image]: https://raw.githubusercontent.com/wiki/joola/joola/images/setup.png
+[api-docs-image]: https://raw.githubusercontent.com/wiki/joola/joola/images/roadmap.png
+[contributing-image]: https://raw.githubusercontent.com/wiki/joola/joola/images/contributing.png
 
 [about]: https://github.com/joola/joola/wiki/joola-overview
 [techdocs]: https://github.com/joola/joola/wiki/Technical-documentation

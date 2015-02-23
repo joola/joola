@@ -38,10 +38,6 @@ describe("security-apitokens", function () {
     });
   });
 
-  after(function (done) {
-    joola.set('APIToken', 'apitoken-demo', done);
-  });
-
   xit("should be able to use a newly created APIToken", function (done) {
     var self = this;
 
@@ -49,4 +45,9 @@ describe("security-apitokens", function () {
       joola.system.version(done);
     });
   });
+
+  after(function (done) {
+    joola.set('APIToken', 'apitoken-demo', done);
+  });
+
 });
