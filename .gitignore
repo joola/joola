@@ -21,6 +21,7 @@ atlassian-ide-plugin.xml
 coverage
 !build/coverage
 
+config/local.json
 config/runtime.json
 
 apiary.out.html
