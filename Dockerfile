@@ -5,9 +5,13 @@ FROM ubuntu:14.04
 MAINTAINER Itay Weinberger <itay@joo.la>
 
 # start of by updating packages and installing base packages
+RUN apt-get update -ym
+RUN apt-get upgrade -ym
+RUN apt-get install -y curl build-essential git
+
 RUN \
     curl -sL https://deb.nodesource.com/setup | sudo bash - && \
-    apt-get install -y curl build-essential git nodejs 
+    apt-get install -y nodejs 
 
 # setup needed settings/configuration for stack
 RUN ulimit -n 1024
@@ -28,7 +32,7 @@ RUN mkdir -p /opt/joola/bin /opt/joola/logs
 RUN chown -R joola:joola /opt/joola
 
 # install joola
-COPY . /opt/joola/bin
+COPY ../../ /opt/joola/bin
 RUN \ 
     cd /opt/joola/bin && \
     npm install 
