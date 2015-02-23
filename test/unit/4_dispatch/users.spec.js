@@ -115,7 +115,7 @@ describe("users", function () {
       return done();
     });
   });
-
+  
   it("should fail adding a user with an already existing username", function (done) {
     var user = {
       username: 'tester-' + this.uid,
@@ -307,7 +307,7 @@ describe("users", function () {
     });
   });
 
-  xit("should delete a user", function (done) {
+  it("should delete a user", function (done) {
     var self = this;
     var user = {
       username: 'tester-' + this.uid

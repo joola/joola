@@ -19,8 +19,11 @@ node_modules
 atlassian-ide-plugin.xml
 
 coverage
+!build/coverage
 
+config/local.json
 config/runtime.json
+test/config/local.json
 
 apiary.out.html
 
@@ -45,4 +48,5 @@ pages/docs
 params.json
 search_index.json
 
-build/docker
+data
+

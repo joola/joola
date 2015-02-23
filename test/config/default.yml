@@ -1,17 +1,16 @@
-version: 0.2.1
+version: 0.1.60
 interfaces:
   webserver:
     enabled: true
     welcome: true
-    # host: joola #used for response-header [Server]
     bind: 0.0.0.0
     port: 8080
     secureport: 8081
-    secure: false
-    #secureonly: false
-    #keyfile: ./config/certs/server.key
-    #certfile: ./config/certs/server.crt
-    #ca: ./config/certs/ca.crt
+    secure: true
+    secureonly: false
+    keyfile: ./test/config/certs/server.key
+    certfile: ./test/config/certs/server.crt
+    ca: ./test/config/certs/ca.crt
     sessiondurtaion: 1200000
     timeout: 60000
     blacklist: null

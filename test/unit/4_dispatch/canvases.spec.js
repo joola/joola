@@ -97,10 +97,10 @@ describe("canvas", function () {
         return done(err);
 
       engine.canvases.get(self.context, self.workspace, canvas, function (err, canvas) {
-        if (err)
-          return done();
+        if (canvas)
+          return done(new Error('Failed to delete canvas'));
 
-        return done('Failed to delete canvas');
+        return done();
       });
     });
   });

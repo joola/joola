@@ -23,8 +23,10 @@ describe("common-watchers", function () {
     joola_proxy.statistics = null;
     sleep.sleep(2);
     joola.system.version(function (err, version) {
-      expect(joola_proxy.statistics).to.be.ok;
-      done();
+      setTimeout(function(){
+        expect(joola_proxy.statistics).to.be.ok;
+        done();
+      },1000);
     });
   });
 });

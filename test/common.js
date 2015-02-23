@@ -13,9 +13,7 @@ global.expect = chai.expect;
 
 global.common = exports;
 
-//global.nolog = true;
-
-process.env.NODE_ENV = 'test';
+process.env.JOOLA_NO_DOMAIN = "1";
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; //allow node-request to deal with Error: DEPTH_ZERO_SELF_SIGNED_CERT
 process.env.JOOLA_CONFIG_INTERFACES_WEBSERVER_SECUREONLY = false;
 process.env.JOOLA_CONFIG_AUTHENTICATION_BASICAUTH_ENABLED = true;

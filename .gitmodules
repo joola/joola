@@ -37,3 +37,6 @@
 [submodule "build/cookbooks/erlang"]
 	path = build/cookbooks/erlang
 	url = https://github.com/opscode-cookbooks/erlang.git
+[submodule "wiki"]
+	path = wiki
+	url = https://github.com/joola/joola.wiki.git
