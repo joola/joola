@@ -32,7 +32,7 @@ RUN mkdir -p /opt/joola/bin /opt/joola/logs
 RUN chown -R joola:joola /opt/joola
 
 # install joola
-COPY ../../ /opt/joola/bin
+COPY . /opt/joola/bin
 RUN \ 
     cd /opt/joola/bin && \
     npm install 
