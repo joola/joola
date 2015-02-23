@@ -51,9 +51,8 @@ deploy:
     on:
       tags: true
       branch: master
-script: npm run test:scenario
+script: npm run test:scenario:coverage
 after_success:
-  - npm run test:scenario:coverage
   - node ./build/coverage/aggregate.js
   - npm run coveralls
   - npm run codeclimate
