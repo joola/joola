@@ -29,7 +29,7 @@ $ npm install -g joola
 ```
 
 #### Docker
-Joola can be used as a [Docker](http://www.docker.com) container file to support easy playing around and testing.
+Joola can be used as a [Docker container](https://registry.hub.docker.com/u/joola/joola) file to support easy playing around and testing.
 Docker will pull the latest docker image and run joola in a container for you.
 
 ```bash

@@ -5,14 +5,9 @@ FROM ubuntu:14.04
 MAINTAINER Itay Weinberger <itay@joo.la>
 
 # start of by updating packages and installing base packages
-RUN rm -fR /var/lib/apt/lists/*
-RUN apt-get update -ym
-RUN apt-get upgrade -ym
-RUN apt-get install -y curl build-essential git
-
 RUN \
     curl -sL https://deb.nodesource.com/setup | sudo bash - && \
-    apt-get install -y nodejs 
+    apt-get install -y curl build-essential git nodejs 
 
 # setup needed settings/configuration for stack
 RUN ulimit -n 1024
