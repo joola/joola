@@ -1,4 +1,4 @@
-version: 0.2.1
+version: 0.2.2
 interfaces:
   webserver:
     enabled: true
@@ -52,7 +52,7 @@ store:
       path: /var/log/joola
   datastore:
     mongodb:
-      enabled: true
+      enabled: false
       dsn: mongodb://localhost:27017/cache
       expireafterseconds: 0
     elasticsearch:
