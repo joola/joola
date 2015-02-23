@@ -3,7 +3,6 @@ var
 
 describe("security-permissions-users", function () {
   before(function (done) {
-    /*
     var self = this;
     this.uid = joola.common.uuid();
 
@@ -14,7 +13,7 @@ describe("security-permissions-users", function () {
       };
       self.role_admin = {
         key: 'test-admin-role-' + self.uid,
-        permissions: ['access_system', 'manage_system', 'manage_users', 'users:list']
+        permissions: ['access_system', 'manage_system', 'manage_users', 'users:list', 'users:get', 'users:patch', 'users:delete']
       };
       self.role_guest = {
         key: 'test-guest-role-' + self.uid,
@@ -81,19 +80,17 @@ describe("security-permissions-users", function () {
         joola.users.add(self.workspace.key, self.user_fordelete, callback);
       });
       async.series(calls, done);
-    });*/
-    done();
+    });
   });
 
-  xit("su should be able to list users", function (done) {
+  it("su should be able to list users", function (done) {
     var self = this;
-
-    joola.set('APIToken', 'apitoken-test', function () {
+    joola.set('APIToken', 'apitoken-demo', function () {
       joola.users.list('root', done);
     });
   });
 
-  xit("guest should not be able to list users", function (done) {
+  it("guest should not be able to list users", function (done) {
     var self = this;
 
     joola.set('APIToken', self.user_guest.APIToken, function () {
@@ -106,7 +103,7 @@ describe("security-permissions-users", function () {
     });
   });
 
-  xit("user should not be able to list users", function (done) {
+  it("user should not be able to list users", function (done) {
     var self = this;
 
     joola.set('APIToken', self.user_user.APIToken, function () {
@@ -119,7 +116,7 @@ describe("security-permissions-users", function () {
     });
   });
 
-  xit("admin should be able to list users for its workspace", function (done) {
+  it("admin should be able to list users for its workspace", function (done) {
     var self = this;
 
     joola.set('APIToken', self.user_admin.APIToken, function () {
@@ -132,7 +129,7 @@ describe("security-permissions-users", function () {
     });
   });
 
-  xit("admin should not be able to list users for other workspaces", function (done) {
+  it("admin should not be able to list users for other workspaces", function (done) {
     var self = this;
 
     joola.set('APIToken', self.user_admin.APIToken, function () {
@@ -145,7 +142,7 @@ describe("security-permissions-users", function () {
     });
   });
 
-  xit("user should not be able to get user", function (done) {
+  it("user should not be able to get user", function (done) {
     var self = this;
 
     joola.set('APIToken', self.user_user.APIToken, function () {
@@ -158,7 +155,7 @@ describe("security-permissions-users", function () {
     });
   });
 
-  xit("admin should be able to get users for its workspace", function (done) {
+  it("admin should be able to get users for its workspace", function (done) {
     var self = this;
 
     joola.set('APIToken', self.user_admin.APIToken, function () {
@@ -171,7 +168,7 @@ describe("security-permissions-users", function () {
     });
   });
 
-  xit("admin should not be able to get users for other workspaces", function (done) {
+  it("admin should not be able to get users for other workspaces", function (done) {
     var self = this;
 
     joola.set('APIToken', self.user_admin.APIToken, function () {
@@ -184,11 +181,11 @@ describe("security-permissions-users", function () {
     });
   });
 
-  xit("user should not be able to update user", function (done) {
+  it("user should not be able to update user", function (done) {
     var self = this;
 
     joola.set('APIToken', self.user_user.APIToken, function () {
-      joola.users.patch(self.workspace.key, self.user_admin, function (err, list) {
+      joola.users.patch(self.workspace.key, self.user_admin.username, self.user_admin, function (err, list) {
         if (err)
           return done();
 
@@ -197,11 +194,11 @@ describe("security-permissions-users", function () {
     });
   });
 
-  xit("admin should be able to update users for its workspace", function (done) {
+  it("admin should be able to update users for its workspace", function (done) {
     var self = this;
 
     joola.set('APIToken', self.user_admin.APIToken, function () {
-      joola.users.patch(self.workspace.key, self.user_admin, function (err, user) {
+      joola.users.patch(self.workspace.key, self.user_admin.username, self.user_admin, function (err, user) {
         if (err)
           return done(err);
 
@@ -210,11 +207,11 @@ describe("security-permissions-users", function () {
     });
   });
 
-  xit("admin should not be able to update users for other workspaces", function (done) {
+  it("admin should not be able to update users for other workspaces", function (done) {
     var self = this;
 
     joola.set('APIToken', self.user_admin.APIToken, function () {
-      joola.users.patch('root', self.user_admin, function (err, list) {
+      joola.users.patch('root', self.user_admin.username, self.user_admin, function (err, list) {
         if (err)
           return done();
 
@@ -223,11 +220,11 @@ describe("security-permissions-users", function () {
     });
   });
 
-  xit("user should not be able to delete user", function (done) {
+  it("user should not be able to delete user", function (done) {
     var self = this;
 
     joola.set('APIToken', self.user_user.APIToken, function () {
-      joola.users.delete(self.workspace.key, self.user_fordelete, function (err, list) {
+      joola.users.delete(self.workspace.key, self.user_fordelete.username, function (err, list) {
         if (err)
           return done();
 
@@ -236,11 +233,11 @@ describe("security-permissions-users", function () {
     });
   });
 
-  xit("admin should be able to delete users for its workspace", function (done) {
+  it("admin should be able to delete users for its workspace", function (done) {
     var self = this;
 
     joola.set('APIToken', self.user_admin.APIToken, function () {
-      joola.users.delete(self.workspace.key, self.user_fordelete, function (err, list) {
+      joola.users.delete(self.workspace.key, self.user_fordelete.username, function (err, list) {
         if (err)
           return done(err);
 
@@ -249,11 +246,11 @@ describe("security-permissions-users", function () {
     });
   });
 
-  xit("admin should not be able to delete users for other workspaces", function (done) {
+  it("admin should not be able to delete users for other workspaces", function (done) {
     var self = this;
 
     joola.set('APIToken', self.user_admin.APIToken, function () {
-      joola.users.delete('root', self.user_fordelete, function (err, list) {
+      joola.users.delete('root', self.user_fordelete.username, function (err, list) {
         if (err)
           return done();
 

@@ -7,14 +7,13 @@ describe("security-apitokens", function () {
     this.uid = joola.common.uuid();
 
     joola.set('APIToken', 'apitoken-demo', function () {
-
       self.workspace = {
         key: 'test-org-apitoken-' + self.uid,
         name: 'test-org-apitoken-' + self.uid
       };
       self.role = {
         key: 'test-user-role-' + self.uid,
-        permissions: ['access_system']
+        permissions: ['access_system', 'system:version']
       };
       self.user = {
         username: 'test-user-' + self.uid,
@@ -38,7 +37,7 @@ describe("security-apitokens", function () {
     });
   });
 
-  xit("should be able to use a newly created APIToken", function (done) {
+  it("should be able to use a newly created APIToken", function (done) {
     var self = this;
 
     joola.set('APIToken', 'user-' + self.uid, function () {
