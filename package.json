@@ -165,7 +165,7 @@
     "zombie": "*",
     "watch": "^0.13.0",
     "github-changes": "latest"
-  },
+  }, 
   "engines": {
     "node": "0.10.*"
   },
