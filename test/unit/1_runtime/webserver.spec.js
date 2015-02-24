@@ -52,7 +52,7 @@ describe("webserver", function () {
       if (err)
         return done(err);
 
-      expect(response.statusCode).to.equal(200);
+      expect(response.statusCode).to.equal(404);
       done();
     });
   });
@@ -62,7 +62,7 @@ describe("webserver", function () {
       if (err)
         return done(err);
 
-      expect(response.statusCode).to.equal(200);
+      expect(response.statusCode).to.equal(404);
       done();
     });
   });
