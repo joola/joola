@@ -1,7 +1,7 @@
 var
   async = require('async');
 
-describe("security-permissions-users", function () {
+describe("users", function () {
   before(function (done) {
     var self = this;
     this.uid = joola.common.uuid();

@@ -34,7 +34,7 @@
     "test:scenario:elasticsearch": "NODE_CONFIG_DIR=$(pwd)/test/config NODE_ENV=elasticsearch npm run test:quiet",
     "test:scenario:zookeeper": "NODE_CONFIG_DIR=$(pwd)/test/config NODE_ENV=zookeeper npm run test",
     "test:scenario:cluster_node": "NODE_CONFIG_DIR=$(pwd)/test/config NODE_ENV=cluster_node npm run test:quiet",
-    "test:scenario:coverage": "npm run test:scenario:standalone:coverage && npm run test:scenario:mongodb:coverage && npm run test:scenario:elasticsearch:coverage && npm run test:scenario:zookeeper:coverage && npm run test:scenario:cluster_node:coverage",
+    "test:scenario:coverage": "npm run test:scenario:standalone:coverage && npm run test:scenario:mongodb:coverage && npm run test:scenario:elasticsearch:coverage && npm run test:scenario:zookeeper:coverage && npm run test:scenario:cluster_node:coverage && npm run aggregatecoverage",
     "test:scenario:standalone:coverage": "redis-cli flushall && JOOLA_CONFIG_STORE_LOGGER_CONSOLE_LEVEL=error NODE_CONFIG_DIR=$(pwd)/test/config NODE_ENV=standalone istanbul cover --dir ./coverage/scenario_standalone ./node_modules/.bin/_mocha -- -R dot test",
     "test:scenario:mongodb:coverage": "redis-cli flushall && JOOLA_CONFIG_STORE_LOGGER_CONSOLE_LEVEL=error NODE_CONFIG_DIR=$(pwd)/test/config NODE_ENV=mongodb istanbul cover --dir ./coverage/scenario_mongodb ./node_modules/.bin/_mocha -- -R dot test",
     "test:scenario:elasticsearch:coverage": "redis-cli flushall && JOOLA_CONFIG_STORE_LOGGER_CONSOLE_LEVEL=error NODE_CONFIG_DIR=$(pwd)/test/config NODE_ENV=elasticsearch istanbul cover --dir ./coverage/scenario_elasticsearch ./node_modules/.bin/_mocha -- -R dot test",
@@ -86,7 +86,8 @@
     "lint": "jshint --exclude ./lib/webserver/public ./lib ./test",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "codeclimate": "CODECLIMATE_REPO_TOKEN=b0cf984d93693c3e827901f766ca1f13b6acca03a3786b5e187356e66e8ffbec codeclimate < ./coverage/lcov.info",
-    "env": "env"
+    "env": "env",
+    "aggregatecoverage": "node ./build/coverage/aggregate.js"
   },
   "bin": {
     "joola": "./node_modules/joola.cli/joola",
@@ -164,7 +165,7 @@
     "zombie": "*",
     "watch": "^0.13.0",
     "github-changes": "latest"
-  },
+  }, 
   "engines": {
     "node": "0.10.*"
   },

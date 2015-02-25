@@ -83,8 +83,8 @@ workspaces:
     name: joola Framework Tests
     description: Workspace for internal joola tests
     roles:
-      root:
-        key: "root"
+      test:
+        key: "test"
         permissions:
           - "beacon:insert"
           - "query:fetch"
@@ -92,18 +92,19 @@ workspaces:
           - "collections:list"
           - "collections:get"
           - "system:version"
+          - "superuser"
         filter: []
       user:
         key: "users"
         permissions:
           - "query:fetch"
     users:
-      root:
-        username: "root"
+      test:
+        username: "test"
         password: "password"
         roles:
-          - "root"
-        displayName: "Administrator"
+          - "test"
+        displayName: "internal test user"
         APIToken: "apitoken-test"
         ratelimit: 9999999999
   _stats:

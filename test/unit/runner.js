@@ -41,7 +41,7 @@ before(function (done) {
       });
       joola.events.on('ready', function () {
         global.user = joola.USER;
-        global.user.permissions = [''];
+        global.user.permissions = ['superuser'];
         global._token = {
           user: global.user
         };
