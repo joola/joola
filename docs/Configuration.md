@@ -112,7 +112,7 @@ $ node Joola --store:cache:mongodb:host=lab05
 # stores.config.mongodb.host = lab05
 ```
 
-# Changing configuration during runtime
+# Runtime configuration
 The best way to apply configuration changes is via the SDK.
 
 ```js
@@ -163,9 +163,9 @@ stores:
 ```
 Following the update, all nodes will be connecting to `lab02`.
 
-# SSL
+# SSL certificates
 
-## SSL Certificates for Public/Production
+## Public/Production deployment
 You will need to obtain a valid SSL certificate and place it somewhere on the filesystem for Joola to find. 
  
 In the configuration file, please set the following values:
@@ -175,7 +175,7 @@ interfaces:webserver:keyfile = <path-to-your-keyfile>
 interfaces:webserver:certfile = <path-to-your-certificate>
 ```
 
-## SSL Certificates for Local Development
+## Local development
 The default installation includes SSL certificates to support `localhost` development. These certificates were produced in our labs and you'd probably need to change them to yours to enable easy development.
 It's important to note that the default certificates should not and cannot be used in production to protect your servers, their only purpose is to allow easy development by the community.
 
