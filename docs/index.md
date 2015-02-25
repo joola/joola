@@ -12,7 +12,7 @@ Push events of any type (visits, registrations, purchases, game play and more...
 
 - [Introduction](About.html)
 - [Download & install](Download.html)
-- [Configuration & discovery](Configuration.html)
+- [Configuration](Configuration.html)
 - [Scaling & clustering](Configuration.html)
 - [Data stores]()
 - [Website integration]()
@@ -22,4 +22,4 @@ Push events of any type (visits, registrations, purchases, game play and more...
 Joola's intuitive and powerful query API allows you to explore, analyze and visualize your data and the SDK includes powerful visualizations for gaining insight.
 You can use, add, modify and extend visualizations according to your needs.
 
-Get started now with [installing your copy of Joola](Installing.html).
+Get started now with [installing your copy of Joola](Download.html).
