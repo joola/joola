@@ -20,3 +20,5 @@ Makefile
 joola.js
 
 _site
+
+coverage
