@@ -2091,3 +2091,8 @@ body {
 .markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link, .markdown-body h3:hover .anchor .octicon-link, .markdown-body h4:hover .anchor .octicon-link, .markdown-body h5:hover .anchor .octicon-link, .markdown-body h6:hover .anchor .octicon-link {
   display: inline-block;
 }
+
+.documentation.markdown-body.show-lists ul {
+  list-style: disc;
+  padding-left:40px;
+}
