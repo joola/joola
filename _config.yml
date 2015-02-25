@@ -35,7 +35,7 @@ excerpt_separator: "\n\n"
 
 # Serving
 detach:  false
-baseurl: "/joola" # does not include hostname
+#baseurl: "/joola" # does not include hostname
 
 # Backwards-compatibility
 relative_permalinks: false

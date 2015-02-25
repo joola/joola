@@ -2,7 +2,7 @@
 
 layout: doc
 title: About the Joola project
-description: Learn how to configure Joola to your needs and scale.
+description: Read about Joola development and how you can help.
 
 ---
 
@@ -26,14 +26,6 @@ Our goal is to create brilliant software and we setup an end-to-end software dev
 the life-cycle we have here at joo.la labs. This is an internal process and describe steps that are relevant not only to the Joola framework development, but also to commercial implementations.
 On top of the process described we have our community contributions that act as a key part of the software development path. 
 We believe that sharing information about our internal processes with the community will not only make our process better, but also allow the community to benefit from it.
-
-- [Testing](code-testing)
-- [Code Style](code-style-guidelines)
-- [Versioning](versioning)
-- [Release and publish](software-release-process)
-- [[Deployment]]
-- [[monitoring-and-alerts]]
-- [Roadmap](product-roadmap)
 
 ## Assess Needs
 The first step in the process is to assess the needs of this iteration. What tasks, defects, milestones, etc... we have to cover during the iteration. 
@@ -84,7 +76,7 @@ Joola is open source software - we welcome contributors! Some things you might l
 Have an idea for Joola? Found a bug? We encourage you to start a conversation on the [Joola Google Group] [joola-user] or to file a [new issue on GitHub] [new-issue] before writing code.
 Announcing what you're working on (or even just your need or pain points) starts a collaborative process to identify general solutions and helps us all avoid duplicating effort.
 
-Let's build Joola and grow our community, together. You can find other ways of joining the conversation on our [[Talk to us]] page.
+Let's build Joola and grow our community, together.
 
 ## Contributor License Agreement
 
