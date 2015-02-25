@@ -10,15 +10,14 @@ Joola allows you to focus on developing your product and what you do best while 
 
 Push events of any type (visits, registrations, purchases, game play and more...) to Joola using a simple JSON format and then, using the SDK or REST API, explore and visualize your data.
 
-- [How does Joola work?](How.html)
-- [Download & install](Installing.html)
+- [Introduction](About.html)
+- [Download & install](Download.html)
 - [Configuration & discovery](Configuration.html)
 - [Scaling & clustering](Configuration.html)
 - [Data stores]()
 - [Website integration]()
 - [REST API](http://docs.joola.apiary.io)
 - [SDK documentation](SDK.html)
-- [About the project](About.html)
 
 Joola's intuitive and powerful query API allows you to explore, analyze and visualize your data and the SDK includes powerful visualizations for gaining insight.
 You can use, add, modify and extend visualizations according to your needs.
