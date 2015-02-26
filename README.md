@@ -1,4 +1,4 @@
-<img src="http://i.imgur.com/PrqIYX7.png" alt="Joola logo" title="Joola" align="center" />
+![Joola](http://i.imgur.com/PrqIYX7.png)
 
 [Joola][22] is a real-time data analytics and visualization framework allowing you to quickly build custom, embedded data analytics applications.
 
