@@ -18,6 +18,7 @@ config/test.yml
 config/development.json
 config/test.json
 config/certs/goo.pem
+config/local.json
 
 .vagrant
 Dockerfile
@@ -34,3 +35,6 @@ Makefile
 joola-data.json
 
 data
+
+inch.json
+_site
