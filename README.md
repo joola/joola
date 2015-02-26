@@ -18,14 +18,14 @@
 - **Secure**, role-based, multi-tenant, data segregation.
 - **Extend**, easy to add more data sources, authentication and cache middleware.
 
-- [Introduction](About.html)
-- [Download & install](Download.html)
-- [Configuration](Configuration.html)
-- [Scaling & clustering](Configuration.html)
-- [Data stores]()
-- [Website integration]()
-- [REST API](http://docs.joola.apiary.io)
-- [SDK documentation](SDK.html)
+[Introduction](About.html)
+[Download & install](Download.html)
+[Configuration](Configuration.html)
+[Scaling & clustering](Configuration.html)
+[Data stores]()
+[Website integration]()
+[REST API](http://docs.joola.apiary.io)
+[SDK documentation](SDK.html)
 
 ### Getting Started
 
@@ -74,7 +74,7 @@ $ curl http://localhost:8080/system/version?APIToken=apitoken-demo
 { "version": "joola version 0.9.0" }
 ```
 
-[**Learn more about getting started with joola**](http://github.com/joola/joola/wiki/technical-documentation)
+[**Learn more about getting started with joola**]()
 
 ### Push your first event
 
@@ -97,7 +97,7 @@ $ curl \
      http://localhost:8080/beacon/demo/demo?APIToken=apitoken-demo
 ```
 
-[**Learn more about pushing data**](http://github.com/joola/joola/wiki/pushing-data)
+[**Learn more about pushing data**]()
 
 ### Draw your first visualization
 
@@ -123,7 +123,7 @@ joola.on('ready', function(err) {
 </script>
 ```
 
-[**Learn more about analytics and visualizations**](http://github.com/joola/joola/wiki/analytics-and-visualization)
+[**Learn more about analytics and visualizations**]()
 
 ### Contributing
 We would love to get your help! We have outlined a simple [Contribution Policy][18] to support a transparent and easy merging
