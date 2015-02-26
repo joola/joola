@@ -2,7 +2,7 @@
 
 layout: doc
 title: About the Joola project
-description: Read about Joola development and how you can help.
+description: Read about our project, architecture & concept and ways you can contribute.
 
 ---
 
@@ -338,9 +338,10 @@ solve problems and help make Joola awesome.
 Here are the main channels we're running currently, we'd love to hear from you on one of them:
 
 - [![Gitter chat](https://badges.gitter.im/joola/joola.png)](https://gitter.im/joola/joola)
-- [@getjoola] [joola-twitter]
+- @itayw and @orjoola on GitHub.
+- [@getjoola] [joola-twitter] on twitter.
 
-
+Get started now with [installing your copy of Joola](Download.html).
 
 [license]: https://github.com/joola/joola/blob/master/LICENSE.md
 

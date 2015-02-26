@@ -2096,3 +2096,12 @@ body {
   list-style: disc;
   padding-left:20px;
 }
+
+.documentation.markdown-body.show-lists ul.toc{
+  list-style: none;
+  padding-left: 0;
+}
+
+.documentation.markdown-body .table th, .documentation.markdown-body .table td {
+  font-size: 16px;
+}

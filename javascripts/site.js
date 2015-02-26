@@ -23,12 +23,19 @@ function setupDocumentationLinks() {
 }
 
 function setupDocumentation() {
-  if (location.href.toLowerCase().indexOf('rest-api.html') > -1)
-    setupDocumentationREST();
-  else
-    setupDocumentationNormal();
-
+  setupDocumentationNormal();
   setupDocumentationLinks();
+  setupTOC();
+}
+
+function setupTOC(){
+  var $toc = $('<ul class="toc"></ul>');
+  $('.markdown-body h1').each(function(){
+    var $this = $(this);
+var $link = $('<li><a href="#'+$this.attr('id')+'">'+$this.text()+'</a></li>');
+    $toc.append($link);
+  });
+  $($('.markdown-body h1')[0]).before($toc);
 }
 
 function setupDocumentationNormal() {
@@ -73,8 +80,6 @@ function setupDocumentationNormal() {
       $a.attr('href', '#' + anchor);
       $a.text($this.text());
       $li.append($a);
-      //if (i === 0)
-      // $li.addClass('active');
       if (sub_items.length > 0) {
         var $ul = $('<ul class="nav"></ul>');
         sub_items.forEach(function (item) {
@@ -94,84 +99,6 @@ function setupDocumentationNormal() {
   $('#list-items').append($li);
   list_items.forEach(function ($li) {
     $('#list-items').append($li);
-  });
-}
-
-function setupDocumentationREST() {
-  var trailingHeadings = function (elem, tag) {
-    var stop = false;
-    var counter = 0;
-    var sub_items = [];
-    var $next = elem;
-    while (!stop && ++counter < 100) {
-      $next = $($next.next());
-      if (!$next)
-        stop = true;
-      if ($next.prop('tagName') === tag) {
-        if ($next && $next.text) {
-          var anchor = $next.text().replace(/\W+/g, '-').replace(/\s/g, '-');
-          $next.attr('id', anchor);
-          var $li = $('<li></li>');
-          var $a = $('<a></a>');
-          $a.attr('href', '#' + anchor);
-          $a.text($next.text());
-          $li.append($a);
-          sub_items.push($li.get(0));
-        }
-      }
-      else if ($next.prop('tagName') === 'H1') {
-        stop = true;
-      }
-    }
-    return sub_items;
-  };
-
-  var list_items = [];
-  $('.markdown-body h1').each(function (i) {
-    var $this = $(this);
-    var sub_items = null;
-    if ($this && $this.text) {
-      if ($this.text().indexOf('Group') > -1)
-        sub_items = trailingHeadings($this, 'H3');
-      else
-        sub_items = trailingHeadings($this, 'H2');
-
-      var anchor = $this.text().replace(/\W+/g, '-').replace(/\s/g, '-');
-      $this.attr('id', anchor);
-      var $li = $('<li></li>');
-      var $a = $('<a></a>');
-      $a.attr('href', '#' + anchor);
-      $a.text($this.text().replace('Group ', ''));
-      $li.append($a);
-      //if (i === 0)
-      // $li.addClass('active');
-      if (sub_items.length > 0) {
-        var $ul = $('<ul class="nav"></ul>');
-        sub_items.forEach(function (item) {
-          $ul.append(item);
-        });
-        $li.append($ul);
-      }
-      list_items.push($li);
-    }
-  });
-  var $li = $('<li></li>');
-  var $a = $('<a></a>');
-  $a.attr('href', '#overview');
-  $li.addClass('active');
-  $a.text('Overview');
-  $li.append($a);
-  $('#list-items').append($li);
-  list_items.forEach(function ($li) {
-    $('#list-items').append($li);
-  });
-  $('code.language-text').addClass('prettyprint');
-  $('.markdown-body table').addClass('table table-bordered table-striped');
-  $('.markdown-body h1').each(function () {
-    var $this = $(this);
-    var caption = $this.text();
-    caption = caption.replace('Group ', '');
-    $this.text(caption);
   });
 }
 
@@ -193,6 +120,8 @@ function setupAffix() {
 jQuery(document).ready(function () {
   prettyPrint();
   jQuery('abbr.timeago').timeago();
+
+  $('table').addClass('table table-striped table-bordered');
 
   setupSearch();
   setupDocumentation();

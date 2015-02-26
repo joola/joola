@@ -146,3 +146,5 @@ $ curl http://localhost:8080/system/version?APIToken=apitoken-demo
 
 { "version": "joola version 0.9.0" }
 ```
+
+Get started [configuring your Joola](Configuration.html).
