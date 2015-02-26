@@ -1,12 +1,21 @@
-<img src="http://i.imgur.com/PrqIYX7.png" alt="joola logo" title="joola" align="center" />
+<img src="http://i.imgur.com/PrqIYX7.png" alt="Joola logo" title="Joola" align="center" />
 
-[joola][22] is a real-time data analytics and visualization framework allowing you to quickly save, query and visualize your data.
+[Joola][22] is a real-time data analytics and visualization framework allowing you to quickly build custom, embedded data analytics applications.
 
-- **Simple**, flexible and powerful JSON to describe your data and push to joola.
+- **Simple**, flexible and powerful JSON to describe your data and push to Joola.
 - Our **intuitive query** JSON syntax makes it easy to analyze or visualize your data in blazing speed.
 - Seamlessly **embeddable** into existing sites, including single-sign-on and advanced features.
 
 [![Gitter chat](https://badges.gitter.im/joola/joola.png)](https://gitter.im/joola/joola) [![Build Status][3]][4] [![Coverage Status](https://coveralls.io/repos/joola/joola/badge.svg?branch=develop)](https://coveralls.io/r/joola/joola) [![Code Climate](https://codeclimate.com/github/joola/joola/badges/gpa.svg)](https://codeclimate.com/github/joola/joola) [![Inline docs](http://inch-ci.org/github/joola/joola.svg?branch=develop)](http://inch-ci.org/github/joola/joola)
+
+- [Introduction](About.html)
+- [Download & install](Download.html)
+- [Configuration](Configuration.html)
+- [Scaling & clustering](Configuration.html)
+- [Data stores]()
+- [Website integration]()
+- [REST API](http://docs.joola.apiary.io)
+- [SDK documentation](SDK.html)
 
 ### Main Features
 
@@ -18,15 +27,6 @@
 - **Secure**, role-based, multi-tenant, data segregation.
 - **Extend**, easy to add more data sources, authentication and cache middleware.
 
-[Introduction](About.html)
-[Download & install](Download.html)
-[Configuration](Configuration.html)
-[Scaling & clustering](Configuration.html)
-[Data stores]()
-[Website integration]()
-[REST API](http://docs.joola.apiary.io)
-[SDK documentation](SDK.html)
-
 ### Getting Started
 
 ```bash
@@ -35,14 +35,14 @@ $ npm install -g joola
 
 #### Docker
 Joola can be used as a [Docker container](https://registry.hub.docker.com/u/joola/joola) file to support easy playing around and testing.
-Docker will pull the latest docker image and run joola in a container for you.
+Docker will pull the latest docker image and run Joola in a container for you.
 
 ```bash
 $ docker run -p 8080:8080 -it joola/joola
 ```
 
 #### Vagrant
-We have included a [Vagrant](http://www.vagrantup.com) file to support easy playing around and testing. Running `vagrant up` will install all needed dependencies and allow you to run joola in a sand boxed virtual environment.
+We have included a [Vagrant](http://www.vagrantup.com) file to support easy playing around and testing. Running `vagrant up` will install all needed dependencies and allow you to run Joola in a sand boxed virtual environment.
 
 ```bash
 # Clone this repository
@@ -74,7 +74,7 @@ $ curl http://localhost:8080/system/version?APIToken=apitoken-demo
 { "version": "joola version 0.9.0" }
 ```
 
-[**Learn more about getting started with joola**]()
+[**Learn more about getting started with Joola**](http://github.com/joola/joola/wiki/technical-documentation)
 
 ### Push your first event
 
@@ -97,7 +97,7 @@ $ curl \
      http://localhost:8080/beacon/demo/demo?APIToken=apitoken-demo
 ```
 
-[**Learn more about pushing data**]()
+[**Learn more about pushing data**](http://github.com/joola/joola/wiki/pushing-data)
 
 ### Draw your first visualization
 
@@ -123,13 +123,13 @@ joola.on('ready', function(err) {
 </script>
 ```
 
-[**Learn more about analytics and visualizations**]()
+[**Learn more about analytics and visualizations**](http://github.com/joola/joola/wiki/analytics-and-visualization)
 
 ### Contributing
 We would love to get your help! We have outlined a simple [Contribution Policy][18] to support a transparent and easy merging
 of ideas, code, bug fixes and features.
 
-If you've discovered a security vulnerability in joola, we appreciate your help in disclosing it to us in a responsible manner via our [Bounty Program](https://hackerone.com/joola-io).
+If you've discovered a security vulnerability in Joola, we appreciate your help in disclosing it to us in a responsible manner via our [Bounty Program](https://hackerone.com/joola-io).
 
 If you're looking for a place to start, you can always go over the list of [open issues][17], pick one and get started.
 If you're feeling lost or unsure, [just let us know](#Contact).
