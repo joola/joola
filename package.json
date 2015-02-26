@@ -1,9 +1,9 @@
 {
   "name": "joola",
-  "preferGlobal": false,
+  "preferGlobal": true,
   "version": "0.8.6",
   "author": "Joola <info@joo.la>",
-  "description": "The open-source data visualization framework",
+  "description": "Custom data analytics solution built for today's market needs and scale.",
   "private": false,
   "repository": {
     "type": "git",
@@ -90,8 +90,7 @@
     "aggregatecoverage": "node ./build/coverage/aggregate.js"
   },
   "bin": {
-    "joola": "./node_modules/joola.cli/joola",
-    "joola-service": "./joola.js"
+    "joola": "./joola.js"
   },
   "main": "./joola.js",
   "keywords": [
@@ -99,7 +98,13 @@
     "analytics",
     "big-data",
     "visualization",
-    "noSQL"
+    "nosql",
+    "cluster",
+    "mongodb",
+    "elasticsearch",
+    "realtime",
+    "chart",
+    "graph"
   ],
   "dependencies": {
     "async": "*",
@@ -162,7 +167,7 @@
     "zombie": "*",
     "watch": "^0.13.0",
     "github-changes": "latest"
-  }, 
+  },
   "engines": {
     "node": "0.10.*"
   },
