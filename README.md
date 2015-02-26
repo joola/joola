@@ -8,10 +8,6 @@
 
 [![Gitter chat](https://badges.gitter.im/joola/joola.png)](https://gitter.im/joola/joola) [![Build Status][3]][4] [![Coverage Status](https://coveralls.io/repos/joola/joola/badge.svg?branch=develop)](https://coveralls.io/r/joola/joola) [![Code Climate](https://codeclimate.com/github/joola/joola/badges/gpa.svg)](https://codeclimate.com/github/joola/joola) [![Inline docs](http://inch-ci.org/github/joola/joola.svg?branch=develop)](http://inch-ci.org/github/joola/joola)
 
-| **[Technical Docs] [techdocs]**     | **[Setup Guide] [setup]**     | **[API Docs] [api-docs]**           | **[Contributing] [contributing]**           | **[About joola] [about]**     |
-|-------------------------------------|-------------------------------|-----------------------------------|---------------------------------------------|-------------------------------------|
-| [![i1] [techdocs-image]] [techdocs] | [![i2] [setup-image]] [setup] | [![i3] [api-docs-image]] [api-docs] | [![i4] [contributing-image]] [contributing] | [![i5] [about-image]] [about] |
-
 ### Main Features
 
 - **Big-data**, supports distributed caching and processing to cope with big-data needs.
@@ -21,6 +17,15 @@
 - **Scalable**, run on a single machine or a node-based matrix.
 - **Secure**, role-based, multi-tenant, data segregation.
 - **Extend**, easy to add more data sources, authentication and cache middleware.
+
+- [Introduction](About.html)
+- [Download & install](Download.html)
+- [Configuration](Configuration.html)
+- [Scaling & clustering](Configuration.html)
+- [Data stores]()
+- [Website integration]()
+- [REST API](http://docs.joola.apiary.io)
+- [SDK documentation](SDK.html)
 
 ### Getting Started
 
