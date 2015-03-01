@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: hp
 ---
 
 <section>
@@ -14,10 +14,11 @@ layout: default
           </h2>
         </div>
         <div class="col-md-3">
+          <a href="{{ "/docs/intro/download.html" | prepend: site.baseurl }}" class="btn btn-default btn-lg btn-primary"><span
+              class="octicon octicon-cloud-download"></span>Download & Install</a>
           <a href="http://github.com/joola/joola" class="btn btn-default btn-lg btn-primary"><span
               class="octicon octicon-mark-github"></span>View project on GitHub</a>
-          <a href="/docs/Download.md" class="btn btn-default btn-lg btn-primary"><span
-              class="octicon octicon-cloud-download"></span>Download & install</a>
+
         </div>
       </div>
     </div>
@@ -74,7 +75,7 @@ layout: default
         <span class="mega-octicon octicon-puzzle"></span>
         <h4>Agnostic</h4>
 
-        <p>Designed to work with existing data stores such as MongoDB, ElasticSearch, Hadoop and more.</p>
+        <p>Designed to work with existing data stores such as <a href="{{ "/docs/scale/mongodb.html" | prepend: site.baseurl }}">MongoDB</a>, <a href="{{ "/docs/intro/elasticsearch.html" | prepend: site.baseurl }}">ElasticSearch</a>, Hadoop and more.</p>
       </div>
       <div class="col-md-4">
         <span class="mega-octicon octicon-rocket"></span>
@@ -86,7 +87,7 @@ layout: default
         <span class="mega-octicon octicon-lock"></span>
         <h4>Secure</h4>
 
-        <p>Offer secure analytics for your users using Joola's multi-tenancy, single-sign-on and advanced permissions.</p>
+        <p>Offer secure analytics for your users using Joola's multi-tenancy, single-sign-on and roles.</p>
       </div>
     </div>
 

@@ -1491,6 +1491,12 @@ section h1 {
     border-top:1px solid #dedede;
   }
 
+  .navbar-nav > li > .dropdown-menu > li.seperator {
+    padding-left:20px;
+    color:#999;
+    cursor: default;
+  }
+
   .navbar-nav > li > .dropdown-menu > li a {
     color: #4C4C4C;
     white-space: normal;
@@ -1775,7 +1781,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
 @media (min-width: 768px) {
   .bs-docs-header {
     padding-top: 60px;
-    padding-bottom: 60px;
+
     font-size: 24px;
     text-align: left;
   }
@@ -1787,13 +1793,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
 }
 
 @media (min-width: 992px) {
-  .bs-docs-header h1, .bs-docs-header p {
-    margin-right: 380px;
-  }
 
-  .bs-docs-header h1, .bs-docs-header p {
-    margin-right: 380px;
-  }
 }
 
 body {
@@ -2014,8 +2014,9 @@ background-position: 15px 20px;
 
 .nav.bs-docs-sidenav li {
   padding-left: 0;
-   padding-right: 0;
-   padding-bottom: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  white-space: nowrap;
 }
 
 body {
@@ -2121,7 +2122,7 @@ body {
 
 }
 
-.container.header-wrapper{
+.hp .container.header-wrapper{
   border-bottom:1px solid #dedede;
 }
 
