@@ -3,8 +3,8 @@
 [Joola][22] is a real-time data analytics and visualization framework allowing you to quickly build custom, embedded data analytics applications.
 
 - **Simple**, flexible and powerful JSON to describe your data and push to Joola.
-- Our **intuitive query** JSON syntax makes it easy to analyze or visualize your data in blazing speed.
-- Seamlessly **embeddable** into existing sites, including single-sign-on and advanced features.
+- **Intuitive query** using JSON syntax makes it easy to analyze or visualize your data in blazing speed.
+- **Embed** seamlessly into existing sites, including single-sign-on and advanced features.
 
 [![Gitter chat](https://badges.gitter.im/joola/joola.png)](https://gitter.im/joola/joola) [![Build Status][3]][4] [![Coverage Status](https://coveralls.io/repos/joola/joola/badge.svg?branch=develop)](https://coveralls.io/r/joola/joola) [![Code Climate](https://codeclimate.com/github/joola/joola/badges/gpa.svg)](https://codeclimate.com/github/joola/joola) [![Inline docs](http://inch-ci.org/github/joola/joola.svg?branch=develop)](http://inch-ci.org/github/joola/joola)
 
