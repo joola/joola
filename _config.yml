@@ -82,10 +82,3 @@ kramdown:
     coderay_tab_width:         4
     coderay_bold_every:        10
     coderay_css:               style
-
-gollum:
-  folder: '_data/wiki'
-  page_yaml:
-    layout: page
-  post_yaml:
-    layout: post

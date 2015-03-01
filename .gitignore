@@ -7,8 +7,6 @@ build
 config
 pages
 test
-wiki
-
 
 *.apib
 *.json
