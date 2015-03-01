@@ -1274,12 +1274,6 @@ section.feature-block {
   -moz-transition: all 0.2s ease-in-out;
 }
 
-.navbar {
-  box-shadow: 0 0 7px rgba(0, 0, 0, 0.1) !important;
-  -moz-box-shadow: 0 0 7px rgba(0, 0, 0, 0.1) !important;
-  -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.1) !important;
-}
-
 .nav > li > a.menulink, .nav > li > a.menulink {
   color: #2980B9;
   transition: all 0.4s ease;
@@ -1305,7 +1299,7 @@ section.feature-block {
 }
 
 .header-wrapper {
-  padding-top: 20px;
+  padding-top: 10px;
   padding-bottom: 0;
 }
 
@@ -1322,15 +1316,12 @@ section.feature-block {
   margin-right: auto;
 }
 
-section {
+section:first-of-type {
   margin-top: 20px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  margin-bottom: 20px;
 }
 
 section:last-of-type {
-  margin-bottom: 0;
+  padding-bottom: 50px;
 }
 
 #hero {
@@ -1477,6 +1468,12 @@ section h1 {
     right: auto;
   }
 
+  ul.nav li.dropdown:hover > ul.dropdown-menu
+  {
+    padding-top:0;
+    padding-bottom:0;
+  }
+
   .navbar-nav > li > .dropdown-menu {
     margin-top: 0;
     border-top: 3px solid #2980B9;
@@ -1489,10 +1486,9 @@ section h1 {
   .navbar-nav > li > .dropdown-menu > li {
     padding-top: 5px;
     padding-bottom: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
     color: #4C4C4C;
     width: 220px;
+    border-top:1px solid #dedede;
   }
 
   .navbar-nav > li > .dropdown-menu > li a {
@@ -1511,11 +1507,11 @@ section h1 {
 
   .navbar-nav > li > .dropdown-menu > li:first-of-type {
 
-    margin-top: 10px;
+
   }
 
   .navbar-nav > li > .dropdown-menu > li:last-of-type {
-    margin-bottom: 10px;
+
   }
 
   .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
@@ -2105,3 +2101,128 @@ body {
 .documentation.markdown-body .table th, .documentation.markdown-body .table td {
   font-size: 16px;
 }
+
+@media (min-width: 1200px){
+  .container {
+    width: 970px;
+  }
+}
+
+.navbar-nav{
+  margin-top:20px;
+}
+
+.navbar-brand > img{
+  height:65px;
+}
+
+.navbar {
+  border-top:5px solid #2C3E50;
+
+}
+
+.container.header-wrapper{
+  border-bottom:1px solid #dedede;
+}
+
+section , .container{
+  padding-left:0;
+  padding-right:0;
+}
+
+section .container.intro .well {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding-left:30px;
+  padding-right:80px;
+}
+
+section .container.intro .well h3{
+  margin-top:0;
+  font-size:23px;
+  color:#8D8D8D;
+  }
+
+section .container.intro .well h2{
+  margin-top:0;
+  font-size:20px;
+  color:#8D8D8D;
+  font-weight: 200;
+}
+
+
+
+section .container.intro .well .btn {
+  width:230px;
+  margin-bottom:5px;
+  text-align:left;
+  font-size:16px;
+  font-weight: bold;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin-right: 50px;
+}
+
+section#hpdemo [jio-type=table] .controls, section#hpdemo [jio-type=table] .paging{
+  display:none;
+
+}
+
+section#hpdemo {
+  font-size:14px;
+}
+
+.terminal.flowing .terminal-text .terminal-wrapper {
+
+}
+
+section.tagline{
+  margin-top:20px;
+}
+
+section.tagline h3{
+  font-size:20px;
+  margin-top:0;
+  margin-bottom:20px;
+}
+
+section.tagline h4{
+margin-top:0;
+}
+section.tagline p {
+  font-weight: 200;
+}
+
+section.tagline .features p{
+  text-align: left;
+  font-size:16px;
+}
+
+section .intro .octicon{
+  margin-right: 5px;
+  font-size: 20px;
+}
+
+section.tagline .features{
+  margin-top:20px;
+}
+
+.navbar-nav > li > .dropdown-menu{
+  margin-left:-20px;
+}
+
+.row.footer {
+  padding-bottom:0;
+}
+
+section.tagline .features .mega-octicon{
+  float:left;
+  margin-top:10px;
+  color:#2980B9;
+}
+
+section.tagline .features h4, section.tagline .features p{
+  margin-left:50px;
+}
+
