@@ -7,30 +7,85 @@
         <button type="button" data-toggle="collapse" data-target="#navbar-collapse" class="navbar-toggle">
           <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span>
           <span class="icon-bar"></span><span class="icon-bar"></span></button>
-        <a href="{{ "/" | prepend: site.baseurl }}" class="navbar-brand"><img src="{{ "/img/joola_full_blue.png" | prepend: site.baseurl }}"></a></div>
+        <a href="{{ "/" | prepend: site.baseurl }}" class="navbar-brand">
+        <img src="{{ "/img/joola_full_blue.png" | prepend: site.baseurl }}"></a></div>
       <div id="navbar-collapse" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li class="home"><a href="{{ "/" | prepend: site.baseurl }}" class="menulink">Home</a></li>
-          <li class="demo"><a href="{{ "/demo" | prepend: site.baseurl }}" class="menulink">Demo</a></li>
-          <li class="gettingstarted"><a href="{{ "/gettingstarted" | prepend: site.baseurl }}" class="menulink">Getting
-            Started</a></li>
-          <li class="docs"><a href="{{ "/docs" | prepend: site.baseurl }}" class="menulink">Documentation</a>
-          </li>
-          <!--<li class="dropdown"><a data-toggle="" href="{{ "/docs/" | prepend: site.baseurl }}" role="button" aria-expanded="false"
-                                          class="menulink dropdown-toggle">Documentation<span class="caret"></span></a>
+          <li class="dropdown">
+            <a data-toggle="" href="#" role="button" aria-expanded="false"
+               class="menulink dropdown-toggle">intro</a>
             <ul role="menu" class="dropdown-menu">
-              <li><a href="/company/about/">Terminology</a></li>
-              <li><a href="/company/why-joola/">Download & install</a></li>
-              <li><a href="/company/approach/">Configure</a></li>
-              <li><a href="/company/clients/">Data integration</a></li>
-              <li><a href="/company/clients/">Website integration</a></li>
-              <li><a href="/company/clients/">REST API</a></li>
-              <li><a href="/company/clients/">SDK</a></li>
-              <li><a href="/company/clients/">About the project</a></li>
+              <li><a href="{{ "/docs/intro/download.html" | prepend: site.baseurl }}">Download & Install</a></li>
+              <li><a href="{{ "/docs/intro/how-it-works.html" | prepend: site.baseurl }}">Pushing An Event</a></li>
+              <li><a href="{{ "/docs/intro/how-it-works.html" | prepend: site.baseurl }}">Your First Visualization</a></li>
+              <li><a href="{{ "/docs/config/configuration.html" | prepend: site.baseurl }}">Configuration</a></li>
+              <li><a href="{{ "/docs/intro/how-it-works.html" | prepend: site.baseurl }}">How It Works?</a></li>
+              <li><a href="https://github.com/joola/joola/labels/gh-faq">FAQ</a></li>
+              <li><a href="https://github.com/joola/joola/labels/gh-troubleshooting">Troubleshooting</a></li>
+            </ul>
+          </li>
+          <!--<li class="dropdown">
+            <a data-toggle="" href="#" role="button" aria-expanded="false"
+               class="menulink dropdown-toggle">config</a>
+            <ul role="menu" class="dropdown-menu">
+              <li><a href="{{ "/docs/config/configuration-options.html" | prepend: site.baseurl }}">Configuration Options</a></li>
+              <li><a href="{{ "/docs/config/configuration-files.html" | prepend: site.baseurl }}">Files</a></li>
+              <li><a href="{{ "/docs/config/configuration-updates.html" | prepend: site.baseurl }}">Updates</a></li>
             </ul>
           </li>-->
-          <li class="blog"><a href="{{ "/blog" | prepend: site.baseurl }}" class="menulink">Blog</a></li>
-          <li class="news"><a href="{{ "/services" | prepend: site.baseurl }}" class="menulink">Services</a></li>
+          <li class="dropdown">
+            <a data-toggle="" href="#" role="button" aria-expanded="false"
+               class="menulink dropdown-toggle">scale</a>
+            <ul role="menu" class="dropdown-menu">
+              <li class="seperator">Configuration & Discovery</li>
+              <li><a href="{{ "/docs/scale/redis.html" | prepend: site.baseurl }}">Redis</a></li>
+              <li><a href="{{ "/docs/scale/zookeeper.html" | prepend: site.baseurl }}">Zookeeper</a></li>
+              <li><a href="{{ "/docs/scale/etcd.html" | prepend: site.baseurl }}">etcd</a></li>
+              <li><a href="{{ "/docs/scale/consul.html" | prepend: site.baseurl }}">Consul</a></li>
+              <li class="seperator">Data Stores</li>
+              <li><a href="{{ "/docs/scale/elasticsearch.html" | prepend: site.baseurl }}">ElasticSearch</a></li>
+              <li><a href="{{ "/docs/scale/mongodb.html" | prepend: site.baseurl }}">MongoDB</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a data-toggle="" href="#" role="button" aria-expanded="false"
+               class="menulink dropdown-toggle">dev</span></a>
+            <ul role="menu" class="dropdown-menu">
+              <li><a href="{{ "/docs/dev/data-integration.html" | prepend: site.baseurl }}">Data Integration</a></li>
+              <li><a href="{{ "/docs/dev/website-integration.html" | prepend: site.baseurl }}">Security & Authentication</a></li>
+              <li><a href="http://docs.joola.apiary.io/">REST API</a></li>
+              <li><a href="{{ "/docs/dev/website-integration.html" | prepend: site.baseurl }}">Website Integration</a></li>
+              <li><a href="{{ "/docs/dev/sdk-documentation.html" | prepend: site.baseurl }}">SDK Documentation</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a data-toggle="" href="#" role="button" aria-expanded="false"
+               class="menulink dropdown-toggle">visualize</span></a>
+            <ul role="menu" class="dropdown-menu">
+              <li><a href="{{ "/docs/visualize/timeline.html" | prepend: site.baseurl }}">Timeline</a></li>
+              <li><a href="{{ "/docs/visualize/table.html" | prepend: site.baseurl }}">Table</a></li>
+              <li><a href="{{ "/docs/visualize/metricbox.html" | prepend: site.baseurl }}">Metric Box</a></li>
+              <li><a href="{{ "/docs/visualize/pie.html" | prepend: site.baseurl }}">Pie Chart</a></li>
+              <li><a href="{{ "/docs/visualize/bartable.html" | prepend: site.baseurl }}">Bar Table</a></li>
+              <li><a href="{{ "/docs/visualize/datepicker.html" | prepend: site.baseurl }}">Date Picker</a></li>
+              <li><a href="{{ "/docs/visualize/canvases.html" | prepend: site.baseurl }}">Canvases</a></li>
+            </ul>
+          </li>
+          <li><a class="menulink" href="{{ "/blog" | prepend: site.baseurl }}">blog</a></li>
+          <li class="dropdown">
+            <a data-toggle="" href="#" role="button" aria-expanded="false"
+               class="menulink dropdown-toggle">about</span></a>
+            <ul role="menu" class="dropdown-menu">
+              <li><a href="{{ "/docs/about/contributing.html" | prepend: site.baseurl }}">Contributing</a></li>
+              <li><a href="{{ "/docs/about/making-changes.html" | prepend: site.baseurl }}">Making Changes</a></li>
+              <li><a href="{{ "/docs/about/roadmap.html" | prepend: site.baseurl }}">Roadmap</a></li>
+              <li><a href="{{ "/docs/about/responsible-disclosure.html" | prepend: site.baseurl }}">Responsible Disclosure</a></li>
+              <li><a href="{{ "/docs/about/copyright-and-license.html" | prepend: site.baseurl }}">Copyright and License</a></li>
+              <li><a href="{{ "/docs/about/versioning.html" | prepend: site.baseurl }}">Versioning</a></li>
+              <li><a href="{{ "/docs/about/talk-to-us.html" | prepend: site.baseurl }}">Talk To Us</a></li>
+            </ul>
+          </li>
+          <li class="news"><a href="{{ "/services" | prepend: site.baseurl }}" class="menulink">services</a></li>
         </ul>
       </div>
     </div>

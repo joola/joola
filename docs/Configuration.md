@@ -15,7 +15,51 @@ If it fails, the application will exit.
 
 Configuration parsing and management is done using the [`config`][node-config] module.
 
-# Configuration life-cycle
+# Options
+
+Here are all of Joola's configuration options, read further below on how these are used.
+
+| Option | Default | Description |
+|------|----|-----|
+| version | *none* | **required**, the configuration's version, *semver* style, i.e. `0.0.1`. |
+| interfaces.webserver.enabled | `true` | *optional*, is the webserver enabled for this node? Useful if you wish to run process-only nodes. |
+| interfaces.webserver.host | `joola` | *optional*, response-header [Server].
+| interfaces.webserver.bind | `0.0.0.0` | *optional*, address to bind on.
+| interfaces.webserver.port | `8080` | *optional*, port to listen on.
+| interfaces.webserver.secureport | `8081` | *optional*, secure port to listen on.
+| interfaces.webserver.secure | `false` | *optional*, should SSL be turned on?
+| interfaces.webserver.secureonly | `8081` | *optional*, should only SSL be available?
+| interfaces.webserver.keyfile | *none*  | *optional*, path to key file.
+| interfaces.webserver.certfile | *none*  | *optional*, path to certificate file.
+| interfaces.webserver.ca | *none*  | *optional*, path to CA file.
+| interfaces.webserver.alloworigin | *none*  | *optional*, *Array* of Allowed Origins.
+| interfaces.webserver.headers | *none*  | *optional*, *Array* of HTTP headers for replies.
+| interfaces.repl.enabled | `false`  | *optional*, should REPL be available over TCP?
+| interfaces.repl.port | `1337`  | *optional*, port to listen on.
+| store.stats.punt.port | `3015`  | *optional*, [punt](punt) port to use when reporting stats.
+| store.config.redis.dsn | *none*  | *optional*, Redis DSN, i.e. `redis://127.0.0.1`.
+| store.config.zookeeper.connectionstring | *none*  | *optional*, Zookeeper connecting string, i.e. `localhost:2181`.
+| store.runtime.redis.dsn |*none*  | *optional*, Redis DSN.
+| store.dispatch.redis.dsn | *none* | *optional*, Redis DSN.
+| store.dispatch.stomp.dsn |*none*  | *optional*, MQ STOMP DSN, i.e. `stomp://guest:guest@127.0.0.1:61613`.
+| store.websocket.redis.dsn | *none*  | *optional*, Redis DSN.
+| store.logger.console.level | `info` | *optional* stdout debug level.
+| store.logger.file.level | `info` | *optional* file output debug level.
+| store.logger.file.path | *none* | *optional* path to output log file.
+| store.logger.loggly.level | `info` | *optional* loggly output debug level.
+| store.logger.loggly.token | *none* | *optional* loggly secure token.
+| store.logger.loggly.domain | *none* | *optional* loggly domain.
+| store.datastore.[storename].enabled | `true` | *optional* is the data store enabled?
+| store.datastore.[storename].[options] | *none* | *optional* options for the data store.
+| beacon.wait | `true` | *optional* should Joola wait for MQ ack before replying to *beacon.insert*.
+| dispatch.enabled | `false` | *optional* is MQ dispatching enabled?
+| authentication.basicauth.enabled | `true` | *optional* is basic authentication enabled?
+| authentication.basicauth.enabled_with_http | `false` | *optional* should basic authentication be offered over non SSL?
+| authentication.tokens.expireafter | `1200000` | *optional* token expiration period in ms.
+| authentication.ratelimits.[role] | `unlimited` | *optional* API request rate limit for this role.
+| authentication.force404 | `false` | *optional* reply to 401 errors with a 404 code instead.
+
+# Life-cycle
 To support node based clusters, configuration lives in the central configuration store and it is the only source of "truth".
 Configuration changes during runtime and these changes are not peristed to local configuration files, but are only kept in the central store.
 The local configuration file is simply an initial bootstrap and therefore, it is very common that local configuration differs from central.
@@ -23,17 +67,17 @@ The local configuration file is simply an initial bootstrap and therefore, it is
 Once bootstrapped, changes to configuration are done using the API or by loading newer versions of the configuration files.
 If a change in central configuration is detected, all connected nodes are informed and update their configuration to reflect the latest from central store.
 
-## Configuration version
+## version
 Joola supports an optional `version` attribute as part of the configuration file. This enable a `semver` comparison between the central stored configuration and the local configuration file.
 The logic is simple:
 
 - localVersion <= centralVersion = use central configuration.
 - localVersion > centralVersion = delete and then write local configuration into central store. All nodes are then informed and update their configuration.
 
-# Configuration discovery
+# Discovery
 Configuration can be stored/used from either configuration files, environment variables and command line switches.
 
-## Configuration files
+## Files
 Joola reads configuration files stored in the directory specified by the NODE_CONFIG_DIR environment variable, which defaults to the config directory under the process current working directory, `/config`.
 Configuration files can be in JavaScript format, JSON format, COFFEE format, or YAML format - whichever you prefer.
 Configuration files in the config directory are loaded in the following order:

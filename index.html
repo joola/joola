@@ -1,178 +1,231 @@
 ---
-layout: default
+layout: hp
 ---
 
+<section>
+  <div class="container intro">
+    <div class="well">
+      <div class="row">
+        <div class="col-md-9">
+          <h3>Data middleware for building custom analytics applications.</h3>
 
-<section id="hero" class="text-center full-viewport">
-  <div class="wrapper">
-    <div class="center-block inverse">
-      <div class="main-wrapper">
-        <div id="carousel" data-ride="carousel" class="carousel slide">
-          <ol class="carousel-indicators">
-            <li data-target="#carousel" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel" data-slide-to="1"></li>
-            <li data-target="#carousel" data-slide-to="2"></li>
-            <li data-target="#carousel" data-slide-to="3"></li>
-            <li data-target="#carousel" data-slide-to="4"></li>
-            <li data-target="#carousel" data-slide-to="5"></li>
-            <li data-target="#carousel" data-slide-to="6"></li>
-            <li data-target="#carousel" data-slide-to="7"></li>
-          </ol>
-          <div role="listbox" class="carousel-inner margin-bottom-50">
-            <div class="item active">
-              <div class="col-md-6"><img src="{{ "/img/joola_white_owl.png" | prepend: site.baseurl }}" class="logo-hero"></div>
-              <div class="col-md-5 text-left pinch-left"><h1>Liberate your data</h1>
-
-                <p class="lead">Joola is a data middleware designed to help developers and businesses securely share
-                  data with their users.
-                </p>
-
-                <p class="lead">Joola offers a powerful and flexible custom data analytics solution built for today's market needs and scale.
-                </p>
-
-                <div style="text-align:center;">
-                  <a href="{{ "/gettingstarted" | prepend: site.baseurl }}" class="btn btn-default read-more long pull-left">Get Started</a>
-                  <a href="{{ "/demo" | prepend: site.baseurl }}" class="btn btn-default read-more">Demo</a>
-                  <a href="{{ "/docs" | prepend: site.baseurl }}" class="btn btn-default read-more pull-right">docs</a>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="col-md-12">
-                <a href="http://www.meetup.com/Joola-data-analytics-meetup/" target="_blank">
-                  <img src="{{ "/img/meetup.png" | prepend: site.baseurl }}" style="margin-bottom:20px;"/>
-                </a>
-
-                <h1 style="text-align:center;margin-bottom:0">Realtime Data Delivery - In Practice</h1>
-
-                <h2 class="text-center margin-top-0">Join us in our upcoming meetup.</h2>
-
-                <h3><strong>Key takeaway:</strong> Using NodeJS and Cassandra to win the 0ms latency race.</h3>
-                <a href="http://www.meetup.com/Joola-data-analytics-meetup/" target="_blank"
-                   class="btn btn-default read-more margin-top-20">Read more</a>
-              </div>
-            </div>
-            <div class="item">
-              <div class="col-md-6"><img src="{{ "/img/solutions/devops_large.png" | prepend: site.baseurl }}" width="350"></div>
-              <div class="col-md-6 text-left pinch-left"><h1>B2B/B2C Analytics</h1>
-
-                <p class="lead">Use Joola to offer your users analytics and insight on their performance. With Joola you
-                  can implement an analytics systems for a range of B2B, B2C and
-                  OEM needs.
-                  <br><br>Joola is designed to be embedded as part of your existing product.
-                </p>
-                <a href="/solutions/custom-analytics/" class="btn btn-default read-more">Read more</a>
-              </div>
-            </div>
-
-            <div class="item">
-              <div class="col-md-6"><img src="{{ "/img/solutions/mobile_large.png" | prepend: site.baseurl }}" class=""></div>
-              <div class="col-md-6 text-left pinch-left"><h1>Connected Devices</h1>
-
-                <p class="lead">The emerging appearance of Connected Devices and the Internet of Things (IoT) raised the
-                  need for large scale analytics systems capable of dealing with a multitude of data source at high data
-                  volumes.
-                  <br><br>Joola is built for speed while not compromising on quality of data or experience.</p>
-
-                <a href="/solutions/connected-devices/" class="btn btn-default read-more">Read more</a>
-              </div>
-            </div>
-
-            <div class="item">
-              <div class="col-md-6"><img src="{{ "/img/solutions/bigdata_large.png" | prepend: site.baseurl }}" class="" width="350"></div>
-              <div class="col-md-6 text-left pinch-left"><h1>Big Data Ready</h1>
-
-                <p class="lead">Joola uses an agnostic approach to its underlying data store and communication is done
-                  via Plugins.</p>
-
-                <p class="lead">We already support MongoDB, ElasticSearch and together with our open-source community
-                  we're working on more.</p>
-                <a href="/solutions/big-data/" class="btn btn-default read-more">Read more</a>
-              </div>
-            </div>
-            <div class="item">
-              <div class="col-md-6"><img src="{{ "/img/solutions/connected_large.png" | prepend: site.baseurl }}" class="" width="350"></div>
-              <div class="col-md-6 text-left pinch-left"><h1>Distributed Processing</h1>
-
-                <p class="lead">Joola is designed to scale as your data and needs grow. Nodes can be easily added to the
-                  cluster and we do all the heavy lifting for discovery, routing, configuration and synchronization</p>
-
-                <p class="lead">Joola can scale either on-premise or up in the cloud.</p>
-                <a href="/solutions/distributed-computing/" class="btn btn-default read-more">Read more</a>
-              </div>
-            </div>
-            <div class="item">
-              <div class="col-md-6"><img src="{{ "/img/solutions/outward_large.png" | prepend: site.baseurl }}" class="" width="300"></div>
-              <div class="col-md-6 text-left pinch-left"><h1>DevOps Friendly</h1>
-
-                <p class="lead">Joola is designed with DevOps in mind.<br/>We do DevOps ourselves and we appreciate the
-                  efforts needed to actually get things done.
-                  <br><br>Easy configuration, seamless deployment, zero downtime architecture and more goodies.
-                </p>
-                <a href="/solutions/devops-automation/" class="btn btn-default read-more">Read more</a>
-              </div>
-            </div>
-            <div class="item">
-              <div class="col-md-6"><img src="{{ "/img/solutions/oss_large.png" | prepend: site.baseurl }}" class=""></div>
-              <div class="col-md-5 text-left pinch-left"><h1>Open Source</h1>
-
-                <p class="lead">We believe in open-source!</p>
-
-                <p class="lead">Come join us in our effort to liberate and democratize data.</p>
-                <a href="/solutions/open-source/" class="btn btn-default read-more">Read more</a>
-
-              </div>
-            </div>
-          </div>
-          <div class="clear-both"></div>
+          <h2>
+            Push events using simple JSON and use Joola's SDK and REST API to embed a full analytics solution.
+          </h2>
+        </div>
+        <div class="col-md-3">
+          <a href="{{ "/docs/intro/download.html" | prepend: site.baseurl }}" class="btn btn-default btn-lg btn-primary"><span
+              class="octicon octicon-cloud-download"></span>Download & Install</a>
+          <a href="http://github.com/joola/joola" class="btn btn-default btn-lg btn-primary"><span
+              class="octicon octicon-mark-github"></span>View project on GitHub</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<section id="hpdemo">
+  <div class="container">
 
-<div id="main-content">
-  <section class="text-center whyjoola container margin-bottom-50">
-    <div class="row">
-      <div class="col-md-4"><h2>Data middleware</h2>
-
-        <p>Joola is a data middleware placed between your data store and your end-users.
-        </p><p>Joola connects to your data via an agnostic plugin and with the Javascript SDK you can visualize data from it within minutes.
-        </p>
-
-        <a href="{{ "/gettingstarted" | prepend: site.baseurl }}" class="btn btn-default read-more long margin-top-20 show-on-mobile">Get started</a>
-      </div>
-      <div class="col-md-4"><h2>Visualization</h2>
-        <p>Embed data visualizations or a complete analytics system within your existing site or product.
-
-        </p><p>Control all aspects of behavior, look & feel using HTML, CSS and JS.</p>
-        <a href="{{ "/demo" | prepend: site.baseurl }}" class="btn btn-default read-more margin-top-20 show-on-mobile">Demo</a>
-      </div>
-      <div class="col-md-4"><h2>So much more...</h2>
-
-        <p>We built Joola to offer an easy and affordable data solution. </p><p>Having a data middleware offers many benefits, such as: standardization, reduced overhead and central data management.</p>
-        <a href="https://github.com/joola/joola" class="btn btn-default read-more margin-top-20 show-on-mobile">Docs</a>
-      </div>
-    </div>
-    <div class="row hide-on-mobile">
-      <div class="col-md-4">
-        <a href="{{ "/gettingstarted" | prepend: site.baseurl }}" class="btn btn-default read-more long">Get started</a>
-      </div>
-      <div class="col-md-4">
-        <a href="{{ "/demo" | prepend: site.baseurl }}" class="btn btn-default read-more">Demo</a>
-      </div>
-      <div class="col-md-4">
-        <a href="https://github.com/joola/joola" class="btn btn-default read-more">Docs</a>
+    <div class="terminal flowing">
+      <div class="indicators"><span class="circle"></span><span class="circle"></span><span class="circle"></span></div>
+      <div class="terminal-text">
+        <div class="terminal-wrapper">
+          <div class="b-hero">
+            <div style="background-position: 0px -875px;" class="b-logo"></div>
+          </div>
+          <div id="canvas">
+            <div class="col-md-12 canvas-row">
+              <div id="datepicker" class="hide"></div>
+              <div id="filters"></div>
+            </div>
+            <div class="clear-both"></div>
+            <div class="col-md-8 canvas-row">
+              <div id="timeline"></div>
+            </div>
+            <div class="col-md-4 canvas-row">
+              <div id="bartable1"></div>
+            </div>
+            <div class="clear-both"></div>
+            <div class="col-md-12 canvas-row">
+              <div id="table"></div>
+            </div>
+            <div class="clear-both"></div>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
-</div>
-
-<section class="inverse text-center tagline"><p
-    style="padding-left:20px;padding-right:20px;margin-bottom:0;padding-bottom:20px" class="lead">Embed custom data analytics within your existing site or product.</p>
-
-  <p class="lead-smaller" style="padding-bottom:20px">Focus on developing your product and and let Joola worry about offering data analytics solution for your users. 
-    <br/>Push events using simple JSON and use Joola's SDK and REST API to embed a full analytics solution.</p> 
-  <a href="{{ "/gettingstarted" | prepend: site.baseurl }}" class="btn btn-default read-more long margin-bottom-50">Get started</a>
+  </div>
 </section>
+
+<section class="tagline">
+  <div class="container">
+    <h3 class="text-center">Focus on developing your product and and let Joola worry about
+      offering data analytics for your users.</h3>
+
+    <p>
+      Joola was designed by developers for developers. We did the heavy-lifting with all that is data and framework
+      related, so you can focus on your product development, this is what makes Joola so easy and fun to play with.
+
+    </p>
+
+    <div class="row features">
+      <div class="col-md-4">
+        <span class="mega-octicon octicon-puzzle"></span>
+        <h4>Agnostic</h4>
+
+        <p>Designed to work with existing data stores such as <a href="{{ "/docs/scale/mongodb.html" | prepend: site.baseurl }}">MongoDB</a>, <a href="{{ "/docs/scale/elasticsearch.html" | prepend: site.baseurl }}">ElasticSearch</a>, Hadoop and more.</p>
+      </div>
+      <div class="col-md-4">
+        <span class="mega-octicon octicon-rocket"></span>
+        <h4>Scaling</h4>
+
+        <p>From your workstation to a full cloud-based cluster, Joola is designed to scale.</p>
+      </div>
+      <div class="col-md-4">
+        <span class="mega-octicon octicon-lock"></span>
+        <h4>Secure</h4>
+
+        <p>Offer secure analytics for your users using Joola's multi-tenancy, single-sign-on and roles.</p>
+      </div>
+    </div>
+
+    <div class="row features">
+      <div class="col-md-4">
+        <span class="mega-octicon octicon-device-mobile"></span>
+        <h4>On Any Device</h4>
+
+        <p>Embed analytics seamlessly within your website or application, Joola uses HTML5, CSS and JS.</p>
+      </div>
+      <div class="col-md-4">
+        <span class="mega-octicon octicon-organization"></span>
+        <h4>DevOps Friendly</h4>
+
+        <p>Easy configuration, seamless deployment, zero downtime architecture and more goodies.</p></div>
+      <div class="col-md-4">
+        <span class="mega-octicon octicon-octoface"></span>
+        <h4>Open Source</h4>
+
+        <p>Developed for and maintained by the open source community at <a href="http://github.com/joola/joola">GitHub</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  $().ready(function () {
+    joola.on('ready', function () {
+      new joola.viz.Canvas({
+        container: '#canvas',
+        realtime: false,
+        datepicker: {
+          container: '#datepicker'
+        },
+        filterbox: {
+          container: '#filters'
+        },
+        visualizations: {
+          bartable1: {
+            type: 'bartable',
+
+            container: '#bartable1',
+            query: {
+              dimensions: [
+                {key: 'browser', name: 'Browser'}
+              ],
+              metrics: ['moves'],
+              collection: 'moves',
+              orderby: [
+                ['moves', 'DESC']
+              ]
+            },
+            limit: 3
+          },
+          table: {
+            container: '#table',
+            type: 'table',
+            caption: '',
+            paging: {
+              currentSize: 3,
+              currentPage: 1,
+              sizes: [10, 25, 50, 100, 250, 500, 1000]
+            },
+            pickers: {
+              primary: {
+                enabled: false,
+                caption: 'Primary dimension...',
+                allowRemove: false
+              },
+              add_dimension: {
+                enabled: false,
+                caption: 'Add dimension...',
+                allowRemove: false,
+                allowSelect: false
+              },
+              add_metric: {
+                enabled: false,
+                caption: 'Add metric...',
+                allowRemove: false,
+                allowSelect: false
+              }
+            },
+            query: {
+              dimensions: [
+                {key: 'browser', description: 'The browser used'},
+                {
+                  key: 'engine',
+                  description: 'The engine used'
+                }
+              ],
+              metrics: [
+                {key: 'moves', name: 'Mouse moves'},
+                {key: 'clicks', collection: 'clicks'},
+                {
+                  key: 'visits',
+                  collection: 'visits'
+                }
+              ],
+              collection: 'moves',
+              orderby: [
+                ['moves', 'DESC']
+              ]
+            }
+          },
+          timeline: {
+            container: '#timeline',
+            type: 'timeline',
+            chart: {
+              chart: {
+                height: 200,
+                type: 'line'
+              },
+              yAxis: [
+                {
+                  min: 0
+                },
+                {
+                  min: 0
+                }
+              ]
+            },
+            pickers: {
+              main: {
+                enabled: false
+              },
+              secondary: {
+                enabled: false
+              }
+            },
+            query: {
+              dimensions: ['timestamp'],
+              metrics: [
+                {key: 'moves', name: 'Mouse moves'}
+              ],
+              collection: 'moves'
+            }
+          }
+        }
+      });
+    });
+  });
+</script>

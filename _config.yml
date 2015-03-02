@@ -12,7 +12,7 @@ collections: null
 # Handling Reading
 safe:         false
 include:      [".htaccess"]
-exclude:      ["build", "node_modules", "wiki"]
+exclude:      ["build", "node_modules"]
 keep_files:   [".git", ".svn"]
 encoding:     "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
@@ -25,7 +25,11 @@ unpublished: false
 
 # Plugins
 whitelist: []
-gems:      []
+gems:
+  - jekyll-mentions
+  - jemoji
+  - jekyll-redirect-from
+  - jekyll-sitemap
 
 # Conversion
 markdown:    redcarpet
@@ -35,7 +39,7 @@ excerpt_separator: "\n\n"
 
 # Serving
 detach:  false
-baseurl: "/joola" # does not include hostname
+#baseurl: "/joola" # does not include hostname
 
 # Backwards-compatibility
 relative_permalinks: false
@@ -78,10 +82,3 @@ kramdown:
     coderay_tab_width:         4
     coderay_bold_every:        10
     coderay_css:               style
-
-gollum:
-  folder: '_data/wiki'
-  page_yaml:
-    layout: page
-  post_yaml:
-    layout: post
