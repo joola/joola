@@ -8,14 +8,13 @@
 
 [![Gitter chat](https://badges.gitter.im/joola/joola.png)](https://gitter.im/joola/joola) [![Build Status][3]][4] [![Coverage Status](https://coveralls.io/repos/joola/joola/badge.svg?branch=develop)](https://coveralls.io/r/joola/joola) [![Code Climate](https://codeclimate.com/github/joola/joola/badges/gpa.svg)](https://codeclimate.com/github/joola/joola) [![Inline docs](http://inch-ci.org/github/joola/joola.svg?branch=develop)](http://inch-ci.org/github/joola/joola)
 
-- [Introduction](About.html)
-- [Download & install](Download.html)
-- [Configuration](Configuration.html)
-- [Scaling & clustering](Configuration.html)
-- [Data stores]()
-- [Website integration]()
+- [Introduction](http://joolajs.org/docs/intro/how-it-works.html)
+- [Download & install](http://joolajs.org/docs/intro/download.html)
+- [Configuration](http://joolajs.org/docs/config/configuration.html)
+- [Scaling & clustering](http://joolajs.org/docs/scale/overview.html)
+- [Website integration](http://joolajs.org/docs/dev/website-integration.html)
 - [REST API](http://docs.joola.apiary.io)
-- [SDK documentation](SDK.html)
+- [SDK documentation](http://joolajs.org/docs/dev/sdk-documentation.html)
 
 ### Main Features
 
@@ -166,7 +165,7 @@ Copyright (c) 2012-2015 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24]
 [19]: http://twitter.com/joola
 [20]: mailto://info@joo.la
 [21]: https://joo.la/contact
-[22]: http://joola.github.io/joola
+[22]: http://joolajs.org
 [23]: http://ci.joo.la
 [24]: https://github.com/joola/joola/blob/master/LICENSE.md
 
