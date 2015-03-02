@@ -2169,7 +2169,9 @@ section .container.intro .well h2{
   .container.intro .btn {
      display:none;
   }
-
+  section .container.intro .btn {
+    display:inherit;
+  }
   .navbar-brand > img{
     height:40px;
   }
