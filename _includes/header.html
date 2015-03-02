@@ -37,11 +37,12 @@
             <a data-toggle="" href="#" role="button" aria-expanded="false"
                class="menulink dropdown-toggle">scale</a>
             <ul role="menu" class="dropdown-menu">
+              <li><a href="{{ "/docs/scale/overview.html" | prepend: site.baseurl }}">Overview</a></li>
               <li class="seperator">Configuration & Discovery</li>
               <li><a href="{{ "/docs/scale/redis.html" | prepend: site.baseurl }}">Redis</a></li>
               <li><a href="{{ "/docs/scale/zookeeper.html" | prepend: site.baseurl }}">Zookeeper</a></li>
-              <li><a href="{{ "/docs/scale/etcd.html" | prepend: site.baseurl }}">etcd</a></li>
-              <li><a href="{{ "/docs/scale/consul.html" | prepend: site.baseurl }}">Consul</a></li>
+              <!--<li><a href="{{ "/docs/scale/etcd.html" | prepend: site.baseurl }}">etcd</a></li>-->
+              <!--<li><a href="{{ "/docs/scale/consul.html" | prepend: site.baseurl }}">Consul</a></li>-->
               <li class="seperator">Data Stores</li>
               <li><a href="{{ "/docs/scale/elasticsearch.html" | prepend: site.baseurl }}">ElasticSearch</a></li>
               <li><a href="{{ "/docs/scale/mongodb.html" | prepend: site.baseurl }}">MongoDB</a></li>
@@ -62,13 +63,17 @@
             <a data-toggle="" href="#" role="button" aria-expanded="false"
                class="menulink dropdown-toggle">visualize</span></a>
             <ul role="menu" class="dropdown-menu">
+              <li><a href="{{ "/docs/scale/overview.html" | prepend: site.baseurl }}">Overview</a></li>
+              <li><a href="{{ "/docs/visualize/canvases.html" | prepend: site.baseurl }}">Canvases</a></li>
+              <li class="seperator">Components</li>
               <li><a href="{{ "/docs/visualize/timeline.html" | prepend: site.baseurl }}">Timeline</a></li>
               <li><a href="{{ "/docs/visualize/table.html" | prepend: site.baseurl }}">Table</a></li>
               <li><a href="{{ "/docs/visualize/metricbox.html" | prepend: site.baseurl }}">Metric Box</a></li>
               <li><a href="{{ "/docs/visualize/pie.html" | prepend: site.baseurl }}">Pie Chart</a></li>
               <li><a href="{{ "/docs/visualize/bartable.html" | prepend: site.baseurl }}">Bar Table</a></li>
+              <li><a href="{{ "/docs/visualize/geomap.html" | prepend: site.baseurl }}">Geomap</a></li>
+              <li class="seperator">Pickers</li>
               <li><a href="{{ "/docs/visualize/datepicker.html" | prepend: site.baseurl }}">Date Picker</a></li>
-              <li><a href="{{ "/docs/visualize/canvases.html" | prepend: site.baseurl }}">Canvases</a></li>
             </ul>
           </li>
           <li><a class="menulink" href="{{ "/blog" | prepend: site.baseurl }}">blog</a></li>
