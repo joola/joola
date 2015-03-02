@@ -118,7 +118,6 @@ function setupAffix() {
 }
 
 jQuery(document).ready(function () {
-  prettyPrint();
   jQuery('abbr.timeago').timeago();
 
   $('table').addClass('table table-striped table-bordered');
