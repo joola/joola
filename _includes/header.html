@@ -15,15 +15,16 @@
             <a data-toggle="" href="#" role="button" aria-expanded="false"
                class="menulink dropdown-toggle">intro</a>
             <ul role="menu" class="dropdown-menu">
-              <li><a href="{{ "/docs/intro/download.html" | prepend: site.baseurl }}">Installation</a></li>
+              <li><a href="{{ "/docs/intro/download.html" | prepend: site.baseurl }}">Download & Install</a></li>
               <li><a href="{{ "/docs/intro/how-it-works.html" | prepend: site.baseurl }}">Pushing An Event</a></li>
               <li><a href="{{ "/docs/intro/how-it-works.html" | prepend: site.baseurl }}">Your First Visualization</a></li>
+              <li><a href="{{ "/docs/config/configuration.html" | prepend: site.baseurl }}">Configuration</a></li>
               <li><a href="{{ "/docs/intro/how-it-works.html" | prepend: site.baseurl }}">How It Works?</a></li>
               <li><a href="https://github.com/joola/joola/labels/gh-faq">FAQ</a></li>
               <li><a href="https://github.com/joola/joola/labels/gh-troubleshooting">Troubleshooting</a></li>
             </ul>
           </li>
-          <li class="dropdown">
+          <!--<li class="dropdown">
             <a data-toggle="" href="#" role="button" aria-expanded="false"
                class="menulink dropdown-toggle">config</a>
             <ul role="menu" class="dropdown-menu">
@@ -31,7 +32,7 @@
               <li><a href="{{ "/docs/config/configuration-files.html" | prepend: site.baseurl }}">Files</a></li>
               <li><a href="{{ "/docs/config/configuration-updates.html" | prepend: site.baseurl }}">Updates</a></li>
             </ul>
-          </li>
+          </li>-->
           <li class="dropdown">
             <a data-toggle="" href="#" role="button" aria-expanded="false"
                class="menulink dropdown-toggle">scale</a>
@@ -61,15 +62,16 @@
             <a data-toggle="" href="#" role="button" aria-expanded="false"
                class="menulink dropdown-toggle">visualize</span></a>
             <ul role="menu" class="dropdown-menu">
-              <li><a href="{{ "/docs/visualize/data-integration.html" | prepend: site.baseurl }}">Timeline</a></li>
-              <li><a href="{{ "/docs/visualize/website-integration.html" | prepend: site.baseurl }}">Table</a></li>
-              <li><a href="{{ "/docs/visualize/website-integration.html" | prepend: site.baseurl }}">Metric Box</a></li>
-              <li><a href="{{ "/docs/visualize/website-integration.html" | prepend: site.baseurl }}">Pie Chart</a></li>
-              <li><a href="{{ "/docs/visualize/website-integration.html" | prepend: site.baseurl }}">Bar Table</a></li>
-              <li><a href="{{ "/docs/visualize/website-integration.html" | prepend: site.baseurl }}">Date Picker</a></li>
-              <li><a href="{{ "/docs/visualize/website-integration.html" | prepend: site.baseurl }}">Canvases</a></li>
+              <li><a href="{{ "/docs/visualize/timeline.html" | prepend: site.baseurl }}">Timeline</a></li>
+              <li><a href="{{ "/docs/visualize/table.html" | prepend: site.baseurl }}">Table</a></li>
+              <li><a href="{{ "/docs/visualize/metricbox.html" | prepend: site.baseurl }}">Metric Box</a></li>
+              <li><a href="{{ "/docs/visualize/pie.html" | prepend: site.baseurl }}">Pie Chart</a></li>
+              <li><a href="{{ "/docs/visualize/bartable.html" | prepend: site.baseurl }}">Bar Table</a></li>
+              <li><a href="{{ "/docs/visualize/datepicker.html" | prepend: site.baseurl }}">Date Picker</a></li>
+              <li><a href="{{ "/docs/visualize/canvases.html" | prepend: site.baseurl }}">Canvases</a></li>
             </ul>
           </li>
+          <li><a class="menulink" href="{{ "/blog" | prepend: site.baseurl }}">blog</a></li>
           <li class="dropdown">
             <a data-toggle="" href="#" role="button" aria-expanded="false"
                class="menulink dropdown-toggle">about</span></a>

@@ -1620,7 +1620,6 @@ section.inner h1 {
 }
 
 .page-wrapper, .post-wrapper {
-
   min-height: 600px;
   padding-bottom: 30px;
 }
@@ -1817,7 +1816,6 @@ body {
 }
 
 .post-excerpt {
-
   letter-spacing: 0.01rem;
   font-weight: 400;
   font-style: normal;
@@ -1957,11 +1955,9 @@ p.download-intro {
 background-position: 15px 20px;
 }
 
-
-  .bs-docs-sidebar.affix, .bs-docs-sidebar.affix-bottom {
-    width: 263px;
-  }
-
+.bs-docs-sidebar.affix, .bs-docs-sidebar.affix-bottom {
+  width: 263px;
+}
 
 .bs-docs-sidebar .nav>li>a {
   display: block;
@@ -2107,14 +2103,16 @@ body {
   .container {
     width: 970px;
   }
+
+  section , .container{
+    padding-left:0;
+    padding-right:0;
+  }
+
 }
 
 .navbar-nav{
   margin-top:20px;
-}
-
-.navbar-brand > img{
-  height:65px;
 }
 
 .navbar {
@@ -2126,14 +2124,10 @@ body {
   border-bottom:1px solid #dedede;
 }
 
-section , .container{
-  padding-left:0;
-  padding-right:0;
-}
 
 section .container.intro .well {
   border: 0;
-  border-radius: 0;
+  border-radius: 4px;
   box-shadow: none;
   padding-left:30px;
   padding-right:80px;
@@ -2152,9 +2146,7 @@ section .container.intro .well h2{
   font-weight: 200;
 }
 
-
-
-section .container.intro .well .btn {
+.container.intro .btn {
   width:230px;
   margin-bottom:5px;
   text-align:left;
@@ -2163,6 +2155,24 @@ section .container.intro .well .btn {
   padding-top: 12px;
   padding-bottom: 12px;
   margin-right: 50px;
+}
+
+.btn-lg {
+  border-radius: 4px;
+}
+
+.navbar-brand > img{
+  height:65px;
+}
+
+@media (max-width: 767px) {
+  .container.intro .btn {
+     display:none;
+  }
+
+  .navbar-brand > img{
+    height:40px;
+  }
 }
 
 section#hpdemo [jio-type=table] .controls, section#hpdemo [jio-type=table] .paging{
@@ -2200,7 +2210,7 @@ section.tagline .features p{
   font-size:16px;
 }
 
-section .intro .octicon{
+.intro .octicon{
   margin-right: 5px;
   font-size: 20px;
 }
