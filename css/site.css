@@ -2936,3 +2936,7 @@ pre{
   }
 }
 
+.thumbnail.reverse
+{
+  background-color: #bbb;
+}
