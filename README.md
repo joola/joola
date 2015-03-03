@@ -1,6 +1,6 @@
 ![Joola](http://i.imgur.com/PrqIYX7.png)
 
-[Joola][22] is a real-time data analytics and visualization framework allowing you to quickly build custom, embedded data analytics applications.
+[Joola][22] is a data analytics and visualization middleware designed to help you quickly build custom, embedded data analytics applications.
 
 - **Simple**, flexible and powerful JSON to describe your data and push to Joola.
 - **Intuitive query** using JSON syntax makes it easy to analyze or visualize your data in blazing speed.
