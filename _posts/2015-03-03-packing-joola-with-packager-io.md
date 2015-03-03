@@ -3,7 +3,7 @@ layout: post_no_sidebar
 title:  "Packing Joola with Packager.io"
 date:   2015-03-03 02:44:32
 author: Itay Weinberger
-categories: blog packaging
+categories: blog
 ---
 
 We've used [Packager.io](https://packager.io/) to publish Joola as packages for Debian, Ubuntu and CentOS and we wanted to share our reasoning behind offering Joola as a packaged downloadable and our experience with Packager.io. Spoiler alert: it took us less than 10 minutes, worked on the first time and was overall awesome! 
