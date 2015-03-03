@@ -1,6 +1,8 @@
 title: Joola
 legal: Copyright © 2015 Joola Smart Solutions Ltd. All Rights Reserved.
 version: 0.9.0
+url: http://joolajs.org
+
 # Where things are
 source:      .
 destination: ./_site
