@@ -7,6 +7,7 @@ categories: blog news
 tags: content github
 
 ---
+
 That's it, we've decided to move to GitHub pages to host Joola's content. 
 Up until now we've had several different outlets, all maintained at different levels: website, documentation site (under readme.io), Wiki, API documentation (under apiary) and more.
 
@@ -14,4 +15,8 @@ Maintaining an open-source project is a difficult task, but maintaining its cont
 We aim to keep things short and to point, I guess both users and us will have a better experience as a result.
 
 We're now in the process of migration, so things will be a bit "in the air" for a couple of weeks until we finish with the migration. 
-Code and features are not expected to change as part of this move and we'll keep you updated in this space about our progress. 
+Code and features are not expected to change as part of this move and we'll keep you updated in this space about our progress.
+ 
+### Resources
+
+- I recently found a very nice blog post explaining how to setup Facebook's Open Graph tags to your Jekyll powered GitHub page, http://davidensinger.com/2013/04/adding-open-graph-tags-to-jekyll/. 
