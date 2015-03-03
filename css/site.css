@@ -2950,3 +2950,6 @@ section.tagline .features h4, section.tagline .features p{
   margin-left:50px;
 }
 
+pre{
+  font-size:14px;
+}
