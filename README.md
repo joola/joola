@@ -96,7 +96,7 @@ $ curl \
      http://localhost:8080/beacon/demo/demo?APIToken=apitoken-demo
 ```
 
-[**Learn more about pushing data**](http://joolajs.org/docs/intro/pushing-an-event.html)
+[**Learn more about pushing data**](http://joolajs.org/docs/intro/pushing-events.html)
 
 ### Draw your first visualization
 
