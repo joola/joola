@@ -2,11 +2,42 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="keywords" content="analytics, visualization, json, big-data, data analytics, embedded analytics">
-  <meta property="og:title" content="Data middleware for building custom analytics applications" />
-  <meta property="og:description" content="Joola is the easiet way to create data analytics applications">
-  <meta property="og:image" content="http://joolajs.org/img/joola_full_blue.png">
-  <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
-  <meta property="og:type" content="website" />
+  <meta content="{{ site.title }}" property="og:site_name">
+  {% if page.title %}
+    <meta content="{{ page.title }}" property="og:title">
+  {% else %}
+    <meta content="{{ site.title }}" property="og:title">
+  {% endif %}
+  {% if page.description %}
+    <meta content="{{ page.description }}" property="og:description">
+  {% else %}
+    <meta content="{{ site.description }}" property="og:description">
+  {% endif %}
+  {% if page.date %}
+  <meta content="{{ page.date | date_to_xmlschema }}" property="article:published_time">
+  <meta content="{{ site.url }}/about-us.html" property="article:author">
+  {% endif %}
+  {% if page.image %}
+    <meta content="{{ site.url }}/img/posts/{{ page.image }}" property="og:image">
+  {% else %}
+    <meta property="og:image" content="http://joolajs.org/img/joola_full_blue.png">
+  {% endif %}
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+  {% if page.title %}
+    <meta content="article" property="og:type">
+  {% else %}
+    <meta content="website" property="og:type">
+  {% endif %}
+  {% if page.categories %}
+    {% for category in page.categories limit:1 %}
+      <meta content="{{ category }}" property="article:section">
+    {% endfor %}
+  {% endif %}
+  {% if page.tags %}
+    {% for tag in page.tags %}
+      <meta content="{{ tag }}" property="article:tag">
+    {% endfor %}
+  {% endif %}
   <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
   <link rel="shortcut icon" href="{{ "/img/ico/favicon.ico" | prepend: site.baseurl }}">
   <title>Joola - {% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
