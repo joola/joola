@@ -1,4 +1,6 @@
 function setupSearch() {
+  if ($('#tipue_search_input').length === 0)
+    return;
   var $input = $('#tipue_search_input');
   $input.tipuesearch({
     'mode': 'json',
@@ -28,11 +30,13 @@ function setupDocumentation() {
   setupTOC();
 }
 
-function setupTOC(){
+function setupTOC() {
+  if ($('.post-content.no-toc').length > 0)
+    return;
   var $toc = $('<ul class="toc"></ul>');
-  $('.markdown-body h1').each(function(){
+  $('.markdown-body h1').each(function () {
     var $this = $(this);
-var $link = $('<li><a href="#'+$this.attr('id')+'">'+$this.text()+'</a></li>');
+    var $link = $('<li><a href="#' + $this.attr('id') + '">' + $this.text() + '</a></li>');
     $toc.append($link);
   });
   $($('.markdown-body h1')[0]).before($toc);

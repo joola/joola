@@ -1,0 +1,44 @@
+---
+layout: default
+---
+
+<div class="bs-docs-header" id="content">
+  <div class="container intro">
+    <div class="row">
+      <div class="col-md-9">
+        <h1>{{ page.title }}</h1>
+        <p>{{ page.description }}</p>
+      </div>
+      <div class="col-md-3">
+        <a href="{{ "/docs/intro/download.html" | prepend: site.baseurl }}" class="btn btn-default btn-lg btn-primary">
+        <span class="octicon octicon-cloud-download"></span>Download & Install
+        </a>
+        <a href="http://github.com/joola/joola" class="btn btn-default btn-lg btn-primary">
+          <span class="octicon octicon-mark-github"></span>View project on GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container page-wrapper">
+  <div class="post with-sidebar documentation markdown-body show-lists">
+    <article class="post-content no-toc">
+      <a id="overview"></a>
+      {{ content }}
+    </article>
+  </div>
+  <aside class="sidebar topic-list">
+    <nav id="doc-affix" class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix">
+      <ul id="list-items" class="nav bs-docs-sidenav">
+      </ul>
+      <a class="back-to-top" href="#top">
+        Back to top
+      </a>
+
+    </nav>
+  </aside>
+</div>
+<script>
+
+</script>
