@@ -31,7 +31,7 @@ var walk = function (dir, done) {
   });
 };
 
-walk(path.join(__dirname, '../../pages/_site'), function (err, results) {
+walk(path.join(__dirname, './_site'), function (err, results) {
   if (err) throw err;
 
   results = _.filter(results, function (item) {
