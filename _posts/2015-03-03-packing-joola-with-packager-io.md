@@ -26,7 +26,7 @@ However, while this works well for developers, it's not ideal for users for seve
 - Some dependencies require compilation, which may fail.
 - Dependencies have their own life-cycle, so we might have a situation where a user is using a newer dependency package than one we've tested.
 - The installation process can be lengthy if we include the `geo-ip` dictionary for IP lookups.
-- npm is designed for libraries, so the user ends up with `./node_modules/joola` instead of using "proper" system folders.
+- npm is designed for libraries, so the user ends up with `./node_modules/joola` folder instead of using "proper" system folders.
 - npm installation process does not relate to group, user, directories, permissions etc... creation, so we're quite limited in providing Joola as a service.
 - Users can install the package either globally or locally and we want to have uniformed configuration/logging/etc... folders.
  
@@ -39,17 +39,17 @@ In order to ensure high user installation success rate we looked into alternativ
 
 Packager uses [Heroku buildpacks](https://devcenter.heroku.com/articles/buildpacks), from their documentation:
 
-> The concept of buildpack was introduced by Heroku. It is a simple API to define what needs to be done to generate a self-contained version of an application, ready to be deployed. You can find more about the Buildpack API by following this link.
+> The concept of buildpack was introduced by Heroku. It is a simple API to define what needs to be done to generate a self-contained version of an application, ready to be deployed. You can find more about the Buildpack API by following [this link](https://devcenter.heroku.com/articles/buildpack-api).
 
-Packager helps Joola with a few of the topics listed above
+Packager helps Joola with the problems listed above:
 
-- It packages Node.JS and all of Joola's dependencies already compiled into the package.
+- It packages Node.JS and all of Joola's compiled dependencies into the package.
 - Users download a sealed package and there's no change between the code tested as part of our CI and the one deployed in the package.
 - Packager.io takes care of the installation folders and other required groups/users/permissions.
 - We can customize the build to fit our exact needs.
 
 We were surprised to see how quickly we managed to have a published Ubuntu package, but you can imagine our shock when it actually worked on the first attempt, Joola managed to run on a clean Ubuntu installation without any dependencies or pre-requisites, awesome stuff. 
-We always treated the move from a Javascript code executing by Node.JS to a full fledged Ubuntu package as much more difficult. 
+We imagined the move from a Javascript code executing by Node.JS to a full fledged Ubuntu package as much more difficult. 
 
 # Packaging Joola
 
@@ -59,14 +59,14 @@ We already tested Joola on Heroku and had a `Procfile` for it, it contains a sin
 web: node joola.js --trace
 ```
 
-That's all the we really needed to have our package build and publish successfully, but we decided to spend some time and customize our build to our needs.
+That's all that we really needed to have our package build and publish successfully, but we decided to spend some time and customize our build to our needs.
 
 Below is our `.pkgr.yml` file, it contains the following directives:
 
 - `targets` include all the different distributions we wish to build for.
 - `env` is used to flag to Joola that it's a packaged dist.
 - `before` is used to cleanup any files we don't want to land on the user machine.
-- `after` runs `postinstall` does some config file linking to our default.yml.
+- `after` runs `postinstall` that does some config file linking to our default.yml.
 
 ```yaml
 targets:
@@ -94,7 +94,7 @@ after_install: ./postinstall.sh
 Take a look at our [GitHub repository](http://github.com/joola/joola) to see the full files.
 
 The last step was to add a webhook between our repository and Packager.io, this can be easily done using their administration console.
-Every time we merge to our `develop` and `master` branches we have a fresh build executed on our behalf automatically.
+Now every time we merge to our `develop` and `master` branches we have a fresh build executed on our behalf automatically.
 
 Another benefit we found is that we can have both the `develop` and `master` branches trigger Packager.io builds, each ends up hosted in its own repository on Packager.io side, so we can offer developers and users to download stable/latest releases.
 
