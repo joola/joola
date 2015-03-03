@@ -2249,65 +2249,6 @@ section h1 {
   display: none;
 }
 
-@media (max-width: 767px) {
-  #carousel img {
-    display: none;
-  }
-
-  .center-block {
-    background-size: cover;
-  }
-
-  a.read-more {
-    margin-left: auto;
-    margin-right: auto;
-    float:none !important;
-  }
-
-  #carousel .item {
-    padding-top: 20px;
-    text-align: center !important;
-
-  }
-
-  #carousel .item h1 {
-    font-size: 22px;
-    text-align: center;
-  }
-
-  #carousel .item .col-md-5 {
-    text-align: center !important;
-  }
-
-  #carousel .item h2, #carousel .item h3, #carousel .item p {
-    display: none;
-  }
-
-  #carousel .item {
-    min-height: 200px;
-  }
-
-  .hide-on-mobile {
-    display: none;
-  }
-
-  .show-on-mobile {
-    display: block;
-  }
-
-  #carousel .item .read-more {
-    margin-top: 20px;
-  }
-
-  #carousel .item .pinch-left {
-    margin-left:0 !important;
-  }
-
-  #carousel .item .col-md-6 {
-    text-align:center !important;
-  }
-}
-
 section.inner {
   margin-top: 0;
   padding-top: 0;
@@ -2876,18 +2817,6 @@ section .container.intro .well h2{
   height:65px;
 }
 
-@media (max-width: 767px) {
-  .container.intro .btn {
-     display:none;
-  }
-  section .container.intro .btn {
-    display:inherit;
-  }
-  .navbar-brand > img{
-    height:40px;
-  }
-}
-
 section#hpdemo [jio-type=table] .controls, section#hpdemo [jio-type=table] .paging{
   display:none;
 
@@ -2953,3 +2882,57 @@ section.tagline .features h4, section.tagline .features p{
 pre{
   font-size:14px;
 }
+
+.selectnav{
+  display:none;
+}
+
+@media (max-width: 767px) {
+  .hide-on-mobile {
+    display: none;
+  }
+
+  .show-on-mobile {
+    display: block;
+  }
+
+  .container.intro .btn {
+    display:none;
+  }
+  section .container.intro .btn {
+    display:inherit;
+  }
+  
+  .container.header-wrapper{
+    text-align: center;
+  }
+
+  .navbar-brand
+  {
+    float:none;
+    padding:0;
+    margin:0;
+    width:auto;
+    height:auto;
+    padding-bottom:15px;
+  }
+  
+  .navbar a.navbar-brand{
+    margin-right: auto;
+    margin-left: auto !important;
+    width:auto;
+    height:auto;
+  }
+
+  .selectnav {
+    display: block;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #d5d5d5;
+    margin-bottom: 22px;
+    cursor: pointer;
+    font-family: 'Titillium Web', Lato, 'helvetica neue', helvetica, arial;
+    font-size:13px;
+  }
+}
+

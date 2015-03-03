@@ -4,11 +4,10 @@
   <div class="main-nav">
     <div class="container header-wrapper">
       <div class="navbar-header">
-        <button type="button" data-toggle="collapse" data-target="#navbar-collapse" class="navbar-toggle">
-          <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span>
-          <span class="icon-bar"></span><span class="icon-bar"></span></button>
         <a href="{{ "/" | prepend: site.baseurl }}" class="navbar-brand">
-        <img src="{{ "/img/joola_full_blue.png" | prepend: site.baseurl }}"></a></div>
+        <img src="{{ "/img/joola_full_blue.png" | prepend: site.baseurl }}">
+        </a>
+      </div>
       <div id="navbar-collapse" class="navbar-collapse collapse">
         <!--<form class="navbar-form navbar-right" role="search">
           <div class="form-group">
@@ -25,7 +24,8 @@
             <ul role="menu" class="dropdown-menu">
               <li><a href="{{ "/docs/intro/download.html" | prepend: site.baseurl }}">Download & Install</a></li>
               <li><a href="{{ "/docs/intro/pushing-events.html" | prepend: site.baseurl }}">Pushing Events</a></li>
-              <li><a href="{{ "/docs/intro/your-first-visualization.html" | prepend: site.baseurl }}">Your First Visualization</a></li>
+              <li><a href="{{ "/docs/intro/your-first-visualization.html" | prepend: site.baseurl }}">Your First
+                Visualization</a></li>
               <li><a href="{{ "/docs/intro/configuration.html" | prepend: site.baseurl }}">Configuration</a></li>
               <li><a href="{{ "/docs/intro/how-it-works.html" | prepend: site.baseurl }}">How It Works?</a></li>
               <li><a href="https://github.com/joola/joola/labels/gh-faq">FAQ</a></li>
@@ -38,7 +38,8 @@
             <ul role="menu" class="dropdown-menu">
               <li><a href="{{ "/docs/dev/data-modelling.html" | prepend: site.baseurl }}">Data Modelling</a></li>
               <li><a href="{{ "/docs/dev/querying-data.html" | prepend: site.baseurl }}">Querying Data</a></li>
-              <li><a href="{{ "/docs/dev/security-and-authentication.html" | prepend: site.baseurl }}">Security & Authentication</a></li>
+              <li><a href="{{ "/docs/dev/security-and-authentication.html" | prepend: site.baseurl }}">Security &
+                Authentication</a></li>
               <li><a href="http://docs.joola.apiary.io/">REST API</a></li>
             </ul>
           </li>
@@ -50,8 +51,8 @@
               <li class="seperator">Configuration & Discovery</li>
               <li><a href="{{ "/docs/scale/redis.html" | prepend: site.baseurl }}">Redis</a></li>
               <li><a href="{{ "/docs/scale/zookeeper.html" | prepend: site.baseurl }}">Zookeeper</a></li>
-              <!--<li><a href="{{ "/docs/scale/etcd.html" | prepend: site.baseurl }}">etcd</a></li>-->
-              <!--<li><a href="{{ "/docs/scale/consul.html" | prepend: site.baseurl }}">Consul</a></li>-->
+              <li><a href="{{ "/docs/scale/etcd.html" | prepend: site.baseurl }}">etcd</a></li>
+              <li><a href="{{ "/docs/scale/consul.html" | prepend: site.baseurl }}">Consul</a></li>
               <li class="seperator">Data Stores</li>
               <li><a href="{{ "/docs/scale/elasticsearch.html" | prepend: site.baseurl }}">ElasticSearch</a></li>
               <li><a href="{{ "/docs/scale/mongodb.html" | prepend: site.baseurl }}">MongoDB</a></li>
@@ -62,7 +63,8 @@
                class="menulink dropdown-toggle">visualize</span></a>
             <ul role="menu" class="dropdown-menu">
               <li><a href="{{ "/docs/visualize/overview.html" | prepend: site.baseurl }}">Overview</a></li>
-              <li><a href="{{ "/docs/visualize/sdk-documentation.html" | prepend: site.baseurl }}">SDK Documentation</a></li>
+              <li><a href="{{ "/docs/visualize/sdk-documentation.html" | prepend: site.baseurl }}">SDK Documentation</a>
+              </li>
               <li class="seperator">Components</li>
               <li><a href="{{ "/docs/visualize/canvases.html" | prepend: site.baseurl }}">Canvases</a></li>
               <li><a href="{{ "/docs/visualize/timeline.html" | prepend: site.baseurl }}">Timeline</a></li>
@@ -82,16 +84,65 @@
               <li><a href="{{ "/docs/about/contributing.html" | prepend: site.baseurl }}">Contributing</a></li>
               <li><a href="{{ "/docs/about/making-changes.html" | prepend: site.baseurl }}">Making Changes</a></li>
               <li><a href="{{ "/docs/about/roadmap.html" | prepend: site.baseurl }}">Roadmap</a></li>
-              <li><a href="{{ "/docs/about/responsible-disclosure.html" | prepend: site.baseurl }}">Responsible Disclosure</a></li>
-              <li><a href="{{ "/docs/about/copyright-and-license.html" | prepend: site.baseurl }}">Copyright and License</a></li>
+              <li><a href="{{ "/docs/about/responsible-disclosure.html" | prepend: site.baseurl }}">Responsible
+                Disclosure</a></li>
+              <li><a href="{{ "/docs/about/copyright-and-license.html" | prepend: site.baseurl }}">Copyright and
+                License</a></li>
               <li><a href="{{ "/docs/about/versioning.html" | prepend: site.baseurl }}">Versioning</a></li>
               <li><a href="{{ "/docs/about/talk-to-us.html" | prepend: site.baseurl }}">Talk To Us</a></li>
             </ul>
           </li>
           <li class="news"><a href="{{ "/services" | prepend: site.baseurl }}" class="menulink">services</a></li>
         </ul>
-        
+
       </div>
+      <select class="selectnav" id="selectnav1" onchange="if (this.value!=='javascript:void') location.href=this.value;">
+        <option value="">- Navigation Menu -</option>
+        <option value="javascript:void">intro</option>
+        <option value="/docs/intro/download.html">- Download & Install</option>
+        <option value="/docs/intro/pushing-events.html">- Pushing Events</option>
+        <option value="/docs/intro/your-first-visualization.html">- Your First Visualization</option>
+        <option value="/docs/intro/configuration.html">- Configuration</option>
+        <option value="/docs/intro/how-it-works.html">- How It Works</option>
+        <option value="https://github.com/joola/joola/labels/gh-faq">- FAQ</option>
+        <option value="https://github.com/joola/joola/labels/gh-troubleshotting">- Troubleshooting</option>
+        <option value="javascript:void">dev</option>
+        <option value="/docs/dev/data-modelling.html">- Data Modelling</option>
+        <option value="/docs/dev/querying-data.html">- Querying Data</option>
+        <option value="/docs/dev/security-and-authentication.html">- Security & Authentication</option>
+        <option value="http://docs.joola.apiary.io">- REST API</option>
+        <option value="javascript:void">scale</option>
+        <option value="javascript:void">- Configuration & Discovery</option>
+        <option value="/docs/scale/overview.html">-- Overview</option>
+        <option value="/docs/scale/redis.html">-- Redis</option>
+        <option value="/docs/scale/zookeeper.html">-- Zookeeper</option>
+        <option value="/docs/scale/etcd.html">-- etcd</option>
+        <option value="/docs/scale/consul.html">-- Consul</option>
+        <option value="javascript:void">- Data Stores</option>
+        <option value="/docs/scale/mongodb.html">-- MongoDB</option>
+        <option value="/docs/scale/elasticsearch.html">-- ElasticSearch</option>
+        <option value="javascript:void">visualize</option>
+        <option value="/docs/visualize/overview.html">- Overview</option>
+        <option value="/docs/visualize/sdk-documentation.html">- SDK Documentation</option>
+        <option value="/docs/visualize/canvases.html">- Canvases</option>
+        <option value="/docs/visualize/timeline.html">- Timeline</option>
+        <option value="/docs/visualize/table.html">- Table</option>
+        <option value="/docs/visualize/metricbox.html">- Metric Box</option>
+        <option value="/docs/visualize/pie.html">- Pie Chart</option>
+        <option value="/docs/visualize/bartable.html">- Bar Table</option>
+        <option value="/docs/visualize/geomap.html">- GeoMap</option>
+        <option value="/docs/visualize/datepicker.html">- DatePicker</option>
+        <option value="javascript:void">about</option>
+        <option value="/docs/about/contributing.html">- Contributing</option>
+        <option value="/docs/about/making-changes.html">- Making Changes</option>
+        <option value="/docs/about/roadmap.html">- Roadmap</option>
+        <option value="/docs/about/responsible-disclosure.html">- Responsible Disclosure</option>
+        <option value="/docs/about/copyright-and-license.html">- Copyright & License</option>
+        <option value="/docs/about/versioning.html">- Versioning</option>
+        <option value="/docs/about/talk-to-us.html">- Talk To Us</option>
+        <option value="/blog">blog</option>
+        <option value="/services">services</option>
+      </select>
     </div>
   </div>
 </div>
