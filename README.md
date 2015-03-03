@@ -10,7 +10,7 @@
 
 - [Introduction](http://joolajs.org/docs/intro/how-it-works.html)
 - [Download & install](http://joolajs.org/docs/intro/download.html)
-- [Configuration](http://joolajs.org/docs/config/configuration.html)
+- [Configuration](http://joolajs.org/docs/intro/configuration.html)
 - [Scaling & clustering](http://joolajs.org/docs/scale/overview.html)
 - [Website integration](http://joolajs.org/docs/dev/website-integration.html)
 - [REST API](http://docs.joola.apiary.io)
