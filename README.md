@@ -14,7 +14,7 @@
 - [Scaling & clustering](http://joolajs.org/docs/scale/overview.html)
 - [Website integration](http://joolajs.org/docs/dev/website-integration.html)
 - [REST API](http://docs.joola.apiary.io)
-- [SDK documentation](http://joolajs.org/docs/dev/sdk-documentation.html)
+- [SDK documentation](http://joolajs.org/docs/visualize/sdk-documentation.html)
 
 ### Main Features
 
