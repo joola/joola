@@ -70,4 +70,4 @@ It's not a question if we could have achieved the same using grunt or gulp, of c
 The reason why we chose this approach is due to its simplicity and straightforward manner, fewer dependencies and overall better readability.  
 
 <bv/><br/>
-Read more about [how we packaged Joola with Packager.io](packing-joola-with-packager-io.html).
+Read more about [how we packaged Joola with Packager.io](/blog/2015/03/03/packing-joola-with-packager-io.html).
