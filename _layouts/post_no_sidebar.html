@@ -3,16 +3,28 @@ layout: default
 ---
 
 <div class="bs-docs-header" id="content">
-  <div class="container">
-    <h1>{{ page.title }}</h1>
-
-    <p class="post-author">
-      Posted <abbr class="timeago"
-                   title="{{page.date}}">{{page.date}}</abbr> by {{page.author}}
-      {% for tag in page.tags %}
-      <span class="label label-default post-tag">{{ tag }}</span>
-      {% endfor %}
-    </p>
+  <div class="container intro">
+    <div class="row">
+      <div class="col-md-9">
+        <h1>{{ page.title }}</h1>
+        <p class="post-author">
+          Posted <abbr class="timeago"
+                       title="{{page.date}}">{{page.date}}</abbr> by {{page.author}}
+          {% for tag in page.tags %}
+          <span class="label label-default post-tag">{{ tag }}</span>
+          {% endfor %}
+        </p>
+      </div>
+      <div class="col-md-3">
+        <a href="{{ "/docs/intro/download.html" | prepend: site.baseurl }}" class="btn btn-default btn-lg btn-primary">
+        <span class="octicon octicon-cloud-download"></span>Download & Install
+        </a>
+        <a href="http://github.com/joola/joola" class="btn btn-default btn-lg btn-primary">
+          <span class="octicon octicon-mark-github"></span>View project on GitHub
+        </a>
+      </div>
+    </div>
+    
   </div>
 </div>
 <div class="container page-wrapper post-content documentation markdown-body show-lists">
