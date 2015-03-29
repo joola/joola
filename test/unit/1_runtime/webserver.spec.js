@@ -52,23 +52,23 @@ describe("webserver", function () {
       if (err)
         return done(err);
 
-      expect(response.statusCode).to.equal(200);
+      expect(response.statusCode).to.equal(404);
       done();
     });
   });
-  
+
   it("should have HTTPS port open", function (done) {
     request.get('https://localhost:' + engine.config.interfaces.webserver.secureport + '', function (err, response, body) {
       if (err)
         return done(err);
 
-      expect(response.statusCode).to.equal(200);
+      expect(response.statusCode).to.equal(404);
       done();
     });
   });
 
   it("should have WebSocket", function (done) {
-    var io = require('socket.io-client').connect(joola.options.host);
+    var io = require('socket.io-client').connect(joola.options.host, {"force new connection": true});
     io.on('connect', function () {
       return done();
     });
@@ -76,7 +76,7 @@ describe("webserver", function () {
   });
 
   it("should have Emit on WebSocket", function (done) {
-    var io = require('socket.io-client').connect(joola.options.host);
+    var io = require('socket.io-client').connect(joola.options.host, {"force new connection": true});
     io.on('connect', function () {
 
     });
@@ -88,7 +88,7 @@ describe("webserver", function () {
   });
 
   it("should have valid route on WebSocket", function (done) {
-    var io = require('socket.io-client').connect(joola.options.host);
+    var io = require('socket.io-client').connect(joola.options.host, {"force new connection": true});
     io.on('connect', function () {
 
     });
@@ -107,7 +107,7 @@ describe("webserver", function () {
   });
 
   it("should fail on invalid route", function (done) {
-    var io = require('socket.io-client').connect(joola.options.host);
+    var io = require('socket.io-client').connect(joola.options.host, {"force new connection": true});
     io.on('connect', function () {
 
     });
@@ -144,7 +144,7 @@ describe("webserver", function () {
       done();
     });
   });
-  
+
   it("should serve api endpoints [system version]", function (done) {
     request.get('http://localhost:' + engine.config.interfaces.webserver.port + '/system/version?APIToken=apitoken-demo', function (err, response, body) {
       if (err)
