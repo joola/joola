@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-  - "0.10"
-  - "0.11"
-  - "0.12"
+#  - "0.10"
+#  - "0.11"
+#  - "0.12"
   - "iojs"
   
 services:
@@ -18,17 +18,17 @@ branches:
   only:
   - master
   - develop
-matrix:
-  fast_finish: true
-  allow_failures:
-    - node_js: "0.11"
-    - node_js: "0.12"
-    - node_js: "iojs"
+#matrix:
+#  fast_finish: true
+#  allow_failures:
+#    - node_js: "0.11"
+#    - node_js: "0.12"
+#    - node_js: "iojs"
 before_install:
   - wget http://apache.claz.org/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz
   - tar -zxvf zookeeper*tar.gz
   - zookeeper-3.4.6/bin/zkServer.sh start zookeeper-3.4.6/conf/zoo_sample.cfg
-  - npm install -g protagonist@0.19.0-rc
+  - mkdir -p ./node_modules/dredd && cd ./node_modules/dredd && npm install protagonist@0.19.0-rc
    
 before_script:
   - sudo rabbitmq-plugins enable rabbitmq_stomp
