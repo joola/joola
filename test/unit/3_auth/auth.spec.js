@@ -21,13 +21,6 @@ describe("auth", function () {
     return done();
   });
 
-  it("should return static content with no login issues", function (done) {
-    browser.visit('http://localhost:' + engine.config.interfaces.webserver.port + '/ico/favicon.ico', function () {
-      expect(browser.success).to.equal(true);
-      return done();
-    });
-  });
-
   it("should generate a valid security token", function (done) {
     var user = {
       username: 'test',
