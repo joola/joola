@@ -1,0 +1,16 @@
+{
+  "name": "joola",
+  "version": "0.8.6",
+  "dependencies": {
+    "dredd": {
+      "version": "0.4.7",
+      "from": "dredd@latest",
+      "resolved": "https://registry.npmjs.org/dredd/-/dredd-0.4.7.tgz",
+      "dependencies": {
+        "protagonist": {
+          "version": "0.19.0-rc"
+        }
+      }
+    }
+  }
+}

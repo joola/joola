@@ -158,7 +158,6 @@
     "jshint": "latest",
     "mkdirp": "*",
     "mocha": "latest",
-    "protagonist": "0.19.0-rc",
     "dredd": "latest",
     "request": "^2.53.0",
     "should": "^5.0.0",
