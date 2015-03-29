@@ -1,6 +1,10 @@
 language: node_js
 node_js:
-  - '0.10'
+  - "0.10"
+#  - "0.11"
+#  - "0.12"
+#  - "iojs"
+  
 services:
   - redis-server
   - rabbitmq
@@ -14,14 +18,17 @@ branches:
   only:
   - master
   - develop
-matrix:
-  fast_finish: true
-  
+#matrix:
+#  fast_finish: true
+#  allow_failures:
+#    - node_js: "0.11"
+#    - node_js: "0.12"
+#    - node_js: "iojs"
 before_install:
   - wget http://apache.claz.org/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz
   - tar -zxvf zookeeper*tar.gz
   - zookeeper-3.4.6/bin/zkServer.sh start zookeeper-3.4.6/conf/zoo_sample.cfg
-  
+   
 before_script:
   - sudo rabbitmq-plugins enable rabbitmq_stomp
   - sudo service rabbitmq-server restart
@@ -51,10 +58,8 @@ deploy:
     on:
       tags: true
       branch: master
-script: npm run test:scenario
+script: npm run test:scenario:coverage
 after_success:
-  - npm run test:scenario:coverage
-  - node ./build/coverage/aggregate.js
   - npm run coveralls
   - npm run codeclimate
   - npm run test:api
