@@ -1,4 +1,4 @@
-describe("query-basic", function () {
+describe("query-filter", function () {
   before(function (done) {
     this.context = {user: _token.user};
     this.workspace = 'root';

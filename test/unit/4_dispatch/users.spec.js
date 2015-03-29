@@ -115,7 +115,7 @@ describe("users", function () {
       return done();
     });
   });
-
+  
   it("should fail adding a user with an already existing username", function (done) {
     var user = {
       username: 'tester-' + this.uid,
@@ -174,7 +174,6 @@ describe("users", function () {
     engine.users.patch(this.context, this.workspace, user.username, user, function (err, user) {
       if (err)
         return done(err);
-      console.log(user);
       expect(user.filter).to.equal(filter);
       return done(err);
     });
@@ -308,7 +307,7 @@ describe("users", function () {
     });
   });
 
-  xit("should delete a user", function (done) {
+  it("should delete a user", function (done) {
     var self = this;
     var user = {
       username: 'tester-' + this.uid
@@ -317,7 +316,6 @@ describe("users", function () {
       if (err)
         return done(err);
       engine.users.get(self.context, self.workspace, user.username, function (err, user) {
-        console.log(err, user);
         if (user)
           return done('This should fail'+JSON.stringify(user));
         else

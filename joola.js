@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 /**
  *  @title joola.io
  *  @overview the open-source data analytics framework
@@ -14,5 +15,5 @@
 var joola = module.exports = require('./lib/joola');
 
 /* istanbul ignore if */
-if (require.main === module || require.main.filename.indexOf('ProcessContainer.js') > -1 /*Allow PM2*/)
+if (require.main === module || require.main.filename.indexOf('ProcessContainer.js') > -1 /*Allow PM2*/ )
   joola.init();
