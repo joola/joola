@@ -114,119 +114,118 @@ title: Data middleware for building custom analytics applications
 </section>
 
 <script>
-  $().ready(function () {
-    joola.on('ready', function () {
-      new joola.viz.Canvas({
-        container: '#canvas',
-        realtime: false,
-        datepicker: {
-          container: '#datepicker'
-        },
-        filterbox: {
-          container: '#filters'
-        },
-        visualizations: {
-          bartable1: {
-            type: 'bartable',
+  joola.on('ready', function () {
+    new joola.viz.Canvas({
+      container: '#canvas',
+      realtime: false,
+      datepicker: {
+        container: '#datepicker'
+      },
+      filterbox: {
+        container: '#filters'
+      },
+      visualizations: {
+        bartable1: {
+          type: 'bartable',
 
-            container: '#bartable1',
-            query: {
-              dimensions: [
-                {key: 'browser', name: 'Browser'}
-              ],
-              metrics: ['moves'],
-              collection: 'moves',
-              orderby: [
-                ['moves', 'DESC']
-              ]
-            },
-            limit: 3
+          container: '#bartable1',
+          query: {
+            dimensions: [
+              {key: 'browser', name: 'Browser'}
+            ],
+            metrics: ['moves'],
+            collection: 'moves',
+            orderby: [
+              ['moves', 'DESC']
+            ]
           },
-          table: {
-            container: '#table',
-            type: 'table',
-            caption: '',
-            paging: {
-              currentSize: 3,
-              currentPage: 1,
-              sizes: [10, 25, 50, 100, 250, 500, 1000]
+          limit: 3
+        },
+        table: {
+          container: '#table',
+          type: 'table',
+          caption: '',
+          paging: {
+            currentSize: 3,
+            currentPage: 1,
+            sizes: [10, 25, 50, 100, 250, 500, 1000]
+          },
+          pickers: {
+            primary: {
+              enabled: false,
+              caption: 'Primary dimension...',
+              allowRemove: false
             },
-            pickers: {
-              primary: {
-                enabled: false,
-                caption: 'Primary dimension...',
-                allowRemove: false
-              },
-              add_dimension: {
-                enabled: false,
-                caption: 'Add dimension...',
-                allowRemove: false,
-                allowSelect: false
-              },
-              add_metric: {
-                enabled: false,
-                caption: 'Add metric...',
-                allowRemove: false,
-                allowSelect: false
-              }
+            add_dimension: {
+              enabled: false,
+              caption: 'Add dimension...',
+              allowRemove: false,
+              allowSelect: false
             },
-            query: {
-              dimensions: [
-                {key: 'browser', description: 'The browser used'},
-                {
-                  key: 'engine',
-                  description: 'The engine used'
-                }
-              ],
-              metrics: [
-                {key: 'moves', name: 'Mouse moves'},
-                {key: 'clicks', collection: 'clicks'},
-                {
-                  key: 'visits',
-                  collection: 'visits'
-                }
-              ],
-              collection: 'moves',
-              orderby: [
-                ['moves', 'DESC']
-              ]
+            add_metric: {
+              enabled: false,
+              caption: 'Add metric...',
+              allowRemove: false,
+              allowSelect: false
             }
           },
-          timeline: {
-            container: '#timeline',
-            type: 'timeline',
+          query: {
+            dimensions: [
+              {key: 'browser', description: 'The browser used'},
+              {
+                key: 'engine',
+                description: 'The engine used'
+              }
+            ],
+            metrics: [
+              {key: 'moves', name: 'Mouse moves'},
+              {key: 'clicks', collection: 'clicks'},
+              {
+                key: 'visits',
+                collection: 'visits'
+              }
+            ],
+            collection: 'moves',
+            orderby: [
+              ['moves', 'DESC']
+            ]
+          }
+        },
+        timeline: {
+          container: '#timeline',
+          type: 'timeline',
+          chart: {
             chart: {
-              chart: {
-                height: 200,
-                type: 'line'
-              },
-              yAxis: [
-                {
-                  min: 0
-                },
-                {
-                  min: 0
-                }
-              ]
+              height: 200,
+              type: 'line'
             },
-            pickers: {
-              main: {
-                enabled: false
+            yAxis: [
+              {
+                min: 0
               },
-              secondary: {
-                enabled: false
+              {
+                min: 0
               }
+            ]
+          },
+          pickers: {
+            main: {
+              enabled: false
             },
-            query: {
-              dimensions: ['timestamp'],
-              metrics: [
-                {key: 'moves', name: 'Mouse moves'}
-              ],
-              collection: 'moves'
+            secondary: {
+              enabled: false
             }
+          },
+          query: {
+            dimensions: ['timestamp'],
+            metrics: [
+              {key: 'moves', name: 'Mouse moves'}
+            ],
+            collection: 'moves'
           }
         }
-      });
+      }
     });
   });
+  
 </script>
