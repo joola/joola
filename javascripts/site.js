@@ -124,7 +124,7 @@ function setupAffix() {
 jQuery(document).ready(function () {
   jQuery('abbr.timeago').timeago();
 
-  $('table').addClass('table table-striped table-bordered');
+  $('.markdown-body table').addClass('table table-striped table-bordered');
 
   setupSearch();
   setupDocumentation();
