@@ -1,4 +1,4 @@
-version: 0.2.2
+version: 0.2.8
 interfaces:
   webserver:
     enabled: true
@@ -33,6 +33,7 @@ store:
     redis:
       #dsn: redis://127.0.0.1
   dispatch:
+    enabled: false
     redis:
       #dsn: redis://127.0.0.1
     stomp:
@@ -61,7 +62,7 @@ store:
 beacon:
   wait: true
 dispatch:
-  enabled: true
+  enabled: false
   expires: 60
 authentication:
   basicauth:
