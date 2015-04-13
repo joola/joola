@@ -47,7 +47,7 @@
     "test:api": "(killall node || true) && redis-cli flushall && NODE_CONFIG_DIR=$(pwd)/test/config NODE_ENV=apiary npm run start:detached && sleep 2 && dredd ./apiary.apib http://localhost:8080",
     "preinstall": "build/scripts/preinstall.sh || true",
     "postinstall": "build/scripts/postinstall.sh || true",
-    "prepublish": "npm run publish:do",
+    "publish": "npm run publish:do",
     "publish:do": "npm shrinkwrap && npm publish && rm npm-shrinkwrap.json",
     "publish:patch": "npm run prepublish && npm version patch --git-tag-version=false --sign-git-tag=true -m \"Version bumped to %s\" && npm run publish:do",
     "publish:minor": "npm run prepublish && npm version minor --git-tag-version=false --sign-git-tag=true -m \"Version bumped to %s\" && npm run publish:do",
