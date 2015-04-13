@@ -69,3 +69,5 @@ notifications:
       - https://webhooks.gitter.im/e/0a43ba3884562555a9c1
     on_success: change
     on_failure: always
+  slack:
+    secure: t2zS47eGInF15sEnO8py3Mz+rkNmTs7RmGUkvJ73LYqURfJyxW2U703CT/RMVksksUzRiAB7VC5kq5ohYBcWXMRyaeL1Hw5IMexBoDaBYlmpw6o6UksoAUeOaphRIzBEePXUZfvsQoDEJIyvIOB6qe5E4mPC0cdqJhkJkFH1zPM=
