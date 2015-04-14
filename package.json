@@ -1,7 +1,7 @@
 {
   "name": "joola",
   "preferGlobal": true,
-  "version": "0.8.8",
+  "version": "0.8.9",
   "author": "Joola <info@joo.la>",
   "description": "Custom data analytics solution built for today's market needs and scale.",
   "private": false,
@@ -116,7 +116,7 @@
     "cloneextend": "0.0.3",
     "coffee-script": "^1.9.1",
     "compression": "^1.4.3",
-    "config": "^1.10.0",
+    "config": "1.10.0",
     "connect": "^3.3.5",
     "deep-diff": "^0.3.1",
     "deep-equal": "^1.0.0",
