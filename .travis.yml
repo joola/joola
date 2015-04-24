@@ -3,7 +3,9 @@ node_js:
   - "0.10"
   - "0.12"
   - "iojs"
-  
+
+sudo: false
+
 services:
   - redis-server
   - rabbitmq
@@ -20,7 +22,7 @@ branches:
 matrix:
   fast_finish: true
   allow_failures:
-    - node_js: "0.11"
+    - node_js: "0.12"
     - node_js: "iojs"
 before_install:
   - wget http://apache.claz.org/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz
