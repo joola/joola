@@ -32,7 +32,7 @@ describe("query-nested", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].nvalue.actual).to.equal(9);
+      expect(result.documents[0].nvalue.actual).to.equal(8);
       return done(err);
     });
   });
@@ -54,7 +54,7 @@ describe("query-nested", function () {
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].actual).to.equal(2.25);
+      expect(result.documents[0].actual).to.equal(2.6666666666666665);
       return done();
     });
   });
