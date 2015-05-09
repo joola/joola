@@ -8,8 +8,7 @@ describe("query-filter", function () {
     done();
   });
 
-  it("should query only filtered results.", function (done) {
-    var query = {
+  it("should query only filtered results", function (done) {var query = {
       dimensions: [],
       metrics: ['value', 'another'],
       collection: this.collection,
@@ -29,7 +28,7 @@ describe("query-filter", function () {
     });
   });
 
-  it("should query only filtered results [two conditions].", function (done) {
+  it("should query only filtered results [two conditions]", function (done) {
     var query = {
       dimensions: [],
       metrics: ['value', 'another'],
@@ -51,7 +50,7 @@ describe("query-filter", function () {
     });
   });
 
-  it("should query only filtered results [two conditions, no results].", function (done) {
+  it("should query only filtered results [two conditions, no results]", function (done) {
     var query = {
       dimensions: [],
       metrics: ['value', 'another'],
@@ -74,7 +73,7 @@ describe("query-filter", function () {
     });
   });
 
-  it("should query only filtered results [regex].", function (done) {
+  it("should query only filtered results [regex]", function (done) {
     var query = {
       dimensions: [],
       metrics: ['value', 'another'],
@@ -92,6 +91,50 @@ describe("query-filter", function () {
       expect(result.documents.length).to.be.greaterThan(0);
       expect(result.documents[0].value).to.equal(3);
       expect(result.documents[0].another).to.equal(30);
+      return done();
+    });
+  });
+
+  it("should query for in-array values", function (done) {
+    var query = {
+      dimensions: [],
+      metrics: ['value', 'another'],
+      collection: this.collection,
+      filter: [
+        ['interests', 'in', '[1,2]']
+      ]
+    };
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+      
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
+      expect(result.documents[0].value).to.equal(3);
+      expect(result.documents[0].another).to.equal(30);
+      return done();
+    });
+  });
+
+  it("should query for in-array values", function (done) {
+    var query = {
+      dimensions: [],
+      metrics: ['value', 'another'],
+      collection: this.collection,
+      filter: [
+        ['tags', '_in', '["book", "computer"]']
+      ]
+    };
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
+      expect(result.documents[0].value).to.equal(2);
+      expect(result.documents[0].another).to.equal(20);
       return done();
     });
   });
