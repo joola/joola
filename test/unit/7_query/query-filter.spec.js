@@ -8,7 +8,8 @@ describe("query-filter", function () {
     done();
   });
 
-  it("should query only filtered results", function (done) {var query = {
+  it("should query only filtered results", function (done) {
+    var query = {
       dimensions: [],
       metrics: ['value', 'another'],
       collection: this.collection,
@@ -67,8 +68,8 @@ describe("query-filter", function () {
       expect(result.documents).to.be.ok;
       //TODO: MongoDB fails on this test because the provider returns an empty resultset. ES passes.
       /*expect(result.documents.length).to.equal(1);
-      expect(result.documents[0].value).to.equal(0);
-      expect(result.documents[0].another).to.equal(0);*/
+       expect(result.documents[0].value).to.equal(0);
+       expect(result.documents[0].another).to.equal(0);*/
       return done();
     });
   });
@@ -85,7 +86,7 @@ describe("query-filter", function () {
     joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-      
+
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
@@ -107,7 +108,7 @@ describe("query-filter", function () {
     joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-      
+
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
@@ -117,7 +118,7 @@ describe("query-filter", function () {
     });
   });
 
-  it("should query for in-array values", function (done) {
+  it("should query for in-array values [strict, ES only]", function (done) {
     var query = {
       dimensions: [],
       metrics: ['value', 'another'],
@@ -126,6 +127,10 @@ describe("query-filter", function () {
         ['tags', '_in', '["book", "computer"]']
       ]
     };
+
+    if (joola_proxy.datastore.providers.default.name !== 'ElasticSearch')
+      return done();
+
     joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
