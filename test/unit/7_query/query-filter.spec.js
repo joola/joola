@@ -66,7 +66,7 @@ describe("query-filter", function () {
         return done(err);
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
-      //TODO: MongoDB fails on this test because the providr returns an empty resultset. ES passes.
+      //TODO: MongoDB fails on this test because the provider returns an empty resultset. ES passes.
       /*expect(result.documents.length).to.equal(1);
       expect(result.documents[0].value).to.equal(0);
       expect(result.documents[0].another).to.equal(0);*/
@@ -86,11 +86,12 @@ describe("query-filter", function () {
     joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
+      
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].value).to.equal(4);
-      expect(result.documents[0].another).to.equal(40);
+      expect(result.documents[0].value).to.equal(3);
+      expect(result.documents[0].another).to.equal(30);
       return done();
     });
   });
