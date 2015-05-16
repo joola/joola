@@ -59,6 +59,8 @@ store:
     elasticsearch:
       enabled: false
       host: localhost:9200
+      usetypes: false
+      pattern: '-%Y-%M-%D'
 beacon:
   wait: true
 dispatch:
