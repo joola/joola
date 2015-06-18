@@ -135,6 +135,7 @@
     "kindof": "~1.0.0",
     "localeval": "^15.2.3",
     "node-zookeeper-client": "^0.2.2",
+    "notevil": "^1.0.0",
     "punt": "^2.2.0",
     "redis": "^0.12.0",
     "repl.history": "^0.1.3",
