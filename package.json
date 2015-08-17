@@ -170,7 +170,7 @@
     "github-changes": "latest"
   },
   "engines": {
-    "node": "0.10.*"
+    "node": "0.12.*"
   },
   "license": "GPL-3.0"
 }
