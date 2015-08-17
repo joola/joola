@@ -101,25 +101,32 @@ $ curl \
 ### Draw your first visualization
 
 ```html
-<script src="http://localhost:8080/joola.js?APIToken=apitoken-demo"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="http://localhost:8080/joola.js?APIToken=apitoken-demo"></script>
+</head>
+<body>
 <script>
-joola.on('ready', function(err) {
-  if (err)
-    throw err;
-
-  var options = {
-    caption: 'Visits over Time',
-    query: {
-      timeframe: 'last_hour',
-      interval: 'minute',
-      dimensions: ['timestamp'],
-      metrics: ['visits'],
-      collection: 'collection-demo'
-    }
-  }
-  $('<div></div>').Timeline(options).appendTo('body');
-});
+  joola.on('ready', function (err) {
+    if (err)
+      throw err;
+    var options = {
+      caption: 'Visits over Time',
+      query: {
+        timeframe: 'last_minute',
+        interval: 'second',
+        dimensions: ['timestamp'],
+        metrics: ['visits'],
+        collection: 'demo'
+      }
+    };
+    $('<div></div>').Timeline(options).appendTo('body');
+  });
 </script>
+</body>
+</html>
 ```
 
 [**Learn more about analytics and visualizations**](http://joolajs.org/docs/intro/your-first-visualization.html)
