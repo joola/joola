@@ -1,0 +1,8 @@
+store:
+  datastore:
+    mongodb:
+      enabled: false
+    elasticsearch:
+      enabled: true
+      host: localhost:9200
+      refresh: true

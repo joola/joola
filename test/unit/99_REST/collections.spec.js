@@ -11,8 +11,6 @@ describe("collections", function () {
   });
 
   it("should return a valid list of collections", function (done) {
-    console.log(joola.USER);
-
     joola.collections.list(this.context.user.workspace, function (err, collections) {
       if (err)
         return done(err);
@@ -103,8 +101,7 @@ describe("collections", function () {
 
   xit("should get collection stats", function (done) {
     var self = this;
-
-    joola.beacon.insert(this.context.user.workspace, this.collection, {timestamp: null, test: 1}, function (err) {
+    joola.insert(this.context.user.workspace, this.collection, {timestamp:null, test: 1}, {}, function (err,result) {
       if (err)
         return done(err);
       joola.dispatch.collections.stats(self.context.user.workspace, self.collection, function (err, stats) {
@@ -118,54 +115,6 @@ describe("collections", function () {
 
   it("should fail getting stats for non-existing collection", function (done) {
     joola.dispatch.collections.stats(this.context.user.workspace, this.collection + '1', function (err) {
-      if (err)
-        return done();
-
-      done(new Error('This should fail'));
-    });
-  });
-
-  xit("should get collection min date", function (done) {
-    var self = this;
-    joola.beacon.insert(this.context.user.workspace, this.collection, {timestamp: null}, function (err) {
-      if (err)
-        return done(err);
-      joola.dispatch.collections.mindate(self.context.user.workspace, self.collection, null, function (err, mindate) {
-        if (err)
-          return done(err);
-
-        expect(joola.common.typeof(mindate)).to.equal('date');
-        done();
-      });
-    });
-  });
-
-  xit("should fail getting non-existing collection min date", function (done) {
-    joola.dispatch.collections.mindate(this.context.user.workspace, this.collection + '3', null, function (err) {
-      if (err)
-        return done();
-
-      done(new Error('This should fail'));
-    });
-  });
-
-  xit("should get collection max date", function (done) {
-    var self = this;
-    joola.beacon.insert(this.context.user.workspace, this.collection, {timestamp: null}, function (err) {
-      if (err)
-        return done(err);
-      joola.dispatch.collections.maxdate(self.context.user.workspace, self.collection, null, function (err, maxdate) {
-        if (err)
-          return done(err);
-
-        expect(joola.common.typeof(maxdate)).to.equal('date');
-        done();
-      });
-    });
-  });
-
-  xit("should fail getting non-existing collection max date", function (done) {
-    joola.dispatch.collections.maxdate(this.context.user.workspace, this.collection + '3', null, function (err) {
       if (err)
         return done();
 
@@ -197,7 +146,7 @@ describe("collections", function () {
     });
   });
 
-  xit("should delete a collection", function (done) {
+  it("should delete a collection", function (done) {
     var self = this;
     joola.dispatch.collections.delete(this.context.user.workspace, this.collection, function (err) {
       if (err)
@@ -212,7 +161,7 @@ describe("collections", function () {
     });
   });
 
-  xit("should fail deleting a non-existing collection", function (done) {
+  it("should fail deleting a non-existing collection", function (done) {
     joola.dispatch.collections.delete(this.context.user.workspace, this.collection, function (err) {
       if (err)
         return done();
@@ -220,4 +169,4 @@ describe("collections", function () {
       done(new Error('This should fail'));
     });
   });
-}); 
+});

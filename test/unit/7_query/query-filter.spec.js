@@ -1,4 +1,4 @@
-describe("query-basic", function () {
+describe("query-filter", function () {
   before(function (done) {
     this.context = {user: _token.user};
     this.workspace = 'root';
@@ -8,7 +8,7 @@ describe("query-basic", function () {
     done();
   });
 
-  it("should query only filtered results.", function (done) {
+  it("should query only filtered results", function (done) {
     var query = {
       dimensions: [],
       metrics: ['value', 'another'],
@@ -29,7 +29,7 @@ describe("query-basic", function () {
     });
   });
 
-  it("should query only filtered results [two conditions].", function (done) {
+  it("should query only filtered results [two conditions]", function (done) {
     var query = {
       dimensions: [],
       metrics: ['value', 'another'],
@@ -51,7 +51,7 @@ describe("query-basic", function () {
     });
   });
 
-  it("should query only filtered results [two conditions, no results].", function (done) {
+  it("should query only filtered results [two conditions, no results]", function (done) {
     var query = {
       dimensions: [],
       metrics: ['value', 'another'],
@@ -66,15 +66,15 @@ describe("query-basic", function () {
         return done(err);
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
-      //TODO: MongoDB fails on this test because the providr returns an empty resultset. ES passes.
+      //TODO: MongoDB fails on this test because the provider returns an empty resultset. ES passes.
       /*expect(result.documents.length).to.equal(1);
-      expect(result.documents[0].value).to.equal(0);
-      expect(result.documents[0].another).to.equal(0);*/
+       expect(result.documents[0].value).to.equal(0);
+       expect(result.documents[0].another).to.equal(0);*/
       return done();
     });
   });
 
-  it("should query only filtered results [regex].", function (done) {
+  it("should query only filtered results [regex]", function (done) {
     var query = {
       dimensions: [],
       metrics: ['value', 'another'],
@@ -86,11 +86,60 @@ describe("query-basic", function () {
     joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
+
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
-      expect(result.documents[0].value).to.equal(4);
-      expect(result.documents[0].another).to.equal(40);
+      expect(result.documents[0].value).to.equal(3);
+      expect(result.documents[0].another).to.equal(30);
+      return done();
+    });
+  });
+
+  it("should query for in-array values", function (done) {
+    var query = {
+      dimensions: [],
+      metrics: ['value', 'another'],
+      collection: this.collection,
+      filter: [
+        ['interests', 'in', '[1,2]']
+      ]
+    };
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
+      expect(result.documents[0].value).to.equal(3);
+      expect(result.documents[0].another).to.equal(30);
+      return done();
+    });
+  });
+
+  it("should query for in-array values [strict, ES only]", function (done) {
+    var query = {
+      dimensions: [],
+      metrics: ['value', 'another'],
+      collection: this.collection,
+      filter: [
+        ['tags', '_in', '["book", "computer"]']
+      ]
+    };
+
+    if (joola_proxy.datastore.providers.default.name !== 'ElasticSearch')
+      return done();
+
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
+      expect(result.documents[0].value).to.equal(2);
+      expect(result.documents[0].another).to.equal(20);
       return done();
     });
   });

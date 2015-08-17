@@ -40,7 +40,6 @@ describe("usage", function () {
           filter: []
         };
         joola.fetch({_: token._}, query, function (err, usage) {
-          console.log(err, usage);
           if (err)
             return done(err);
 

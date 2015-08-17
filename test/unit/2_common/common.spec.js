@@ -1,41 +1,4 @@
 describe("common-utils", function () {
-  xit("should hook events", function (done) {
-    var obj = {
-      id: 'test',
-      _id: 'test2',
-      attribute: 'test',
-      numeric: 123,
-      run: function () {
-        return 1 + 2;
-      },
-      innerobject: {
-        attribute: 'another test',
-        run: function () {
-          return 3 + 4;
-        }
-      }
-    };
-
-    engine.common.hookEvents(obj);
-    obj.run();
-    expect(obj.hooked).to.equal(true);
-    done();
-  });
-
-  xit("should return hook events on null", function (done) {
-    //as long as not throws ok
-    engine.common.hookEvents(null);
-    done();
-  });
-
-  xit("should return hook events on non-object", function (done) {
-    var obj = 'test';
-
-    engine.common.hookEvents(obj);
-    expect(obj).to.equal('test');
-    done();
-  });
-
   it("should async stringify objects", function (done) {
     var obj = {
       a: 1,
@@ -165,10 +128,6 @@ describe("common-utils", function () {
 
   it("should typeof(date)", function () {
     expect(engine.common.typeof(new Date())).to.equal('date');
-  });
-
-  xit("should typeof('date')", function () {
-    expect(engine.common.typeof(new Date().toString())).to.equal('date');
   });
 
   it("should typeof(obj)", function () {
