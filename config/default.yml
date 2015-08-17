@@ -1,4 +1,4 @@
-version: 0.2.8
+version: 0.3.8
 interfaces:
   webserver:
     enabled: true
@@ -74,6 +74,7 @@ authentication:
     guest: 60
     user: 9999999999
   force404: false
+  requireroles: false
 #sdk:
   # url: https://raw.githubusercontent.com/joola/joola.sdk/feature/%2376/bin/joola.js
 query:
