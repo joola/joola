@@ -50,13 +50,6 @@ store:
       level: trace
       path: /var/log/joola
   datastore:
-    mongodb:
-      enabled: true
-      dsn: mongodb://localhost:27017/cache
-      expireafterseconds: 0
-    elasticsearch:
-      enabled: false
-      host: localhost:9200
 beacon:
   wait: true
 dispatch:
@@ -72,6 +65,7 @@ authentication:
     guest: 60
     user: 9999999999
   force404: false
+  requireroles: false
 #sdk:
   # url: https://raw.githubusercontent.com/joola/joola.sdk/feature/%2376/bin/joola.js
 query:
