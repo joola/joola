@@ -17,11 +17,10 @@ branches:
   only:
   - master
   - develop
-#matrix:
-#  fast_finish: true
-#  allow_failures:
-#    - node_js: "0.12"
-#    - node_js: "iojs"
+matrix:
+  fast_finish: true
+  allow_failures:
+    - node_js: "iojs"
 before_install:
   - wget http://apache.claz.org/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz
   - tar -zxvf zookeeper*tar.gz
