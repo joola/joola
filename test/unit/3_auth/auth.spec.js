@@ -8,11 +8,6 @@
  *
  *  @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
  */
-
-var
-  Browser = require('zombie'),
-  browser = new Browser({silent: true});
-
 describe("auth", function () {
   before(function (done) {
     this.context = {user: _token.user};
