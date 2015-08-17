@@ -165,7 +165,7 @@
     "sinon": "latest",
     "sinon-chai": "latest",
     "socket.io-browserify": "latest",
-    "zombie": "2.5.1",
+    "zombie": "4.0.8",
     "watch": "latest",
     "github-changes": "latest"
   },
