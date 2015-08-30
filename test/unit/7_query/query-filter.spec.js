@@ -143,4 +143,56 @@ describe("query-filter", function () {
       return done();
     });
   });
+
+  it("should query for ranges [gt, ES only]", function (done) {
+    var query = {
+      dimensions: [],
+      metrics: ['value', 'another'],
+      collection: this.collection,
+      filter: [
+        ['value', 'gt', 0]
+      ]
+    };
+
+    if (joola_proxy.datastore.providers.default.name !== 'ElasticSearch')
+      return done();
+
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
+      expect(result.documents[0].value).to.equal(3);
+      expect(result.documents[0].another).to.equal(30);
+      return done();
+    });
+  });
+
+  it("should query for ranges [gte, ES only]", function (done) {
+    var query = {
+      dimensions: [],
+      metrics: ['value', 'another'],
+      collection: this.collection,
+      filter: [
+        ['value', 'gte', 2]
+      ]
+    };
+
+    if (joola_proxy.datastore.providers.default.name !== 'ElasticSearch')
+      return done();
+
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
+      expect(result.documents[0].value).to.equal(2);
+      expect(result.documents[0].another).to.equal(20);
+      return done();
+    });
+  });
 });
