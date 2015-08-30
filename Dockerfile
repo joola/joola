@@ -10,7 +10,7 @@ RUN apt-get upgrade -ym
 RUN apt-get install -y curl build-essential python git
 
 RUN \
-    curl -sL https://deb.nodesource.com/setup | sudo bash - && \
+    curl --silent --location https://deb.nodesource.com/setup_0.12 | sudo bash - && \
     apt-get install -y nodejs 
 
 # setup needed settings/configuration for stack
