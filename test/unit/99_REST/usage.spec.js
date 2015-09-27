@@ -1,7 +1,6 @@
 describe("usage", function () {
   before(function (done) {
     this.context = {user: joola.USER};
-    this.collection = 'test-collection-dispatch-' + global.uid;
 
     //done();
     joola.set('APIToken', 'apitoken-demo', done);
