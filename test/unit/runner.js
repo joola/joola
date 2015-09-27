@@ -9,22 +9,22 @@
  **/
 
 var
+async = require('async'),
   path = require('path'),
   fs = require('fs');
 
-before(function (done) {
+before(function(done) {
   var self = this;
   try {
     //make sure we start the test without any residue json configuration
     fs.unlinkSync(path.join(__dirname, '../', 'config', 'local.json'));
+  } catch (ex) {
+
   }
-  catch (ex) {
-    
-  }
-  require('../../joola.js').init({}, function (err, engine) {
+  require('../../joola.js').init({}, function(err, engine) {
     if (err)
       return done(err);
-    engine.state.once('state:change', function (state) {
+    engine.state.once('state:change', function(state) {
       if (state !== 'online')
         return done(new Error('Failed to initialize engine, check logs.'));
 
@@ -35,11 +35,17 @@ before(function (done) {
       global.joola_proxy = engine;
       global.uid = engine.common.uuid();
       global.workspace = '_test';
-      joola.init({host: 'http://127.0.0.1:8080', APIToken: 'apitoken-test', debug: {enabled: false}}, function (err) {
+      joola.init({
+        host: 'http://127.0.0.1:8080',
+        APIToken: 'apitoken-test',
+        debug: {
+          enabled: false
+        }
+      }, function(err) {
         if (err)
           return done(err);
       });
-      joola.events.on('ready', function () {
+      joola.events.on('ready', function() {
         global.user = joola.USER;
         global.user.permissions = ['superuser'];
         global._token = {
@@ -51,12 +57,34 @@ before(function (done) {
   });
 });
 
-after(function (done) {
-  if (engine.shutdown) {
-    engine.shutdown(0, function () {
-      return done();
+after(function(done) {
+  //try to delete any left over collections
+  var context = {
+    user: _token.user
+  };
+  var collections = []
+  collections.push('test-collection-basic-' + global.uid);
+  collections.push('test-collection-basic-' + global.uid + '-date-field');
+  collections.push('test-collection-basic-' + global.uid + '-nots');
+  //collections.push('test-collection-collectionstest-' + global.uid);
+  collections.push('test-collection-nested-' + global.uid);
+  collections.push('test-beacon-route-' + global.uid);
+  collections.push('collection-592');
+  //collections.push('test-collection-592');
+  async.mapSeries(collections, function(c, cb) {
+    console.log('dropping collection', c)
+    engine.collections.delete(context, context.user.workspace, c, function(err) {
+      //allow errors
+      return cb(null);
     });
-  }
-  else
-    return done();
+  }, function(err) {
+    if (err)
+      console.log('err', err);
+    if (engine.shutdown) {
+      engine.shutdown(0, function() {
+        return done();
+      });
+    } else
+      return done();
+  });
 });
