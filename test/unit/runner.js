@@ -72,14 +72,11 @@ after(function(done) {
   collections.push('collection-592');
   //collections.push('test-collection-592');
   async.mapSeries(collections, function(c, cb) {
-    console.log('dropping collection', c)
     engine.collections.delete(context, context.user.workspace, c, function(err) {
       //allow errors
       return cb(null);
     });
   }, function(err) {
-    if (err)
-      console.log('err', err);
     if (engine.shutdown) {
       engine.shutdown(0, function() {
         return done();
