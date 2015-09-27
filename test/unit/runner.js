@@ -62,7 +62,7 @@ after(function(done) {
   var context = {
     user: _token.user
   };
-  var collections = []
+  var collections = [];
   collections.push('test-collection-basic-' + global.uid);
   collections.push('test-collection-basic-' + global.uid + '-date-field');
   collections.push('test-collection-basic-' + global.uid + '-nots');
