@@ -33,7 +33,7 @@ describe("query-basic", function () {
     joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
         return done(err);
-      
+
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
@@ -69,6 +69,26 @@ describe("query-basic", function () {
       dimensions: [],
       metrics: ['value'],
       collection: this.collection
+    };
+    joola_proxy.query.fetch(this.context, query, function (err, result) {
+      if (err)
+        return done(err);
+
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
+      expect(result.documents[0].value).to.equal(3);
+      return done();
+    });
+  });
+
+  it("should perform a basic query - custom date field name", function (done) {
+    var query = {
+      timeframe: 'last_day',
+      interval: 'minute',
+      dimensions: [],
+      metrics: ['value'],
+      collection: this.collection + '-date-field'
     };
     joola_proxy.query.fetch(this.context, query, function (err, result) {
       if (err)
