@@ -1,0 +1,44 @@
+[
+  {
+    "date": null,
+    "attribute": "testing test21 test3",
+    "attribute2": "test11",
+    "transform": "test",
+    "value": 1,
+    "another": 10,
+    "third": 100,
+    "interests": [1],
+    "tags": ["computer"]
+  },
+  {
+    "date": null,
+    "attribute": "test2",
+    "attribute2": "test22",
+    "transform": "test",
+    "value": 2,
+    "another": 20,
+    "third": 200,
+    "interests": [1, 2, 3],
+    "tags": ["book", "computer"]
+  },
+  {
+    "date": "2014-01-10T22:04:12.533Z",
+    "attribute": "test32",
+    "attribute2": "test33",
+    "transform": "test",
+    "value": 3,
+    "another": 30,
+    "third": 300,
+    "interests": [1]
+  },
+  {
+    "date": "2018-01-10T22:04:12.533Z",
+    "attribute": "test-future",
+    "attribute2": "test44",
+    "transform": "test",
+    "value": 0,
+    "another": 0,
+    "third": 0,
+    "interests": [1]
+  }
+]

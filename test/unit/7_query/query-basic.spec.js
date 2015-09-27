@@ -1,6 +1,8 @@
-describe("query-basic", function () {
-  before(function (done) {
-    this.context = {user: _token.user};
+describe("query-basic", function() {
+  before(function(done) {
+    this.context = {
+      user: _token.user
+    };
     this.workspace = 'root';
     this.uid = global.uid;
     this.collection = 'test-collection-basic-' + this.uid;
@@ -8,11 +10,11 @@ describe("query-basic", function () {
     done();
   });
 
-  it("should not fail performing a query with no arguments", function (done) {
+  it("should not fail performing a query with no arguments", function(done) {
     var query = {};
     var expected = 0;
 
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
       var actual = result.documents.length;
@@ -24,16 +26,16 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a basic query with minimal arguments", function (done) {
+  it("should perform a basic query with minimal arguments", function(done) {
     var query = {
       dimensions: [],
       metrics: ['value', 'another'],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
-      
+
       expect(result).to.be.ok;
       expect(result.documents).to.be.ok;
       expect(result.documents.length).to.be.greaterThan(0);
@@ -43,14 +45,14 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a basic query with minimal arguments [no timestamp]", function (done) {
+  it("should perform a basic query with minimal arguments [no timestamp]", function(done) {
     var query = {
       timeframe: 'last_minute',
       interval: 'raw',
       metrics: ['value'],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
 
@@ -62,7 +64,7 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a basic query", function (done) {
+  it("should perform a basic query", function(done) {
     var query = {
       timeframe: 'last_day',
       interval: 'minute',
@@ -70,7 +72,7 @@ describe("query-basic", function () {
       metrics: ['value'],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
 
@@ -82,7 +84,31 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a basic timeline query", function (done) {
+  it("should perform a basic query - custom date field name", function(done) {
+    //make sure the provider supports this
+    if (!joola_proxy.datastore.providers.default.supportedFeatures)
+      return done(null);
+
+    var query = {
+      timeframe: 'last_day',
+      interval: 'minute',
+      dimensions: [],
+      metrics: ['value'],
+      collection: this.collection + '-date-field'
+    };
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
+      if (err)
+        return done(err);
+
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
+      expect(result.documents[0].value).to.equal(3);
+      return done();
+    });
+  });
+
+  it("should perform a basic timeline query", function(done) {
     var query = {
       timeframe: 'last_day',
       interval: 'minute',
@@ -90,7 +116,7 @@ describe("query-basic", function () {
       metrics: ['value'],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -101,17 +127,19 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a freestyle query [without dependsOn]", function (done) {
+  it("should perform a freestyle query [without dependsOn]", function(done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
-      metrics: [
-        {key: 'value', name: 'value', aggregation: 'avg'}
-      ],
+      metrics: [{
+        key: 'value',
+        name: 'value',
+        aggregation: 'avg'
+      }],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -122,17 +150,20 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a freestyle query [avg]", function (done) {
+  it("should perform a freestyle query [avg]", function(done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
-      metrics: [
-        {key: 'value', name: 'value', dependsOn: 'value', aggregation: 'avg'}
-      ],
+      metrics: [{
+        key: 'value',
+        name: 'value',
+        dependsOn: 'value',
+        aggregation: 'avg'
+      }],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -143,17 +174,21 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a freestyle query with specific collection [avg]", function (done) {
+  it("should perform a freestyle query with specific collection [avg]", function(done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
-      metrics: [
-        {key: 'value', name: 'value', dependsOn: 'value', aggregation: 'avg', collection: this.collection}
-      ],
+      metrics: [{
+        key: 'value',
+        name: 'value',
+        dependsOn: 'value',
+        aggregation: 'avg',
+        collection: this.collection
+      }],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -164,17 +199,20 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a freestyle query [min]", function (done) {
+  it("should perform a freestyle query [min]", function(done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
-      metrics: [
-        {key: 'value', name: 'value', dependsOn: 'value', aggregation: 'min'}
-      ],
+      metrics: [{
+        key: 'value',
+        name: 'value',
+        dependsOn: 'value',
+        aggregation: 'min'
+      }],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -185,17 +223,20 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a freestyle query [max]", function (done) {
+  it("should perform a freestyle query [max]", function(done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
-      metrics: [
-        {key: 'value', name: 'value', dependsOn: 'value', aggregation: 'max'}
-      ],
+      metrics: [{
+        key: 'value',
+        name: 'value',
+        dependsOn: 'value',
+        aggregation: 'max'
+      }],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -206,17 +247,20 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a freestyle query [name]", function (done) {
+  it("should perform a freestyle query [name]", function(done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
-      metrics: [
-        {key: 'value', name: 'Value', dependsOn: 'value', aggregation: 'avg'}
-      ],
+      metrics: [{
+        key: 'value',
+        name: 'Value',
+        dependsOn: 'value',
+        aggregation: 'avg'
+      }],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -227,17 +271,20 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a freestyle query [prefix]", function (done) {
+  it("should perform a freestyle query [prefix]", function(done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
-      metrics: [
-        {key: 'value', name: 'value', dependsOn: 'value', prefix: '$'}
-      ],
+      metrics: [{
+        key: 'value',
+        name: 'value',
+        dependsOn: 'value',
+        prefix: '$'
+      }],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -248,17 +295,20 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a freestyle query [suffix]", function (done) {
+  it("should perform a freestyle query [suffix]", function(done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
-      metrics: [
-        {key: 'value', name: 'value', dependsOn: 'value', suffix: 'ms'}
-      ],
+      metrics: [{
+        key: 'value',
+        name: 'value',
+        dependsOn: 'value',
+        suffix: 'ms'
+      }],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -269,17 +319,21 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a freestyle query [prefix+suffix]", function (done) {
+  it("should perform a freestyle query [prefix+suffix]", function(done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
-      metrics: [
-        {key: 'value', name: 'value', dependsOn: 'value', prefix: '$', suffix: 'ms'}
-      ],
+      metrics: [{
+        key: 'value',
+        name: 'value',
+        dependsOn: 'value',
+        prefix: '$',
+        suffix: 'ms'
+      }],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -290,17 +344,21 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a freestyle query [decmials=4]", function (done) {
+  it("should perform a freestyle query [decmials=4]", function(done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
-      metrics: [
-        {key: 'value', name: 'value', dependsOn: 'value', aggregation: 'avg', decimals: 4}
-      ],
+      metrics: [{
+        key: 'value',
+        name: 'value',
+        dependsOn: 'value',
+        aggregation: 'avg',
+        decimals: 4
+      }],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -311,17 +369,21 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a freestyle query [decmials=2]", function (done) {
+  it("should perform a freestyle query [decmials=2]", function(done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
-      metrics: [
-        {key: 'value', name: 'value', dependsOn: 'value', aggregation: 'avg', decimals: 2}
-      ],
+      metrics: [{
+        key: 'value',
+        name: 'value',
+        dependsOn: 'value',
+        aggregation: 'avg',
+        decimals: 2
+      }],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -332,17 +394,21 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a freestyle query [decmials=0]", function (done) {
+  it("should perform a freestyle query [decmials=0]", function(done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
-      metrics: [
-        {key: 'value', name: 'value', dependsOn: 'value', aggregation: 'avg', decimals: 0}
-      ],
+      metrics: [{
+        key: 'value',
+        name: 'value',
+        dependsOn: 'value',
+        aggregation: 'avg',
+        decimals: 0
+      }],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -353,19 +419,25 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a freestyle query [timestamp]", function (done) {
+  it("should perform a freestyle query [timestamp]", function(done) {
     var query = {
       timeframe: 'last_day',
       interval: 'minute',
-      dimensions: [
-        {key: 'timestamp', name: 'Timestamp', dependsOn: 'timestamp'}
-      ],
-      metrics: [
-        {key: 'value', name: 'value', dependsOn: 'value', aggregation: 'avg', decimals: 0}
-      ],
+      dimensions: [{
+        key: 'timestamp',
+        name: 'Timestamp',
+        dependsOn: 'timestamp'
+      }],
+      metrics: [{
+        key: 'value',
+        name: 'value',
+        dependsOn: 'value',
+        aggregation: 'avg',
+        decimals: 0
+      }],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -376,24 +448,22 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a freestyle formula query [two metrics]", function (done) {
+  it("should perform a freestyle formula query [two metrics]", function(done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
-      metrics: [
-        {
-          key: 'calcvalue',
-          name: 'calcvalue',
-          formula: {
-            dependsOn: ['another', 'value'],
-            run: 'function(another, value){return another * value;}'
-          }
+      metrics: [{
+        key: 'calcvalue',
+        name: 'calcvalue',
+        formula: {
+          dependsOn: ['another', 'value'],
+          run: 'function(another, value){return another * value;}'
         }
-      ],
+      }],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -405,24 +475,22 @@ describe("query-basic", function () {
   });
 
 
-  it("should perform a freestyle formula query [three metrics]", function (done) {
+  it("should perform a freestyle formula query [three metrics]", function(done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
-      metrics: [
-        {
-          key: 'calcvalue',
-          name: 'calcvalue',
-          formula: {
-            dependsOn: ['another', 'value', 'third'],
-            run: 'function(another, value, third){return another * value * third;}'
-          }
+      metrics: [{
+        key: 'calcvalue',
+        name: 'calcvalue',
+        formula: {
+          dependsOn: ['another', 'value', 'third'],
+          run: 'function(another, value, third){return another * value * third;}'
         }
-      ],
+      }],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -433,24 +501,22 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a freestyle formula query [metric and fixed]", function (done) {
+  it("should perform a freestyle formula query [metric and fixed]", function(done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
-      metrics: [
-        {
-          key: 'calcvalue',
-          name: 'calcvalue',
-          formula: {
-            dependsOn: ['another'],
-            run: 'function(another){return another * 100;}'
-          }
+      metrics: [{
+        key: 'calcvalue',
+        name: 'calcvalue',
+        formula: {
+          dependsOn: ['another'],
+          run: 'function(another){return another * 100;}'
         }
-      ],
+      }],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -461,23 +527,21 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a freestyle unique count", function (done) {
+  it("should perform a freestyle unique count", function(done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
-      metrics: [
-        {
-          key: 'uniquevalue',
-          name: 'uniquevalue',
-          aggregation: 'ucount',
-          datatype: 'number',
-          dependsOn: ['attribute']
-        }
-      ],
+      metrics: [{
+        key: 'uniquevalue',
+        name: 'uniquevalue',
+        aggregation: 'ucount',
+        datatype: 'number',
+        dependsOn: ['attribute']
+      }],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -488,24 +552,22 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a freestyle metric transform", function (done) {
+  it("should perform a freestyle metric transform", function(done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
       dimensions: [],
-      metrics: [
-        {
-          key: 'uniquevalue',
-          name: 'uniquevalue',
-          aggregation: 'ucount',
-          datatype: 'number',
-          dependsOn: ['attribute'],
-          transform: 'function(value){return value*100;}'
-        }
-      ],
+      metrics: [{
+        key: 'uniquevalue',
+        name: 'uniquevalue',
+        aggregation: 'ucount',
+        datatype: 'number',
+        dependsOn: ['attribute'],
+        transform: 'function(value){return value*100;}'
+      }],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -516,24 +578,24 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a freestyle dimension transform", function (done) {
+  it("should perform a freestyle dimension transform", function(done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
-      dimensions: [
-        {
-          key: 'transform',
-          name: 'transform',
-          datatype: 'string',
-          transform: 'function(value){return "transformed-" + value;}'
-        }
-      ],
+      dimensions: [{
+        key: 'transform',
+        name: 'transform',
+        datatype: 'string',
+        transform: 'function(value){return "transformed-" + value;}'
+      }],
       metrics: ['value', 'another'],
       collection: this.collection,
       limit: 1,
-      sort: [['timestamp', 'asc']]
+      sort: [
+        ['timestamp', 'asc']
+      ]
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
 
@@ -545,24 +607,22 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a freestyle avg. per second", function (done) {
+  it("should perform a freestyle avg. per second", function(done) {
     var query = {
       timeframe: 'last_day',
       interval: 'minute',
       dimensions: ['timestamp'],
-      metrics: [
-        {
-          key: 'persecond',
-          name: 'persecond',
-          aggregation: 'ucount',
-          datatype: 'number',
-          dependsOn: ['attribute'],
-          transform: 'function(value){return value/60;}'
-        }
-      ],
+      metrics: [{
+        key: 'persecond',
+        name: 'persecond',
+        aggregation: 'ucount',
+        datatype: 'number',
+        dependsOn: ['attribute'],
+        transform: 'function(value){return value/60;}'
+      }],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -573,23 +633,21 @@ describe("query-basic", function () {
     });
   });
 
-  it("should perform a freestyle unique count by attribute", function (done) {
+  it("should perform a freestyle unique count by attribute", function(done) {
     var query = {
       timeframe: 'this_day',
       interval: 'minute',
       dimensions: ['attribute'],
-      metrics: [
-        {
-          key: 'uniquevalue',
-          name: 'uniquevalue',
-          aggregation: 'ucount',
-          datatype: 'number',
-          dependsOn: ['attribute']
-        }
-      ],
+      metrics: [{
+        key: 'uniquevalue',
+        name: 'uniquevalue',
+        aggregation: 'ucount',
+        datatype: 'number',
+        dependsOn: ['attribute']
+      }],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -600,7 +658,7 @@ describe("query-basic", function () {
     });
   });
 
-  xit("should perform an last_n_items query", function (done) {
+  xit("should perform an last_n_items query", function(done) {
     var query = {
       timeframe: 'last_1_items',
       interval: 'minute',
@@ -608,7 +666,7 @@ describe("query-basic", function () {
       metrics: ['value'],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
       expect(result).to.be.ok;
@@ -619,7 +677,7 @@ describe("query-basic", function () {
     });
   });
 
-  xit("should perform an last_n_items query w/o metrics [last 1 items]", function (done) {
+  xit("should perform an last_n_items query w/o metrics [last 1 items]", function(done) {
     var query = {
       timeframe: 'last_1_items',
       interval: 'minute',
@@ -627,7 +685,7 @@ describe("query-basic", function () {
       metrics: [],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
 
@@ -640,7 +698,7 @@ describe("query-basic", function () {
     });
   });
 
-  xit("should perform an last_n_items query w/o metrics [last 2 items]", function (done) {
+  xit("should perform an last_n_items query w/o metrics [last 2 items]", function(done) {
     var query = {
       timeframe: 'last_2_items',
       interval: 'minute',
@@ -648,7 +706,7 @@ describe("query-basic", function () {
       metrics: [],
       collection: this.collection
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
 
@@ -660,7 +718,7 @@ describe("query-basic", function () {
     });
   });
 
-  xit("should perform an last_n_items query w/o metrics [timestamp]", function (done) {
+  xit("should perform an last_n_items query w/o metrics [timestamp]", function(done) {
     var query = {
       timeframe: 'last_1_items',
       interval: 'second',
@@ -668,7 +726,7 @@ describe("query-basic", function () {
       metrics: [],
       collection: this.collection + '-times'
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
 
@@ -680,7 +738,7 @@ describe("query-basic", function () {
     });
   });
 
-  xit("should verify last_n_items by timestamp", function (done) {
+  xit("should verify last_n_items by timestamp", function(done) {
     var query = {
       timeframe: 'last_1_items',
       interval: 'second',
@@ -688,7 +746,7 @@ describe("query-basic", function () {
       metrics: [],
       collection: this.collection + '-times'
     };
-    joola_proxy.query.fetch(this.context, query, function (err, result) {
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
       if (err)
         return done(err);
 
