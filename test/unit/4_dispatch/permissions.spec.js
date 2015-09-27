@@ -25,13 +25,13 @@ describe("permissions", function () {
   });
 
   it("should get a permission", function (done) {
-    engine.permissions.get(this.context, 'access_system', function (err, permissions) {
+    engine.permissions.get(this.context, 'query:fetch', function (err, permissions) {
       return done(err);
     });
   });
 
   it("should not get a not existing permission", function (done) {
-    engine.permissions.get(this.context, 'access_system2', function (err, permissions) {
+    engine.permissions.get(this.context, 'access_system', function (err, permissions) {
       if (err)
         return done();
       return done(new Error('This should not fail'));
