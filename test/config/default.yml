@@ -99,8 +99,8 @@ workspaces:
         displayName: "Administrator"
         APIToken: "apitoken-test"
         ratelimit: 9999999999
-  .joola-stats:
-    key: .joola-stats
+  joola-stats:
+    key: ".joola-stats"
     name: Internal Stats
     description: Stores internal statistics of joola
     roles:
