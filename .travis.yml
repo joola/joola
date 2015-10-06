@@ -1,9 +1,9 @@
 language: node_js
 node_js:
-  - "0.10"
+  #- "0.10"
   - "0.12"
   - "iojs"
-  
+
 services:
   - redis-server
   - rabbitmq
@@ -25,7 +25,7 @@ before_install:
   - wget http://apache.claz.org/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz
   - tar -zxvf zookeeper*tar.gz
   - zookeeper-3.4.6/bin/zkServer.sh start zookeeper-3.4.6/conf/zoo_sample.cfg
-   
+
 before_script:
   - sudo rabbitmq-plugins enable rabbitmq_stomp
   - sudo service rabbitmq-server restart
@@ -47,7 +47,7 @@ deploy:
       branch: master
     api_key:
       secure: u2sgcDddY6is6ZB1q1YsFQwlld0cvsSbfH6UtEVP7QvOeITriv2fauXnt+WTSzLqcLphzFPviUceMP9Qm4FcbKd1+qHHCAtpmZMTx7MXoFjJJXDVYwbL9iQURi5IS6lja8eLSJZk8yonDuWZ6f3babr/iW4o//CalslW5WDwHMs=
-      
+
   - provider: npm
     email: info@joo.la
     api_key:
