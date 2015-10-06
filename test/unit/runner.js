@@ -15,6 +15,7 @@ async = require('async'),
 
 before(function(done) {
   var self = this;
+  global._token = null;
   try {
     //make sure we start the test without any residue json configuration
     fs.unlinkSync(path.join(__dirname, '../', 'config', 'local.json'));
@@ -58,30 +59,33 @@ before(function(done) {
 });
 
 after(function(done) {
-  //try to delete any left over collections
-  var context = {
-    user: _token.user
-  };
-  var collections = [];
-  collections.push('test-collection-basic-' + global.uid);
-  collections.push('test-collection-basic-' + global.uid + '-date-field');
-  collections.push('test-collection-basic-' + global.uid + '-nots');
-  //collections.push('test-collection-collectionstest-' + global.uid);
-  collections.push('test-collection-nested-' + global.uid);
-  collections.push('test-beacon-route-' + global.uid);
-  collections.push('collection-592');
-  //collections.push('test-collection-592');
-  async.mapSeries(collections, function(c, cb) {
-    engine.collections.delete(context, context.user.workspace, c, function(err) {
-      //allow errors
-      return cb(null);
-    });
-  }, function(err) {
-    if (engine.shutdown) {
-      engine.shutdown(0, function() {
-        return done();
+  if (_token) {
+    //try to delete any left over collections
+    var context = {
+      user: _token.user
+    };
+    var collections = [];
+    collections.push('test-collection-basic-' + global.uid);
+    collections.push('test-collection-basic-' + global.uid + '-date-field');
+    collections.push('test-collection-basic-' + global.uid + '-nots');
+    //collections.push('test-collection-collectionstest-' + global.uid);
+    collections.push('test-collection-nested-' + global.uid);
+    collections.push('test-beacon-route-' + global.uid);
+    collections.push('collection-592');
+    //collections.push('test-collection-592');
+    async.mapSeries(collections, function(c, cb) {
+      engine.collections.delete(context, context.user.workspace, c, function(err) {
+        //allow errors
+        return cb(null);
       });
-    } else
-      return done();
-  });
+    }, function(err) {
+      if (engine.shutdown) {
+        engine.shutdown(0, function() {
+          return done();
+        });
+      } else
+        return done();
+    });
+  } else
+    return done();
 });
