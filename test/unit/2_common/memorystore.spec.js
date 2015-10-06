@@ -16,8 +16,9 @@ describe("common-memory", function () {
   });
 
   it("set a value with expiry", function (done) {
-    engine.memory.get('test-expire', 'test', 1);
+    engine.memory.set('test-expire', 'test', 1);
     setTimeout(function () {
+      console.log('up');
       var value = engine.memory.get('test');
       if (value)
         return done(new Error('Failed to expire memory value'));

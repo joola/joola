@@ -15,7 +15,7 @@ describe("usage", function () {
     var user = {
       username: 'bypass',
       password: 'bypass',
-      workspace: '_stats',
+      workspace: '.joola-stats',
       roles: ['reader'],
       filter: [
         //['workspace', 'eq', 'demo']

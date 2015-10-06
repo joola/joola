@@ -134,6 +134,7 @@
     "joola.datastore-mongodb": "^0.0.15",
     "joola.sdk": "^0.8.7",
     "js-yaml": "^3.3.1",
+    "json-prune": "^1.0.0",
     "kindof": "^1.0.0",
     "localeval": "^15.2.3",
     "node-zookeeper-client": "^0.2.2",
