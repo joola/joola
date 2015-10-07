@@ -131,7 +131,7 @@
     "joola.datastore-elasticsearch": "^0.1.1",
     "joola.datastore-embedded": "^0.0.3",
     "joola.datastore-mongodb": "^0.0.15",
-    "joola.sdk": "^0.8.7",
+    "joola.sdk": "^0.8.9",
     "js-yaml": "^3.4.2",
     "json-prune": "^1.0.0",
     "kindof": "^1.0.0",
