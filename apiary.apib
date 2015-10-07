@@ -5,14 +5,14 @@ HOST: http://joola-develop.herokuapp.com
 [joola](http://github.com/joola/joola) is an open-source data analytics and visualization framework.
 To learn more about joola, installation, configuration and usage, please refer to our [wiki](http://github.com/joola/joola/wiki).
 
-This guide describes the resources that make up the joola API. 
+This guide describes the resources that make up the joola API.
 If you have any problems or requests please open an [issue](http://github.com/joola/joola/issues).
 
-## Using This Guide 
+## Using This Guide
 
 We will be using `http://localhost:8080` which is the default configuration for a fresh installation of joola.
 
-You can use the `Debugging Host` to execute requests against a valid, online joola instance we have put up for the purpose of this guide. A valid token for this purpose is `apitoken-demo`. 
+You can use the `Debugging Host` to execute requests against a valid, online joola instance we have put up for the purpose of this guide. A valid token for this purpose is `apitoken-demo`.
 Some actions will not be available in order to maintain system integrity.
 
 While we understand how naive we are with this request, please apply Fair Usage and avoid vandalism of the system as much as possible. The node serving this guide will recycle every hour.
@@ -72,7 +72,7 @@ joola API uses the following Verbs.
 | `DELETE` | Used for deleting resources.                                                                                                                                                                        |
 
 ## Authentication
-There are three ways to authenticate through joola API. 
+There are three ways to authenticate through joola API.
 Requests that require authentication will return 404 Not Found, instead of 403 Forbidden, in some places. This is to prevent the accidental leakage of private information to unauthorized users.
 
 #### Basic Authentication
@@ -156,7 +156,7 @@ Having multiple workspaces is the corner-stone for joola's multi-tenancy.
             "name": "joola Framework Tests"
           },
           {
-            "key": "_stats",
+            "key": ".joola-stats",
             "description": "Stores internal statistics of joola",
             "name": "Internal Stats"
           },
@@ -170,8 +170,8 @@ Having multiple workspaces is the corner-stone for joola's multi-tenancy.
 ### Create a Workspace [POST]
 + Request (application/json; charset=utf-8)
 
-        { 
-          "key": "workspace-name", 
+        {
+          "key": "workspace-name",
           "name": "Workspace Name"
         }
 
@@ -181,7 +181,7 @@ Having multiple workspaces is the corner-stone for joola's multi-tenancy.
           "key": "workspace-name",
           "name": "Workspace Name",
           "description": null
-        } 
+        }
 
 + Response 500 (application/json; charset=utf-8)
 
@@ -192,12 +192,12 @@ Having multiple workspaces is the corner-stone for joola's multi-tenancy.
 + Parameters
     + key (required, string, `workspace-name`) ... String `key` of the Workspace to perform action with. Has example value.
     + APIToken (optional, string, `apitoken-demo`) ... The `APIToken` of the user performing the action.
-    
+
 ### Retrieve a Workspace [GET]
 + Response 200 (application/json; charset=utf-8)
 
     + Body
-            
+
             {
               "key": "workspace-name",
               "name": "Workspace Name",
@@ -220,8 +220,8 @@ Having multiple workspaces is the corner-stone for joola's multi-tenancy.
 + Request (application/json; charset=utf-8)
 
         { "description": "workspace description" }
-        
-+ Response 200 
+
++ Response 200
 
         {
           "key": "workspace-name",
@@ -236,11 +236,11 @@ Having multiple workspaces is the corner-stone for joola's multi-tenancy.
 + Response 403 (application/json; charset=utf-8)
 
         { "message": "forbidden.", "documentation_url": "http://github.com/joola/joola/wiki" }
-        
+
 + Response 415 (application/json; charset=utf-8)
 
         { "message": "unsupported media type.", "documentation_url": "http://github.com/joola/joola/wiki" }
-        
+
 + Response 500 (application/json; charset=utf-8)
 
         { "message": "role [{key}] does not exist.", "documentation_url": "http://github.com/joola/joola/wiki" }
@@ -249,7 +249,7 @@ Having multiple workspaces is the corner-stone for joola's multi-tenancy.
 + Response 200
 
         {}
-        
+
 + Response 401 (application/json; charset=utf-8)
 
         { "message": "missing permission.", "documentation_url": "http://github.com/joola/joola/wiki" }
