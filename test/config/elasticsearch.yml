@@ -6,3 +6,5 @@ store:
       enabled: true
       host: localhost:9200
       refresh: true
+  stats:
+    enabled: true
