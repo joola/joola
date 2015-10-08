@@ -305,38 +305,40 @@ describe("query-filter", function() {
     });
   });
 
-it("should perform a freestyle calculated metric w/ 2 metrics, 2 filtered", function(done) {
-  var query = {
-    timeframe: 'last_day',
-    interval: 'day',
-    dimensions: [],
-    metrics: [{
-      key:'calcvalue',
-      formula:{
-        dependsOn:[{
-          key: 'value',
-          filter: [
-            ['attribute', 'eq', 'test2']
-          ]
-        }, {
-          key: 'another',
-          filter: [
-            ['attribute', 'eq', 'test2']
-          ]
-        }],
-        run: 'function(value, another) { return value * another }'
-      }
-    }],
-    collection: this.collection
-  };
-  joola_proxy.query.fetch(this.context, query, function(err, result) {
-    if (err)
-      return done(err);
-    expect(result).to.be.ok;
-    expect(result.documents).to.be.ok;
-    expect(result.documents.length).to.be.greaterThan(0);
-    expect(result.documents[0].calcvalue).to.equal(40);
-    return done();
+  it("should perform a freestyle calculated metric w/ 2 metrics, 2 filtered", function(done) {
+    var query = {
+      timeframe: 'last_day',
+      interval: 'day',
+      dimensions: [],
+      metrics: [{
+        key: 'calcvalue',
+        formula: {
+          dependsOn: [{
+            key: 'value',
+            filter: [
+              ['attribute', 'eq', 'test2']
+            ]
+          }, {
+            key: 'another',
+            filter: [
+              ['attribute', 'eq', 'test2']
+            ]
+          }],
+          run: 'function(value, another) { return value * another }'
+        }
+      }],
+      collection: this.collection
+    };
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
+      if (err)
+        return done(err);
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
+      expect(result.documents[0].calcvalue).to.equal(40);
+      return done();
+    });
   });
-});
+
+  
 });
