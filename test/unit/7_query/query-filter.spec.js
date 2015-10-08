@@ -278,6 +278,9 @@ describe("query-filter", function() {
   });
 
   it("should perform a freestyle sum w/ 2 metrics, 1 filtered, general filter", function(done) {
+    if (joola_proxy.datastore.providers.default.name !== 'ElasticSearch')
+      return done();
+
     var query = {
       timeframe: 'last_day',
       interval: 'day',
@@ -340,5 +343,90 @@ describe("query-filter", function() {
     });
   });
 
-  
+  it("should perform a freestyle calculated metric w/ 2 metrics, 2 filtered, 2 formulas", function(done) {
+    var query = {
+      timeframe: 'last_day',
+      interval: 'day',
+      dimensions: [],
+      metrics: [{
+        key: 'watched',
+        formula: {
+          dependsOn: [{
+            key: 'value',
+            name: 'value1',
+            filter: [
+              ['attribute', 'eq', 'test2']
+            ]
+          }, {
+            key: 'another',
+            name: 'another1',
+          }],
+          run: 'function(value, another) { return value * another }'
+        }
+      }, {
+        key: 'notwatched',
+        formula: {
+          dependsOn: [{
+            key: 'another',
+            name: 'another2',
+            filter: [
+              ['attribute', 'eq', 'test']
+            ]
+          }, {
+            key: 'third',
+            name: 'third1',
+          }],
+          run: 'function(another, third) { return another * third }'
+        }
+      }],
+      collection: this.collection
+    };
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
+      if (err)
+        return done(err);
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
+      expect(result.documents[0].watched).to.equal(60);
+      expect(result.documents[0].notwatched).to.equal(9000);
+      return done();
+    });
+  });
+
+  it("should perform a freestyle DSL calculated metric w/ 2 metrics, 2 filtered, 2 formulas", function(done) {
+    if (joola_proxy.datastore.providers.default.name !== 'ElasticSearch')
+      return done();
+
+    var query = {
+      timeframe: 'last_day',
+      interval: 'day',
+      dimensions: [],
+      metrics: [{
+        key: 'uplift',
+        dependsOn: ['value'],
+        aggregation: 'scripted_metric',
+        dsl: {
+          "uplift": {
+            "scripted_metric": {
+              "init_script_file": "joola_uplift_init",
+              "map_script_file": "joola_uplift_map",
+              "reduce_script_file": "joola_uplift_reduce"
+            }
+          }
+        }
+      }],
+      collection: this.collection
+    };
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
+      if (err)
+        return done(err);
+      ///console.log(require('util').inspect(result, {depth:null,colors:true}));
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
+      expect(result.documents[0].watched).to.equal(60);
+      expect(result.documents[0].notwatched).to.equal(9000);
+      return done();
+    });
+  });
 });
