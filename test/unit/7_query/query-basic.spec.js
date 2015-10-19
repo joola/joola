@@ -88,6 +88,8 @@ describe("query-basic", function() {
     //make sure the provider supports this
     if (!joola_proxy.datastore.providers.default.supportedFeatures)
       return done(null);
+    if (joola_proxy.datastore.providers.default.supportedFeatures().indexOf('time_field') === -1)
+      return done(null);
 
     var query = {
       timeframe: 'last_day',
@@ -233,6 +235,33 @@ describe("query-basic", function() {
         name: 'value',
         dependsOn: 'value',
         aggregation: 'max'
+      }],
+      collection: this.collection
+    };
+    joola_proxy.query.fetch(this.context, query, function(err, result) {
+      if (err)
+        return done(err);
+      expect(result).to.be.ok;
+      expect(result.documents).to.be.ok;
+      expect(result.documents.length).to.be.greaterThan(0);
+      expect(result.documents[0].value).to.equal(2);
+      return done();
+    });
+  });
+
+  it("should perform a freestyle query [count]", function(done) {
+    if (!joola_proxy.datastore.providers.default.supportedFeatures)
+      return done(null);
+    if (joola_proxy.datastore.providers.default.supportedFeatures().indexOf('count') === -1)
+      return done(null);
+
+    var query = {
+      timeframe: 'this_day',
+      interval: 'minute',
+      dimensions: [],
+      metrics: [{
+        key: 'value',
+        aggregation: 'count'
       }],
       collection: this.collection
     };
