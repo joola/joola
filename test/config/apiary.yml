@@ -27,8 +27,8 @@ workspaces:
         displayName: "Administrator"
         APIToken: "apitoken-test"
         ratelimit: 9999999999
-  _stats:
-    key: _stats
+  .joola-stats:
+    key: .joola-stats
     name: Internal Stats
     description: Stores internal statistics of joola
     roles:
@@ -42,7 +42,7 @@ workspaces:
         key: "reader"
         permissions:
           - "query:fetch"
-        filter: []        
+        filter: []
     users:
       root:
         username: "stats-beacon"
@@ -58,7 +58,7 @@ workspaces:
         roles:
           - "reader"
         displayName: "Stats Reader"
-        ratelimit: 9999999999        
+        ratelimit: 9999999999
     collections:
       reads:
         key: "reads"
@@ -83,7 +83,7 @@ workspaces:
           datatype: "string"
           type: "dimension"
           name: "workspace"
-          key: "workspace"          
+          key: "workspace"
         collection:
           datatype: "string"
           type: "dimension"
@@ -127,7 +127,7 @@ workspaces:
           datatype: "string"
           type: "dimension"
           name: "workspace"
-          key: "workspace"          
+          key: "workspace"
         collection:
           datatype: "string"
           type: "dimension"
@@ -171,7 +171,7 @@ workspaces:
           datatype: "string"
           type: "dimension"
           name: "workspace"
-          key: "workspace"          
+          key: "workspace"
         collection:
           datatype: "string"
           type: "dimension"
@@ -186,7 +186,7 @@ workspaces:
           datatype: "number"
           type: "metric"
           name: "simpleCount"
-          key: "simpleCount"                            
+          key: "simpleCount"
       node-count:
         key: "node-count"
         name: "node-count"
@@ -325,7 +325,7 @@ workspaces:
   demo:
     key: demo
     name: Demo Workspace
-    description: A starter/playground workpsace 
+    description: A starter/playground workpsace
     roles:
       root:
         key: "root"
