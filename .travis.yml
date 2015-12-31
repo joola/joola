@@ -21,10 +21,6 @@ matrix:
   fast_finish: true
   allow_failures:
     - node_js: "4.1"
-before_install:
-  - wget http://apache.claz.org/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz
-  - tar -zxvf zookeeper*tar.gz
-  - zookeeper-3.4.6/bin/zkServer.sh start zookeeper-3.4.6/conf/zoo_sample.cfg
 
 before_script:
   - sudo rabbitmq-plugins enable rabbitmq_stomp
