@@ -136,6 +136,7 @@
     "json-prune": "^1.0.1",
     "kindof": "^1.0.0",
     "localeval": "^15.2.3",
+    "lupus": "0.0.1",
     "node-zookeeper-client": "^0.2.2",
     "notevil": "^1.0.0",
     "punt": "^2.3.0",
