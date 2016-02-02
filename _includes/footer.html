@@ -26,7 +26,7 @@
 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="{{ "/javascripts/jQuery.timeago.js" | prepend: site.baseurl }}"></script>
-<script src="http://joola-develop.herokuapp.com/ip"></script>
+<script src="http://joo.la:8080/ip"></script>
 <script src="{{ "/javascripts/ua-parser.min.js" | prepend: site.baseurl }}"></script>
 <script src="{{ "/javascripts/recordEvents.js" | prepend: site.baseurl }}"></script>
 <script src="{{ "/javascripts/site.js" | prepend: site.baseurl }}"></script>
@@ -39,7 +39,7 @@
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  
+
   ga('create', 'UA-29020316-2', 'auto');
   ga('send', 'pageview');
 </script>
@@ -54,7 +54,7 @@
   function detectmob() {
     return !!(window.innerWidth <= 800 && window.innerHeight <= 600);
   };
-  
+
   if (!mobilecheck() && !detectmob())
     document.write('<script src="//sharebutton.net/plugin/sharebutton.php?type=vertical&u=' + encodeURIComponent(document.location.href) + '"></scr' + 'ipt>');
 </script>
