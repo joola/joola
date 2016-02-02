@@ -36,7 +36,7 @@ gems:
 
 # Conversion
 markdown:    redcarpet
-highlighter: pygments
+highlighter: rouge
 lsi:         false
 excerpt_separator: "\n\n"
 
